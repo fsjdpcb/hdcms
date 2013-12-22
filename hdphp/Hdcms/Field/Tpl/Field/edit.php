@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>模型管理</title>
-    <hdui/>
+    <hdui bootstrap="true"/>
     <js file="__GROUP__/Static/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
@@ -13,7 +13,7 @@
     </script>
 </head>
 <body>
-<form action="{|U:'edit'}" method="post" class="form-inline">
+<form action="{|U:'edit'}" method="post" class="form-inline hd-form">
     <input type="hidden" name="fid" value="{$hd.get.fid}"/>
 
     <div class="wrap">

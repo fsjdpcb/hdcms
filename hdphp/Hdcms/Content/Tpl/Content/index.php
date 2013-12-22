@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>内容管理</title>
-    <hdui/>
+    <hdui bootstrap="true"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
     <js file="__CONTROL_TPL__/js/index.js"/>

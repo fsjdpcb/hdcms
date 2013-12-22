@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <title>高级搜索</title>
+    <hdui bootstrap="true"/>
+    <js file="./template/common/js/search.js"/>
+    <css file="./template/common/css/search.css"/>
+</head>
+<body>
+<form action="{|U:'search'}" method="post" class="hd-form">
+    <div class="wrap">
+        <div class="table_title">
+            高级搜索
+        </div>
+        <table class="table1">
+            <tr>
+                <th class="w100">网站栏目:</th>
+                <td>
+                    <select name="cid">
+                        <option value="0" level="1">---不限栏目---</option>
+                        <list from="$category" name="c">
+                            <option value="{$c.cid}">{$c.catname}</option>
+                        </list>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>关 键 字:</th>
+                <td>
+                    <input type="text" name="search" class="w200"/>
+                </td>
+            </tr>
+            <tr>
+                <th>发布时间:</th>
+                <td>
+                    <select name="starttime">
+                        <option selected="" value="0">--不限--</option>
+                        <option value="7">一周以内</option>
+                        <option value="30">一个月内</option>
+                        <option value="90">三个月内</option>
+                        <option value="180">半年以内</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>内容类型:</th>
+                <td>
+                    <select name="mid">
+                        <option value="0">---不限---</option>
+                        <list from="$model" name="m">
+                            <option value="{$m.mid}">{$m.model_name}</option>
+                        </list>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>排序方式:</th>
+                <td>
+                    <select name="orderby">
+                        <option selected="" value="aid">--默认--</option>
+                        <option value="adddate">收录时间</option>
+                        <option value="updatetime">发布时间</option>
+                        <option value="aid">文档ID</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>每页显示条数:</th>
+                <td>
+                    <input type="text" name="pagerow" class="w200" value="10"/>
+                </td>
+            </tr>
+            <tr>
+                <th>关键字模式:</th>
+                <td>
+                    <input type="radio" checked="" value="1" name="kwtype">
+                    或
+                    <input type="radio" value="0" name="kwtype">
+                    与
+                </td>
+            </tr>
+            <tr>
+                <th>搜索内容:</th>
+                <td>
+                    <select id="searchtype" class="op1" name="searchtype">
+                        <option selected="" value="titlekeyword">默认搜索</option>
+                        <option value="title">仅搜索标题</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <div class="btn_wrap">
+            <input type="submit" class="btn btn-primary" value="提交"/>
+        </div>
+    </div>
+</form>
+</body>
+</html>

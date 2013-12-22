@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>welcome</title>
-    <hdui/>
+    <hdui bootstrap="true"/>
     <css file="__CONTROL_TPL__/css/welcome.css"/>
     <js file="__CONTROL_TPL__/js/welcome.js"/>
 </head>
@@ -85,7 +85,7 @@
             </td>
         </tr>
     </table>
-    <form action="__ROOT__/index.php?a=Bug&c=Bug&m=suggest" method="post">
+    <form action="__ROOT__/index.php?a=Bug&c=Bug&m=suggest" method="post" class="form-inline hd-form">
         <table class="table2">
             <tr>
                 <td class="w80">类型</td>

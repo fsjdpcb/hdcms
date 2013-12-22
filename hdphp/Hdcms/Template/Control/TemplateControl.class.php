@@ -12,6 +12,8 @@ class TemplateControl extends AuthControl
     {
         $style = array();
         foreach (glob("./template/*") as $tpl) {
+            //去除common公共模板目录
+            if (strstr($tpl, 'common')) continue;
             $readme = $tpl . '/readme.txt';
             if (is_file($readme) && is_readable($readme)) {
                 $readme = trim(preg_replace('@#.*@im', "", file_get_contents($readme)));

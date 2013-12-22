@@ -4,14 +4,14 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>内容列表</title>
-    <hdui/>
+    <hdui bootstrap="true"/>
     <js file="__GROUP__/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
 <body>
 <div class="wrap">
-    <form action="__METH__&cid={$hd.get.cid}&status={$hd.get.status}" method="post" class="form-inline">
+    <form action="__METH__&cid={$hd.get.cid}&status={$hd.get.status}" method="post" class="form-inline hd-form">
         <input type="hidden" name="cid" value="{$hd.get.cid}"/>
         <div class="search">
             添加时间：<input id="begin_time" readonly="readonly" class="w80" type="text" value="" name="search_begin_time">
@@ -48,7 +48,7 @@
             <li><a href="javascript:;" onclick="window.open('{|U:'add',array('cid'=>$_GET['cid'],'status'=>0)}')">添加内容</a></li>
         </ul>
     </div>
-    <table class="table2">
+    <table class="table2 hd-form">
         <thead>
         <tr>
             <td class="w30">
@@ -101,13 +101,13 @@
 </div>
 
 <div class="btn_wrap">
-    <input type="button" class="btn s_all btn-small" value="全选"/>
-    <input type="button" class="btn r_select btn-small" value="反选"/>
-    <input type="button" class="btn btn-small" onclick="update_order({$hd.get.cid})" value="更改排序"/>
-    <input type="button" class="btn btn-small" onclick="del({$hd.get.cid})" value="批量删除"/>
-    <input type="button" class="btn btn-small" onclick="set_status({$hd.get.cid},1)" value="审核"/>
-    <input type="button" class="btn btn-small" onclick="set_status({$hd.get.cid},0)" value="取消审核"/>
-    <input type="button" class="btn btn-small" onclick="move({$hd.get.cid})" value="批量移动"/>
+    <input type="button" class="btn s_all" value="全选"/>
+    <input type="button" class="btn r_select" value="反选"/>
+    <input type="button" class="btn" onclick="update_order({$hd.get.cid})" value="更改排序"/>
+    <input type="button" class="btn" onclick="del({$hd.get.cid})" value="批量删除"/>
+    <input type="button" class="btn" onclick="set_status({$hd.get.cid},1)" value="审核"/>
+    <input type="button" class="btn" onclick="set_status({$hd.get.cid},0)" value="取消审核"/>
+    <input type="button" class="btn" onclick="move({$hd.get.cid})" value="批量移动"/>
 </div>
 </body>
 </html>

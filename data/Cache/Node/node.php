@@ -149,27 +149,6 @@ return array (
   ),
   7 => 
   array (
-    'nid' => '3',
-    'title' => '附件管理',
-    'app' => 'Upload',
-    'control' => 'Index',
-    'method' => 'index',
-    'param' => '',
-    'comment' => '',
-    'status' => '1',
-    'menu_type' => '1',
-    'pid' => '2',
-    'list_order' => '0',
-    'is_system' => '1',
-    'favorite' => '0',
-    'level' => 3,
-    'html' => '',
-    '_pre' => false,
-    '_end' => false,
-    'name' => '│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─附件管理',
-  ),
-  8 => 
-  array (
     'nid' => '13',
     'title' => '栏目管理',
     'app' => 'Category',
@@ -186,8 +165,29 @@ return array (
     'level' => 3,
     'html' => '',
     '_pre' => false,
+    '_end' => false,
+    'name' => '│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─栏目管理',
+  ),
+  8 => 
+  array (
+    'nid' => '70',
+    'title' => 'Tag管理',
+    'app' => 'Tag',
+    'control' => 'Tag',
+    'method' => 'index',
+    'param' => '3',
+    'comment' => '',
+    'status' => '1',
+    'menu_type' => '1',
+    'pid' => '2',
+    'list_order' => '0',
+    'is_system' => '0',
+    'favorite' => '0',
+    'level' => 3,
+    'html' => '',
+    '_pre' => false,
     '_end' => true,
-    'name' => '│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─栏目管理',
+    'name' => '│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─Tag管理',
   ),
   9 => 
   array (
@@ -317,6 +317,27 @@ return array (
   ),
   15 => 
   array (
+    'nid' => '3',
+    'title' => '附件管理',
+    'app' => 'Upload',
+    'control' => 'Index',
+    'method' => 'index',
+    'param' => '',
+    'comment' => '',
+    'status' => '1',
+    'menu_type' => '1',
+    'pid' => '10',
+    'list_order' => '0',
+    'is_system' => '1',
+    'favorite' => '0',
+    'level' => 3,
+    'html' => '',
+    '_pre' => true,
+    '_end' => false,
+    'name' => '│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─附件管理',
+  ),
+  16 => 
+  array (
     'nid' => '12',
     'title' => '数据备份',
     'app' => 'Backup',
@@ -332,11 +353,11 @@ return array (
     'favorite' => '0',
     'level' => 3,
     'html' => '',
-    '_pre' => true,
+    '_pre' => false,
     '_end' => false,
     'name' => '│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─数据备份',
   ),
-  16 => 
+  17 => 
   array (
     'nid' => '14',
     'title' => '模型管理',
@@ -357,7 +378,7 @@ return array (
     '_end' => false,
     'name' => '│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─模型管理',
   ),
-  17 => 
+  18 => 
   array (
     'nid' => '15',
     'title' => '推荐位管理',
@@ -375,10 +396,31 @@ return array (
     'level' => 3,
     'html' => '',
     '_pre' => false,
-    '_end' => true,
-    'name' => '│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─推荐位管理',
+    '_end' => false,
+    'name' => '│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─推荐位管理',
   ),
-  18 => 
+  19 => 
+  array (
+    'nid' => '69',
+    'title' => '搜索关键词',
+    'app' => 'Search',
+    'control' => 'Manage',
+    'method' => 'index',
+    'param' => '3',
+    'comment' => '',
+    'status' => '1',
+    'menu_type' => '1',
+    'pid' => '10',
+    'list_order' => '0',
+    'is_system' => '0',
+    'favorite' => '0',
+    'level' => 3,
+    'html' => '',
+    '_pre' => false,
+    '_end' => true,
+    'name' => '│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─搜索关键词',
+  ),
+  20 => 
   array (
     'nid' => '16',
     'title' => '系统',
@@ -399,7 +441,7 @@ return array (
     '_end' => true,
     'name' => '系统',
   ),
-  19 => 
+  21 => 
   array (
     'nid' => '19',
     'title' => '系统设置',
@@ -420,7 +462,7 @@ return array (
     '_end' => false,
     'name' => '├─系统设置',
   ),
-  20 => 
+  22 => 
   array (
     'nid' => '20',
     'title' => '网站配置',
@@ -441,7 +483,7 @@ return array (
     '_end' => false,
     'name' => '│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─网站配置',
   ),
-  21 => 
+  23 => 
   array (
     'nid' => '21',
     'title' => '后台菜单管理',
@@ -462,7 +504,7 @@ return array (
     '_end' => true,
     'name' => '│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─后台菜单管理',
   ),
-  22 => 
+  24 => 
   array (
     'nid' => '11',
     'title' => '管理员设置',
@@ -483,7 +525,7 @@ return array (
     '_end' => false,
     'name' => '├─管理员设置',
   ),
-  23 => 
+  25 => 
   array (
     'nid' => '17',
     'title' => '管理员管理',
@@ -504,7 +546,7 @@ return array (
     '_end' => false,
     'name' => '│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─管理员管理',
   ),
-  24 => 
+  26 => 
   array (
     'nid' => '18',
     'title' => '角色管理',
@@ -525,7 +567,7 @@ return array (
     '_end' => true,
     'name' => '│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─角色管理',
   ),
-  25 => 
+  27 => 
   array (
     'nid' => '30',
     'title' => '会员',
@@ -546,7 +588,7 @@ return array (
     '_end' => true,
     'name' => '会员',
   ),
-  26 => 
+  28 => 
   array (
     'nid' => '31',
     'title' => '会员管理',
@@ -567,7 +609,7 @@ return array (
     '_end' => false,
     'name' => '├─会员管理',
   ),
-  27 => 
+  29 => 
   array (
     'nid' => '32',
     'title' => '会员管理',
@@ -588,7 +630,7 @@ return array (
     '_end' => false,
     'name' => '│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─会员管理',
   ),
-  28 => 
+  30 => 
   array (
     'nid' => '33',
     'title' => '审核会员',
@@ -609,7 +651,7 @@ return array (
     '_end' => true,
     'name' => '│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─审核会员',
   ),
-  29 => 
+  31 => 
   array (
     'nid' => '34',
     'title' => '会员组管理',
@@ -630,7 +672,7 @@ return array (
     '_end' => false,
     'name' => '├─会员组管理',
   ),
-  30 => 
+  32 => 
   array (
     'nid' => '35',
     'title' => '管理会员组',
@@ -651,7 +693,7 @@ return array (
     '_end' => true,
     'name' => '│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─管理会员组',
   ),
-  31 => 
+  33 => 
   array (
     'nid' => '36',
     'title' => '模板',
@@ -672,7 +714,7 @@ return array (
     '_end' => true,
     'name' => '模板',
   ),
-  32 => 
+  34 => 
   array (
     'nid' => '37',
     'title' => '模板管理',
@@ -693,7 +735,7 @@ return array (
     '_end' => false,
     'name' => '├─模板管理',
   ),
-  33 => 
+  35 => 
   array (
     'nid' => '38',
     'title' => '模板风格',
@@ -714,7 +756,7 @@ return array (
     '_end' => false,
     'name' => '│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─模板风格',
   ),
-  34 => 
+  36 => 
   array (
     'nid' => '39',
     'title' => '模板文件',
@@ -735,7 +777,7 @@ return array (
     '_end' => false,
     'name' => '│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─模板文件',
   ),
-  35 => 
+  37 => 
   array (
     'nid' => '40',
     'title' => 'JS标签调用',

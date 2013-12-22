@@ -4,12 +4,12 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>更新网站首页</title>
-    <hdui/>
+    <hdui bootstrap="true"/>
     <js file="__GROUP__/static/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
 <body>
-<form method="post" action="__METH__" class="form-inline">
+<form method="post" action="__METH__" class="form-inline hd-form">
     <div class="wrap">
         <div class="table_title">温馨提示</div>
         <div class="help">

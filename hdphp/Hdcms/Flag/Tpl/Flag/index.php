@@ -5,7 +5,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>属性管理</title>
-    <hdui/>
+    <hdui bootstrap="true"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
 </head>
@@ -17,7 +17,7 @@
             <li><a href="javascript:add_flag();">添加属性</a></li>
         </ul>
     </div>
-    <form action="{|U:'edit'}" method="post" id="edit_form">
+    <form action="{|U:'edit'}" method="post" id="edit_form" class="form-inline hd-form">
         <table class="table2">
             <thead>
             <tr>

@@ -9,6 +9,8 @@ class ContentModel extends RelationModel
     protected $model;
     //栏目缓存
     protected $category;
+    //内容关键词
+    protected $keywords;
     //自动完成
     public $auto = array(
         array("addtime", "time", 2, 1, "function"),
@@ -240,8 +242,18 @@ class ContentModel extends RelationModel
                     $i++;
                     if ($i > 8) break;
                 }
+                $this->keywords = $words;
                 $this->data['keywords'] = substr($k, 0, -1);
             }
+        }
+    }
+
+    //修改内容tag
+    private function  update_tag()
+    {
+        if (!empty($this->keywords)) {
+            $db = K("Tag");
+            $db->add_tag($this->keywords);
         }
     }
 
@@ -270,6 +282,8 @@ class ContentModel extends RelationModel
         $aid = $this->result[$this->table];
         //修改文件上传表upload
         $this->update_file_upload_table($aid);
+        //修改内容tag
+        $this->update_tag($aid);
         $html = get_content_html(M($this->table)->find($aid));
         if (!is_null($html)) {
             //生成静态

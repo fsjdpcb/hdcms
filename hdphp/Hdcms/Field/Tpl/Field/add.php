@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>添加字段</title>
-    <hdui/>
+    <hdui bootstrap="true"/>
     <js file="__GROUP__/static/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
@@ -15,7 +15,7 @@
     </script>
 </head>
 <body>
-<form action="{|U:'add'}" method="post" onsubmit="return false;" class="form-inline">
+<form action="{|U:'add'}" method="post" onsubmit="return false;" class="form-inline hd-form">
     <div class="wrap">
         <div class="menu_list">
             <ul>

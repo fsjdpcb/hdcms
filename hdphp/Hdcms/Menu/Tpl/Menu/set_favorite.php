@@ -4,13 +4,13 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>添加文章</title>
-    <hdui/>
+    <hdui bootstrap="true"/>
     <js file="__GROUP__/Static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
 <body>
-<form method="post" action="__METH__">
+<form method="post" action="__METH__" class="form-inline hd-form">
     <div class="wrap">
         <div class="table_title">设置常用菜单</div>
         <table class="table1">

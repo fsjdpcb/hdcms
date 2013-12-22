@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>修改会员</title>
-    <hdui/>
+    <hdui bootstrap="true"/>
     <js file="__GROUP__/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/edit_validation.js"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
@@ -18,7 +18,7 @@
             <li><a href="javascript:;" class="action">修改会员</a></li>
         </ul>
     </div>
-    <form action="{|U:'add'}" method="post" class="form-inline">
+    <form action="{|U:'add'}" method="post" class="form-inline hd-form">
         <input type="hidden" name="uid" value="{$field.uid}"/>
         <table class="table1">
             <tr>

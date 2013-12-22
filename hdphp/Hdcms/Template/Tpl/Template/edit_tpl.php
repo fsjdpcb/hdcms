@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>修改模板</title>
-    <hdui/>
+    <hdui bootstrap="true"/>
     <js file="__CONTROL_TPL__/js/edit_tpl.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
@@ -19,7 +19,7 @@
     <form action="{|U:add}" method="post" onsubmit="return false;">
         <input type="hidden" name="file_path" value="{$field.file_path}"/>
         <!--右侧缩略图区域-->
-        <table class="table1">
+        <table class="table1 hd-form">
             <tr>
                 <th class="w100">文件名</th>
                 <td>

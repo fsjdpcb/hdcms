@@ -4,13 +4,13 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>栏目管理</title>
-    <hdui/>
+    <hdui bootstrap="true"/>
     <js file="__GROUP__/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
 <body>
-<form action="{|U:edit}" method="post" class="form-inline">
+<form action="{|U:edit}" method="post" class="form-inline hd-form">
     <input type="hidden" value="{$field.cid}" name="cid"/>
     <div class="wrap">
         <div class="menu_list">
@@ -21,7 +21,6 @@
             </ul>
         </div>
         <input type="hidden" name="mid" value="{$field.mid}"/>
-
         <div class="tab">
             <ul class="tab_menu">
                 <li lab="base"><a href="#">基本设置</a></li>

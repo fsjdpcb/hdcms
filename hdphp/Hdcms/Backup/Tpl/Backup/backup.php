@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>备份数据库</title>
-    <hdui/>
+    <hdui bootstrap="true"/>
     <js file="__ROOT__/hdcms/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
@@ -17,7 +17,7 @@
             <li><a href="javascript:;"  class="action">备份数据</a></li>
         </ul>
     </div>
-<form action="{|U:'backup'}" target="dialog_iframe" method="post">
+<form action="{|U:'backup'}" target="dialog_iframe" method="post" class="form-inline hd-form">
     <table class="table2">
         <thead>
         <tr>
@@ -43,7 +43,7 @@
                     <tr>
                         <td class="w100">&nbsp;</td>
                         <td>
-                            <input type="submit" class="btn" id="backup" value="开始备份"/>
+                            <input type="submit" class="btn btn-primary" id="backup" value="开始备份"/>
                         </td>
                     </tr>
                 </table>

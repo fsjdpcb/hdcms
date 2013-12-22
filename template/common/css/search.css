@@ -1,0 +1,30 @@
+div.wrap {
+    padding: 20px;
+}
+
+div.btn_wrap {
+    margin-top: 20px;
+}
+
+/*搜索结果页*/
+div.wrap {
+    padding: 10px;
+    margin: 0px auto;
+}
+
+div.wrap div.left {
+}
+
+div.wrap div.left ul li {
+}
+div.wrap div.left ul li span{
+   color:#666;
+}
+div.wrap div.right{
+    border-left: 1px solid #DADADA;
+    float: right;
+    margin-right: 20px;
+    padding: 20px 0 0 20px;
+    width: 300px;
+    word-wrap: break-word;
+}

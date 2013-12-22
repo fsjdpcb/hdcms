@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>解决反馈</title>
-    <hdui/>
+    <hdui bootstrap="true"/>
     <js file="__ROOT__/hdcms/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/add_validation.js"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
@@ -17,7 +17,7 @@
             <li><a href="__CONTROL__" class="action">所有反馈</a></li>
         </ul>
     </div>
-    <form action="__METH__" method="post">
+    <form action="__METH__" method="post" class="hd-form form-inline">
         <input type="hidden" value="{$field.bid}" name="bid"/>
         <table class="table1">
             <tr>
@@ -60,7 +60,7 @@
             </tr>
         </table>
         <div class="btn_wrap">
-            <input type="submit" class="btn" value="确定"/>
+            <input type="submit" class="btn btn-primary" value="确定"/>
         </div>
     </form>
 </div>

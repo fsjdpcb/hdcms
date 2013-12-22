@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>添加会员组</title>
-    <hdui/>
+    <hdui bootstrap="true"/>
     <js file="__ROOT__/hdcms/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
@@ -17,7 +17,7 @@
             <li><a href="javascript:;" class="action">添加会员组</a></li>
         </ul>
     </div>
-    <form action="{|U:'add'}" method="post" onsubmit="return false;">
+    <form action="{|U:'add'}" method="post" onsubmit="return false;" class="form-inline hd-form">
         <table class="table1">
             <tr>
                 <th class="w100">会员组名称</th>

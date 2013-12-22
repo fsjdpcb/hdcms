@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>{$hd.config.webname} 会员中心</title>
-    <hdui/>
+    <hdui bootstrap="true"/>
     <js file="__ROOT__/hdcms/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
@@ -43,7 +43,7 @@
         </div>
         <div class="main">
             <div id="con">
-                <form action="{|U:'edit'}" method="post" enctype="multipart/form-data">
+                <form action="{|U:'edit'}" method="post" enctype="multipart/form-data" class="form-inline hd-form">
                     <div class="tab">
                         <ul class="tab_menu">
                             <li lab="base">

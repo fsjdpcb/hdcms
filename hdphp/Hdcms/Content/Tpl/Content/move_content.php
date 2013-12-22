@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>添加文章</title>
-    <hdui/>
+    <hdui bootstrap="true"/>
     <js file="__GROUP__/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/move_content.js"/>
     <css file="__CONTROL_TPL__/css/move_content.css"/>
@@ -14,7 +14,7 @@
     <div class="table_title">温馨提示</div>
     <div class="help"> 不能够跨模型移动文章</div>
     <div class="line"></div>
-    <form action="__METH__" method="post" onsubmit="return false">
+    <form action="__METH__" method="post" onsubmit="return false" class="form-inline hd-form">
         <input type="hidden" name="mid" value="{$mid}"/>
         <table style="width:100%">
             <tr>

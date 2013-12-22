@@ -239,7 +239,7 @@ str;
     //当前位置
     public function _pagepath($attr, $content)
     {
-        $php=<<<str
+        $php = <<<str
         <?php
         if(!empty(\$_GET['cid'])){
             \$cat = F("category",false,CATEGORY_CACHE_PATH);
@@ -252,6 +252,25 @@ str;
         }
         ?>
 str;
-       return $php;
+        return $php;
+    }
+
+    //搜索关键词
+    public function _searchkey($attr, $content)
+    {
+        $row = isset($attr['row']) ? $attr['row'] : 10;
+        //显示搜索词数量
+        $php = <<<str
+        <?php
+            \$db = M("search");
+            \$result = \$db->limit($row)->all();
+            if(!empty(\$result)):
+            foreach(\$result as \$field):
+                \$field['url']='__ROOT__/index.php?a=Search&c=Search&m=search&search='.\$field['name'];
+            ?>
+str;
+        $php .= $content;
+        $php .= "<?php endforeach;endif;?>";
+        return $php;
     }
 }

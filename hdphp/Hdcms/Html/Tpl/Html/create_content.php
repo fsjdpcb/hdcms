@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>生成内容页静态</title>
-    <hdui/>
+    <hdui bootstrap="true"/>
     <script>
         //栏目缓存数据
         var category={$category};
@@ -15,7 +15,7 @@
 
 </head>
 <body>
-<form method="post" action="__CONTROL__&m=make_content">
+<form method="post" action="__CONTROL__&m=make_content" class="form-inline hd-form">
     <div class="wrap">
         <div class="table_title">温馨提示</div>
         <div class="help">

@@ -5,13 +5,13 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <css file="__STATIC__/Css/common.css"/>
     <title>管理员管理</title>
-    <hdui/>
+    <hdui bootstrap="true"/>
     <js file="__ROOT__/hdcms/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
 <body>
-<form action="{|U:'set_access'}" method="post">
+<form action="{|U:'set_access'}" method="post" class="hd-form form-inline">
     <input type="hidden" name="rid" value="{$rid}"/>
     <div class="wrap">
         <div class="menu_list">

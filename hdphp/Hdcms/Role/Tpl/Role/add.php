@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>添加角色</title>
-    <hdui/>
+    <hdui bootstrap="true"/>
     <js file="__GROUP__/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
@@ -17,7 +17,7 @@
             <li><a href="javascript:;" class="action">添加角色</a></li>
         </ul>
     </div>
-    <form action="{|U:'add'}" method="post" onsubmit="return false;">
+    <form action="{|U:'add'}" method="post" onsubmit="return false;" class="form-inline hd-form">
         <table class="table1">
             <tr>
                 <th class="w100">角色名称</th>

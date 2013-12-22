@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>修改个人资料</title>
-    <hdui/>
+    <hdui bootstrap="true"/>
     <js file="__GROUP__/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
@@ -12,7 +12,7 @@
 <body>
 <div class="wrap">
     <div class="table_title">个人资料修改</div>
-    <form action="{|U:'edit_info'}" method="post" onsubmit="return hd_dialog(this)">
+    <form action="{|U:'edit_info'}" method="post" onsubmit="return hd_dialog(this)" class="form-inline hd-form">
         <input type="hidden" name="uid" value="{$user.uid}"/>
         <table class="table1">
             <tr>

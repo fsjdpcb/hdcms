@@ -4,13 +4,13 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>栏目管理</title>
-    <hdui/>
+    <hdui bootstrap="true"/>
     <js file="__GROUP__/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
 <body>
-<form action="{|U:add}" method="post" class="form-inline">
+<form action="{|U:add}" method="post" class="form-inline hd-form">
     <div class="wrap">
         <div class="menu_list">
             <ul>

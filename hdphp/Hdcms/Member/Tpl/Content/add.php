@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>{$hd.config.webname} 会员中心</title>
-    <hdui/>
+    <hdui bootstrap="true"/>
     <js file="__ROOT__/hdcms/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
@@ -47,7 +47,7 @@
         <div class="main">
             <div id="con">
                 <div class="table_title">添加文章</div>
-                <form action="{|U:add}" method="post" onsubmit="return false;">
+                <form action="{|U:add}" method="post" onsubmit="return false;" class="form-inline hd-form">
                     <table class="table1">
                         <tr>
                             <th class="w80">标题</th>

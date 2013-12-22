@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>HDCMS反馈</title>
-    <hdui/>
+    <hdui bootstrap="true"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
@@ -54,7 +54,7 @@
         </list>
     </table>
     <div class="btn_wrap">
-        <input type="submit" class="btn" value="批量删除" onclick="del()"/>
+        <input type="submit" class="btn btn-primary" value="批量删除" onclick="del()"/>
     </div>
 </div>
 </body>

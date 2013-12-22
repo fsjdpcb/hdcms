@@ -4,8 +4,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>还原备份</title>
-    <hdui/>
-    <js file="__ROOT__/hdcms/static/js/js.js"/>
+    <hdui bootstrap="true"/>
+    <js file="__GROUP__/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
@@ -17,7 +17,7 @@
             <li><a href="{|U:'backup'}">备份数据</a></li>
         </ul>
     </div>
-    <form action="{|U:'delBackupDir'}" method="post">
+    <form action="{|U:'delBackupDir'}" method="post" class="form-inline hd-form">
         <table class="table2">
             <thead>
             <tr>

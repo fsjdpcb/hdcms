@@ -4,13 +4,13 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>添加自定义JS标签</title>
-    <hdui/>
+    <hdui bootstrap="true"/>
     <js file="__GROUP__/static/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
 </head>
 <body>
-<form action="{|U:'edit'}" method="post" class="form-inline" onsubmit="return hd_dialog(this,'__CONTROL__')">
+<form action="{|U:'edit'}" method="post" class="form-inline hd-form" onsubmit="return hd_dialog(this,'__CONTROL__')">
     <input type="hidden" name="id" value="{$field.id}"/>
     <div class="wrap">
         <div class="menu_list">

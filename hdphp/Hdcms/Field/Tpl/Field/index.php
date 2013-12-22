@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>模型管理</title>
-    <hdui/>
+    <hdui bootstrap="true"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
 </head>
@@ -18,7 +18,7 @@
             <li><a href="javascript:update_cache({$hd.get.mid})">更新字段缓存</a></li>
         </ul>
     </div>
-    <table class="table2">
+    <table class="table2 hd-form">
         <thead>
         <tr>
             <td width="30">排序</td>

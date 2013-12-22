@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>生成栏目静态</title>
-    <hdui/>
+    <hdui bootstrap="true"/>
     <script>
         //栏目缓存数据
         var category={$category};
@@ -14,7 +14,7 @@
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
 <body>
-<form method="post" action="__CONTROL__&m=make_category">
+<form method="post" action="__CONTROL__&m=make_category" class="form-inline hd-form">
     <div class="wrap">
         <div class="table_title">温馨提示</div>
         <div class="help">

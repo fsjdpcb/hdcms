@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>后台菜单管理</title>
-    <hdui/>
+    <hdui bootstrap="true"/>
     <js file="__GROUP__/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
@@ -18,7 +18,7 @@
             <li><a href="javascript:update_cache();">更新缓存</a></li>
         </ul>
     </div>
-    <table class="table2">
+    <table class="table2 hd-form form-inline">
         <thead>
         <tr>
             <td class="w50">排序</td>

@@ -4,13 +4,13 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>修改文章</title>
-    <hdui/>
+    <hdui bootstrap="true"/>
     <js file="__GROUP__/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
 <body>
-<form action="{|U:edit}" method="post" id="edit" class="form-inline">
+<form action="{|U:edit}" method="post" id="edit" class="form-inline hd-form">
     <input type="hidden" value="{$field.aid}" name="aid"/>
 
     <div class="wrap">

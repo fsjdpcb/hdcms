@@ -14,10 +14,8 @@
         <div class="head_top_l">
 				<span class="top_login">
 				{$hd.config.webname}
-
 				</span>
         </div>
-
         <!-- 右边盒子结束 -->
     </div>
 </div>
@@ -49,33 +47,27 @@
 <div class="search_box">
     <!-- 搜索大盒子左边开始 -->
     <div class="s_left">
-        <!-- 搜索框盒子 -->
-        <div class="keybox">
-            <p class="serch_pic"></p>
-            <input type="text" value="1212" maxlength="16"/>
-        </div>
-        <!-- 搜索框盒子 -->
-        <!-- 按钮开始 -->
-        <div class="btn">
-            <input type="submit" value="搜索"/>
-        </div>
-        <!-- 按钮结束 -->
-
+        <form action="{|U:'Search/Search/search'}" method="post">
+            <!-- 搜索框盒子 -->
+            <div class="keybox">
+                <p class="serch_pic"></p>
+                <input type="text" name="search" maxlength="16"/>
+            </div>
+            <!-- 搜索框盒子 -->
+            <!-- 按钮开始 -->
+            <div class="btn">
+                <input type="submit" value="搜索"/>
+            </div>
+            <!-- 按钮结束 -->
+        </form>
         <!-- 搜索框右侧搜索链接结束 -->
         <!-- 热门关键字开始 -->
         <div class="hotkey">
 
-            热门关键字：<a href="">PHP</a>
-            <a href="">PHP程序员</a>
-            <a href="">PHP工程师</a>
-            <a href="">PHP招聘</a>
-            <a href="">网页设计</a>
-            <a href="">PHP网站开发</a>
-            <a href="">程序员招聘</a>
-            <a href="">ASP程序员</a>
-            <a href="">UI设计</a>
-            <a href="">网页制作</a>
-            <a href="">网站美工</a>
+            热门关键字：
+            <searchkey row="10">
+                <a href="{$field.url}">{$field.name}</a>
+            </searchkey>
         </div>
         <!-- 热门关键字结束 -->
     </div>
@@ -113,9 +105,9 @@
         <div class="listbox">
             <div class="top">
                 <arclist row="1" flag="2" titlelen="13">
-                <h1><a href="{$field.url}" target="_blank"> {$field.title}</a></h1>
+                    <h1><a href="{$field.url}" target="_blank"> {$field.title}</a></h1>
                     {$field.description}
-                <a href="{$field.url}">[全文...]</a>
+                    <a href="{$field.url}">[全文...]</a>
                 </arclist>
             </div>
             <ul>

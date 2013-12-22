@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>HDCMS后台登录</title>
-    <hdui/>
+    <hdui bootstrap="true"/>
     <css file="__CONTROL_TPL__/Css/css.css"/>
     <js file="__CONTROL_TPL__/Js/js.js"/>
 </head>
@@ -28,7 +28,7 @@
                     <span id="error_logo" class="error_logo"></span>
                     <span id="err_m" class="err_m">12</span>
                 </div>
-                <form action="{|U:'login'}" method="post" target="checkLogin">
+                <form action="{|U:'login'}" method="post" target="checkLogin" class="form-inline hd-form">
                     <div class="input">
                         <div class="inputOuter">
                             <input type="text" name="username" title="帐号" value="帐号" class="empty w300"/>
