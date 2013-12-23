@@ -101,7 +101,7 @@ $db->exe("CREATE TABLE `".$db_prefix."content` (
   `description` varchar(255) NOT NULL DEFAULT '' COMMENT '描述',
   `html_path` varchar(255) NOT NULL DEFAULT '' COMMENT '自定义生成的静态文件地址',
   PRIMARY KEY (`aid`)
-) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=utf8");
+) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=utf8");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."content_data`");
 $db->exe("CREATE TABLE `".$db_prefix."content_data` (
   `aid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '文章主表ID',
@@ -157,7 +157,7 @@ $db->exe("CREATE TABLE `".$db_prefix."flag` (
   `flagname` char(20) NOT NULL,
   `system` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '1 系统属性(不能删除)  2 用户定义属性',
   PRIMARY KEY (`fid`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8");
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."member_group`");
 $db->exe("CREATE TABLE `".$db_prefix."member_group` (
   `gid` smallint(5) unsigned NOT NULL AUTO_INCREMENT COMMENT '会员组id',

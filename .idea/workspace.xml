@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7fdfeb72-05e7-437b-b747-905afa58d1a4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template/bootstrap/index.html" afterPath="$PROJECT_DIR$/template/bootstrap/index.html" />
-    </list>
+    <list default="true" id="7fdfeb72-05e7-437b-b747-905afa58d1a4" name="Default" comment="" />
     <ignored path="hdcms.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
