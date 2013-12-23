@@ -12,7 +12,7 @@ div.tpl-list ul li {
     overflow: hidden;
     background: #efefef;
     border: solid 5px #dcdcdc;
-    padding: 3px;
+    padding-bottom: 5px;
     cursor: pointer;
     position: relative;
 }
@@ -27,17 +27,17 @@ div.tpl-list ul li img {
 }
 
 div.tpl-list ul li div.style_cur {
-    font-size: 35px;
-    color: #666;
-    border-bottom: 5px solid #DCDCDC;
+    font-size: 20px;
+    color: #ffffff;
+    border-bottom: 2px solid #DCDCDC;
     position: absolute;
     top: 0px;
     right: 0px;
     left: 0px;
     text-align: center;
-    background: #fcfcfc;
-    height: 50px;
-    line-height: 45px;
+    background: #2D0B57;
+    height: 35px;
+    line-height: 38px;
 }
 
 div.tpl-list ul li h4 {
