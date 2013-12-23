@@ -13,7 +13,7 @@ if (is_file("./lock.php")) {
     ';
     exit;
 }
-define("HDPHP_PATH", "../../hdphp/hdphp/hdphp.php");
+define("HDPHP_PATH", "../hd/hdphp/");
 $version = require "./version.php";
 define("VERSION", $version['NAME'] . " " . $version['VERSION']);
 define("INSTALL_DIR", dirname(dirname(str_replace('\\', '/', __FILE__))));
@@ -98,7 +98,7 @@ switch ($s) {
         break;
     case "install": //开始安装
         //删除hdcms临时目录temp
-        require "../hd/hdphp/Extend/Tool/Dir.class.php";
+        require HDPHP_PATH."Extend/Tool/Dir.class.php";
         is_dir("../temp") and Dir::del("../temp");
         $config = require "config.inc.php";
         $db_prefix = $config['DB_PREFIX'];

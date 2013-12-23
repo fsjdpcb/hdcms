@@ -82,13 +82,13 @@
       <file leaf-file-name="index.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/install/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="100" column="22" selection-start="3173" selection-end="3173" vertical-scroll-proportion="0.20085837" vertical-offset="1966" max-vertical-offset="4554">
+            <state line="15" column="7" selection-start="373" selection-end="373" vertical-scroll-proportion="0.2770781" vertical-offset="0" max-vertical-offset="4554">
               <folding>
-                <marker date="1387807847000" expanded="true" signature="107:345" placeholder="..." />
-                <marker date="1387807847000" expanded="true" signature="126:181" placeholder="..." />
-                <marker date="1387807847000" expanded="true" signature="200:330" placeholder="..." />
-                <marker date="1387807847000" expanded="false" signature="230:262" placeholder="..." />
-                <marker date="1387807847000" expanded="false" signature="6585:6631" placeholder="..." />
+                <marker date="1387808058000" expanded="true" signature="107:345" placeholder="..." />
+                <marker date="1387808058000" expanded="true" signature="126:181" placeholder="..." />
+                <marker date="1387808058000" expanded="true" signature="200:330" placeholder="..." />
+                <marker date="1387808058000" expanded="false" signature="230:262" placeholder="..." />
+                <marker date="1387808058000" expanded="false" signature="6569:6615" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -493,13 +493,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/install/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="100" column="22" selection-start="3173" selection-end="3173" vertical-scroll-proportion="0.20085837" vertical-offset="1966" max-vertical-offset="4554">
+        <state line="15" column="7" selection-start="373" selection-end="373" vertical-scroll-proportion="0.2770781" vertical-offset="0" max-vertical-offset="4554">
           <folding>
-            <marker date="1387807847000" expanded="true" signature="107:345" placeholder="..." />
-            <marker date="1387807847000" expanded="true" signature="126:181" placeholder="..." />
-            <marker date="1387807847000" expanded="true" signature="200:330" placeholder="..." />
-            <marker date="1387807847000" expanded="false" signature="230:262" placeholder="..." />
-            <marker date="1387807847000" expanded="false" signature="6585:6631" placeholder="..." />
+            <marker date="1387808058000" expanded="true" signature="107:345" placeholder="..." />
+            <marker date="1387808058000" expanded="true" signature="126:181" placeholder="..." />
+            <marker date="1387808058000" expanded="true" signature="200:330" placeholder="..." />
+            <marker date="1387808058000" expanded="false" signature="230:262" placeholder="..." />
+            <marker date="1387808058000" expanded="false" signature="6569:6615" placeholder="..." />
           </folding>
         </state>
       </provider>
