@@ -11,7 +11,13 @@ class BackupControl extends AuthControl
      */
     public function index()
     {
-        $dir = Dir::tree("./data/backup");
+        $file = Dir::tree("./data/backup");
+        $dir = array();
+        foreach ($file as $f) {
+            if (is_dir($f['path'])) {
+                $dir[] = $f;
+            }
+        }
         $this->assign("dir", $dir);
         $this->display();
     }

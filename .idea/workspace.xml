@@ -2,7 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7fdfeb72-05e7-437b-b747-905afa58d1a4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/install/index.php" afterPath="$PROJECT_DIR$/install/index.php" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/config.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_access_bk_1.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_bug_bk_1.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_category_access_bk_3.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_category_bk_2.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_comment_bk_4.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_config_bk_5.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_content_bk_6.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_content_data_bk_7.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_content_flag_bk_8.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_custom_js_bk_9.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_extcredits_bk_10.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_field_bk_11.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_flag_bk_12.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_member_group_bk_13.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_model_bk_14.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_node_bk_15.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_role_bk_16.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_search_bk_17.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_session_bk_18.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_tag_bk_19.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_template_tag_bk_20.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_upload_bk_21.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_user_bk_22.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/structure.php" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Backup/Control/BackupControl.class.php" afterPath="$PROJECT_DIR$/hd/Hdcms/Backup/Control/BackupControl.class.php" />
     </list>
     <ignored path="hdcms.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -79,10 +104,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/install/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="7" selection-start="373" selection-end="373" vertical-scroll-proportion="0.2770781" vertical-offset="0" max-vertical-offset="4554">
+            <state line="15" column="7" selection-start="373" selection-end="373" vertical-scroll-proportion="-10.645162" vertical-offset="0" max-vertical-offset="4554">
               <folding>
                 <marker date="1387808058000" expanded="true" signature="107:345" placeholder="..." />
                 <marker date="1387808058000" expanded="true" signature="126:181" placeholder="..." />
@@ -90,6 +115,15 @@
                 <marker date="1387808058000" expanded="false" signature="230:262" placeholder="..." />
                 <marker date="1387808058000" expanded="false" signature="6569:6615" placeholder="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BackupControl.class.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/hd/Hdcms/Backup/Control/BackupControl.class.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="43" selection-start="234" selection-end="234" vertical-scroll-proportion="0.23754153" vertical-offset="0" max-vertical-offset="2684">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -121,7 +155,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/hdphp/Hdcms/Html/Control/HtmlControl.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Hdcms/Content/Control/ContentControl.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Hdcms/Category/Tpl/Category/edit.php" />
         <option value="$PROJECT_DIR$/hdphp/Hdcms/Content/Control/IndexControl.class.php" />
@@ -137,6 +170,7 @@
         <option value="$PROJECT_DIR$/hd/Hdcms/Html/Config/config.php" />
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/install/index.php" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/Backup/Control/BackupControl.class.php" />
       </list>
     </option>
   </component>
@@ -346,6 +380,54 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Backup" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Backup" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Control" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -493,7 +575,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/install/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="7" selection-start="373" selection-end="373" vertical-scroll-proportion="0.2770781" vertical-offset="0" max-vertical-offset="4554">
+        <state line="15" column="7" selection-start="373" selection-end="373" vertical-scroll-proportion="-10.645162" vertical-offset="0" max-vertical-offset="4554">
           <folding>
             <marker date="1387808058000" expanded="true" signature="107:345" placeholder="..." />
             <marker date="1387808058000" expanded="true" signature="126:181" placeholder="..." />
@@ -501,6 +583,13 @@
             <marker date="1387808058000" expanded="false" signature="230:262" placeholder="..." />
             <marker date="1387808058000" expanded="false" signature="6569:6615" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Backup/Control/BackupControl.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="43" selection-start="234" selection-end="234" vertical-scroll-proportion="0.23754153" vertical-offset="0" max-vertical-offset="2684">
+          <folding />
         </state>
       </provider>
     </entry>
