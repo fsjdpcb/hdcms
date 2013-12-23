@@ -44,7 +44,7 @@
                 </tr>
                 <tr>
                     <td>系统安装目录</td>
-                    <td><?php echo $install_dir; ?></td>
+                    <td><?php echo WEB_PATH; ?></td>
                 </tr>
                 </tr>
             </table>

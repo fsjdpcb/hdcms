@@ -1,4 +1,16 @@
 <?php
+$version = array(
+    "NAME" => "HDCMS 简体中文 UTF8 版",
+    "VERSION" => "2013.12 Beta1",
+    "TIME" => "2013年12月24日"
+);
+//网站根目录
+define("WEB_PATH", dirname(dirname(str_replace('\\', '/', __FILE__))) . '/');
+//框架目录
+define("HDPHP_PATH", WEB_PATH . "/hd/hdphp/");
+//版本号
+define("VERSION", $version['NAME'] . " " . $version['VERSION']);
+
 header("Content-type:text/html;charset=utf-8");
 if (is_file("./lock.php")) {
     echo '
@@ -13,10 +25,6 @@ if (is_file("./lock.php")) {
     ';
     exit;
 }
-define("HDPHP_PATH", "../hd/hdphp/");
-$version = require "./version.php";
-define("VERSION", $version['NAME'] . " " . $version['VERSION']);
-define("INSTALL_DIR", dirname(dirname(str_replace('\\', '/', __FILE__))));
 $step = array(
     1 => "欢迎使用HDCMS",
     2 => "这不是正式版",
@@ -41,7 +49,6 @@ switch ($s) {
         $host = $_SERVER["HTTP_HOST"];
         $server = $_SERVER["SERVER_SOFTWARE"];
         $php_version = PHP_VERSION;
-        $install_dir = INSTALL_DIR;
         $allow_url_fopen = (ini_get('allow_url_fopen') ? '<span class="dir_success">On</span>' : '<span class="dir_success">Off</span>');
         $safe = (ini_get('safe_mode') ? '<span class="dir_error">On</span>' : '<span class="dir_success">Off</span>');
         $gd_info = gd_info();
@@ -49,17 +56,18 @@ switch ($s) {
         $mysql = function_exists("mysql_connect") ? '<span class="dir_success">Off</span>' : '<span class="dir_success">Off</span>';
         //检测目录
         $dirctory = array(
-            "/",
-            "data",//数据目录
-            "data/config",//配置文件
-            "data/config/db.inc.php",//数据库配置文件
-            "data/backup",//备份目录
-            "data/Cache",//缓存目录
-            "data/Cache/Category",//栏目缓存
-            "data/Cache/Field",//字段缓存目录
-            "data/Cache/Js",//js缓存
-            "data/Cache/Model",//模型缓存
-            "data/Cache/Node",//节点(菜单)缓存
+            "/", //网站根目录
+            "data", //数据目录
+            "data/config", //配置文件
+            "data/config/config.inc.php", //网站配置文件
+            "data/config/db.inc.php", //数据库配置文件
+            "data/backup", //备份目录
+            "data/Cache", //缓存目录
+            "data/Cache/Category", //栏目缓存
+            "data/Cache/Field", //字段缓存目录
+            "data/Cache/Js", //js缓存
+            "data/Cache/Model", //模型缓存
+            "data/Cache/Node", //节点(菜单)缓存
         );
         require "./template/4.php";
         break;
@@ -98,9 +106,9 @@ switch ($s) {
         break;
     case "install": //开始安装
         //删除hdcms临时目录temp
-        require HDPHP_PATH."Extend/Tool/Dir.class.php";
+        require HDPHP_PATH . "Extend/Tool/Dir.class.php";
         is_dir("../temp") and Dir::del("../temp");
-        $config = require "config.inc.php";
+        $config = require "../data/config/db.inc.php";
         $db_prefix = $config['DB_PREFIX'];
         ob_implicit_flush(1);
         $db = M();
@@ -114,13 +122,11 @@ switch ($s) {
                 return_msg("{$table} 表数据插入完毕...");
             }
         }
-        //修改表信息
-        $d = require "admin.inc.php";
-        $db->exe("UPDATE {$db_prefix}config SET value='{$d['WEB_NAME']}' WHERE name='webname'");
-        $db->exe("UPDATE {$db_prefix}config SET value='{$d['EMAIL']}' WHERE name='email'");
-        $db->exe("UPDATE {$db_prefix}user SET username='{$d['ADMIN']}',email='{$d['EMAIL']}',password='" . md5($d['PASSWORD']) . "' WHERE username='admin'");
+        $db->exe("UPDATE {$db_prefix}config SET value='{$config['WEB_NAME']}' WHERE name='webname'");
+        $db->exe("UPDATE {$db_prefix}config SET value='{$config['EMAIL']}' WHERE name='email'");
+        $db->exe("UPDATE {$db_prefix}user SET username='{$config['ADMIN']}',email='{$config['EMAIL']}',password='" . md5($d['PASSWORD']) . "' WHERE username='admin'");
         //修改配置文件
-        copy("config.inc.php", "../data/config/db.inc.php");
+        file_put_contents("../data/config/db.inc.php","<?php if (!defined('HDPHP_PATH'))exit('No direct script access allowed');\nreturn".var_export($config,true).";\n?>");
         return_msg("创建完毕!<script>setTimeout(function(){parent.location.href='?step=7'},0);</script>");
         break;
 }
@@ -141,20 +147,13 @@ return array(
     "WEB_MASTER"                    => "{$_POST['ADMIN']}",//站长
     "INSERT_TEST_DATA"              => "{$_POST['INSERT_TEST_DATA']}",//安装测试数据
     "VERSION"                       => "{$VERSION}",//HDCMS版本
-);
-str;
-    file_put_contents("config.inc.php", $config);
-    $admin = <<<str
-<?php
-if (!defined("HDPHP_PATH"))exit("No direct script access allowed");
-return array(
     "ADMIN"                         => "{$_POST['ADMIN']}",//站长
     "PASSWORD"                      => "{$_POST['PASSWORD']}",//站长密码
     "WEB_NAME"                      => "{$_POST['WEBNAME']}",//网站名称
     "EMAIL"                         => "{$_POST['EMAIL']}",//站长邮箱
 );
 str;
-    file_put_contents("admin.inc.php", $admin);
+    file_put_contents("../data/config/db.inc.php", $config);
 }
 
 class Db
