@@ -10,9 +10,5 @@ return array (
   'WEB_MASTER' => 'admin',
   'INSERT_TEST_DATA' => '1',
   'VERSION' => 'HDCMS 简体中文 UTF8 版 2013.12 Beta1',
-  'ADMIN' => 'admin',
-  'PASSWORD' => 'admin888',
-  'WEB_NAME' => 'HDCMS内容管理系统',
-  'EMAIL' => '',
 );
 ?>

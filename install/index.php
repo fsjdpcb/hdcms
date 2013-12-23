@@ -110,7 +110,6 @@ switch ($s) {
         is_dir("../temp") and Dir::del("../temp");
         $config = require "../data/config/db.inc.php";
         $db_prefix = $config['DB_PREFIX'];
-        ob_implicit_flush(1);
         $db = M();
         //创建结构
         require "db/structure.php";
@@ -125,8 +124,12 @@ switch ($s) {
         $db->exe("UPDATE {$db_prefix}config SET value='{$config['WEB_NAME']}' WHERE name='webname'");
         $db->exe("UPDATE {$db_prefix}config SET value='{$config['EMAIL']}' WHERE name='email'");
         $db->exe("UPDATE {$db_prefix}user SET username='{$config['ADMIN']}',email='{$config['EMAIL']}',password='" . md5($config['PASSWORD']) . "' WHERE username='admin'");
+        unset($config['WEB_NAME']);
+        unset($config['EMAIL']);
+        unset($config['ADMIN']);
+        unset($config['PASSWORD']);
         //修改配置文件
-        file_put_contents("../data/config/db.inc.php","<?php if (!defined('HDPHP_PATH'))exit('No direct script access allowed');\nreturn ".var_export($config,true).";\n?>");
+        file_put_contents("../data/config/db.inc.php", "<?php if (!defined('HDPHP_PATH'))exit('No direct script access allowed');\nreturn " . var_export($config, true) . ";\n?>");
         return_msg("创建完毕!<script>setTimeout(function(){parent.location.href='?step=7'},0);</script>");
         break;
 }
@@ -178,8 +181,6 @@ class Db
         if (!@mysql_query($sql)) {
             echo mysql_error();
         }
-        $len = ini_get("output_buffering");
-        echo str_repeat(" ", $len);
         if (preg_match('@CREATE TABLE `@', $sql)) {
             preg_match("@CREATE TABLE `{$db_prefix}(.*?)`@", $sql, $t);
             return_msg("{$t[1]} 表创建完毕...");
@@ -195,7 +196,11 @@ function M()
 //向浏览器输出写数据信息
 function return_msg($msg)
 {
+    $len = ini_get("output_buffering");
+    echo str_repeat(" ", $len);
     $h = "<span style='color:#555;font-weight: normal;font-size:14px;'>{$msg}</span><br/>";
     $h .= "<script>window.scrollTo(0,9000)</script>";
     echo $h;
+    ob_flush();
+    flush();
 }
