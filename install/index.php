@@ -124,9 +124,9 @@ switch ($s) {
         }
         $db->exe("UPDATE {$db_prefix}config SET value='{$config['WEB_NAME']}' WHERE name='webname'");
         $db->exe("UPDATE {$db_prefix}config SET value='{$config['EMAIL']}' WHERE name='email'");
-        $db->exe("UPDATE {$db_prefix}user SET username='{$config['ADMIN']}',email='{$config['EMAIL']}',password='" . md5($d['PASSWORD']) . "' WHERE username='admin'");
+        $db->exe("UPDATE {$db_prefix}user SET username='{$config['ADMIN']}',email='{$config['EMAIL']}',password='" . md5($config['PASSWORD']) . "' WHERE username='admin'");
         //修改配置文件
-        file_put_contents("../data/config/db.inc.php","<?php if (!defined('HDPHP_PATH'))exit('No direct script access allowed');\nreturn".var_export($config,true).";\n?>");
+        file_put_contents("../data/config/db.inc.php","<?php if (!defined('HDPHP_PATH'))exit('No direct script access allowed');\nreturn ".var_export($config,true).";\n?>");
         return_msg("创建完毕!<script>setTimeout(function(){parent.location.href='?step=7'},0);</script>");
         break;
 }

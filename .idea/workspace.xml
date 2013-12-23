@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7fdfeb72-05e7-437b-b747-905afa58d1a4" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/config/db.inc.php" afterPath="$PROJECT_DIR$/data/config/db.inc.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/install/index.php" afterPath="$PROJECT_DIR$/install/index.php" />
     </list>
     <ignored path="hdcms.iws" />
@@ -28,13 +29,13 @@
       <file leaf-file-name="index.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/install/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="197" column="84" selection-start="6717" selection-end="6717" vertical-scroll-proportion="0.8369028" vertical-offset="3318" max-vertical-offset="4532">
+            <state line="126" column="128" selection-start="4207" selection-end="4207" vertical-scroll-proportion="0.27512357" vertical-offset="2438" max-vertical-offset="4532">
               <folding>
-                <marker date="1387820056000" expanded="true" signature="437:675" placeholder="..." />
-                <marker date="1387820056000" expanded="true" signature="456:511" placeholder="..." />
-                <marker date="1387820056000" expanded="true" signature="530:660" placeholder="..." />
-                <marker date="1387820056000" expanded="true" signature="560:592" placeholder="..." />
-                <marker date="1387820056000" expanded="true" signature="6656:6702" placeholder="..." />
+                <marker date="1387820556000" expanded="true" signature="437:675" placeholder="..." />
+                <marker date="1387820556000" expanded="true" signature="456:511" placeholder="..." />
+                <marker date="1387820556000" expanded="true" signature="530:660" placeholder="..." />
+                <marker date="1387820556000" expanded="true" signature="560:592" placeholder="..." />
+                <marker date="1387820556000" expanded="true" signature="6662:6708" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -447,13 +448,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/install/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="197" column="84" selection-start="6717" selection-end="6717" vertical-scroll-proportion="0.8369028" vertical-offset="3318" max-vertical-offset="4532">
+        <state line="126" column="128" selection-start="4207" selection-end="4207" vertical-scroll-proportion="0.27512357" vertical-offset="2438" max-vertical-offset="4532">
           <folding>
-            <marker date="1387820056000" expanded="true" signature="437:675" placeholder="..." />
-            <marker date="1387820056000" expanded="true" signature="456:511" placeholder="..." />
-            <marker date="1387820056000" expanded="true" signature="530:660" placeholder="..." />
-            <marker date="1387820056000" expanded="true" signature="560:592" placeholder="..." />
-            <marker date="1387820056000" expanded="true" signature="6656:6702" placeholder="..." />
+            <marker date="1387820556000" expanded="true" signature="437:675" placeholder="..." />
+            <marker date="1387820556000" expanded="true" signature="456:511" placeholder="..." />
+            <marker date="1387820556000" expanded="true" signature="530:660" placeholder="..." />
+            <marker date="1387820556000" expanded="true" signature="560:592" placeholder="..." />
+            <marker date="1387820556000" expanded="true" signature="6662:6708" placeholder="..." />
           </folding>
         </state>
       </provider>

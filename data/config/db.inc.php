@@ -1,5 +1,5 @@
 <?php if (!defined('HDPHP_PATH'))exit('No direct script access allowed');
-returnarray (
+return array (
   'DB_DRIVER' => 'mysqli',
   'DB_HOST' => '127.0.0.1',
   'DB_PORT' => 3306,
