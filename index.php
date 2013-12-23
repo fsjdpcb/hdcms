@@ -4,4 +4,4 @@
 define("GROUP_PATH", './hd/');
 //Temp目录
 define("TEMP_PATH", 'temp/');
-require "./hd/hdphp/hdphp.php";
+require "../hdphp/hdphp/hdphp.php";

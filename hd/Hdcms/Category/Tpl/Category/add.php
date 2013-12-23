@@ -25,6 +25,7 @@
                 <li lab="base"><a href="#">基本设置</a></li>
                 <li lab="tpl"><a href="#">模板设置</a></li>
                 <li lab="html"><a href="#">静态HTML设置</a></li>
+                <li lab="seo"><a href="#">SEO</a></li>
             </ul>
             <div class="tab_content">
                 <div id="base">
@@ -191,6 +192,22 @@
                         {aid} 文章ID,
                         {catdir} 栏目目录
                         </span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="seo">
+                    <table class="table1">
+                        <tr>
+                            <td class="w100">SEO标题</td>
+                            <td>
+                                <input type="text" name="seo_title" class="w350"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>SEO描述</td>
+                            <td>
+                                <textarea name="seo_description" class="w350 h150"></textarea>
                             </td>
                         </tr>
                     </table>

@@ -29,7 +29,6 @@ class TemplateControl extends AuthControl
             } else {
                 $arr['img'] = __CONTROL_TPL__ . '/img/default.jpg';
             }
-
             //正在使用的模板
             if (C("WEB_STYLE") == $arr['dir_name']) {
                 $style_cur = $arr;
@@ -37,6 +36,8 @@ class TemplateControl extends AuthControl
                 $style[] = $arr;
             }
         }
+        //删除前台编译文件
+        is_dir("./temp/hdcms/Content/Compile") and Dir::del("./temp/hdcms/Content/Compile");
         $this->assign("style_cur", $style_cur);
         $this->assign("style", $style);
         $this->display();

@@ -46,6 +46,6 @@ return array (
   'DEFAULT_USER_GROUP' => '2',
   'member_open' => '0',
   'web_close_message' => '网站暂时关闭，请稍候访问',
-  'WEB_STYLE' => 'default',
+  'WEB_STYLE' => 'bootstrap',
 );
 ?>

@@ -5,7 +5,7 @@ return array (
   'DB_PORT' => 3306,
   'DB_USER' => 'root',
   'DB_PASSWORD' => 'admin888',
-  'DB_DATABASE' => 'a1',
+  'DB_DATABASE' => 'hdcms',
   'DB_PREFIX' => 'hd_',
   'WEB_MASTER' => 'admin',
   'INSERT_TEST_DATA' => '1',

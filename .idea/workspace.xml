@@ -2,9 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7fdfeb72-05e7-437b-b747-905afa58d1a4" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/install/version.php" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Content/Control/IndexControl.class.php" afterPath="$PROJECT_DIR$/hd/Hdcms/Content/Control/IndexControl.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Template/Control/TemplateControl.class.php" afterPath="$PROJECT_DIR$/hd/Hdcms/Template/Control/TemplateControl.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Category/Tpl/Category/add.php" afterPath="$PROJECT_DIR$/hd/Hdcms/Category/Tpl/Category/add.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/Cache/Category/category.php" afterPath="$PROJECT_DIR$/data/Cache/Category/category.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/config/config.inc.php" afterPath="$PROJECT_DIR$/data/config/config.inc.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/config/db.inc.php" afterPath="$PROJECT_DIR$/data/config/db.inc.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/install/index.php" afterPath="$PROJECT_DIR$/install/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Category/Tpl/Category/edit.php" afterPath="$PROJECT_DIR$/hd/Hdcms/Category/Tpl/Category/edit.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Template/Tpl/Template/show_dir.php" afterPath="$PROJECT_DIR$/hd/Hdcms/Template/Tpl/Template/show_dir.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Template/Tpl/Template/style_list.php" afterPath="$PROJECT_DIR$/hd/Hdcms/Template/Tpl/Template/style_list.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="hdcms.iws" />
@@ -28,34 +35,64 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/install/index.php">
+      <file leaf-file-name="show_dir.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hd/Hdcms/Template/Tpl/Template/show_dir.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="133" column="14" selection-start="4674" selection-end="4674" vertical-scroll-proportion="0.60131794" vertical-offset="2196" max-vertical-offset="4642">
-              <folding>
-                <marker date="1387823258000" expanded="true" signature="437:675" placeholder="..." />
-                <marker date="1387823258000" expanded="true" signature="456:511" placeholder="..." />
-                <marker date="1387823258000" expanded="true" signature="530:660" placeholder="..." />
-                <marker date="1387823258000" expanded="true" signature="560:592" placeholder="..." />
-                <marker date="1387823258000" expanded="true" signature="6768:6814" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="db.inc.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/config/db.inc.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="418">
+            <state line="7" column="42" selection-start="358" selection-end="358" vertical-scroll-proportion="-4.967742" vertical-offset="0" max-vertical-offset="1144">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="4.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/install/template/4.php">
+      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/template/bootstrap/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="46" column="43" selection-start="1646" selection-end="1646" vertical-scroll-proportion="2.8387096" vertical-offset="1100" max-vertical-offset="2684">
+            <state line="53" column="132" selection-start="1551" selection-end="1551" vertical-scroll-proportion="0.12685338" vertical-offset="1012" max-vertical-offset="4114">
+              <folding>
+                <element signature="n#style#0;n#a#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#3;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="add.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hd/Hdcms/Category/Tpl/Category/add.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="27" column="54" selection-start="1159" selection-end="1198" vertical-scroll-proportion="-19.161291" vertical-offset="0" max-vertical-offset="4092">
+              <folding>
+                <element signature="tag#div#2;tag#div#0;tag#div#1;tag#div#0;tag#form#0;tag#body#0;tag#html#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hd/Hdcms/Category/Tpl/Category/edit.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="28" column="54" selection-start="1247" selection-end="1247" vertical-scroll-proportion="-10.774194" vertical-offset="282" max-vertical-offset="5038">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/template/bootstrap/css/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="239" column="13" selection-start="5212" selection-end="5212" vertical-scroll-proportion="0.0" vertical-offset="4312" max-vertical-offset="7018">
+              <folding>
+                <marker date="1387830358000" expanded="true" signature="6810:6905" placeholder="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style_list.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hd/Hdcms/Template/Tpl/Template/style_list.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="42" selection-start="358" selection-end="358" vertical-scroll-proportion="-4.967742" vertical-offset="0" max-vertical-offset="1452">
               <folding />
             </state>
           </provider>
@@ -79,22 +116,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/hdphp/Hdcms/Content/Lib/functions.php" />
-        <option value="$PROJECT_DIR$/hdphp/Hdcms/Content/Tpl/Content/js/index.js" />
-        <option value="$PROJECT_DIR$/template/default/css/index.css" />
-        <option value="$PROJECT_DIR$/hdphp/Hdcms/Content/Tag/ContentTag.class.php" />
-        <option value="$PROJECT_DIR$/hdphp/Hdcms/Search/Control/SearchControl.class.php" />
-        <option value="$PROJECT_DIR$/hd/Hdcms/Html/Config/config.php" />
-        <option value="$PROJECT_DIR$/index.php" />
-        <option value="$PROJECT_DIR$/hd/Hdcms/Backup/Control/BackupControl.class.php" />
-        <option value="$PROJECT_DIR$/template/default/index.html" />
-        <option value="$PROJECT_DIR$/template/default/article_list.html" />
         <option value="$PROJECT_DIR$/template/default/article_index.html" />
         <option value="$PROJECT_DIR$/template/default/article_default.html" />
         <option value="$PROJECT_DIR$/install/version.php" />
         <option value="$PROJECT_DIR$/install/template/4.php" />
-        <option value="$PROJECT_DIR$/data/config/db.inc.php" />
         <option value="$PROJECT_DIR$/install/index.php" />
+        <option value="$PROJECT_DIR$/data/config/db.inc.php" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/Template/Tpl/Template/show_dir.php" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/Template/Tpl/Template/style_list.php" />
+        <option value="$PROJECT_DIR$/data/config/config.inc.php" />
+        <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/Content/Control/IndexControl.class.php" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/Template/Control/TemplateControl.class.php" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/Category/Tpl/Category/add.php" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/Category/Tpl/Category/edit.php" />
+        <option value="$PROJECT_DIR$/template/bootstrap/css/style.css" />
+        <option value="$PROJECT_DIR$/template/bootstrap/index.html" />
       </list>
     </option>
   </component>
@@ -163,8 +200,22 @@
               <option name="myItemId" value="template" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+          </PATH>
+          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="default" />
+              <option name="myItemId" value="hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="template" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bootstrap" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -182,25 +233,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="default" />
+              <option name="myItemId" value="bootstrap" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hdcms" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hdcms" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="template" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -229,6 +266,168 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="hd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Template" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tpl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Template" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Template" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Category" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tpl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Category" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Category" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Common" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Common" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Config" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -353,16 +552,71 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Hdcms/Control/LoginControl.class.php">
+    <entry file="file://$PROJECT_DIR$/install/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="26" selection-start="477" selection-end="477" vertical-scroll-proportion="0.24013434" vertical-offset="418" max-vertical-offset="2354">
+        <state line="119" column="68" selection-start="3762" selection-end="3762" vertical-scroll-proportion="0.3476112" vertical-offset="2196" max-vertical-offset="4642">
+          <folding>
+            <marker date="1387823258000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1387823258000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1387823258000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1387823258000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1387823258000" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/install/template/4.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="46" column="43" selection-start="1646" selection-end="1646" vertical-scroll-proportion="-0.072487645" vertical-offset="1100" max-vertical-offset="2684">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Backup/Control/BackupControl.class.php">
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Template/Tpl/Template/edit_tpl.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="43" selection-start="234" selection-end="234" vertical-scroll-proportion="0.23754153" vertical-offset="0" max-vertical-offset="2684">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1258">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Template/Tpl/Template/select_tpl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1245">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Template/Tpl/Template/style_list.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="42" selection-start="358" selection-end="358" vertical-scroll-proportion="-4.967742" vertical-offset="0" max-vertical-offset="1452">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/config/db.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="28" selection-start="326" selection-end="326" vertical-scroll-proportion="0.1792991" vertical-offset="0" max-vertical-offset="1227">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/config/config.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="20" selection-start="770" selection-end="770" vertical-scroll-proportion="0.40197694" vertical-offset="18" max-vertical-offset="1232">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Template/Control/TemplateControl.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="51" selection-start="1235" selection-end="1235" vertical-scroll-proportion="0.5558272" vertical-offset="176" max-vertical-offset="2882">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Content/Control/IndexControl.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="10" selection-start="1263" selection-end="1263" vertical-scroll-proportion="0.5199674" vertical-offset="374" max-vertical-offset="3014">
           <folding />
         </state>
       </provider>
@@ -374,101 +628,53 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Html/Config/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="27" selection-start="102" selection-end="102" vertical-scroll-proportion="0.03585982" vertical-offset="0" max-vertical-offset="1227">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Html/Tpl/Html/create_all.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1245">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/template/default/article_default.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="26" selection-start="1485" selection-end="1485" vertical-scroll-proportion="0.19934101" vertical-offset="880" max-vertical-offset="3498">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/template/default/article_index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="24" selection-start="2073" selection-end="2073" vertical-scroll-proportion="0.59494704" vertical-offset="832" max-vertical-offset="3806">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Content/Tag/ContentTag.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="6" selection-start="93" selection-end="93" vertical-scroll-proportion="-4.1828666" vertical-offset="5210" max-vertical-offset="6424">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/template/default/article_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="24" selection-start="2055" selection-end="2055" vertical-scroll-proportion="0.47116968" vertical-offset="990" max-vertical-offset="3256">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/template/default/css/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="730" column="20" selection-start="12941" selection-end="12941" vertical-scroll-proportion="0.16057234" vertical-offset="15858" max-vertical-offset="17116">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/install/template/4.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="43" selection-start="1646" selection-end="1646" vertical-scroll-proportion="2.8387096" vertical-offset="1100" max-vertical-offset="2684">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Html/Control/HtmlControl.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="5" selection-start="502" selection-end="502" vertical-scroll-proportion="-4.796296" vertical-offset="6226" max-vertical-offset="7414">
-          <folding>
-            <marker date="1387770518000" expanded="false" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/template/default/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="24" selection-start="1970" selection-end="2073" vertical-scroll-proportion="0.44824776" vertical-offset="1012" max-vertical-offset="3806">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/config/config.inc.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1245">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/config/db.inc.php">
+    <entry file="file://$PROJECT_DIR$/hd/Common/Config/config.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1258">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/install/index.php">
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Template/Tpl/Template/show_dir.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="133" column="14" selection-start="4674" selection-end="4674" vertical-scroll-proportion="0.60131794" vertical-offset="2196" max-vertical-offset="4642">
+        <state line="7" column="42" selection-start="358" selection-end="358" vertical-scroll-proportion="-4.967742" vertical-offset="0" max-vertical-offset="1144">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Category/Tpl/Category/add.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="54" selection-start="1159" selection-end="1198" vertical-scroll-proportion="-19.161291" vertical-offset="0" max-vertical-offset="4092">
           <folding>
-            <marker date="1387823258000" expanded="true" signature="437:675" placeholder="..." />
-            <marker date="1387823258000" expanded="true" signature="456:511" placeholder="..." />
-            <marker date="1387823258000" expanded="true" signature="530:660" placeholder="..." />
-            <marker date="1387823258000" expanded="true" signature="560:592" placeholder="..." />
-            <marker date="1387823258000" expanded="true" signature="6768:6814" placeholder="..." />
+            <element signature="tag#div#2;tag#div#0;tag#div#1;tag#div#0;tag#form#0;tag#body#0;tag#html#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Category/Tpl/Category/edit.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="54" selection-start="1247" selection-end="1247" vertical-scroll-proportion="-10.774194" vertical-offset="282" max-vertical-offset="5038">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/template/bootstrap/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="239" column="13" selection-start="5212" selection-end="5212" vertical-scroll-proportion="0.0" vertical-offset="4312" max-vertical-offset="7018">
+          <folding>
+            <marker date="1387830358000" expanded="true" signature="6810:6905" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/template/bootstrap/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="132" selection-start="1551" selection-end="1551" vertical-scroll-proportion="0.12685338" vertical-offset="1012" max-vertical-offset="4114">
+          <folding>
+            <element signature="n#style#0;n#a#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#3;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -57,7 +57,6 @@ class IndexControl extends CommonControl
     //内容页
     public function content()
     {
-//        $cat= array_reverse(Data::parentChannel($this->category,12));p($cat);
         if ($this->aid) {
             $db = new ContentViewModel();
             $field = $db->where($db->tableFull . ".aid=" . $this->aid)->find();
