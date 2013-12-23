@@ -43,9 +43,11 @@
                 <dd>
                     <a url="?a=Menu&c=Menu&m=set_favorite" onclick="get_content(this,8999)" href="javascript:;" nid="8999">设置</a>
                 </dd>
+                <?php if(strstr("__WEB__",'hdphp')){?>
                 <dd>
                     <a url="?a=Bug&c=Index" onclick="get_content(this,9999)" href="javascript:;" nid="9999">Bug</a>
                 </dd>
+                <?php }?>
                 <list from="$favorite_menu" name="f">
                     <dd>
                         <a url="?a={$f.app}&c={$f.control}&m={$f.method}&nid={$f.nid}"

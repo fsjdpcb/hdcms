@@ -2,7 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7fdfeb72-05e7-437b-b747-905afa58d1a4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Bug/Control/IndexControl.class.php" afterPath="$PROJECT_DIR$/hd/Hdcms/Bug/Control/IndexControl.class.php" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/html/junshi/2013/1224/37.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Bug/Compile/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Bug/Compile/index_5e47c.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Bug/Table/hd_Bug.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Content/Compile/add_606a3.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Content/Compile/content_94f44.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Content/Compile/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Content/Compile/index_b96a9.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Content/Table/hd_category.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Content/Table/hd_content.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Content/Table/hd_content_data.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Content/Table/hd_content_flag.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Content/Table/hd_field.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Content/Table/hd_flag.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Hdcms/Compile/feedback_18acf.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Menu/Table/hd_node.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Log/2013-12-24-9a325.log" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/temp/Boot.php" afterPath="$PROJECT_DIR$/temp/Boot.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/index.php" afterPath="$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/temp/Hdcms/Hdcms/Compile/index_4cb44.php" afterPath="$PROJECT_DIR$/temp/Hdcms/Hdcms/Compile/index_4cb44.php" />
     </list>
     <ignored path="hdcms.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,20 +44,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="BugControl.class.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hd/Hdcms/Bug/Control/BugControl.class.php">
+      <file leaf-file-name="index.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="24" selection-start="250" selection-end="250" vertical-scroll-proportion="-11.354838" vertical-offset="0" max-vertical-offset="814">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IndexControl.class.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/hd/Hdcms/Bug/Control/IndexControl.class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="29" selection-start="225" selection-end="225" vertical-scroll-proportion="0.26894864" vertical-offset="0" max-vertical-offset="1474">
-              <folding />
+            <state line="45" column="41" selection-start="1818" selection-end="1818" vertical-scroll-proportion="0.3113674" vertical-offset="612" max-vertical-offset="1870">
+              <folding>
+                <element signature="n#style#0;n#iframe#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -75,8 +87,8 @@
         <option value="$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/feedback.php" />
         <option value="$PROJECT_DIR$/hd/Hdcms/Backup/Tpl/Backup/backup.php" />
         <option value="$PROJECT_DIR$/hd/Hdcms/Bug/Control/BugControl.class.php" />
-        <option value="$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/index.php" />
         <option value="$PROJECT_DIR$/hd/Hdcms/Bug/Control/IndexControl.class.php" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/index.php" />
       </list>
     </option>
   </component>
@@ -670,13 +682,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Bug/Tpl/Index/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1452">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/config/db.inc.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="25" selection-start="244" selection-end="244" vertical-scroll-proportion="0.12550937" vertical-offset="0" max-vertical-offset="1227">
@@ -703,16 +708,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="107" selection-start="1905" selection-end="1905" vertical-scroll-proportion="0.8336079" vertical-offset="0" max-vertical-offset="1826">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hd/Hdcms/Bug/Control/BugControl.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="24" selection-start="250" selection-end="250" vertical-scroll-proportion="-11.354838" vertical-offset="0" max-vertical-offset="814">
+        <state line="16" column="24" selection-start="250" selection-end="250" vertical-scroll-proportion="0.28687856" vertical-offset="0" max-vertical-offset="1227">
           <folding />
         </state>
       </provider>
@@ -721,6 +719,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="29" selection-start="225" selection-end="225" vertical-scroll-proportion="0.26894864" vertical-offset="0" max-vertical-offset="1474">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Bug/Tpl/Index/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.18337408" vertical-offset="225" max-vertical-offset="1452">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="45" column="41" selection-start="1818" selection-end="1818" vertical-scroll-proportion="0.3113674" vertical-offset="612" max-vertical-offset="1870">
+          <folding>
+            <element signature="n#style#0;n#iframe#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
