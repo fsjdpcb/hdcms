@@ -195,7 +195,7 @@ function M()
 //向浏览器输出写数据信息
 function return_msg($msg)
 {
-    $h = "<span style='color:#555;font-weight: normal;font-size:14px;'>{$msg}<br/>";
+    $h = "<span style='color:#555;font-weight: normal;font-size:14px;'>{$msg}</span><br/>";
     $h .= "<script>window.scrollTo(0,9000)</script>";
     echo $h;
 }
