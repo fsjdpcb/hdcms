@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7fdfeb72-05e7-437b-b747-905afa58d1a4" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/hdcms/Content/Compile/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/hdcms/Content/Compile/index.html_8c930.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/hdcms/Content/Compile/index_b96a9.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Template/Tpl/Template/css/css.css" afterPath="$PROJECT_DIR$/hd/Hdcms/Template/Tpl/Template/css/css.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
     </list>
     <ignored path="hdcms.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -52,10 +48,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="css.css" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="css.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hd/Hdcms/Template/Tpl/Template/css/css.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="21" selection-start="282" selection-end="282" vertical-scroll-proportion="0.24483307" vertical-offset="0" max-vertical-offset="1694">
+            <state line="14" column="21" selection-start="282" selection-end="282" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1694">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="11" selection-start="121" selection-end="121" vertical-scroll-proportion="0.10757946" vertical-offset="0" max-vertical-offset="1227">
               <folding />
             </state>
           </provider>
@@ -127,7 +132,6 @@
         <option value="$PROJECT_DIR$/hd/Hdcms/Template/Tpl/Template/show_dir.php" />
         <option value="$PROJECT_DIR$/hd/Hdcms/Template/Tpl/Template/style_list.php" />
         <option value="$PROJECT_DIR$/data/config/config.inc.php" />
-        <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/hd/Hdcms/Content/Control/IndexControl.class.php" />
         <option value="$PROJECT_DIR$/hd/Hdcms/Template/Control/TemplateControl.class.php" />
         <option value="$PROJECT_DIR$/hd/Hdcms/Category/Tpl/Category/add.php" />
@@ -135,6 +139,7 @@
         <option value="$PROJECT_DIR$/template/bootstrap/css/style.css" />
         <option value="$PROJECT_DIR$/template/bootstrap/index.html" />
         <option value="$PROJECT_DIR$/hd/Hdcms/Template/Tpl/Template/css/css.css" />
+        <option value="$PROJECT_DIR$/index.php" />
       </list>
     </option>
   </component>
@@ -645,13 +650,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="7" selection-start="39" selection-end="39" vertical-scroll-proportion="0.03585982" vertical-offset="0" max-vertical-offset="1227">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hd/Common/Config/config.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1258">
@@ -705,7 +703,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hd/Hdcms/Template/Tpl/Template/css/css.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="21" selection-start="282" selection-end="282" vertical-scroll-proportion="0.24483307" vertical-offset="0" max-vertical-offset="1694">
+        <state line="14" column="21" selection-start="282" selection-end="282" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1694">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="11" selection-start="121" selection-end="121" vertical-scroll-proportion="0.10757946" vertical-offset="0" max-vertical-offset="1227">
           <folding />
         </state>
       </provider>
