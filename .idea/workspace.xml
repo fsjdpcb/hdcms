@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7fdfeb72-05e7-437b-b747-905afa58d1a4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Backup/Tpl/Backup/backup.php" afterPath="$PROJECT_DIR$/hd/Hdcms/Backup/Tpl/Backup/backup.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/feedback.php" afterPath="$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/feedback.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Bug/Control/BugControl.class.php" afterPath="$PROJECT_DIR$/hd/Hdcms/Bug/Control/BugControl.class.php" />
     </list>
     <ignored path="hdcms.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -103,10 +102,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="backup.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="backup.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hd/Hdcms/Backup/Tpl/Backup/backup.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="42" selection-start="359" selection-end="359" vertical-scroll-proportion="0.12930311" vertical-offset="0" max-vertical-offset="2266">
+            <state line="8" column="40" selection-start="400" selection-end="400" vertical-scroll-proportion="-5.677419" vertical-offset="0" max-vertical-offset="2266">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BugControl.class.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/hd/Hdcms/Bug/Control/BugControl.class.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="16" column="24" selection-start="250" selection-end="250" vertical-scroll-proportion="0.29235882" vertical-offset="0" max-vertical-offset="1204">
               <folding />
             </state>
           </provider>
@@ -130,7 +138,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/install/index.php" />
         <option value="$PROJECT_DIR$/hd/Hdcms/Template/Tpl/Template/show_dir.php" />
         <option value="$PROJECT_DIR$/hd/Hdcms/Template/Tpl/Template/style_list.php" />
         <option value="$PROJECT_DIR$/data/config/config.inc.php" />
@@ -146,6 +153,7 @@
         <option value="$PROJECT_DIR$/data/config/db.inc.php" />
         <option value="$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/feedback.php" />
         <option value="$PROJECT_DIR$/hd/Hdcms/Backup/Tpl/Backup/backup.php" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/Bug/Control/BugControl.class.php" />
       </list>
     </option>
   </component>
@@ -722,13 +730,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Content/Control/IndexControl.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="10" selection-start="1263" selection-end="1263" vertical-scroll-proportion="0.5199674" vertical-offset="374" max-vertical-offset="3014">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hd/Hdcms/Template/Tpl/Template/show_dir.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="42" selection-start="358" selection-end="358" vertical-scroll-proportion="-4.967742" vertical-offset="0" max-vertical-offset="1144">
@@ -838,7 +839,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hd/Hdcms/Backup/Tpl/Backup/backup.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="42" selection-start="359" selection-end="359" vertical-scroll-proportion="0.12930311" vertical-offset="0" max-vertical-offset="2266">
+        <state line="8" column="40" selection-start="400" selection-end="400" vertical-scroll-proportion="-5.677419" vertical-offset="0" max-vertical-offset="2266">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Bug/Control/BugControl.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="24" selection-start="250" selection-end="250" vertical-scroll-proportion="0.29235882" vertical-offset="0" max-vertical-offset="1204">
           <folding />
         </state>
       </provider>

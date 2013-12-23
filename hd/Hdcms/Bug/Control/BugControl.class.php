@@ -14,7 +14,7 @@ class BugControl extends Control
 
     public function __init()
     {
-        $this->db = M("Bug");
+        $this->db = M("bug");
     }
 
     //反馈建议
