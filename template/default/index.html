@@ -4,7 +4,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>{$hd.config.webname}</title>
+    <jquery/>
     <link rel="stylesheet" href="__TEMPLATE__/css/index.css"/>
+    <slide/>
 </head>
 <body>
 <!-- 最顶部灰色条开始 -->
@@ -63,11 +65,8 @@
         <!-- 搜索框右侧搜索链接结束 -->
         <!-- 热门关键字开始 -->
         <div class="hotkey">
-
             热门关键字：
-            <searchkey row="10">
-                <a href="{$field.url}">{$field.name}</a>
-            </searchkey>
+            <script type="text/javascript" src="__ROOT__/index.php?a=Search&c=Search&m=search_word&row=10"></script>
         </div>
         <!-- 热门关键字结束 -->
     </div>
@@ -85,19 +84,19 @@
 <div class="news_index">
     <div class="left">
         <div class="news_img">
-            <a href=""><img src="__TEMPLATE__/images/1369109948251.jpg" alt=""/></a>
-
-            <div class="title">
-            </div>
-            <h2>“汤博乐”被雅虎收购，27...</h2>
-
-            <div class="btn">
-                <ul>
-                    <li class="one">1</li>
-                    <li>2</li>
-                    <li>3</li>
-                    <li>4</li>
-                </ul>
+            <script>
+                $(function () {
+                    $('#flash').slide({
+                        width: 278,
+                        height: 230,
+                        timeout: 3
+                    });
+                })
+            </script>
+            <div id="flash">
+                <arclist flag="5" row="4" titlelen="12">
+                    <a href="{$field.url}" title="{$field.title}..."><img src="{$field.thumb}"/></a>
+                </arclist>
             </div>
         </div>
     </div>
@@ -158,7 +157,7 @@
 <div class="footer">
     <!-- 温馨提示开始 -->
     <div class="rem">
-        Copyright @ 2011-2015 www.hdphp.com All Right Reserved 本网站部分内容只转载原作的部分内容，若有异议，请与本站负责人联系，我们将予以改正！
+        Copyright @ 2011-2015 www.hdphp.com All Right Reserved {$hd.config.webname}
     </div>
 </div>
 <!-- 页脚结束 -->

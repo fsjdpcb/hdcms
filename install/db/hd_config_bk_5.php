@@ -1,5 +1,5 @@
 <?php if(!defined('HDPHP_PATH'))EXIT;
-$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`) VALUES('1','webname','后盾网-中国顶尖php培训机构','站点配置','网站名称','文本')");
+$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`) VALUES('1','webname','后盾网','站点配置','网站名称','文本')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`) VALUES('2','icp','京ICP备12048441号-3','站点配置','ICP备案号','文本')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`) VALUES('3','HTML_PATH','html','站点配置','静态html目录','文本')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`) VALUES('4','copyright','Copyright © 2012-2013 HDCMS 后盾网 版权所有','站点配置','网站版权信息','文本')");

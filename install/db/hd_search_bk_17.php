@@ -1,1 +1,11 @@
 <?php if(!defined('HDPHP_PATH'))EXIT;
+$db->exe("REPLACE INTO ".$db_prefix."search (`sid`,`name`,`total`) VALUES('5','中国','1')");
+$db->exe("REPLACE INTO ".$db_prefix."search (`sid`,`name`,`total`) VALUES('7','后盾网','3')");
+$db->exe("REPLACE INTO ".$db_prefix."search (`sid`,`name`,`total`) VALUES('8','欧洲','1')");
+$db->exe("REPLACE INTO ".$db_prefix."search (`sid`,`name`,`total`) VALUES('9','南海','4')");
+$db->exe("REPLACE INTO ".$db_prefix."search (`sid`,`name`,`total`) VALUES('10','男子','1')");
+$db->exe("REPLACE INTO ".$db_prefix."search (`sid`,`name`,`total`) VALUES('11','老人','1')");
+$db->exe("REPLACE INTO ".$db_prefix."search (`sid`,`name`,`total`) VALUES('12','女童','1')");
+$db->exe("REPLACE INTO ".$db_prefix."search (`sid`,`name`,`total`) VALUES('14','自然','1')");
+$db->exe("REPLACE INTO ".$db_prefix."search (`sid`,`name`,`total`) VALUES('15','php培训','1')");
+$db->exe("REPLACE INTO ".$db_prefix."search (`sid`,`name`,`total`) VALUES('17','大陆','3')");
