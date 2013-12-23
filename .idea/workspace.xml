@@ -2,26 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7fdfeb72-05e7-437b-b747-905afa58d1a4" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/html/junshi/2013/1224/37.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Bug/Compile/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Bug/Compile/index_5e47c.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Bug/Table/hd_Bug.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Content/Compile/add_606a3.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Content/Compile/content_94f44.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Content/Compile/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Content/Compile/index_b96a9.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Content/Table/hd_category.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Content/Table/hd_content.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Content/Table/hd_content_data.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Content/Table/hd_content_flag.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Content/Table/hd_field.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Content/Table/hd_flag.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Hdcms/Compile/feedback_18acf.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Menu/Table/hd_node.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Log/2013-12-24-9a325.log" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/temp/Boot.php" afterPath="$PROJECT_DIR$/temp/Boot.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/index.php" afterPath="$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/temp/Hdcms/Hdcms/Compile/index_4cb44.php" afterPath="$PROJECT_DIR$/temp/Hdcms/Hdcms/Compile/index_4cb44.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template/bootstrap/index.html" afterPath="$PROJECT_DIR$/template/bootstrap/index.html" />
     </list>
     <ignored path="hdcms.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -44,12 +25,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="45" column="41" selection-start="1818" selection-end="1818" vertical-scroll-proportion="0.3113674" vertical-offset="612" max-vertical-offset="1870">
+            <state line="45" column="41" selection-start="1818" selection-end="1818" vertical-scroll-proportion="-12.193548" vertical-offset="612" max-vertical-offset="1870">
               <folding>
                 <element signature="n#style#0;n#iframe#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/template/bootstrap/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="66" column="82" selection-start="2032" selection-end="2032" vertical-scroll-proportion="0.6812191" vertical-offset="625" max-vertical-offset="4114">
+              <folding>
+                <element signature="n#style#0;n#a#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#3;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -82,13 +77,13 @@
         <option value="$PROJECT_DIR$/hd/Hdcms/Template/Tpl/Template/css/css.css" />
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/hd/Common/Config/config.php" />
-        <option value="$PROJECT_DIR$/template/bootstrap/index.html" />
         <option value="$PROJECT_DIR$/data/config/db.inc.php" />
         <option value="$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/feedback.php" />
         <option value="$PROJECT_DIR$/hd/Hdcms/Backup/Tpl/Backup/backup.php" />
         <option value="$PROJECT_DIR$/hd/Hdcms/Bug/Control/BugControl.class.php" />
         <option value="$PROJECT_DIR$/hd/Hdcms/Bug/Control/IndexControl.class.php" />
         <option value="$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/index.php" />
+        <option value="$PROJECT_DIR$/template/bootstrap/index.html" />
       </list>
     </option>
   </component>
@@ -696,18 +691,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/template/bootstrap/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="141" column="57" selection-start="3871" selection-end="3872" vertical-scroll-proportion="0.16639209" vertical-offset="2900" max-vertical-offset="4114">
-          <folding>
-            <element signature="n#style#0;n#a#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#3;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hd/Hdcms/Bug/Control/BugControl.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="24" selection-start="250" selection-end="250" vertical-scroll-proportion="0.28687856" vertical-offset="0" max-vertical-offset="1227">
@@ -731,9 +714,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="41" selection-start="1818" selection-end="1818" vertical-scroll-proportion="0.3113674" vertical-offset="612" max-vertical-offset="1870">
+        <state line="45" column="41" selection-start="1818" selection-end="1818" vertical-scroll-proportion="-12.193548" vertical-offset="612" max-vertical-offset="1870">
           <folding>
             <element signature="n#style#0;n#iframe#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/template/bootstrap/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="66" column="82" selection-start="2032" selection-end="2032" vertical-scroll-proportion="0.6812191" vertical-offset="625" max-vertical-offset="4114">
+          <folding>
+            <element signature="n#style#0;n#a#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#3;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
