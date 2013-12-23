@@ -16,9 +16,23 @@ class CategoryModel extends RelationModel
     protected $model;
     //栏目缓存
     protected $category;
+    //自动完成
     public $auto = array(
-        array("path", "_path", 2, 3, "method")
+        array("path", "_path", 2, 3, "method"),
+        array("level", "_level", 2, 3, "method"),
     );
+
+    //栏目等级自动完成
+    public function _level()
+    {
+        $pid = Q("post.pid", NULL, 'intval');
+        //顶级栏目
+        if (empty($pid)) {
+            return 1;
+        }
+        $level = M("category")->where("cid=$pid")->getField("level");
+        return $level + 1;
+    }
 
     //path字段自动完成
     public function _path()
@@ -54,7 +68,7 @@ class CategoryModel extends RelationModel
         if (!empty($category)) {
             foreach ($category as $n => $v) {
                 $v["disabled"] = "";
-                if ($v["cattype"] >1) {
+                if ($v["cattype"] > 1) {
                     $v["disabled"] = 'disabled="disabled"';
                 }
                 $category[$n] = $v;

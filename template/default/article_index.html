@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>{$hd.config.webname}</title>
-    <link rel="stylesheet" href="__TEMPLATE__/css/message.css"/>
+    <link rel="stylesheet" href="__TEMPLATE__/css/index.css"/>
 </head>
 <body>
 <!-- 最顶部灰色条开始 -->
@@ -14,10 +14,8 @@
         <div class="head_top_l">
 				<span class="top_login">
 				{$hd.config.webname}
-
 				</span>
         </div>
-
         <!-- 右边盒子结束 -->
     </div>
 </div>
@@ -31,9 +29,9 @@
 <!-- 导航栏开始 -->
 <div class="nav_list">
 
-    <a href="__ROOT__" class="two"><span>首  页</span></a>
-    <channel class="blue">
-        <a href="{$field.url}" class="{$field.class}"><span>{$field.catname}</span></a>
+    <a href="__ROOT__" class="blue"><span>首  页</span></a>
+    <channel class="blue" level="1" row="8">
+        <a href="{$field.url}" class="two"><span>{$field.catname}</span></a>
     </channel>
 
     <!-- 右边分享盒子开始 -->
@@ -49,33 +47,27 @@
 <div class="search_box">
     <!-- 搜索大盒子左边开始 -->
     <div class="s_left">
-        <!-- 搜索框盒子 -->
-        <div class="keybox">
-            <p class="serch_pic"></p>
-            <input type="text" value="1212" maxlength="16"/>
-        </div>
-        <!-- 搜索框盒子 -->
-        <!-- 按钮开始 -->
-        <div class="btn">
-            <input type="submit" value="搜索"/>
-        </div>
-        <!-- 按钮结束 -->
-
+        <form action="{|U:'Search/Search/search'}" method="post">
+            <!-- 搜索框盒子 -->
+            <div class="keybox">
+                <p class="serch_pic"></p>
+                <input type="text" name="search" maxlength="16"/>
+            </div>
+            <!-- 搜索框盒子 -->
+            <!-- 按钮开始 -->
+            <div class="btn">
+                <input type="submit" value="搜索"/>
+            </div>
+            <!-- 按钮结束 -->
+        </form>
         <!-- 搜索框右侧搜索链接结束 -->
         <!-- 热门关键字开始 -->
         <div class="hotkey">
 
-            热门关键字：<a href="">PHP</a>
-            <a href="">PHP程序员</a>
-            <a href="">PHP工程师</a>
-            <a href="">PHP招聘</a>
-            <a href="">网页设计</a>
-            <a href="">PHP网站开发</a>
-            <a href="">程序员招聘</a>
-            <a href="">ASP程序员</a>
-            <a href="">UI设计</a>
-            <a href="">网页制作</a>
-            <a href="">网站美工</a>
+            热门关键字：
+            <searchkey row="10">
+                <a href="{$field.url}">{$field.name}</a>
+            </searchkey>
         </div>
         <!-- 热门关键字结束 -->
     </div>
@@ -112,14 +104,14 @@
     <div class="center">
         <div class="listbox">
             <div class="top">
-                <arclist row="1" flag="2" titlelen="13">
-                <h1><a href="{$field.url}" target="_blank"> {$field.title}</a></h1>
+                <arclist row="1" flag="2" titlelen="12" listtype="all">
+                    <h1><a href="{$field.url}" target="_blank"> {$field.title}</a></h1>
                     {$field.description}
-                <a href="{$field.url}">[全文...]</a>
+                    <a href="{$field.url}">[全文...]</a>
                 </arclist>
             </div>
             <ul>
-                <arclist row="6" flag="1" titlelen="13">
+                <arclist row="6" flag="1" titlelen="13" listtype="all">
                     <li><a href="{$field.url}" target="_blank"> {$field.title}</a></li>
                 </arclist>
             </ul>
@@ -133,8 +125,8 @@
             </div>
             <div class="txt">
                 <ul>
-                    <arclist row="9" flag="3" titlelen="16">
-                        <li><a href="{$field.url}"> [{$field.addtime}]{$field.title}</a></li>
+                    <arclist row="9" flag="3" titlelen="12" listtype="all">
+                        <li><a href="{$field.url}"> [{$field.time}]{$field.title}</a></li>
                     </arclist>
                 </ul>
             </div>
@@ -144,7 +136,7 @@
 <!-- 轮换版区域盒子结束	 -->
 <!-- 轮换版区域下方盒子 -->
 <div class="news_list">
-    <channel>
+    <channel type="son">
         <div class="left" style="width:310px;margin: 0px 5px;margin-bottom: 10px;">
             <div class="listbox" style="width:310px;">
                 <div class="title" style="width:310px;">
@@ -153,8 +145,8 @@
                 </div>
                 <div class="txt">
                     <ul>
-                        <arclist cid="{$channel['cid']}" row="10" titlelen="18">
-                            <li><a href="{$field.url}" target="_blank"> [{$field.addtime}]{$field.title}</a></li>
+                        <arclist cid="{$channel['cid']}" row="10" titlelen="16">
+                            <li><a href="{$field.url}" target="_blank"> [{$field.time}]{$field.title}</a></li>
                         </arclist>
                     </ul>
                 </div>

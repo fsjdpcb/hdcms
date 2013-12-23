@@ -72,13 +72,13 @@
                             <td>前台显示</td>
                             <td>
                                 <label><input type="radio" name="cattype" value="1"
-                                    <if value="$field.cattype==1">checked="checked"</if>
+                                    <if value="$field.cattype=='栏目'">checked="checked"</if>
                                     /> 普通栏目</label>
                                 <label><input type="radio" name="cattype" value="2"
-                                    <if value="$field.cattype==2">checked="checked"</if>
+                                    <if value="$field.cattype=='封面'">checked="checked"</if>
                                     /> 频道封面</label>
                                 <label><input type="radio" name="cattype" value="3"
-                                    <if value="$field.cattype==3">checked="checked"</if>
+                                    <if value="$field.cattype=='外部链接'">checked="checked"</if>
                                     /> 外部链接(在跳转Url处填写网址)</label>
                             </td>
                         </tr>

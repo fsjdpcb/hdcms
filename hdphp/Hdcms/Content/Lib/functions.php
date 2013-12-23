@@ -5,15 +5,29 @@ function get_category_url($cid)
 {
     $category = F("category", false, CATEGORY_CACHE_PATH);
     $cat = $category[$cid];
-    //{catdir}/list_{cid}_{page}.html
-    return __ROOT__.'/'.C("HTML_PATH").'/'.$cat['catdir'].'/index.html';
+    if ($cat['cattype'] == 3) {
+        return $cat['cat_redirecturl'];
+    } else if ($cat['urltype'] == 1) { //静态访问
+        return __ROOT__ . '/' . C("HTML_PATH") . '/' . $cat['catdir'] . '/index.html';
+    } else {
+        return __ROOT__ . '/index.php?a=Content&c=Index&m=category&cid=' . $cat['cid'];
+    }
+
 }
 
 //获得栏目模板
 function get_category_tpl($cid)
 {
     $category = F("category", false, CATEGORY_CACHE_PATH);
-    return str_replace('{style}', './template/' . C("WEB_STYLE"), $category[$cid]['list_tpl']);
+    if ($category[$cid]['cattype'] == '封面') {
+        $tpl_file = $category[$cid]['index_tpl'];
+    } else if ($category[$cid]['cattype'] == '栏目') {
+        $tpl_file = $category[$cid]['list_tpl'];
+    } else {
+        //外部链接
+        return false;
+    }
+    return str_replace('{style}', './template/' . C("WEB_STYLE"), $tpl_file);
 }
 
 //获得内容页模板

@@ -57,34 +57,39 @@ str;
         $type = isset($attr['type']) ? $attr['type'] : "self";
         $row = isset($attr['row']) ? $attr['row'] : 10;
         $cid = isset($attr['cid']) ? $attr['cid'] : NULL;
+        $level = isset($attr['level']) ? intval($attr['level']) : 0;
         $class = isset($attr['class']) ? $attr['class'] : "";
         $php = <<<str
         <?php
-        \$where = '';\$type='$type';\$cid="$cid";
-
+        \$where = '';\$type='$type';\$cid="$cid";\$level=$level;
+        \$cid=intval(\$cid);
+        if(empty(\$cid) && isset(\$_GET['cid'])){
+            \$cid=  \$_GET['cid'];
+        }
         \$db = M("category");
         if (\$type == "top") {
-            \$where .= " pid=0 ";
+            \$where .= " level=1 ";
         }else if (!empty(\$cid)) {
             if(\$type=='current'){
                  \$where = " cid in(".\$cid.")";
             }else{
-                \$cid=intval(\$cid);
                 \$cat = \$db->find(\$cid);
                 if(\$cat){
                     switch (\$type) {
                         case "son":
-                                \$where = " pid=".\$cat['cid'];
-                                break;
-                        case "self":
-                                \$where = " pid=".\$cat['pid'];
-                                break;
+                               \$where = " pid=".\$cat['cid'];
+                                    break;
+                         case "self":
+                              \$where = " pid=".\$cat['pid'];
+                                    break;
                         case "one":
-                                \$where = " cid=".\$cat['cid'];
-                                break;
+                              \$where = " cid=".\$cat['cid'];
+                               break;
                     }
-                }
+                 }
             }
+        }else if(\$level>=1){//按等级查找
+            \$where.="level=\$level";
         }
         \$result = \$db->where(\$where)->where("cat_show=1")->order()->where(\$where)->order("catorder DESC")->limit($row)->all();
         //列表页当前栏目
@@ -134,13 +139,17 @@ str;
                 if (\$cid) {
                     //查找栏目与子栏目
                     if(\$listtype=='all'){
-                        \$tmp =M("category")->field("cid")->where("path like '%".\$cid."_%' or cid=\$cid")->all();
+                        \$tmp =M("category")->field("cid")->where("path like '%_".\$cid."%' or cid=\$cid")->all();
                         \$cid=array();
                         foreach(\$tmp as \$t){
                             \$cid[]=\$t['cid'];
                         }
+                        if(!empty(\$cid)&& is_array(\$cid)){
+                            \$db->in = array(C("DB_PREFIX")."category.cid"=>\$cid);
+                        }
+                    }else{//指定栏目
+                        \$db->where = C("DB_PREFIX")."category.cid in(\$cid)";
                     }
-                    \$db->where = C("DB_PREFIX")."category.cid in(\$cid)";
                 }
                 if (\$aid) {
                     \$db->where=\$table.".aid=".\$aid;
@@ -243,7 +252,7 @@ str;
         <?php
         if(!empty(\$_GET['cid'])){
             \$cat = F("category",false,CATEGORY_CACHE_PATH);
-            \$cat= Data::parentChannel(\$cat,\$_GET['cid']);
+            \$cat= array_reverse(Data::parentChannel(\$cat,\$_GET['cid']));
             \$str = "<a href='__ROOT__'>首页</a> > ";
             foreach(\$cat as \$c){
                 \$str.="<a href='".get_category_url(\$c['cid'])."'>".\$c['title'].'</a> > ';

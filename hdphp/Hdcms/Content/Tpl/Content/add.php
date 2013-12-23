@@ -162,7 +162,7 @@
                                 <label class="checkbox inline">
                                     <input type="checkbox" name="auto_desc" value="1"
                                     <if value="$hd.config.auto_desc==1">checked="checked"</if>
-                                    />是否截取内容
+                                    />截取内容
                                 </label>
                                 <label class="checkbox inline">
                                     <input type="text" value="200" class="input-mini" name="auto_desc_length"> 字符至内容摘要
@@ -170,7 +170,7 @@
                                 <label class="checkbox inline">
                                     <input type="checkbox" name="auto_thumb" value="1"
                                     <if value="$hd.config.auto_thumb==1">checked="checked"</if>
-                                    />否获取内容第
+                                    />获取内容第
                                 </label>
                                 <label class="checkbox inline">
                                     <input type="text" class="input-mini" value="1" name="auto_thumb_num">

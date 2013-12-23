@@ -28,7 +28,7 @@ $(function () {
     function set_category_tree(d) {
         var h = "";
         for (var i in d) {
-            var _span_class = d[i].cattype == 2 ? "folder" : "file";
+            var _span_class = d[i].cattype == "栏目" ?  "file":"folder";
             var _li_class = d[i].children ? " class='collapsable open'" : "";
             var _li_class = d[i]._end && !d[i].children && d[i].level != 1 ? " class='last'" : _li_class;
             h += '<li' + _li_class + '>';

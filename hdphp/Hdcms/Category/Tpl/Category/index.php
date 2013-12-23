@@ -24,6 +24,8 @@
             <td width="30">CID</td>
             <td width="50">排序</td>
             <td>栏目名称</td>
+            <td width="100">类型</td>
+            <td width="100">等级</td>
             <td width="50">访问</td>
             <td width="180">操作</td>
         </tr>
@@ -38,11 +40,19 @@
                     {$c.catname}
                 </td>
                 <td>
+                    {$c.cattype}
+                </td>
+                <td>
+                    {$c.level}级
+                </td>
+                <td>
                     <a href="{|U:'Content/Index/category',array('cid'=>$c['cid'])}" target="_blank">访问</a>
                 </td>
                 <td>
-                    <a href="{|U:'add',array('pid'=>$c['cid'],'mid'=>$c['mid'])}">添加子栏目</a><span class="line">|</span>
-                    <a href="{|U:'edit',array('cid'=>$c['cid'])}">修改</a><span class="line">|</span>
+                    <a href="{|U:'add',array('pid'=>$c['cid'],'mid'=>$c['mid'])}">添加子栏目</a>
+                    <span class="line">|</span>
+                    <a href="{|U:'edit',array('cid'=>$c['cid'])}">修改</a>
+                    <span class="line">|</span>
                     <a href="javascript:;" onclick="del({$c.cid})">删除</a>
                 </td>
             </tr>

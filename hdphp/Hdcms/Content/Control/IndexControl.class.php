@@ -57,13 +57,13 @@ class IndexControl extends CommonControl
     //内容页
     public function content()
     {
-
+//        $cat= array_reverse(Data::parentChannel($this->category,12));p($cat);
         if ($this->aid) {
             $db = new ContentViewModel();
             $field = $db->where($db->tableFull . ".aid=" . $this->aid)->find();
             if ($field) {
                 $field['caturl'] = U("category", array("cid" => $field['cid']));
-                $field['source']=empty($field['source'])?C("WEBNAME"):$field['source'];
+                $field['source'] = empty($field['source']) ? C("WEBNAME") : $field['source'];
                 $this->assign("hdcms", $field);
                 $tpl = get_content_tpl($this->aid);
                 if (is_file($tpl))
@@ -76,11 +76,18 @@ class IndexControl extends CommonControl
     public function category()
     {
         if ($this->cid) {
-            $field = M("category")->find($this->cid);
-            $this->assign("hdcms", $field);
-            $tpl = get_category_tpl($this->cid);
-            if (is_file($tpl))
-                $this->display($tpl);
+            //当前操作栏目
+            $category = $this->category[$this->cid];
+            //外部链接，直接跳转
+            if ($category['cattype'] == '外部链接') {
+                go($category['cat_redirecturl']);
+            } else {
+                $field = M("category")->find($this->cid);
+                $this->assign("hdcms", $field);
+                $tpl = get_category_tpl($this->cid);
+                if (is_file($tpl))
+                    $this->display($tpl);
+            }
         }
     }
 

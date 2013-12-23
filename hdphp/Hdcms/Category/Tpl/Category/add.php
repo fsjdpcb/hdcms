@@ -20,7 +20,6 @@
             </ul>
         </div>
         <input type="hidden" name="pid" value="{$hd.get.pid|default:0}"/>
-
         <div class="tab">
             <ul class="tab_menu">
                 <li lab="base"><a href="#">基本设置</a></li>

@@ -30,9 +30,10 @@
 <!-- 头部结束 -->
 <!-- 导航栏开始 -->
 <div class="nav_list">
-    <a href="__ROOT__" class="two"><span>首  页</span></a>
-    <channel class="blue" row="8">
-        <a href="{$field.url}" class="{$field.class}"><span>{$field.catname}</span></a>
+
+    <a href="__ROOT__" class="blue"><span>首  页</span></a>
+    <channel class="blue" level="1" row="8">
+        <a href="{$field.url}" class="two"><span>{$field.catname}</span></a>
     </channel>
 
     <!-- 右边分享盒子开始 -->
@@ -48,33 +49,27 @@
 <div class="search_box">
     <!-- 搜索大盒子左边开始 -->
     <div class="s_left">
-        <!-- 搜索框盒子 -->
-        <div class="keybox">
-            <p class="serch_pic"></p>
-            <input type="text" value="1212" maxlength="16"/>
-        </div>
-        <!-- 搜索框盒子 -->
-        <!-- 按钮开始 -->
-        <div class="btn">
-            <input type="submit" value="搜索"/>
-        </div>
-        <!-- 按钮结束 -->
-
+        <form action="{|U:'Search/Search/search'}" method="post">
+            <!-- 搜索框盒子 -->
+            <div class="keybox">
+                <p class="serch_pic"></p>
+                <input type="text" name="search" maxlength="16"/>
+            </div>
+            <!-- 搜索框盒子 -->
+            <!-- 按钮开始 -->
+            <div class="btn">
+                <input type="submit" value="搜索"/>
+            </div>
+            <!-- 按钮结束 -->
+        </form>
         <!-- 搜索框右侧搜索链接结束 -->
         <!-- 热门关键字开始 -->
         <div class="hotkey">
 
-            热门关键字：<a href="">PHP</a>
-            <a href="">PHP程序员</a>
-            <a href="">PHP工程师</a>
-            <a href="">PHP招聘</a>
-            <a href="">网页设计</a>
-            <a href="">PHP网站开发</a>
-            <a href="">程序员招聘</a>
-            <a href="">ASP程序员</a>
-            <a href="">UI设计</a>
-            <a href="">网页制作</a>
-            <a href="">网站美工</a>
+            热门关键字：
+            <searchkey row="10">
+                <a href="{$field.url}">{$field.name}</a>
+            </searchkey>
         </div>
         <!-- 热门关键字结束 -->
     </div>
@@ -92,11 +87,8 @@
 <div class="news_list">
     <div class="article_list">
         <div class="place">
-            <strong>当前位置:</strong>
-            <a href="http://localhost/source/dede">主页</a>
-            >
-            <a href="/source/dede/a/article/">article</a>
-            >
+            <strong>当前位置: </strong>
+            <pagepath/>
         </div>
         <div class="list">
         <pagelist row="10">

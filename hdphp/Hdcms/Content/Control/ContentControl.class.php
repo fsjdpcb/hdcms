@@ -53,7 +53,13 @@ class ContentControl extends AuthControl
     //异步获得目录树，内容左侧目录列表
     public function ajax_category_tree()
     {
-        $data = Data::channelLevel($this->category);
+        $category = array();
+        foreach ($this->category as $n => $cat) {
+            if ($cat['cattype'] !=3) {
+                $category[$n] = $cat;
+            }
+        }
+        $data = Data::channelLevel($category);
         $data = $this->get_view_tree($data);
         $this->_ajax($data);
     }
@@ -165,7 +171,7 @@ class ContentControl extends AuthControl
     public function add()
     {
         if (IS_POST) {
-            if ($this->db->create() ) {
+            if ($this->db->create()) {
                 $this->db->add();
                 $this->_ajax(1);
             }

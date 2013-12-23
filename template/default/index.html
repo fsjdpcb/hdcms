@@ -30,7 +30,7 @@
 <div class="nav_list">
 
     <a href="__ROOT__" class="blue"><span>首  页</span></a>
-    <channel class="blue" row="8">
+    <channel class="blue" level="1" row="8">
         <a href="{$field.url}" class="two"><span>{$field.catname}</span></a>
     </channel>
 
@@ -125,8 +125,8 @@
             </div>
             <div class="txt">
                 <ul>
-                    <arclist row="9" flag="3" titlelen="16">
-                        <li><a href="{$field.url}"> [{$field.addtime}]{$field.title}</a></li>
+                    <arclist row="9" flag="3" titlelen="13">
+                        <li><a href="{$field.url}"> [{$field.time}]{$field.title}</a></li>
                     </arclist>
                 </ul>
             </div>
@@ -136,7 +136,7 @@
 <!-- 轮换版区域盒子结束	 -->
 <!-- 轮换版区域下方盒子 -->
 <div class="news_list">
-    <channel>
+    <channel level="2">
         <div class="left" style="width:310px;margin: 0px 5px;margin-bottom: 10px;">
             <div class="listbox" style="width:310px;">
                 <div class="title" style="width:310px;">
@@ -145,8 +145,8 @@
                 </div>
                 <div class="txt">
                     <ul>
-                        <arclist cid="{$channel['cid']}" row="10" titlelen="18">
-                            <li><a href="{$field.url}" target="_blank"> [{$field.addtime}]{$field.title}</a></li>
+                        <arclist cid="{$channel['cid']}" row="10" titlelen="16">
+                            <li><a href="{$field.url}" target="_blank"> [{$field.time}]{$field.title}</a></li>
                         </arclist>
                     </ul>
                 </div>

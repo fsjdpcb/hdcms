@@ -92,16 +92,16 @@ class HtmlControl extends AuthControl
             $mid = Q("post.mid", 0, "intval");
             //一键生成时的情况，更新所有栏目
             if (isset($_SESSION['make_all']['category'])) {
-                $category = $db->field("cid,mid,catname,catdir,is_cat_html,list_html_url")->where("is_cat_html=1")->all();
+                $category = $db->field("cid,mid,catname,catdir,is_cat_html,list_html_url")->where("is_cat_html=1 and cattype!=3")->all();
             } else if (count($_POST['cid']) == 1 and $_POST['cid'][0] == 0) { //没有选择栏目
                 //不限模型时
                 if ($mid === 0) {
-                    $category = $db->field("cid,mid,catname,catdir,is_cat_html,list_html_url")->where("is_cat_html=1")->all();
+                    $category = $db->field("cid,mid,catname,catdir,is_cat_html,list_html_url")->where("is_cat_html=1 and cattype!=3")->all();
                 } else { //指定模型的所有栏目
-                    $category = $db->field("cid,mid,catname,catdir,list_html_url")->where("mid=$mid and is_cat_html=1")->all();
+                    $category = $db->field("cid,mid,catname,catdir,list_html_url")->where("mid=$mid and is_cat_html=1 and cattype!=3")->all();
                 }
             } else { //指定具体栏目
-                $category = $db->field("cid,mid,catname,catdir,list_html_url")->where("is_cat_html=1")->in($_POST['cid'])->all();
+                $category = $db->field("cid,mid,catname,catdir,list_html_url")->where("is_cat_html=1 and cattype!=3")->in($_POST['cid'])->all();
             }
             //不存在配置文件时生成栏目首页
             if (is_null($category)) {

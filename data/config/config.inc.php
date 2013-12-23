@@ -1,6 +1,6 @@
 <?php if (!defined('HDPHP_PATH')) exit; 
 return array (
-  'webname' => '后盾网-中国顶尖php培训机构',
+  'webname' => '后盾网',
   'icp' => '京ICP备12048441号-3',
   'HTML_PATH' => 'html',
   'copyright' => 'Copyright © 2012-2013 HDCMS 后盾网 版权所有',
@@ -39,9 +39,9 @@ return array (
   'FAVICON_HEIGHT' => '180',
   'UPLOAD_IMG_MAX_WIDTH' => '2000',
   'UPLOAD_IMG_MAX_HEIGHT' => '2000',
-  'down_remote_pic' => '0',
+  'down_remote_pic' => '1',
   'auto_desc' => '1',
-  'auto_thumb' => '0',
+  'auto_thumb' => '1',
   'MEMBER_CONTENT_STATUS' => '1',
   'DEFAULT_USER_GROUP' => '2',
   'member_open' => '0',
