@@ -7,5 +7,5 @@ $db->exe("REPLACE INTO ".$db_prefix."search (`sid`,`name`,`total`) VALUES('10','
 $db->exe("REPLACE INTO ".$db_prefix."search (`sid`,`name`,`total`) VALUES('11','老人','1')");
 $db->exe("REPLACE INTO ".$db_prefix."search (`sid`,`name`,`total`) VALUES('12','女童','1')");
 $db->exe("REPLACE INTO ".$db_prefix."search (`sid`,`name`,`total`) VALUES('14','自然','1')");
-$db->exe("REPLACE INTO ".$db_prefix."search (`sid`,`name`,`total`) VALUES('15','php培训','1')");
 $db->exe("REPLACE INTO ".$db_prefix."search (`sid`,`name`,`total`) VALUES('17','大陆','3')");
+$db->exe("REPLACE INTO ".$db_prefix."search (`sid`,`name`,`total`) VALUES('18','php培训','2')");

@@ -17,7 +17,7 @@ return array_merge(
         //普通模式 GET方式
         "URL_TYPE" => 2,
         //默认组
-        "DEFAULT_GROUP" => "hdcms",
+        "DEFAULT_GROUP" => "Hdcms",
         //默认应用
         "DEFAULT_APP" => "Content",
         //模板后缀

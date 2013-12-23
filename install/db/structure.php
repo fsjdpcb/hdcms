@@ -41,6 +41,8 @@ $db->exe("CREATE TABLE `".$db_prefix."category` (
   `cat_show` tinyint(1) DEFAULT '1' COMMENT 'channel标签调用时是否显示',
   `path` char(100) DEFAULT NULL COMMENT '栏目path',
   `level` smallint(5) unsigned NOT NULL DEFAULT '1' COMMENT '栏目等级',
+  `seo_title` char(100) DEFAULT NULL COMMENT 'SEO标题',
+  `seo_description` varchar(255) DEFAULT NULL COMMENT 'SEO描述',
   PRIMARY KEY (`cid`)
 ) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='栏目表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."category_access`");
@@ -74,7 +76,7 @@ $db->exe("CREATE TABLE `".$db_prefix."config` (
   `title` char(30) NOT NULL DEFAULT '',
   `show_type` enum('文本','数字','布尔(1/0)','多行文本') DEFAULT '文本',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=152 DEFAULT CHARSET=utf8 COMMENT='系统配置'");
+) ENGINE=MyISAM AUTO_INCREMENT=154 DEFAULT CHARSET=utf8 COMMENT='系统配置'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."content`");
 $db->exe("CREATE TABLE `".$db_prefix."content` (
   `aid` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -219,7 +221,7 @@ $db->exe("CREATE TABLE `".$db_prefix."search` (
   PRIMARY KEY (`sid`),
   UNIQUE KEY `name` (`name`) USING BTREE,
   KEY `total` (`total`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8");
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."session`");
 $db->exe("CREATE TABLE `".$db_prefix."session` (
   `sessid` char(32) NOT NULL DEFAULT '',
