@@ -13,7 +13,7 @@ class IndexControl extends AuthControl
     public function __init()
     {
         parent::__init();
-        $this->db = M("Bug");
+        $this->db = M("bug");
     }
 
     //反馈建议
