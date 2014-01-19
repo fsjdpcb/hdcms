@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 内容tag管理
  * Class TagControl
@@ -6,21 +7,20 @@
  */
 class TagControl extends AuthControl
 {
-    private $db;
+    private $_db;
 
     public function __init()
     {
         parent::__init();
-        $this->db = K("tag");
+        $this->_db = K("tag");
     }
 
     //显示关键词列表
     public function index()
     {
-        $page = new Page($this->db->count(), C("ADMIN_LIST_ROW'"));
-        $data = $this->db->limit($page->limit())->order("tid DESC")->all();
-        $this->assign("data", $data);
-        $this->assign("page", $page->show());
+        $page = new Page($this->_db->count(), C("ADMIN_LIST_ROW'"));
+        $this->data = $this->_db->limit($page->limit())->order("total DESC")->all();
+        $this->page = $page->show();
         $this->display();
     }
 
@@ -29,10 +29,12 @@ class TagControl extends AuthControl
     {
         $tid = Q("post.tid");
         if (!empty($tid)) {
+            if (!is_array($tid))
+                $tid = array($tid);
             foreach ($tid as $i) {
-                $this->db->del(intval($i));
+                $this->_db->del(intval($i));
             }
-            $this->_ajax(1);
+            $this->ajax(array('state' => 1, 'message' => '删除成功!'));
         }
     }
 
@@ -40,22 +42,22 @@ class TagControl extends AuthControl
     public function edit()
     {
         if (IS_POST) {
-            if ($this->db->save()) {
-                $this->_ajax(1);
+            if ($this->_db->replace()) {
+                $this->ajax(array('state' => 1, 'message' => '修改成功!'));
             }
         } else {
             $tid = Q("get.tid", NULL, "intval");
-            $field = $this->db->find($tid);
-            $this->assign("field", $field);
+            $this->field = $this->_db->find($tid);
             $this->display();
         }
     }
+
     //添加tag
     public function add()
     {
         if (IS_POST) {
-            if ($this->db->add()) {
-                $this->_ajax(1);
+            if ($this->_db->replace()) {
+                $this->ajax(array('state' => 1, 'message' => '添加成功!'));
             }
         } else {
             $this->display();

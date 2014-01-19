@@ -4,25 +4,30 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>内容管理</title>
-    <hdui bootstrap="true"/>
-    <css file="__CONTROL_TPL__/css/css.css"/>
-    <js file="__CONTROL_TPL__/js/js.js"/>
+    <hdjs/>
+    <css file="__CONTROL_TPL__/css/index.css"/>
     <js file="__CONTROL_TPL__/js/index.js"/>
-    <link rel='stylesheet' href='__CONTROL_TPL__/js/treeview/jquery.treeview.css'/>
-    <script src='__CONTROL_TPL__/js/treeview/lib/jquery.cookie.js' type='text/javascript'></script>
-    <script src='__CONTROL_TPL__/js/treeview/jquery.treeview.js' type='text/javascript'></script>
-    <script src='__CONTROL_TPL__/js/treeview/jquery.treeview.edit.js' type='text/javascript'></script>
+    <link rel="stylesheet" href="__GROUP__/static/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+    <script type="text/javascript" src="__GROUP__/static/ztree/js/jquery.ztree.all-3.5.min.js"></script>
     <base target="content"/>
 </head>
 <body>
 <div class="wrap">
-    <div class="category_list">
-        <ul id="browser" class="filetree">
-        </ul>
+    <div id="category_tree">
+        <div id="tree_title">
+            <span></span>
+            <a href="javascript:;" onclick="get_category_tree();">刷新栏目</a>
+        </div>
+        <ul id="treeDemo" class="ztree" style="top:25px;position: absolute;"></ul>
     </div>
-    <div class="con">
-        <iframe src="{|U:'Hdcms/Index/feedback'}" name="content" scrolling="auto" frameborder="0" style="height:100%;width: 100%;position: absolute"></iframe>
+    <div id="content">
+        <iframe src="{|U:'Hdcms/Index/feedback'}" name="content" scrolling="auto" frameborder="0"
+                style="height:100%;width: 100%;"></iframe>
     </div>
 </div>
+<script type="text/javascript">
+    //加载目录树
+    get_category_tree();
+</script>
 </body>
 </html>

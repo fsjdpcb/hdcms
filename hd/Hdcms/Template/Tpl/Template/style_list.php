@@ -4,20 +4,19 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>内容列表</title>
-    <hdui bootstrap="true"/>
-    <js file="__GROUP__/static/js/js.js"/>
+    <hdjs/>
     <js file="__CONTROL_TPL__/js/style.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
 <body>
-<div class="wrap">
-    <div class="table_title">友情提示</div>
+<div class="wrap" style="height: 100%;">
+    <div class="title-header">友情提示</div>
     <div class="help">
         <p>1. HDCMS官网不断更新免费优质模板 <a href="http://hdcms.hdphp.com" class="action" target="_blank">立刻获取</a></p>
 
         <p>2. 非HDCMS官网提供的模板，可能存在恶意木马程序</p>
     </div>
-    <div class="table_title">当前模板</div>
+    <div class="title-header">当前模板</div>
     <div class="help">
         <p>你需要了解HDCMS标签，才可以灵活编辑模板，当然这很简单 >>><a href="http://www.hdphp.com" target="_blank">获得视频教程</a></p>
     </div>

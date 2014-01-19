@@ -3,8 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <title>栏目管理</title>
-    <hdui bootstrap="true"/>
+    <title>上传文件管理</title>
+    <hdjs/>
     <js file="__CONTROL_TPL__/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
@@ -18,19 +18,23 @@
     <table class="table2">
         <thead>
         <tr>
-            <td width="30">ID</td>
-            <td>文件名</td>
+            <td class="w50">ID</td>
+            <td class="w100">预览</td>
+            <td >文件名</td>
             <td>大小</td>
-            <td width="100">上传时间</td>
-            <td width="60">用户id</td>
-            <td width="80">操作</td>
+            <td class="w200">上传时间</td>
+            <td class="w100">用户id</td>
+            <td class="w50">操作</td>
         </tr>
         </thead>
         <list from="$upload" name="u">
             <tr>
                 <td>{$u.id}</td>
                 <td>
-                    {$u.name}
+                    <img src="{$u.pic}" class="w60 h30" onclick="view('{$u.pic}')" title="点击预览大图"/>
+                </td>
+                <td>
+                    {$u.basename}
                 </td>
                 <td>
                     {$u.size|get_size}
@@ -46,24 +50,13 @@
                     <a href="javascript:;" onclick="view('__ROOT__/{$u.path}')">预览</a><span
                         class="line">|</span>
                     </if>
-                    <a href="javascript:;" onclick="del({$u.id})">删除</a>
+                    <a href="javascript:;" onclick="hd_ajax('{|U:del}',{id:{$u.id}})">删除</a>
                 </td>
             </tr>
         </list>
     </table>
-</div>
-<div class="page1">
-    {$page}
-</div>
-<!--预览-->
-<div id="view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myModalLabel">图片预览</h3>
-    </div>
-    <div class="modal-body"></div>
-    <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+    <div class="page1">
+        {$page}
     </div>
 </div>
 </body>

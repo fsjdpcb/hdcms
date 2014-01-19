@@ -101,22 +101,23 @@ class TemplateControl extends AuthControl
     //选择模板文件（内容页与栏目管理页使用)
     public function select_tpl()
     {
-        $template_style = ROOT_PATH . 'template/' . C("WEB_STYLE");
-        $dir = Q("get.path", $template_style, "base64_decode");
-        $file = Dir::tree($dir, "html");
+        //模板目录
+        $stylePath =  ROOT_PATH . 'template/' . C("WEB_STYLE");
+        $path = Q("get.path",$stylePath);
+        $file = Dir::tree($path, "html");
         foreach ($file as $n => $v) {
             if ($v['type'] == 'dir') {
-                $file[$n]['path'] = base64_encode($v['path']);
+                $file[$n]['path'] =$v['path'];
             } else {
-                $file[$n]['path'] = str_replace($template_style, '{style}', $v['path']);
+                $file[$n]['path'] = str_replace($stylePath, '{style}', $v['path']);
             }
         }
         $history = "";
-        if (Q("get.path")) {
-            if ($dir == $template_style) {
+        if ($dir = Q("get.path")) {
+            if ($dir == $stylePath) {
                 $history = "";
             } else {
-                $history = __METH__ . '&path=' . base64_encode(dirname($dir));
+                $history = __METH__ . '&path=' . dirname($dir);
             }
         }
         $this->assign("history", $history);

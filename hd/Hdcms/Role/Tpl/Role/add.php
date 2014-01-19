@@ -4,8 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>添加角色</title>
-    <hdui bootstrap="true"/>
-    <js file="__GROUP__/static/js/js.js"/>
+    <hdjs/>
     <js file="__CONTROL_TPL__/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
@@ -17,6 +16,7 @@
             <li><a href="javascript:;" class="action">添加角色</a></li>
         </ul>
     </div>
+    <div class="title-header">角色信息</div>
     <form action="{|U:'add'}" method="post" onsubmit="return false;" class="form-inline hd-form">
         <table class="table1">
             <tr>
@@ -32,8 +32,8 @@
                 </td>
             </tr>
         </table>
-        <div class="btn_wrap">
-            <input type="submit" class="btn" value="确定"/>
+        <div class="position-bottom">
+            <input type="submit" class="hd-success" value="确定"/>
         </div>
     </form>
 </div>

@@ -1,7 +1,7 @@
 <js file="__TPL__/Field/js/textarea.js"/>
 <table class="table1">
     <tr class="input action">
-        <td class="w100">参数</td>
+        <th class="w100">参数</th>
         <td>
             <table class="table1">
                 <tr>
@@ -20,13 +20,13 @@
         </td>
     </tr>
     <tr>
-        <td>表单样式名</td>
+        <th>表单样式名</th>
         <td>
             <input type="text" name="set[css]" class="w100"/>
         </td>
     </tr>
     <tr>
-        <td>表单验证</td>
+        <th>表单验证</th>
         <td>
             <input type="text" name="set[validation]" class="w250 textarea_validation"/>
             <select id="field_check">
@@ -39,18 +39,18 @@
                 <option value="/^\d{11}$/">手机</option>
                 <option value="/^[0-9]{1,20}$/">QQ</option>
             </select>
-            <span id="hd_textarea_validation"></span>
+            <span id="hd_set[validation]"></span>
         </td>
     </tr>
     <tr>
-        <td>必须输入</td>
+        <th>必须输入</th>
         <td>
             <input type="radio" name="set[required]" value="1"/> 是
             <input type="radio" name="set[required]" value="0" checked="checked"/> 否
         </td>
     </tr>
     <tr>
-        <td>错误提示</td>
+        <th>错误提示</th>
         <td>
             <input type="text" name="set[error]" class="w300"/>
         </td>

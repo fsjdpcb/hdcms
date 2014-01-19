@@ -4,7 +4,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>HDCMS - 后台管理中心</title>
-    <hdui bootstrap="true"/>
+    <hdjs/>
+    <bootstrap/>
     <css file="__CONTROL_TPL__/css/css.css"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
 </head>
@@ -22,11 +23,11 @@
     <div class="r_menu">
         {$hd.session.rname} : admin <a href="{|U:'Login/out'}" target="_self">[退出]</a><span>|</span>
         <a href="__WEB__" target="_blank">前台首页</a>
-<!--        <span>|</span>-->
-<!--        <a href="{|U:'Member/Index/index'}" target="_blank">会员中心</a></a>-->
-<!--        <span>|</span>-->
-<!--        <a href="__ROOT__" target="_blank">后台地图</a><span>|</span>-->
-<!--        <a href="__ROOT__" target="_blank">更新缓存</a>-->
+        <!--        <span>|</span>-->
+        <!--        <a href="{|U:'Member/Index/index'}" target="_blank">会员中心</a></a>-->
+        <!--        <span>|</span>-->
+        <!--        <a href="__ROOT__" target="_blank">后台地图</a><span>|</span>-->
+        <!--        <a href="__ROOT__" target="_blank">更新缓存</a>-->
     </div>
     <!--头部右侧导航-->
 </div>
@@ -38,16 +39,16 @@
             <dl>
                 <dt>常用</dt>
                 <dd>
-                    <a url="?a=Bug&C=Index&m=index&status=1" onclick="get_content(this,7999)" href="javascript:;" nid="7999">HDCMS反馈</a>
+                    <a url="?a=Menu&c=Menu&m=set_favorite" onclick="get_content(this,90001)" href="javascript:;"
+                       nid="90001">设置</a>
                 </dd>
                 <dd>
-                    <a url="?a=Menu&c=Menu&m=set_favorite" onclick="get_content(this,8999)" href="javascript:;" nid="8999">设置</a>
+                    <a url="?a=Bug&c=Bug&m=feedback" onclick="get_content(this,90002)" href="javascript:;"
+                       nid="90002">反馈Bug</a>
                 </dd>
-                <?php if(strstr("__WEB__",'hdphp')){?>
                 <dd>
-                    <a url="?a=Bug&c=Index" onclick="get_content(this,9999)" href="javascript:;" nid="9999">Bug</a>
+                    <a url="?a=Bug&c=Bug&m=showBug" onclick="get_content(this,90003)" href="javascript:;" nid="90003">Bug管理</a>
                 </dd>
-                <?php }?>
                 <list from="$favorite_menu" name="f">
                     <dd>
                         <a url="?a={$f.app}&c={$f.control}&m={$f.method}&nid={$f.nid}"
@@ -71,7 +72,8 @@
         </div>
     </div>
     <div class="top_content">
-        <iframe src="{|U:'feedback'}" nid="0"  scrolling="auto" frameborder="0" style="height: 100%;width: 100%;"></iframe>
+        <iframe src="{|U:'feedback'}" nid="0" scrolling="auto" frameborder="0"
+                style="height: 100%;width: 100%;"></iframe>
     </div>
     <!--内容显示区域-->
 </div>

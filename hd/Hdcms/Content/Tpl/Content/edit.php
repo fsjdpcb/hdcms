@@ -4,15 +4,18 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>修改文章</title>
-    <hdui bootstrap="true"/>
+    <hdjs/>
     <js file="__GROUP__/static/js/js.js"/>
-    <js file="__CONTROL_TPL__/js/js.js"/>
+    <js file="__CONTROL_TPL__/js/add_edit.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
+    <script>
+        //内容编辑器id，用于验证正文时使用
+        var editor_id ='hd_{$model.tablename}_data[content]';
+    </script>
 </head>
 <body>
-<form action="{|U:edit}" method="post" id="edit" class="form-inline hd-form">
+<form action="{|U:edit}" method="post" id="edit" class="hd-form" onsubmit="return false">
     <input type="hidden" value="{$field.aid}" name="aid"/>
-
     <div class="wrap">
         <!--右侧缩略图区域-->
         <div class="content_right">
@@ -25,10 +28,10 @@
                         <img id="thumb" src="{$field.thumb_img}" style="cursor: pointer;width:135px;height:113px;"
                              onclick="file_upload('thumb','thumb',1,'thumb')"/>
                         <input type="hidden" name="thumb" value="{$field.thumb}"/>
-                        <button type="button" class="btn btn-small" onclick="file_upload('thumb','thumb',1,'thumb')">
+                        <button type="button" class="hd-cancel-small" onclick="file_upload('thumb','thumb',1,'thumb')">
                             上传图片
                         </button>
-                        <button type="button" class="btn btn-small" onclick="remove_thumb(this)">取消上传</button>
+                        <button type="button" class="hd-cancel-small" onclick="remove_thumb(this)">取消上传</button>
                     </td>
                 </tr>
                 <tr>
@@ -100,14 +103,14 @@
                 </tr>
                 <tr>
                     <td>
-                        <input type="text" name="username" class="w150" value="{$field.username}"/>
+                        <input type="text" name="author" class="w150" value="{$field.author}"/>
                     </td>
                 </tr>
             </table>
 
         </div>
         <div class="content_left">
-            <div class="table_title">添加文章</div>
+            <div class="title-header">添加文章</div>
             <table class="table1">
                 <tr>
                     <th class="w80">标题<span class="star">*</span></th>
@@ -145,18 +148,7 @@
                 </tr>
                 <!--标准模型显示正文字段-->
                 <if value="$model.type==1">
-                    <tr>
-                        <th>关键字</th>
-                        <td>
-                            <input type="text" name="keywords" value="{$field.keywords}" class="w400"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>摘要</th>
-                        <td>
-                            <textarea name="description" class="w450 h80">{$field.description}</textarea>
-                        </td>
-                    </tr>
+
                     <tr>
                         <th>内容<span class="star">*</span></th>
                         <td>
@@ -192,19 +184,40 @@
                 {$custom_field}
                 <!--自定义字段-->
                 <tr>
+                    <th>关键字</th>
+                    <td>
+                        <input type="text" name="keywords" value="{$field.keywords}" class="w400"/>
+                        <span class="validate-message">如果不填，系统将自动从内容中提取</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>摘要</th>
+                    <td>
+                        <textarea name="description" class="w450 h80">{$field.description}</textarea>
+                        <span class="validate-message">如果不填，系统将自动从内容中提取</span>
+                    </td>
+                </tr>
+                <tr>
                     <th>模板</th>
                     <td>
                         <input class="w250" type="text" name="template" value="{$field.template}" id="template" onclick="select_template('template');">
-                        <button class="select_tpl btn" type="button" onclick="select_template('template');">选择模板
+                        <button class="hd-cancel-small" type="button" onclick="select_template('template');">选择模板
                         </button>
+                    </td>
+                </tr>
+                <tr>
+                    <th>HTML文件</th>
+                    <td>
+                        <input class="w250" type="text" name="html_path" value="{$field.html_path}">
+                        <span class="validate-message">如果不填,将按栏目规则生成静态</span>
                     </td>
                 </tr>
             </table>
         </div>
     </div>
-    <div class="btn_wrap">
-        <input type="submit" class="btn btn-primary" value="确定"/>
-        <input type="button" class="btn close_window" value="关闭"/>
+    <div class="position-bottom">
+        <input type="submit" class="hd-success" value="确定"/>
+        <input type="button" class="hd-cancel" onclick="hd_close_window()" value="关闭"/>
     </div>
 </form>
 </body>

@@ -4,8 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>管理员管理</title>
-    <hdui bootstrap="true"/>
-    <js file="__GROUP__/static/js/js.js"/>
+    <hdjs/>
     <js file="__CONTROL_TPL__/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
@@ -41,11 +40,11 @@
                 <td>{$a.realname}</td>
                 <td>{$a.email}</td>
                 <td>
-                        <a href="{|U:'edit',array('uid'=>$a['uid'])}">修改</a>|
+                    <a href="{|U:'edit',array('uid'=>$a['uid'])}">修改</a>|
                     <if value="$a.username==C('WEB_MASTER')">
                         <span>删除</span>
-                       <else>
-                           <a href="javascript:;" onclick="del({$a.uid})">删除</a>
+                        <else>
+                            <a href="javascript:;" onclick="del({$a.uid})">删除</a>
                     </if>
                 </td>
             </tr>

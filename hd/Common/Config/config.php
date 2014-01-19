@@ -22,9 +22,11 @@ return array_merge(
         "DEFAULT_APP" => "Content",
         //模板后缀
         "TPL_FIX" => ".php",
+        //编辑器上传文件储存位置
+        'EDITOR_SAVE_PATH'          => ROOT_PATH . 'upload/editor/'.date('Y/m/d/'), //文件储存目录
         //公共函数库
         "AUTO_LOAD_FILE" => array(),
-        "TPL_ERROR" => "./data/Template/error.html", //错误页面
-        "TPL_SUCCESS" => "./data/Template/success.html", //正确页面
+        "TPL_ERROR" => "./hd/Common/Template/error.html", //错误页面
+        "TPL_SUCCESS" => "./hd/Common/Template/success.html", //正确页面
     )
 );

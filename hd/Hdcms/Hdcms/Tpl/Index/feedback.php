@@ -4,26 +4,37 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>welcome</title>
-    <hdui bootstrap="true"/>
+    <hdjs/>
+    <bootstrap/>
     <css file="__CONTROL_TPL__/css/welcome.css"/>
-    <js file="__CONTROL_TPL__/js/welcome.js"/>
+    <js file="__CONTROL_TPL__/js/feedback.js"/>
 </head>
 <body>
 <div class="wrap">
 
-    <div class="table_title">安全提示</div>
-    <div class="help">
-        <p>1. 默认应用组目录hdphp(及子目录)设置为750,文件设置为640</p>
+    <div class="title-header">安全提示</div>
+    <table class="table2">
+        <tr>
+            <td>1. 默认应用组目录hdphp(及子目录)设置为750,文件设置为640</td>
+        </tr>
+        <tr>
+            <td>2. 建议删除安装目录install</td>
+        </tr>
+    </table>
+    <div style="height:10px;overflow: hidden">&nbsp;</div>
+    <div class="title-header">HDCMS动态</div>
+    <table class="table2">
+        <tr>
+            <td><a href="#">[2013-2-22] 增加DISCUZ论坛整合</a></td>
+        </tr>
+        <tr>
+            <td><a href="#">[2013-2-22] 增加SINA接口整合</a></td>
+        </tr>
+    </table>
+    &nbsp;&nbsp;&nbsp;<a href="http://www.hdphp.com">>>查看所有动态</a>
 
-        <p>2. 建议删除安装目录install</p>
-    </div>
-    <div class="table_title">HDCMS动态</div>
-    <div class="help">
-        <p><a href="#">[2013-2-22] 增加DISCUZ论坛整合 [已经完成]</a></p>
-        <p><a href="#">[2013-2-22] 增加SINA整接口</a></p>
-        <a href="#">>>查看所有动态</a>
-    </div>
-    <div class="table_title">系统信息</div>
+    <div style="height:10px;overflow: hidden">&nbsp;</div>
+    <div class="title-header">系统信息</div>
     <table class="table2">
         <tr>
             <td class="w80">HDCMS版本</td>
@@ -62,7 +73,8 @@
             </td>
         </tr>
     </table>
-    <div class="table_title">程序团队</div>
+    <div style="height:10px;overflow: hidden">&nbsp;</div>
+    <div class="title-header">程序团队</div>
     <table class="table2">
         <tr>
             <td class="w80">版权所有</td>
@@ -85,7 +97,11 @@
             </td>
         </tr>
     </table>
-    <form action="http://www.hdphp.com/index.php?a=Bug&c=Bug&m=suggest" method="post" class="form-inline hd-form">
+    <div style="height:10px;overflow: hidden">&nbsp;</div>
+    <div class="title-header">反馈</div>
+    <a name="bug"></a>
+
+    <form action="?a=Bug&c=BugSuggest&m=suggest" method="post" class="form-inline hd-form">
         <table class="table2">
             <tr>
                 <td class="w80">类型</td>

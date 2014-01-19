@@ -3,21 +3,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <title>栏目管理</title>
-    <hdui bootstrap="true"/>
+    <title>修改栏目</title>
+    <hdjs/>
     <js file="__GROUP__/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
 <body>
-<form action="{|U:edit}" method="post" class="form-inline hd-form">
+<form action="{|U:edit}" method="post" class="hd-form" onsubmit="return hd_submit(this,'{|U:index}')">
     <input type="hidden" value="{$field.cid}" name="cid"/>
     <div class="wrap">
         <div class="menu_list">
             <ul>
                 <li><a href="{|U:'index'}">栏目列表</a></li>
                 <li><a href="javascript:;" class="action">添加栏目</a></li>
-                <li><a href="javascript:update_cache();">更新栏目缓存</a></li>
+                <li><a href="javascript:hd_ajax('{|U:update_cache}')">更新栏目缓存</a></li>
             </ul>
         </div>
         <input type="hidden" name="mid" value="{$field.mid}"/>
@@ -39,7 +39,7 @@
                                     <list from="$category" name="c">
                                         <option value="{$c.cid}"
                                         {$c.selected} {$c.disabled}>
-                                        {$c.catname}
+                                        {$c._name}
                                         </option>
                                     </list>
                                 </select>
@@ -215,9 +215,9 @@
             </div>
         </div>
     </div>
-    <div class="btn_wrap">
-        <input type="submit" class="btn btn-primary" value="确定"/>
-        <input type="button" class="btn" value="取消" onclick="location.href='__CONTROL__'"/>
+    <div class="position-bottom">
+        <input type="submit" class="hd-success" value="确定"/>
+        <input type="button" class="hd-cancel" value="取消" onclick="location.href='__CONTROL__'"/>
     </div>
 </form>
 </body>

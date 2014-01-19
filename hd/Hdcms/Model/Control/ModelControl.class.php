@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 内容模型管理模块
  * Class ModelControl
@@ -7,9 +8,11 @@
 class ModelControl extends AuthControl
 {
     //模型对象
-    private $db;
+    private $_db;
     //模型id
-    private $mid;
+    private $_mid;
+    //模型缓存
+    private $_model;
 
     /**
      * 显示模型列表
@@ -17,15 +20,18 @@ class ModelControl extends AuthControl
     public function __init()
     {
         parent::__init();
-        $this->db = K("Model");
-        $this->mid = Q("request.mid");
+        $this->_db = K("Model");
+        $this->_mid = Q("request.mid");
+        $this->_model = F("model", false, MODEL_CACHE_PATH);
 
     }
 
+    /**
+     * 模型列表
+     */
     public function index()
     {
-        $model = F("model", false, MODEL_CACHE_PATH);
-        $this->assign("model", $model);
+        $this->model = $this->_model;
         $this->display();
     }
 
@@ -34,19 +40,21 @@ class ModelControl extends AuthControl
      */
     public function check_model()
     {
-        $db = M("model");
+        $_db = M("model");
         if (isset($_POST['tablename'])) {
-            if (!$db->find("tablename='{$_POST['tablename']}'")) {
-                $this->_ajax(1);
+            if (!$_db->find("tablename='{$_POST['tablename']}'")) {
+                $this->ajax(1);
             }
         }
     }
 
-    //更新缓存
+    /**
+     * 更新缓存
+     */
     public function update_cache()
     {
-        if ($this->db->update_cache()) {
-            $this->_ajax(1);
+        if ($this->_db->update_cache()) {
+            $this->ajax(array('state' => 1, 'message' => '更新缓存成功'));
         }
     }
 
@@ -55,22 +63,10 @@ class ModelControl extends AuthControl
      */
     public function del()
     {
-        if ($this->mid) {
-            if (M("category")->find("mid={$this->mid}")) {
-                $this->_ajax(2);
-            }
-            $model = $this->db->find($this->mid);
-            //删除主表与表字段缓存
-            if ($this->db->exe("DROP TABLE IF EXISTS " . C("DB_PREFIX") . $model['tablename'])) {
-                //删除附表与表字段缓存
-                if ($model['type'] == 1) {
-                    $this->db->exe("DROP TABLE IF EXISTS " . C("DB_PREFIX") . $model['tablename'] . '_data');
-                }
-                //删除表记录
-                $this->db->del($this->mid);
-                $this->db->table("field")->where("mid={$this->mid}")->del();
-                $this->_ajax(1);
-            }
+        if ($this->_db->del_model()) {
+            $this->ajax(array('state' => 1, 'message' => '删除模型成功'));
+        } else {
+            $this->ajax(array('state' => 0, '请删除模型栏目'));
         }
     }
 
@@ -80,9 +76,8 @@ class ModelControl extends AuthControl
     public function add()
     {
         if (IS_POST) {
-            //创建模型表
-            if ($this->db->create_model_table() && $this->db->add()) {
-                $this->_ajax(1);
+            if ($this->_db->add_model()) {
+                $this->ajax(array('state' => 1, 'message' => '添加模型成功'));
             }
         } else {
             $this->display();
@@ -96,12 +91,11 @@ class ModelControl extends AuthControl
     {
         if (IS_POST) {
             //异步提交返回信息
-            if ($this->db->save()) {
-                $this->_ajax(1);
+            if ($this->_db->edit_model()) {
+                $this->ajax(array('state' => 1, 'message' => '修改模型成功'));
             }
         } else {
-            $field = $this->db->find($this->mid);
-            $this->assign("field", $field);
+            $this->field = $this->_db->find($this->_mid);
             $this->display();
         }
     }
@@ -110,24 +104,25 @@ class ModelControl extends AuthControl
     public function check_model_name()
     {
         $model_name = Q("post.model_name");
-        if ($this->mid) {
-            if (!$this->db->find(array("model_name" => $model_name, "mid" => array("neq" => $this->mid)))) {
-                $this->_ajax(1);
+        if ($this->_mid) {
+            //编辑时验证模型名
+            if (!$this->_db->find(array("model_name" => $model_name, "mid" => array("neq" => $this->_mid)))) {
+                $this->ajax(1);
             }
         } else {
-            if (!$this->db->find(array("model_name" => $model_name))) {
-                $this->_ajax(1);
+            //添加时验证模型名
+            if (!$this->_db->find(array("model_name" => $model_name))) {
+                $this->ajax(1);
             }
         }
-        $this->_ajax(0);
+        $this->ajax(0);
     }
 
     //验证模型表名是否已经存在
     public function check_table_name()
     {
-        $tablename = Q("post.tablename");
-        if (!$this->db->find(array("tablename" => $tablename))) {
-            $this->_ajax(1);
+        if (!$this->_db->isTable(Q('post.tablename'))) {
+            $this->ajax(1);
         }
         $this->ajax(0);
     }

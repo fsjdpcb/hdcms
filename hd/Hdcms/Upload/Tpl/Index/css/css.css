@@ -2,7 +2,9 @@
 body {
     background: #fff;
 }
-
+div.wrap {
+    bottom: 0px;
+}
 div.uploadify_upload_files {
     padding: 10px;
     border: solid 1px #ccc;

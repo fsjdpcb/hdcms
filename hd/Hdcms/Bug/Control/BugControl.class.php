@@ -1,30 +1,69 @@
 <?php
+
 /**
- * HDCMS系统反馈管理
- * 只供后盾网官方使用
- * Class BugControl
- * @author 向军 <houdunwangxj@gmail.com>
+ *
+ * Class IndexControl
  */
-class BugControl extends Control
+class BugControl extends AuthControl
 {
     //模型
-    public $db;
+    private $_db;
     //角色rid
-    public $rid;
+    private $_rid;
 
     public function __init()
     {
-        $this->db = M("bug");
+        parent::__init();
+        $this->_db = M("bug");
     }
 
-    //反馈建议
-    public function suggest()
+    //bug管理列表
+    public function showBug()
     {
-        $_POST['addtime'] = time();
-        if ($this->db->add()) {
-            $this->success(":) 您的建议我们已经收到，谢谢！", NULL, 5);
+        //bug类型，用于获取数据条件
+        $status = Q("get.status", 1, "intval");
+        $where = "status=$status";
+        //统计
+        $count = $this->_db->where($where)->count();
+        //分页处理
+        $page = new Page($count);
+        $this->page = $page->show();
+        //分配BUG数据
+        $this->data = $this->_db->where($where)->limit($page->limit())->order("bid DESC")->all();
+        $this->display();
+    }
+
+    //反馈bug
+    public function feedback()
+    {
+        $this->display();
+    }
+
+    //解决反馈
+    public function resolve()
+    {
+        if (IS_POST) {
+            if ($this->_db->save()) {
+                $this->ajax(array('state' => 1, 'message' => '处理成功'));
+            }
         } else {
-            $this->error(":( 服务器异常，请稍候再试", NULL, 5);
+            //问题id
+            $bid = Q("bid", NULL, "intval");
+            if ($bid) {
+                $this->field = $this->_db->find($bid);
+                $this->display();
+            }
+        }
+    }
+
+    //删除反馈
+    public function del()
+    {
+        $bid = Q("post.bid", NULL);
+        if ($bid) {
+            if ($this->_db->del($bid)) {
+                $this->ajax(array('state' => 1, 'message' => '删除成功'));
+            }
         }
     }
 }

@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>搜索关键词</title>
-    <hdui bootstrap="true"/>
+    <hdjs/>
     <js file="__GROUP__/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/tag.js"/>
     <css file="__CONTROL_TPL__/css/tag.css"/>
@@ -34,7 +34,7 @@
                 <td><input type="checkbox" name="tid[]" value="{$d.tid}"/></td>
                 <td>{$d.tid}</td>
                 <td>
-                    <a href="{|U:edit,array('tid'=>$d['tid'])}">{$d.name}</a>
+                    <a href="{|U:edit,array('tid'=>$d['tid'])}">{$d.tag_name}</a>
                 </td>
                 <td>
                     {$d.total}
@@ -52,10 +52,10 @@
     </div>
 </div>
 
-<div class="btn_wrap">
-    <input type="button" class="btn s_all" value="全选"/>
-    <input type="button" class="btn r_select" value="反选"/>
-    <input type="button" class="btn" onclick="del()" value="批量删除"/>
+<div class="position-bottom">
+    <input type="button" class="hd-cancel" value="全选" onclick="select_all('.table2')"/>
+    <input type="button" class="hd-cancel" value="反选" onclick="reverse_select('.table2')"/>
+    <input type="button" class="hd-cancel" onclick="del()" value="批量删除"/>
 </div>
 </body>
 </html>

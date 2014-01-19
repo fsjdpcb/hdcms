@@ -6,20 +6,20 @@
  */
 class RoleControl extends AuthControl
 {
-    protected $db;
+    private $_db;
     //角色rid
-    protected $rid;
+    private $_rid;
 
     public function __init()
     {
-        $this->db = K("User");
-        $this->rid = Q("request.rid", null, "intval");
+        $this->_db = K("User");
+        $this->_rid = Q("request.rid", null, "intval");
     }
 
     public function index()
     {
         $role = M("role")->all();
-        $this->assign("role", $role);
+        $this->role=$role;
         $this->display();
     }
 
@@ -27,9 +27,9 @@ class RoleControl extends AuthControl
     public function add()
     {
         if (IS_POST) {
-            if ($this->db->create()) {
-                if ($aid = $this->db->add()) {
-                    $this->_ajax(array("stat" => 1, "msg" => "添加角色成功！"));
+            if ($this->_db->create()) {
+                if ($aid = $this->_db->add()) {
+                    $this->ajax(array("state" => 1, "message" => "添加角色成功！"));
                 }
             }
         } else {
@@ -45,17 +45,17 @@ class RoleControl extends AuthControl
         $rid = Q("post.rid", NULL, "intval,trim");
         //编辑时验证
         if (is_null($rname)) {
-            $this->_ajax(0);
+            $this->ajax(0);
         } else if (!is_null($rid)) {
-            if ($this->db->join(NULL)->where("rid=$rid AND rname='$rname'")->find()) {
-                $this->_ajax(1);
-            } else if ($this->db->join(NULL)->where("rname ='$rname'")->find()) {
-                $this->_ajax(0);
+            if ($this->_db->join(NULL)->where("rid=$rid AND rname='$rname'")->find()) {
+                $this->ajax(1);
+            } else if ($this->_db->join(NULL)->where("rname ='$rname'")->find()) {
+                $this->ajax(0);
             }
-        } else if (!$this->db->join(NULL)->where("rname ='$rname'")->find()) {
-            $this->_ajax(1);
+        } else if (!$this->_db->join(NULL)->where("rname ='$rname'")->find()) {
+            $this->ajax(1);
         }
-        $this->_ajax(0);
+        $this->ajax(0);
     }
 
     /**
@@ -66,9 +66,9 @@ class RoleControl extends AuthControl
         if (Q("post.rid")) {
             $db = M("role");
             $db->save();
-            $this->_ajax(array("stat" => 1, "msg" => "修改角色成功！"));
+            $this->ajax(array("state" => 1, "message" => "修改角色成功！"));
         } else {
-            $this->assign("field", M("role")->find($this->rid));
+            $this->assign("field", M("role")->find($this->_rid));
             $this->display();
         }
     }
@@ -79,8 +79,8 @@ class RoleControl extends AuthControl
         $rid = Q("get.rid", null, "intval");
         if ($rid) {
             //用户组关联表
-            if ($this->db->del($rid)) {
-                $this->_ajax(array("stat" => 1, "msg" => "删除角色成功！"));
+            if ($this->_db->del($rid)) {
+                $this->ajax(array("state" => 1, "message" => "删除角色成功！"));
             }
         }
     }

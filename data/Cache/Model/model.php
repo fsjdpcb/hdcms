@@ -13,5 +13,18 @@ return array (
     'm_order' => '0',
     'is_system' => '1',
   ),
+  2 => 
+  array (
+    'mid' => '2',
+    'model_name' => '测试模型',
+    'tablename' => 'test',
+    'enable' => '1',
+    'description' => '',
+    'app_name' => 'Content',
+    'type' => '1',
+    'is_submit' => '0',
+    'm_order' => '0',
+    'is_system' => '0',
+  ),
 );
 ?>

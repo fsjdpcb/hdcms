@@ -1,0 +1,36 @@
+@import "../../../../../static/css/common.css";
+div.wrap{
+    bottom: 0px;
+}
+/*左侧栏目*/
+div#category_tree {
+    width: 150px;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-right: solid 3px #cccccc;
+}
+
+/*右侧内容显示区*/
+div#content {
+    position: fixed;
+    left: 182px;
+    right: 0px;
+    bottom: 0px;
+    top: 0px;
+}
+#tree_title{
+    position: absolute;top:10px;left:10px;
+
+}
+#tree_title span{
+    display: block;
+    background: url("../../../../../static/ztree/css/zTreeStyle/img/diy/1_open.png");
+    width:15px;
+    height: 15px;
+    float: left;
+    margin-right: 5px;
+}

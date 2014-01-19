@@ -1,10 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>栏目管理</title>
-    <hdui bootstrap="true"/>
+    <hdjs/>
     <js file="__GROUP__/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
@@ -15,7 +15,7 @@
         <ul>
             <li><a href="javascript:;" class="action">栏目列表</a></li>
             <li><a href="{|U:'add'}">添加顶级栏目</a></li>
-            <li><a href="javascript:update_cache();">更新栏目缓存</a></li>
+            <li><a href="javascript:hd_ajax('{|U:update_cache}')">更新栏目缓存</a></li>
         </ul>
     </div>
     <table class="table2 hd-form">
@@ -37,13 +37,13 @@
                     <input type="text" class="w30" value="{$c.catorder}" name="list_order[{$c.cid}]"/>
                 </td>
                 <td>
-                    {$c.catname}
+                    {$c._name}
                 </td>
                 <td>
-                    {$c.cattype}
+                    {$c._type_name}
                 </td>
                 <td>
-                    {$c.level}级
+                    {$c._level}级栏目
                 </td>
                 <td>
                     <a href="{|U:'Content/Index/category',array('cid'=>$c['cid'])}" target="_blank">访问</a>
@@ -53,14 +53,15 @@
                     <span class="line">|</span>
                     <a href="{|U:'edit',array('cid'=>$c['cid'])}">修改</a>
                     <span class="line">|</span>
-                    <a href="javascript:;" onclick="del({$c.cid})">删除</a>
+                    <a href="javascript:del_category({$c.cid})">删除</a>
                 </td>
             </tr>
         </list>
     </table>
+    <div class="h60"></div>
 </div>
-<div class="btn_wrap">
-    <input type="button" class="btn btn-primary" onclick="update_order()" value="更改排序"/>
+<div class="position-bottom">
+    <input type="button" class="hd-success" onclick="update_order()" value="更改排序"/>
 </div>
 </body>
 </html>

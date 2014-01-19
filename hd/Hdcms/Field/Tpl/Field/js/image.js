@@ -1,7 +1,7 @@
 //表单验证
 $(function () {
-    $("form").validation({
-        image_height: {
+    $("form").validate({
+        'set[width]': {
             rule: {
                 required: true,
                 regexp: /^\d+$/
@@ -12,7 +12,7 @@ $(function () {
             },
             message: "px"
         },
-        image_width: {
+        'set[height]': {
             rule: {
                 required: true,
                 regexp: /^\d+$/

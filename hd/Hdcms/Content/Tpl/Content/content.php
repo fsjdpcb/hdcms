@@ -4,15 +4,16 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>内容列表</title>
-    <hdui bootstrap="true"/>
+    <hdjs/>
     <js file="__GROUP__/static/js/js.js"/>
-    <js file="__CONTROL_TPL__/js/js.js"/>
+    <js file="__CONTROL_TPL__/js/content.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
 <body>
 <div class="wrap">
-    <form action="__METH__&cid={$hd.get.cid}&status={$hd.get.status}" method="post" class="form-inline hd-form">
+    <form action="__METH__&cid={$hd.get.cid}" method="post" class="hd-form">
         <input type="hidden" name="cid" value="{$hd.get.cid}"/>
+        <input type="hidden" name="status" value="{$status}"/>
         <div class="search">
             添加时间：<input id="begin_time" readonly="readonly" class="w80" type="text" value="" name="search_begin_time">
             <script>
@@ -34,18 +35,18 @@
                 <option value="1">标题</option>
                 <option value="2">简介</option>
                 <option value="3">用户名</option>
-                <option value="4" selected="selected">ID</option>
+                <option value="4">作者uid</option>
             </select>&nbsp;&nbsp;&nbsp;
             关键字：
             <input class="w200" type="text" placeholder="请输入关键字..." value="" name="search_keyword">
-            <button class="btn">搜索</button>
+            <button class="hd-cancel">搜索</button>
         </div>
     </form>
     <div class="menu_list">
         <ul>
-            <li><a href="{|U:'content',array('cid'=>$_GET['cid'],'status'=>1)}" <if value="$hd.get.status==1">class="action"</if>>内容列表</a></li>
-            <li><a href="{|U:'content',array('cid'=>$_GET['cid'],'status'=>0)}" <if value="$hd.get.status==0">class="action"</if>>未审核文章</a></li>
-            <li><a href="javascript:;" onclick="window.open('{|U:'add',array('cid'=>$_GET['cid'],'status'=>0)}')">添加内容</a></li>
+            <li><a href="{|U:'content',array('cid'=>$_GET['cid'],'status'=>1)}" <if value="$status==1">class="action"</if>>内容列表</a></li>
+            <li><a href="{|U:'content',array('cid'=>$_GET['cid'],'status'=>0)}" <if value="$status==0">class="action"</if>>未审核文章</a></li>
+            <li><a href="javascript:;" onclick="window.open('{|U:add,array('cid'=>$_GET['cid'])}')">添加内容</a></li>
         </ul>
     </div>
     <table class="table2 hd-form">
@@ -61,10 +62,10 @@
             <td width="100">栏目</td>
             <td class="w80">作者</td>
             <td class="w80">修改时间</td>
-            <td class="w150">操作</td>
+            <td class="w100">操作</td>
         </tr>
         </thead>
-        <list from="$content" name="c">
+        <list from="$data" name="c">
             <tr>
                 <td><input type="checkbox" name="aid[]" value="{$c.aid}"/></td>
                 <td>{$c.aid}</td>
@@ -79,7 +80,7 @@
                 </td>
                 <td>{$c.catname}</td>
                 <td>
-                    {$c.username}
+                    {$c.author}
                 </td>
                 <td>
                     {$c.updatetime|date:"Y-m-d",@@}
@@ -100,14 +101,14 @@
     </div>
 </div>
 
-<div class="btn_wrap">
-    <input type="button" class="btn s_all" value="全选"/>
-    <input type="button" class="btn r_select" value="反选"/>
-    <input type="button" class="btn" onclick="update_order({$hd.get.cid})" value="更改排序"/>
-    <input type="button" class="btn" onclick="del({$hd.get.cid})" value="批量删除"/>
-    <input type="button" class="btn" onclick="set_status({$hd.get.cid},1)" value="审核"/>
-    <input type="button" class="btn" onclick="set_status({$hd.get.cid},0)" value="取消审核"/>
-    <input type="button" class="btn" onclick="move({$hd.get.cid})" value="批量移动"/>
+<div class="position-bottom">
+    <input type="button" class="hd-cancel" value="全选" onclick="select_all('.table2')"/>
+    <input type="button" class="hd-cancel" value="反选" onclick="reverse_select('.table2')"/>
+    <input type="button" class="hd-cancel" onclick="update_order({$hd.get.cid})" value="更改排序"/>
+    <input type="button" class="hd-cancel" onclick="del({$hd.get.cid})" value="批量删除"/>
+    <input type="button" class="hd-cancel" onclick="set_status({$hd.get.cid},1)" value="审核"/>
+    <input type="button" class="hd-cancel" onclick="set_status({$hd.get.cid},0)" value="取消审核"/>
+    <input type="button" class="hd-cancel" onclick="move({$hd.get.cid})" value="批量移动"/>
 </div>
 </body>
 </html>

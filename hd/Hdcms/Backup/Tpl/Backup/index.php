@@ -4,9 +4,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>还原备份</title>
-    <hdui bootstrap="true"/>
-    <js file="__GROUP__/static/js/js.js"/>
-    <js file="__CONTROL_TPL__/js/js.js"/>
+    <hdjs/>
+    <js file="__CONTROL_TPL__/js/index.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
 <body>
@@ -27,20 +26,21 @@
                 <td>备份目录</td>
                 <td>备份时间</td>
                 <td>大小</td>
-                <td width="200">操作</td>
+                <td width="150">操作</td>
             </tr>
             </thead>
             <tbody>
             <list from="$dir" name="d">
                 <tr>
                     <td width="50">
-                        <label><input type="checkbox" name="table[]" value="{$d.name}"/></label>
+                        <label><input type="checkbox" name="dir[]" value="{$d.name}"/></label>
                     </td>
                     <td>{$d.name}</td>
                     <td>{$d.filemtime|date:'Y-m-d h:i:s',@@}</td>
                     <td>{$d.size|get_size}</td>
                     <td>
-                        <a href="javascript:;" class="recovery" dir="{$d.name}">数据还原</a>
+                        <a href="javascript:recovery('{$d.name}')">还原</a> |
+                        <a href="javascript:hd_ajax('{|U:del}',{dir:['{$d.name}']})">删除</a>
                     </td>
                 </tr>
             </list>
@@ -48,10 +48,10 @@
         </table>
     </form>
 </div>
-<div class="btn_wrap">
-    <input type="button" class="btn s_all" value="全选"/>
-    <input type="button" class="btn r_select" value="反选"/>
-    <input type="button" class="btn" id="del" value="批量删除"/>
+<div class="position-bottom">
+    <input type="button" class="hd-cancel" onclick="select_all('.table2')" value="全选"/>
+    <input type="button" class="hd-cancel" onclick="reverse_select('.table2')" value="反选"/>
+    <input type="button" class="hd-cancel" onclick="del_backup()" value="批量删除"/>
 </div>
 </body>
 </html>

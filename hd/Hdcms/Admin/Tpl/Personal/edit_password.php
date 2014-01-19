@@ -4,16 +4,15 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>修改密码</title>
-    <hdui bootstrap="true"/>
+    <hdjs/>
     <js file="__GROUP__/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/edit_password.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
 <body>
 <div class="wrap">
-    <div class="table_title">修改密码</div>
-    <form action="{|U:'edit_info'}" method="post" onsubmit="return false;" class="form-inline hd-form">
-        <input type="hidden" name="uid" value="{$user.uid}"/>
+    <div class="title-header">修改密码</div>
+    <form action="__METH__" method="post" onsubmit="return hd_submit(this,'__METH__')" class="hd-form">
         <table class="table1">
             <tr>
                 <th class="w100">管理员名称</th>
@@ -24,7 +23,7 @@
             <tr>
                 <th class="w100">真实姓名</th>
                 <td>
-                    <input type="text" name="realname" class="w200" value="{$user.realname}"/>
+                   {$user.realname}
                 </td>
             </tr>
             <tr>
@@ -36,18 +35,18 @@
             <tr>
                 <th class="w100">新密码</th>
                 <td>
-                    <input type="password" name="password" class="w200"/>
+                    <input type="password" name="new_password" class="w200"/>
                 </td>
             </tr>
             <tr>
-                <th class="w100">重复新密码</th>
+                <th class="w100">确认密码</th>
                 <td>
                     <input type="password" name="c_password" class="w200"/>
                 </td>
             </tr>
         </table>
-        <div class="btn_wrap">
-            <input type="submit" class="btn btn-primary" value="确定"/>
+        <div class="position-bottom">
+            <input type="submit" class="hd-success" value="确定"/>
         </div>
     </form>
 </div>

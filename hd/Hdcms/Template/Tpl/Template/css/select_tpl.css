@@ -1,12 +1,10 @@
-div span.sel_tp {
+div span{
     height: 22px;
     width: 26px;
     display: inline-block;
     vertical-align: middle;
-    margin-right: 10px;
+    background: #f99;
     text-indent: -9999px;
-    float: left;
-    cursor: pointer;
 }
 
 div span.dir {

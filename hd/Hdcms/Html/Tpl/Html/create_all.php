@@ -3,25 +3,35 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <title>生成栏目静态</title>
-    <hdui bootstrap="true"/>
-    <js file="__GROUP__/static/js/js.js"/>
-    <js file="__CONTROL_TPL__/js/js.js"/>
+    <title>一键生成静态</title>
+    <hdjs/>
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
 <body>
-<form method="post" action="__CONTROL__&m=make_all">
+<form method="post" action="__CONTROL__&m=make_all" target="_iframe" onsubmit="return $.modalShow();">
     <div class="wrap">
-        <div class="table_title">温馨提示</div>
+        <div class="title-header">温馨提示</div>
         <div class="help">
             1 一键更新全生成全站静态，包括：首页，栏目列表页，内容页。<br/>
             2 一键更新时间会相对较长，请耐心等待
         </div>
-        <div class="table_title">一键更新</div>
+        <div class="title-header">一键更新</div>
         <table class="table2">
-            <tr><td>
-            <input type="button" value="开始更新" class="btn btn-primary" onclick="form_submit('all')"/></td>
+            <tr>
+                <td>
+                    <input type="submit" value="开始更新" class="hd-success"/>
+                </td>
             </tr>
         </table>
     </div>
 </form>
+<script>
+    $.modal({title: '生成首页', button_cancel: '关闭', width: 450, height: 200, show: false,
+        content: "<iframe name='_iframe' scrolling='no' frameborder='0' style='height:110px;'></iframe>",
+        cancel: function () {
+            window.location.reload(true);
+        }
+    })
+</script>
+</body>
+</html>

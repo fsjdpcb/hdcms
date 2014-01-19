@@ -3,16 +3,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <title>修改个人资料</title>
-    <hdui bootstrap="true"/>
+    <title>个人资料修改</title>
+    <hdjs/>
     <js file="__GROUP__/static/js/js.js"/>
-    <js file="__CONTROL_TPL__/js/js.js"/>
+    <js file="__CONTROL_TPL__/js/edit_info.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
 <body>
 <div class="wrap">
-    <div class="table_title">个人资料修改</div>
-    <form action="{|U:'edit_info'}" method="post" onsubmit="return hd_dialog(this)" class="form-inline hd-form">
+    <div class="title-header">个人资料修改</div>
+    <form action="{|U:'edit_info'}" method="post" onsubmit="return hd_submit(this,'__METH__')" class="hd-form">
         <input type="hidden" name="uid" value="{$user.uid}"/>
         <table class="table1">
             <tr>
@@ -46,8 +46,8 @@
                 </td>
             </tr>
         </table>
-        <div class="btn_wrap">
-            <input type="submit" class="btn btn-primary" value="确定"/>
+        <div class="position-bottom">
+            <input type="submit" class="hd-success" value="确定"/>
         </div>
     </form>
 </div>

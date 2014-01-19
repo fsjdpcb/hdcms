@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>搜索关键词</title>
-    <hdui bootstrap="true"/>
+    <hdjs/>
     <js file="__GROUP__/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/manage.js"/>
     <css file="__CONTROL_TPL__/css/manage.css"/>
@@ -51,10 +51,10 @@
     </div>
 </div>
 
-<div class="btn_wrap">
-    <input type="button" class="btn s_all" value="全选"/>
-    <input type="button" class="btn r_select" value="反选"/>
-    <input type="button" class="btn" onclick="del()" value="批量删除"/>
+<div class="position-bottom">
+    <input type="button" class="hd-cancel-small" value="全选"/>
+    <input type="button" class="hd-cancel-small r_select" value="反选"/>
+    <input type="button" class="hd-cancel-small" onclick="del()" value="批量删除"/>
 </div>
 </body>
 </html>

@@ -4,7 +4,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>管理员管理</title>
-    <hdui bootstrap="true"/>
+    <hdjs/>
+    <bootstrap/>
     <js file="__GROUP__/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/add_validation.js"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
@@ -18,6 +19,7 @@
             <li><a href="javascript:;" class="action">添加管理员</a></li>
         </ul>
     </div>
+    <div class="title-header">管理员信息</div>
     <form action="{|U:'add'}" method="post" class="form-inline hd-form" onsubmit="return hd_dialog(this,'__CONTROL__')">
         <table class="table1">
             <tr>
@@ -61,9 +63,9 @@
                 </td>
             </tr>
         </table>
-        <div class="btn_wrap">
-            <input type="submit" class="btn btn-primary" value="确定"/>
-            <input type="button" class="btn" value="取消" onclick="location.href='__CONTROL__'"/>
+        <div class="position-bottom">
+            <input type="submit" class="hd-success" value="确定"/>
+            <input type="button" class="hd-cancel" value="取消" onclick="location.href='__CONTROL__'"/>
         </div>
     </form>
 </div>

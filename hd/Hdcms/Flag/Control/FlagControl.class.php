@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 内容属性管理
  * Class ContentControl
@@ -7,49 +8,44 @@
 class FlagControl extends AuthControl
 {
     //模型
-    protected $db;
+    protected $_db;
 
     public function __init()
     {
         parent::__init();
-        $this->db = K("Flag");
+        $this->_db = K("Flag");
     }
 
     //属性列表
     public function index()
     {
-        $flag = $this->db->all();
-        $this->assign("flag", $flag);
+        $flag = $this->_db->all();
+        $this->flag = $flag;
         $this->display();
     }
 
     //删除属性
-    public function del_flag()
+    public function del()
     {
-        $fid = q("request.fid", null, "intval");
-        if ($fid && $this->db->del_flag($fid)) {
-            $this->ajax_return(1, "删除成功");
-
+        if ($this->_db->del_flag()) {
+            $this->ajax(array('state' => 1, 'message' => '删除成功'));
         }
     }
 
     //修改属性
     public function edit()
     {
-        if (IS_POST && !empty($_POST['flag'])) {
-            foreach ($_POST['flag'] as $fid => $flagname) {
-                $this->db->save(array("fid" => $fid, "flagname" => $flagname));
-            }
+        if ($this->_db->edit_flag()) {
+            $this->ajax(array('state' => 1, 'message' => '修改成功'));
         }
-        $this->ajax_return(1, "修改成功");
     }
 
     //添加属性
     public function add()
     {
         if (IS_POST) {
-            if ($this->db->add()) {
-                $this->ajax_return(1, "添加成功");
+            if ($this->_db->add_flag()) {
+                $this->ajax(array('state' => 1, 'message' => '添加成功'));
             }
         } else {
             $this->display();

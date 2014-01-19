@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 栏目管理模块
  * Class CategoryControl
@@ -7,23 +8,23 @@
 class CategoryControl extends AuthControl
 {
     //模型
-    protected $db;
+    private $_db;
     //栏目cid
-    protected $cid;
+    private $_cid;
     //栏目缓存
-    protected $category;
+    private $_category;
     //模型缓存
-    protected $model;
+    private $_model;
 
     //构造函数
     public function __init()
     {
         parent::__init();
-        $this->category = F("category", false, CATEGORY_CACHE_PATH);
-        $this->model = F("model", false, MODEL_CACHE_PATH);
-        $this->db = K("Category");
-        $this->cid = Q("request.cid", null, "intval");
-        if ($this->cid && !isset($this->category[$this->cid])) {
+        $this->_category = F("category", false, CATEGORY_CACHE_PATH);
+        $this->_model = F("model", false, MODEL_CACHE_PATH);
+        $this->_db = K("Category");
+        $this->_cid = Q("request.cid", null, "intval");
+        if ($this->_cid && !isset($this->_category[$this->_cid])) {
             $this->error("栏目不存在！");
         }
     }
@@ -33,20 +34,15 @@ class CategoryControl extends AuthControl
      */
     public function index()
     {
-        $this->assign("category", $this->category);
+        $this->category = $this->_category;
         $this->display();
     }
 
     //将栏目名称转拼音做为静态目录
-    public function get_catdir()
+    public function dir_to_pinyin()
     {
-        //栏目名称
-        $catname = Q("post.catname");
-        //普通栏目进行处理
-        if ($catname) {
-            $catdir = String::pinyin($catname);
-        }
-        echo $catdir;
+        $dir = String::pinyin(Q("catname"));
+        echo $dir;
         exit;
     }
 
@@ -55,23 +51,12 @@ class CategoryControl extends AuthControl
     {
         //添加栏目
         if (IS_POST) {
-            if ($this->db->create()) {
-                if ($this->db->add()) {
-                    $this->_ajax(1);
-                }
+            if ($this->_db->add_category()) {
+                $this->ajax(array('state' => 1, 'message' => '添加栏目成功'));
             }
         } else {
-            $category = $this->category;
-            //添加子栏目时增加selected属性
-            $pid = Q("get.pid", 0, "intval");
-            foreach ($category as $n => $c) {
-                $category[$n]["selected"] = "";
-                if ($c['cid'] == $pid) {
-                    $category[$n]["selected"] = "selected='selected'";
-                }
-            }
-            $this->assign("category", $category);
-            $this->assign("model", $this->model);
+            $this->category = $this->_category;
+            $this->model = $this->_model;
             $this->display();
         }
     }
@@ -80,23 +65,26 @@ class CategoryControl extends AuthControl
     public function edit()
     {
         if (IS_POST) {
-            if ($this->db->create()) {
-                if ($this->db->save()) {
-                    $this->_ajax(1);
-                }
+            if ($this->_db->edit_category()) {
+                $this->ajax(array('state' => 1, 'message' => '修改栏目成功'));
             }
         } else {
             //当前栏目信息
-            $field = $this->db->find($this->cid);
-            $category = $this->category;
+            $field = $this->_db->find($this->_cid);
+            $category = $this->_category;
             foreach ($category as $n => $v) {
-                $category[$n]['selected'] = "";
-                if ($field['pid'] == $v['cid']) {
-                    $category[$n]['selected'] = "selected='selected'";
-                }
+                //父栏目select状态
+                $selected = $field['pid'] == $v['cid'] ? 'selected="selected"' : '';
+                //子栏目disabled
+                $disabled = Data::isChild($category, $v['cid'], $this->_cid) ? 'disabled="disabled"' : '';
+                //当前栏目不可选
+                if ($this->_cid == $v['cid'])
+                    $disabled = 'disabled="disabled"';
+                $category[$n]['selected'] = $selected;
+                $category[$n]['disabled'] = $disabled;
             }
-            $this->assign("field", $field);
-            $this->assign("category", $category);
+            $this->field = $field;
+            $this->category = $category;
             $this->display();
         }
     }
@@ -104,35 +92,29 @@ class CategoryControl extends AuthControl
     //更新栏目排序
     public function update_order()
     {
-        $list_order = Q("post.list_order");
-        if (!empty($list_order)) {
-            foreach ($list_order as $cid => $order) {
-                $cid = intval($cid);
-                $order = intval($order);
-                $data = array("cid" => $cid, "catorder" => $order);
-                $this->db->save($data);
-            }
-            //更新缓存
-            $this->db->update_cache();
-            $this->_ajax(1);
-        }
+        if ($this->_db->update_order())
+            $this->ajax(array('state' => 1, 'message' => '更改排序成功'));
     }
+
     /**
      * 更新栏目缓存
      */
     public function update_cache()
     {
-        $this->db->update_cache();
-        $this->_ajax(1);
+        if ($this->_db->update_cache())
+            $this->ajax(array('state' => 1, 'message' => '更新缓存成功'));
     }
 
     //删除栏目
-    public function del()
+    public function del_category()
     {
-        if ($this->db->join(NULL)->find("pid=" . $this->cid)) {
-            $this->_ajax(2);
-        } else if ($this->db->del_category()) {
-            $this->_ajax(1);
+        //存在子栏目不允许删除
+        if ($this->_db->find("pid=" . $this->_cid)) {
+            $this->ajax(array('state' => 0, 'message' => '请先删除子栏目'));
+        }
+        //存在文章不允许删除
+        if ($this->_db->del_category()) {
+            $this->ajax(array('state' => 1, 'message' => '删除栏目成功'));
         }
     }
 }

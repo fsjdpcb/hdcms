@@ -1,7 +1,7 @@
 //表单验证
 $(function () {
-    $("form").validation({
-        editor_height:{
+    $("form").validate({
+        'set[height]':{
             rule: {
                 required: true,
                 regexp:/^\d+$/

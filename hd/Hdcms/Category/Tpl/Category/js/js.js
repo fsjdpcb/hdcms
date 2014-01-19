@@ -1,6 +1,6 @@
 //表单验证
 $(function () {
-    $("form").validation({
+    $("form").validate({
         //验证规则
         catname: {
             rule: {
@@ -37,136 +37,37 @@ $(function () {
         }
     })
 })
-//获得静态目录
+//获得静态目录(将目录名转为拼音)
 $(function () {
     $("[name='catname']").blur(function () {
-        //不为空时处理
-        $catdir = $.trim($("[name='catdir']").val());
+        //栏目名
         $catname = $.trim($("[name='catname']").val())
+        //静态目录名
+        $catdir = $.trim($("[name='catdir']").val());
+        //静态目录名为空时获得
         if (!$catdir && $catname) {
-            $.post(CONTROL + "&m=get_catdir", {catname: $(this).val()}, function (data) {
+            $.post(CONTROL + "&m=dir_to_pinyin", {catname: $(this).val()}, function (data) {
                 $("[name='catdir']").val(data);
             })
         }
     })
 })
-//添加或修改栏目
-$(function () {
-    $("form").submit(function () {
-        //如果为生成静态，必须设置静态目录
-        if ($("[name='cattype']:checked").val() == 1) {
-            if (!$.trim($("[name='catdir']").val())) {
-                alert("请设置静态目录");
-                return false;
-            }
-        }
-        if ($(this).is_validation()) {
-
-            var _post = $(this).serialize();
-            $.ajax({
-                type: "POST",
-                url: METH,
-                dataType: "JSON",
-                cache: false,
-                data: _post,
-                success: function (stat) {
-                    if (stat == 1) {
-                        $.dialog({
-                            msg: "操作成功",
-                            type: "success",
-                            close_handler: function () {
-                                location.href = CONTROL;
-                            }
-                        });
-                    } else if (stat == 2) {
-                        $.dialog({
-                            msg: "操作失败",
-                            type: "error"
-                        });
-                    }
-                }
-            })
-        }
-        return false;
-    })
-})
-
-//删除栏目
-function del(cid) {
-    if (confirm("删除栏目会同时删除文章，确认删除吗？")) {
-        $.ajax({
-            type: "POST",
-            url: CONTROL + "&m=del",
-            dataType: "JSON",
-            cache: false,
-            data: {cid: cid},
-            success: function (stat) {
-                if (stat == 1) {
-                    $.dialog({
-                        msg: "删除成功!",
-                        type: "success",
-                        close_handler: function () {
-                            location.href = URL;
-                        }
-                    });
-                } else if (stat == 2) {
-                    $.dialog({
-                        msg: "请先删除子栏目",
-                        type: "error"
-                    });
-                }
-            }
-        })
-    }
+/**
+ * 删除栏目
+ * @param cid 栏目id
+ */
+function del_category(cid) {
+    if (confirm('删除栏目将删除栏目下所有文章，确定删除吗？'))
+        hd_ajax(CONTROL + '&m=del_category', {cid: cid});
 }
-
 
 //更新排序
 function update_order() {
+    //栏目检测
+    if ($("input[type='text']").length == 0) {
+        alert('没有栏目用于排序');
+        return false;
+    }
     var post = $("input[type='text']").serialize();
-    $.ajax({
-        type: "POST",
-        url: CONTROL + "&m=update_order",
-        dataType: "JSON",
-        cache: false,
-        data: post,
-        success: function (stat) {
-            if (stat == 1) {
-                $.dialog({
-                    msg: "排序修改成功",
-                    type: "success",
-                    close_handler: function () {
-                        location.href = URL;
-                    }
-                });
-            } else {
-                $.dialog({
-                    msg: "排序修改失败！",
-                    type: "error"
-                });
-            }
-        }
-    })
-}
-//更新栏目缓存
-function update_cache() {
-    $.ajax({
-        url: CONTROL + "&m=update_cache",
-        success: function (stat) {
-            if (stat == 1) {
-                $.dialog({
-                    msg: "更新缓存成功！",
-                    type: "success",
-                    close_handler: function () {
-                        location.href = URL;
-                    }
-                });
-            } else {
-                $.dialog({
-                    msg: "更新缓存失败！",
-                    type: "error"
-                });
-            }
-        }
-    })
+    hd_ajax(CONTROL + '&m=update_order', post);
 }

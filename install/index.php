@@ -7,7 +7,7 @@ $version = array(
 //网站根目录
 define("WEB_PATH", dirname(dirname(str_replace('\\', '/', __FILE__))) . '/');
 //框架目录
-define("HDPHP_PATH", WEB_PATH . "/hd/hdphp/");
+define("HDPHP_PATH", WEB_PATH . "/hd/hdphp/hdphp/");
 //版本号
 define("VERSION", $version['NAME'] . " " . $version['VERSION']);
 

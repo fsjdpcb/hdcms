@@ -1,27 +1,30 @@
 <?php
+
 /**
  * 文件上传
  * Class IndexControl
  * @author hdxj<houdunwangxj@gmail.com>
  */
-
 class UploadControl extends Control
 {
     //模型
-    protected $db;
+    protected $_db;
 
     public function __init()
     {
-        $this->db = K("Upload");
+        if (!session('uid'))
+            _404('非法请求');
+        $this->_db = K("Upload");
     }
 
     //显示文件列表
     public function index()
     {
         //上传目录
-        $dir = "./upload/" . q("get.dir", "content", "htmlspecialchars,strip_tags") . "/" . date("Y") . '/' . date("m") . '/' . date("d") . '/';
+        $dir = "./upload/" . Q("get.dir", "content") . "/" . date("Y") . '/' . date("m") . '/' . date("d") . '/';
         //上传数量
-        $limit = q("get.limit", 1, "intval");
+        $limit = Q("get.num", 1, "intval");
+        //上传标签
         $upload = tag("upload",
             array(
                 "name" => "hdcms",
@@ -30,29 +33,61 @@ class UploadControl extends Control
                 "width" => 88,
                 "height" => 78)
         );
-        $get = "";
+        $get = '';
         foreach ($_GET as $name => $v) {
             $get .= "var $name='$v';\n";
         }
-        $this->assign("get", $get);
-        $this->assign("upload", $upload);
+        $this->get = $get;
+        $this->upload = $upload;
         $this->display();
     }
 
-    //上传文件处理
+    /**
+     * Ueditor 编辑器图片上传处理方法
+     */
+    public function ueditor_upload()
+    {
+        //上传图片储存目录
+        $imgSavePathConfig = array(C('EDITOR_SAVE_PATH'));
+        //获取存储目录
+        if (isset($_GET['fetch'])) {
+            header('Content-Type: text/javascript');
+            echo 'updateSavePath(' . json_encode($imgSavePathConfig) . ');';
+            exit;
+        }
+        $upload = new Upload(C('EDITOR_SAVE_PATH'));
+        $title = htmlspecialchars($_POST['pictitle'], ENT_QUOTES);
+        $file = $upload->upload();
+        if (!$file) {
+            echo "{'title':'" . $upload->error . "','state':'" . $upload->error . "'}";
+        } else {
+            $file=$file[0];
+            $model = K("Upload");
+            $model->insert_to_table($file);
+            $file['url'] = __ROOT__ . '/' . $file['path'];
+            $file["state"] = "SUCCESS";
+            echo "{'url':'" . $file['url'] . "','title':'" . $title . "','original':'" . $file["filename"] . "','state':'" . $file["state"] . "'}";
+        }
+        exit;
+    }
+    /**
+     * Uploadify上传文件处理
+     */
     public function hd_uploadify()
     {
-        $upload = new Upload(q('post.upload_dir'), array(), array(), q("post.water", null, "intval"));
+        $upload = new Upload(Q('post.upload_dir'), array(), array(), Q("water", null, "intval"));
         $file = $upload->upload();
-        if (!empty($file) and is_array($file)) {
+        if (!empty($file)) {
+            $file=$file[0];
             $data['stat'] = 1;
-            $data['url'] = __ROOT__ . '/' . $file[0]['path'];
-            $data['path'] = $file[0]['path'];
-            $data['name'] = $file[0]['name'];
+            $data['url'] = __ROOT__ . '/' . $file['path'];
+            $data['path'] = $file['path'];
+            $data['filename'] = $file['filename'];
+            $data['basename'] = $file['basename'];
             $data['thumb'] = array();
-            $data['isimage'] = 1;
+            $data['isimage'] = $file['image'];
             //写入upload表
-            $this->db->insert_to_table(current($file));
+            $this->_db->insert_to_table($file);
         } else {
             $data['stat'] = 0;
             $data['msg'] = $upload->error;
@@ -61,38 +96,39 @@ class UploadControl extends Control
         exit;
     }
 
-    //删除图片
+    /**
+     * 上传插件Ajax删除文件
+     * 同时删除session中记录
+     */
     public function hd_uploadify_del()
     {
         $file = array_filter(explode("@@", $_POST['file']));
-        $this->db->del_file($file);
-        $this->_ajax(1);
+        $this->_db->del_file($file);
+        $this->ajax(1);
     }
 
     //站内图片
     public function site()
     {
         //只查找自己的图片
-        $where = "uid=" . $_SESSION['uid'];
-        $count = $this->db->where($where)->count();
+        $where = 'uid=' . $_SESSION['uid'];
+        $count = $this->_db->where($where)->count();
         $page = new Page($count, 18, 8);
-        $file = $this->db->where($where)->limit($page->limit())->all();
-        $this->assign("file", $file);
-        $this->assign("page", $page->show());
-        $this->display("pic_list");
+        $this->file = $this->_db->where($where)->limit($page->limit())->all();
+        $this->page = $page->show();
+        $this->display('pic_list');
     }
 
-    //未处理图片
+    //未使用的图片
     public function untreated()
     {
         //只查找自己的图片
-        $where = "uid=" . $_SESSION['uid'];
-        $count = $this->db->where($where)->where("aid=0")->count();
+        $where = 'uid=' . $_SESSION['uid'] . ' AND aid=0';
+        $count = $this->_db->where($where)->count();
         $page = new Page($count, 18);
-        $file = $this->db->where($where)->where("aid=0")->limit($page->limit())->all();
-        $this->assign("file", $file);
-        $this->assign("page", $page->show());
-        $this->display("pic_list");
+        $this->file = $this->_db->where($where)->limit($page->limit())->all();
+        $this->page = $page->show();
+        $this->display('pic_list');
     }
 
     //下载远程图片
@@ -112,14 +148,8 @@ class UploadControl extends Control
         $uri = htmlspecialchars($img);
         $uri = str_replace("&amp;", "&", $uri);
         if ($data = $this->getRemoteImage($uri, $config)) {
-            $data = array_merge($data, array(
-                "isimage" => 1,
-                "uptime" => time(),
-                "uid" => $_SESSION['uid']
-            ));
-            if ($id = $this->db->add($data)) {
-                //上传成功的写入session
-                $this->db->save_to_session($id, $data['path']);
+            $data['image']=1;
+            if ($id = $this->_db->insert_to_table($data)) {
                 return __ROOT__ . '/' . $data['path'];
             } else {
                 return $img;
@@ -138,7 +168,7 @@ class UploadControl extends Control
      */
     protected function getRemoteImage($imgUrl, $config)
     {
-        C("DEBUG_SHOW", FALSE);
+        C("SHOW_NOTICE", FALSE);
         {
             //http开头验证
             if (strpos($imgUrl, "http") !== 0) {
@@ -191,11 +221,15 @@ class UploadControl extends Control
                 fwrite($fp2, $img);
                 fclose($fp2);
                 array_push($tmpNames, $tmpName);
+                $info=pathinfo($tmpName);
                 return array(
                     "size" => $uriSize,
                     "path" => $tmpName,
-                    "name" => basename($tmpName),
-                    "ext" => substr(strrchr($imgUrl, '.'), 1)
+                    "basename" => $info['basename'],
+                    'filename'=>$info['filename'],
+                    "ext" => substr(strrchr($imgUrl, '.'), 1),
+                    "uptime" => time(),
+                    "uid" => $_SESSION['uid']
                 );
             } catch (Exception $e) {
                 array_push($tmpNames, "error");

@@ -4,10 +4,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>模型管理</title>
-    <hdui bootstrap="true"/>
-    <js file="__GROUP__/static/js/js.js"/>
+    <hdjs/>
     <css file="__CONTROL_TPL__/css/css.css"/>
-    <js file="__CONTROL_TPL__/js/js.js"/>
 </head>
 <body>
 <div class="wrap">
@@ -15,7 +13,7 @@
         <ul>
             <li><a href="javascript:;" class="action">模型列表</a></li>
             <li><a href="{|U:'add'}">添加模型</a></li>
-            <li><a href="javascript:update_cache()">更新缓存</a></li>
+            <li><a href="javascript:;" onclick="hd_ajax('{|U:update_cache}')">更新缓存</a></li>
         </ul>
     </div>
     <div class="content">
@@ -59,7 +57,7 @@
                             删除
                             <else>
                         <a href="javascript:;"
-                           onclick="return confirm('确定删除【{$m.model_name}】模型吗？')?delModel({$m['mid']}):false;">删除</a>
+                           onclick="return confirm('确定删除【{$m.model_name}】模型吗？')?hd_ajax('{|U:del}',{mid:{$m['mid']}}):false;">删除</a>
                         </if>
                     </td>
                 </tr>

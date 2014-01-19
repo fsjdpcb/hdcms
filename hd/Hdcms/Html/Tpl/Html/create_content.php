@@ -4,18 +4,17 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>生成内容页静态</title>
-    <hdui bootstrap="true"/>
+    <hdjs/>
     <script>
         //栏目缓存数据
-        var category={$category};
+        var category = {$category};
     </script>
-    <js file="__GROUP__/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
 
 </head>
 <body>
-<form method="post" action="__CONTROL__&m=make_content" class="form-inline hd-form">
+<form method="post" action="__CONTROL__&m=make_content" class="hd-form" target="_iframe" onsubmit="return $.modalShow();">
     <div class="wrap">
         <div class="table_title">温馨提示</div>
         <div class="help">
@@ -39,7 +38,8 @@
                     </select>
                 </td>
                 <td class="w300" rowspan="5">
-                    <select name="cid[]" id="cid" style="height: 200px;width: 99%" title="按住“Ctrl”或“Shift”键可以多选，按住“Ctrl”可取消选择"  multiple="multiple">
+                    <select name="cid[]" id="cid" style="height: 200px;width: 99%"
+                            title="按住“Ctrl”或“Shift”键可以多选，按住“Ctrl”可取消选择" multiple="multiple">
                         <option value="0" selected="selected">不限栏目</option>
                         <list from="$category" name="c" multiple="multiple">
                             <option value="{$c.cid}"
@@ -56,19 +56,20 @@
                 </td>
             </tr>
             <tr>
-                <td> 更新所有信息 <input type="button" value="开始更新" class="btn" onclick="form_submit('all')"/></td>
+                <td> 更新所有信息 <input type="button" value="开始更新" class="hd-cancel-small" onclick="form_submit('all')"/>
+                </td>
             </tr>
             <tr style="display: none;">
                 <td>
                     更新最新发布的 <input class="input" type="text" size="4" value="100" name="total_row"> 条信息
-                    <input type="button" value="开始更新" class="btn" onclick="form_submit('new')"/>
+                    <input type="button" value="开始更新" class="hd-cancel-small" onclick="form_submit('new')"/>
                 </td>
             </tr>
             <tr style="display: none;">
                 <td>更新发布时间从
-                    <input class="w80" type="text" id="start_time"  name="start_time"> 到
+                    <input class="w80" type="text" id="start_time" name="start_time"> 到
                     <input class="w80" type="text" id="end_time" name="end_time"> 的信息
-                    <input type="button" value="开始更新" class="btn" onclick="form_submit('time')"/>
+                    <input type="button" value="开始更新" class="hd-cancel-small" onclick="form_submit('time')"/>
                     <script>
                         $('#start_time').calendar({format: 'yyyy/MM/dd'});
                         $('#end_time').calendar({format: 'yyyy/MM/dd'});
@@ -76,10 +77,22 @@
                 </td>
             </tr>
             <tr style="display: none;">
-                <td>更新ID从 <input class="input" type="text" size="4" name="start_id"> 到
+                <td>
+                    更新ID从 <input class="input" type="text" size="4" name="start_id"> 到
                     <input class="input" type="text" size="4" name="end_id"> 的信息
-                    <input type="button" value="开始更新" class="btn" onclick="form_submit('id')"/></td>
+                    <input type="button" value="开始更新" class="hd-cancel-small" onclick="form_submit('id')"/>
+                </td>
             </tr>
         </table>
     </div>
 </form>
+<script>
+    $.modal({title: '生成文章', button_cancel: '关闭', width: 450, height: 200, show: false,
+        content: "<iframe name='_iframe' scrolling='no' frameborder='0' style='height:110px;'></iframe>",
+        cancel: function () {
+            window.location.reload(true);
+        }
+    })
+</script>
+</body>
+</html>

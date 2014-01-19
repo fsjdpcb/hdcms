@@ -1,32 +1,6 @@
 //预览
 function view(url) {
-    $("#view .modal-body").html("<img src='" + url + "'/>");
-    $("#view").modal();
-}
-//删除
-function del(id) {
-    if (confirm("确定删除吗?")) {
-        $.ajax({
-            url: CONTROL + "&m=del&id=" + id,
-            data: {id: id},
-            dataType: "JSON",
-            success: function (data) {
-                if (data.stat == 1) {
-                    $.dialog({
-                        msg: data.msg,
-                        type: "success",
-                        timeout: 3,
-                        close_handler: function () {
-                            location.href = URL;
-                        }
-                    });
-                } else {
-                    $.dialog({
-                        msg: data.msg,
-                        type: "error"
-                    });
-                }
-            }
-        })
-    }
+    $.modal({width:500,height:400,button_cancel:'关闭',
+        content:"<div style='text-align:padding:10px; center'><img class='w450' src='" + url + "'/></div>"
+    })
 }

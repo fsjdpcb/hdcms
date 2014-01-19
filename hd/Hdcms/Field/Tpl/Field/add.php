@@ -4,18 +4,18 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>添加字段</title>
-    <hdui bootstrap="true"/>
-    <js file="__GROUP__/static/js/js.js"/>
+    <hdjs/>
     <css file="__CONTROL_TPL__/css/css.css"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
     <script type="text/javascript">
-        var mid = {$mid}
+        var mid = '{$hd.get.mid}';
         //获得字段模板类型
         var tpl_type = "add";
     </script>
 </head>
 <body>
-<form action="{|U:'add'}" method="post" onsubmit="return false;" class="form-inline hd-form">
+<form action="__METH__" method="post" onsubmit="return hd_submit(this,'{|U:index,array('mid'=>$_GET['mid'])}');"
+      class="hd-form">
     <div class="wrap">
         <div class="menu_list">
             <ul>
@@ -24,19 +24,19 @@
                 <li><a href="javascript:;" class="action">添加字段</a></li>
             </ul>
         </div>
-        <div class="table_title">
+        <div class="title-header">
             添加字段
         </div>
         <input type="hidden" name="mid" value="{$model.mid}"/>
         <table class="table1">
             <tr>
-                <td class="w100">模型</td>
+                <th class="w100">模型</th>
                 <td>
                     <input type="text" disabled="disabled" value="{$model.model_name}"/>
                 </td>
             </tr>
             <tr>
-                <td>类型</td>
+                <th>类型</th>
                 <td>
                     <select id="field_type" name="show_type">
                         <option value="input">单行文本</option>
@@ -52,7 +52,7 @@
             </tr>
             <if value="$model.type==1">
                 <tr>
-                    <td>表</td>
+                    <th>表</th>
                     <td>
                         <label><input type="radio" name="table_type" value="1"/> 主表</label>
                         <label><input type="radio" name="table_type" value="2" checked="checked"/> 附表</label>
@@ -63,23 +63,23 @@
             </if>
 
             <tr>
-                <td>
-                    字段别名<span class="star">*</span>
-                </td>
+                <th>
+                    字段标题<span class="star">*</span>
+                </th>
                 <td>
                     <input type="text" name="title" class="w200"/>
                 </td>
             </tr>
             <tr>
-                <td>
+                <th>
                     字段名<span class="star">*</span>
-                </td>
+                </th>
                 <td>
                     <input type="text" name="field_name" class="w200"/>
                 </td>
             </tr>
             <tr>
-                <td>输入提示</td>
+                <th>输入提示</th>
                 <td>
                     <input type="text" name="set[message]" class="w200"/>
                 </td>
@@ -90,18 +90,18 @@
         </div>
         <table class="table1">
             <tr>
-                <td class="w100">
+                <th class="w100">
                     会员中心显示
-                </td>
+                </th>
                 <td>
                     <label><input type="radio" name="ismember" value="1" checked="checked"/> 是</label>
                     <label><input type="radio" name="ismember" value="0"/> 否</label>
                 </td>
             </tr>
         </table>
-    </div>
-    <div class="btn_wrap">
-        <input type="submit" value="确定" class="btn btn-primary"/>
+        <div class="position-bottom">
+            <input type="submit" value="确定" class="hd-success"/>
+        </div>
     </div>
 </form>
 </body>

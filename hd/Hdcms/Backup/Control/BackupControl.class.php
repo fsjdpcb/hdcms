@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 数据库备份模块
  * Class BackupControl
@@ -23,25 +24,29 @@ class BackupControl extends AuthControl
     }
 
     /**
-     * 数据备份
+     * 执行数据备份
+     */
+    public function backup_db()
+    {
+        $size = Q("size", 2000000, "intval");
+        $table = Q("post.table");
+        //备份表结构
+        $structure = Q("post.structure", false);
+        Backup::backup(array(
+            "size" => $size,
+            "table" => $table,
+            "structure" => $structure,
+            "dir" => "./data/" . C("BACKUP_DIR") . '/' . date("Ymdhis")
+        ));
+    }
+
+    /**
+     * 配置数据备份
      */
     public function backup()
     {
-        if (IS_POST || Q("get.dirname")) {
-            $size = Q("size", 2000000, "intval");
-            $table = Q("post.table");
-            //备份表结构
-            $structure = Q("post.structure", false);
-            Backup::backup(array(
-                "size" => $size,
-                "table" => $table,
-                "structure" => $structure,
-                "dir" => "./data/" . C("BACKUP_DIR") . '/' . date("Ymdhis")
-            ));
-        } else {
-            $this->assign("table", M()->getTableInfo());
-            $this->display();
-        }
+        $this->assign("table", M()->getTableInfo());
+        $this->display();
     }
 
     /**
@@ -74,14 +79,11 @@ class BackupControl extends AuthControl
      */
     public function optimize()
     {
-        $table = null;
-        if (isset($_GET['table'])) {
-            $table = array($_GET['table']);
-        } elseif (isset($_POST['table'])) {
+        if (!empty($_POST['table'])) {
             $table = $_POST['table'];
+            M()->optimize($table);
+            $this->ajax(array('state' => 1, 'message' => '优化表成功'));
         }
-        M()->optimize($table);
-        $this->_ajax(1);
     }
 
     /**
@@ -89,14 +91,12 @@ class BackupControl extends AuthControl
      */
     public function repair()
     {
-        $table = null;
-        if (isset($_GET['table'])) {
-            $table = $_GET['table'];
-        } elseif (isset($_POST['table'])) {
+        if (!empty($_POST['table'])) {
             $table = $_POST['table'];
+            M()->repair($table);
+            $this->ajax(array('state' => 1, 'message' => '修复表成功'));
         }
-        M()->repair($table);
-        $this->_ajax(1);
+
     }
 
     /**
@@ -104,13 +104,13 @@ class BackupControl extends AuthControl
      */
     public function del()
     {
-        $dir = $_POST['table'];
+        $dir = $_POST['dir'];
         foreach ($dir as $d) {
             if (!Dir::del('./data/backup/' . $d)) {
-                $this->_ajax(0);
+                $this->ajax(0);
             }
         }
-        $this->_ajax(1);
+        $this->ajax(array('state' => 1, 'message' => '删除成功'));
     }
 }
 

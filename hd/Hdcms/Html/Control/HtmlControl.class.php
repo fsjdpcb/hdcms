@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 静态处理模块
  * Class HtmlControl
@@ -7,17 +8,17 @@
 class HtmlControl extends AuthControl
 {
     //模型缓存
-    public $model;
+    private $_model;
     //栏目缓存
-    public $category;
+    private $_category;
 
-    public function __construct()
+    public function __init()
     {
-        parent::__construct();
+        parent::__init();
         //模型缓存
-        $this->model = F("model", false, MODEL_CACHE_PATH);
+        $this->_model = F("model", false, MODEL_CACHE_PATH);
         //栏目缓存
-        $this->category = F("category", false, CATEGORY_CACHE_PATH);
+        $this->_category = F("category", false, CATEGORY_CACHE_PATH);
     }
 
     //向客户端发送生成静态状态信息
@@ -25,10 +26,10 @@ class HtmlControl extends AuthControl
     {
         if ($url) {
             $message .= " <script>
-                    window.setTimeout(function(){location.href='" . $url . "'},10)</script>";
+                    window.setTimeout(function(){location.href='" . $url . "'},500)</script>";
         }
-        $this->assign("url", $url);
-        $this->assign("message", $message);
+        $this->url=$url;
+        $this->message= $message;
         $this->display("message");
         exit;
     }
@@ -52,7 +53,7 @@ class HtmlControl extends AuthControl
             $this->make_content();
         }
         unset($_SESSION['make_all']);
-        $this->message("全站静态更新完毕", U("create_all"));
+        $this->message("全站静态更新完毕",null);
     }
 
     //一键生成配置页
@@ -65,7 +66,7 @@ class HtmlControl extends AuthControl
     public function create_index()
     {
         if (IS_POST or isset($_SESSION['make_all']['index'])) {
-            import("Content.Control.IndexControl");
+            import("Index.Control.IndexControl");
             if (Html::make("IndexControl", "index", array("_html" => "index.html"))) {
                 //设置一键生成跳转地址
                 if (isset($_SESSION['make_all']['index'])) {
@@ -83,7 +84,7 @@ class HtmlControl extends AuthControl
     //生成栏目
     public function make_category()
     {
-        import("Content.Control.IndexControl");
+        import("Index.Control.IndexControl");
         //栏目生成静态配置
         $config = session("category_html_config");
         //首次操作：1 创建session配置  2 生栏目所有栏目首页
@@ -100,7 +101,8 @@ class HtmlControl extends AuthControl
                 } else { //指定模型的所有栏目
                     $category = $db->field("cid,mid,catname,catdir,list_html_url")->where("mid=$mid and is_cat_html=1 and cattype!=3")->all();
                 }
-            } else { //指定具体栏目
+            } else {
+                //指定具体栏目
                 $category = $db->field("cid,mid,catname,catdir,list_html_url")->where("is_cat_html=1 and cattype!=3")->in($_POST['cid'])->all();
             }
             //不存在配置文件时生成栏目首页
@@ -109,7 +111,7 @@ class HtmlControl extends AuthControl
                 if (isset($_SESSION['make_all']['category'])) {
                     $url = U("make_all");
                 } else {
-                    $url = U("create_category");
+                    $url = null;
                 }
                 $this->message("没有任何栏目需要生成!", $url);
             } else {
@@ -119,6 +121,8 @@ class HtmlControl extends AuthControl
                     //栏目cid IndexControl必须存在这个值
                     $_GET['cid'] = $cat['cid'];
                     $cat['_html'] = C("HTML_PATH") . '/' . $cat['catdir'] . '/index.html';
+                    //为Index/Index/IndexControl提交参数
+                    $_REQUEST['cid']=$cat['cid'];
                     Html::make("IndexControl", "category", $cat);
                     //去掉页数为0时栏目
                     if (!Page::$staticTotalPage) continue;
@@ -134,7 +138,7 @@ class HtmlControl extends AuthControl
                     if (isset($_SESSION['make_all']['category'])) {
                         $url = U("make_all");
                     } else {
-                        $url = U("create_category");
+                        $url = null;
                     }
                     unset($_SESSION['make_all']['category']);
                     unset($_SESSION['category_html_config']);
@@ -145,12 +149,13 @@ class HtmlControl extends AuthControl
                 $this->message("栏目静态初始化完成...", __METH__);
             }
         }
+        //初始化完成后，生成静态
         $config = & $_SESSION['category_html_config'];
         if (empty($config)) {
             if (isset($_SESSION['make_all']['category'])) {
                 $url = U("make_all");
             } else {
-                $url = U("create_category");
+                $url =null;
             }
             unset($_SESSION['make_all']['category']);
             unset($_SESSION['category_html_config']);
@@ -161,7 +166,8 @@ class HtmlControl extends AuthControl
                     $_GET['page'] = $config[$n]['self_page'];
                     //即将更新的页数，用于计算完成百分比
                     $config[$n]['self_page']++;
-                    $_GET['cid'] = $cat['cid'];
+                    //为Index/Index/IndexControl提交参数
+                    $_REQUEST['cid'] = $cat['cid'];
                     $cat['_html'] = C("HTML_PATH") . '/' . str_replace(
                             array('{catdir}', '{cid}', '{page}'),
                             array($cat['catdir'], $cat['cid'], $_GET['page']),
@@ -186,7 +192,7 @@ class HtmlControl extends AuthControl
     public function create_category()
     {
         session("category_html_config", NULL);
-        $this->assign("category", json_encode($this->category));
+        $this->assign("category", json_encode($this->_category));
         $this->assign("model", F("model", false, MODEL_CACHE_PATH));
         $this->display();
     }
@@ -194,7 +200,9 @@ class HtmlControl extends AuthControl
     //生成内容页静态
     public function make_content()
     {
-        import("Content.Control.IndexControl");
+        import("Index.Control.IndexControl");
+        import("Content.Model.ContentModel");
+        import("Content.Model.ContentViewModel");
         //栏目生成静态配置
         $config = session("content_html_config");
         //首次操作：1 创建session配置  2 生栏目所有栏目首页
@@ -229,7 +237,7 @@ class HtmlControl extends AuthControl
                 //生成所有栏目首页
                 foreach ($category as $cat) {
                     //当前栏目表
-                    $table = $this->model[$cat['mid']]['tablename'];
+                    $table = $this->_model[$cat['mid']]['tablename'];
                     //设置条件
                     $cat['where'] = C("DB_PREFIX") . $table . ".cid=" . $cat['cid'] . ' AND ishtml=1 AND redirecturl=""';
                     $cat['order'] = "";
@@ -276,7 +284,7 @@ class HtmlControl extends AuthControl
             if (isset($_SESSION['make_all']['content'])) {
                 $url = U("make_all");
             } else {
-                $url = U("create_content");
+                $url = null;
             }
             unset($_SESSION['make_all']['content']);
             unset($_SESSION['content_html_config']);
@@ -289,7 +297,7 @@ class HtmlControl extends AuthControl
                     $this->message("栏目{$cat['catname']}生成完毕", __METH__);
                 }
                 //当前栏目表
-                $table = $this->model[$cat['mid']]['tablename'];
+                $table = $this->_model[$cat['mid']]['tablename'];
                 //获得本次更新数据
                 $db = M($table);
                 $content = $db->field("aid,addtime,html_path")->where($cat['where'])->order($cat['order'])->limit($cat['old_total'], $cat['row'])->all();
@@ -308,8 +316,8 @@ class HtmlControl extends AuthControl
                     $field['html_path'] = $con['html_path'];
                     $field['_html'] = get_content_html($field);
                     //生成静态IndexControl中的content方法需要这2个变量
-                    $_GET['cid'] = $cat['cid'];
-                    $_GET['aid'] = $con['aid'];
+                    $_REQUEST['cid'] = $cat['cid'];
+                    $_REQUEST['aid'] = $con['aid'];
                     Html::make("IndexControl", "content", $field);
                 }
                 //本次$cat['row']页生成完毕，执行下一轮静态生成
@@ -324,7 +332,7 @@ class HtmlControl extends AuthControl
     public function create_content()
     {
         session("content_html_config", NULL);
-        $this->assign("category", json_encode($this->category));
+        $this->assign("category", json_encode($this->_category));
         $this->assign("model", F("model", false, MODEL_CACHE_PATH));
         $this->display();
     }

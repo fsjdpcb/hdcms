@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 登录处理模块
  * Class LoginControl
@@ -56,6 +57,8 @@ class LoginControl extends CommonControl
                 $stat = array("stat" => 0, "msg" => "帐号输入错误");
             } else if ($user['password'] != md5($_POST['password'])) {
                 $stat = array("stat" => 0, "msg" => "密码输入错误");
+            } else if (Q('post.code', '', 'strtoupper') != Q('session.code')) {
+                $stat = array("stat" => 0, "msg" => "验证码输入错误");
             } else {
                 $_SESSION = array_merge($_SESSION, array(
                     "uid" => $user['uid'],

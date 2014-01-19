@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>文件管理</title>
-    <hdui bootstrap="true"/>
+    <hdjs/>
     <js file="__GROUP__/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
@@ -20,7 +20,7 @@
             <li lab="untreated"><a href="#">未使用图片</a></li>
         </ul>
         <div class="tab_content">
-            <div id="upload">
+            <div id="upload" style="padding: 5px;">
                 {$upload}
             </div>
             <div id="site">
@@ -31,9 +31,9 @@
             </div>
         </div>
     </div>
-<div style="position: absolute;bottom: 0px;">
-    <input type="button" class="btn btn-primary" id="pic_selected" value="确定"/>
-    <input type="button" class="btn close_window" value="关闭" onclick="close_window();"/>
+<div class="position-bottom">
+    <input type="button" class="hd-success" id="pic_selected" value="确定"/>
+    <input type="button" class="hd-cancel" value="关闭" onclick="close_window();"/>
 </div>
 </body>
 </html>

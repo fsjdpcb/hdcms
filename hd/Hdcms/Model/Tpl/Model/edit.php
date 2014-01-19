@@ -4,13 +4,12 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>修改模型</title>
-    <hdui bootstrap="true"/>
-    <js file="__ROOT__/hdcms/static/js/js.js"/>
+    <hdjs/>
     <css file="__CONTROL_TPL__/css/css.css"/>
-    <js file="__CONTROL_TPL__/js/js.js"/>
+    <js file="__CONTROL_TPL__/js/validate.js"/>
 </head>
 <body>
-<form action="{|U:'edit'}" method="post" class="form-inline hd-form">
+<form action="{|U:'edit'}" method="post" class="hd-form" onsubmit="return hd_submit(this,'{|U:index}')">
     <div class="wrap">
         <div class="menu_list">
             <ul>
@@ -18,7 +17,7 @@
                 <li><a href="javascript:;" class="action">添加模型</a></li>
             </ul>
         </div>
-        <div class="table_title">
+        <div class="title-header">
             修改模型
         </div>
         <div class="right_content">
@@ -45,21 +44,21 @@
                 <tr>
                     <th>模型描述</th>
                     <td>
-                        <textarea name="description" class="w200 h80">{$field.description}</textarea>
+                        <textarea name="description" class="w300 h100">{$field.description}</textarea>
                     </td>
                 </tr>
                 <tr>
-                    <th>应用</th>
+                    <th>应用名称</th>
                     <td>
-                        <input type="text" name="app_name" value="{$field.control}" class="w200"/>
+                        <input type="text" name="app_name" value="{$field.app_name}" class="w200"/>
                     </td>
                 </tr>
             </table>
 
         </div>
     </div>
-    <div class="btn_wrap">
-        <input type="submit" value="确定" class="btn btn-primary"/>
+    <div class="position-bottom">
+        <input type="submit" value="确定" class="hd-success"/>
     </div>
 </form>
 </body>

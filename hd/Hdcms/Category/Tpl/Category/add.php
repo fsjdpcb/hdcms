@@ -4,22 +4,21 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>栏目管理</title>
-    <hdui bootstrap="true"/>
+    <hdjs/>
     <js file="__GROUP__/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
 <body>
-<form action="{|U:add}" method="post" class="form-inline hd-form">
+<form action="{|U:add}" method="post" class="hd-form" onsubmit="return hd_submit(this,'{|U:index}');">
     <div class="wrap">
         <div class="menu_list">
             <ul>
                 <li><a href="{|U:'index'}">栏目列表</a></li>
                 <li><a href="javascript:;" class="action">添加栏目</a></li>
-                <li><a href="javascript:update_cache();">更新栏目缓存</a></li>
+                <li><a href="javascript:hd_ajax('{|U:update_cache}')">更新栏目缓存</a></li>
             </ul>
         </div>
-        <input type="hidden" name="pid" value="{$hd.get.pid|default:0}"/>
         <div class="tab">
             <ul class="tab_menu">
                 <li lab="base"><a href="#">基本设置</a></li>
@@ -31,9 +30,9 @@
                 <div id="base">
                     <table class="table1">
                         <tr>
-                            <td class="w100">内容模型</td>
+                            <th class="w100">内容模型</th>
                             <td>
-                                <select name="mid">
+                                <select name="mid" class="w200">
                                     <list from="$model" name="m">
                                         <option value="{$m.mid}">
                                             {$m.model_name}
@@ -43,34 +42,31 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>上级</td>
+                            <th>上级</th>
                             <td>
-                                <select name="pid">
+                                <select name="pid" class="w200">
                                     <option value="0">一级栏目</option>
                                     <list from="$category" name="c">
-                                        <option value="{$c.cid}"
-                                        {$c.disabled} {$c.selected}>
-                                        {$c.catname}
-                                        </option>
+                                        <option value="{$c.cid}" <if value="$hd.get.pid==$c.cid">selected='selected'</if>>{$c._name}</option>
                                     </list>
                                 </select>
                             </td>
                         </tr>
                         <tr>
-                            <td>栏目名称</td>
+                            <th>栏目名称</th>
                             <td>
                                 <input type="text" name="catname" class="w200"/>
                             </td>
                         </tr>
 
                         <tr>
-                            <td>静态目录</td>
+                            <th>静态目录</th>
                             <td>
                                 <input type="text" name="catdir" class="w200"/>
                             </td>
                         </tr>
                         <tr>
-                            <td>生成静态</td>
+                            <th>生成静态</th>
                             <td>
                                 <label class="checkbox inline">
                                     <input type="radio" name="urltype" value="1" checked="checked"/> 静态访问</label>
@@ -79,7 +75,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>栏目类型</td>
+                            <th>栏目类型</th>
                             <td>
                                 <label><input type="radio" name="cattype" checked="checked" value="1"/> 普通栏目</label>
                                 <label><input type="radio" name="cattype" value="2"/> 频道封面</label>
@@ -87,74 +83,73 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>在导航显示</td>
+                            <th>在导航显示</th>
                             <td>
                                 <label><input type="radio" name="cat_show" value="1" checked="checked"/> 是</label>
                                 <label><input type="radio" name="cat_show" value="0"/> 否</label>
                             </td>
                         </tr>
                         <tr>
-                            <td>跳转Url</td>
+                            <th>跳转Url</th>
                             <td>
                                 <input type="text" name="cat_redirecturl" class="w300"/>
                             </td>
                         </tr>
                         <tr>
-                            <td>栏目关键字</td>
+                            <th>栏目关键字</th>
                             <td>
                                 <input type="text" name="keyworks" class="w300"/>
-                                <span class="label">SEO关键字</span>
+                                <span class="message">SEO关键字</span>
                             </td>
                         </tr>
                         <tr>
-                            <td>栏目描述</td>
+                            <th>栏目描述</th>
                             <td>
                                 <textarea name="description" class="w350 h80"></textarea>
-                                <span class="label">不能超过100字</span>
+                                <span class="message">不能超过100字</span>
                             </td>
                         </tr>
                     </table>
                 </div>
-                <div id="tpl" class="con">
-
+                <div id="tpl">
                     <table class="table1">
                         <tr>
-                            <td class="w100">封面模板</td>
+                            <th class="w100">封面模板</th>
                             <td>
                                 <input type="text" name="index_tpl" class="w200" id="index_tpl"
                                        value="{style}/article_index.html" onclick="select_template('index_tpl');"/>
-                                <button type="button" class="btn btn-small" onclick="select_template('index_tpl');">
+                                <button type="button" onclick="select_template('index_tpl');" class="btn btn-small hd-cancel">
                                     选择封面模板
                                 </button>
-                                <span class="label">{style}指模板风格</span>
+                                <span class="message">{style}指模板目录</span>
                             </td>
                         </tr>
                         <tr>
-                            <td>列表页模板</td>
+                            <th>列表页模板</th>
                             <td>
                                 <input type="text" name="list_tpl" id="list_tpl" class="w200"
                                        value="{style}/article_list.html" onclick="select_template('list_tpl');"/>
-                                <button type="button" onclick="select_template('list_tpl');" class="btn btn-small">选择列表模板
+                                <button type="button" onclick="select_template('list_tpl');" class="btn btn-small hd-cancel">选择列表模板
                                 </button>
-                                <span class="label">{style}指模板风格</span>
+                                <span class="message">{style}指模板目录</span>
                             </td>
                         </tr>
                         <tr>
-                            <td>内容页模板</td>
+                            <th>内容页模板</th>
                             <td>
                                 <input type="text" name="arc_tpl" id="arc_tpl" class="w200"
                                        value="{style}/article_default.html" onclick="select_template('arc_tpl');"/>
-                                <button type="button" onclick="select_template('arc_tpl');" class="btn btn-small">选择内容页模板
+                                <button type="button" onclick="select_template('arc_tpl');" class="btn btn-small hd-cancel">选择内容页模板
                                 </button>
-                                <span class="label">{style}指模板风格</span>
+                                <span class="message">{style}指模板目录</span>
                             </td>
                         </tr>
                     </table>
                 </div>
-                <div id="html" class="con">
+                <div id="html">
                     <table class="table1">
                         <tr>
-                            <td class="w100">栏目生成Html</td>
+                            <th class="w100">栏目生成Html</th>
                             <td>
                                 <label><input type="radio" class="radio" name="is_cat_html" value="1"
                                               checked="checked"/> 是</label>
@@ -162,7 +157,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>内容页生成Html</td>
+                            <th>内容页生成Html</th>
                             <td>
                                 <label><input type="radio" class="radio" name="is_arc_html" value="1"
                                               checked="checked"/> 是</label>
@@ -170,11 +165,11 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>栏目页URL规则</td>
+                            <th>栏目页URL规则</th>
                             <td>
                                 <input type="text" name="list_html_url" class="w200"
                                        value="{catdir}/list_{cid}_{page}.html"/>
-                        <span class="label">
+                        <span class="message">
                         {cid} 栏目ID,
                         {catdir} 栏目目录,
                         {page} 列表的页码
@@ -182,11 +177,11 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>内容页URL规则</td>
+                            <th>内容页URL规则</th>
                             <td>
                                 <input type="text" name="arc_html_url" class="w200"
                                        value="{catdir}/{y}/{m}{d}/{aid}.html"/>
-                        <span class="label">
+                        <span class="message">
                         {y}、{m}、{d} 年月日,
                         {timestamp}UNIX时间戳,
                         {aid} 文章ID,
@@ -199,13 +194,13 @@
                 <div id="seo">
                     <table class="table1">
                         <tr>
-                            <td class="w100">SEO标题</td>
+                            <th class="w100">SEO标题</th>
                             <td>
                                 <input type="text" name="seo_title" class="w350"/>
                             </td>
                         </tr>
                         <tr>
-                            <td>SEO描述</td>
+                            <th>SEO描述</th>
                             <td>
                                 <textarea name="seo_description" class="w350 h150"></textarea>
                             </td>
@@ -214,10 +209,11 @@
                 </div>
             </div>
         </div>
+    <div class="h60"></div>
     </div>
-    <div class="btn_wrap">
-        <input type="submit" class="btn btn-primary" value="确定"/>
-        <input type="button" class="btn" value="取消" onclick="location.href='__CONTROL__'"/>
+    <div class="position-bottom">
+        <input type="submit" class="hd-success" value="确定"/>
+        <input type="button" class="hd-cancel" value="取消" onclick="location.href='__CONTROL__'"/>
     </div>
 </form>
 

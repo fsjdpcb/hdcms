@@ -21,9 +21,9 @@ div.site_pic {
 }
 
 div.site_pic ul li {
-    border: 2px solid #DCDCDC;
+    border: 4px solid #FFF;
     float: left;
-    margin: 3px;
+    margin: 2px;
     overflow: hidden;
     position: relative;
     cursor: pointer;

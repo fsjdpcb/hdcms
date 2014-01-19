@@ -4,8 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>会员组管理</title>
-    <hdui bootstrap="true"/>
-    <js file="__ROOT__/hdcms/static/js/js.js"/>
+    <hdjs/>
     <js file="__CONTROL_TPL__/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>

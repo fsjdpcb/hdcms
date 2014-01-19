@@ -3,8 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <title>搜索关键词</title>
-    <hdui bootstrap="true"/>
+    <title>添加tag</title>
+    <hdjs/>
     <js file="__GROUP__/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/tag.js"/>
     <css file="__CONTROL_TPL__/css/tag.css"/>
@@ -17,12 +17,13 @@
             <li><a href="javascript:;" class="action">添加tag</a></li>
         </ul>
     </div>
-    <form action="{|U:'add'}" method="post" onsubmit="return false" class="hd-form">
+    <div class="title-header">添加tag</div>
+    <form action="{|U:'add'}" method="post" onsubmit="return hd_submit(this,'{|U:index}')" class="hd-form">
         <table class="table1">
             <tr>
                 <th class="w100">tag内容</th>
                 <td>
-                    <input type="text" name="name" value="{$field.name}" class="w200"/>
+                    <input type="text" name="tag_name" value="{$field.tag_name}" class="w200"/>
                 </td>
             </tr>
             <tr>
@@ -32,8 +33,8 @@
                 </td>
             </tr>
         </table>
-        <div class="btn_wrap">
-            <input type="submit" class="btn" value="确定"/>
+        <div class="position-bottom">
+            <input type="submit" class="hd-success" value="确定"/>
         </div>
     </form>
 </div>

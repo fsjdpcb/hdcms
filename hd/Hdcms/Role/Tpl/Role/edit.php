@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>修改角色</title>
-    <hdui bootstrap="true"/>
+    <hdjs/>
     <js file="__GROUP__/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
@@ -17,6 +17,7 @@
             <li><a href="javascript:;" class="action">修改角色</a></li>
         </ul>
     </div>
+    <div class="title-header">角色信息</div>
     <form action="{|U:'edit'}" method="post" class="form-inline hd-form">
         <input type="hidden" name="rid" value="{$field.rid}"/>
         <table class="table1">
@@ -33,8 +34,8 @@
                 </td>
             </tr>
         </table>
-        <div class="btn_wrap">
-            <input type="submit" class="btn" value="确定"/>
+        <div class="position-bottom">
+            <input type="submit" class="hd-success" value="确定"/>
         </div>
     </form>
 </div>

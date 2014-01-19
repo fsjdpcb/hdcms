@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 用户表关联模型
  * Class UserModel
@@ -8,10 +9,10 @@ class UserModel extends RelationModel
     public $table = "user";
     //自动完成
     public $auto = array(
-        array("username", "auto_user", 3, 3, "method"),
-        array("logintime", "time", 3, 3, "function"),
-        array("password", "md5", 3, 3, "function"),
-        array("ip", "ip_get_client", 3, 3, "function")
+        array("username", "auto_user", "method", 1, 3),
+        array("logintime", "time", "function", 1, 3),
+        array("password", "md5", "function", 1, 3),
+        array("ip", "ip_get_client", "function", 1, 3)
     );
     //自动验证
     public $validate = array(
@@ -22,12 +23,9 @@ class UserModel extends RelationModel
         array("code", "validate_code", "验证码输入错误", 1, 3),
     );
 
+    //构造函数
     public function __init()
     {
-        if (C("reg_show_code")==1) {
-            $this->validate[] = array("code", "nonull", "验证码不能为空", 1, 3);
-            $this->validate[] = array("code", "validate_code", "验证码输入错误", 1, 3);
-        }
     }
 
     //验证码验证

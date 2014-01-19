@@ -8,30 +8,29 @@
 class NodeControl extends AuthControl
 {
     //模型
-    protected $db;
+    private $_db;
     //节点树
-    protected $node_tree;
+    private $_node;
 
     public function __init()
     {
         parent::__init();
         //获得模型实例
-        $this->db = K("Node");
-        $this->db->update_cache();
-        $this->node = F("node", false, NODE_CACHE_PATH);
+        $this->_db = K("Node");
+        $this->_node = F("node", false, NODE_CACHE_PATH);
     }
 
     //节点列表
     public function index()
     {
-        $this->assign("node", $this->node);
+        $this->node = $this->_node;
         $this->display();
     }
 
     private function get_node_tree()
     {
         $node = array();
-        foreach ($this->node as $n) {
+        foreach ($this->_node as $n) {
             if ($n['level'] != 3) {
                 $node[] = $n;
             }
@@ -43,11 +42,11 @@ class NodeControl extends AuthControl
     public function add()
     {
         if (IS_POST) {
-            if ($this->db->create()) {
-                $this->db->add();
+            if ($this->_db->create()) {
+                $this->_db->add();
                 $this->_ajax(1);
             }
-            echo $this->db->error;
+            echo $this->_db->error;
         } else {
             //配置菜单列表
             $pid = Q("get.pid", 0, "intval");
@@ -63,9 +62,9 @@ class NodeControl extends AuthControl
         $nid = Q("get.nid", "", "intval");
         if ($nid) {
             //如果有子菜单不删除
-            $has_child = $this->db->join()->where(array("pid" => $nid))->find();
+            $has_child = $this->_db->join()->where(array("pid" => $nid))->find();
             if (!$has_child) {
-                $this->db->del($nid);
+                $this->_db->del($nid);
                 $this->_ajax(1);
             }
         }
@@ -77,16 +76,16 @@ class NodeControl extends AuthControl
     {
         if (IS_POST) {
             //自动验证
-            if ($this->db->create()) {
+            if ($this->_db->create()) {
                 //添加菜单
-                if ($this->db->save()) {
+                if ($this->_db->save()) {
                     $this->_ajax(1);
                 }
             }
         } else {
             $nid = Q("get.nid", "intval");
             if ($nid) {
-                $field = $this->db->join(NULL)->find($nid);
+                $field = $this->_db->join(NULL)->find($nid);
                 $this->assign("field", $field);
                 //配置菜单列表
                 $this->assign("node", $this->get_node_tree());
@@ -115,7 +114,7 @@ class NodeControl extends AuthControl
         foreach ($menu_order as $nid => $order) {
             //排序
             $order = intval($order);
-            $this->db->save(array(
+            $this->_db->save(array(
                 "nid" => $nid,
                 "list_order" => $order
             ));
@@ -126,11 +125,10 @@ class NodeControl extends AuthControl
     //更新缓存
     public function update_cache()
     {
-        $this->db->update_cache();
-        $this->_ajax(1);
+        if ($this->_db->update_cache()) {
+            $this->ajax(array('state' => 1, 'message' => '更新缓存成功'));
+        }
     }
-
-
 }
 
 

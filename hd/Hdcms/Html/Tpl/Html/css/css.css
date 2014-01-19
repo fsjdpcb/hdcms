@@ -7,6 +7,7 @@ div.help {
 
 option {
     color: #000;
+    cursor: pointer;
 }
 
 option.disabled {

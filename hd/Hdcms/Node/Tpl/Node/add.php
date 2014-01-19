@@ -4,8 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>后台菜单管理</title>
-    <hdui bootstrap="true"/>
-    <js file="__GROUP__/static/js/js.js"/>
+    <hdjs/>
     <js file="__CONTROL_TPL__/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
@@ -16,10 +15,10 @@
             <ul>
                 <li><a href="{|U:'index'}">菜单管理</a></li>
                 <li><a href="javascript:;" class="action">添加菜单</a></li>
-                <li><a href="javascript:update_cache();">更新缓存</a></li>
+                <li><a href="javascript:hd_ajax('{|U:update_cache}');">更新缓存</a></li>
             </ul>
         </div>
-        <div class="table_title">
+        <div class="title-header">
             菜单信息
         </div>
         <table class="table1">
@@ -31,7 +30,7 @@
                         <list from="$node" name="n">
                             <option value="{$n.nid}" level="{$n.level}"
                             <if value="$n.nid==$pid">selected="selected"</if>
-                            >{$n.name}</option>
+                            >{$n._name}</option>
                         </list>
                     </select>
                 </td>
@@ -72,8 +71,8 @@
             </tr>
         </table>
     </div>
-    <div class="btn_wrap">
-        <input type="submit" class="btn" value="提交"/>
+    <div class="position-bottom">
+        <input type="submit" class="hd-success" value="提交"/>
     </div>
 </form>
 </body>

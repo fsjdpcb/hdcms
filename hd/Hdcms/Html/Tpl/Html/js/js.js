@@ -1,17 +1,9 @@
-//缓存栏目数据
-//var category = {};
-//$(function () {
-//    $.get(CONTROL + "&m=get_category", function (data) {
-//        category = data;
-//    }, "json");
-//})
 //更改模型后
 $(function () {
     $("#mid").change(function () {
         var mid = $(this).val();
         var html = "<option value='0' selected='selected'>不限栏目</option>";
         var attr = "";
-//        $("#cid option:gt(0)").remove();
         for (var i in category) {
             if (mid != 0 && category[i].mid != mid) {
                 continue;
@@ -19,7 +11,7 @@ $(function () {
             if (mid > 0) {
                 attr = category[i].cattype == 1 ? "" : "disabled='disabled' class='disabled'";
             }
-            html += "<option value='" + category[i].cid + "' " + attr + ">" + category[i].catname + "</option>";
+            html += "<option value='" + category[i].cid + "' " + attr + ">" + category[i]._name + "</option>";
         }
         $("#cid").html(html);
         //开启或关闭详细选项选项

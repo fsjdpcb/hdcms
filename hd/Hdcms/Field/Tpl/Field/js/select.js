@@ -1,7 +1,7 @@
 //表单验证
 $(function () {
-    $("form").validation({
-        select_options: {//select选项
+    $("form").validate({
+        'set[options]': {//select选项
             rule: {
                 required: true
             },
@@ -10,7 +10,7 @@ $(function () {
             },
             message: "例：男|1,女|2"
         },
-        select_default: {//select选项
+        'set[default]': {//select默认值
             rule: {
                 regexp: /^\d+$/
             },

@@ -5,23 +5,36 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>属性管理</title>
-    <hdui bootstrap="true"/>
+    <hdjs/>
     <css file="__CONTROL_TPL__/css/css.css"/>
-    <js file="__CONTROL_TPL__/js/js.js"/>
+    <js file="__CONTROL_TPL__/js/add.js"/>
 </head>
 <body>
 <div class="wrap">
-    <form action="{|U:'add'}" method="post" id="add_form" class="form-inline hd-form">
-        <table class="table">
+    <div class="menu_list">
+        <ul>
+            <li><a href="{|U:index}">属性管理</a></li>
+            <li><a href="javascript:;" class="action">添加属性</a></li>
+        </ul>
+    </div>
+    <div class="title-header">添加属性</div>
+    <form method="post" class="hd-form" onsubmit="return hd_submit(this,'{|U:index}');">
+        <table class="table1">
             <tr>
                 <th class="w100">属性名称</th>
                 <td>
-                    <input type="text" name="flagname"/>
+                    <input type="text" name="flagname" class="w200"/>
+                </td>
+            </tr>
+            <tr>
+                <th class="w100">别名</th>
+                <td>
+                    <input type="text" name="title" class="w100"/>
                 </td>
             </tr>
         </table>
-        <div class="btn_wrap">
-            <input type="submit" class="btn1" value="确定"/>
+        <div class="position-bottom">
+            <input type="submit" class="hd-success" value="确定"/>
         </div>
     </form>
 </div>

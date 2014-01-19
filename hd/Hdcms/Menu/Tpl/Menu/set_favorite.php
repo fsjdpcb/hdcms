@@ -3,16 +3,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <title>添加文章</title>
-    <hdui bootstrap="true"/>
-    <js file="__GROUP__/Static/js/js.js"/>
+    <title>设置常用菜单</title>
+    <hdjs/>
+    <js file="__GROUP__/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
 <body>
-<form method="post" action="__METH__" class="form-inline hd-form">
+<form method="post" class="hd-form" onsubmit="return hd_submit(this,'__METH__')">
     <div class="wrap">
-        <div class="table_title">设置常用菜单</div>
+        <div class="title-header">设置常用菜单</div>
         <table class="table1">
             <list from="$menu" name="n">
                 <tr>
@@ -30,7 +30,7 @@
             </list>
         </table>
     </div>
-    <div class="btn_wrap">
-        <input type="submit" class="btn btn-primary" value="确定"/>
+    <div class="position-bottom">
+        <input type="submit" class="hd-success" value="确定"/>
     </div>
 </form>

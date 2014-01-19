@@ -4,15 +4,15 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>网站配置</title>
-    <hdui bootstrap="true"/>
+    <hdjs/>
     <js file="__GROUP__/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
 <body>
-<form action="{|U:edit}" method="post" class="form-inline hd-form">
+<form action="{|U:edit}" method="post" class="hd-form" onsubmit="return hd_submit(this)">
     <div class="wrap">
-        <div class="table_title">温馨提示</div>
+        <div class="title-header">温馨提示</div>
         <div class="help">
             1 模板中使用配置项方法为{ $hd.config.变量名}
             <br>
@@ -84,8 +84,8 @@
             </div>
         </div>
     </div>
-    <div class="btn_wrap">
-        <input type="submit" class="btn" value="确定"/>
+    <div class="position-bottom">
+        <input type="submit" class="hd-success" value="确定"/>
     </div>
 </form>
 </body>

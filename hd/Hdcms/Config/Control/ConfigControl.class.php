@@ -6,11 +6,11 @@
  */
 class ConfigControl extends AuthControl
 {
-    protected $db;
+    private $_db;
 
     public function __init()
     {
-        $this->db = K("Config");
+        $this->_db = K("Config");
     }
 
     //修改
@@ -19,12 +19,12 @@ class ConfigControl extends AuthControl
         if (IS_POST) {
             //改变允许上传大小为字节
             foreach ($_POST AS $id => $value) {
-                $this->db->save(array("id" => $id, "value" => $value));
+                $this->_db->save(array("id" => $id, "value" => $value));
             }
             if (!is_writable("./data/config")) {
-                $this->_ajax(array("stat" => 0, "msg" => "./data/config目录没有写权限！"));
+                $this->ajax(array("state" => 0, "message" => "./data/config目录没有写权限！"));
             } else {
-                $config = $this->db->all();
+                $config = $this->_db->all();
                 $data = array();
                 foreach ($config as $c) {
                     $data[$c['name']] = $c['value'];
@@ -33,31 +33,31 @@ class ConfigControl extends AuthControl
                 $data = "<?php if (!defined('HDPHP_PATH')) exit; \nreturn " .
                     var_export($data, true) . ";\n?>";
                 file_put_contents("./data/config/config.inc.php", $data);
-                $this->_ajax(array("stat" => 1, "msg" => "修改配置文件成功"));
+                $this->ajax(array("state" => 1, "message" => "修改配置文件成功"));
             }
         } else {
             $config = array();
             //站点配置
-            $config['web'] = $this->db->all("type=1");
+            $config['web'] = $this->_db->all("type=1");
             //高级设置
-            $config['grand'] = $this->db->all("type=2");
+            $config['grand'] = $this->_db->all("type=2");
             //上传配置
-            $config['upload'] = $this->db->all("type=3");
+            $config['upload'] = $this->_db->all("type=3");
             //会员设置
-            $config['member'] = $this->db->all("type=4");
+            $config['member'] = $this->_db->all("type=4");
             //邮箱配置
-//            $config['email'] = $this->db->all("type=5");
+//            $config['email'] = $this->_db->all("type=5");
             //安全设置
-            $config['safe'] = $this->db->all("type=6");
+            $config['safe'] = $this->_db->all("type=6");
             //水印设置
-            $config['water'] = $this->db->all("type=7");
+            $config['water'] = $this->_db->all("type=7");
             //内容相关
-            $config['content'] = $this->db->all("type=8");
+            $config['content'] = $this->_db->all("type=8");
             foreach ($config as $n => $conf) {
                 foreach ($conf as $m => $c) {
                     //会员组
                     if ($c['id'] == 121) {
-                        $group = $this->db->table("member_group")->all();
+                        $group = $this->_db->table("member_group")->all();
                         $config[$n][$m]['html'] = <<<str
                                 <tr>
                                     <th class="w150">{$c['title']}</th>

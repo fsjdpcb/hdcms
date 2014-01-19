@@ -3,13 +3,18 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>添加文章</title>
-    <hdui bootstrap="true"/>
+    <hdjs/>
     <js file="__GROUP__/static/js/js.js"/>
-    <js file="__CONTROL_TPL__/js/js.js"/>
+    <js file="__CONTROL_TPL__/js/add_edit.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
+    <script>
+        //内容编辑器id，用于验证正文时使用
+        var editor_id ='hd_{$model.tablename}_data[content]';
+    </script>
 </head>
 <body>
-<form action="{|U:add}" method="post" onsubmit="return false;" id="add" class="form-inline hd-form">
+<form action="{|U:add}" method="post" onsubmit="return false;" id="add" class="hd-form">
+
     <div class="wrap">
         <!--右侧缩略图区域-->
         <div class="content_right">
@@ -18,14 +23,15 @@
                     <th>缩略图</th>
                 </tr>
                 <tr>
-                    <td>
+                    <td align="center">
                         <img id="thumb" src="__GROUP__/static/img/upload-pic.png"
-                             style="cursor: pointer;width:135px;height:113px;"
+                             style="cursor: pointer;width:145px;height:123px;"
                              onclick="file_upload('thumb','thumb',1,'thumb')"/>
                         <input type="hidden" name="thumb"/>
-<!--                        <button type="button" class="btn btn-small" onclick="imageCrop('thumb')">裁切图片</button>-->
-                        <button type="button" class="btn btn-small" onclick="file_upload('thumb','thumb',1,'thumb')">上传图片</button>
-                        <button type="button" class="btn btn-small" onclick="remove_thumb(this)">取消上传</button>
+                        <!--<button type="button" class="btn btn-small" onclick="imageCrop('thumb')">裁切图片</button>-->
+                        <button type="button" class="hd-cancel-small" onclick="file_upload('thumb','thumb',1,'thumb')">上传图片</button>
+                        &nbsp;&nbsp;
+                        <button type="button" class="hd-cancel-small" onclick="remove_thumb(this)">取消上传</button>
                     </td>
                 </tr>
                 <tr>
@@ -46,7 +52,8 @@
                 </tr>
                 <tr>
                     <td>
-                        <input type="text" name="redirecturl" class="w150"/>
+                        <input type="text" name="redirecturl" class="w150"/><br/>
+                        <span id="hd-redirecturl"></span>
                     </td>
                 </tr>
                 <tr>
@@ -89,13 +96,13 @@
                 </tr>
                 <tr>
                     <td>
-                        <input type="text" name="username" class="w150" value="{$hd.session.username}"/>
+                        <input type="text" name="author" class="w150" value="{$hd.session.username}"/>
                     </td>
                 </tr>
             </table>
         </div>
         <div class="content_left">
-            <div class="table_title">添加文章</div>
+            <div class="title-header">添加文章</div>
             <table class="table1">
                 <tr>
                     <th class="w80">标题<span class="star">*</span></th>
@@ -104,7 +111,7 @@
                         <label class="checkbox inline">
                             标题颜色 <input type="text" name="color" class="w60"/>
                         </label>
-                        <button type="button" onclick="selectColor(this,'color')" class="btn">选取颜色</button>
+                        <button type="button" onclick="selectColor(this,'color')" class="hd-cancel">选取颜色</button>
                         <label class="checkbox inline">
                             <input type="checkbox" name="new_window" value="1"/> 新窗口打开
                         </label>
@@ -132,27 +139,16 @@
                     <th>栏目</th>
                     <td>
                         <input type="hidden" name="cid" value="{$category.cid}"/>
-                        {$category.title}
+                        {$category.catname}
                     </td>
                 </tr>
                 <!--标准模型显示正文字段-->
                 <if value="$model.type==1">
-                    <tr>
-                        <th>关键字</th>
-                        <td>
-                            <input type="text" name="keywords" class="w400"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>摘要</th>
-                        <td>
-                            <textarea name="description" class="w450 h80"></textarea>
-                        </td>
-                    </tr>
+
                     <tr>
                         <th>内容<span class="star">*</span></th>
                         <td>
-                            {|tag:"ueditor",array("name"=>$model['tablename']."_data[content]")}
+                            {|tag:"ueditor",array("name"=>$model['tablename']."_data[content]",'php'=>'__ROOT__/index.php?a=Upload&c=Upload&m=ueditor_upload')}
                             <div class="editor_set control-group">
                                 <label class="checkbox inline">
                                     <input type="checkbox" name="down_remote_pic" value="1"
@@ -179,6 +175,20 @@
                             </div>
                         </td>
                     </tr>
+                    <tr>
+                        <th>关键字</th>
+                        <td>
+                            <input type="text" name="keywords" class="w400"/>
+                            <span class="validate-message">如果不填，系统将自动从内容中提取</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>摘要</th>
+                        <td>
+                            <textarea name="description" class="w450 h80"></textarea>
+                            <span class="validate-message">如果不填，系统将自动从内容中提取</span>
+                        </td>
+                    </tr>
                 </if>
                 <!--自定义字段-->
                 {$custom_field}
@@ -186,16 +196,23 @@
                 <tr>
                     <th>模板</th>
                     <td>
-                        <input class="w250" type="text" name="template" id="template" onclick="select_template('template');">
-                        <button class="select_tpl btn" type="button" onclick="select_template('template');">选择模板</button>
+                        <input class="w250" type="text" name="template" id="template" onfocus="select_template('template');">
+                        <button class="hd-cancel-small" type="button" onclick="select_template('template');">选择模板</button>
+                    </td>
+                </tr>
+                <tr>
+                    <th>HTML文件</th>
+                    <td>
+                        <input class="w250" type="text" name="html_path">
+                        <span class="validate-message">如果不填,将按栏目规则生成静态</span>
                     </td>
                 </tr>
             </table>
         </div>
     </div>
-    <div class="btn_wrap">
-        <input type="submit" class="btn btn-primary" value="确定"/>
-        <input type="button" class="btn close_window" value="关闭"/>
+    <div class="position-bottom">
+        <input type="submit" class="hd-success" value="确定"/>
+        <input type="button" class="hd-cancel" onclick="hd_close_window()" value="关闭"/>
     </div>
 </form>
 </body>

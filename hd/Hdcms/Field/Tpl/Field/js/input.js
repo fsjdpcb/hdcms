@@ -1,7 +1,7 @@
 //表单验证
 $(function () {
-    $("form").validation({
-        input_size: {
+    $("form").validate({
+        'set[size]': {
             rule: {
                 required: true,
                 regexp: /^\d+$/
@@ -11,7 +11,7 @@ $(function () {
                 regexp: "请输入数字"
             }
         },
-        input_validation: {//验证规则
+        'set[validation]': {//验证规则
             rule: {
                 regexp: /^\/.+\/$/
             },

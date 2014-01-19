@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 搜索关键词管理
  * Class ManageControl
@@ -6,21 +7,22 @@
  */
 class ManageControl extends AuthControl
 {
-    private $db;
+    private $_db;
 
     public function __init()
     {
         parent::__init();
-        $this->db = K("search");
+        $_REQUEST['cid'] = M("category")->where('mid=1')->getField('cid');
+        import('Index.Model.SearchModel');
+        $this->_db = K("search");
     }
 
     //显示关键词列表
     public function index()
     {
-        $page = new Page($this->db->count(), C("ADMIN_LIST_ROW'"));
-        $data = $this->db->limit($page->limit())->order("total DESC")->all();
-        $this->assign("data", $data);
-        $this->assign("page", $page->show());
+        $page = new Page($this->_db->count(), C("ADMIN_LIST_ROW'"));
+        $this->data = $this->_db->limit($page->limit())->order("total DESC")->all();
+        $this->page = $page->show();
         $this->display();
     }
 
@@ -30,7 +32,7 @@ class ManageControl extends AuthControl
         $sid = Q("post.sid");
         if (!empty($sid)) {
             foreach ($sid as $i) {
-                $this->db->del(intval($i));
+                $this->_db->del(intval($i));
             }
             $this->_ajax(1);
         }
@@ -40,12 +42,12 @@ class ManageControl extends AuthControl
     public function edit()
     {
         if (IS_POST) {
-            if ($this->db->save()) {
+            if ($this->_db->save()) {
                 $this->_ajax(1);
             }
         } else {
             $sid = Q("get.sid", NULL, "intval");
-            $field = $this->db->find($sid);
+            $field = $this->_db->find($sid);
             $this->assign("field", $field);
             $this->display();
         }

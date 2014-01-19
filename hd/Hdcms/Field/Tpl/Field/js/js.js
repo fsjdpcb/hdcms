@@ -1,6 +1,6 @@
 //表单验证
 $(function () {
-    $("form").validation({
+    $("form").validate({
         //验证规则
         title: {
             rule: {
@@ -11,7 +11,7 @@ $(function () {
                 required: "字段标题不能为空",
                 china: "不能输入特殊字母"
             },
-            message: "例:网站名称"
+            message: "可以为中文"
         },
         field_name: {
             rule: {
@@ -24,51 +24,12 @@ $(function () {
                 regexp: "必须输入英文字母",
                 ajax: "字段已经存在"
             },
-            message: "输入英文小写字母"
-        },
-        message: {
-            rule: {
-                required: false
-            },
-            error: {
-                required: "请输入字段描述"
-            }
+            message: "必须为英文小写字母"
         }
     })
 })
 
 //===========================添加&修改模型==========================
-//Ajax提交
-$(function () {
-    $("form").submit(function () {
-        if ($(this).is_validation()) {
-            $.ajax({
-                type: "POST",
-                url: METH,
-                cache: false,
-                dataType: "JSON",
-                data: $(this).serialize(),
-                success: function (stat) {
-                    if (stat == 1) {
-                        $.dialog({
-                            msg: "操作成功!",
-                            type: "success",
-                            close_handler: function () {
-                                location.href = CONTROL+"&mid="+mid;
-                            }
-                        });
-                    } else {
-                        $.dialog({
-                            msg: "操作失败",
-                            type: "error"
-                        });
-                    }
-                }
-            });
-        }
-        return false;
-    })
-})
 //选择字段模板
 $(function () {
     //模板类型缓存

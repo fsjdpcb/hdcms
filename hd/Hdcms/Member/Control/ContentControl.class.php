@@ -118,19 +118,20 @@ class ContentControl extends MemberAuthControl
                 $this->ajax_return(1, "编辑文章成功");
             }
         } else {
-            $aid = Q("request.aid", null, "intval");
+            $aid = Q("aid", null, "intval");
             if ($aid) {
                 $field = $this->db->find($aid);
                 $field['cid'] = $field['cid'];
                 $field['catname'] = $field['catname'];
                 $this->assign("category", $this->category);
                 $this->assign("model", $this->model[$this->mid]);
-                $field['thumb_src'] = empty($field['thumb']) ? __ROOT__ . '/hdcms/static/img/upload-pic.png' : __ROOT__ . '/' . $field['thumb'];
+                $field['thumb_src'] = empty($field['thumb']) || !is_file($field['thumb'])?
+                                    __ROOT__ . '/hdcms/static/img/upload-pic.png' : __ROOT__ . '/' . $field['thumb'];
                 $this->assign("field", $field);
                 //自定义字段
                 $this->field = new FieldModel();
                 $custom_field = $this->field->field_view($field);
-                $this->assign("custom_field", $custom_field);
+                $this->custom_field=$custom_field;
                 $this->display();
             }
         }

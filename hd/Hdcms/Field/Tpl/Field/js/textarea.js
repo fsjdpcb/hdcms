@@ -1,7 +1,7 @@
 //表单验证
 $(function () {
-    $("form").validation({
-        textarea_width: {
+    $("form").validate({
+        'set[width]': {
             rule: {
                 required: true,
                 regexp: /^\d+$/
@@ -11,7 +11,7 @@ $(function () {
                 regexp: "请输入数字"
             }, message: "px"
         },
-        textarea_height: {//验证规则
+        'set[height]': {//验证规则
             rule: {
                 required: true,
                 regexp: /^\d+$/
@@ -21,7 +21,7 @@ $(function () {
                 regexp: "请输入数字"
             }, message: "px"
         },
-        textarea_validation: {//验证规则
+        'set[validation]': {//验证规则
             rule: {
                 regexp: /^\/.+\/$/
             },
