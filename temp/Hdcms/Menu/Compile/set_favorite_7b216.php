@@ -4,20 +4,20 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>设置常用菜单</title>
-    <script type='text/javascript' src='http://localhost/hdphp/hdphp/../hdjs/jquery-1.8.2.min.js'></script>
-<link href='http://localhost/hdphp/hdphp/../hdjs/css/hdjs.css' rel='stylesheet' media='screen'>
-<script src='http://localhost/hdphp/hdphp/../hdjs/js/hdjs.js'></script>
-<script src='http://localhost/hdphp/hdphp/../hdjs/js/slide.js'></script>
-<script src='http://localhost/hdphp/hdphp/../hdjs/org/cal/lhgcalendar.min.js'></script>
+    <script type='text/javascript' src='http://localhost/hdcms/hd/hdphp/hdphp/../hdjs/jquery-1.8.2.min.js'></script>
+<link href='http://localhost/hdcms/hd/hdphp/hdphp/../hdjs/css/hdjs.css' rel='stylesheet' media='screen'>
+<script src='http://localhost/hdcms/hd/hdphp/hdphp/../hdjs/js/hdjs.js'></script>
+<script src='http://localhost/hdcms/hd/hdphp/hdphp/../hdjs/js/slide.js'></script>
+<script src='http://localhost/hdcms/hd/hdphp/hdphp/../hdjs/org/cal/lhgcalendar.min.js'></script>
 <script type='text/javascript'>
 		HOST = 'http://localhost';
 		ROOT = 'http://localhost/hdcms';
 		WEB = 'http://localhost/hdcms/index.php';
-		URL = 'http://localhost/hdcms/index.php?a=Menu&c=Menu&m=set_favorite&_=0.7601255123527265';
-		HDPHP = 'http://localhost/hdphp/hdphp';
-		HDPHPDATA = 'http://localhost/hdphp/hdphp/Data';
-		HDPHPTPL = 'http://localhost/hdphp/hdphp/Lib/Tpl';
-		HDPHPEXTEND = 'http://localhost/hdphp/hdphp/Extend';
+		URL = 'http://localhost/hdcms/index.php?a=Menu&c=Menu&m=set_favorite&_=0.9608311160549738';
+		HDPHP = 'http://localhost/hdcms/hd/hdphp/hdphp';
+		HDPHPDATA = 'http://localhost/hdcms/hd/hdphp/hdphp/Data';
+		HDPHPTPL = 'http://localhost/hdcms/hd/hdphp/hdphp/Lib/Tpl';
+		HDPHPEXTEND = 'http://localhost/hdcms/hd/hdphp/hdphp/Extend';
 		APP = 'http://localhost/hdcms/index.php?a=Menu';
 		CONTROL = 'http://localhost/hdcms/index.php?a=Menu&c=Menu';
 		METH = 'http://localhost/hdcms/index.php?a=Menu&c=Menu&m=set_favorite';

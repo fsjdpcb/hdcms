@@ -4,20 +4,20 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>HDCMS - 后台管理中心</title>
-    <script type='text/javascript' src='http://localhost/hdphp/hdphp/../hdjs/jquery-1.8.2.min.js'></script>
-<link href='http://localhost/hdphp/hdphp/../hdjs/css/hdjs.css' rel='stylesheet' media='screen'>
-<script src='http://localhost/hdphp/hdphp/../hdjs/js/hdjs.js'></script>
-<script src='http://localhost/hdphp/hdphp/../hdjs/js/slide.js'></script>
-<script src='http://localhost/hdphp/hdphp/../hdjs/org/cal/lhgcalendar.min.js'></script>
+    <script type='text/javascript' src='http://localhost/hdcms/hd/hdphp/hdphp/../hdjs/jquery-1.8.2.min.js'></script>
+<link href='http://localhost/hdcms/hd/hdphp/hdphp/../hdjs/css/hdjs.css' rel='stylesheet' media='screen'>
+<script src='http://localhost/hdcms/hd/hdphp/hdphp/../hdjs/js/hdjs.js'></script>
+<script src='http://localhost/hdcms/hd/hdphp/hdphp/../hdjs/js/slide.js'></script>
+<script src='http://localhost/hdcms/hd/hdphp/hdphp/../hdjs/org/cal/lhgcalendar.min.js'></script>
 <script type='text/javascript'>
 		HOST = 'http://localhost';
 		ROOT = 'http://localhost/hdcms';
 		WEB = 'http://localhost/hdcms/index.php';
 		URL = 'http://localhost/hdcms/index.php?a=Hdcms&c=Index&m=index';
-		HDPHP = 'http://localhost/hdphp/hdphp';
-		HDPHPDATA = 'http://localhost/hdphp/hdphp/Data';
-		HDPHPTPL = 'http://localhost/hdphp/hdphp/Lib/Tpl';
-		HDPHPEXTEND = 'http://localhost/hdphp/hdphp/Extend';
+		HDPHP = 'http://localhost/hdcms/hd/hdphp/hdphp';
+		HDPHPDATA = 'http://localhost/hdcms/hd/hdphp/hdphp/Data';
+		HDPHPTPL = 'http://localhost/hdcms/hd/hdphp/hdphp/Lib/Tpl';
+		HDPHPEXTEND = 'http://localhost/hdcms/hd/hdphp/hdphp/Extend';
 		APP = 'http://localhost/hdcms/index.php?a=Hdcms';
 		CONTROL = 'http://localhost/hdcms/index.php?a=Hdcms&c=Index';
 		METH = 'http://localhost/hdcms/index.php?a=Hdcms&c=Index&m=index';
@@ -27,12 +27,12 @@
 		STATIC = 'http://localhost/hdcms/Static';
 		PUBLIC = 'http://localhost/hdcms/hd/Hdcms/Hdcms/Tpl/Public';
 </script>
-    <link href="http://localhost/hdphp/hdphp/Extend/Org/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"><script src="http://localhost/hdphp/hdphp/Extend/Org/bootstrap/js/bootstrap.min.js"></script>
+    <link href="http://localhost/hdcms/hd/hdphp/hdphp/Extend/Org/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"><script src="http://localhost/hdcms/hd/hdphp/hdphp/Extend/Org/bootstrap/js/bootstrap.min.js"></script>
   <!--[if lte IE 6]>
-  <link rel="stylesheet" type="text/css" href="http://localhost/hdphp/hdphp/Extend/Org/bootstrap/ie6/css/bootstrap-ie6.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost/hdcms/hd/hdphp/hdphp/Extend/Org/bootstrap/ie6/css/bootstrap-ie6.css">
   <![endif]-->
   <!--[if lte IE 7]>
-  <link rel="stylesheet" type="text/css" href="http://localhost/hdphp/hdphp/Extend/Org/bootstrap/ie6/css/ie.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost/hdcms/hd/hdphp/hdphp/Extend/Org/bootstrap/ie6/css/ie.css">
   <![endif]-->
     <link type="text/css" rel="stylesheet" href="http://localhost/hdcms/hd/Hdcms/Hdcms/Tpl/Index/css/css.css"/>
     <script type="text/javascript" src="http://localhost/hdcms/hd/Hdcms/Hdcms/Tpl/Index/js/js.js"></script>
