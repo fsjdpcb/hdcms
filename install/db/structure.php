@@ -42,7 +42,7 @@ $db->exe("CREATE TABLE `".$db_prefix."category` (
   `cat_seo_title` char(100) DEFAULT NULL COMMENT 'SEO标题',
   `cat_seo_description` varchar(255) DEFAULT NULL COMMENT 'SEO描述',
   PRIMARY KEY (`cid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='栏目表'");
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='栏目表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."category_access`");
 $db->exe("CREATE TABLE `".$db_prefix."category_access` (
   `cid` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '栏目cid',
@@ -99,7 +99,7 @@ $db->exe("CREATE TABLE `".$db_prefix."content` (
   `description` varchar(255) NOT NULL DEFAULT '' COMMENT '描述',
   `html_path` varchar(255) NOT NULL DEFAULT '' COMMENT '自定义生成的静态文件地址',
   PRIMARY KEY (`aid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8");
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."content_data`");
 $db->exe("CREATE TABLE `".$db_prefix."content_data` (
   `aid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '文章主表ID',
@@ -186,14 +186,14 @@ $db->exe("DROP TABLE IF EXISTS `".$db_prefix."member_group`");
 $db->exe("CREATE TABLE `".$db_prefix."member_group` (
   `gid` smallint(5) unsigned NOT NULL AUTO_INCREMENT COMMENT '会员组id',
   `is_system` smallint(5) unsigned NOT NULL DEFAULT '2' COMMENT '1 系统组 2 普通组',
-  `point` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '积分<=时为此会员组',
-  `allowpost` smallint(1) NOT NULL COMMENT '允许投稿  1 允许 2 不允许',
-  `allowpostverify` smallint(1) NOT NULL COMMENT '投稿不需要审核  1 不需要  2 需要',
-  `allowsendmessage` smallint(1) NOT NULL COMMENT '允许发短消息  1 允许  2 不允许',
-  `description` varchar(255) NOT NULL COMMENT '用户组描述',
-  `gname` char(30) NOT NULL COMMENT '会员组名称',
+  `point` mediumint(8) unsigned NOT NULL DEFAULT '100' COMMENT '积分<=时为此会员组',
+  `allowpost` smallint(1) NOT NULL DEFAULT '1' COMMENT '允许投稿  1 允许 2 不允许',
+  `allowpostverify` smallint(1) NOT NULL DEFAULT '1' COMMENT '投稿不需要审核  1 不需要  2 需要',
+  `allowsendmessage` smallint(1) NOT NULL DEFAULT '1' COMMENT '允许发短消息  1 允许  2 不允许',
+  `description` varchar(255) NOT NULL DEFAULT '' COMMENT '用户组描述',
+  `gname` char(30) NOT NULL DEFAULT '' COMMENT '会员组名称',
   PRIMARY KEY (`gid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8");
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."model`");
 $db->exe("CREATE TABLE `".$db_prefix."model` (
   `mid` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -304,7 +304,7 @@ $db->exe("CREATE TABLE `".$db_prefix."upload` (
   KEY `id` (`id`) USING BTREE,
   KEY `uid` (`uid`),
   KEY `aid` (`aid`,`cid`,`mid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='上传文件'");
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='上传文件'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."user`");
 $db->exe("CREATE TABLE `".$db_prefix."user` (
   `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,

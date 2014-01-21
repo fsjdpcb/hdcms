@@ -145,7 +145,8 @@ str;
                 \$db->where="state=1";
                 \$db->group=\$table.".aid";
                 \$db->limit($row);
-                \$result = \$db->join('category,content_flag')->field("updatetime")->all();
+                \$db->field('*');
+                \$result = \$db->join('category,content_flag')->all();
                 if(\$result){
                 foreach(\$result as \$field):
                     \$field['caturl']=U('category',array('cid'=>\$field['cid']));

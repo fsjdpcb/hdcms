@@ -19,10 +19,12 @@ class IndexControl extends Control
         $page = new Page($count);
         $this->page = $page->show();
         $upload = $this->db->order("id desc")->limit($page->limit())->all();
-        foreach($upload as $id=>$v){
-            $upload[$id]['pic'] =$v['image']==1 && is_file($v['path'])?__ROOT__.'/'.$v['path']:__GROUP__.'/static/img/upload-pic.png';
+        if ($upload) {
+            foreach ($upload as $id => $v) {
+                $upload[$id]['pic'] = $v['image'] == 1 && is_file($v['path']) ? __ROOT__ . '/' . $v['path'] : __GROUP__ . '/static/img/upload-pic.png';
+            }
         }
-        $this->upload=$upload;
+        $this->upload = $upload;
         $this->display();
     }
 
@@ -34,7 +36,7 @@ class IndexControl extends Control
             $file = $this->db->find($id);
             is_file($file['path']) and unlink($file['path']);
             $this->db->del($id);
-            $this->ajax(array("state" => 1,"message" => "删除成功!"));
+            $this->ajax(array("state" => 1, "message" => "删除成功!"));
         }
         $this->ajax(array(
             "stat" => 0,

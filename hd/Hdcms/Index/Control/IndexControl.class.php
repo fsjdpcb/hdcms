@@ -63,7 +63,7 @@ class IndexControl extends CommonControl
             if ($field) {
                 $field['caturl'] = U("category", array("cid" => $field['cid']));
                 $field['source'] = empty($field['source']) ? C("WEBNAME") : $field['source'];
-                $this->hdcms=$field;p($field);exit;
+                $this->hdcms=$field;
                 $tpl = get_content_tpl($this->_aid);
                 if (is_file($tpl))
                     $this->display($tpl);

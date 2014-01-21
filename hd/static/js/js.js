@@ -7,7 +7,7 @@ function select_template(input_id) {
     $.modal({
         title: '选择模板文件',
         button_cancel: '关闭',
-        content: '<iframe frameborder=0 style="height:100%;border:none;" src="' + WEB + '?a=Template&c=Template&m=select_tpl&input_id=' + input_id + '"></iframe>'
+        content: '<iframe frameborder=0 scrolling="no" style="height:98%;border:none;" src="' + WEB + '?a=Template&c=Template&m=select_tpl&input_id=' + input_id + '"></iframe>'
     });
 }
 /**
@@ -73,8 +73,8 @@ function file_upload(id, type, num, name) {
     $.modal({
         title: '文件上传',
         width: 600,
-        height: 420,
-        content: '<iframe frameborder=0 style="height:100%;border:none;" src="' + url + '"></iframe>'
+        height: 450,
+        content: '<iframe frameborder=0 scrolling="no" style="height:99%;border:none;" src="' + url + '"></iframe>'
     });
 }
 /**
