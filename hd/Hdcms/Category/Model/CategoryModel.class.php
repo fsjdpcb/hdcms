@@ -70,7 +70,7 @@ class CategoryModel extends RelationModel
         if (!empty($category)) {
             foreach ($category as $n => $v) {
                 //封面与链接栏目添加disabled属性
-                $v["disabled"] = $v["cattype"] != 1?'disabled="disabled"':'';
+                $v["disabled"] = $v["cattype"] != 1 ? 'disabled="disabled"' : '';
             }
         }
         $category = Data::tree($category, "catname", "cid", "pid");
@@ -87,6 +87,7 @@ class CategoryModel extends RelationModel
     public function del_category()
     {
         $cid = Q("cid", NULL, 'intval');
+        import('Content.Model.ContentModel');
         $db = K("Content");
         //删除栏目文章
         if ($db->where("cid=$cid")->del()) {

@@ -1,5 +1,7 @@
 <?php
-
+import("Index.Control.IndexControl");
+import("Content.Model.ContentModel");
+import("Content.Model.ContentViewModel");
 /**
  * 静态处理模块
  * Class HtmlControl
@@ -66,7 +68,6 @@ class HtmlControl extends AuthControl
     public function create_index()
     {
         if (IS_POST or isset($_SESSION['make_all']['index'])) {
-            import("Index.Control.IndexControl");
             if (Html::make("IndexControl", "index", array("_html" => "index.html"))) {
                 //设置一键生成跳转地址
                 if (isset($_SESSION['make_all']['index'])) {
@@ -84,7 +85,6 @@ class HtmlControl extends AuthControl
     //生成栏目
     public function make_category()
     {
-        import("Index.Control.IndexControl");
         //栏目生成静态配置
         $config = session("category_html_config");
         //首次操作：1 创建session配置  2 生栏目所有栏目首页
@@ -141,7 +141,7 @@ class HtmlControl extends AuthControl
                         $url = null;
                     }
                     unset($_SESSION['make_all']['category']);
-                    unset($_SESSION['category_html_config']);exit;
+                    unset($_SESSION['category_html_config']);
                     $this->message("所有栏目生成完毕", $url);
                 }
                 //储存配置到session
@@ -200,9 +200,6 @@ class HtmlControl extends AuthControl
     //生成内容页静态
     public function make_content()
     {
-        import("Index.Control.IndexControl");
-        import("Content.Model.ContentModel");
-        import("Content.Model.ContentViewModel");
         //栏目生成静态配置
         $config = session("content_html_config");
         //首次操作：1 创建session配置  2 生栏目所有栏目首页
@@ -219,7 +216,8 @@ class HtmlControl extends AuthControl
                 } else { //指定模型的所有栏目
                     $category = $db->field("cid,mid,catname,catdir,arc_html_url")->where("mid=$mid and is_arc_html=1")->all();
                 }
-            } else { //指定具体栏目
+            } else {
+                //指定具体栏目
                 $category = $db->field("cid,mid,catname,catdir,arc_html_url")->where("is_arc_html=1")->in($_POST['cid'])->all();
             }
             //不存在配置文件时生成栏目首页
