@@ -63,11 +63,9 @@ switch ($s) {
             "data/config/db.inc.php", //数据库配置文件
             "data/backup", //备份目录
             "data/Cache", //缓存目录
-            "data/Cache/Category", //栏目缓存
+            "data/Cache/Cache", //栏目缓存
             "data/Cache/Field", //字段缓存目录
             "data/Cache/Js", //js缓存
-            "data/Cache/Model", //模型缓存
-            "data/Cache/Node", //节点(菜单)缓存
         );
         require "./template/4.php";
         break;

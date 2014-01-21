@@ -2,48 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7fdfeb72-05e7-437b-b747-905afa58d1a4" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_access_bk_1.sql" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_bug_bk_2.sql" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_category_access_bk_4.sql" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_category_bk_3.sql" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_comment_bk_5.sql" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_config_bk_6.sql" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_content_bk_7.sql" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_content_data_bk_8.sql" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_content_flag_bk_9.sql" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_content_single_bk_10.sql" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_custom_js_bk_11.sql" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_extcredits_bk_12.sql" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_field_bk_13.sql" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_flag_bk_14.sql" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_member_group_bk_15.sql" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_model_bk_16.sql" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_navigation_bk_17.sql" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_node_bk_18.sql" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_role_bk_19.sql" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_search_bk_20.sql" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_session_bk_21.sql" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_tag_bk_22.sql" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_template_tag_bk_23.sql" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_upload_bk_24.sql" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/hd_user_bk_25.sql" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/install/db/structure.sql" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Admin/Compile/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Admin/Compile/index_04218.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Backup/Compile/backup_73751.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Backup/Compile/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Backup/Compile/index_a3c69.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Html/Compile/create_all_7d7ac.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Html/Compile/create_category_6f8b9.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Html/Compile/create_index_690de.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Html/Compile/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Navigation/Compile/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Navigation/Compile/index_38fff.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Role/Compile/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/temp/Hdcms/Role/Compile/index_6457c.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/hdphp/hdphp/Extend/Tool/Backup.class.php" afterPath="$PROJECT_DIR$/hd/hdphp/hdphp/Extend/Tool/Backup.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/temp/Hdcms/Hdcms/Compile/feedback_18acf.php" afterPath="$PROJECT_DIR$/temp/Hdcms/Hdcms/Compile/feedback_18acf.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/temp/Hdcms/Hdcms/Compile/index_4cb44.php" afterPath="$PROJECT_DIR$/temp/Hdcms/Hdcms/Compile/index_4cb44.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/install/index.php" afterPath="$PROJECT_DIR$/install/index.php" />
     </list>
     <ignored path="hdcms.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -113,15 +72,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="article_index.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/template/default/article_index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="12" selection-start="442" selection-end="442" vertical-scroll-proportion="-7.5" vertical-offset="0" max-vertical-offset="2565">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="IndexControl.class.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hd/Hdcms/Index/Control/IndexControl.class.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -131,11 +81,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BackupControl.class.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="BackupControl.class.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hd/Hdcms/Backup/Control/BackupControl.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="74" column="5" selection-start="1470" selection-end="1470" vertical-scroll-proportion="0.8759124" vertical-offset="630" max-vertical-offset="1830">
+            <state line="74" column="5" selection-start="1470" selection-end="1470" vertical-scroll-proportion="-20.0" vertical-offset="630" max-vertical-offset="1830">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/install/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="64" column="27" selection-start="2033" selection-end="2066" vertical-scroll-proportion="0.58878505" vertical-offset="645" max-vertical-offset="3135">
+              <folding>
+                <marker date="1390268197000" expanded="true" signature="443:681" placeholder="..." />
+                <marker date="1390268197000" expanded="true" signature="462:517" placeholder="..." />
+                <marker date="1390268197000" expanded="true" signature="536:666" placeholder="..." />
+                <marker date="1390268197000" expanded="false" signature="566:598" placeholder="..." />
+                <marker date="1390268197000" expanded="false" signature="6690:6736" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -176,7 +141,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/hd/Hdcms/TemplateTag/Tpl/CustomJs/index.php" />
         <option value="$PROJECT_DIR$/hd/Hdcms/TemplateTag/Tpl/CustomJs/Js/js.js" />
         <option value="$PROJECT_DIR$/hd/Hdcms/Cache/Control/CacheControl.class.php" />
         <option value="$PROJECT_DIR$/hd/Common/Config/config.php" />
@@ -227,6 +191,7 @@
         <option value="$PROJECT_DIR$/hd/Hdcms/Category/Tpl/Category/add.php" />
         <option value="$PROJECT_DIR$/hd/Hdcms/Category/Tpl/Category/edit.php" />
         <option value="$PROJECT_DIR$/hd/Hdcms/Index/Control/IndexControl.class.php" />
+        <option value="$PROJECT_DIR$/install/index.php" />
       </list>
     </option>
   </component>
@@ -310,6 +275,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="template" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="install" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -558,7 +537,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1280" height="774" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.08651026" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -566,7 +545,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18578352" sideWeight="0.8973607" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28513733" sideWeight="0.5718475" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28513733" sideWeight="0.5718475" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1858618" sideWeight="0.102639295" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -600,13 +579,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Navigation/Tpl/Navigation/edit.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="58" selection-start="565" selection-end="565" vertical-scroll-proportion="0.267423" vertical-offset="15" max-vertical-offset="1125">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hd/Hdcms/Navigation/Tpl/Navigation/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="50" selection-start="586" selection-end="586" vertical-scroll-proportion="0.1904762" vertical-offset="105" max-vertical-offset="1080">
@@ -966,8 +938,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hd/Hdcms/Backup/Control/BackupControl.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="5" selection-start="1470" selection-end="1470" vertical-scroll-proportion="0.8759124" vertical-offset="630" max-vertical-offset="1830">
+        <state line="74" column="5" selection-start="1470" selection-end="1470" vertical-scroll-proportion="-20.0" vertical-offset="630" max-vertical-offset="1830">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/install/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="64" column="27" selection-start="2033" selection-end="2066" vertical-scroll-proportion="0.58878505" vertical-offset="645" max-vertical-offset="3135">
+          <folding>
+            <marker date="1390268197000" expanded="true" signature="443:681" placeholder="..." />
+            <marker date="1390268197000" expanded="true" signature="462:517" placeholder="..." />
+            <marker date="1390268197000" expanded="true" signature="536:666" placeholder="..." />
+            <marker date="1390268197000" expanded="false" signature="566:598" placeholder="..." />
+            <marker date="1390268197000" expanded="false" signature="6690:6736" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
