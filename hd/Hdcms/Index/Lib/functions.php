@@ -3,7 +3,7 @@ if (!defined("HDPHP_PATH")) exit;
 //获得栏目url
 function get_category_url($cid)
 {
-    $category = F("category", false, CATEGORY_CACHE_PATH);
+    $category = F("category");
     $cat = $category[$cid];
     if ($cat['cattype'] == 3) {
         return $cat['cat_redirecturl'];
@@ -18,7 +18,7 @@ function get_category_url($cid)
 //获得栏目模板
 function get_category_tpl($cid)
 {
-    $category = F("category", false, CATEGORY_CACHE_PATH);
+    $category = F("category");
     if ($category[$cid]['cattype'] == 2) {
         $tpl_file = $category[$cid]['index_tpl'];
     } else if ($category[$cid]['cattype'] == 1) {
@@ -42,7 +42,7 @@ function get_content_tpl($aid)
 //获得内容页url地址
 function get_content_url($field)
 {
-    $cat = F("category", false, CATEGORY_CACHE_PATH);
+    $cat = F("category");
     $category = $cat[$field['cid']];
     if ($category['is_arc_html']) {
         return __ROOT__ . '/' . get_content_html($field);
@@ -56,7 +56,7 @@ function get_content_html($field)
 {
 
     if (!empty($field['html_path'])) return $field['html_path'];
-    $cat = F("category", false, CATEGORY_CACHE_PATH);
+    $cat = F("category");
     $category = $cat[$field['cid']];
     $arc_html_url = $category['arc_html_url'];
     //栏目静态规则配置错误
@@ -86,7 +86,7 @@ function get_content_html($field)
 //获得栏目静态html
 function get_category_html($field)
 {
-    $cat = F("category", false, CATEGORY_CACHE_PATH);
+    $cat = F("category");
     $category = $cat[$field['cid']];
     $arc_html_url = $category['arc_html_url'];
     //栏目静态规则配置错误

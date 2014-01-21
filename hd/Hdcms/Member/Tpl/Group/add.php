@@ -53,8 +53,8 @@
                 </td>
             </tr>
         </table>
-        <div class="btn_wrap">
-            <input type="submit" class="btn" value="确定"/>
+        <div class="position-bottom">
+            <input type="submit" class="hd-success" value="确定"/>
         </div>
     </form>
 </div>

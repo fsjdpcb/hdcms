@@ -7,7 +7,7 @@
 class ContentViewModel extends ViewModel
 {
     //表
-    public $table = 'content';
+    public $table;
     //栏目id
     private $_cid;
     //模型mid
@@ -22,8 +22,8 @@ class ContentViewModel extends ViewModel
     {
         $this->_cid = Q('cid', NULL, 'intval');
         $this->_mid = Q('mid', NULL, 'intval');
-        $this->_category = F("category", false, CATEGORY_CACHE_PATH);
-        $this->_model = F("model", false, MODEL_CACHE_PATH);
+        $this->_category = F("category");
+        $this->_model = F("model");
         if (!$this->_cid) {
             halt("ContentViewModel没有可操作的cid");
         }
@@ -92,9 +92,15 @@ class ContentViewModel extends ViewModel
             }
         }
         //文章状态：1 已审核 0未审核
-        $where[] = "status=".Q("status", 1, "intval");
+        $where[] = "state=".Q("state", 1, "intval");
         //按栏目
-        $where[] =$this->tableFull. ".cid=" . $this->_cid;
+        //获得所有子栏目
+        $sCategory=Data::channelList($this->_category,$this->_cid);
+        $cid=array($this->_cid);
+        foreach($sCategory as $cat){
+            $cid[]=$cat['cid'];
+        }
+        $where[] =$this->tableFull. '.cid IN(' . implode(',',$cid).')';
         //---------------------搜索条件----------------------
 
         //主键id
@@ -116,10 +122,9 @@ class ContentViewModel extends ViewModel
         //根据配置文件设置显示条数
         $page = new Page($count, C("ADMIN_LIST_ROW"));
         //字段集
-        $field = $pri .','.$this->tableFull. ".cid,title,arc_sort,status,catname,author,updatetime";
+        $field = $pri .','.$this->tableFull. ".cid,title,arc_sort,state,catname,author,updatetime";
         //文章数据
         $data = $this->field($field)->where($where)->group($pri)->order('arc_sort ASC,aid DESC')->limit($page->limit())->all();
-        firephp($where);
         //为每篇文章添加属性字符串
         if ($data) {
             $flag = K("ContentFlag");

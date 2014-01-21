@@ -57,20 +57,17 @@ str;
         $type = isset($attr['type']) ? $attr['type'] : "self";
         $row = isset($attr['row']) ? $attr['row'] : 10;
         $cid = isset($attr['cid']) ? $attr['cid'] : NULL;
-        $level = isset($attr['level']) ? intval($attr['level']) : 0;
         $class = isset($attr['class']) ? $attr['class'] : "";
         $php = <<<str
         <?php
-        \$where = '';\$type='$type';\$cid="$cid";\$level=$level;
+        \$where = '';\$type='$type';\$cid="$cid";
         \$cid=intval(\$cid);
         if(empty(\$cid) && isset(\$_GET['cid'])){
             \$cid=  \$_GET['cid'];
         }
         \$db = M("category");
         if (\$type == "top") {
-            \$where .= " level=1 ";
-        }else if(\$level>=1){//按等级查找
-            \$where.="level=\$level";
+            \$where .= " pid=0 ";
         }else if (!empty(\$cid)) {
             if(\$type=='current'){
                  \$where = " cid in(".\$cid.")";
@@ -114,52 +111,42 @@ str;
     public function _arclist($attr, $content)
     {
         $cid = isset($attr['cid']) ? trim($attr['cid']) : 0;
-        $cid = intval($cid) > 0 ? '"' . $cid . '"' : $cid;
-        $listtype = isset($attr['listtype']) ? $attr['listtype'] : "";
         $aid = isset($attr['aid']) ? $attr['aid'] : "";
         $mid = isset($attr['mid']) ? $attr['mid'] : 1;
         $row = isset($attr['row']) ? intval($attr['row']) : 10;
         $infolen = isset($attr['infolen']) ? intval($attr['infolen']) : 80;
         $titlelen = isset($attr['titlelen']) ? intval($attr['titlelen']) : 80;
-        $flag = isset($attr['flag']) ? intval($attr['flag']) : "";
+        $flag = isset($attr['flag']) ? intval($attr['flag']) : '';
         $php = "";
         $php .= <<<str
-        <?php \$mid="$mid";\$cid =$cid;\$listtype ="$listtype";\$flag='$flag';\$aid='$aid';
-            \$_GET['mid']="$mid";
+        <?php \$mid="$mid";\$cid ='$cid';\$flag='$flag';\$aid='$aid';
             if(empty(\$cid)){
-                \$cid= isset(\$_GET['cid'])?intval(\$_GET['cid']):null;
+                \$cid= Q('get.cid',NULL,'intval');
+                if(!\$cid){
+                    \$tmp = M('category')->where('mid=1')->getField('cid',true);
+                    \$cid=implode(',',\$tmp);
+                }
             }
-            \$db = new ContentViewModel();
-            if(\$db->table){
+            \$cid = explode(',',preg_replace('@\s@','',\$cid));
+            if(empty(\$cid))return '';
+            \$_REQUEST['cid']=\$cid[0];
+            import('Content.Model.ContentViewModel');
+            \$db = K('ContentView');
                 //主表
-                \$table=\$db->table;
+                \$table=C('DB_PREFIX').\$db->table;
                 if(!empty(\$flag)){
                     \$db->in(array("fid" => \$flag));
                 }
-                if (\$cid) {
-                    //查找栏目与子栏目
-                    if(\$listtype=='all'){
-                        \$tmp =M("category")->field("cid")->where("path like '%_".\$cid."%' or cid=\$cid")->all();
-                        \$cid=array();
-                        foreach(\$tmp as \$t){
-                            \$cid[]=\$t['cid'];
-                        }
-                        if(!empty(\$cid)&& is_array(\$cid)){
-                            \$db->in = array(C("DB_PREFIX")."category.cid"=>\$cid);
-                        }
-                    }else{//指定栏目
-                        \$db->where = C("DB_PREFIX")."category.cid in(\$cid)";
-                    }
-                }
+                \$db->where = C("DB_PREFIX").'category.cid in('.implode(',',\$cid).')';
+                //指定文章
                 if (\$aid) {
-                    \$db->where=\$table.".aid=".\$aid;
+                    \$db->where=\$table.'.aid IN('.\$aid.')';
                 }
-                \$db->where="status=1";
+                \$db->where="state=1";
                 \$db->group=\$table.".aid";
                 \$db->limit($row);
-                \$db->field="*,{\$db->table}.aid,{\$db->table}.cid";
-                \$result = \$db->join('category,content_flag')->field("addtime")->all();
-                if(!empty(\$result) and is_array(\$result)){
+                \$result = \$db->join('category,content_flag')->field("updatetime")->all();
+                if(\$result){
                 foreach(\$result as \$field):
                     \$field['caturl']=U('category',array('cid'=>\$field['cid']));
                     \$field['url']=get_content_url(\$field);
@@ -168,11 +155,10 @@ str;
                     \$field['title']=mb_substr(\$field['title'],0,$titlelen,'utf8');
                     \$field['title']=\$field['color']?"<span style='color:".\$field['color']."'>".\$field['title']."</span>":\$field['title'];
                     \$field['description']=mb_substr(\$field['description'],0,$infolen,'utf-8');
-                    ?>
+                ?>
 str;
         $php .= $content;
-        $php .= '<?php endforeach;}';
-        $php .= '}?>';
+        $php .= '<?php endforeach;}?>';
         return $php;
     }
 
@@ -180,18 +166,19 @@ str;
     public function _pagelist($attr, $content)
     {
         $row = isset($attr['row']) ? intval($attr['row']) : 10;
-        $cid = Q("get.cid");
         $titlelen = isset($attr['titlelen']) ? intval($attr['titlelen']) : 80;
         $infolen = isset($attr['infolen']) ? intval($attr['infolen']) : 80;
         $php = '';
-        if (!$cid) return "";
         $php .= <<<str
-        <?php \$cid='$cid';
+        <?php
+        \$cid=\$_GET['cid'];
+        import('Content.Model.ContentViewModel');
         \$db = new ContentViewModel(null,\$cid);
-        \$count = \$db->join(NULL)->where("cid=\$cid and status=1")->count();
+        \$count = \$db->join(NULL)->where("cid=\$cid and state=1")->count();
         \$hd_page= new Page(\$count,$row);
-        \$field ="aid,category.cid,thumb,click,source,addtime,updatetime,username,catname,title,description";
-        \$result= \$db->join("category")->field(\$field)->where("status=1")->where(\$db->tableFull.".cid=$cid")
+        \$db_prefix = C('DB_PREFIX');
+        \$field ='aid,'.\$db_prefix.'category.cid,thumb,click,source,addtime,updatetime,author,catname,title,description';
+        \$result= \$db->join("category")->field(\$field)->where("state=1")->where(\$db->tableFull.".cid=\$cid")
         ->limit(\$hd_page->limit())->all();
         foreach(\$result as \$field):
                 \$field['caturl']=U('category',array('cid'=>\$field['cid']));

@@ -26,12 +26,6 @@
                     <input type="text" name="flagname" class="w200"/>
                 </td>
             </tr>
-            <tr>
-                <th class="w100">别名</th>
-                <td>
-                    <input type="text" name="title" class="w100"/>
-                </td>
-            </tr>
         </table>
         <div class="position-bottom">
             <input type="submit" class="hd-success" value="确定"/>

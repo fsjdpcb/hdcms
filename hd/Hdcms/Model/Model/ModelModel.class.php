@@ -57,7 +57,7 @@ class ModelModel extends Model
                       `ishtml` TINYINT(1) NOT NULL DEFAULT 1 ,
                       `isshow` TINYINT(1) NOT NULL DEFAULT 1  COMMENT '显示' ,
                       `arc_sort` int(10) UNSIGNED NOT NULL DEFAULT 100  COMMENT '排序' ,
-                      `status` TINYINT(1) NOT NULL default 1,
+                      `state` TINYINT(1) NOT NULL default 1,
                       `keywords` CHAR(100) NOT NULL DEFAULT '' COMMENT '关键字' ,
                       `description` VARCHAR(255) NOT NULL DEFAULT '' COMMENT '描述' ,
                       `uid` INT UNSIGNED NOT NULL  COMMENT '用户uid' ,
@@ -145,7 +145,7 @@ str;
         foreach ($model as $d) {
             $data[$d['mid']] = $d;
         }
-        F("model", $data, MODEL_CACHE_PATH);
+        F("model", $data);
         return $model;
     }
 

@@ -5,9 +5,8 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>HDCMS - 后台管理中心</title>
     <hdjs/>
-    <bootstrap/>
     <css file="__CONTROL_TPL__/css/css.css"/>
-    <js file="__CONTROL_TPL__/js/js.js"/>
+    <js file="__CONTROL_TPL__/js/menu.js"/>
 </head>
 <body>
 <div class="nav">
@@ -22,6 +21,7 @@
     <!--头部右侧导航-->
     <div class="r_menu">
         {$hd.session.rname} : admin <a href="{|U:'Login/out'}" target="_self">[退出]</a><span>|</span>
+        <a href="javascript:hd_ajax('{|U:'Cache/Cache/update_all'}');">更新全站缓存</a><span>|</span>
         <a href="__WEB__" target="_blank">前台首页</a>
         <!--        <span>|</span>-->
         <!--        <a href="{|U:'Member/Index/index'}" target="_blank">会员中心</a></a>-->

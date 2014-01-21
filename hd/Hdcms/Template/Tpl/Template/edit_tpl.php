@@ -9,7 +9,7 @@
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
 <body>
-<div class="wrap">
+<div class="wrap" style="bottom: 0px;">
     <div class="title-header">温馨提示</div>
     <div class="help">
         <p>1 修改模板后，需要删除缓存与重新生成静态文件才会看到效果</p>
@@ -32,15 +32,12 @@
                     <textarea name="content" style="width:90%;height:600px;">{$field.content}</textarea>
                 </td>
             </tr>
-            <tr>
-                <td colspan="2">
-                    <input type="submit" value="确定" class="btn btn-primary"/>
-                    <input type="button" value="放弃" class="btn" onclick="_close('放弃编辑吗？')"/>
-                </td>
-            </tr>
         </table>
     </form>
+    <div class="position-bottom">
+        <input type="submit" value="确定" class="hd-success"/>
+        <input type="button" value="放弃" class="hd-cancel" onclick="hd_close_window('放弃编辑吗？')"/>
+    </div>
 </div>
-
 </body>
 </html>

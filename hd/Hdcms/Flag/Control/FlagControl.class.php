@@ -8,19 +8,21 @@
 class FlagControl extends AuthControl
 {
     //模型
-    protected $_db;
+    private $_db;
+    //属性缓存
+    private $_flag;
 
     public function __init()
     {
         parent::__init();
         $this->_db = K("Flag");
+        $this->_flag = F('flag');
     }
 
     //属性列表
     public function index()
     {
-        $flag = $this->_db->all();
-        $this->flag = $flag;
+        $this->flag = $this->_flag;
         $this->display();
     }
 
@@ -49,6 +51,16 @@ class FlagControl extends AuthControl
             }
         } else {
             $this->display();
+        }
+    }
+
+    /**
+     * 更新缓存
+     */
+    public function update_cache()
+    {
+        if ($this->_db->update_cache()) {
+            $this->ajax(array('state' => 1, 'message' => '缓存更新成功'));
         }
     }
 }

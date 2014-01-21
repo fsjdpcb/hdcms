@@ -201,13 +201,13 @@
                         <tr>
                             <td class="w100">SEO标题</td>
                             <td>
-                                <input type="text" name="seo_title" value="{$field.seo_title}" class="w350"/>
+                                <input type="text" name="cat_seo_title" value="{$field.cat_seo_title}" class="w350"/>
                             </td>
                         </tr>
                         <tr>
                             <td>SEO描述</td>
                             <td>
-                                <textarea name="seo_description" class="w350 h150">{$field.seo_title}</textarea>
+                                <textarea name="cat_seo_description" class="w350 h150">{$field.cat_seo_description}</textarea>
                             </td>
                         </tr>
                     </table>

@@ -9,9 +9,8 @@
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
 <body>
-<form action="{|U:'edit'}" method="post" class="edit form-inline hd-form" onsubmit="return false">
+<form action="{|U:'edit'}" method="post" class="hd-form" onsubmit="return hd_submit(this,'{|U:index}')">
     <input type="hidden" name="nid" value="{$hd.get.nid}"/>
-
     <div class="wrap">
         <div class="menu_list">
             <ul>
@@ -27,12 +26,12 @@
             <tr>
                 <td class="w100">上级:</td>
                 <td class="pid">
-                    <select name="pid" onchange="check_pid(this);set_control(this);">
-                        <option value="0" level="1">一级菜单</option>
-                        <list from="$node" name="n">
-                            <option value="{$n.nid}" level="{$n.level}"
-                            <if value="$n.nid==$field.pid">selected="selected"</if>
-                            >{$n._name}</option>
+                    <select name="pid">
+                        <option value="0">一级菜单</option>
+                        <list from="$node" name="n">{$n.level}<br/>
+                            <if value="$n._level lt 3">
+                                <option value="{$n.nid}" {$n.disabled} <if value="$n.nid==$field.pid">selected="selected"</if>>{$n._name}</option>
+                            </if>
                         </list>
                     </select>
                 </td>
@@ -40,42 +39,32 @@
             <tr>
                 <td>名称:</td>
                 <td>
-                    <input type="text" name="title" value="{$field.title}" class="w200"/>
+                    <input type="text" name="title" class="w200" value="{$field.title}"/>
                 </td>
             </tr>
             <tr>
-                <td colspan="2" style="padding-left:0px;">
-                    <div id="control">
-                        <?php if (isset($field['app'])): ?>
-                            <table>
-                                <tr>
-                                    <td class="w100">项目:</td>
-                                    <td>
-                                        <input type="text" name="app" value="{$field.app}" class="w200"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>模块:</td>
-                                    <td>
-                                        <input type="text" name="control" value="{$field.control}" class="w200"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>方法:</td>
-                                    <td>
-                                        <input type="text" name="method" value="{$field.method}" class="w200"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>参数:</td>
-                                    <td>
-                                        <input type="text" name="param" value="{$field.param}" class="w300"/>
-                                        <span class="message">例:cid=1&mid=2</span>
-                                    </td>
-                                </tr>
-                            </table>
-                        <?php endif; ?>
-                    </div>
+                <td class="w100">应用:</td>
+                <td>
+                    <input type="text" name="app" value="{$field.app}" class="w200"/>
+                </td>
+            </tr>
+            <tr>
+                <td>模块:</td>
+                <td>
+                    <input type="text" name="control" value="{$field.control}" class="w200"/>
+                </td>
+            </tr>
+            <tr>
+                <td>方法:</td>
+                <td>
+                    <input type="text" name="method" value="{$field.method}" class="w200"/>
+                </td>
+            </tr>
+            <tr>
+                <td>参数:</td>
+                <td>
+                    <input type="text" name="param" value="{$field.param}" class="w300"/>
+                    <span class="message">例:cid=1&mid=2</span>
                 </td>
             </tr>
             <tr>
@@ -87,24 +76,20 @@
             <tr>
                 <td>状态:</td>
                 <td>
-                    <label><input type="radio" name="status" value="1"
-                        <if value="$field.status==1">checked="checked"</if>
-                        /> 显示</label>
-                    <label><input type="radio" name="status" value="0"
-                        <if value="$field.status==0">checked="checked"</if>
-                        /> 隐藏</label>
+                    <label>
+                        <input type="radio" name="state" value="1" <if value="$field.state==1">checked="checked"</if>/> 显示
+                    </label>
+                    <label>
+                        <input type="radio" name="state" value="0" <if value="$field.state==0">checked="checked"</if>/> 隐藏
+                    </label>
                 </td>
             </tr>
             <tr>
                 <td>类型:</td>
                 <td>
                     <select name="type">
-                        <option value="1"
-                        <if value="$field.status==1">checked="checked"</if>
-                        >菜单+权限控制</option>
-                        <option value="2"
-                        <if value="$field.status==2">checked="checked"</if>
-                        >普通菜单</option>
+                        <option value="1" <if value="$field.status==1">checked="checked"</if>>菜单+权限控制</option>
+                        <option value="2" <if value="$field.status==2">checked="checked"</if>>普通菜单</option>
                     </select>
                 </td>
             </tr>

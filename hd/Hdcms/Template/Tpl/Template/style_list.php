@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>内容列表</title>
     <hdjs/>
-    <js file="__CONTROL_TPL__/js/style.js"/>
+    <js file="__CONTROL_TPL__/js/style_list.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
 <body>
@@ -48,7 +48,7 @@
                     <p>Email: {$t[2]}</p>
 
                     <div class="link">
-                        <a href="javascript:;" class="btn" onclick="select_style('{$t.dir_name|basename}')">使用</a>
+                        <a href="javascript:;" class="btn" onclick="hd_ajax('{|U:select_style}',{dir_name:'{$t.dir_name|basename}'})">使用</a>
                         <a href="{|U:'show_dir',array('dir_name'=>$style_cur['dir_name'])}" class="btn">编辑</a>
                     </div>
                 </li>

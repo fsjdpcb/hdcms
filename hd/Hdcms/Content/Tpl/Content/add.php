@@ -130,7 +130,7 @@
                             <input type="hidden" name="content_flag[{$f.fid}][cid]" value="{$category.cid}"/>
                             <label class="checkbox inline">
                                 <input type="checkbox" name="content_flag[{$f.fid}][fid]" value="{$f.fid}"/>
-                                {$f.flagname}
+                                {$f.flagname} [{$f.fid}]
                             </label>
                         </list>
                     </td>

@@ -13,7 +13,7 @@
     <div class="menu_list">
         <ul>
             <li><a href="javascript:;" class="action">菜单管理</a></li>
-            <li><a href="{|U:'add'}">添加菜单</a></li>
+            <li><a href="{|U:'add',array('pid'=>0)}">添加菜单</a></li>
             <li><a href="javascript:hd_ajax('{|U:update_cache}');">更新缓存</a></li>
         </ul>
     </div>
@@ -25,7 +25,7 @@
             <td>菜单名称</td>
             <td>状态</td>
             <td class="w80">类型</td>
-            <td class="w200">操作</td>
+            <td class="w150">操作</td>
         </tr>
         </thead>
         <list from="$node" name="n">
@@ -34,36 +34,35 @@
                     <input type="text" class="w30" value="{$n.list_order}" name="list_order[{$n.nid}]"/>
                 </td>
                 <td>{$n.nid}</td>
+                <td>{$n._name}</td>
                 <td>
-                    {$n._name}
-                </td>
-                <td>
-                    <if value="$n.status==1">
+                    <if value="$n.state==1">
                         显示
                         <else>
-                            不显示
+                        不显示
                     </if>
                 </td>
                 <td>
                     <if value="$n.menu_type==1">
                         权限+菜单
                         <else>
-                            普通菜单
+                        普通菜单
                     </if>
                 </td>
                 <td style="text-align: right">
-                    <if value="$n.level==3">
-                        <span style="color:#bbb;">添加子菜单  | </span>
+                    <if value="$n._level==3">
+                        <span class="disabled">添加子菜单  | </span>
                     <else>
                         <a href="{|U('add',array('pid'=>$n['nid']))}">添加子菜单</a> |
                     </if>
-                    <?php if($n['is_system']==0){?>
-                    <a href="{|U('edit',array('nid'=>$n['nid']))}">修改</a> |
-                    <a href="javascript:;" onclick="del({$n.nid})">删除</a>
-                        <else>
-                            <span style="color:#bbb;">修改 | </span>
-                            <span style="color:#bbb;">删除 | </span>
-                    <?php }?>
+
+                    <if value="$n.is_system==0">
+                        <a href="{|U('edit',array('nid'=>$n['nid']))}">修改</a> |
+                        <a href="javascript:hd_ajax('{|U:del}',{nid:{$n.nid}})">删除</a>
+                    <else/>
+                         <span class="disabled">修改 | </span>
+                         <span class="disabled">删除</span>
+                    </if>
                 </td>
             </tr>
         </list>

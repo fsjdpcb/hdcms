@@ -13,7 +13,7 @@
 		HOST = 'http://localhost';
 		ROOT = 'http://localhost/hdcms';
 		WEB = 'http://localhost/hdcms/index.php';
-		URL = 'http://localhost/hdcms/index.php?a=Html&c=Html&m=create_index';
+		URL = 'http://localhost/hdcms/index.php?a=Html&c=Html&m=create_index&_=0.9301216343331613';
 		HDPHP = 'http://localhost/hdphp/hdphp';
 		HDPHPDATA = 'http://localhost/hdphp/hdphp/Data';
 		HDPHPTPL = 'http://localhost/hdphp/hdphp/Lib/Tpl';
@@ -43,7 +43,7 @@
 </form>
 <script>
     $.modal({title: '生成首页', button_cancel: '关闭', width: 450, height: 200, show: false,
-        content: "<iframe name='_iframe' scrolling='no' frameborder='0' style='height:120px;'></iframe>",
+        content: "<iframe name='_iframe' scrolling='no' frameborder='0' style='height:110px;'></iframe>",
         cancel: function () {
             window.location.reload(true);
         }

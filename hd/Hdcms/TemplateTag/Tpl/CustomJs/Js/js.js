@@ -1,6 +1,6 @@
 //表单验证
 $(function () {
-    $("form").validation({
+    $("form").validate({
         //验证规则
         name: {
             rule: {

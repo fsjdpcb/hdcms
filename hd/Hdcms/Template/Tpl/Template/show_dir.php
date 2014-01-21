@@ -9,13 +9,13 @@
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
 <body>
-<div class="wrap">
+<div class="wrap" style="bottom: 0px;">
     <div class="title-header">温馨提示</div>
     <div class="help">
         修改模板文件前，请做好备份操作！
     </div>
     <if value="$hd.get.dir_name">
-        <a href="javascript:window.back();" class="btn1" style="display: inline-block;margin-bottom: 15px;">返回</a>
+        <a href="javascript:window.back();" class="hd-cancel" style="display: inline-block;margin-bottom: 15px;">返回</a>
     </if>
     <table class="table2">
         <thead>
@@ -35,7 +35,7 @@
                     <if value="$d.type=='dir'">
                         <a href="__METH__&dir_name={$d.path|urlencode}">进入</a>
                         <else>
-                            <a href="javascript:;" onclick="_open('__CONTROL__&m=edit_tpl&file_path={$d.path|urlencode}')">修改</a>
+                            <a href="javascript:;" onclick="hd_open_window('__CONTROL__&m=edit_tpl&file_path={$d.path|urlencode}')">修改</a>
                     </if>
                 </td>
             </tr>

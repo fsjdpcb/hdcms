@@ -9,12 +9,15 @@ class MenuControl extends AuthControl
 {
     //模型
     protected $_db;
+    //菜单（节点）
+    private $_menu;
 
     public function __init()
     {
         parent::__init();
         //获得模型实例
         $this->_db = K("Menu");
+        $this->_menu = F('node');
     }
 
     //获得子菜单
@@ -45,25 +48,26 @@ class MenuControl extends AuthControl
     {
         if (IS_POST) {
             if ($this->_db->set_favorite()) {
-                $this->ajax(array('state' => 1, 'message' => '修改成功,请按F5刷新后台','timeout'=>3));
+                $this->ajax(array('state' => 1, 'message' => '修改成功,请按F5刷新后台', 'timeout' => 3));
             }
         } else {
             //查找所有2级菜单
-            $menu = $this->_db->join(NULL)->where("level=2")->order("list_order DESC")->all();
-            foreach ($menu as $n => $m) {
-                $s_menu = $this->_db->join(NULL)->where(array("pid" => $m['nid']))->order("list_order DESC")->all();
-                //如果子菜单全选，二级菜单为选中状态
-                $menu_state = true;
-                foreach ($s_menu as $k => $v) {
-                    //是否为常用菜单
-                    $checked = $v['favorite'] == 1 ? ' checked="checked" ' : '';
-                    $s_menu[$k]['html'] = "<label><input type='checkbox' name='nid[]' value='{$v['nid']}' {$checked}/> {$v['title']}</label>";
-                    //顶级菜单状态
-                    if (empty($checked)) $menu_state = false;
+            $menu = array();
+            foreach ($this->_menu as $nid => $m) {
+                if ($m['_level'] == 2) {
+                    //子菜单
+                    $s_menu = $this->_db->join(NULL)->where(array("pid" => $nid))->order("list_order ASC")->all();
+                    if ($s_menu) {
+                        //如果子菜单全选，二级菜单为选中状态
+                        foreach ($s_menu as $k => $v) {
+                            //常用菜单判断
+                            $checked = $v['favorite'] == 1 ? ' checked="checked" ' : '';
+                            $s_menu[$k]['html'] = "<label><input type='checkbox' name='nid[]' value='{$v['nid']}' {$checked}/> {$v['title']}</label>";
+                        }
+                        $menu[$nid]['data'] = $s_menu;
+                        $menu[$nid]['html'] = "<label><input type='checkbox'/> {$m['title']}</label>";
+                    }
                 }
-                $checked=  $menu_state?' checked="checked" ':'';
-                $menu[$n]['data'] = $s_menu;
-                $menu[$n]['html'] = "<label><input type='checkbox' $checked/> {$m['title']}</label>";
             }
             $this->menu = $menu;
             $this->display();

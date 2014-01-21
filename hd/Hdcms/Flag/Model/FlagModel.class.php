@@ -14,6 +14,7 @@ class FlagModel extends CommonModel
     {
         $fid = Q("fid", null, "intval");
         if ($fid) {
+            //删除内容属性表中数据
             if ($this->table("content_flag")->where("fid=$fid")->del()) {
                 return $this->del($fid);
             }
@@ -28,8 +29,9 @@ class FlagModel extends CommonModel
         if (!empty($_POST['flag'])) {
             foreach ($_POST['flag'] as $fid => $data) {
                 $data['fid'] = $fid;
-                $this->save($data);
+                $this->trigger()->save($data);
             }
+            $this->update_cache();
             return true;
         }
     }
@@ -44,4 +46,26 @@ class FlagModel extends CommonModel
         }
     }
 
+    /**
+     * 更新缓存
+     */
+    public function update_cache()
+    {
+        $flag = $this->getField('fid,flagname,system', true);
+        return F('flag', $flag);
+    }
+
+    public function __after_update($data)
+    {
+        $this->update_cache();
+    }
+
+    public function __after_insert($data)
+    {
+        $this->update_cache();
+    }
+    public function __after_delete($data)
+    {
+        $this->update_cache();
+    }
 }

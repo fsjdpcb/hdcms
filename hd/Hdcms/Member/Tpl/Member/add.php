@@ -17,6 +17,7 @@
             <li><a href="javascript:;" class="action">添加会员</a></li>
         </ul>
     </div>
+    <div class="title-header">会员信息</div>
     <form action="{|U:'add'}" method="post" class="form-inline hd-form">
         <table class="table1">
             <tr>
@@ -73,8 +74,8 @@
                 </td>
             </tr>
         </table>
-        <div class="btn_wrap">
-            <input type="submit" class="btn" value="确定"/>
+        <div class="position-bottom">
+            <input type="submit" class="hd-success" value="确定"/>
         </div>
     </form>
 </div>

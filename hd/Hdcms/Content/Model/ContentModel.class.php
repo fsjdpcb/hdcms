@@ -34,8 +34,8 @@ class ContentModel extends RelationModel
     //获得内容
     public function __construct()
     {
-        $this->_category = F("category", false, CATEGORY_CACHE_PATH);
-        $this->_model = F("model", false, MODEL_CACHE_PATH);
+        $this->_category = F("category");
+        $this->_model = F("model");
         $this->_cid = Q("cid", null, "intval");
         $mid = Q("mid", NULL, "intval");
         $this->_mid = $mid ? $mid : $this->_category[$this->_cid]['mid'];
@@ -252,24 +252,25 @@ class ContentModel extends RelationModel
      */
     public function get_content_flag($aid)
     {
-        $db = M("flag");
-        $flag = $db->all();
-        $data = $db->table("content_flag")->where(array("aid" => $aid, "cid" => $this->_cid))->all();
-        //当前文章属性
-        $cur = array();
-        if ($data) {
-            foreach ($data as $d) {
-                $cur[$d['fid']] = $d;
-            }
-        }
+        //查找当前文章所有属性
+        $data = M("content_flag")->table("content_flag")->where(array("aid" => $aid, "cid" => $this->_cid))->getField('fid', true);
         //所有属性
-        foreach ($flag as $n => $f) {
-            $checked = isset($cur[$f['fid']]) ? "checked='checked'" : '';
-            $flag[$f['fid']]['status'] = isset($cur[$f['fid']]) ? true : false;
+        $flag = F('flag');
+        //所有属性
+        foreach ($flag as $fid => $f) {
+            $checked ='';
+            if ($data) {
+                //文章存在的属性添加checked
+                if (in_array($fid, $data)) {
+                    $checked = "checked='checked'";
+                }
+            }
             $flag[$f['fid']]['html'] = "
-            <input type='hidden' name='content_flag[{$f['fid']}][cid]' value='{$this->_cid}'/>
-            <label class='checkbox inline'><input type='checkbox' name='content_flag[{$f['fid']}][fid]'
-            value='{$f['fid']}' $checked/> " . $f['flagname'] . "</label>";
+                <input type='hidden' name='content_flag[{$fid}][cid]' value='{$this->_cid}'/>
+                <label class='checkbox inline'>
+                <input type='checkbox' name='content_flag[{$fid}][fid]'value='{$fid}' $checked/>
+                 {$f['flagname']} [$fid]</label>
+            ";
         }
         return $flag;
     }

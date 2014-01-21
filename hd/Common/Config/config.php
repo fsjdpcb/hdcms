@@ -19,7 +19,7 @@ return array_merge(
         //默认组
         "DEFAULT_GROUP" => "Hdcms",
         //默认应用
-        "DEFAULT_APP" => "Content",
+        "DEFAULT_APP" => "Index",
         //模板后缀
         "TPL_FIX" => ".php",
         //编辑器上传文件储存位置

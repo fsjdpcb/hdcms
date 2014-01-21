@@ -78,16 +78,16 @@ div.main {
 }
 
 div.main div.left_menu {
-    width: 140px;
-    position: absolute;
     border-right: 1px solid #DADADA;
-    top: 0px;
+    width: 140px;
+    position: fixed;
+    top: 40px;
     left: 0px;
     bottom: 0px;
 }
 
 div.main div.left_menu dl {
-    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 div.main div.left_menu dl dt {
@@ -95,7 +95,7 @@ div.main div.left_menu dl dt {
     color: #03565E;
     font-size: 14px;
     margin-bottom: 5px;
-    padding: 5px 15px;
+    padding: 5px 15px 6px;
 }
 
 div.main div.left_menu dl dd {
@@ -227,10 +227,11 @@ div.main div.menu_nav ul li a.close:hover {
 }
 
 div.main div.top_content {
-    position: absolute;
-    top: 30px;
+    position: fixed;
+    top: 70px;
     right: 0px;
     left: 141px;
+    bottom: 0px;
     background: #F3F3F3;
 }
 

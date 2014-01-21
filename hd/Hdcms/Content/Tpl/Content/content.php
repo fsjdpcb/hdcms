@@ -44,8 +44,8 @@
     </form>
     <div class="menu_list">
         <ul>
-            <li><a href="{|U:'content',array('cid'=>$_GET['cid'],'status'=>1)}" <if value="$status==1">class="action"</if>>内容列表</a></li>
-            <li><a href="{|U:'content',array('cid'=>$_GET['cid'],'status'=>0)}" <if value="$status==0">class="action"</if>>未审核文章</a></li>
+            <li><a href="{|U:'content',array('cid'=>$_GET['cid'],'state'=>1)}" <if value="$hd.get.state==1">class="action"</if>>内容列表</a></li>
+            <li><a href="{|U:'content',array('cid'=>$_GET['cid'],'state'=>0)}" <if value="$hd.get.state==0">class="action"</if>>未审核文章</a></li>
             <li><a href="javascript:;" onclick="window.open('{|U:add,array('cid'=>$_GET['cid'])}')">添加内容</a></li>
         </ul>
     </div>
@@ -76,7 +76,7 @@
                     {$c.flag}
                 </td>
                 <td>
-                    <if value="$c.status==1">已审核<else>未审核</if>
+                    <if value="$c.state==1">已审核<else>未审核</if>
                 </td>
                 <td>{$c.catname}</td>
                 <td>
@@ -86,7 +86,7 @@
                     {$c.updatetime|date:"Y-m-d",@@}
                 </td>
                 <td align="right">
-                    <a href="{|U:'Content/Index/content',array('aid'=>$c['aid'],'cid'=>$_GET['cid'])}" target="_blank">访问</a><span
+                    <a href="{|U:'Index/Index/content',array('aid'=>$c['aid'],'cid'=>$_GET['cid'])}" target="_blank">访问</a><span
                         class="line">|</span>
                     <a href="javascript:;" onclick="window.open('{|U:edit,array('aid'=>$c['aid'],'cid'=>$_GET['cid'])}')">编辑</a><span
                         class="line">|</span>

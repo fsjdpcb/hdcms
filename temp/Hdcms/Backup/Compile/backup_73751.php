@@ -136,7 +136,7 @@ endif;?>
 </div>
 <script>
     $.modal({title:'数据库备份[请不要中断备份]',button_cancel:'关闭',width:450,height:200,show:false,
-        content:"<iframe src='' name='_iframe'></iframe>",
+        content:"<iframe name='_iframe'></iframe>",
         cancel:function(){
             window.location.reload(true);
         }

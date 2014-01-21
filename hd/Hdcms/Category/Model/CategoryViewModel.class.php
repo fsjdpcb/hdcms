@@ -22,8 +22,8 @@ class CategoryViewModel extends ViewModel
     public function __construct()
     {
         parent::__construct();
-        $this->category = F("category", false, CATEGORY_CACHE_PATH);
-        $this->model = F("model", false, MODEL_CACHE_PATH);
+        $this->category = F("category", false);
+        $this->model = F("model", false);
         $this->cid = Q("request.cid");
         $this->view['model'] = array(
             "type" => INNER_JOIN,
@@ -53,7 +53,7 @@ class CategoryViewModel extends ViewModel
                 $data[$v['cid']] = $v;
             }
         }
-        F("category", $data, CATEGORY_CACHE_PATH);
+        F("category", $data);
         return $data;
     }
 
@@ -76,7 +76,7 @@ class CategoryViewModel extends ViewModel
     //获得菜单树状数据
     public function get_tree()
     {
-        $menu = F("category", false, CATEGORY_CACHE_PATH);
+        $menu = F("category", false);
         if (!$menu) {
             $menu = $this->update_cache();
         }

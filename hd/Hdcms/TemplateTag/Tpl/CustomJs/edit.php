@@ -4,13 +4,12 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>添加自定义JS标签</title>
-    <hdui bootstrap="true"/>
-    <js file="__GROUP__/static/js/js.js"/>
+    <hdjs/>
     <css file="__CONTROL_TPL__/css/css.css"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
 </head>
 <body>
-<form action="{|U:'edit'}" method="post" class="form-inline hd-form" onsubmit="return hd_dialog(this,'__CONTROL__')">
+<form action="{|U:'edit'}" method="post" class="hd-form" onsubmit="return hd_submit(this,'__CONTROL__')">
     <input type="hidden" name="id" value="{$field.id}"/>
     <div class="wrap">
         <div class="menu_list">
@@ -54,12 +53,11 @@
                 </tr>
                 <tr>
                     <th class="w100">属性控制</th>
-                    <td>
+                    <td colspan="2">
                     <list from="$flag" name="f">
                         <label class="checkbox inline"><input type="checkbox" name="options[flag][]" value="{$f.fid}"/> {$f.flagname}</label>
                     </list>
                     </td>
-                    <td></td>
                 </tr>
                 <tr>
                     <th>链接目标</th>
@@ -114,8 +112,8 @@
             </table>
         </div>
     </div>
-    <div class="btn_wrap">
-        <input type="submit" value="确定" class="btn btn-primary"/>
+    <div class="position-bottom">
+        <input type="submit" value="确定" class="hd-success"/>
     </div>
 </form>
 </body>

@@ -46,7 +46,7 @@
                     {$c._level}级栏目
                 </td>
                 <td>
-                    <a href="{|U:'Content/Index/category',array('cid'=>$c['cid'])}" target="_blank">访问</a>
+                    <a href="{|U:'Index/Index/category',array('cid'=>$c['cid'])}" target="_blank">访问</a>
                 </td>
                 <td>
                     <a href="{|U:'add',array('pid'=>$c['cid'],'mid'=>$c['mid'])}">添加子栏目</a>

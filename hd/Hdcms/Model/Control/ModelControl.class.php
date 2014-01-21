@@ -22,7 +22,7 @@ class ModelControl extends AuthControl
         parent::__init();
         $this->_db = K("Model");
         $this->_mid = Q("request.mid");
-        $this->_model = F("model", false, MODEL_CACHE_PATH);
+        $this->_model = F("model", false);
 
     }
 

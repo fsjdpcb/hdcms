@@ -63,11 +63,11 @@ class MenuModel extends ViewModel
     {
         //超级管理员获得所有菜单
         if (session("WEB_MASTER") || session("admin")) {
-            $data = $this->join(NULL)->where("status=1")->order(array("list_order" => "DESC"))->all();
+            $data = $this->join(NULL)->where("state=1")->order(array("list_order" => "ASC",'nid'=>'DESC'))->all();
         } else {
             //所有菜单数据
             $data = $this->field("node.nid,node.title,access.rid")
-                ->where("access.rid=" . $this->rid . " AND status=1")
+                ->where("access.rid=" . $this->rid . " AND state=1")
                 ->order(array("list_order" => "DESC"))->all();
         }
         return $data;

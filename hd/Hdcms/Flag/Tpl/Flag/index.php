@@ -14,6 +14,7 @@
         <ul>
             <li><a href="javascript:;" class="action">属性管理</a></li>
             <li><a href="{|U:'add'}">添加属性</a></li>
+            <li><a href="javascript:hd_ajax('{|U:update_cache}')">更新缓存</a></li>
         </ul>
     </div>
     <form action="{|U:'edit'}" method="post" id="edit_form" class="hd-form" onsubmit="return hd_submit(this);">
@@ -21,7 +22,6 @@
             <thead>
             <tr>
                 <td class="w30">fid</td>
-                <td class="w100">别名</td>
                 <td>属性名称</td>
                 <td class="w100">系统属性</td>
                 <td width="50">操作</td>
@@ -32,9 +32,6 @@
                 <tr>
                     <td>
                         {$f.fid}
-                    </td>
-                    <td>
-                        <input type="text" name="flag[{$f.fid}][title]" value="{$f.title}" class="w30"/>
                     </td>
                     <td>
                         <input type="text" name="flag[{$f.fid}][flagname]" value="{$f.flagname}"/>

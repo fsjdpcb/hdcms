@@ -25,8 +25,8 @@ class ContentControl extends AuthControl
     {
         //父类构造函数
         parent::__init();
-        $this->_model = F("model", false, MODEL_CACHE_PATH);
-        $this->_category = F("category", false, CATEGORY_CACHE_PATH);
+        $this->_model = F("model", false);
+        $this->_category = F("category", false);
         $this->_cid = Q("cid", NULL, "intval");
         $this->_mid = Q("mid", NULL, "intval");
         if ($this->_cid) {
@@ -53,14 +53,14 @@ class ContentControl extends AuthControl
      */
     public function ajax_category_ztree()
     {
-        $category= array();
+        $category = array();
         foreach ($this->_category as $n => $cat) {
             $data = array();
             if ($cat['cattype'] != 3) {
                 $data['id'] = $cat['cid'];
                 $data['pId'] = $cat['pid'];
                 $data['name'] = $cat['catname'];
-                $data['url'] = U('content', array('cid' => $cat['cid'], 'status' => 1));
+                $data['url'] = $cat['cattype'] == 1 ? U('content', array('cid' => $cat['cid'], 'state' => 1)) : 'javascript:;';
                 $data['target'] = 'content';
                 $data['open'] = true;
                 $category[] = $data;
@@ -82,10 +82,7 @@ class ContentControl extends AuthControl
         $db = K('ContentView');
         $this->flag = $this->_db->table("flag")->all();
         //$data=array('data'=>'文章数据','page'=>’页码')
-        $data = $db->get_content();
-        $this->assign($data);
-        //文章状态 1 内容列表（正常）0 未审核
-        $this->status = Q('status', 1, 'intval');
+        $this->assign( $db->get_content());
         $this->display();
     }
 
@@ -115,7 +112,7 @@ class ContentControl extends AuthControl
             }
         } else {
             //分配属性
-            $this->flag = M("flag")->all();
+            $this->flag = F('flag');
             //分配栏目
             $this->category = $this->_category[$this->_cid];
             //模型type为1时即标准模型，显示编辑器、关键字等字段

@@ -4,15 +4,14 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>自定义JS列表</title>
-    <hdui bootstrap="true"/>
-    <js file="__GROUP__/static/js/js.js"/>
+    <hdjs/>
     <js file="__CONTROL_TPL__/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
 <body>
 <form method="post" action="__CONTROL__&m=make_all">
     <div class="wrap">
-        <div class="table_title">温馨提示</div>
+        <div class="title-header">温馨提示</div>
         <div class="help">
             1 页面生成HTML后，有新文章添加时并不会及时显示，这时可以使用js标签功能<br/>
             2 js标签会及时显示文章内容，但不适用大量使用<br/>

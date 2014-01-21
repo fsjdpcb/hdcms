@@ -1,2 +1,0 @@
-1 将hd_content表中的username改为author
-2 在hd_content表中添加字段uid int unsigned 

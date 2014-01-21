@@ -196,13 +196,13 @@
                         <tr>
                             <th class="w100">SEO标题</th>
                             <td>
-                                <input type="text" name="seo_title" class="w350"/>
+                                <input type="text" name="cat_seo_title" class="w350"/>
                             </td>
                         </tr>
                         <tr>
                             <th>SEO描述</th>
                             <td>
-                                <textarea name="seo_description" class="w350 h150"></textarea>
+                                <textarea name="cat_seo_description" class="w350 h150"></textarea>
                             </td>
                         </tr>
                     </table>

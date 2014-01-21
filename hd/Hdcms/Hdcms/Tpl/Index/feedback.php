@@ -3,9 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <title>welcome</title>
+    <title>HDCMS快速建站利器</title>
     <hdjs/>
-    <bootstrap/>
     <css file="__CONTROL_TPL__/css/welcome.css"/>
     <js file="__CONTROL_TPL__/js/feedback.js"/>
 </head>

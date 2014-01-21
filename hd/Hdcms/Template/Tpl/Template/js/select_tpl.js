@@ -26,14 +26,4 @@ $(function () {
                 break;
         }
     })
-//    $(".dir").click(function () {
-//       var url = METH+'&input_id＝'+$()
-//    })
-//    //选择文件
-//    $(".file").click(function () {
-//        var input_id = $(this).attr("input_id");alert(3);
-//        $(parent.document).find("#" + input_id).val($(this).attr("path"));
-//        $(parent.document).find("[class*='modal']").remove();
-//        return false;
-//    })
 })

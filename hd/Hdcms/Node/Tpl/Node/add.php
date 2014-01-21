@@ -9,7 +9,7 @@
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
 <body>
-<form action="{|U:'add'}" method="post" onsubmit="return false;" class="form-inline hd-form">
+<form action="{|U:'add'}" method="post" class="hd-form" onsubmit="return hd_submit(this,'{|U:index}')">
     <div class="wrap">
         <div class="menu_list">
             <ul>
@@ -18,19 +18,15 @@
                 <li><a href="javascript:hd_ajax('{|U:update_cache}');">更新缓存</a></li>
             </ul>
         </div>
-        <div class="title-header">
-            菜单信息
-        </div>
+        <div class="title-header">菜单信息</div>
         <table class="table1">
             <tr>
                 <td class="w100">上级:</td>
                 <td>
-                    <select name="pid" onchange="set_control(this)">
-                        <option value="0" level="1">一级菜单</option>
+                    <select name="pid">
+                        <option value="0">一级菜单</option>
                         <list from="$node" name="n">
-                            <option value="{$n.nid}" level="{$n.level}"
-                            <if value="$n.nid==$pid">selected="selected"</if>
-                            >{$n._name}</option>
+                                <option value="{$n.nid}" <if value="$n.nid==$hd.get.pid">selected="selected"</if>>{$n._name}</option>
                         </list>
                     </select>
                 </td>
@@ -42,9 +38,28 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2" style="padding-left:0px;">
-                    <div id="control">
-                    </div>
+                <td class="w100">应用:</td>
+                <td>
+                    <input type="text" name="app" class="w200"/>
+                </td>
+            </tr>
+            <tr>
+                <td>模块:</td>
+                <td>
+                    <input type="text" name="control" class="w200"/>
+                </td>
+            </tr>
+            <tr>
+                <td>方法:</td>
+                <td>
+                    <input type="text" name="method" class="w200"/>
+                </td>
+            </tr>
+            <tr>
+                <td>参数:</td>
+                <td>
+                    <input type="text" name="param" class="w300"/>
+                    <span class="message">例:cid=1&mid=2</span>
                 </td>
             </tr>
             <tr>
@@ -56,8 +71,8 @@
             <tr>
                 <td>状态:</td>
                 <td>
-                    <label><input type="radio" name="status" value="1" checked="checked"> 显示</label>
-                    <label><input type="radio" name="status" value="0"> 隐藏</label>
+                    <label><input type="radio" name="state" value="1" checked="checked"> 显示</label>
+                    <label><input type="radio" name="state" value="0"> 隐藏</label>
                 </td>
             </tr>
             <tr>

@@ -16,9 +16,9 @@ class HtmlControl extends AuthControl
     {
         parent::__init();
         //模型缓存
-        $this->_model = F("model", false, MODEL_CACHE_PATH);
+        $this->_model = F("model");
         //栏目缓存
-        $this->_category = F("category", false, CATEGORY_CACHE_PATH);
+        $this->_category = F("category");
     }
 
     //向客户端发送生成静态状态信息
@@ -28,8 +28,8 @@ class HtmlControl extends AuthControl
             $message .= " <script>
                     window.setTimeout(function(){location.href='" . $url . "'},500)</script>";
         }
-        $this->url=$url;
-        $this->message= $message;
+        $this->url = $url;
+        $this->message = $message;
         $this->display("message");
         exit;
     }
@@ -53,7 +53,7 @@ class HtmlControl extends AuthControl
             $this->make_content();
         }
         unset($_SESSION['make_all']);
-        $this->message("全站静态更新完毕",null);
+        $this->message("全站静态更新完毕", null);
     }
 
     //一键生成配置页
@@ -122,7 +122,7 @@ class HtmlControl extends AuthControl
                     $_GET['cid'] = $cat['cid'];
                     $cat['_html'] = C("HTML_PATH") . '/' . $cat['catdir'] . '/index.html';
                     //为Index/Index/IndexControl提交参数
-                    $_REQUEST['cid']=$cat['cid'];
+                    $_REQUEST['cid'] = $cat['cid'];
                     Html::make("IndexControl", "category", $cat);
                     //去掉页数为0时栏目
                     if (!Page::$staticTotalPage) continue;
@@ -141,7 +141,7 @@ class HtmlControl extends AuthControl
                         $url = null;
                     }
                     unset($_SESSION['make_all']['category']);
-                    unset($_SESSION['category_html_config']);
+                    unset($_SESSION['category_html_config']);exit;
                     $this->message("所有栏目生成完毕", $url);
                 }
                 //储存配置到session
@@ -155,7 +155,7 @@ class HtmlControl extends AuthControl
             if (isset($_SESSION['make_all']['category'])) {
                 $url = U("make_all");
             } else {
-                $url =null;
+                $url = null;
             }
             unset($_SESSION['make_all']['category']);
             unset($_SESSION['category_html_config']);
@@ -192,8 +192,8 @@ class HtmlControl extends AuthControl
     public function create_category()
     {
         session("category_html_config", NULL);
-        $this->assign("category", json_encode($this->_category));
-        $this->assign("model", F("model", false, MODEL_CACHE_PATH));
+        $this->category = json_encode($this->_category);
+        $this->model = $this->_model;
         $this->display();
     }
 
@@ -332,8 +332,8 @@ class HtmlControl extends AuthControl
     public function create_content()
     {
         session("content_html_config", NULL);
-        $this->assign("category", json_encode($this->_category));
-        $this->assign("model", F("model", false, MODEL_CACHE_PATH));
+        $this->category = json_encode($this->_category);
+        $this->model = $this->_model;
         $this->display();
     }
 

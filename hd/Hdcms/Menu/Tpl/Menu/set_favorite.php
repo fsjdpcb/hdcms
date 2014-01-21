@@ -5,12 +5,11 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>设置常用菜单</title>
     <hdjs/>
-    <js file="__GROUP__/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
 <body>
-<form method="post" class="hd-form" onsubmit="return hd_submit(this,'__METH__')">
+<form method="post" class="hd-form" onsubmit="return false">
     <div class="wrap">
         <div class="title-header">设置常用菜单</div>
         <table class="table1">
@@ -31,6 +30,6 @@
         </table>
     </div>
     <div class="position-bottom">
-        <input type="submit" class="hd-success" value="确定"/>
+        <input type='button' class="hd-success" onclick="set_favorite()" value="确定"/>
     </div>
 </form>

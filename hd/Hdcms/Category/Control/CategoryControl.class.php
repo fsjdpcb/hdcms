@@ -20,8 +20,8 @@ class CategoryControl extends AuthControl
     public function __init()
     {
         parent::__init();
-        $this->_category = F("category", false, CATEGORY_CACHE_PATH);
-        $this->_model = F("model", false, MODEL_CACHE_PATH);
+        $this->_category = F("category", false);
+        $this->_model = F("model", false);
         $this->_db = K("Category");
         $this->_cid = Q("request.cid", null, "intval");
         if ($this->_cid && !isset($this->_category[$this->_cid])) {

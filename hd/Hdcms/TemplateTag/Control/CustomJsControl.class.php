@@ -1,23 +1,24 @@
 <?php
+
 /**
  * 自定义JS
  * Class CustomJsControl
  */
 class CustomJsControl extends Control
 {
-    public $db;
+    private $_db;
+    private $_category;
 
     public function __init()
     {
-        $this->category = F("category", false, CATEGORY_CACHE_PATH);
-        $this->db = K("CustomJs");
+        $this->_category = F("category");
+        $this->_db = K("CustomJs");
     }
 
     //读取所有列表
     public function index()
     {
-        $tag = $this->db->all();
-        $this->assign("tag", $tag);
+        $this->tag = $this->_db->all();
         $this->display();
     }
 
@@ -49,7 +50,7 @@ class CustomJsControl extends Control
             $_POST['options'] = serialize($_POST['options']);
             $_POST['addtime'] = time();
             $_POST['username'] = $_SESSION['username'];
-            if ($aid = $this->db->replace()) {
+            if ($aid = $this->_db->replace()) {
                 $content = '<li>
                 <a href="<?php echo get_content_url($field);?>" target="' . $options['target'] . '">
                     [<?php echo date("' . $date_format . '",$field["addtime"]);?>]<?php echo $field["title"]?>
@@ -57,12 +58,12 @@ class CustomJsControl extends Control
                 </li>';
                 $con = compress(tag("arclist", $options, $content));
                 file_put_contents(JS_CACHE_PATH . $aid . '.php', $con);
-                $this->_ajax(array("stat" => 1, "msg" => "操作成功"));
+                $this->_ajax(array("state" => 1, "message" => "操作成功"));
             }
         } else {
-            $flag = $this->db->table("flag")->all();
+            $flag = $this->_db->table("flag")->all();
             $this->assign("flag", $flag);
-            $this->assign("category", $this->category);
+            $this->category = $this->_category;
             $this->display();
         }
     }
@@ -73,10 +74,10 @@ class CustomJsControl extends Control
         if (IS_POST) {
             $this->add();
         } else {
-            $field = $this->db->find(Q("get.id"));
-            $flag = $this->db->table("flag")->all();
+            $field = $this->_db->find(Q("get.id"));
+            $flag = $this->_db->table("flag")->all();
             $this->assign("flag", $flag);
-            $this->assign("category", $this->category);
+            $this->assign("category", $this->_category);
             $this->assign("field", $field);
             $this->display();
         }
@@ -94,7 +95,7 @@ class CustomJsControl extends Control
     public function del()
     {
         $id = Q("get.id", NULL, "intval");
-        $this->db->del($id);
+        $this->_db->del($id);
         $file = JS_CACHE_PATH . $id . '.php';
         is_file($file) and @unlink($file);
         $this->_ajax(array("stat" => 1, "msg" => "删除JS标签成功"));

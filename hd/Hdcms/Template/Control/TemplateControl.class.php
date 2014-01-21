@@ -47,14 +47,15 @@ class TemplateControl extends AuthControl
     public function select_style()
     {
         $dir_name = Q("dir_name");
-        $db = K("Config");
+        import('Config.Model.ConfigModel');
+        $db = K("config");
         if ($dir_name) {
             $db->join()->where("name='WEB_STYLE'")->save(array(
                 "value" => $dir_name
             ));
             //更新配置文件
             $db->update_config_file();
-            $this->_ajax(1);
+            $this->ajax(array('state'=>1,'message'=>'操作成功'));
         }
     }
 
@@ -73,7 +74,7 @@ class TemplateControl extends AuthControl
         if (IS_POST) {
             //检测模板文件写权限
             if (!is_writable($_POST['file_path'])) {
-                $this->_ajax(2);
+                $this->ajax(2);
             }
             //新文件名
             $new = dirname($_POST['file_path']) . '/' . $_POST['file_name'] . '.html';
@@ -81,7 +82,7 @@ class TemplateControl extends AuthControl
             rename($_POST['file_path'], $new);
             //修改模板内容
             if (file_put_contents($new, $_POST['content'])) {
-                $this->_ajax(1);
+                $this->ajax(1);
             }
         } else {
             $file_path = Q("get.file_path", "", "urldecode");

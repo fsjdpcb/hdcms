@@ -17,7 +17,7 @@ div#category_tree {
 /*右侧内容显示区*/
 div#content {
     position: fixed;
-    left: 182px;
+    left: 152px;
     right: 0px;
     bottom: 0px;
     top: 0px;

@@ -23,8 +23,8 @@ class CategoryModel extends RelationModel
     //构造函数
     public function __init()
     {
-        $this->_category = F("category", false, CATEGORY_CACHE_PATH);
-        $this->_model = F("model", false, MODEL_CACHE_PATH);
+        $this->_category = F("category", false);
+        $this->_model = F("model", false);
     }
 
     /**
@@ -66,13 +66,11 @@ class CategoryModel extends RelationModel
     //更新栏目缓存
     public function update_cache()
     {
-        $category = $this->join()->order("catorder ASC,cid DESC")->all();
+        $category = $this->join()->order("catorder ASC,cid ASC")->all();
         if (!empty($category)) {
             foreach ($category as $n => $v) {
-                $v["disabled"] = '';
-                if ($v["cattype"] != 1) {
-                    $v["disabled"] = 'disabled="disabled"';
-                }
+                //封面与链接栏目添加disabled属性
+                $v["disabled"] = $v["cattype"] != 1?'disabled="disabled"':'';
             }
         }
         $category = Data::tree($category, "catname", "cid", "pid");
@@ -82,7 +80,7 @@ class CategoryModel extends RelationModel
             $v['_type_name'] = $type[$v['cattype']];
             $data[$v['cid']] = $v;
         }
-        return F("category", $data, CATEGORY_CACHE_PATH);
+        return F("category", $data);
     }
 
     //删除栏目

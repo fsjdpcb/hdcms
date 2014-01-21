@@ -25,8 +25,8 @@ class IndexControl extends CommonControl
     {
         parent::__init();
         $this->check_web_stat();
-        $this->_model = F("model", false, MODEL_CACHE_PATH);
-        $this->_category = F("category", false, CATEGORY_CACHE_PATH);
+        $this->_model = F("model");
+        $this->_category = F("category");
         //模板风格路径
         $this->_template = "./template/" . C("WEB_STYLE") . '/';
         //分配模板目录URL
@@ -57,12 +57,13 @@ class IndexControl extends CommonControl
     public function content()
     {
         if ($this->_aid) {
+            import('Content.Model.ContentViewModel');
             $db = new ContentViewModel();
             $field = $db->where($db->tableFull . ".aid=" . $this->_aid)->find();
             if ($field) {
                 $field['caturl'] = U("category", array("cid" => $field['cid']));
                 $field['source'] = empty($field['source']) ? C("WEBNAME") : $field['source'];
-                $this->assign("hdcms", $field);
+                $this->hdcms=$field;p($field);exit;
                 $tpl = get_content_tpl($this->_aid);
                 if (is_file($tpl))
                     $this->display($tpl);
