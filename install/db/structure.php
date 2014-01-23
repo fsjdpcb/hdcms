@@ -42,7 +42,7 @@ $db->exe("CREATE TABLE `".$db_prefix."category` (
   `cat_seo_title` char(100) DEFAULT NULL COMMENT 'SEO标题',
   `cat_seo_description` varchar(255) DEFAULT NULL COMMENT 'SEO描述',
   PRIMARY KEY (`cid`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='栏目表'");
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='栏目表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."category_access`");
 $db->exe("CREATE TABLE `".$db_prefix."category_access` (
   `cid` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '栏目cid',
@@ -99,7 +99,7 @@ $db->exe("CREATE TABLE `".$db_prefix."content` (
   `description` varchar(255) NOT NULL DEFAULT '' COMMENT '描述',
   `html_path` varchar(255) NOT NULL DEFAULT '' COMMENT '自定义生成的静态文件地址',
   PRIMARY KEY (`aid`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8");
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."content_data`");
 $db->exe("CREATE TABLE `".$db_prefix."content_data` (
   `aid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '文章主表ID',
@@ -137,7 +137,7 @@ $db->exe("CREATE TABLE `".$db_prefix."content_single` (
   `content` text NOT NULL COMMENT '正文',
   `html_path` varchar(255) NOT NULL DEFAULT '' COMMENT '自定义生成的静态文件地址',
   PRIMARY KEY (`aid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8");
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."custom_js`");
 $db->exe("CREATE TABLE `".$db_prefix."custom_js` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -174,7 +174,7 @@ $db->exe("CREATE TABLE `".$db_prefix."field` (
   `set` text NOT NULL COMMENT '字段设置',
   PRIMARY KEY (`fid`),
   KEY `mid` (`mid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='模型字段'");
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='模型字段'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."flag`");
 $db->exe("CREATE TABLE `".$db_prefix."flag` (
   `fid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
@@ -198,14 +198,17 @@ $db->exe("DROP TABLE IF EXISTS `".$db_prefix."model`");
 $db->exe("CREATE TABLE `".$db_prefix."model` (
   `mid` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
   `model_name` char(30) NOT NULL DEFAULT '' COMMENT '模型名称',
-  `tablename` char(20) NOT NULL DEFAULT '' COMMENT '主表名',
+  `table_name` char(20) NOT NULL DEFAULT '' COMMENT '主表名',
   `enable` tinyint(1) NOT NULL DEFAULT '1' COMMENT '禁用 1 开启 0 关闭',
   `description` varchar(45) NOT NULL DEFAULT '' COMMENT '模型描述',
-  `app_name` char(30) NOT NULL COMMENT '处理程序（控制器）',
   `type` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 基本模型 主、附表     2 独立模型 只有主表',
   `is_submit` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 允许投稿 2 不允许投稿',
   `m_order` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '排序',
   `is_system` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '1 系统模型  2 普通模型',
+  `app_group` char(50) NOT NULL DEFAULT '' COMMENT '应用组',
+  `app` char(50) NOT NULL DEFAULT '' COMMENT '应用',
+  `control` char(50) NOT NULL DEFAULT '' COMMENT '控制器',
+  `method` char(50) NOT NULL DEFAULT '' COMMENT '方法',
   PRIMARY KEY (`mid`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='模型表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."navigation`");
@@ -235,7 +238,7 @@ $db->exe("CREATE TABLE `".$db_prefix."node` (
   `is_system` tinyint(1) NOT NULL DEFAULT '0' COMMENT '系统菜单 1 是  0 不是',
   `favorite` tinyint(1) NOT NULL DEFAULT '0' COMMENT '后台常用菜单   1 是  0 不是',
   PRIMARY KEY (`nid`)
-) ENGINE=MyISAM AUTO_INCREMENT=91 DEFAULT CHARSET=utf8");
+) ENGINE=MyISAM AUTO_INCREMENT=92 DEFAULT CHARSET=utf8");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."role`");
 $db->exe("CREATE TABLE `".$db_prefix."role` (
   `rid` smallint(5) NOT NULL AUTO_INCREMENT,
@@ -304,7 +307,7 @@ $db->exe("CREATE TABLE `".$db_prefix."upload` (
   KEY `id` (`id`) USING BTREE,
   KEY `uid` (`uid`),
   KEY `aid` (`aid`,`cid`,`mid`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='上传文件'");
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='上传文件'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."user`");
 $db->exe("CREATE TABLE `".$db_prefix."user` (
   `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
