@@ -40,7 +40,7 @@
             <tr>
                 <td>链接Url:</td>
                 <td>
-                    <input type="text" name="link" class="w300"/>
+                    <input type="text" name="url" class="w300"/>
                 </td>
             </tr>
             <tr>

@@ -219,7 +219,7 @@ $db->exe("CREATE TABLE `".$db_prefix."navigation` (
   `target` enum('_self','_blank') NOT NULL DEFAULT '_self' COMMENT '打开方式',
   `state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态 1 显示 0 不显示',
   `list_order` mediumint(100) NOT NULL DEFAULT '100' COMMENT '排序',
-  `link` varchar(255) NOT NULL DEFAULT '' COMMENT '链接地址',
+  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '链接地址',
   PRIMARY KEY (`nid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='网站前台导航'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."node`");
