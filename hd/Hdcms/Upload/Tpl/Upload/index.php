@@ -13,6 +13,7 @@
     </script>
 </head>
 <body>
+<div class="wrap">
     <div class="tab">
         <ul class="tab_menu">
             <li lab="upload"><a href="#">上传文件</a></li>
@@ -31,9 +32,10 @@
             </div>
         </div>
     </div>
-<div class="position-bottom">
-    <input type="button" class="hd-success" id="pic_selected" value="确定"/>
-    <input type="button" class="hd-cancel" value="关闭" onclick="close_window();"/>
+    <div class="position-bottom">
+        <input type="button" class="hd-success" id="pic_selected" value="确定"/>
+        <input type="button" class="hd-cancel" value="关闭" onclick="close_window();"/>
+    </div>
 </div>
 </body>
 </html>

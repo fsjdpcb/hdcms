@@ -1,15 +1,23 @@
 <?php
 
+/**
+ * 内容管理模型
+ * Class ContentModel
+ */
 class ContentModel extends RelationModel
 {
-    //栏目id
-    private $_cid;
     //模型mid
     private $_mid;
+    //栏目cid
+    private $_cid;
+    //文章aid
+    private $_aid;
     //模型缓存
     private $_model;
     //栏目缓存
     private $_category;
+    //副表
+    private $_stable;
     //字段缓存
     private $_field;
     //自动完成
@@ -32,19 +40,22 @@ class ContentModel extends RelationModel
     }
 
     //获得内容
-    public function __construct()
+    public function __init()
     {
-        $this->_category = F("category");
         $this->_model = F("model");
-        $this->_cid = Q("cid", null, "intval");
-        $mid = Q("mid", NULL, "intval");
-        $this->_mid = $mid ? $mid : $this->_category[$this->_cid]['mid'];
+        $this->_category = F("category");
         $this->_field = F($this->_mid, false, FIELD_CACHE_PATH);
-        //模型表
-        $this->table = $this->_model[$this->_mid]['tablename'];
+        $this->_cid = Q("cid", null, "intval");
+        $this->_mid = $this->_category[$this->_cid]['mid'];
+        $this->_aid=Q('aid',NULL,'intval');
+        //主表
+        $this->table = $this->_model[$this->_mid]['table_name'];
         if (is_null($this->table)) {
             halt("没有可操作的表,缺少cid或mid参数");
         }
+        //副表
+        if ($this->_model[$this->_mid]['type'] == 1)
+            $this->_stable = $this->table . '_data';
         //关联栏目表
         $this->join = array(
             "category" => array(
@@ -59,15 +70,14 @@ class ContentModel extends RelationModel
                 "parent_key" => "aid"
             )
         );
-        //副表关联
-        if ($this->_model[$this->_mid]['type'] == 1) {
-            $this->join[$this->table . '_data'] = array(
+        //关联副表
+        if ($this->_stable) {
+            $this->join[$this->_stable] = array(
                 "type" => HAS_ONE,
                 "foreign_key" => "aid",
                 "parent_key" => "aid"
             );
         }
-        parent::__construct();
     }
 
     /**
@@ -86,11 +96,8 @@ class ContentModel extends RelationModel
      */
     public function edit_content()
     {
-        $aid = Q("aid", NULL, 'intval');
-        if ($aid) {
-            if ($this->create()) {
-                return $this->save();
-            }
+        if ($this->create()) {
+            return $this->save();
         }
     }
 
@@ -150,8 +157,8 @@ class ContentModel extends RelationModel
             if ($field = $this->_get_field_info($field_name)) {
                 $_v = $this->_get_field_value($field, $post);
                 //副表字段时，添加表附表名
-                if ($field['table_type'] == 2) {
-                    $data[$field['table_name']][$field_name] = $_v;
+                if ($this->_stable) {
+                    $data[$this->_stable][$field_name] = $_v;
                     unset($data[$field_name]);
                 } else {
                     $data[$field_name] = $_v;
@@ -258,7 +265,7 @@ class ContentModel extends RelationModel
         $flag = F('flag');
         //所有属性
         foreach ($flag as $fid => $f) {
-            $checked ='';
+            $checked = '';
             if ($data) {
                 //文章存在的属性添加checked
                 if (in_array($fid, $data)) {
@@ -304,8 +311,8 @@ class ContentModel extends RelationModel
         //服务器是否允许远程下载
         $php_ini = @ini_get("allow_url_fopen");
         //有正文时处理
-        if ($php_ini && isset($data['auto_thumb']) && $data['auto_thumb'] == 1 && empty($data['thumb'])) {
-            $content = $data[$this->table . '_data']['content'];
+        if ($php_ini && isset($data['auto_thumb']) && empty($data['thumb']) && $this->_stable) {
+            $content = $data[$this->_stable]['content'];
             //取得所有图片
             preg_match_all("@<img.*?src=['\"](http://.*?[jpg|jpeg|png|gif])['\"].*?>@i", $content, $imgs);
             //没有图片不进行缩略图自动处理
@@ -313,10 +320,9 @@ class ContentModel extends RelationModel
                 return false;
             }
             //取第几张图为缩略图
-            $num = isset($this->data['auto_thumb_num']) && intval($data['auto_thumb_num']) > 1 ? intval($data['auto_thumb_num']) : 1;
-            $num--;
+            $num = intval($data['auto_thumb_num'])-1;
             //是否存在这张图
-            if (isset($imgs[1][$num]) && !empty($imgs[1][$num])) {
+            if (isset($imgs[1][$num])) {
                 import("Upload.Control.UploadControl");
                 $upload = new UploadControl();
                 $d_img = $upload->down_remote_pic($imgs[1][$num]);
@@ -336,16 +342,20 @@ class ContentModel extends RelationModel
      */
     private function _get_description(&$data)
     {
-        if (isset($data['description'])) {
+        /**
+         * 需要满足以下条件才截取
+         * 1 描述为空
+         * 2 有正文字段
+         * 3 选择了截取内容复选框
+         */
+        if (empty($data['description']) && isset($data['auto_desc'])) {
+            //副表
             $table = $this->table . '_data';
-            $description = $data['description'];
             $content = $data[$table]['content'];
-            if (empty($description) && $data['auto_desc'] == 1) {
-                //截取长度
-                $len = intval($data['auto_desc_length']) ? intval($data['auto_desc_length']) : 100;
-                $content = str_replace('&nbsp;', '', @strip_tags($content));
-                $data['description'] = mb_substr(trim($content), 0, $len, "utf8");
-            }
+            //截取长度
+            $len = intval($data['auto_desc_length']) ? intval($data['auto_desc_length']) : 100;
+            $content = str_replace('&nbsp;', '', @strip_tags($content));
+            $data['description'] = mb_substr(trim($content), 0, $len, "utf8");
         }
     }
 

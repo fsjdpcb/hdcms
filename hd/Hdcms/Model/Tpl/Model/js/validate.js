@@ -11,9 +11,7 @@ $(function () {
             error: {
                 required: "模型名称不能为空",
                 ajax: "模型已经存在"
-            },
-            message:'模型名称',
-            success:'&nbsp;'
+            }
         },
         tablename: {
             rule: {
@@ -26,15 +24,38 @@ $(function () {
                 regexp:"表名必须由英文或数字组成",
                 ajax: "数据表已经存在"
             },
-            message:'不要写表前缀',
-            success:'&nbsp;'
+            message:'不要写表前缀'
+        },
+        app_group: {
+            rule: {
+                required: true
+            },
+            error: {
+                required: "应用组不能为空"
+            }
+        },
+        app: {
+            rule: {
+                required: true
+            },
+            error: {
+                required: "应用不能为空"
+            }
         },
         control: {
             rule: {
                 required: true
             },
             error: {
-                required: "应用名称不能为空"
+                required: "控制器不能为空"
+            }
+        },
+        method: {
+            rule: {
+                required: true
+            },
+            error: {
+                required: "方法不能为空"
             }
         }
     })

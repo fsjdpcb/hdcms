@@ -21,13 +21,13 @@
     <table class="table2 hd-form">
         <thead>
         <tr>
-            <td width="30">CID</td>
-            <td width="50">排序</td>
+            <td class="w30">CID</td>
+            <td class="w50">排序</td>
             <td>栏目名称</td>
-            <td width="100">类型</td>
-            <td width="100">等级</td>
-            <td width="50">访问</td>
-            <td width="180">操作</td>
+            <td class="w100">类型</td>
+            <td class="w100">模型</td>
+            <td class="w50">访问</td>
+            <td class="w180">操作</td>
         </tr>
         </thead>
         <list from="$category" name="c">
@@ -36,17 +36,11 @@
                 <td>
                     <input type="text" class="w30" value="{$c.catorder}" name="list_order[{$c.cid}]"/>
                 </td>
+                <td>{$c._name}</td>
+                <td>{$c._type_name}</td>
+                <td>{$c.model_name}</td>
                 <td>
-                    {$c._name}
-                </td>
-                <td>
-                    {$c._type_name}
-                </td>
-                <td>
-                    {$c._level}级栏目
-                </td>
-                <td>
-                    <a href="{|U:'Index/Index/category',array('cid'=>$c['cid'])}" target="_blank">访问</a>
+                    <a href="{|U:'Index/Category/category',array('cid'=>$c['cid'])}" target="_blank">访问</a>
                 </td>
                 <td>
                     <a href="{|U:'add',array('pid'=>$c['cid'],'mid'=>$c['mid'])}">添加子栏目</a>

@@ -152,7 +152,7 @@
                     <tr>
                         <th>内容<span class="star">*</span></th>
                         <td>
-                            {|tag:"ueditor",array("name"=>$model['tablename']."_data[content]","content"=>$field['content'])}
+                            {|tag:"ueditor",array("name"=>$model['table_name']."_data[content]","content"=>$field['content'])}
                             <div class="editor_set">
                                 <label class="checkbox inline">
                                     <input type="checkbox" name="down_remote_pic" value="1"

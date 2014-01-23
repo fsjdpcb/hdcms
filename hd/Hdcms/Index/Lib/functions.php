@@ -39,6 +39,23 @@ function get_content_tpl($aid)
     return str_replace('{style}', './template/' . C("WEB_STYLE"), $tpl);
 }
 
+/**
+ * 获得单文章url
+ * @param $aid
+ * @return string
+ */
+function get_single_url($aid)
+{
+    $db = M('content_single');
+    $data = $db->find($aid);
+    if ($data['ishtml']) {
+        $url = empty($data['html_path']) ? rtrim(C("HTML_PATH"), '/\\') . "/single/{$aid}.html" : $data['html_path'];
+        return __ROOT__ . $url;
+    } else {
+        return __WEB__ . "?a=Index&c=Single&m=single&aid=$aid";
+    }
+}
+
 //获得内容页url地址
 function get_content_url($field)
 {

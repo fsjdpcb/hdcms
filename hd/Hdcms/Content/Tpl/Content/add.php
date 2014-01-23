@@ -144,11 +144,10 @@
                 </tr>
                 <!--标准模型显示正文字段-->
                 <if value="$model.type==1">
-
                     <tr>
                         <th>内容<span class="star">*</span></th>
                         <td>
-                            {|tag:"ueditor",array("name"=>$model['tablename']."_data[content]",'php'=>'__ROOT__/index.php?a=Upload&c=Upload&m=ueditor_upload')}
+                            {|tag:"ueditor",array("name"=>$model['table_name']."_data[content]",'php'=>'__ROOT__/index.php?a=Upload&c=Upload&m=ueditor_upload')}
                             <div class="editor_set control-group">
                                 <label class="checkbox inline">
                                     <input type="checkbox" name="down_remote_pic" value="1"

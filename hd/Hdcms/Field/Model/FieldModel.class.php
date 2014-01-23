@@ -40,7 +40,7 @@ class FieldModel extends Model
     //添加字段时，通过自动完成设置表名
     public function _table_name()
     {
-        $table = $this->_model[$this->_mid]['tablename'];
+        $table = $this->_model[$this->_mid]['table_name'];
         return Q('table_type') == 1 ? $table : $table . "_data";
     }
 
@@ -94,7 +94,7 @@ class FieldModel extends Model
     public function alter_table_field()
     {
         //主表
-        $table = $this->_model[$this->_mid]['tablename'];
+        $table = $this->_model[$this->_mid]['table_name'];
         //table_type字段所在表 1 主表  2 附表
         $table = Q('table_type') == 1 ? $table : $table . '_data';
         //SQL

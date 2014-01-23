@@ -7,8 +7,8 @@
     <hdjs/>
     <css file="__CONTROL_TPL__/css/index.css"/>
     <js file="__CONTROL_TPL__/js/index.js"/>
-    <link rel="stylesheet" href="__GROUP__/static/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">
-    <script type="text/javascript" src="__GROUP__/static/ztree/js/jquery.ztree.all-3.5.min.js"></script>
+    <link rel="stylesheet" href="hd/static/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+    <script type="text/javascript" src="hd/static/ztree/js/jquery.ztree.all-3.5.min.js"></script>
     <base target="content"/>
 </head>
 <body>
@@ -21,8 +21,7 @@
         <ul id="treeDemo" class="ztree" style="top:25px;position: absolute;"></ul>
     </div>
     <div id="content">
-        <iframe src="{|U:'Hdcms/Index/feedback'}" name="content" scrolling="auto" frameborder="0"
-                style="height:100%;width: 100%;"></iframe>
+        <iframe src="{|U:'Hdcms/Index/feedback'}" name="content" scrolling="auto" frameborder="0" style="height:100%;width: 100%;"></iframe>
     </div>
 </div>
 <script type="text/javascript">

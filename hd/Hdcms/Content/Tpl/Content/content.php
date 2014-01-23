@@ -56,10 +56,11 @@
                 <input type="checkbox" id="select_all"/>
             </td>
             <td class="w30">aid</td>
-            <td width="30">排序</td>
+            <td class="w30">排序</td>
             <td>标题</td>
             <td class="w50">状态</td>
-            <td width="100">栏目</td>
+            <td class="w100">栏目</td>
+            <td class="w80">模型</td>
             <td class="w80">作者</td>
             <td class="w80">修改时间</td>
             <td class="w100">操作</td>
@@ -72,21 +73,19 @@
                 <td>
                     <input type="text" class="w30" value="{$c.arc_sort}" name="arc_order[{$c.aid}]"/>
                 </td>
-                <td><a href="{|U:edit,array('aid'=>$c['aid'],'cid'=>$_GET['cid'])}" target="_blank">{$c.title}</a>
+                <td>
+                    <a href="{|U:edit,array('aid'=>$c['aid'],'cid'=>$_GET['cid'])}" target="_blank">{$c.title}</a>
                     {$c.flag}
                 </td>
                 <td>
                     <if value="$c.state==1">已审核<else>未审核</if>
                 </td>
                 <td>{$c.catname}</td>
-                <td>
-                    {$c.author}
-                </td>
-                <td>
-                    {$c.updatetime|date:"Y-m-d",@@}
-                </td>
+                <td>{$c.model_name}</td>
+                <td>{$c.author}</td>
+                <td>{$c.updatetime|date:"Y-m-d",@@}</td>
                 <td align="right">
-                    <a href="{|U:'Index/Index/content',array('aid'=>$c['aid'],'cid'=>$_GET['cid'])}" target="_blank">访问</a><span
+                    <a href="{|U:'Index/Content/content',array('cid'=>$_GET['cid'],'aid'=>$c['aid'])}" target="_blank">访问</a><span
                         class="line">|</span>
                     <a href="javascript:;" onclick="window.open('{|U:edit,array('aid'=>$c['aid'],'cid'=>$_GET['cid'])}')">编辑</a><span
                         class="line">|</span>

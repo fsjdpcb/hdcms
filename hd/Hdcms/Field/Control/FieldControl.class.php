@@ -85,9 +85,9 @@ class FieldControl extends AuthControl
         //字段名
         $field_name = Q("request.field_name");
         $table = array();
-        $table[] = $this->_model[$this->_mid]['tablename'];
+        $table[] = $this->_model[$this->_mid]['table_name'];
         if ($this->_model[$this->_mid]['type'] == 1) {
-            $table[] = $this->_model[$this->_mid]['tablename'] . "_data";
+            $table[] = $this->_model[$this->_mid]['table_name'] . "_data";
         }
         //检查主，副表
         foreach ($table as $t) {

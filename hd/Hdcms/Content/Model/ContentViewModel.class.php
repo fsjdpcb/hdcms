@@ -8,10 +8,14 @@ class ContentViewModel extends ViewModel
 {
     //表
     public $table;
-    //栏目id
-    private $_cid;
+    //副表
+    private $_stable;
     //模型mid
     private $_mid;
+    //栏目id
+    private $_cid;
+    //文章id
+    private $_aid;
     //模型缓存
     private $_model;
     //栏目缓存
@@ -28,23 +32,27 @@ class ContentViewModel extends ViewModel
             halt("ContentViewModel没有可操作的cid");
         }
         $this->_mid = $this->_category[$this->_cid]['mid'];
-        //模型表
-        $this->table = $this->_model[$this->_mid]['tablename'];
-        //关联栏目表
+        //主表
+        $this->table = $this->_model[$this->_mid]['table_name'];
+        //副表
+        if($this->_model[$this->_mid]['type']==1)
+            $this->_stable= $this->table.'_data';
+        //表关联
         $this->view = array(
+            //栏目表
             "category" => array(
                 "type" => INNER_JOIN,
                 "on" => $this->table . ".cid=category.cid"
+            ),
+            //属性表
+            'content_flag'=>array(
+                "type" => LEFT_JOIN,
+                "on" => $this->table . ".aid=content_flag.aid"
             )
         );
-        //属性表
-        $this->view['content_flag'] = array(
-            "type" => LEFT_JOIN,
-            "on" => $this->table . ".aid=content_flag.aid"
-        );
         //副表关联
-        if ($this->_model[$this->_mid]['type'] == 1) {
-            $this->view [$this->table . '_data'] = array(
+        if ($this->_stable) {
+            $this->view [$this->_stable] = array(
                 "type" => INNER_JOIN,
                 "on" => $this->table . ".aid={$this->table}_data.aid"
             );
@@ -52,8 +60,9 @@ class ContentViewModel extends ViewModel
     }
 
     /**
-     * 获得内容列表数据
+     * 后台显示内容列表（仅供后台）
      * 这是根据搜索内容获得，用于content模块方法
+     * @return array('data'=>数据,'page'=>分页)
      */
     public function get_content()
     {
@@ -68,9 +77,9 @@ class ContentViewModel extends ViewModel
         if ($flag = Q('search_flag', NULL, ''))
             $where[] = C("DB_PREFIX") . "content_flag.fid=$flag";
         //文章关键词
-        $searchKeyword = Q("post.search_keyword");
+        $searchKeyword = Q("search_keyword");
         //按类型搜索
-        $searchType = Q("post.search_type");
+        $searchType = Q("search_type");
         if ($searchType && $searchKeyword) {
             switch ($searchType) {
                 case 1:
@@ -93,13 +102,14 @@ class ContentViewModel extends ViewModel
         }
         //文章状态：1 已审核 0未审核
         $where[] = "state=".Q("state", 1, "intval");
-        //按栏目
+        //加入当前栏目
+        $cid=array($this->_cid);
         //获得所有子栏目
         $sCategory=Data::channelList($this->_category,$this->_cid);
-        $cid=array($this->_cid);
         foreach($sCategory as $cat){
             $cid[]=$cat['cid'];
         }
+        //栏目条件（包含当前栏目与子栏目）
         $where[] =$this->tableFull. '.cid IN(' . implode(',',$cid).')';
         //---------------------搜索条件----------------------
 
@@ -113,11 +123,13 @@ class ContentViewModel extends ViewModel
         $pre =C("DB_PREFIX");
         //总记录数SQL
         $sql = "SELECT COUNT(*) AS c FROM (
-            SELECT $pri FROM  {$this->tableFull} INNER JOIN {$pre}category  ON {$this->tableFull}.cid={$pre}category.cid
+            SELECT $pri FROM  {$this->tableFull}
+            INNER JOIN {$pre}category ON {$this->tableFull}.cid={$pre}category.cid
             LEFT JOIN {$pre}content_flag  ON {$this->tableFull}.aid={$pre}content_flag.aid
             WHERE ".substr($w,0,-4)."
             GROUP BY $pri) AS t";
         $result= M()->query($sql);
+        //文章统计
         $count = $result[0]['c'];
         //根据配置文件设置显示条数
         $page = new Page($count, C("ADMIN_LIST_ROW"));
@@ -130,13 +142,15 @@ class ContentViewModel extends ViewModel
             $flag = K("ContentFlag");
             foreach ($data as $n => $d) {
                 $f = $flag->field("flagname")->where(array("aid" => $d['aid'], 'cid' => $this->_cid))->all();
-                if (!empty($f) && is_array($f)) {
+                if (!empty($f)) {
                     $s_flag = "[<font color='red'>";
                     foreach ($f as $_f) {
                         $s_flag .= $_f['flagname'] . "&nbsp;";
                     }
                     $data[$n]['flag'] = substr($s_flag, 0, -6) . "]</font>";
                 }
+                //模型名称
+                $data[$n]['model_name']=$this->_model[$this->_category[$d['cid']]['mid']]['model_name'];
             }
         }
         return array('data'=>$data,'page'=>$page->show());

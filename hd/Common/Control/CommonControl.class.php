@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 公共控制器
  * Class CommonControl
@@ -7,9 +8,21 @@
 class CommonControl extends Control
 {
 
-    public function __init()
+    protected function __init()
     {
+        //历史URL
         session("history", Q("server.HTTP_REFERER"));
     }
+
+    /**
+     * Ajax异步
+     * @param $state
+     * @param $message
+     */
+    protected function _ajax($state, $message)
+    {
+        $this->ajax(array('state' => $state, 'message' => $message));
+    }
+
 
 }

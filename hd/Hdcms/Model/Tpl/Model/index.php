@@ -20,13 +20,16 @@
         <table class="table2 table-title">
             <thead>
             <tr>
-                <td width="30">MID</td>
+                <td class="w30">mid</td>
                 <td>模型名称</td>
-                <td width="120">类型</td>
-                <td width="150">表名</td>
-                <td width="150">应用名</td>
-                <td width="60">状态</td>
-                <td width="160">操作</td>
+                <td class="w100">类型</td>
+                <td class="w100">主表</td>
+                <td class="w100">副表</td>
+                <td class="w100">应用组</td>
+                <td class="w100">应用</td>
+                <td class="w100">控制器</td>
+                <td class="w30">状态</td>
+                <td class="w150">操作</td>
             </tr>
             </thead>
             <tbody>
@@ -35,29 +38,29 @@
                     <td>{$m.mid}</td>
                     <td>{$m.model_name}</td>
                     <td>
-                        <if value='$m.type==1'>基本模型
-                            <else>独立模型
-                        </if>
+                        <if value='$m.type==1'>基本模型<else>独立模型</if>
                     </td>
-                    <td>{$m.tablename}</td>
-                    <td width="150">{$m.app_name}</td>
+                    <td>{$m.table_name}</td>
                     <td>
-                        <if value="$m['enable']">开启
-                            <else>关闭
-                        </if>
+                        <if value='$m.type==1'>{$m.table_name}_data<else>无</if>
+                    </td>
+                    <td>{$m.app_group}</td>
+                    <td>{$m.app}</td>
+                    <td>{$m.control}</td>
+                    <td>
+                        <if value="$m['enable']">开启<else>关闭</if>
                     </td>
                     <td>
                         <a href="{|U:'Field/Field/index',array('mid'=>$m['mid'])}">字段管理</a> |
                         <if value="$m.is_system==1">
                             修改
                         <else>
-                        <a href="{|U:'edit',array('mid'=>$m['mid'])}">修改</a>
+                            <a href="{|U:'edit',array('mid'=>$m['mid'])}">修改</a>
                         </if> |
                         <if value="$m.is_system==1">
                             删除
-                            <else>
-                        <a href="javascript:;"
-                           onclick="return confirm('确定删除【{$m.model_name}】模型吗？')?hd_ajax('{|U:del}',{mid:{$m['mid']}}):false;">删除</a>
+                        <else>
+                            <a href="javascript:;"onclick="return confirm('确定删除【{$m.model_name}】模型吗？')?hd_ajax('{|U:del}',{mid:{$m['mid']}}):false;">删除</a>
                         </if>
                     </td>
                 </tr>

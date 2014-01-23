@@ -17,6 +17,13 @@
                 <li><a href="javascript:;" class="action">添加模型</a></li>
             </ul>
         </div>
+        <div class="title-header">温馨提示</div>
+        <div class="help">
+            <ul>
+                <li>如果对模型没有足够了解请不要设置</li>
+                <li>应用组、应用、控制器名称首字母必须大写</li>
+            </ul>
+        </div>
         <div class="title-header">
             添加模型
         </div>
@@ -31,7 +38,7 @@
                 <tr>
                     <th>表名</th>
                     <td>
-                        <input type="text" name="tablename" class="w200"/>
+                        <input type="text" name="table_name" class="w200"/>
                     </td>
                 </tr>
                 <tr>
@@ -52,14 +59,31 @@
                 <tr>
                     <th>模型描述</th>
                     <td>
-                        <textarea name="description" class="w300 h100"></textarea>
+                        <textarea name="description" class="w350 h80"></textarea>
                     </td>
                 </tr>
                 <tr>
-                    <th>应用名称</th>
+                    <th>应用组</th>
                     <td>
-                        <input type="text" name="app_name" value="Content" class="w200"/>
-                        <span class="validation"></span>
+                        <input type="text" name="app_group" value="Hdcms" class="w200"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>应用</th>
+                    <td>
+                        <input type="text" name="app" value="Content" class="w200"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>控制器</th>
+                    <td>
+                        <input type="text" name="control" value="Content" class="w200"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>方法</th>
+                    <td>
+                        <input type="text" name="method" value="index" class="w200"/>
                     </td>
                 </tr>
             </table>

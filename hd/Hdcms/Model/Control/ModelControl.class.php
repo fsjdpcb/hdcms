@@ -54,7 +54,7 @@ class ModelControl extends AuthControl
     public function update_cache()
     {
         if ($this->_db->update_cache()) {
-            $this->ajax(array('state' => 1, 'message' => '更新缓存成功'));
+            $this->_ajax(1,'更新缓存成功');
         }
     }
 
@@ -64,9 +64,9 @@ class ModelControl extends AuthControl
     public function del()
     {
         if ($this->_db->del_model()) {
-            $this->ajax(array('state' => 1, 'message' => '删除模型成功'));
+            $this->_ajax(1,'删除模型成功');
         } else {
-            $this->ajax(array('state' => 0, '请删除模型栏目'));
+            $this->_ajax(1,$this->_db->error);
         }
     }
 
@@ -77,7 +77,9 @@ class ModelControl extends AuthControl
     {
         if (IS_POST) {
             if ($this->_db->add_model()) {
-                $this->ajax(array('state' => 1, 'message' => '添加模型成功'));
+                $this->_ajax(1,'添加模型成功');
+            }else{
+                $this->_ajax(0,$this->_db->error);
             }
         } else {
             $this->display();
@@ -92,7 +94,7 @@ class ModelControl extends AuthControl
         if (IS_POST) {
             //异步提交返回信息
             if ($this->_db->edit_model()) {
-                $this->ajax(array('state' => 1, 'message' => '修改模型成功'));
+                $this->_ajax(1,'修改模型成功');
             }
         } else {
             $this->field = $this->_db->find($this->_mid);

@@ -6,24 +6,26 @@ class ModelModel extends Model
     public $table = 'model';
     //模型id
     private $_mid;
+    //模型缓存
+    private $model;
     //自动完成
     public $auto = array(
         //模型表名小写
-        array("tablename", "strtolower", 'function', 1, 3),
+        array("table_name", "strtolower", 'function', 1, 3),
         //控制器首字母大写
         array("model_name", "ucfirst", 'function', 1, 3),
     );
     //自动验证
     public $validate = array(
         array("model_name", "nonull", "模型名称不能为空", 1, 3),
-        array("tablename", "nonull", "表名不能为空", 1, 3),
-        array("app_name", "nonull", "处理程序不能为空", 1, 3)
+        array("table_name", "nonull", "表名不能为空", 1, 3)
     );
 
     //构造函数
     public function __init()
     {
         $this->_mid = Q('mid', NULL, 'intval');
+        $this->model = F('model');
     }
 
     //创建模型表
@@ -32,7 +34,7 @@ class ModelModel extends Model
         //类型  基本模型|独立模型（只有主表）
         $type = Q('type', 1, 'intval');
         //主表
-        $masterTable = C("DB_PREFIX") . strtolower($_POST['tablename']);
+        $masterTable = C("DB_PREFIX") . strtolower($_POST['table_name']);
         $masterSql = <<<str
                     -- -----------------------------------------------------
                     -- 主表
@@ -67,7 +69,9 @@ class ModelModel extends Model
                     ENGINE = MyISAM;
 str;
         //创建主表
-        $this->exe($masterSql);
+        if(!$this->exe($masterSql)){
+            $this->error='创建主表失败';
+        }
         //基本模型-->创建附表
         if ($type == 1) {
             $slaveTable = $masterTable . '_data';
@@ -83,8 +87,8 @@ str;
 str;
 
             $this->exe($slaveSql);
-            return true;
         }
+        return true;
     }
 
     /**
@@ -117,22 +121,25 @@ str;
     public function del_model()
     {
         //判断是否有栏目在使用模型
-        if (!M("category")->find("mid={$this->_mid}")) {
+        $db= M();
+        if ($db->table('category')->find("mid={$this->_mid}")) {
+            $this->error = '请先删除模型栏目';
+        } else {
             //查找当前模型信息
             $model = $this->find($this->_mid);
+            $table = C("DB_PREFIX") . $this->model[$this->_mid]['table_name'];
             //删除主表与表字段缓存
-            if ($this->exe("DROP TABLE IF EXISTS " . C("DB_PREFIX") . $model['tablename'])) {
+            if ($db->exe("DROP TABLE IF EXISTS $table")) {
                 //删除附表与表字段缓存
                 if ($model['type'] == 1) {
-                    $this->exe("DROP TABLE IF EXISTS " . C("DB_PREFIX") . $model['tablename'] . '_data');
+                    $db->exe("DROP TABLE IF EXISTS {$table}_data");
                 }
+                //删除模型字段信息
+                $db->table("field")->where("mid={$this->_mid}")->del();
                 //删除表记录
                 $this->del($this->_mid);
-                //删除模型字段信息
-                $this->table("field")->where("mid={$this->_mid}")->del();
                 //删除模型字段缓存
-                F($this->_mid, NULL, FIELD_CACHE_PATH);
-                return true;
+                return F($this->_mid, NULL, FIELD_CACHE_PATH);
             }
         }
     }
@@ -145,8 +152,7 @@ str;
         foreach ($model as $d) {
             $data[$d['mid']] = $d;
         }
-        F("model", $data);
-        return $model;
+        return F("model", $data);
     }
 
 

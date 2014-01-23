@@ -8,17 +8,19 @@
 class ContentControl extends AuthControl
 {
     //栏目缓存
-    protected $_category;
+    private $_category;
     //模型缓存
-    protected $_model;
+    private $_model;
     //模型mid
-    protected $_mid;
+    private $_mid;
     //栏目cid
-    protected $_cid;
+    private $_cid;
+    //文章aid
+    private $_aid;
     //当前模型
-    protected $_db;
+    private $_db;
     //文章主表
-    protected $_table;
+    private $_table;
 
     //构造函数
     public function __init()
@@ -28,13 +30,13 @@ class ContentControl extends AuthControl
         $this->_model = F("model", false);
         $this->_category = F("category", false);
         $this->_cid = Q("cid", NULL, "intval");
-        $this->_mid = Q("mid", NULL, "intval");
+        $this->_aid = Q("aid", NULL, "intval");
         if ($this->_cid) {
             if (!isset($this->_category[$this->_cid])) {
                 $this->error("栏目不存在！");
             }
             $this->_mid = $this->_category[$this->_cid]['mid'];
-            $this->_table = $this->_model[$this->_mid]['tablename'];
+            $this->_table = $this->_model[$this->_mid]['table_name'];
             $this->_db = K("Content");
         }
 
@@ -59,10 +61,13 @@ class ContentControl extends AuthControl
             if ($cat['cattype'] != 3) {
                 $data['id'] = $cat['cid'];
                 $data['pId'] = $cat['pid'];
-                $data['name'] = $cat['catname'];
-                $data['url'] = $cat['cattype'] == 1 ? U('content', array('cid' => $cat['cid'], 'state' => 1)) : 'javascript:;';
+                $data['url'] =  U('content', array('cid' => $cat['cid'], 'state' => 1));
                 $data['target'] = 'content';
                 $data['open'] = true;
+                //设置封面样式
+//                if($cat['cattype']==2)
+//                    $data['iconSkin'] ='pIcon01';
+                $data['name'] = $cat['catname'];
                 $category[] = $data;
             }
         }
@@ -80,9 +85,9 @@ class ContentControl extends AuthControl
     public function content()
     {
         $db = K('ContentView');
-        $this->flag = $this->_db->table("flag")->all();
+        $this->flag = F('flag');
         //$data=array('data'=>'文章数据','page'=>’页码')
-        $this->assign( $db->get_content());
+        $this->assign($db->get_content());
         $this->display();
     }
 

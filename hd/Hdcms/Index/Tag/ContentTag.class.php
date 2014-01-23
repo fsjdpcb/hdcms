@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Admin应用标签库
  * Class AdminTag
@@ -107,6 +108,25 @@ str;
 
     }
 
+    //单页面
+    public function _single($attr, $content)
+    {
+        $aid = $attr['aid'];
+        $php = <<<str
+        \$db = M("content_single");
+        \$db->where = "aid IN ($aid)";
+        \$result = \$db->order("arc_sort ASC,aid DESC")->all();
+        foreach (\$result as \$field):
+            \$field['url'] = get_single_url(\$field);
+            \$field['time'] = date("Y-m-d", \$field['updatetime']);
+            \$field['thumb'] = '__ROOT__' . '/' . \$field['thumb'];
+            \$field['title'] = \$field['color'] ? "<span style='color:" . \$field['color'] . "'>" . \$field['title'] . "</span>" : \$field['title'];
+            \$php .= $content;
+        endforeach;
+str;
+        return $php;
+    }
+
     //数据块
     public function _arclist($attr, $content)
     {
@@ -151,7 +171,7 @@ str;
                 foreach(\$result as \$field):
                     \$field['caturl']=U('category',array('cid'=>\$field['cid']));
                     \$field['url']=get_content_url(\$field);
-                    \$field['time']=date("Y-m-d",\$field['addtime']);
+                    \$field['time']=date("Y-m-d",\$field['updatetime']);
                     \$field['thumb']='__ROOT__'.'/'.\$field['thumb'];
                     \$field['title']=mb_substr(\$field['title'],0,$titlelen,'utf8');
                     \$field['title']=\$field['color']?"<span style='color:".\$field['color']."'>".\$field['title']."</span>":\$field['title'];
@@ -272,4 +292,6 @@ str;
         $php .= "<?php endforeach;endif;?>";
         return $php;
     }
+
+
 }

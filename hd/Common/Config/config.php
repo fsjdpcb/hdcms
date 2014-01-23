@@ -28,5 +28,13 @@ return array_merge(
         "AUTO_LOAD_FILE" => array(),
         "TPL_ERROR" => "./hd/Common/Template/error.html", //错误页面
         "TPL_SUCCESS" => "./hd/Common/Template/success.html", //正确页面
+        'ROUTE'=>array(
+//            //栏目
+//            '/^list_(\d+).html$/'=>'a=Index&c=Index&m=category&cid=#1',
+//            //普通文章
+//            '/^article_(\d+)_(\d+).html$/'=>'a=Index&c=Index&m=content&cid=#1&aid=#2',
+//            //单文章
+//            '/^single_(\d+).html$/'=>'a=Index&c=Index&m=single&aid=#1',
+        ),
     )
 );

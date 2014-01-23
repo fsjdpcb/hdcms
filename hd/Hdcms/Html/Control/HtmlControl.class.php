@@ -235,7 +235,7 @@ class HtmlControl extends AuthControl
                 //生成所有栏目首页
                 foreach ($category as $cat) {
                     //当前栏目表
-                    $table = $this->_model[$cat['mid']]['tablename'];
+                    $table = $this->_model[$cat['mid']]['table_name'];
                     //设置条件
                     $cat['where'] = C("DB_PREFIX") . $table . ".cid=" . $cat['cid'] . ' AND ishtml=1 AND redirecturl=""';
                     $cat['order'] = "";
@@ -295,7 +295,7 @@ class HtmlControl extends AuthControl
                     $this->message("栏目{$cat['catname']}生成完毕", __METH__);
                 }
                 //当前栏目表
-                $table = $this->_model[$cat['mid']]['tablename'];
+                $table = $this->_model[$cat['mid']]['table_name'];
                 //获得本次更新数据
                 $db = M($table);
                 $content = $db->field("aid,addtime,html_path")->where($cat['where'])->order($cat['order'])->limit($cat['old_total'], $cat['row'])->all();

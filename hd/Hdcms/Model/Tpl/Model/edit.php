@@ -32,13 +32,14 @@
                 <tr>
                     <th>允许前台投稿</th>
                     <td>
-                        <label><input type="radio" name="is_submit" value="1"
-                            <if value="$field.is_submit==1">checked="checked"</if>
-                            /> 允许</label>
-                        <label><input type="radio" name="is_submit" value="0"
-                            <if value="$field.is_submit==0">checked="checked"</if>
-                            />
-                            不允许</label>
+                        <label>
+                            <input type="radio" name="is_submit" value="1" <if value="$field.is_submit==1">checked="checked"</if>/>
+                            允许
+                        </label>
+                        <label>
+                            <input type="radio" name="is_submit" value="0" <if value="$field.is_submit==0">checked="checked"</if>/>
+                            不允许
+                        </label>
                     </td>
                 </tr>
                 <tr>
@@ -48,9 +49,27 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>应用名称</th>
+                    <th>应用组</th>
                     <td>
-                        <input type="text" name="app_name" value="{$field.app_name}" class="w200"/>
+                        <input type="text" name="app_group" value="{$field.app_group}" class="w200"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>应用</th>
+                    <td>
+                        <input type="text" name="app" value="{$field.app}" class="w200"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>控制器</th>
+                    <td>
+                        <input type="text" name="control" value="{$field.control}" class="w200"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>方法</th>
+                    <td>
+                        <input type="text" name="method" value="{$field.method}" class="w200"/>
                     </td>
                 </tr>
             </table>
