@@ -165,7 +165,8 @@ str;
                 \$db->where="state=1";
                 \$db->group=\$table.".aid";
                 \$db->limit($row);
-                \$db->field('*');
+                \$field = "*,{\$table}.cid,{\$table}.aid";
+                \$db->field(\$field);
                 \$result = \$db->join('category,content_flag')->all();
                 if(\$result){
                 foreach(\$result as \$field):
