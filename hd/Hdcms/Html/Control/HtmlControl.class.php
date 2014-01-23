@@ -1,7 +1,11 @@
 <?php
+import("Index.Control.PublicControl");
 import("Index.Control.IndexControl");
+import("Index.Control.CategoryControl");
+import("Index.Control.ContentControl");
 import("Content.Model.ContentModel");
 import("Content.Model.ContentViewModel");
+
 /**
  * 静态处理模块
  * Class HtmlControl
@@ -113,6 +117,8 @@ class HtmlControl extends AuthControl
                 } else {
                     $url = null;
                 }
+                unset($_SESSION['make_all']['category']);
+                unset($_SESSION['category_html_config']);
                 $this->message("没有任何栏目需要生成!", $url);
             } else {
                 $config = array();
@@ -225,10 +231,11 @@ class HtmlControl extends AuthControl
                 if (isset($_SESSION['make_all']['content'])) {
                     $url = U("make_all");
                 } else {
-                    $url = U("create_content");
+                    $url = NUll;
                 }
                 //一键生成全站关于文章
                 unset($_SESSION['make_all']['content']);
+                unset($_SESSION['content_html_config']);
                 $this->message("没有任何内容需要生成!", $url);
             } else {
                 $config = array();

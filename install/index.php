@@ -62,10 +62,9 @@ switch ($s) {
             "data/config/config.inc.php", //网站配置文件
             "data/config/db.inc.php", //数据库配置文件
             "data/backup", //备份目录
-            "data/Cache", //缓存目录
-            "data/Cache/Cache", //栏目缓存
-            "data/Cache/Field", //字段缓存目录
-            "data/Cache/Js", //js缓存
+            "data/cache/data", //栏目缓存
+            "data/cache/field", //字段缓存目录
+            "data/cache/js", //js缓存
         );
         require "./template/4.php";
         break;
@@ -121,7 +120,8 @@ switch ($s) {
         }
         $db->exe("UPDATE {$db_prefix}config SET value='{$config['WEB_NAME']}' WHERE name='webname'");
         $db->exe("UPDATE {$db_prefix}config SET value='{$config['EMAIL']}' WHERE name='email'");
-        $db->exe("UPDATE {$db_prefix}user SET username='{$config['ADMIN']}',email='{$config['EMAIL']}',password='" . md5($config['PASSWORD']) . "' WHERE username='admin'");
+        $db->exe("REPLACE {$db_prefix}user SET username='{$config['ADMIN']}',email='{$config['EMAIL']}',password='" . md5($config['PASSWORD'])."'");
+        echo "REPLACE {$db_prefix}user SET username='{$config['ADMIN']}',email='{$config['EMAIL']}',password='" . md5($config['PASSWORD'])."'";
         unset($config['WEB_NAME']);
         unset($config['EMAIL']);
         unset($config['ADMIN']);

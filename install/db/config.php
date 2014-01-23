@@ -242,9 +242,9 @@ return array (
   ),
   'hd_user' => 
   array (
-    'row' => '1',
+    'row' => '0',
     'success' => true,
-    'current_row' => 40,
+    'current_row' => 20,
     'size' => 200000,
     'url' => '',
     'step_time' => 500,
