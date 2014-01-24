@@ -169,7 +169,7 @@ str;
                 \$db->limit($row);
                 \$field = "*,\$table.cid,\$table.aid";
                 \$db->field(\$field);
-                \$result = \$db->join('category,content_flag')->all();
+                \$result = \$db->join('category,content_flag')->order('arc_sort ASC,updatetime DESC')->all();
                 if(\$result){
                 foreach(\$result as \$field):
                     \$field['caturl']=U('category',array('cid'=>\$field['cid']));
