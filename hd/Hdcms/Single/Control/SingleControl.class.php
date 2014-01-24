@@ -8,12 +8,15 @@ class SingleControl extends AuthControl
 {
     //模型
     protected $_db;
+    //文章aid
+    private $_aid;
 
     //构造函数
     public function __init()
     {
         parent::__init();
         $this->_db = K('Single');
+        $this->_aid=Q('aid',NULL,'intval');
     }
 
     /**
@@ -59,6 +62,14 @@ class SingleControl extends AuthControl
                 $this->field=$field;
                 $this->display();
             }
+        }
+    }
+    /**
+     * 删除文章
+     */
+    public function del(){
+        if($this->_db->del_content()){
+            $this->_ajax(1,'删除文章成功');
         }
     }
 }

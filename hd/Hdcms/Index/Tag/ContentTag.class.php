@@ -56,52 +56,50 @@ str;
     {
         //类型  top 顶级 son 下级 self同级 current 指定的栏目
         $type = isset($attr['type']) ? $attr['type'] : "self";
+        //显示条数
         $row = isset($attr['row']) ? $attr['row'] : 10;
+        //指定的栏目cid
         $cid = isset($attr['cid']) ? $attr['cid'] : NULL;
+        //当前栏目的class样式
         $class = isset($attr['class']) ? $attr['class'] : "";
         $php = <<<str
         <?php
-        \$where = '';\$type='$type';\$cid="$cid";
-        \$cid=intval(\$cid);
-        if(empty(\$cid) && isset(\$_GET['cid'])){
-            \$cid=  \$_GET['cid'];
+        \$where = '';\$type=strtolower(trim('$type'));\$cid=str_replace(' ','','$cid');
+        if(empty(\$cid)){
+            \$cid=Q('cid',NULL,'intval');
         }
         \$db = M("category");
-        if (\$type == "top") {
-            \$where .= " pid=0 ";
-        }else if (!empty(\$cid)) {
-            if(\$type=='current'){
-                 \$where = " cid in(".\$cid.")";
-            }else{
-                \$cat = \$db->find(\$cid);
-                if(\$cat){
-                    switch (\$type) {
-                        case "son":
-                               \$where = " pid=".\$cat['cid'];
-                                    break;
-                         case "self":
-                              \$where = " pid=".\$cat['pid'];
-                                    break;
-                        case "one":
-                              \$where = " cid=".\$cat['cid'];
-                               break;
-                    }
-                 }
+        if (\$type == 'top') {
+            \$where = ' pid=0 ';
+        }else if(\$cid) {
+            switch (\$type) {
+                case 'current':
+                    \$where = " cid in(".\$cid.")";
+                    break;
+                case "son":
+                    \$where = " pid IN(".\$cid.") ";
+                    break;
+                case "self":
+                    \$pid = \$db->where(intval(\$cid))->getField('pid');
+                    \$where = ' pid='.\$pid;
+                    break;
             }
         }
-        \$result = \$db->where(\$where)->where("cat_show=1")->order()->where(\$where)->order("catorder DESC")->limit($row)->all();
-        //列表页当前栏目
-        \$_self_cid = isset(\$_GET['cid'])?\$_GET['cid']:0;
-        foreach (\$result as \$field):
-            \$channel=\$field;
-            //当前栏目样式
-            \$field['class']=\$_self_cid==\$field['cid']?"$class":"";
-            \$field['url'] = get_category_url(\$field['cid']);?>
+        \$result = \$db->where(\$where)->where("cat_show=1")->order()->order("catorder DESC")->limit($row)->all();
+        //无结果
+        if(\$result){
+            //当前栏目,用于改变样式
+            \$_self_cid = isset(\$_GET['cid'])?\$_GET['cid']:0;
+            foreach (\$result as \$field):
+                //当前栏目样式
+                \$field['class']=\$_self_cid==\$field['cid']?"$class":"";
+                \$field['url'] = get_category_url(\$field['cid']);?>
 str;
-        $php .= $content;
-        $php .= <<<str
+            $php .= $content;
+            $php .= <<<str
         <?php
-        endforeach;
+            endforeach;
+            }
         ?>
 str;
         return $php;
@@ -131,41 +129,45 @@ str;
     public function _arclist($attr, $content)
     {
         $cid = isset($attr['cid']) ? trim($attr['cid']) : 0;
-        $aid = isset($attr['aid']) ? $attr['aid'] : "";
+        $aid = isset($attr['aid']) ? $attr['aid'] : '';
         $mid = isset($attr['mid']) ? $attr['mid'] : 1;
         $row = isset($attr['row']) ? intval($attr['row']) : 10;
+        //简单长度
         $infolen = isset($attr['infolen']) ? intval($attr['infolen']) : 80;
+        //标题长度
         $titlelen = isset($attr['titlelen']) ? intval($attr['titlelen']) : 80;
+        //属性
         $flag = isset($attr['flag']) ? intval($attr['flag']) : '';
-        $php = "";
-        $php .= <<<str
+        $php = <<<str
         <?php \$mid="$mid";\$cid ='$cid';\$flag='$flag';\$aid='$aid';
             if(empty(\$cid)){
-                \$cid= Q('get.cid',NULL,'intval');
-                if(!\$cid){
+                \$cid= Q('cid',NULL,'intval');
+                if(\$cid==0){
                     \$tmp = M('category')->where('mid=1')->getField('cid',true);
                     \$cid=implode(',',\$tmp);
                 }
             }
+            //去除空白
             \$cid = explode(',',preg_replace('@\s@','',\$cid));
             if(empty(\$cid))return '';
+            //取一个cid为了实例化模型
             \$_REQUEST['cid']=\$cid[0];
             import('Content.Model.ContentViewModel');
             \$db = K('ContentView');
                 //主表
-                \$table=C('DB_PREFIX').\$db->table;
+                \$table=\$db->tableFull;
                 if(!empty(\$flag)){
                     \$db->in(array("fid" => \$flag));
                 }
-                \$db->where = C("DB_PREFIX").'category.cid in('.implode(',',\$cid).')';
+                \$db->where = \$table.'.cid in('.implode(',',\$cid).')';
                 //指定文章
                 if (\$aid) {
                     \$db->where=\$table.'.aid IN('.\$aid.')';
                 }
-                \$db->where="state=1";
-                \$db->group=\$table.".aid";
+                \$db->where=\$table.'.state=1';
+                \$db->group=\$table.'.aid';
                 \$db->limit($row);
-                \$field = "*,{\$table}.cid,{\$table}.aid";
+                \$field = "*,\$table.cid,\$table.aid";
                 \$db->field(\$field);
                 \$result = \$db->join('category,content_flag')->all();
                 if(\$result){
@@ -188,40 +190,65 @@ str;
     public function _pagelist($attr, $content)
     {
         $row = isset($attr['row']) ? intval($attr['row']) : 10;
+        //标题长度
         $titlelen = isset($attr['titlelen']) ? intval($attr['titlelen']) : 80;
+        //简介长度
         $infolen = isset($attr['infolen']) ? intval($attr['infolen']) : 80;
-        $php = '';
-        $php .= <<<str
+        //类型 son 包含子栏目
+        $type=isset($attr['type'])?$attr['type']:'son';
+        $php = <<<str
         <?php
-        \$cid=\$_GET['cid'];
+        \$type=strtolower('$type');
+        \$cid=Q('cid',NULL,'intval');
         import('Content.Model.ContentViewModel');
-        \$db = new ContentViewModel(null,\$cid);
-        \$count = \$db->join(NULL)->where("cid=\$cid and state=1")->count();
-        \$hd_page= new Page(\$count,$row);
-        \$db_prefix = C('DB_PREFIX');
-        \$field ='aid,'.\$db_prefix.'category.cid,thumb,click,source,addtime,updatetime,author,catname,title,description';
-        \$result= \$db->join("category")->field(\$field)->where("state=1")->where(\$db->tableFull.".cid=\$cid")
-        ->limit(\$hd_page->limit())->all();
-        foreach(\$result as \$field):
-                \$field['caturl']=U('category',array('cid'=>\$field['cid']));
-                \$field['url']=get_content_url(\$field);
-                \$field['thumb']='__ROOT__'.'/'.\$field['thumb'];
-                \$field['title']=mb_substr(\$field['title'],0,$titlelen,'utf8');
-                \$field['title']=\$field['color']?"<span style='color:".\$field['color']."'>".\$field['title']."</span>":\$field['title'];
-                \$field['time']=date("Y-m-d",\$field['addtime']);
-                \$field['description']=mb_substr(\$field['description'],0,$infolen,'utf-8');
-        ?>
+        \$db = K('ContentView');
+        //查询条件
+        switch(\$type){
+            case 'son':
+                //获得所有子栏目
+                \$child=Data::channelList(F('category'),\$cid);
+                if(\$child){
+                    foreach(\$child as \$c)
+                        \$cid.=','.\$c['cid'];
+                    //去除尾部逗号
+                    \$cid=substr(\$cid,0,-1);
+                }
+                \$where=\$db->tableFull.".cid In(\$cid) and state=1";
+                break;
+            case 'current':
+            default:
+                \$where=\$db->tableFull.".cid In(\$cid) and state=1";
+        }
+        \$count = \$db->join(NULL)->where(\$where)->count();
+        \$page= new Page(\$count,$row);
+        \$result= \$db->join("category")->where(\$where)->limit(\$page->limit())->all();
+        if(\$result):
+            //有结果集时处理
+            foreach(\$result as \$field):
+                    \$field['caturl']=U('category',array('cid'=>\$field['cid']));
+                    \$field['url']=get_content_url(\$field);
+                    \$field['thumb']='__ROOT__'.'/'.\$field['thumb'];
+                    \$field['title']=mb_substr(\$field['title'],0,$titlelen,'utf8');
+                    \$field['title']=\$field['color']?"<span style='color:".\$field['color']."'>".\$field['title']."</span>":\$field['title'];
+                    \$field['time']=date("Y-m-d",\$field['addtime']);
+                    \$field['description']=mb_substr(\$field['description'],0,$infolen,'utf-8');
+            ?>
 str;
-        $php .= $content;
-        $php .= '<?php endforeach;?>';
+            $php .= $content;
+        $php .= '<?php endforeach;endif?>';
         return $php;
     }
 
     public function _pageshow($attr, $content)
     {
-        return "<?php if(is_object(\$hd_page)){
-                    echo \$hd_page->show();
-                    }?>";
+        $style = isset($attr['style'])?$attr['style']:2;
+        $row = isset($attr['row'])?$attr['row']:10;
+        return <<<str
+        <?php if(is_object(\$page))
+            echo \$page->show($style,$row);
+        ?>';
+str;
+
     }
 
     //上下篇
@@ -231,11 +258,11 @@ str;
         $next_str = isset($attr['next']) ? $attr['next'] : "上一篇: ";
         $php = <<<str
         <?php
-        \$aid = \$_GET['aid'];
-        \$db = new ContentViewModel();
-        \$str = "";
+        \$aid = Q('aid',NULL,'intval');
+        \$db = K('ContentView');
+        \$php = '';
         //上一篇
-        \$field = \$db->join()->trigger()->field("aid,cid,title,addtime")->where("aid<\$aid")->order("aid desc")->find();
+        \$field = \$db->join()->trigger()->field("aid,cid,title")->where("aid<\$aid")->order("aid desc")->find();
         if (\$field) {
             \$url = get_content_url(\$field);
             \$str .= "<li>$pre_str <a href='\$url'>" . \$field['title'] . "</a></li>";
@@ -243,7 +270,7 @@ str;
             \$str .= "<li>$pre_str <span>没有了</span></li>";
         }
         //下一篇
-        \$field = \$db->join()->trigger()->field("aid,cid,title,addtime")->where("aid>\$aid")->order("aid asc")->find();
+        \$field = \$db->join()->trigger()->field("aid,cid,title")->where("aid>\$aid")->order("aid asc")->find();
         if (\$field) {
             \$url = get_content_url(\$field);
             \$str .= "<li>$next_str <a href='\$url'>" . \$field['title'] . "</a></li>";

@@ -2,7 +2,6 @@ var menu_cache = {parent: {}, iframe: {}, link: {}};
 //常用菜单缓存
 menu_cache.parent[0] = true;
 menu_cache.iframe[0] = true;
-
 //点击顶部导航
 function get_left_menu(obj, nid) {
     $("div.nav div.top_menu a").removeClass("action");
@@ -14,19 +13,24 @@ function get_left_menu(obj, nid) {
         //显示当前菜单
         $("div.left_menu div.nid_" + nid).show();
     } else {//缓存不存在
-        $.ajax({
-            type: "GET",
-            url: ROOT + "/index.php?a=Menu&c=Menu&m=get_child_menu",
-            data: {nid: nid},
-            cache: false,
-            success: function (html) {
-                menu_cache.parent[nid] = true;
-                //隐藏所有左侧菜单
-                $("div.left_menu div").hide();
-                $("div.left_menu").append(html);
-            }
-        });
+        flush_left_menu(nid);
     }
+}
+//刷新左侧菜单
+function flush_left_menu(nid) {
+    $("div.left_menu div.nid_" + nid).remove();
+    $.ajax({
+        type: "GET",
+        url: ROOT + "/index.php?a=Menu&c=Menu&m=get_child_menu",
+        data: {nid: nid},
+        cache: false,
+        success: function (html) {
+            menu_cache.parent[nid] = true;
+            //隐藏所有左侧菜单
+            $("div.left_menu div").hide();
+            $("div.left_menu").append(html);
+        }
+    });
 }
 
 //左侧子导航点击

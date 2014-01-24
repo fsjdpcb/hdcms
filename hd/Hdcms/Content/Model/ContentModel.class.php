@@ -409,8 +409,10 @@ class ContentModel extends RelationModel
             //生成静态
             $_GET['cid'] = $this->_cid;
             $_GET['aid'] = $this->result[$this->table];
+            import('Index.Control.PublicControl');
+            import('Index.Control.ArticleControl');
             ob_start();
-            O("Index.Control.IndexControl", "content");
+            O('ArticleControl', 'content');
             $con = ob_get_clean();
             $dir = dirname($html);
             is_dir($dir) or dir_create($dir, 0755);

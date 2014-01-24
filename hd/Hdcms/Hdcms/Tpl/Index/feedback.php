@@ -130,7 +130,7 @@
                 </td>
             </tr>
         </table>
-        <input type="submit" value="提交" class="btn btn-success"/>
+        <input type="submit" value="提交" class="hd-success"/>
     </form>
 </div>
 </body>

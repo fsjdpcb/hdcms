@@ -6,11 +6,14 @@ function get_category_url($cid)
     $category = F("category");
     $cat = $category[$cid];
     if ($cat['cattype'] == 3) {
+        //跳转栏目
         return $cat['cat_redirecturl'];
-    } else if ($cat['urltype'] == 1) { //静态访问
+    } else if ($cat['urltype'] == 1) {
+        //静态访问
         return __ROOT__ . '/' . C("HTML_PATH") . '/' . $cat['catdir'] . '/index.html';
     } else {
-        return __ROOT__ . '/index.php?a=Content&c=Index&m=category&cid=' . $cat['cid'];
+        //动态访问
+        return __ROOT__ . '/index.php?a=Index&c=Category&m=category&cid=' . $cat['cid'];
     }
 
 }
@@ -62,9 +65,10 @@ function get_content_url($field)
     $cat = F("category");
     $category = $cat[$field['cid']];
     if ($category['is_arc_html']) {
+        //静态访问
         return __ROOT__ . '/' . get_content_html($field);
     } else {
-        return __WEB__ . "?a=Content&c=Index&m=content&cid={$field['cid']}&aid=" . $field['aid'];
+        return __WEB__ . "?a=Index&c=Article&m=content&cid={$field['cid']}&aid=" . $field['aid'];
     }
 }
 

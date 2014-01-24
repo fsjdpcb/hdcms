@@ -12,7 +12,6 @@
 </head>
 <body>
     <div class="step4 step">
-        <div class="version"><?php echo VERSION; ?></div>
         <div class="title">HDCMS 安装向导</div>
         <div class="process">
             <ul>

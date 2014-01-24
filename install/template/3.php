@@ -8,8 +8,7 @@
     <link type="text/css" href="./template/css/css.css" rel="stylesheet"/>
 </head>
 <body>
-<div class="step3 step">
-    <div class="version"><?php echo VERSION; ?></div>
+<div class="step3 step" style="height: 550px;">
     <div class="title">HDCMS 安装向导</div>
     <div class="process">
         <ul>

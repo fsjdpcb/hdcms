@@ -46,7 +46,7 @@ return array (
   'default_user_group' => '2',
   'member_open' => '0',
   'web_close_message' => '网站暂时关闭，请稍候访问',
-  'web_style' => 'bootstrap',
+  'web_style' => 'white',
   'qq' => '',
   'weibo' => 'houdunwangxj@gmail.com',
 );

@@ -51,6 +51,12 @@ class SingleModel extends Model
         }
     }
 
+    public function del_content()
+    {
+        if ($this->_aid)
+            return $this->del($this->_aid);
+    }
+
     /**
      * 生成静态文件
      * @param $data

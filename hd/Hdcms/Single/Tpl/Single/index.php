@@ -6,7 +6,6 @@
     <title>单文章列表</title>
     <hdjs/>
     <js file="__GROUP__/static/js/js.js"/>
-    <css file="__TPL__/Content/css/css.css"/>
 </head>
 <body>
 <div class="wrap">
@@ -54,7 +53,7 @@
                         class="line">|</span>
                     <a href="javascript:;" onclick="window.open('{|U:edit,array('aid'=>$c['aid'])}')">编辑</a><span
                         class="line">|</span>
-                    <a href="javascript:;" onclick="del({$hd.get.cid},{$c.aid})">删除</a>
+                    <a href="javascript:hd_ajax('{|U:del}',{aid:{$c.aid}});">删除</a>
 <!--                    <span class="line">|</span><a href="">评论</a>-->
                 </td>
             </tr>
