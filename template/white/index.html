@@ -1,18 +1,3 @@
-<slide/>
-<script>
-    $(function () {
-        $('#flash').slide({
-            width: 278,
-            height: 215,
-            timeout: 3,
-            bgcolor: '#f00f00'
-        });
-    })
-</script>
-<div id="flash">
-    <arclist row="2" titlelen="18" cid="10" flag="5">
-        <a href="{$field.url}" title="{$field.title}">
-            <img src="{$field.thumb}" width="278" height="185"/>
-        </a>
-    </arclist>
-</div>
+<nav nid="1,2">
+    {$field.link}
+</nav>

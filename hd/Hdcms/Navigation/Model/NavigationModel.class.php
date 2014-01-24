@@ -7,6 +7,15 @@
 class NavigationModel extends Model
 {
     public $table = 'navigation';
+    //自动完成
+    public $auto = array(
+        array('url', '_url', 'method', 2, 3)
+    );
+
+    protected function _url($v)
+    {
+        return str_replace(array(__WEB__, __ROOT__), array('', ''), $v);
+    }
 
     /**
      * 添加导航

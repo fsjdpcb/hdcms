@@ -320,6 +320,25 @@ str;
         $php .= "<?php endforeach;endif;?>";
         return $php;
     }
-
+    //导航标签
+    public function _nav($attr,$content){
+        $nid=isset($attr['nid'])?$attr['nid']:'';
+        $php=<<<str
+            <?php
+            \$nid='$nid';
+            \$db = M('navigation');
+            if(\$nid){
+                \$db->where='nid IN('.\$nid.')';
+            }
+            \$result = \$db->order('list_order ASC,nid DESC')->where('state=1')->all();
+            if(\$result):
+                foreach(\$result as \$field):
+                  \$field['link']='<a href="'.\$field['url'].'" target="'.\$field['target'].'">'.\$field['title'].'</a>';
+                ?>
+str;
+        $php.=$content;
+        $php.='<?php endforeach;endif;?>';
+        return $php;
+    }
 
 }

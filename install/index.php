@@ -121,7 +121,7 @@ switch ($s) {
         $db->exe("UPDATE {$db_prefix}config SET value='{$config['WEB_NAME']}' WHERE name='webname'");
         $db->exe("UPDATE {$db_prefix}config SET value='{$config['EMAIL']}' WHERE name='email'");
         $db->exe("REPLACE {$db_prefix}user SET username='{$config['ADMIN']}',email='{$config['EMAIL']}',password='" . md5($config['PASSWORD'])."'");
-        echo "REPLACE {$db_prefix}user SET username='{$config['ADMIN']}',email='{$config['EMAIL']}',password='" . md5($config['PASSWORD'])."'";
+        echo "REPLACE {$db_prefix}user SET username='{$config['ADMIN']}',email='{$config['EMAIL']}',password='" . md5($config['PASSWORD'])."',rid=1";
         unset($config['WEB_NAME']);
         unset($config['EMAIL']);
         unset($config['ADMIN']);

@@ -16,19 +16,17 @@ class SearchControl extends Control
 
     public function __init()
     {
-        $this->_category = F("category", false, CATEGORY_CACHE_PATH);
-        $this->_model = F("model", false, MODEL_CACHE_PATH);
-        $_REQUEST['cid'] = M("category")->where('mid=1')->getField('cid');
-        import('Index.Model.SearchModel');
+        $this->_category = F("category");
+        $this->_model = F("model");
         $this->_db = K("Search");
     }
 
     //高级搜索
     public function index()
     {
-        $this->_category = $this->_category;
-        $this->_model = $this->_model;
-        $this->display("./template/common/search.html");
+        $this->category = $this->_category;
+        $this->model = $this->_model;
+        $this->display("./template/plug/search.html");
     }
 
     //搜索内容
@@ -37,7 +35,7 @@ class SearchControl extends Control
         $result = $this->_db->search();
         $this->assign("data", $result['data']);
         $this->assign("page", $result['page']);
-        $this->display("./template/common/search_list.html");
+        $this->display("./template/plug/search_list.html");
     }
 
     /**搜索关键词
