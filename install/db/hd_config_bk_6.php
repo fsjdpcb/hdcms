@@ -47,6 +47,6 @@ $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`) VALUES('148','default_user_group','2','会员设置','新注册会员初始组','数字')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`) VALUES('149','member_open','0','会员设置','开启会员中心','布尔(1/0)')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`) VALUES('150','web_close_message','网站暂时关闭，请稍候访问','站点配置','网站关闭提示信息','文本')");
-$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`) VALUES('151','web_style','bootstrap','私有配置','网站模板','文本')");
+$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`) VALUES('151','web_style','white','私有配置','网站模板','文本')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`) VALUES('152','qq','','站点配置','QQ号','文本')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`) VALUES('153','weibo','houdunwangxj@gmail.com','站点配置','新浪微博','文本')");

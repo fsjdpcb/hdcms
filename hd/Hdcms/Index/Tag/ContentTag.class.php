@@ -142,14 +142,15 @@ str;
         <?php \$mid="$mid";\$cid ='$cid';\$flag='$flag';\$aid='$aid';
             if(empty(\$cid)){
                 \$cid= Q('cid',NULL,'intval');
-                if(\$cid==0){
+                if(\$cid){
                     \$tmp = M('category')->where('mid=1')->getField('cid',true);
-                    \$cid=implode(',',\$tmp);
+                    if(\$tmp)
+                        \$cid=implode(',',\$tmp);
                 }
             }
             //去除空白
+            if(\$cid){
             \$cid = explode(',',preg_replace('@\s@','',\$cid));
-            if(empty(\$cid))return '';
             //取一个cid为了实例化模型
             \$_REQUEST['cid']=\$cid[0];
             import('Content.Model.ContentViewModel');
@@ -182,7 +183,7 @@ str;
                 ?>
 str;
         $php .= $content;
-        $php .= '<?php endforeach;}?>';
+        $php .= '<?php endforeach;}}?>';
         return $php;
     }
 
