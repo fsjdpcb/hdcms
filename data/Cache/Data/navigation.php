@@ -26,18 +26,18 @@ return array (
     '_html' => '',
     '_name' => '后盾网',
   ),
-  3 => 
+  6 => 
   array (
-    'nid' => '3',
-    'title' => 'ab',
+    'nid' => '6',
+    'title' => 'a2',
     'pid' => '0',
-    'target' => '_blank',
+    'target' => '_self',
     'state' => '1',
     'list_order' => '100',
-    'url' => '?a=Index&c=Article&m=content&cid=10&aid=17',
+    'url' => '[ROOT]/index.php?a=Navigation&c=Navigation&m=edit&nid=6',
     '_level' => 1,
     '_html' => '',
-    '_name' => 'ab',
+    '_name' => 'a2',
   ),
 );
 ?>

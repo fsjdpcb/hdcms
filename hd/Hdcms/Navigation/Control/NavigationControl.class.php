@@ -46,7 +46,10 @@ class NavigationControl extends AuthControl
             }
         } else {
             $this->nav = $this->_navigation;
-            $this->field = $this->_navigation[Q('nid')];
+            $field = $this->_navigation[Q('nid')];
+            //替换链接中的{__ROOT__}变量
+            $field['url']=str_replace('{__ROOT__}',__ROOT__,$field['url']);
+            $this->field = $field;
             $this->display();
         }
     }

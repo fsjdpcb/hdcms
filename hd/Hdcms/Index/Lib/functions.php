@@ -47,15 +47,13 @@ function get_content_tpl($aid)
  * @param $aid
  * @return string
  */
-function get_single_url($aid)
+function get_single_url($field)
 {
-    $db = M('content_single');
-    $data = $db->find($aid);
-    if ($data['ishtml']) {
-        $url = empty($data['html_path']) ? rtrim(C("HTML_PATH"), '/\\') . "/single/{$aid}.html" : $data['html_path'];
-        return __ROOT__ . $url;
+    if ($field['ishtml']) {
+        $url = empty($data['html_path']) ? rtrim(C("HTML_PATH"), '/\\') . "/single/{$field['aid']}.html" : $data['html_path'];
+        return __ROOT__ .'/'. $url;
     } else {
-        return __WEB__ . "?a=Index&c=Single&m=single&aid=$aid";
+        return __WEB__ . "?a=Index&c=Single&m=single&aid={$field['$field']}";
     }
 }
 

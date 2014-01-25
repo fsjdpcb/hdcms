@@ -41,7 +41,7 @@
             <tr>
                 <td>链接Url:</td>
                 <td>
-                    <input type="text" name="link" class="w300" value="{$field.url}"/>
+                    <input type="text" name="url" class="w300" value="{$field.url}"/>
                 </td>
             </tr>
             <tr>

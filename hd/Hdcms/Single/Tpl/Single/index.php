@@ -39,7 +39,7 @@
                 <td>
                     <input type="text" class="w30" value="{$c.arc_sort}" name="arc_order[{$c.aid}]"/>
                 </td>
-                <td><a href="{|U:edit,array('aid'=>$c['aid'],'cid'=>$_GET['cid'])}" target="_blank">{$c.title}</a>
+                <td><a href="{|U:edit,array('aid'=>$c['aid'])}" target="_blank">{$c.title}</a>
                     {$c.flag}
                 </td>
                 <td>

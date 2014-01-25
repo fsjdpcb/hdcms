@@ -24,7 +24,7 @@ class ContentModel extends RelationModel
     public $auto = array(
         array('addtime', 'time', 'function', 2, 1),
         array('updatetime', 'get_update_time', 'method', 2, 3),
-        array('uid', 'get_uid', 'method', 2, 1)
+        array('uid', 'get_uid', 'method', 2, 3)
     );
 
     //添加内容时获得发布者id

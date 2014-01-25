@@ -12,9 +12,15 @@ class NavigationModel extends Model
         array('url', '_url', 'method', 2, 3)
     );
 
+    /**
+     * 将网址替换为{__ROOT__}
+     * 目的是在进行网站迁移时导航链接还是正确的
+     * @param $v
+     * @return mixed
+     */
     protected function _url($v)
     {
-        return str_replace(array(__WEB__, __ROOT__), array('', ''), $v);
+       return str_ireplace(__ROOT__, '[ROOT]', $v);
     }
 
     /**

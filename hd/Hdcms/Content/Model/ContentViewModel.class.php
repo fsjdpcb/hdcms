@@ -22,9 +22,9 @@ class ContentViewModel extends ViewModel
     private $_category;
 
     //获得内容
-    public function __init()
+    public function __init($param)
     {
-        $this->_cid = Q('cid', NULL, 'intval');
+        $this->_cid = isset($param['cid']) ? $param['cid'] : Q('cid', NULL, 'intval');
         $this->_mid = Q('mid', NULL, 'intval');
         $this->_category = F("category");
         $this->_model = F("model");
@@ -35,8 +35,8 @@ class ContentViewModel extends ViewModel
         //主表
         $this->table = $this->_model[$this->_mid]['table_name'];
         //副表
-        if($this->_model[$this->_mid]['type']==1)
-            $this->_stable= $this->table.'_data';
+        if ($this->_model[$this->_mid]['type'] == 1)
+            $this->_stable = $this->table . '_data';
         //表关联
         $this->view = array(
             //栏目表
@@ -45,7 +45,7 @@ class ContentViewModel extends ViewModel
                 "on" => $this->table . ".cid=category.cid"
             ),
             //属性表
-            'content_flag'=>array(
+            'content_flag' => array(
                 "type" => LEFT_JOIN,
                 "on" => $this->table . ".aid=content_flag.aid"
             )
@@ -101,40 +101,40 @@ class ContentViewModel extends ViewModel
             }
         }
         //文章状态：1 已审核 0未审核
-        $where[] = "state=".Q("state", 1, "intval");
+        $where[] = "state=" . Q("state", 1, "intval");
         //加入当前栏目
-        $cid=array($this->_cid);
+        $cid = array($this->_cid);
         //获得所有子栏目
-        $sCategory=Data::channelList($this->_category,$this->_cid);
-        foreach($sCategory as $cat){
-            $cid[]=$cat['cid'];
+        $sCategory = Data::channelList($this->_category, $this->_cid);
+        foreach ($sCategory as $cat) {
+            $cid[] = $cat['cid'];
         }
         //栏目条件（包含当前栏目与子栏目）
-        $where[] =$this->tableFull. '.cid IN(' . implode(',',$cid).')';
+        $where[] = $this->tableFull . '.cid IN(' . implode(',', $cid) . ')';
         //---------------------搜索条件----------------------
 
         //主键id
-        $pri = $this->tableFull.'.aid';
+        $pri = $this->tableFull . '.aid';
         //总条数
-        foreach($where as $w){
-            $w.=' AND ';
+        foreach ($where as $w) {
+            $w .= ' AND ';
         }
         //表前缀
-        $pre =C("DB_PREFIX");
+        $pre = C("DB_PREFIX");
         //总记录数SQL
         $sql = "SELECT COUNT(*) AS c FROM (
             SELECT $pri FROM  {$this->tableFull}
             INNER JOIN {$pre}category ON {$this->tableFull}.cid={$pre}category.cid
             LEFT JOIN {$pre}content_flag  ON {$this->tableFull}.aid={$pre}content_flag.aid
-            WHERE ".substr($w,0,-4)."
+            WHERE " . substr($w, 0, -4) . "
             GROUP BY $pri) AS t";
-        $result= M()->query($sql);
+        $result = M()->query($sql);
         //文章统计
         $count = $result[0]['c'];
         //根据配置文件设置显示条数
         $page = new Page($count, C("ADMIN_LIST_ROW"));
         //字段集
-        $field = $pri .','.$this->tableFull. ".cid,title,arc_sort,state,catname,author,updatetime";
+        $field = $pri . ',' . $this->tableFull . ".cid,title,arc_sort,state,catname,author,updatetime";
         //文章数据
         $data = $this->field($field)->where($where)->group($pri)->order('arc_sort ASC,aid DESC')->limit($page->limit())->all();
         //为每篇文章添加属性字符串
@@ -150,9 +150,9 @@ class ContentViewModel extends ViewModel
                     $data[$n]['flag'] = substr($s_flag, 0, -6) . "]</font>";
                 }
                 //模型名称
-                $data[$n]['model_name']=$this->_model[$this->_category[$d['cid']]['mid']]['model_name'];
+                $data[$n]['model_name'] = $this->_model[$this->_category[$d['cid']]['mid']]['model_name'];
             }
         }
-        return array('data'=>$data,'page'=>$page->show());
+        return array('data' => $data, 'page' => $page->show());
     }
 }

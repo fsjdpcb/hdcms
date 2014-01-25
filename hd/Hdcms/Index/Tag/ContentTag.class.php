@@ -25,7 +25,7 @@ class ContentTag
         if (!empty($attr['file'])) {
             $file = "template/" . C("WEB_STYLE") . "/" . $attr['file'];
             if (is_file($file)) {
-                $view = new HdView();
+                $view = new ViewHd();
                 $view->fetch($file);
                 return $view->getCompileContent();
             }
@@ -95,8 +95,8 @@ str;
                 \$field['class']=\$_self_cid==\$field['cid']?"$class":"";
                 \$field['url'] = get_category_url(\$field['cid']);?>
 str;
-            $php .= $content;
-            $php .= <<<str
+        $php .= $content;
+        $php .= <<<str
         <?php
             endforeach;
             }
@@ -111,6 +111,7 @@ str;
     {
         $aid = $attr['aid'];
         $php = <<<str
+        <?php
         \$db = M("content_single");
         \$db->where = "aid IN ($aid)";
         \$result = \$db->order("arc_sort ASC,aid DESC")->all();
@@ -119,9 +120,10 @@ str;
             \$field['time'] = date("Y-m-d", \$field['updatetime']);
             \$field['thumb'] = '__ROOT__' . '/' . \$field['thumb'];
             \$field['title'] = \$field['color'] ? "<span style='color:" . \$field['color'] . "'>" . \$field['title'] . "</span>" : \$field['title'];
-            \$php .= $content;
-        endforeach;
+        ?>
 str;
+        $php .= $content;
+        $php .= '<?php  endforeach;?>';
         return $php;
     }
 
@@ -152,9 +154,8 @@ str;
             if(\$cid){
             \$cid = explode(',',preg_replace('@\s@','',\$cid));
             //取一个cid为了实例化模型
-            \$_REQUEST['cid']=\$cid[0];
             import('Content.Model.ContentViewModel');
-            \$db = K('ContentView');
+            \$db = K('ContentView',array('cid'=>\$cid[0]));
                 //主表
                 \$table=\$db->tableFull;
                 if(!empty(\$flag)){
@@ -196,7 +197,7 @@ str;
         //简介长度
         $infolen = isset($attr['infolen']) ? intval($attr['infolen']) : 80;
         //类型 son 包含子栏目
-        $type=isset($attr['type'])?$attr['type']:'son';
+        $type = isset($attr['type']) ? $attr['type'] : 'son';
         $php = <<<str
         <?php
         \$type=strtolower('$type');
@@ -235,19 +236,19 @@ str;
                     \$field['description']=mb_substr(\$field['description'],0,$infolen,'utf-8');
             ?>
 str;
-            $php .= $content;
+        $php .= $content;
         $php .= '<?php endforeach;endif?>';
         return $php;
     }
 
     public function _pageshow($attr, $content)
     {
-        $style = isset($attr['style'])?$attr['style']:2;
-        $row = isset($attr['row'])?$attr['row']:10;
+        $style = isset($attr['style']) ? $attr['style'] : 2;
+        $row = isset($attr['row']) ? $attr['row'] : 10;
         return <<<str
         <?php if(is_object(\$page))
             echo \$page->show($style,$row);
-        ?>';
+        ?>
 str;
 
     }
@@ -321,10 +322,12 @@ str;
         $php .= "<?php endforeach;endif;?>";
         return $php;
     }
+
     //导航标签
-    public function _nav($attr,$content){
-        $nid=isset($attr['nid'])?$attr['nid']:'';
-        $php=<<<str
+    public function _nav($attr, $content)
+    {
+        $nid = isset($attr['nid']) ? $attr['nid'] : '';
+        $php = <<<str
             <?php
             \$nid='$nid';
             \$db = M('navigation');
@@ -334,11 +337,12 @@ str;
             \$result = \$db->order('list_order ASC,nid DESC')->where('state=1')->all();
             if(\$result):
                 foreach(\$result as \$field):
+                  \$field['url']=str_ireplace('[ROOT]','__ROOT__',\$field['url']);
                   \$field['link']='<a href="'.\$field['url'].'" target="'.\$field['target'].'">'.\$field['title'].'</a>';
                 ?>
 str;
-        $php.=$content;
-        $php.='<?php endforeach;endif;?>';
+        $php .= $content;
+        $php .= '<?php endforeach;endif;?>';
         return $php;
     }
 
