@@ -97,17 +97,17 @@ class HtmlControl extends AuthControl
             $mid = Q("post.mid", 0, "intval");
             //一键生成时的情况，更新所有栏目
             if (isset($_SESSION['make_all']['category'])) {
-                $category = $db->field("cid,mid,catname,catdir,is_cat_html,list_html_url")->where("is_cat_html=1 and cattype!=3")->all();
+                $category = $db->field("cid,mid,catname,catdir,is_cat_html,cat_html_url")->where("is_cat_html=1 and cattype!=3")->all();
             } else if (count($_POST['cid']) == 1 and $_POST['cid'][0] == 0) { //没有选择栏目
                 //不限模型时
                 if ($mid === 0) {
-                    $category = $db->field("cid,mid,catname,catdir,is_cat_html,list_html_url")->where("is_cat_html=1 and cattype!=3")->all();
+                    $category = $db->field("cid,mid,catname,catdir,is_cat_html,cat_html_url")->where("is_cat_html=1 and cattype!=3")->all();
                 } else { //指定模型的所有栏目
-                    $category = $db->field("cid,mid,catname,catdir,list_html_url")->where("mid=$mid and is_cat_html=1 and cattype!=3")->all();
+                    $category = $db->field("cid,mid,catname,catdir,cat_html_url")->where("mid=$mid and is_cat_html=1 and cattype!=3")->all();
                 }
             } else {
                 //指定具体栏目
-                $category = $db->field("cid,mid,catname,catdir,list_html_url")->where("is_cat_html=1 and cattype!=3")->in($_POST['cid'])->all();
+                $category = $db->field("cid,mid,catname,catdir,cat_html_url")->where("is_cat_html=1 and cattype!=3")->in($_POST['cid'])->all();
             }
             //不存在配置文件时生成栏目首页
             if (is_null($category)) {
@@ -129,7 +129,11 @@ class HtmlControl extends AuthControl
                     $cat['_html'] = C("HTML_PATH") . '/' . $cat['catdir'] . '/index.html';
                     //为Index/Index/IndexControl提交参数
                     $_REQUEST['cid'] = $cat['cid'];
-                    Html::make("IndexControl", "category", $cat);
+                    Page::$staticUrl=__ROOT__.'/'.C("HTML_PATH") . '/' . str_replace(
+                            array('{catdir}', '{cid}'),
+                            array($cat['catdir'], $cat['cid']),
+                            $cat['cat_html_url']);
+                    Html::make("CategoryControl", "category", $cat);
                     //去掉页数为0时栏目
                     if (!Page::$staticTotalPage) continue;
                     $cat['total_page'] = Page::$staticTotalPage;
@@ -177,9 +181,13 @@ class HtmlControl extends AuthControl
                     $cat['_html'] = C("HTML_PATH") . '/' . str_replace(
                             array('{catdir}', '{cid}', '{page}'),
                             array($cat['catdir'], $cat['cid'], $_GET['page']),
-                            $cat['list_html_url']
-                        );
-                    Html::make("IndexControl", "category", $cat);
+                            $cat['cat_html_url']);
+                    //设置分页静态变量
+                    Page::$staticUrl=__ROOT__.'/'.C("HTML_PATH") . '/' . str_replace(
+                            array('{catdir}', '{cid}'),
+                            array($cat['catdir'], $cat['cid']),
+                            $cat['cat_html_url']);
+                    Html::make("CategoryControl", "category", $cat);
                     //如果页数为0表示生成完毕，删除配置文件中的这个栏目
                     if ($config[$n]['total_page'] < $config[$n]['self_page']) {
                         unset($config[$n]);
@@ -214,7 +222,7 @@ class HtmlControl extends AuthControl
             $mid = Q("post.mid", 0, "intval");
             //没有选择栏目
             if (isset($_SESSION['make_all']['content'])) {
-                $category = $db->field("cid,mid,catname,catdir,is_cat_html,list_html_url")->where("is_cat_html=1")->all();
+                $category = $db->field("cid,mid,catname,catdir,is_cat_html,cat_html_url")->where("is_arc_html=1")->all();
             } else if (count($_POST['cid']) == 1 and $_POST['cid'][0] == 0) {
                 //不限模型时
                 if ($mid === 0) {
@@ -244,7 +252,7 @@ class HtmlControl extends AuthControl
                     //当前栏目表
                     $table = $this->_model[$cat['mid']]['table_name'];
                     //设置条件
-                    $cat['where'] = C("DB_PREFIX") . $table . ".cid=" . $cat['cid'] . ' AND ishtml=1 AND redirecturl=""';
+                    $cat['where'] = C("DB_PREFIX") . $table . ".cid=" . $cat['cid'] . ' AND url_type=1 AND redirecturl=""';
                     $cat['order'] = "";
                     $cat['limit'] = "";
                     //需要更新的总条数
@@ -319,11 +327,11 @@ class HtmlControl extends AuthControl
                     $field['aid'] = $con['aid'];
                     $field['addtime'] = $con['addtime'];
                     $field['html_path'] = $con['html_path'];
-                    $field['_html'] = get_content_html($field);
+                    $field['_html'] = Url::get_content_html($field);
                     //生成静态IndexControl中的content方法需要这2个变量
                     $_REQUEST['cid'] = $cat['cid'];
                     $_REQUEST['aid'] = $con['aid'];
-                    Html::make("IndexControl", "content", $field);
+                    Html::make("ArticleControl", "content", $field);
                 }
                 //本次$cat['row']页生成完毕，执行下一轮静态生成
                 $this->message("{$cat['catname']}共有{$cat['total_row']}条记录-

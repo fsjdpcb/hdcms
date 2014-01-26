@@ -7,12 +7,6 @@
  */
 class ArticleControl extends PublicControl
 {
-    //构造函数
-    public function __init()
-    {
-        parent::__init();
-    }
-
     //内容页
     public function content()
     {
@@ -23,10 +17,12 @@ class ArticleControl extends PublicControl
             if ($field) {
                 $field['caturl'] = U("category", array("cid" => $field['cid']));
                 $field['source'] = empty($field['source']) ? C("WEBNAME") : $field['source'];
-                $this->hdcms = $field;
-                $tpl = get_content_tpl($this->_aid);
-                if (is_file($tpl))
-                    $this->display($tpl);
+                //获得内容模板
+                $template = Template::get_content_tpl($this->_aid, $this->_cid);
+                if ($template) {
+                    $this->hdcms = $field;
+                    $this->display($template);
+                }
             }
         }
     }

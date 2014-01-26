@@ -21,7 +21,10 @@ class ContentViewModel extends ViewModel
     //栏目缓存
     private $_category;
 
-    //获得内容
+    /**
+     * 构造函数
+     * @param $param 参数 array('cid'=>栏目cid')
+     */
     public function __init($param)
     {
         $this->_cid = isset($param['cid']) ? $param['cid'] : Q('cid', NULL, 'intval');

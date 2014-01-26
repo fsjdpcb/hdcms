@@ -30,8 +30,8 @@ $db->exe("CREATE TABLE `".$db_prefix."category` (
   `list_tpl` varchar(100) NOT NULL DEFAULT '' COMMENT '列表页模板',
   `arc_tpl` varchar(100) NOT NULL DEFAULT '' COMMENT '内容页模板',
   `is_cat_html` tinyint(1) NOT NULL DEFAULT '1' COMMENT '栏目生成Html',
-  `is_arc_html` tinyint(1) NOT NULL DEFAULT '1' COMMENT '内容页生成Html\n\n',
-  `list_html_url` varchar(200) NOT NULL DEFAULT '' COMMENT '栏目页URL规则\n\n',
+  `is_arc_html` tinyint(1) NOT NULL DEFAULT '1' COMMENT '内容页生成Html  1 生成  0 不生成\n\n',
+  `cat_html_url` varchar(200) NOT NULL DEFAULT '' COMMENT '栏目页URL规则\n\n',
   `arc_html_url` varchar(200) NOT NULL DEFAULT '' COMMENT '内容页URL规则',
   `mid` smallint(6) NOT NULL DEFAULT '0' COMMENT '模型ID',
   `cattype` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 栏目,2 封面,3 外部链接',
@@ -90,7 +90,7 @@ $db->exe("CREATE TABLE `".$db_prefix."content` (
   `updatetime` int(10) NOT NULL DEFAULT '0' COMMENT '发布时间 ',
   `color` char(7) NOT NULL DEFAULT '' COMMENT '标题颜色\n',
   `template` varchar(255) NOT NULL DEFAULT '' COMMENT '内容页模板\n',
-  `ishtml` tinyint(1) NOT NULL DEFAULT '1',
+  `url_type` tinyint(1) NOT NULL DEFAULT '1' COMMENT '文章访问方式  1 静态访问  2 动态访问  3 继承栏目',
   `arc_sort` smallint(5) unsigned NOT NULL DEFAULT '100',
   `state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 已审核 0 未审核',
   `cid` smallint(6) NOT NULL DEFAULT '0' COMMENT '栏目id',
@@ -98,8 +98,9 @@ $db->exe("CREATE TABLE `".$db_prefix."content` (
   `keywords` char(100) NOT NULL DEFAULT '' COMMENT '关键字',
   `description` varchar(255) NOT NULL DEFAULT '' COMMENT '描述',
   `html_path` varchar(255) NOT NULL DEFAULT '' COMMENT '自定义生成的静态文件地址',
+  `uid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '管理员uid',
   PRIMARY KEY (`aid`)
-) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=utf8");
+) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."content_data`");
 $db->exe("CREATE TABLE `".$db_prefix."content_data` (
   `aid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '文章主表ID',
@@ -136,8 +137,9 @@ $db->exe("CREATE TABLE `".$db_prefix."content_single` (
   `description` varchar(255) NOT NULL DEFAULT '' COMMENT '描述',
   `content` text NOT NULL COMMENT '正文',
   `html_path` varchar(255) NOT NULL DEFAULT '' COMMENT '自定义生成的静态文件地址',
+  `uid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '作者uid',
   PRIMARY KEY (`aid`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8");
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."custom_js`");
 $db->exe("CREATE TABLE `".$db_prefix."custom_js` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -221,7 +223,7 @@ $db->exe("CREATE TABLE `".$db_prefix."navigation` (
   `list_order` mediumint(100) NOT NULL DEFAULT '100' COMMENT '排序',
   `url` varchar(255) NOT NULL DEFAULT '' COMMENT '链接地址',
   PRIMARY KEY (`nid`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='网站前台导航'");
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='网站前台导航'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."node`");
 $db->exe("CREATE TABLE `".$db_prefix."node` (
   `nid` smallint(6) NOT NULL AUTO_INCREMENT,
@@ -276,7 +278,7 @@ $db->exe("CREATE TABLE `".$db_prefix."search` (
   PRIMARY KEY (`sid`),
   UNIQUE KEY `name` (`name`) USING BTREE,
   KEY `total` (`total`)
-) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8");
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."session`");
 $db->exe("CREATE TABLE `".$db_prefix."session` (
   `sessid` char(32) NOT NULL DEFAULT '',
@@ -293,7 +295,7 @@ $db->exe("CREATE TABLE `".$db_prefix."tag` (
   PRIMARY KEY (`tid`),
   UNIQUE KEY `name` (`tag_name`),
   KEY `total` (`total`)
-) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8");
+) ENGINE=MyISAM AUTO_INCREMENT=226 DEFAULT CHARSET=utf8");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."template_tag`");
 $db->exe("CREATE TABLE `".$db_prefix."template_tag` (
   `tid` int(10) unsigned NOT NULL AUTO_INCREMENT,

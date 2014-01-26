@@ -23,25 +23,33 @@ class PublicControl extends CommonControl
     //栏目缓存
     protected $_category;
 
-    //构造函数
-    public function __init()
+    /**
+     * 构造函数
+     * @param int $cid 栏目cid
+     * @param int $aid 文章aid
+     */
+    public function __construct($cid = null, $aid = null)
     {
-        parent::__init();
+        parent::__construct();
         //网站开启验证
-        $this->verification();
-        //----------------------设置变量----------------------
-        $this->_model = F("model");
-        $this->_category = F("category");
-        $this->_cid = Q("cid", null, "intval");
-        $this->_aid = Q("aid", null, "intval");
-        if ($this->_cid) {
-            $this->_mid = $this->_category[$this->_cid]['mid'];
-            $this->_table = $this->_model[$this->_mid]['table_name'];
+        if (!$this->verification()) {
+            $this->display("./data/Template/web_close");
+            exit;
+        } else {
+            //----------------------设置变量----------------------
+            $this->_model = F("model");
+            $this->_category = F("category");
+            $this->_cid = $cid ? $cid : Q("cid", null, "intval");
+            $this->_aid = $aid ? $aid : Q("aid", null, "intval");
+            if ($this->_cid) {
+                $this->_mid = $this->_category[$this->_cid]['mid'];
+                $this->_table = $this->_model[$this->_mid]['table_name'];
+            }
+            //模板风格路径
+            $this->_template = "./template/" . C("WEB_STYLE") . '/';
+            //分配模板目录URL
+            defined("__TEMPLATE__") or define("__TEMPLATE__", __ROOT__ . "/template/" . C("WEB_STYLE"));
         }
-        //模板风格路径
-        $this->_template = "./template/" . C("WEB_STYLE") . '/';
-        //分配模板目录URL
-        defined("__TEMPLATE__") or define("__TEMPLATE__", __ROOT__ . "/template/" . C("WEB_STYLE"));
     }
 
 
@@ -55,9 +63,8 @@ class PublicControl extends CommonControl
          * 1. 非管理员
          * 2. 网站没有关闭
          */
-        if (!session('admin') && C("web_open") == 0) {
-            $this->display("./data/Template/web_close");
-            exit;
+        if (session('admin') || C("web_open") == 0) {
+            return true;
         }
     }
 

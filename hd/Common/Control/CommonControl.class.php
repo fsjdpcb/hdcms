@@ -8,8 +8,9 @@
 class CommonControl extends Control
 {
 
-    protected function __init()
+    public function __construct()
     {
+        parent::__construct();
         //历史URL
         session("history", Q("server.HTTP_REFERER"));
     }

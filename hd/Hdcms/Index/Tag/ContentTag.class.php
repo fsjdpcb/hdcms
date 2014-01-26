@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Admin应用标签库
  * Class AdminTag
@@ -93,15 +92,10 @@ str;
             foreach (\$result as \$field):
                 //当前栏目样式
                 \$field['class']=\$_self_cid==\$field['cid']?"$class":"";
-                \$field['url'] = get_category_url(\$field['cid']);?>
+                \$field['url'] = Url::get_category_url(\$field);?>
 str;
         $php .= $content;
-        $php .= <<<str
-        <?php
-            endforeach;
-            }
-        ?>
-str;
+        $php .= '<?php endforeach;}?>';
         return $php;
 
     }
@@ -116,7 +110,7 @@ str;
         \$db->where = "aid IN ($aid)";
         \$result = \$db->order("arc_sort ASC,aid DESC")->all();
         foreach (\$result as \$field):
-            \$field['url'] = get_single_url(\$field);
+            \$field['url'] = Url::get_content_url(\$field);
             \$field['time'] = date("Y-m-d", \$field['updatetime']);
             \$field['thumb'] = '__ROOT__' . '/' . \$field['thumb'];
             \$field['title'] = \$field['color'] ? "<span style='color:" . \$field['color'] . "'>" . \$field['title'] . "</span>" : \$field['title'];
@@ -139,18 +133,20 @@ str;
         //标题长度
         $titlelen = isset($attr['titlelen']) ? intval($attr['titlelen']) : 80;
         //属性
-        $flag = isset($attr['flag']) ? intval($attr['flag']) : '';
+        $flag = isset($attr['flag']) ? $attr['flag'] : '';
         $php = <<<str
         <?php \$mid="$mid";\$cid ='$cid';\$flag='$flag';\$aid='$aid';
+            //没有设置栏目属性时取get值
             if(empty(\$cid)){
                 \$cid= Q('cid',NULL,'intval');
-                if(\$cid){
-                    \$tmp = M('category')->where('mid=1')->getField('cid',true);
-                    if(\$tmp)
-                        \$cid=implode(',',\$tmp);
-                }
             }
-            //去除空白
+            //没有设置属性也没有\$_GET['cid']时取所有栏目
+            if(empty(\$cid)){
+                \$tmp = M('category')->where('mid=1')->getField('cid',true);
+                if(\$tmp)
+                    \$cid=implode(',',\$tmp);
+            }
+            //存在栏目时进行数据读取操作
             if(\$cid){
             \$cid = explode(',',preg_replace('@\s@','',\$cid));
             //取一个cid为了实例化模型
@@ -172,15 +168,16 @@ str;
                 \$field = "*,\$table.cid,\$table.aid";
                 \$db->field(\$field);
                 \$result = \$db->join('category,content_flag')->order('arc_sort ASC,updatetime DESC')->all();
+
                 if(\$result){
-                foreach(\$result as \$field):
-                    \$field['caturl']=U('category',array('cid'=>\$field['cid']));
-                    \$field['url']=get_content_url(\$field);
-                    \$field['time']=date("Y-m-d",\$field['updatetime']);
-                    \$field['thumb']='__ROOT__'.'/'.\$field['thumb'];
-                    \$field['title']=mb_substr(\$field['title'],0,$titlelen,'utf8');
-                    \$field['title']=\$field['color']?"<span style='color:".\$field['color']."'>".\$field['title']."</span>":\$field['title'];
-                    \$field['description']=mb_substr(\$field['description'],0,$infolen,'utf-8');
+                    foreach(\$result as \$field):
+                        \$field['caturl']=U('category',array('cid'=>\$field['cid']));
+                        \$field['url']=Url::get_content_url(\$field);
+                        \$field['time']=date("Y-m-d",\$field['updatetime']);
+                        \$field['thumb']='__ROOT__'.'/'.\$field['thumb'];
+                        \$field['title']=mb_substr(\$field['title'],0,$titlelen,'utf8');
+                        \$field['title']=\$field['color']?"<span style='color:".\$field['color']."'>".\$field['title']."</span>":\$field['title'];
+                        \$field['description']=mb_substr(\$field['description'],0,$infolen,'utf-8');
                 ?>
 str;
         $php .= $content;
@@ -228,7 +225,7 @@ str;
             //有结果集时处理
             foreach(\$result as \$field):
                     \$field['caturl']=U('category',array('cid'=>\$field['cid']));
-                    \$field['url']=get_content_url(\$field);
+                    \$field['url']=Url::get_content_url(\$field);
                     \$field['thumb']='__ROOT__'.'/'.\$field['thumb'];
                     \$field['title']=mb_substr(\$field['title'],0,$titlelen,'utf8');
                     \$field['title']=\$field['color']?"<span style='color:".\$field['color']."'>".\$field['title']."</span>":\$field['title'];
@@ -256,30 +253,42 @@ str;
     //上下篇
     public function _pagenext($attr, $content)
     {
+        $get = isset($attr['get']) ? $attr['get'] : 'pre,next';
         $pre_str = isset($attr['pre']) ? $attr['pre'] : "上一篇: ";
         $next_str = isset($attr['next']) ? $attr['next'] : "上一篇: ";
         $php = <<<str
         <?php
+        \$get='$get';
+        if(METHOD=='single'){
+            //单页面
+            \$db=M('content_single');
+            \$field='aid,title,redirecturl,url_type,html_path,addtime';
+        }else{
+            //普通文章
+            \$db = K('ContentView');
+            \$field='aid,cid,title,redirecturl,url_type,html_path,addtime';
+        }
         \$aid = Q('aid',NULL,'intval');
-        \$db = K('ContentView');
-        \$php = '';
         //上一篇
-        \$field = \$db->join()->trigger()->field("aid,cid,title")->where("aid<\$aid")->order("aid desc")->find();
-        if (\$field) {
-            \$url = get_content_url(\$field);
-            \$str .= "<li>$pre_str <a href='\$url'>" . \$field['title'] . "</a></li>";
-        } else {
-            \$str .= "<li>$pre_str <span>没有了</span></li>";
+        if(strstr(\$get,'pre')){
+            \$content = \$db->join()->trigger()->field(\$field)->where("aid<\$aid")->order("aid desc")->find();
+            if (\$content) {
+                \$url = Url::get_content_url(\$content);
+                echo "<li>$pre_str <a href='\$url'>" . \$content['title'] . "</a></li>";
+            } else {
+                echo "<li>$pre_str <span>没有了</span></li>";
+            }
         }
         //下一篇
-        \$field = \$db->join()->trigger()->field("aid,cid,title")->where("aid>\$aid")->order("aid asc")->find();
-        if (\$field) {
-            \$url = get_content_url(\$field);
-            \$str .= "<li>$next_str <a href='\$url'>" . \$field['title'] . "</a></li>";
-        } else {
-            \$str .= "<li>$next_str <span>没有了</span></li>";
+        if(strstr(\$get,'next')){
+            \$content = \$db->join()->trigger()->field(\$field)->where("aid>\$aid")->order("aid ASC")->find();
+            if (\$content) {
+                \$url = Url::get_content_url(\$content);
+                echo "<li>$next_str <a href='\$url'>" . \$content['title'] . "</a></li>";
+            } else {
+                echo "<li>$next_str <span>没有了</span></li>";
+            }
         }
-        echo \$str;
         ?>
 str;
         return $php;
@@ -295,7 +304,7 @@ str;
             \$cat= array_reverse(Data::parentChannel(\$cat,\$_GET['cid']));
             \$str = "<a href='__ROOT__'>首页</a> > ";
             foreach(\$cat as \$c){
-                \$str.="<a href='".get_category_url(\$c['cid'])."'>".\$c['title'].'</a> > ';
+                \$str.="<a href='".Url::get_category_url(\$c['cid'])."'>".\$c['title'].'</a> > ';
             }
             echo \$str;
         }

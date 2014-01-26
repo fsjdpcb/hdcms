@@ -57,15 +57,6 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>生成静态</th>
-                </tr>
-                <tr>
-                    <td>
-                        <label><input type="radio" name="ishtml" value="1" checked="checked"/> 是</label>
-                        <label><input type="radio" name="ishtml" value="0"/> 否</label>
-                    </td>
-                </tr>
-                <tr>
                     <th>允许回复</th>
                 </tr>
                 <tr>
@@ -200,10 +191,18 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>HTML文件</th>
+                    <th>生成静态</th>
+                    <td>
+                        <label><input type="radio" name="url_type" value="3" checked="checked"/> 默认</label>
+                        <label><input type="radio" name="url_type" value="1"/> 是</label>
+                        <label><input type="radio" name="url_type" value="2"/> 否</label>
+                    </td>
+                </tr>
+                <tr>
+                    <th>静态文件</th>
                     <td>
                         <input class="w250" type="text" name="html_path">
-                        <span class="validate-message">如果不填,将按栏目规则生成静态</span>
+                        <span class="validate-message">如:houdunwang.html,如果不填,将按栏目规则生成静态</span>
                     </td>
                 </tr>
             </table>

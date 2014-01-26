@@ -7,13 +7,6 @@
  */
 class CategoryControl extends PublicControl
 {
-    //构造函数
-    public function __init()
-    {
-        parent::__init();
-    }
-
-
 
     //显示栏目列表
     public function category()

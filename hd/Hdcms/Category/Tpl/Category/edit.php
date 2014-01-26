@@ -32,7 +32,7 @@
                 <div id="base">
                     <table class="table1">
                         <tr>
-                            <td class="w100">上级</td>
+                            <th class="w100">上级</th>
                             <td>
                                 <select name="pid">
                                     <option value="0">一级栏目</option>
@@ -46,31 +46,13 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>栏目名称</td>
+                            <th>栏目名称</th>
                             <td>
                                 <input type="text" name="catname" value="{$field.catname}" class="w200"/>
                             </td>
                         </tr>
-
                         <tr>
-                            <td>静态目录</td>
-                            <td>
-                                <input type="text" name="catdir" value="{$field.catdir}" class="w200"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>生成静态</td>
-                            <td>
-                                <label><input type="radio" name="urltype" value="1"
-                                    <if value="$field.urltype==1">checked="checked"</if>
-                                    /> 静态访问</label>
-                                <label><input type="radio" name="urltype" value="2"
-                                    <if value="$field.urltype==2">checked="checked"</if>
-                                    /> 动态访问</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>前台显示</td>
+                            <th>栏目类型</th>
                             <td>
                                 <label><input type="radio" name="cattype" value="1"
                                     <if value="$field.cattype==1">checked="checked"</if>
@@ -84,7 +66,24 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>显示</td>
+                            <th>静态目录</th>
+                            <td>
+                                <input type="text" name="catdir" value="{$field.catdir}" class="w200"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>访问方式</th>
+                            <td>
+                                <label><input type="radio" name="urltype" value="1"
+                                    <if value="$field.urltype==1">checked="checked"</if>
+                                    /> 静态访问</label>
+                                <label><input type="radio" name="urltype" value="2"
+                                    <if value="$field.urltype==2">checked="checked"</if>
+                                    /> 动态访问</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>在导航显示</th>
                             <td>
                                 <label><input type="radio" name="cat_show" value="1"
                                     <if value="$field.cat_show==1">checked="checked"</if>
@@ -92,27 +91,26 @@
                                 <label><input type="radio" name="cat_show" value="2"
                                     <if value="$field.cat_show==0">checked="checked"</if>
                                     /> 否</label>
+                                <span class="message">前台使用&lt;channel&gt;标签时是否显示</span>
                             </td>
                         </tr>
                         <tr>
-                            <td>跳转Url</td>
+                            <th>跳转Url</th>
                             <td>
-                                <input type="text" name="cat_redirecturl" value="{$field.cat_redirecturl}"
-                                       class="w300"/>
+                                <input type="text" name="cat_redirecturl" value="{$field.cat_redirecturl}" class="w300"/>
+                                <span class="message">栏目类型选择为“外部链接”才有效</span>
                             </td>
                         </tr>
                         <tr>
-                            <td>栏目关键字</td>
+                            <th>栏目关键字</th>
                             <td>
                                 <input type="text" name="keyworks" value="{$field.keyworks}" class="w300"/>
-                                <span class="label">SEO关键字</span>
                             </td>
                         </tr>
                         <tr>
-                            <td>栏目描述</td>
+                            <th>栏目描述</th>
                             <td>
-                                <textarea name="description" value="{$field.description}" class="w350 h80">{$field.description}</textarea>
-                                <span class="label">不能超过100字</span>
+                                <textarea name="description" value="{$field.description}" class="w350 h100">{$field.description}</textarea>
                             </td>
                         </tr>
                     </table>
@@ -120,27 +118,27 @@
                 <div id="tpl" class="con">
                     <table class="table1">
                         <tr>
-                            <td class="w100">封面模板</td>
+                            <th class="w100">封面模板</th>
                             <td>
                                 <input type="text" name="index_tpl" class="w200" id="index_tpl" value="{$field.index_tpl}" onclick="select_template('index_tpl')"/>
-                                <button type="button" class="btn" onclick="select_template('index_tpl')">选择首页模板</button>
-                                <span class="validation">{style}指模板风格</span>
+                                <button type="button" class="hd-cancel" onclick="select_template('index_tpl')">选择首页模板</button>
+                                <span class="message">{style}指模板风格</span>
                             </td>
                         </tr>
                         <tr>
-                            <td>列表页模板</td>
+                            <th>列表页模板</th>
                             <td>
                                 <input type="text" name="list_tpl" id="list_tpl" class="w200" value="{$field.list_tpl}" onclick="select_template('list_tpl')"/>
-                                <button type="button" class="btn" onclick="select_template('list_tpl')">选择列表模板</button>
-                                <span class="validation">{style}指模板风格</span>
+                                <button type="button" class="hd-cancel" onclick="select_template('list_tpl')">选择列表模板</button>
+                                <span class="message">{style}指模板风格</span>
                             </td>
                         </tr>
                         <tr>
-                            <td>内容页模板</td>
+                            <th>内容页模板</th>
                             <td>
                                 <input type="text" name="arc_tpl" id="arc_tpl" class="w200" value="{$field.arc_tpl}" onclick="select_template('arc_tpl')"/>
-                                <button type="button" class="btn" onclick="select_template('arc_tpl')">选择内容页模板</button>
-                                <span class="validation">{style}指模板风格</span>
+                                <button type="button" class="hd-cancel" onclick="select_template('arc_tpl')">选择内容页模板</button>
+                                <span class="message">{style}指模板风格</span>
                             </td>
                         </tr>
                     </table>
@@ -148,7 +146,7 @@
                 <div id="html" class="con">
                     <table class="table1">
                         <tr>
-                            <td class="w100">栏目生成Html</td>
+                            <th class="w100">栏目生成Html</th>
                             <td>
                                 <label><input type="radio" class="radio" name="is_cat_html" value="1"
                                     <if value="$field.is_cat_html==1">checked="checked"</if>
@@ -159,7 +157,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>内容页生成Html</td>
+                            <th>内容页生成Html</th>
                             <td>
                                 <label><input type="radio" class="radio" name="is_arc_html" value="1"
                                     <if value="$field.is_arc_html==1">checked="checked"</if>
@@ -170,11 +168,11 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>栏目页URL规则</td>
+                            <th>栏目页URL规则</th>
                             <td>
-                                <input type="text" name="list_html_url" class="w200"
-                                       value="{$field.list_html_url}"/>
-                        <span class="validation">
+                                <input type="text" name="cat_html_url" class="w200"
+                                       value="{$field.cat_html_url}"/>
+                        <span class="message">
                         {cid} 栏目ID,
                         {catdir} 栏目目录,
                         {page} 列表的页码
@@ -182,11 +180,11 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>内容页URL规则</td>
+                            <th>内容页URL规则</th>
                             <td>
                                 <input type="text" name="arc_html_url" class="w200"
                                        value="{$field.arc_html_url}"/>
-                        <span class="validation">
+                        <span class="message">
                         {y}、{m}、{d} 年月日,
                         {timestamp}UNIX时间戳,
                         {aid} 文章ID,
@@ -199,15 +197,15 @@
                 <div id="seo">
                     <table class="table1">
                         <tr>
-                            <td class="w100">SEO标题</td>
+                            <th class="w100">SEO标题</th>
                             <td>
                                 <input type="text" name="cat_seo_title" value="{$field.cat_seo_title}" class="w350"/>
                             </td>
                         </tr>
                         <tr>
-                            <td>SEO描述</td>
+                            <th>SEO描述</th>
                             <td>
-                                <textarea name="cat_seo_description" class="w350 h150">{$field.cat_seo_description}</textarea>
+                                <textarea name="cat_seo_description" class="w400 h150">{$field.cat_seo_description}</textarea>
                             </td>
                         </tr>
                     </table>

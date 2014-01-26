@@ -1,4 +1,5 @@
 <?php
+
 //模板管理模块
 class TemplateControl extends AuthControl
 {
@@ -12,34 +13,31 @@ class TemplateControl extends AuthControl
     {
         $style = array();
         foreach (glob("./template/*") as $tpl) {
-            //去除common公共模板目录
-            if (strstr($tpl, 'common')) continue;
+            //去除plug公共模板目录
+            if (strstr($tpl, 'plug')) continue;
+            //说明文档
             $readme = $tpl . '/readme.txt';
             if (is_file($readme) && is_readable($readme)) {
                 $readme = trim(preg_replace('@#.*@im', "", file_get_contents($readme)));
-                $arr = preg_split('@\n@', $readme);
+                $config = preg_split('@\n@', $readme);
             } else {
-                $arr = array("HDCMS免费模板", "后盾网", "houdunwang.com");
+                $config = array("HDCMS免费模板", "后盾网", "houdunwang.com");
             }
             //模板目录名
-            $arr['dir_name'] = basename($tpl);
+            $config['dir_name'] = basename($tpl);
             //模板缩略图
             if (is_file($tpl . '/template.jpg')) {
-                $arr['img'] = $tpl . '/template.jpg';
+                $config['img'] = $tpl . '/template.jpg';
             } else {
-                $arr['img'] = __CONTROL_TPL__ . '/img/default.jpg';
+                $config['img'] = __CONTROL_TPL__ . '/img/default.jpg';
             }
             //正在使用的模板
-            if (C("WEB_STYLE") == $arr['dir_name']) {
-                $style_cur = $arr;
-            } else {
-                $style[] = $arr;
+            if (C("WEB_STYLE") == $config['dir_name']) {
+                $config['current'] = true;
             }
+            $style[] = $config;
         }
-        //删除前台编译文件
-        is_dir("./temp/hdcms/Content/Compile") and Dir::del("./temp/hdcms/Content/Compile");
-        $this->assign("style_cur", $style_cur);
-        $this->assign("style", $style);
+        $this->style = $style;
         $this->display();
     }
 
@@ -47,15 +45,17 @@ class TemplateControl extends AuthControl
     public function select_style()
     {
         $dir_name = Q("dir_name");
-        import('Config.Model.ConfigModel');
-        $db = K("config");
         if ($dir_name) {
-            $db->join()->where("name='WEB_STYLE'")->save(array(
+            import('Config.Model.ConfigModel');
+            $db = K("config");
+            K("config")->join()->where("name='WEB_STYLE'")->save(array(
                 "value" => $dir_name
             ));
             //更新配置文件
             $db->update_config_file();
-            $this->ajax(array('state'=>1,'message'=>'操作成功'));
+            //删除前台编译文件
+            is_dir("./temp/hdcms/Content/Compile") and Dir::del("./temp/hdcms/Content/Compile");
+            $this->ajax(array('state' => 1, 'message' => '操作成功'));
         }
     }
 
@@ -103,12 +103,12 @@ class TemplateControl extends AuthControl
     public function select_tpl()
     {
         //模板目录
-        $stylePath =  ROOT_PATH . 'template/' . C("WEB_STYLE");
-        $path = Q("get.path",$stylePath);
+        $stylePath = ROOT_PATH . 'template/' . C("WEB_STYLE");
+        $path = Q("get.path", $stylePath);
         $file = Dir::tree($path, "html");
         foreach ($file as $n => $v) {
             if ($v['type'] == 'dir') {
-                $file[$n]['path'] =$v['path'];
+                $file[$n]['path'] = $v['path'];
             } else {
                 $file[$n]['path'] = str_replace($stylePath, '{style}', $v['path']);
             }

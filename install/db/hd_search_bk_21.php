@@ -5,3 +5,5 @@ $db->exe("REPLACE INTO ".$db_prefix."search (`sid`,`name`,`total`) VALUES('14','
 $db->exe("REPLACE INTO ".$db_prefix."search (`sid`,`name`,`total`) VALUES('19','','2')");
 $db->exe("REPLACE INTO ".$db_prefix."search (`sid`,`name`,`total`) VALUES('20','v','1')");
 $db->exe("REPLACE INTO ".$db_prefix."search (`sid`,`name`,`total`) VALUES('22','后','2')");
+$db->exe("REPLACE INTO ".$db_prefix."search (`sid`,`name`,`total`) VALUES('23','as','1')");
+$db->exe("REPLACE INTO ".$db_prefix."search (`sid`,`name`,`total`) VALUES('24','请输入关键字...ff','1')");

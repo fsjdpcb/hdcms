@@ -3,16 +3,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <title>内容列表</title>
+    <title>风格列表</title>
     <hdjs/>
     <js file="__CONTROL_TPL__/js/style_list.js"/>
-    <css file="__CONTROL_TPL__/css/css.css"/>
+    <css file="__CONTROL_TPL__/css/style_list.css"/>
 </head>
 <body>
-<div class="wrap" style="height: 100%;">
+<div class="wrap" style="bottom: 0px;">
     <div class="title-header">友情提示</div>
     <div class="help">
-        <p>1. HDCMS官网不断更新免费优质模板 <a href="http://hdcms.hdphp.com" class="action" target="_blank">立刻获取</a></p>
+        <p>1. HDCMS官网不断更新免费优质模板 <a href="http://www.hdphp.com" class="action" target="_blank">立刻获取</a></p>
 
         <p>2. 非HDCMS官网提供的模板，可能存在恶意木马程序</p>
     </div>
@@ -22,24 +22,8 @@
     </div>
     <div class="tpl-list">
         <ul>
-            <li class="active current">
-                <img src="{$style_cur.img}"/>
-                <h4>{$style_cur[0]}</h4>
-
-                <p>作者: {$style_cur[1]}</p>
-
-                <p>Email: {$style_cur[2]}</p>
-
-                <div class="link">
-                    <a href="javascript:;" class="btn" onclick="select_style('{$style_cur.dir_name}')">使用</a>
-                    <a href="{|U:'show_dir',array('dir_name'=>$style_cur['dir_name'])}" class="btn">编辑</a>
-                </div>
-                <div class="style_cur">
-                    正在使用
-                </div>
-            </li>
             <list from="$style" name="t">
-                <li>
+                <li <if value="$t.current==1">class="active current"</if>>
                     <img src="{$t.img}" width="260"/>
                     <h4>{$t[0]} {$t.active}</h4>
 
@@ -48,9 +32,16 @@
                     <p>Email: {$t[2]}</p>
 
                     <div class="link">
-                        <a href="javascript:;" class="btn" onclick="hd_ajax('{|U:select_style}',{dir_name:'{$t.dir_name|basename}'})">使用</a>
+                        <if value="$t.current neq 1">
+                            <a href="javascript:;" class="btn" onclick="hd_ajax('{|U:select_style}',{dir_name:'{$t.dir_name|basename}'})">使用</a>
+                        </if>
                         <a href="{|U:'show_dir',array('dir_name'=>$style_cur['dir_name'])}" class="btn">编辑</a>
                     </div>
+                    <if value="$t.current==1">
+                        <div class="style_cur">
+                            正在使用
+                        </div>
+                    </if>
                 </li>
             </list>
         </ul>

@@ -1,4 +1,9 @@
 <?php
+import('Index.Lib.Template');
+import('Index.Lib.Url');
+import('Index.Control.PublicControl');
+import('Index.Control.ArticleControl');
+import('Index.Tag.ContentTag');
 
 /**
  * 内容管理模型
@@ -47,7 +52,7 @@ class ContentModel extends RelationModel
         $this->_field = F($this->_mid, false, FIELD_CACHE_PATH);
         $this->_cid = Q("cid", null, "intval");
         $this->_mid = $this->_category[$this->_cid]['mid'];
-        $this->_aid=Q('aid',NULL,'intval');
+        $this->_aid = Q('aid', NULL, 'intval');
         //主表
         $this->table = $this->_model[$this->_mid]['table_name'];
         if (is_null($this->table)) {
@@ -320,7 +325,7 @@ class ContentModel extends RelationModel
                 return false;
             }
             //取第几张图为缩略图
-            $num = intval($data['auto_thumb_num'])-1;
+            $num = intval($data['auto_thumb_num']) - 1;
             //是否存在这张图
             if (isset($imgs[1][$num])) {
                 import("Upload.Control.UploadControl");
@@ -404,15 +409,12 @@ class ContentModel extends RelationModel
         //修改内容tag
         $this->_update_tag($aid);
         //获得文章的静态html地址
-        $html = get_content_html(M($this->table)->find($aid));
-        if (!is_null($html)) {
+        $html = Url::get_content_html(M($this->table)->find($aid));
+        if ($html) {
             //生成静态
-            $_GET['cid'] = $this->_cid;
-            $_GET['aid'] = $this->result[$this->table];
-            import('Index.Control.PublicControl');
-            import('Index.Control.ArticleControl');
             ob_start();
-            O('ArticleControl', 'content');
+            $obj = new ArticleControl($this->_cid, $aid);
+            $obj->content();
             $con = ob_get_clean();
             $dir = dirname($html);
             is_dir($dir) or dir_create($dir, 0755);

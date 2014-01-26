@@ -6,7 +6,6 @@
     <title>内容列表</title>
     <hdjs/>
     <js file="__CONTROL_TPL__/js/js.js"/>
-    <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
 <body>
 <div class="wrap" style="bottom: 0px;">

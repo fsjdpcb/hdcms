@@ -170,7 +170,7 @@
                 <tr>
                     <th>模板</th>
                     <td>
-                        <input class="w250" type="text" name="template" id="template" onfocus="select_template('template');" value="{style}/article_default.html">
+                        <input class="w250" type="text" name="template" id="template" onfocus="select_template('template');" value="{style}/article_single.html">
                         <button class="hd-cancel-small" type="button" onclick="select_template('template');">选择模板</button>
                     </td>
                 </tr>
