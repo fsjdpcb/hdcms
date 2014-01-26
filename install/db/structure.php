@@ -29,20 +29,19 @@ $db->exe("CREATE TABLE `".$db_prefix."category` (
   `index_tpl` varchar(100) NOT NULL DEFAULT '' COMMENT '封面模板',
   `list_tpl` varchar(100) NOT NULL DEFAULT '' COMMENT '列表页模板',
   `arc_tpl` varchar(100) NOT NULL DEFAULT '' COMMENT '内容页模板',
-  `is_cat_html` tinyint(1) NOT NULL DEFAULT '1' COMMENT '栏目生成Html',
-  `is_arc_html` tinyint(1) NOT NULL DEFAULT '1' COMMENT '内容页生成Html  1 生成  0 不生成\n\n',
   `cat_html_url` varchar(200) NOT NULL DEFAULT '' COMMENT '栏目页URL规则\n\n',
   `arc_html_url` varchar(200) NOT NULL DEFAULT '' COMMENT '内容页URL规则',
   `mid` smallint(6) NOT NULL DEFAULT '0' COMMENT '模型ID',
   `cattype` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 栏目,2 封面,3 外部链接',
-  `urltype` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 静态访问 2 动态访问',
+  `arc_url_type` tinyint(1) NOT NULL DEFAULT '1' COMMENT '文章访问方式 1 静态访问 2 动态访问',
+  `cat_url_type` tinyint(1) NOT NULL DEFAULT '1' COMMENT '栏目访问方式 1 静态访问 2 动态访问',
   `cat_redirecturl` varchar(100) NOT NULL DEFAULT '' COMMENT '跳转url',
   `catorder` smallint(5) unsigned DEFAULT '100' COMMENT '栏目排序',
   `cat_show` tinyint(1) DEFAULT '1' COMMENT 'channel标签调用时是否显示',
   `cat_seo_title` char(100) DEFAULT NULL COMMENT 'SEO标题',
   `cat_seo_description` varchar(255) DEFAULT NULL COMMENT 'SEO描述',
   PRIMARY KEY (`cid`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='栏目表'");
+) ENGINE=MyISAM AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COMMENT='栏目表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."category_access`");
 $db->exe("CREATE TABLE `".$db_prefix."category_access` (
   `cid` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '栏目cid',
@@ -100,7 +99,7 @@ $db->exe("CREATE TABLE `".$db_prefix."content` (
   `html_path` varchar(255) NOT NULL DEFAULT '' COMMENT '自定义生成的静态文件地址',
   `uid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '管理员uid',
   PRIMARY KEY (`aid`)
-) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8");
+) ENGINE=MyISAM AUTO_INCREMENT=210 DEFAULT CHARSET=utf8");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."content_data`");
 $db->exe("CREATE TABLE `".$db_prefix."content_data` (
   `aid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '文章主表ID',
@@ -139,7 +138,7 @@ $db->exe("CREATE TABLE `".$db_prefix."content_single` (
   `html_path` varchar(255) NOT NULL DEFAULT '' COMMENT '自定义生成的静态文件地址',
   `uid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '作者uid',
   PRIMARY KEY (`aid`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8");
+) ENGINE=MyISAM DEFAULT CHARSET=utf8");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."custom_js`");
 $db->exe("CREATE TABLE `".$db_prefix."custom_js` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -176,7 +175,7 @@ $db->exe("CREATE TABLE `".$db_prefix."field` (
   `set` text NOT NULL COMMENT '字段设置',
   PRIMARY KEY (`fid`),
   KEY `mid` (`mid`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='模型字段'");
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='模型字段'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."flag`");
 $db->exe("CREATE TABLE `".$db_prefix."flag` (
   `fid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
@@ -223,7 +222,7 @@ $db->exe("CREATE TABLE `".$db_prefix."navigation` (
   `list_order` mediumint(100) NOT NULL DEFAULT '100' COMMENT '排序',
   `url` varchar(255) NOT NULL DEFAULT '' COMMENT '链接地址',
   PRIMARY KEY (`nid`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='网站前台导航'");
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='网站前台导航'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."node`");
 $db->exe("CREATE TABLE `".$db_prefix."node` (
   `nid` smallint(6) NOT NULL AUTO_INCREMENT,
@@ -278,7 +277,7 @@ $db->exe("CREATE TABLE `".$db_prefix."search` (
   PRIMARY KEY (`sid`),
   UNIQUE KEY `name` (`name`) USING BTREE,
   KEY `total` (`total`)
-) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8");
+) ENGINE=MyISAM DEFAULT CHARSET=utf8");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."session`");
 $db->exe("CREATE TABLE `".$db_prefix."session` (
   `sessid` char(32) NOT NULL DEFAULT '',
@@ -295,7 +294,7 @@ $db->exe("CREATE TABLE `".$db_prefix."tag` (
   PRIMARY KEY (`tid`),
   UNIQUE KEY `name` (`tag_name`),
   KEY `total` (`total`)
-) ENGINE=MyISAM AUTO_INCREMENT=226 DEFAULT CHARSET=utf8");
+) ENGINE=MyISAM DEFAULT CHARSET=utf8");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."template_tag`");
 $db->exe("CREATE TABLE `".$db_prefix."template_tag` (
   `tid` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -325,7 +324,7 @@ $db->exe("CREATE TABLE `".$db_prefix."upload` (
   KEY `id` (`id`) USING BTREE,
   KEY `uid` (`uid`),
   KEY `aid` (`aid`,`cid`,`mid`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COMMENT='上传文件'");
+) ENGINE=MyISAM AUTO_INCREMENT=135 DEFAULT CHARSET=utf8 COMMENT='上传文件'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."user`");
 $db->exe("CREATE TABLE `".$db_prefix."user` (
   `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
