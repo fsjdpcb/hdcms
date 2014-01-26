@@ -18,10 +18,10 @@ class ArticleControl extends PublicControl
                 $field['caturl'] = U("category", array("cid" => $field['cid']));
                 $field['source'] = empty($field['source']) ? C("WEBNAME") : $field['source'];
                 //获得内容模板
-                $template = Template::get_content_tpl($this->_aid, $this->_cid);
-                if ($template) {
+                $tpl = Template::get_content_tpl($this->_aid, $this->_cid);
+                if ($tpl) {
                     $this->hdcms = $field;
-                    $this->display($template);
+                    $this->display($tpl);
                 }
             }
         }

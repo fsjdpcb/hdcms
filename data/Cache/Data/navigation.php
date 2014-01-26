@@ -13,6 +13,21 @@ return array (
     '_html' => '',
     '_name' => '首页',
   ),
+  7 => 
+  array (
+    'nid' => '7',
+    'title' => 'dfdf',
+    'pid' => '1',
+    'target' => '_self',
+    'state' => '1',
+    'list_order' => '100',
+    'url' => 'ssdfsdf',
+    '_level' => 2,
+    '_html' => '',
+    '_first' => true,
+    '_end' => true,
+    '_name' => '└─ dfdf',
+  ),
   2 => 
   array (
     'nid' => '2',

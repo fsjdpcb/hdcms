@@ -13,9 +13,9 @@ class SearchModel extends Model
     //关键词搜索
     public function search()
     {
-        $searchWord = Q("search");
+        $searchWord = Q("search",NULL,'htmlspecialchars,trim,strip_tags');
         //关键词验证
-        if (!$searchWord)
+        if (empty($searchWord))
             return false;
         //===========================查询条件====================================
         //关键词模式 OR AND

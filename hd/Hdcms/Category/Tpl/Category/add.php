@@ -57,7 +57,7 @@
                     <tr>
                         <th>栏目名称</th>
                         <td>
-                            <input type="text" name="catname" class="w200"/>
+                            <input type="text" name="catname" class="w300"/>
                         </td>
                     </tr>
                     <tr>
@@ -71,25 +71,7 @@
                     <tr>
                         <th>静态目录</th>
                         <td>
-                            <input type="text" name="catdir" class="w200"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>访问方式</th>
-                        <td>
-                            <label class="checkbox inline">
-                                <input type="radio" name="urltype" value="1" checked="checked"/> 静态访问</label>
-                            <label class="checkbox inline">
-                                <input type="radio" name="urltype" value="2"/> 动态访问</label>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <th>在导航显示</th>
-                        <td>
-                            <label><input type="radio" name="cat_show" value="1" checked="checked"/> 是</label>
-                            <label><input type="radio" name="cat_show" value="0"/> 否</label>
-                            <span class="message">前台使用&lt;channel&gt;标签时是否显示</span>
+                            <input type="text" name="catdir" class="w300"/>
                         </td>
                     </tr>
                     <tr>
@@ -100,16 +82,29 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>栏目关键字</th>
+                        <th>栏目访问</th>
                         <td>
-                            <input type="text" name="keyworks" class="w300"/>
-
+                            <label>
+                                <input type="radio" name="cat_url_type" value="1" checked="checked"/> 静态</label>
+                            <label>
+                                <input type="radio" name="cat_url_type" value="2"/> 动态</label>
                         </td>
                     </tr>
                     <tr>
-                        <th>栏目描述</th>
+                        <th>文章访问</th>
                         <td>
-                            <textarea name="description" class="w350 h100"></textarea>
+                            <label>
+                                <input type="radio" name="arc_url_type" value="1" checked="checked"/> 静态</label>
+                            <label>
+                                <input type="radio" name="arc_url_type" value="2"/> 动态</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>在导航显示</th>
+                        <td>
+                            <label><input type="radio" name="cat_show" value="1" checked="checked"/> 是</label>
+                            <label><input type="radio" name="cat_show" value="0"/> 否</label>
+                            <span class="message">前台使用&lt;channel&gt;标签时是否显示</span>
                         </td>
                     </tr>
                 </table>
@@ -154,32 +149,13 @@
             </div>
             <div id="html">
                 <table class="table1">
-                    <tr>
-                        <th class="w100">栏目生成Html</th>
-                        <td>
-                            <label><input type="radio" class="radio" name="is_cat_html" value="1"
-                                          checked="checked"/> 是</label>
-                            <label><input type="radio" class="radio" name="is_cat_html" value="0"/> 否</label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>内容页生成Html</th>
-                        <td>
-                            <label><input type="radio" class="radio" name="is_arc_html" value="1"
-                                          checked="checked"/> 是</label>
-                            <label><input type="radio" class="radio" name="is_arc_html" value="0"/> 否</label>
-                        </td>
-                    </tr>
+
                     <tr>
                         <th>栏目页URL规则</th>
                         <td>
                             <input type="text" name="list_html_url" class="w200"
                                    value="{catdir}/list_{cid}_{page}.html"/>
-                        <span class="message">
-                        {cid} 栏目ID,
-                        {catdir} 栏目目录,
-                        {page} 列表的页码
-                        </span>
+                            <span class="message">{cid} 栏目ID, {catdir} 栏目目录, {page} 列表的页码</span>
                         </td>
                     </tr>
                     <tr>
@@ -187,12 +163,7 @@
                         <td>
                             <input type="text" name="arc_html_url" class="w200"
                                    value="{catdir}/{y}/{m}{d}/{aid}.html"/>
-                        <span class="message">
-                        {y}、{m}、{d} 年月日,
-                        {timestamp}UNIX时间戳,
-                        {aid} 文章ID,
-                        {catdir} 栏目目录
-                        </span>
+                            <span class="message">{y}、{m}、{d} 年月日,{timestamp}UNIX时间戳,{aid} 文章ID,{catdir} 栏目目录</span>
                         </td>
                     </tr>
                 </table>
@@ -200,9 +171,21 @@
             <div id="seo">
                 <table class="table1">
                     <tr>
+                        <th>关键字</th>
+                        <td>
+                            <input type="text" name="cat_keyworks" class="w400"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>描述</th>
+                        <td>
+                            <textarea name="cat_description" class="w400 h100"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
                         <th class="w100">SEO标题</th>
                         <td>
-                            <input type="text" name="cat_seo_title" class="w350"/>
+                            <input type="text" name="cat_seo_title" class="w400"/>
                         </td>
                     </tr>
                     <tr>

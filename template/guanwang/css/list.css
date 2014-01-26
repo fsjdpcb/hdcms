@@ -1,0 +1,280 @@
+/*内容区域大盒子开始*/
+#content{
+	width:1000px;
+	height:auto;
+	border-top:2px solid #CE0A0A;
+	border-left:1px solid #C7C7C7;
+	margin:3px auto;
+	overflow: hidden;
+}
+#content .title_box{
+	height: 31px;
+	border-bottom: 1px solid #CCCCCC;
+	border-right:1px solid #CCCCCC;
+	background: #F2F1F1;
+}
+#content .title_box ul li{
+	position: relative;
+	float: left;
+	border-right:1px solid #CCCCCC;
+	border-left:1px solid #FFFFFF;
+}
+#content .title_box ul li a{
+	display: block;
+	font-size: 14px;
+	font-weight: 700;
+	color:#000000;
+	line-height: 31px;
+	text-align: center;
+	padding-right: 12px;
+	padding-left: 12px;
+}
+#content .title_box ul li a:hover{
+	text-decoration: underline;
+	color:#D60002;
+}
+#content .title_box ul li.on a{
+	border-bottom: 1px solid #FFFFFF;
+	background: #FFFFFF;
+	color:#CF0B0B;
+}
+#content div.left_box{
+	float: left;
+	width:648px;
+	/*height:auto;*/
+	border-right:1px solid #C7C7C7;
+	border-bottom:1px solid #C7C7C7;
+	padding-bottom: 10px;
+	/*border:1px solid red;*/
+	overflow: hidden;
+}
+
+#content div.left_box .txt_box{
+	position: relative;
+	left:6px;
+	width:626px;
+	/*height:177px;*/
+	border-bottom: 1px solid #EEEEEE;
+	padding-bottom: 10px;
+	padding-left: 9px;
+	padding-top: 11px;
+	color:#777777;
+	/*overflow: hidden;*/
+}
+#content div.left_box .txt_box a.tit{
+	display: block;
+	color:#428CD5;
+	font-size: 16px;
+	font-weight: 600;
+	font-family: "Microsoft YaHei";
+	text-align: left;
+}
+#content div.left_box .txt_box a.tit:hover{
+	text-decoration: underline;
+	color:#D60002;
+}
+#content div.left_box .txt_box .time_box{
+	text-align: left;
+	padding-top: 17px;
+}
+#content div.left_box .txt_box .time_box a.name{
+	color:#428CD5;
+	font-size: 12px;
+	font-family: "Microsoft YaHei";
+}
+#content div.left_box .txt_box .time_box a.name:hover{
+	text-decoration: underline;
+	color:#D60002;
+}
+#content div.left_box .txt_box .time_box span.time{
+	color:#777777;
+	font-size: 12px;
+}
+#content div.left_box .txt_box .time_box a.com{
+	color:#777777;
+	font-size: 12px;
+}
+#content div.left_box .txt_box .time_box a.com:hover{
+	text-decoration: underline;
+	color:#D60002;
+}
+#content div.left_box .txt_box p.content{
+	/*font-weight: 600;*/
+	padding-top: 5px;
+	/*line-height: 15px;*/
+	color: #333;
+	font-size: 16px;
+	line-height: 1.7em;
+	text-indent: 2em;
+}
+#content div.left_box .txt_box p.content a{
+	font-size: 14px;
+	color:#777777;
+}
+#content div.left_box .txt_box p.content a:hover{
+	text-decoration: underline;
+	color:#428CD5;
+}
+
+
+
+
+
+
+
+
+
+#content div.right_box{
+	width:336px;
+	float: right;
+	text-align: center;
+}
+.tit_public{
+	position: relative;
+	height:31px;
+	background: #F2F1F1;
+	margin-top: 15px;
+	border-top:2px solid #CE0000;
+	border-bottom: 1px solid #C7C7C7;
+	line-height: 31px;
+	text-align: left;
+	padding-left: 11px;
+}
+.tit_public h3{
+	font-size: 18px;
+	font-family: "Microsoft YaHei";
+	font-weight: 100;
+}
+#content div.right_box .atte_box{
+	padding-bottom: 5px;
+}
+#content div.right_box .atte_box .list_box{
+	margin-bottom: 15px;
+	padding-top: 5px;
+}
+#content div.right_box .atte_box .list_box ul li{
+	padding-top: 7px;
+	padding-bottom: 7px;
+	padding-left: 10px;
+	border-bottom: 1px dotted #C7C7C7;
+	overflow: hidden;
+}
+#content div.right_box .atte_box .list_box ul li.nt span.num{
+	background: #CE0000;
+}
+#content div.right_box .atte_box .list_box ul li span.num{
+	display: block;
+	float: left;
+	background: #C7C7C7;
+	font-family: "Verdana";
+	font-size: 12px;
+	font-weight: 700;
+	color:#FFFFFF;
+	width:14px;
+	height:14px;
+	text-align:center;
+	line-height: 14px;
+	margin-right:5px;
+}
+#content div.right_box .atte_box .list_box ul li a.name{
+	display: block;
+	float: left;
+	width:170px;
+	text-align: left;
+	line-height: 17px;
+	color:#000000;
+	font-size: 14px;
+}
+#content div.right_box .atte_box .list_box ul li a.name:hover{
+	text-decoration: underline;
+	color:#D60002;
+}
+#content div.right_box .atte_box .list_box ul li a span.price{
+	float: left;
+	display: block;
+	/*font-family: "simsun";*/
+	font-size: 14px;
+	color:#CE0000;
+	text-align: right;
+	width:125px;
+}
+/*本文相关品牌车系开始*/
+#content div.right_box .atte_box2{
+	width:338px;
+	height:280px;
+	padding-bottom: 10px;
+}
+#content div.right_box .atte_box2 ul{
+	width:336px;
+	text-align: center;
+}
+#content div.right_box .atte_box2 ul li{
+	float: left;
+	width:130px;
+	height: 110px;
+	margin-right: 10px;
+	padding-left: 20px;
+	padding-top:10px;
+	padding-right: 8px;
+	padding-bottom: 5px;
+	line-height: 24px;
+	overflow: hidden;
+}
+#content div.right_box .atte_box2 ul li a.pic img{
+	width: 130px;
+	height:80px;
+	text-align: center;
+}
+#content div.right_box .atte_box2 ul li a.name{
+	/*font-family: "simsun";*/
+	font-size: 14px;
+	line-height: 
+	color:#666666;
+}
+#content div.right_box .atte_box2 ul li a.name:hover{
+	text-decoration: underline;
+}
+#content div.right_box .atte_box3 ul{
+	padding-top: 5px;
+}
+#content div.right_box .atte_box3 ul li{
+	height:25px;
+	float: left;
+	line-height: 25px;
+	overflow: hidden;
+}
+#content div.right_box .atte_box3 ul li a{
+	float: left;
+	display:block;
+	font-size: 14px;
+	color:#666666;
+	/*text-align: left;*/
+	padding-left: 10px;
+}
+#content div.right_box .atte_box3 ul li a:hover{
+	text-decoration: underline;
+}
+/*本文相关品牌车系结束*/
+
+/*内容区域大盒子结束*/ 
+
+
+/*分页样式*/
+#pagelist{
+	margin: 10px;
+}
+#pagelist a,#pagelist strong,#pagelist span{
+	display: block;
+	float: left;
+	border: 1px solid #eee;
+	height: 28px;
+	line-height: 28px;
+	font-size: 15px;
+	color: #333;
+	margin-right: 5px;
+	padding:0 5px;
+}
+#pagelist a:hover,#pagelist strong:hover,#pagelist span:hover{
+	background: #eee;
+}
+/*分页样式结束*/

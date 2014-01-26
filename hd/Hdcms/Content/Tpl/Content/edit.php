@@ -193,18 +193,17 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>生成静态</th>
+                    <th>访问方式</th>
                     <td>
-                        <label><input type="radio" name="url_type" value="3" <if value="$field.url_type==3">checked="checked"</if>/> 默认</label>
-                        <label><input type="radio" name="url_type" value="1" <if value="$field.url_type==1">checked="checked"</if>/> 是</label>
-                        <label><input type="radio" name="url_type" value="2" <if value="$field.url_type==2">checked="checked"</if>/> 否</label>
+                        <label><input type="radio" name="url_type" value="1" <if value="$field.url_type==3">checked="checked"</if>/> 静态</label>
+                        <label><input type="radio" name="url_type" value="2" <if value="$field.url_type==1">checked="checked"</if>/> 动态</label>
                     </td>
                 </tr>
                 <tr>
                     <th>HTML文件</th>
                     <td>
                         <input class="w250" type="text" name="html_path" value="{$field.html_path}">
-                        <span class="validate-message">如:houdunwang.html,如果不填,将按栏目规则生成静态</span>
+                        <span class="validate-message">如:houdunwang.html,如果不填将按栏目规则生成静态。栏目开启生成静态才有效</span>
                     </td>
                 </tr>
             </table>

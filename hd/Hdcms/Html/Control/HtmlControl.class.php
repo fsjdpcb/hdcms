@@ -86,6 +86,14 @@ class HtmlControl extends AuthControl
         }
     }
 
+    //生成栏目静态规则配置
+    public function create_category()
+    {
+        session("category_html_config", NULL);
+        $this->category = json_encode($this->_category);
+        $this->model = $this->_model;
+        $this->display();
+    }
     //生成栏目
     public function make_category()
     {
@@ -97,17 +105,17 @@ class HtmlControl extends AuthControl
             $mid = Q("post.mid", 0, "intval");
             //一键生成时的情况，更新所有栏目
             if (isset($_SESSION['make_all']['category'])) {
-                $category = $db->field("cid,mid,catname,catdir,is_cat_html,cat_html_url")->where("is_cat_html=1 and cattype!=3")->all();
+                $category = $db->field("cid,mid,catname,catdir,cat_html_url")->all();
             } else if (count($_POST['cid']) == 1 and $_POST['cid'][0] == 0) { //没有选择栏目
                 //不限模型时
                 if ($mid === 0) {
-                    $category = $db->field("cid,mid,catname,catdir,is_cat_html,cat_html_url")->where("is_cat_html=1 and cattype!=3")->all();
+                    $category = $db->field("cid,mid,catname,catdir,cat_html_url")->all();
                 } else { //指定模型的所有栏目
-                    $category = $db->field("cid,mid,catname,catdir,cat_html_url")->where("mid=$mid and is_cat_html=1 and cattype!=3")->all();
+                    $category = $db->field("cid,mid,catname,catdir,cat_html_url")->where("mid=$mid")->all();
                 }
             } else {
                 //指定具体栏目
-                $category = $db->field("cid,mid,catname,catdir,cat_html_url")->where("is_cat_html=1 and cattype!=3")->in($_POST['cid'])->all();
+                $category = $db->field("cid,mid,catname,catdir,cat_html_url")->in($_POST['cid'])->all();
             }
             //不存在配置文件时生成栏目首页
             if (is_null($category)) {
@@ -202,14 +210,6 @@ class HtmlControl extends AuthControl
         }
     }
 
-    //生成栏目静态规则配置
-    public function create_category()
-    {
-        session("category_html_config", NULL);
-        $this->category = json_encode($this->_category);
-        $this->model = $this->_model;
-        $this->display();
-    }
 
     //生成内容页静态
     public function make_content()
@@ -222,19 +222,22 @@ class HtmlControl extends AuthControl
             $mid = Q("post.mid", 0, "intval");
             //没有选择栏目
             if (isset($_SESSION['make_all']['content'])) {
-                $category = $db->field("cid,mid,catname,catdir,is_cat_html,cat_html_url")->where("is_arc_html=1")->all();
+                //一键生成
+                $category = $db->field("cid,mid,catname,catdir,arc_html_url")->all();
             } else if (count($_POST['cid']) == 1 and $_POST['cid'][0] == 0) {
-                //不限模型时
+                //没有选择栏目
                 if ($mid === 0) {
-                    $category = $db->field("cid,mid,catname,catdir,is_cat_html,arc_html_url")->where("is_arc_html=1")->all();
-                } else { //指定模型的所有栏目
-                    $category = $db->field("cid,mid,catname,catdir,arc_html_url")->where("mid=$mid and is_arc_html=1")->all();
+                    //不限模型时
+                    $category = $db->field("cid,mid,catname,catdir,arc_html_url")->all();
+                } else {
+                    //指定模型的所有栏目
+                    $category = $db->field("cid,mid,catname,catdir,arc_html_url")->where("mid=$mid")->all();
                 }
             } else {
                 //指定具体栏目
-                $category = $db->field("cid,mid,catname,catdir,arc_html_url")->where("is_arc_html=1")->in($_POST['cid'])->all();
+                $category = $db->field("cid,mid,catname,catdir,arc_html_url")->in($_POST['cid'])->all();
             }
-            //不存在配置文件时生成栏目首页
+            //没有要操作的栏目
             if (is_null($category)) {
                 if (isset($_SESSION['make_all']['content'])) {
                     $url = U("make_all");
@@ -247,14 +250,13 @@ class HtmlControl extends AuthControl
                 $this->message("没有任何内容需要生成!", $url);
             } else {
                 $config = array();
-                //生成所有栏目首页
                 foreach ($category as $cat) {
                     //当前栏目表
                     $table = $this->_model[$cat['mid']]['table_name'];
                     //设置条件
-                    $cat['where'] = C("DB_PREFIX") . $table . ".cid=" . $cat['cid'] . ' AND url_type=1 AND redirecturl=""';
-                    $cat['order'] = "";
-                    $cat['limit'] = "";
+                    $cat['where'] = C("DB_PREFIX") . $table . ".cid=" . $cat['cid'];
+                    $cat['order'] = '';
+                    $cat['limit'] = '';
                     //需要更新的总条数
                     $cat['total_row'] = 0;
                     //已经更新的条数
@@ -279,12 +281,14 @@ class HtmlControl extends AuthControl
                     //去除没有文章的栏目
                     $db = M($table);
                     $count = $db->where($cat['where'])->order($cat['order'])->count();
+                    //没有要生成的文章
                     if (!$count) {
                         continue;
                     }
                     //操作类型不为new时设置需要更新的总条数
                     if (empty($cat['total_row']))
                         $cat['total_row'] = $count;
+                    //保存生成静态的配置
                     $config[$cat['cid']] = $cat;
                 }
                 //储存配置到session
@@ -294,6 +298,7 @@ class HtmlControl extends AuthControl
         }
         $config = & $_SESSION['content_html_config'];
         if (empty($config)) {
+            //一键生成时，结束文章静态生成，跳转到一键生成方法
             if (isset($_SESSION['make_all']['content'])) {
                 $url = U("make_all");
             } else {
@@ -314,7 +319,6 @@ class HtmlControl extends AuthControl
                 //获得本次更新数据
                 $db = M($table);
                 $content = $db->field("aid,addtime,html_path")->where($cat['where'])->order($cat['order'])->limit($cat['old_total'], $cat['row'])->all();
-
                 //没有数据可更新时
                 if (!$content) {
                     unset($config[$n]);

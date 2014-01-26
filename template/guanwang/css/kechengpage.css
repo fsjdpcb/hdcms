@@ -1,0 +1,254 @@
+
+/*内容区域大盒子开始*/
+#content{
+	width:1000px;
+	border-top:2px solid #CE0A0A;
+	border-left:1px solid #C7C7C7;
+	margin:5px auto;
+	overflow: hidden;
+}
+#content .title_box{
+	height: 31px;
+	border-bottom: 1px solid #CCCCCC;
+	border-right:1px solid #CCCCCC;
+	background: #F2F1F1;
+}
+#content .title_box ul li{
+	position: relative;
+	float: left;
+	border-right:1px solid #CCCCCC;
+	border-left:1px solid #FFFFFF;
+}
+#content .title_box ul li a{
+	display: block;
+	font-size: 14px;
+	font-weight: 700;
+	color:#000000;
+	line-height: 31px;
+	text-align: center;
+	padding-right: 12px;
+	padding-left: 12px;
+}
+#content .title_box ul li a:hover{
+	text-decoration: underline;
+	color:#D60002;
+}
+#content .title_box ul li.on a{
+	border-bottom: 1px solid #FFFFFF;
+	background: #FFFFFF;
+	color:#CF0B0B;
+}
+#content div.left_box{
+	float: left;
+	width:999px;
+	height:auto;
+	border-right:1px solid #C7C7C7;
+	border-bottom:1px solid #C7C7C7;
+	overflow: hidden;
+	min-height: 600px;
+}
+#content div.left_box img{
+	max-width: 600px;
+}
+#content div.left_box h3{
+	display: block;
+	width:970px;
+	font-family: "Microsoft YaHei";
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 40px;
+	padding-top: 27px;
+	padding-bottom: 10px;
+	white-space: nowrap;
+	margin-left:15px;
+	border-bottom: 1px solid #C7C7C7;
+}
+#content div.left_box div.time{
+	font-family: "simsun";
+	font-size: 12px;
+	color:#A0A0A0;
+	padding-left: 54px;
+	padding-top: 14px;
+}
+#content div.left_box .con_box{
+	width: 730px;
+	padding-left: 15px;
+	padding-top: 10px;
+	font-style: 15px;
+	line-height: 2em;
+}
+#content div.left_box .con_box table{
+	border:1px solid #999;
+	border-collapse:collapse;
+}
+#content div.left_box .con_box table td{
+	border: 1px solid #999;
+	border-collapse:collapse;
+	text-align: center;
+}
+#content div.left_box .con_box p.pic{
+	padding-bottom: 25px;
+}
+#content div.left_box .con_box p.pic a img{
+	border:1px solid #2F2F2F;
+}
+#content div.left_box .con_box p.txt{
+	margin-top: -20px;
+	margin-bottom: 10px;
+	line-height: 30px;
+	text-align: center;
+}
+#content div.left_box .con_box p.txt a{
+	font-size: 16px;
+}
+#content div.left_box .con_box p.con_txt{
+	font-size: 16px;
+	line-height: 30px;
+	text-align: left;
+	text-indent: 28px;
+	padding-bottom: 25px;
+}
+#content div.right_box{
+	width:0px;
+	float: right;
+	text-align: center;
+}
+.tit_public{
+	position: relative;
+	height:31px;
+	background: #F2F1F1;
+	margin-top: 15px;
+	border-top:2px solid #CE0000;
+	border-bottom: 1px solid #C7C7C7;
+	line-height: 31px;
+	text-align: left;
+	padding-left: 11px;
+}
+.tit_public h3{
+	font-size: 18px;
+	font-family: "Microsoft YaHei";
+	font-weight: 100;
+}
+#content div.right_box .atte_box{
+	padding-bottom: 5px;
+}
+#content div.right_box .atte_box .list_box{
+	margin-bottom: 15px;
+	padding-top: 5px;
+}
+#content div.right_box .atte_box .list_box ul li{
+	padding-top: 7px;
+	padding-bottom: 7px;
+	padding-left: 10px;
+	border-bottom: 1px dotted #C7C7C7;
+	overflow: hidden;
+}
+#content div.right_box .atte_box .list_box ul li.nt span.num{
+	background: #CE0000;
+}
+#content div.right_box .atte_box .list_box ul li span.num{
+	display: block;
+	float: left;
+	background: #C7C7C7;
+	font-family: "Verdana";
+	font-size: 12px;
+	font-weight: 700;
+	color:#FFFFFF;
+	width:14px;
+	height:14px;
+	text-align:center;
+	line-height: 14px;
+	margin-right:5px;
+}
+#content div.right_box .atte_box .list_box ul li a.name{
+	display: block;
+	float: left;
+	width:170px;
+	text-align: left;
+	line-height: 17px;
+	color:#000000;
+	font-size: 14px;
+}
+#content div.right_box .atte_box .list_box ul li a.name:hover{
+	text-decoration: underline;
+	color:#D60002;
+}
+#content div.right_box .atte_box .list_box ul li a span.price{
+	float: left;
+	display: block;
+	font-family: "simsun";
+	font-size: 14px;
+	color:#CE0000;
+	text-align: right;
+	width:125px;
+}
+/*本文相关品牌车系开始*/
+#content div.right_box .atte_box2{
+	width:338px;
+	height:280px;
+	padding-bottom: 10px;
+}
+#content div.right_box .atte_box2 ul{
+	width:336px;
+	text-align: center;
+}
+#content div.right_box .atte_box2 ul li{
+	float: left;
+	width:130px;
+	height: 110px;
+	margin-right: 10px;
+	padding-left: 20px;
+	padding-top:10px;
+	padding-right: 8px;
+	padding-bottom: 5px;
+	line-height: 24px;
+	overflow: hidden;
+}
+#content div.right_box .atte_box2 ul li a.pic img{
+	width: 130px;
+	height:80px;
+	text-align: center;
+}
+#content div.right_box .atte_box2 ul li a.name{
+	font-family: "simsun";
+	font-size: 14px;
+	line-height: 
+	color:#666666;
+}
+#content div.right_box .atte_box2 ul li a.name:hover{
+	text-decoration: underline;
+}
+#content div.right_box .atte_box3 ul{
+	padding-top: 5px;
+}
+#content div.right_box .atte_box3 ul li{
+	height:25px;
+	float: left;
+	line-height: 25px;
+	overflow: hidden;
+}
+#content div.right_box .atte_box3 ul li a{
+	float: left;
+	display:block;
+	font-size: 14px;
+	color:#666666;
+	/*text-align: left;*/
+	padding-left: 10px;
+}
+#content div.right_box .atte_box3 ul li a:hover{
+	text-decoration: underline;
+}
+/*本文相关品牌车系结束*/
+
+/*内容区域大盒子结束*/
+
+
+/*百度分享代码*/
+.fenxiang{
+	width: 100%;
+	height: 50px;
+	/*background: red;*/
+	margin-top: 20px;
+}
+
+/*百度分享代码结束*/

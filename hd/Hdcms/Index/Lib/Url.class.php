@@ -22,7 +22,7 @@ final class Url
             case 2:
             case 1:
                 //普通栏目
-                if ($category['urltype'] == 1) {
+                if ($category['cat_url_type'] == 1) {
                     //栏目生成静态
                     return __ROOT__ . '/' . C("HTML_PATH") . '/' . $category['catdir'] . '/index.html';
                 } else {
@@ -76,15 +76,6 @@ final class Url
                         case 2:
                             //文章字段设置为动态访问
                             return U('Index/Article/content', array('cid' => $field['cid'], 'aid' => $field['aid']));
-                        case 3:
-                            //继承栏目设置
-                            if ($category['urltype'] == 1 && $category['is_arc_html']==1) {
-                                //生成静态
-                                return __ROOT__ . '/' . self::get_content_html($field);
-                            } else if($category['urltype']==2){
-                                //栏目定义为动态访问
-                                return U('Index/Article/content', array('cid' => $field['cid'], 'aid' => $field['aid']));
-                            }
                     }
                 } else {
                     //文章设置跳转地址
@@ -103,31 +94,26 @@ final class Url
     static public function get_content_html($field)
     {
         $_category = F("category");
-        if (!empty($field['redirecturl'])) {
-            //文章设置跳转地址
-            return null;
-        } else {
-            //有自定义静态url时，直接使用（不需要通过栏目规则运算）
-            if (!empty($field['html_path']))
-                return C("HTML_PATH") . '/' . $field['html_path'];
-            //当前文章栏目信息
-            $category = $_category[$field['cid']];
-            //栏目定义的内容页生成静态规则
-            $arc_html_url = $category['arc_html_url'];
-            $_s = array(
-                '{catdir}', '{y}', '{m}', '{d}', '{aid}'
-            );
-            //文章发表时间
-            $time = getdate($field['addtime']);
-            $_r = array(
-                $category['catdir'],
-                $time['year'],
-                $time['mon'],
-                $time['mday'],
-                $field['aid']
-            );
-            return C("HTML_PATH") . '/' . str_replace($_s, $_r, $arc_html_url);
-        }
+        //有自定义静态url时，直接使用（不需要通过栏目规则运算）
+        if (!empty($field['html_path']))
+            return C("HTML_PATH") . '/' . $field['html_path'];
+        //当前文章栏目信息
+        $category = $_category[$field['cid']];
+        //栏目定义的内容页生成静态规则
+        $arc_html_url = $category['arc_html_url'];
+        $_s = array(
+            '{catdir}', '{y}', '{m}', '{d}', '{aid}'
+        );
+        //文章发表时间
+        $time = getdate($field['addtime']);
+        $_r = array(
+            $category['catdir'],
+            $time['year'],
+            $time['mon'],
+            $time['mday'],
+            $field['aid']
+        );
+        return C("HTML_PATH") . '/' . str_replace($_s, $_r, $arc_html_url);
     }
 
 

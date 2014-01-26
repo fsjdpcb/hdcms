@@ -9,13 +9,13 @@ final class Template
 
     /**
      * 获得栏目模板文件
-     * @param $cid 栏目cid
+     * @param int $cid 栏目cid
      * @return bool|mixed
      */
     static public function get_category_tpl($cid)
     {
         $category = F("category");
-        switch ($category['cid']['cattye']) {
+        switch ($category[$cid]['cattype']) {
             case 1:
                 //普通栏目
                 return str_replace('{style}', 'template/' . C("WEB_STYLE"), $category[$cid]['list_tpl']);

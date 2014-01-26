@@ -1,4 +1,7 @@
 <?php
 if (!defined("HDPHP_PATH")) exit;
-return require GROUP_PATH . "/Hdcms/Index/Config/config.php";
+return array(
+    //标签
+    "TPL_TAGS" => array('Index.Tag.ContentTag'),
+);
 ?>

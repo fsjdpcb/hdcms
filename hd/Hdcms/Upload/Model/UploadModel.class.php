@@ -1,12 +1,23 @@
 <?php
+
+/**
+ * 上传资源管理
+ * Class UploadModel
+ */
 class UploadModel extends Model
 {
-    //将上传文件写入数据表upload
+    public $table = 'upload';
+
+    /**
+     * 将上传文件写入数据表upload
+     * 文章完成添加后，更新aid记录
+     * @param $data
+     * @return bool
+     */
     public function insert_to_table($data)
     {
         $data['cid'] = Q("get.cid", 0, "intval");
         $data['mid'] = Q("get.mid", 0, "intval");
-        $data['aid'] = 0;
         $data['uid'] = $_SESSION['uid'];
         if ($id = $this->add($data)) {
             $this->save_to_session($data['filename']);

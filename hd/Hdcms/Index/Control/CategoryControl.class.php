@@ -20,7 +20,7 @@ class CategoryControl extends PublicControl
             } else {
                 $field = M("category")->find($this->_cid);
                 $this->assign("hdcms", $field);
-                $tpl = get_category_tpl($this->_cid);
+                $tpl = Template::get_category_tpl($this->_cid);
                 if (is_file($tpl))
                     $this->display($tpl);
             }

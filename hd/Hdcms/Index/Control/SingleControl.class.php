@@ -19,8 +19,10 @@ class SingleControl extends PublicControl
         if ($aid) {
             $field = M('content_single')->find($aid);
             $tpl = str_replace('{style}', './template/' . C("WEB_STYLE"), $field['template']);
-            $this->hdcms = $field;
-            $this->display($tpl);
+            if (is_file($tpl)) {
+                $this->hdcms = $field;
+                $this->display($tpl);
+            }
         }
 
     }
