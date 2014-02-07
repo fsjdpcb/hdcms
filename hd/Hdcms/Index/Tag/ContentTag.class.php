@@ -193,7 +193,7 @@ str;
         //标题长度
         $titlelen = isset($attr['titlelen']) ? intval($attr['titlelen']) : 80;
         //简介长度
-        $infolen = isset($attr['infolen']) ? intval($attr['infolen']) : 80;
+        $infolen = isset($attr['infolen']) ? intval($attr['infolen']) : 500;
         //类型 son 包含子栏目
         $type = isset($attr['type']) ? $attr['type'] : 'son';
         $php = <<<str

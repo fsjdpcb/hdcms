@@ -20,6 +20,9 @@
         </div>
         <ul id="treeDemo" class="ztree" style="top:25px;position: absolute;"></ul>
     </div>
+    <div id="move">
+        <span class="left"></span>
+    </div>
     <div id="content">
         <iframe src="{|U:'Hdcms/Index/feedback'}" name="content" scrolling="auto" frameborder="0" style="height:100%;width: 100%;"></iframe>
     </div>

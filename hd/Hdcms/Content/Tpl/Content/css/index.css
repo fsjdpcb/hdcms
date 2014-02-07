@@ -1,34 +1,70 @@
 @import "../../../../../static/css/common.css";
-div.wrap{
+
+div.wrap {
     bottom: 0px;
 }
+
 /*左侧栏目*/
 div#category_tree {
-    width: 150px;
+    width: 190px;
     position: absolute;
     top: 0px;
     bottom: 0px;
     left: 0px;
     overflow-x: hidden;
     overflow-y: auto;
-    border-right: solid 3px #cccccc;
+    border-right: solid 1px #DDDDDD;
 }
 
+div#move {
+    width: 5px;
+    background: #EEEEEE;
+    position: absolute;
+    left: 191px;
+    top: 0px;
+    bottom: 0px;
+    border-right: solid 1px #DDDDDD;
+    cursor: pointer;
+}
+
+div#move span {
+    font-size: 16px;
+    color: #999;
+    display: block;
+    height: 15px;
+    width: 15px;
+    position: absolute;
+    top:50%;
+    margin-top: -15px;
+    z-index: 1000;
+}
+div#move span.left{
+    background: url("../img/ico_left.gif") no-repeat;
+    left: -10px;
+}
+div#move span.right{
+    background: url("../img/ico_right.gif") no-repeat;
+    left: 5px;
+}
 /*右侧内容显示区*/
 div#content {
     position: fixed;
-    left: 152px;
+    left: 197px;
     right: 0px;
     bottom: 0px;
     top: 0px;
 }
-#tree_title{
-    position: absolute;top:10px;left:10px;
+
+#tree_title {
+    position: absolute;
+    top: 10px;
+    left: 10px;
 }
-#tree_title span{
+
+#tree_title span {
     display: block;
     background: url("../../../../../static/ztree/css/zTreeStyle/img/diy/1_open.png");
-    width:15px;
+    width: 15px;
     height: 15px;
     float: left;
     margin-right: 5px;

@@ -62,6 +62,15 @@ class HtmlControl extends AuthControl
         $this->message("全站静态更新完毕", null);
     }
 
+    /**
+     * 更新全站静态
+     */
+    public function create_all_html()
+    {
+        unset($_SESSION['make_all']);
+        $this->make_all();
+    }
+
     //一键生成配置页
     public function create_all()
     {
@@ -94,6 +103,7 @@ class HtmlControl extends AuthControl
         $this->model = $this->_model;
         $this->display();
     }
+
     //生成栏目
     public function make_category()
     {
@@ -137,7 +147,7 @@ class HtmlControl extends AuthControl
                     $cat['_html'] = C("HTML_PATH") . '/' . $cat['catdir'] . '/index.html';
                     //为Index/Index/IndexControl提交参数
                     $_REQUEST['cid'] = $cat['cid'];
-                    Page::$staticUrl=__ROOT__.'/'.C("HTML_PATH") . '/' . str_replace(
+                    Page::$staticUrl = __ROOT__ . '/' . C("HTML_PATH") . '/' . str_replace(
                             array('{catdir}', '{cid}'),
                             array($cat['catdir'], $cat['cid']),
                             $cat['cat_html_url']);
@@ -191,7 +201,7 @@ class HtmlControl extends AuthControl
                             array($cat['catdir'], $cat['cid'], $_GET['page']),
                             $cat['cat_html_url']);
                     //设置分页静态变量
-                    Page::$staticUrl=__ROOT__.'/'.C("HTML_PATH") . '/' . str_replace(
+                    Page::$staticUrl = __ROOT__ . '/' . C("HTML_PATH") . '/' . str_replace(
                             array('{catdir}', '{cid}'),
                             array($cat['catdir'], $cat['cid']),
                             $cat['cat_html_url']);

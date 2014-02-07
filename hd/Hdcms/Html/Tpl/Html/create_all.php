@@ -8,7 +8,7 @@
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
 <body>
-<form method="post" action="__CONTROL__&m=make_all" target="_iframe" onsubmit="return $.modalShow();">
+<form method="post" action="__CONTROL__&m=create_all_html" target="_iframe" onsubmit="return $.modalShow();">
     <div class="wrap">
         <div class="title-header">温馨提示</div>
         <div class="help">

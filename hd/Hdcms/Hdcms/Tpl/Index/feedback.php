@@ -6,7 +6,6 @@
     <title>HDCMS快速建站利器</title>
     <hdjs/>
     <css file="__CONTROL_TPL__/css/welcome.css"/>
-    <js file="__CONTROL_TPL__/js/feedback.js"/>
 </head>
 <body>
 <div class="wrap">

@@ -64,7 +64,7 @@ class ContentControl extends AuthControl
                 $data['url'] = U('content', array('cid' => $cat['cid'], 'state' => 1));
                 $data['target'] = 'content';
                 $data['open'] = true;
-                $data['name'] = $cat['catname'];
+                $data['name'] = $cat['catname']."({$cat['cid']})";
                 $category[] = $data;
             }
         }

@@ -19,7 +19,7 @@ return array (
   'reg_show_code' => '1',
   'reg_email' => '1',
   'reg_interval' => '0',
-  'member_group' => '2',
+  'member_group' => '1',
   'admin_list_row' => '15',
   'token_on' => '0',
   'log_key' => 'houdunwang.com',

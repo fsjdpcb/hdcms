@@ -14,3 +14,16 @@ function get_category_tree() {
         });
     }, 'json');
 }
+
+//======================点击move标签DIV时改变div布局===============
+$(function(){
+    $("div#move").toggle(function(){
+        $("div#category_tree").hide();
+        $(this).css({left:0}).find('span').attr('class','right');
+        $('div#content').css({left:'10px'})
+    },function(){
+        $("div#category_tree").show();
+        $(this).css({left:191}).find('span').attr('class','left');
+        $('div#content').css({left:'197px'})
+    })
+})
