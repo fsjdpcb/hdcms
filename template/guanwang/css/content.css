@@ -3,9 +3,10 @@
 #content{
 	width:1000px;
 	border-top:2px solid #CE0A0A;
-	border-left:1px solid #C7C7C7;
+	/*border-left:1px solid #C7C7C7;*/
 	margin:5px auto;
 	overflow: hidden;
+	/*min-height: 650px;*/
 }
 #content .title_box{
 	height: 31px;
@@ -42,10 +43,12 @@
 	float: left;
 	width:648px;
 	height:auto;
+	border-left:1px solid #C7C7C7;
+
 	border-right:1px solid #C7C7C7;
 	border-bottom:1px solid #C7C7C7;
 	overflow: hidden;
-	min-height: 600px;
+	min-height: 660px;
 }
 #content div.left_box img{
 	max-width: 600px;

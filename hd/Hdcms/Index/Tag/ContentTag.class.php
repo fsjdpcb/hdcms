@@ -170,7 +170,8 @@ str;
                 \$result = \$db->join('category,content_flag')->order('arc_sort ASC,updatetime DESC')->all();
 
                 if(\$result){
-                    foreach(\$result as \$field):
+                    foreach(\$result as \$index=>\$field):
+                        \$field['index']=\$index+1;
                         \$field['caturl']=U('category',array('cid'=>\$field['cid']));
                         \$field['url']=Url::get_content_url(\$field);
                         \$field['time']=date("Y-m-d",\$field['updatetime']);

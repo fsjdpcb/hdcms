@@ -10,6 +10,14 @@
 </head>
 <body>
 <div class="wrap">
+    <div class="title-header">温馨提示</div>
+    <table class="table2">
+        <tr>
+            <td style="color:red">
+                HDCMS系统为Beta版本，不提供升级服务。请关注正式版本发布！
+            </td>
+        </tr>
+    </table>
 
     <div class="title-header">安全提示</div>
     <table class="table2">
@@ -97,41 +105,7 @@
         </tr>
     </table>
     <div style="height:10px;overflow: hidden">&nbsp;</div>
-    <div class="title-header">反馈</div>
-    <a name="bug"></a>
 
-    <form action="?a=Bug&c=BugSuggest&m=suggest" method="post" class="form-inline hd-form">
-        <table class="table2">
-            <tr>
-                <td class="w80">类型</td>
-                <td>
-                    <select name="type">
-                        <option value="1">BUG反馈</option>
-                        <option value="2">功能建议</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td class="w80">反馈者</td>
-                <td>
-                    <input type="text" name="username"/>
-                </td>
-            </tr>
-            <tr>
-                <td class="w80">邮箱</td>
-                <td>
-                    <input type="text" name="email"/>
-                </td>
-            </tr>
-            <tr>
-                <td class="w80">内容描述</td>
-                <td>
-                    <textarea name="content" class="w500 h200"></textarea>
-                </td>
-            </tr>
-        </table>
-        <input type="submit" value="提交" class="hd-success"/>
-    </form>
 </div>
 </body>
 </html>

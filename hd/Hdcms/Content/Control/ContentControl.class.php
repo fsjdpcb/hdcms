@@ -61,12 +61,9 @@ class ContentControl extends AuthControl
             if ($cat['cattype'] != 3) {
                 $data['id'] = $cat['cid'];
                 $data['pId'] = $cat['pid'];
-                $data['url'] =  U('content', array('cid' => $cat['cid'], 'state' => 1));
+                $data['url'] = U('content', array('cid' => $cat['cid'], 'state' => 1));
                 $data['target'] = 'content';
                 $data['open'] = true;
-                //设置封面样式
-//                if($cat['cattype']==2)
-//                    $data['iconSkin'] ='pIcon01';
                 $data['name'] = $cat['catname'];
                 $category[] = $data;
             }
@@ -100,10 +97,10 @@ class ContentControl extends AuthControl
                 $aid = intval($aid);
                 $order = intval($order);
                 $data = array("aid" => $aid, "arc_sort" => $order);
-                $this->_db->join(NULL)->save($data);
+                $this->_db->join(false)->trigger(false)->save($data);
             }
         }
-        $this->ajax(array('state' => 1, 'message' => "更改排序成功"));
+        $this->_ajax(1, '更改排序成功');
     }
 
     /**
@@ -113,7 +110,7 @@ class ContentControl extends AuthControl
     {
         if (IS_POST) {
             if ($this->_db->add_content()) {
-                $this->ajax(array('state' => 1, 'message' => '发表成功！'));
+                $this->_ajax(1,'发表成功！');
             }
         } else {
             //分配属性
@@ -173,54 +170,63 @@ class ContentControl extends AuthControl
                 $aid = array($aid);
             }
             $this->_db->del($aid);
-            $this->ajax(1);
         }
+        $this->_ajax(1, '删除成功');
     }
 
     //审核或取消审核
     public function set_status()
     {
-        $status = Q("get.status", 1, "intval");
+        //1 审核  0 取消审核
+        $state = Q("status", 1, "intval");
+        //文章id
         $aids = Q("post.aid");
         foreach ($aids as $aid) {
-            $this->_db->join()->trigger()->save(array("aid" => $aid, "status" => $status));
+            $this->_db->join()->trigger()->save(array("aid" => $aid, "state" => $state));
         }
-        $this->ajax(1);
+        $this->_ajax(1, '操作成功！');
     }
 
-    //移动文章
+    /**
+     * 移动文章
+     */
     public function move_content()
     {
         if (IS_POST) {
-            //移动方式
+            //移动方式  1 从指定ID  2 从指定栏目
             $from_type = Q("post.from_type", NULL, "intval");
+            //目标栏目cid
             $to_cid = Q("post.to_cid", NULL, 'intval');
-            $from_cid = Q("post.from_cid", NULL);
-            switch ($from_type) {
-                case 1:
-                    //移动aid
-                    $aid = Q("post.aid", NULL, "trim");
-                    $aid = explode("|", $aid);
-                    if ($aid) {
-                        foreach ($aid as $id) {
-                            $this->_db->trigger()->join()->save(array("aid" => $id, "cid" => $to_cid));
+            if ($to_cid) {
+                switch ($from_type) {
+                    case 1:
+                        //移动aid
+                        $aid = Q("post.aid", NULL, "trim");
+                        $aid = explode("|", $aid);
+                        if ($aid && is_array($aid)) {
+                            foreach ($aid as $id) {
+                                if (is_numeric($id))
+                                    $this->_db->trigger()->join()->save(array("aid" => $id, "cid" => $to_cid));
+                            }
                         }
-                    }
-                    break;
-                case 2:
-                    //移动栏目
-                    if ($from_cid) {
-                        foreach ($from_cid as $fcid) {
-                            $this->_db->trigger()->join()->where("cid=$fcid")->save(array("cid" => $to_cid));
+                        break;
+                    case 2:
+                        //来源栏目cid
+                        $from_cid = Q("post.from_cid", NULL, 'intval');
+                        if ($from_cid) {
+                            foreach ($from_cid as $d) {
+                                if (is_numeric($d))
+                                    $this->_db->trigger()->join()->where("cid=$d")->save(array("cid" => $to_cid));
+                            }
                         }
-                    }
-                    break;
+                        break;
+                }
             }
-            $this->ajax(1);
+            $this->_ajax(1, '移动成功！');
         } else {
             $category = $this->_category;
             foreach ($category as $n => $v) {
-                $category[$n]['selected'] = "";
+                $category[$n]['selected'] = '';
                 if ($this->_cid == $v['cid']) {
                     $category[$n]['selected'] = "selected";
                 }
@@ -229,8 +235,7 @@ class ContentControl extends AuthControl
                     $category[$n]['disabled'] = 'disabled';
                 }
             }
-            $this->assign("mid", $this->_mid);
-            $this->assign("category", $category);
+            $this->category = $category;
             $this->display();
         }
     }

@@ -166,14 +166,14 @@
                     <th>关键字</th>
                     <td>
                         <input type="text" name="keywords" value="{$field.keywords}" class="w400"/>
-                        <span class="validate-message">如果不填，系统将自动从内容中提取</span>
+                        <span class="message">如果不填，系统将自动从内容中提取</span>
                     </td>
                 </tr>
                 <tr>
                     <th>摘要</th>
                     <td>
                         <textarea name="description" class="w450 h80">{$field.description}</textarea>
-                        <span class="validate-message">如果不填，系统将自动从内容中提取</span>
+                        <span class="message">如果不填，系统将自动从内容中提取</span>
                     </td>
                 </tr>
                 <tr>

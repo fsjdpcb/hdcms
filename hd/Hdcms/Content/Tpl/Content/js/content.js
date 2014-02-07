@@ -12,7 +12,7 @@ function select_all() {
 //反选文章
 function reverse_select() {
     $("[type='checkbox']").attr("checked", function () {
-        return !$(this).attr("checked") == 1
+        return !$(this).attr("checked") == 1;
     });
 }
 //更新排序
@@ -40,10 +40,10 @@ function del(cid, aid) {
                 dataType: "JSON",
                 cache: false,
                 data: ids,
-                success: function (stat) {
-                    if (stat == 1) {
+                success: function (data) {
+                    if (data.state == 1) {
                         $.dialog({
-                            msg: "删除文章成功",
+                            message: "删除文章成功",
                             type: "success",
                             timeout: 3,
                             close_handler: function () {
@@ -52,7 +52,7 @@ function del(cid, aid) {
                         });
                     } else {
                         $.dialog({
-                            msg: "删除文章失败",
+                            message: "删除文章失败",
                             type: "error",
                             close_handler: function () {
                                 location.href = URL;
@@ -77,10 +77,10 @@ function set_status(cid, status) {
             dataType: "JSON",
             cache: false,
             data: ids,
-            success: function (stat) {
-                if (stat == 1) {
+            success: function (data) {
+                if (data.state == 1) {
                     $.dialog({
-                        msg: "设置文章成功",
+                        message: "设置文章成功",
                         type: "success",
                         timeout: 3,
                         close_handler: function () {
@@ -89,7 +89,7 @@ function set_status(cid, status) {
                     });
                 } else {
                     $.dialog({
-                        msg: "设置文章失败",
+                        message: "设置文章失败",
                         type: "error",
                         close_handler: function () {
                             location.href = URL;
@@ -102,24 +102,21 @@ function set_status(cid, status) {
         alert("请选择设置的文章");
     }
 }
-//移动文章
-function move(cid, aid) {
-    var aid = "";
+/**
+ * 移动文章
+ * @param cid 当前栏目
+ */
+function move(cid) {
+    var aid = '';
     $("input[name*=aid]:checked").each(function (i) {
         aid += $(this).val() + "|";
     })
     aid = aid.slice(0, -1);
     if (aid) {
         $.modal({
-            width: 600, height: 560, button: false,
+            width: 600, height: 560,
             title: '移动文章',
-            send_title: "确定",
-            cancel_title: "取消",
-            content: '<iframe style="width: 100%;height: 100%;" src="' + CONTROL + '&m=move_content&cid=' + cid + '&aid=' + aid + '" frameborder="0"></iframe>',
-            send: function () {
-                window.location.reload();
-            }
-
+            content: '<iframe style="width: 100%;height: 100%;" src="' + CONTROL + '&m=move_content&cid=' + cid + '&aid=' + aid + '" frameborder="0"></iframe>'
         })
     } else {
         alert("请选择移动的文章");

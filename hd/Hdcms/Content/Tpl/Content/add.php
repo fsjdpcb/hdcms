@@ -9,12 +9,11 @@
     <css file="__CONTROL_TPL__/css/css.css"/>
     <script>
         //内容编辑器id，用于验证正文时使用
-        var editor_id ='hd_{$model.tablename}_data[content]';
+        var editor_id ='hd_{$model.table_name}_data[content]';
     </script>
 </head>
 <body>
 <form action="{|U:add}" method="post" onsubmit="return false;" id="add" class="hd-form">
-
     <div class="wrap">
         <!--右侧缩略图区域-->
         <div class="content_right">
@@ -24,9 +23,7 @@
                 </tr>
                 <tr>
                     <td align="center">
-                        <img id="thumb" src="__GROUP__/static/img/upload-pic.png"
-                             style="cursor: pointer;width:145px;height:123px;"
-                             onclick="file_upload('thumb','thumb',1,'thumb')"/>
+                        <img id="thumb" src="__GROUP__/static/img/upload-pic.png" style="cursor: pointer;width:145px;height:123px;" onclick="file_upload('thumb','thumb',1,'thumb')"/>
                         <input type="hidden" name="thumb"/>
                         <!--<button type="button" class="btn btn-small" onclick="imageCrop('thumb')">裁切图片</button>-->
                         <button type="button" class="hd-cancel-small" onclick="file_upload('thumb','thumb',1,'thumb')">上传图片</button>
@@ -169,14 +166,14 @@
                         <th>关键字</th>
                         <td>
                             <input type="text" name="keywords" class="w400"/>
-                            <span class="validate-message">如果不填，系统将自动从内容中提取</span>
+                            <span class="message">如果不填，系统将自动从内容中提取</span>
                         </td>
                     </tr>
                     <tr>
                         <th>摘要</th>
                         <td>
                             <textarea name="description" class="w450 h80"></textarea>
-                            <span class="validate-message">如果不填，系统将自动从内容中提取</span>
+                            <span class="message">如果不填，系统将自动从内容中提取</span>
                         </td>
                     </tr>
                 </if>
@@ -201,7 +198,7 @@
                     <th>静态文件</th>
                     <td>
                         <input class="w250" type="text" name="html_path">
-                        <span class="validate-message">如:houdunwang.html,如果不填将按栏目规则生成静态。栏目开启生成静态才有效</span>
+                        <span class="message">如:houdunwang.html,如果不填将按栏目规则生成静态。栏目开启生成静态才有效</span>
                     </td>
                 </tr>
             </table>

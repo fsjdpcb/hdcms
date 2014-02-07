@@ -30,7 +30,7 @@ class FlagControl extends AuthControl
     public function del()
     {
         if ($this->_db->del_flag()) {
-            $this->ajax(array('state' => 1, 'message' => '删除成功'));
+            $this->_ajax(1, '删除成功');
         }
     }
 
@@ -38,7 +38,7 @@ class FlagControl extends AuthControl
     public function edit()
     {
         if ($this->_db->edit_flag()) {
-            $this->ajax(array('state' => 1, 'message' => '修改成功'));
+            $this->_ajax(1, '修改成功');
         }
     }
 
@@ -47,7 +47,7 @@ class FlagControl extends AuthControl
     {
         if (IS_POST) {
             if ($this->_db->add_flag()) {
-                $this->ajax(array('state' => 1, 'message' => '添加成功'));
+                $this->_ajax(1, '添加成功');
             }
         } else {
             $this->display();
@@ -60,7 +60,7 @@ class FlagControl extends AuthControl
     public function update_cache()
     {
         if ($this->_db->update_cache()) {
-            $this->ajax(array('state' => 1, 'message' => '缓存更新成功'));
+            $this->_ajax(1, '缓存更新成功');
         }
     }
 }

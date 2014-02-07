@@ -51,7 +51,6 @@ function show_iframe(nid) {
     $("div.top_content iframe").hide();
     if (menu_cache.iframe[nid]) {
         var frm = $("iframe[nid='" + nid + "']");
-//        var url = $("a[nid="+nid+"]").attr("url");
         frm.show();
     } else {
         var obj = $(".left_menu a[nid='" + nid + "']");
@@ -114,7 +113,7 @@ function favorite_menu_position(nid) {
     $("li", ul_obj).each(function (i) {
         ul_len += parseInt($(this).outerWidth());
     })
-    var ul_w = ul_obj.width(ul_len);
+    var ul_w = ul_obj.width(ul_len+2);
     //div
     var div_obj = $("div.menu_nav");
     var div_offset = div_obj.offset();

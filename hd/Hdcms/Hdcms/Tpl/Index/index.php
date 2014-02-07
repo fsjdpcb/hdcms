@@ -68,13 +68,12 @@
         </div>
         <div class="favorite_menu">
             <ul>
-                <li class="action" nid="0"><a href="javascript:;" class="menu" nid="0">反馈</a></li>
+                <li class="action" nid="0"><a href="javascript:;" class="menu" nid="0">环境</a></li>
             </ul>
         </div>
     </div>
     <div class="top_content">
-        <iframe src="{|U:'feedback'}" nid="0" scrolling="auto" frameborder="0"
-                style="height: 100%;width: 100%;"></iframe>
+        <iframe src="{|U:'feedback'}" nid="0" scrolling="auto" frameborder="0" style="height: 100%;width: 100%;"></iframe>
 
     </div>
     <!--内容显示区域-->

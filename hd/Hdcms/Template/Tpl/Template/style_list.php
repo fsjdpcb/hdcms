@@ -33,7 +33,7 @@
 
                     <div class="link">
                         <if value="$t.current neq 1">
-                            <a href="javascript:;" class="btn" onclick="hd_ajax('{|U:select_style}',{dir_name:'{$t.dir_name|basename}'})">使用</a>
+                            <a href="javascript:;" class="btn" attr='select_tpl' onclick="hd_ajax('{|U:select_style}',{dir_name:'{$t.dir_name|basename}'})">使用</a>
                         </if>
                         <a href="{|U:'show_dir',array('dir_name'=>$style_cur['dir_name'])}" class="btn">编辑</a>
                     </div>

@@ -85,7 +85,7 @@
                 <td>{$c.author}</td>
                 <td>{$c.updatetime|date:"Y-m-d",@@}</td>
                 <td align="right">
-                    <a href="{|U:'Index/Article/content',array('cid'=>$_GET['cid'],'aid'=>$c['aid'])}" target="_blank">访问</a><span
+                    <a href="{$c.url}" target="_blank">访问</a><span
                         class="line">|</span>
                     <a href="javascript:;" onclick="window.open('{|U:edit,array('aid'=>$c['aid'],'cid'=>$_GET['cid'])}')">编辑</a><span
                         class="line">|</span>

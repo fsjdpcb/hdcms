@@ -717,6 +717,11 @@
 .pur_box .content_box .top_box div.middle .title{
 	position: relative;
 }
+.pur_box .content_box .top_box div.middle .title h3{
+	color:#000000;
+	font-size: 14px;
+	font-weight: 700;
+}
 .pur_box .content_box .top_box div.middle .title h3 a{
 	color:#000000;
 	font-size: 14px;
@@ -1370,3 +1375,42 @@ p.tit_public{
 
 
 
+
+/*开班信息区域*/
+.hot_box div.left_box ul.kaiban{
+	padding-top: 5px;
+}
+.hot_box div.left_box ul.kaiban li{
+	font-size: 14px;
+	line-height: 27px;
+	height: 27px;
+	color: #333;
+	position: relative;
+}
+.hot_box div.left_box ul.kaiban li.t{
+	font-weight: 700;
+	padding-left: 5px;
+	
+}
+.hot_box div.left_box ul.kaiban li.hot{
+	font-weight: 700;
+	color: black;
+}
+.hot_box div.left_box ul.kaiban li span.hot{
+	color: #BF1A20;
+}
+.hot_box div.left_box ul.kaiban li span.bm{
+	color: #BF1A20;
+}
+.hot_box div.left_box ul.kaiban li span.date{
+	color: #999;
+	padding-left: 4px;
+	font-size: 12px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	display: block;
+	line-height: 27px;
+	/*background: red;*/
+}
+/*开班信息区域结束*/

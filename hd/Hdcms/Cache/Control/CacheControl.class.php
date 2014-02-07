@@ -1,4 +1,8 @@
 <?php
+import('Field.Model.FieldModel');
+import('Category.Model.CategoryModel');
+import('Flag.Model.FlagModel');
+import('Navigation.Model.NavigationModel');
 
 /**
  * 缓存管理
@@ -15,17 +19,18 @@ class CacheControl extends AuthControl
     }
 
     /**
-     * 更新所有缓存
+     * 更新全站所有缓存
      */
     public function update_all()
     {
         $this->_model();
         $this->_field();
         $this->_category();
-        $this->_Field();
+        $this->_flag();
+        $this->_navigation();
         //删除编译文件
         Dir::del(TEMP_PATH);
-        $this->ajax(array('state' => 1, 'message' => '全站缓存更新成功'));
+        $this->_ajax(1, '全站缓存更新成功');
     }
 
     /**
@@ -34,19 +39,17 @@ class CacheControl extends AuthControl
     private function _model()
     {
         import('Model.Model.ModelModel');
-        $db = K('Model');
-        return $db->update_cache();
+        return K('Model')->update_cache();
     }
 
     /**
      * 更新字段缓存
      */
-    private function _Field()
+    private function _field()
     {
         $model = F('model');
         foreach ($model as $mid => $m) {
             $_REQUEST['mid'] = $mid;
-            import('Field.Model.FieldModel');
             $db = K('Field');
             $db->update_cache();
         }
@@ -56,20 +59,25 @@ class CacheControl extends AuthControl
     /**
      * 更新栏目缓存
      */
-    private function _Category()
+    private function _category()
     {
-        import('Category.Model.CategoryModel');
-        $db = K('Category');
-        return $db->update_cache();
+
+        return K('Category')->update_cache();
     }
 
     /**
      * 更新内容属性缓存
      */
-    private function _Flag()
+    private function _flag()
     {
-        import('Flag.Model.FlagModel');
-        $db = K('Flag');
-        return $db->update_cache();
+        return K('Flag')->update_cache();
+    }
+
+    /**
+     * 前台导航缓存
+     * @return mixed
+     */
+    private function _navigation(){
+        return K("Navigation")->update_cache();
     }
 }

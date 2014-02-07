@@ -3,19 +3,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <title>添加文章</title>
-    <hdui bootstrap="true"/>
+    <title>批量移动文章</title>
+    <hdjs/>
     <js file="__GROUP__/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/move_content.js"/>
     <css file="__CONTROL_TPL__/css/move_content.css"/>
 </head>
 <body>
 <div class="wrap">
-    <div class="table_title">温馨提示</div>
+    <div class="title-header">温馨提示</div>
     <div class="help"> 不能够跨模型移动文章</div>
     <div class="line"></div>
     <form action="__METH__" method="post" onsubmit="return false" class="form-inline hd-form">
-        <input type="hidden" name="mid" value="{$mid}"/>
+        <input type="hidden" name="cid" value="{$hd.get.cid}"/>
         <table style="width:100%">
             <tr>
                 <td>
@@ -62,8 +62,8 @@
             </tr>
         </table>
         <div class="btn_wrap">
-            <input type="submit" class="btn btn-primary" value="确定"/>
-            <input type="button" class="btn" id="close_window" value="关闭"/>
+            <input type="submit" class="hd-success" value="确定"/>
+            <input type="button" class="hd-cancel" id="close_window" value="关闭"/>
         </div>
     </form>
 </div>

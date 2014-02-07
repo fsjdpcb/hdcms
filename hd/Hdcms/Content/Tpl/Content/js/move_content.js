@@ -23,19 +23,18 @@ $(function () {
             dataType: "JSON",
             cache: false,
             data: $(this).serialize(),
-            success: function (stat) {
-                if (stat == 1) {
+            success: function (data) {
+                if (data.state == 1) {
                     $.dialog({
-                        msg: "移动成功",
+                        message: "移动成功",
                         type: "success",
-                        timeout: 3,
                         close_handler: function () {
                             parent.location.reload();
                         }
                     });
                 } else {
                     $.dialog({
-                        msg: "移动失败",
+                        message: "移动失败",
                         type: "error",
                         close_handler: function () {
                             parent.location.reload();

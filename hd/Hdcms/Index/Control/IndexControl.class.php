@@ -16,5 +16,3 @@ class IndexControl extends PublicControl
             $this->display($tpl);
     }
 }
-
-?>

@@ -11,7 +11,7 @@
  Target Server Version : 50615
  File Encoding         : utf-8
 
- Date: 01/26/2014 17:55:35 PM
+ Date: 02/07/2014 09:36:04 AM
 */
 
 SET NAMES utf8;
@@ -554,7 +554,7 @@ CREATE TABLE `hd_user` (
 --  Records of `hd_user`
 -- ----------------------------
 BEGIN;
-INSERT INTO `hd_user` VALUES ('1', 'admin', '7fef6171469e80d32c0559f88b377245', '', '1390698379', '0.0.0.0', '', '1', '', '1', '', '0', '1', '1');
+INSERT INTO `hd_user` VALUES ('1', 'admin', '7fef6171469e80d32c0559f88b377245', '', '1391736893', '0.0.0.0', '', '1', '', '1', '', '0', '1', '1');
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;

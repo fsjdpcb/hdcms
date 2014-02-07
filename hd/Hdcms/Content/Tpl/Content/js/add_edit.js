@@ -15,12 +15,6 @@ $(function () {
             alert("内容不能为空");
             return false;
         }
-        //验证跳转地址
-        var redirecturl = $.trim($("[name='redirecturl']").val());
-        if (redirecturl != '' && !/^(http[s]?:)?(\/{2})?([a-z0-9]+\.)?[a-z0-9]+(\.(com|cn|cc|org|net|com.cn))$/i.test(redirecturl)) {
-            alert("跳转地址格式不正确");
-            return false;
-        }
         //表单验证
         if ($(this).is_validate()) {
             var _post = $(this).serialize();

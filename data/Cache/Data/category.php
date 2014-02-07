@@ -197,8 +197,8 @@ return array (
   array (
     'cid' => '22',
     'pid' => '19',
-    'catname' => 'HDCMS二次开发项目展示',
-    'catdir' => 'ercikaifaxiangmuzhanshi',
+    'catname' => 'ThinkPHP项目展示',
+    'catdir' => 'thinkphpxiangmuzhanshi',
     'cat_keyworks' => '',
     'cat_description' => '',
     'index_tpl' => '{style}/article_index.html',
@@ -219,7 +219,7 @@ return array (
     '_html' => '',
     '_first' => false,
     '_end' => false,
-    '_name' => '├─ HDCMS二次开发项目展示',
+    '_name' => '├─ ThinkPHP项目展示',
     '_type_name' => '栏目',
   ),
   23 => 

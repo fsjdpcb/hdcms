@@ -137,7 +137,7 @@ class ContentViewModel extends ViewModel
         //根据配置文件设置显示条数
         $page = new Page($count, C("ADMIN_LIST_ROW"));
         //字段集
-        $field = $pri . ',' . $this->tableFull . ".cid,title,arc_sort,state,catname,author,updatetime";
+        $field = $pri . ',' . $this->tableFull . ".cid,title,arc_sort,state,catname,author,updatetime,redirecturl";
         //文章数据
         $data = $this->field($field)->where($where)->group($pri)->order('arc_sort ASC,aid DESC')->limit($page->limit())->all();
         //为每篇文章添加属性字符串
@@ -154,6 +154,8 @@ class ContentViewModel extends ViewModel
                 }
                 //模型名称
                 $data[$n]['model_name'] = $this->_model[$this->_category[$d['cid']]['mid']]['model_name'];
+                //url地址
+                $data[$n]['url'] = empty($d['redirecturl']) ? U('Index/Article/content', array('cid' => $d['cid'], 'aid' => $d['aid'])) : $d['redirecturl'];
             }
         }
         return array('data' => $data, 'page' => $page->show());

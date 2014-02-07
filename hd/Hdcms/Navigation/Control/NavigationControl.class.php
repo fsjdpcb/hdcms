@@ -27,7 +27,7 @@ class NavigationControl extends AuthControl
     {
         if (IS_POST) {
             if ($this->_db->add_nav()) {
-                $this->ajax(array('state' => 1, 'message' => '添加导航成功！'));
+                $this->_ajax(1, '添加导航成功！');
             }
         } else {
             $this->nav = $this->_navigation;
@@ -48,7 +48,7 @@ class NavigationControl extends AuthControl
             $this->nav = $this->_navigation;
             $field = $this->_navigation[Q('nid')];
             //替换链接中的{__ROOT__}变量
-            $field['url']=str_replace('{__ROOT__}',__ROOT__,$field['url']);
+            $field['url'] = str_replace('{__ROOT__}', __ROOT__, $field['url']);
             $this->field = $field;
             $this->display();
         }
@@ -60,9 +60,9 @@ class NavigationControl extends AuthControl
     public function del()
     {
         if ($this->_db->del_nav()) {
-            $this->ajax(array('state' => 1, 'message' => '删除导航成功'));
+            $this->_ajax(1, '删除导航成功');
         } else {
-            $this->ajax(array('state' => 0, 'message' => $this->_db->error));
+            $this->_ajax(0, $this->_db->error);
         }
     }
 
@@ -72,14 +72,14 @@ class NavigationControl extends AuthControl
     public function update_order()
     {
         if ($this->_db->update_order()) {
-            $this->ajax(array('state' => 1, 'message' => '更改排序成功'));
+            $this->_ajax(1, '更改排序成功');
         }
     }
 
     public function update_cache()
     {
         if ($this->_db->update_cache()) {
-            $this->ajax(array('state' => 1, 'message' => '缓存更新成功！'));
+            $this->_ajax(1, '缓存更新成功！');
         }
     }
 }

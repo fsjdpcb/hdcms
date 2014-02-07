@@ -34,19 +34,19 @@ return array (
   array (
     'fid' => '6',
     'flagname' => '精华',
-    'system' => '0',
+    'system' => '1',
   ),
   7 => 
   array (
     'fid' => '7',
     'flagname' => '置顶',
-    'system' => '0',
+    'system' => '1',
   ),
   8 => 
   array (
     'fid' => '8',
     'flagname' => '站长推荐',
-    'system' => '0',
+    'system' => '1',
   ),
 );
 ?>

@@ -10,7 +10,7 @@
     <css file="__CONTROL_TPL__/css/css.css"/>
     <script>
         //内容编辑器id，用于验证正文时使用
-        var editor_id ='hd_{$model.tablename}_data[content]';
+        var editor_id ='hd_{$model.table_name}_data[content]';
     </script>
 </head>
 <body>
