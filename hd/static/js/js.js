@@ -1,3 +1,4 @@
+
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝模板选择START＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 /**
  * 更换模板
@@ -62,9 +63,9 @@ function field_check(obj, validataion, msg, error, required) {
  */
 function file_upload(id, type, num, name) {
     //多图上传时，判断是否已经超出了允许上传的图片数量
-    if(type=='images'){
-        num = $('#hd_up_'+id).text()*1;
-        if(num==0){
+    if (type == 'images') {
+        num = $('#hd_up_' + id).text() * 1;
+        if (num == 0) {
             alert('已经达到上传最大数!');
             return false;
         }
@@ -99,12 +100,12 @@ $(function () {
             $("#img_view").css({left: _l, top: _t}).find("img").attr("src", $(this).attr("src")).end().fadeIn(200);
 
     }).live("mouseout", function () {
-            $("#img_view").hide();
-        })
+        $("#img_view").hide();
+    })
 })
 //------------------------上传图片处理（自定义表单）-------------------------
 //移除缩略图
-function remove_thumb(obj,type,id) {
+function remove_thumb(obj, type, id) {
     $(obj).siblings("img").attr("src", ROOT + "/hd/static/img/upload-pic.png");
     $(obj).siblings("input").val('');
 }
@@ -119,10 +120,10 @@ function remove_upload_one_img(obj) {
  * 删除多图上传的图片（自定义字段）
  * @param obj 按钮对象
  */
-function remove_upload(obj,id,type) {
+function remove_upload(obj, id, type) {
     //记录上传数量的span
-    var _span =$('#hd_up_'+id);
-    _span.text(_span.text()*1+1);
+    var _span = $('#hd_up_' + id);
+    _span.text(_span.text() * 1 + 1);
     $(obj).parent().remove();
 }
 //------------------------上传图片处理（自定义表单）-------------------------

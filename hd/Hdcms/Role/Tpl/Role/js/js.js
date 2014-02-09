@@ -1,6 +1,6 @@
 //表单验证 添加管理员
 $(function () {
-    $("form").validation({
+    $("form").validate({
         //验证规则
         rname: {
             rule: {
@@ -15,26 +15,26 @@ $(function () {
     })
 })
 //删除角色 角色列表页
-function del(rid) {
-    if (confirm("确定删除角色吗？")) {
-        $.get(CONTROL + "&m=del&rid=" + rid, function (data) {
-            if (data.stat == 1) {
-                $.dialog({
-                    "msg": data.msg,
-                    "type": "success",
-                    "close_handler": function () {
-                        window.location.reload();
-                    }
-                });
-            }
-        }, "JSON")
-    }
-}
+//function del(rid) {
+//    if (confirm("确定删除角色吗？")) {
+//        $.get(CONTROL + "&m=del&rid=" + rid, function (data) {
+//            if (data.stat == 1) {
+//                $.dialog({
+//                    "msg": data.msg,
+//                    "type": "success",
+//                    "close_handler": function () {
+//                        window.location.reload();
+//                    }
+//                });
+//            }
+//        }, "JSON")
+//    }
+//}
 
 //添加与修改管理员
 $(function () {
     $("form").submit(function () {
-        if ($(this).is_validation()) {
+        if ($(this).is_validate()) {
             $.ajax({
                 type: "POST",
                 url: METH,
@@ -42,9 +42,9 @@ $(function () {
                 dataType: "JSON",
                 data: $(this).serialize(),
                 success: function (data) {
-                    if (data.stat == 1) {
+                    if (data.state == 1) {
                         $.dialog({
-                            msg: data.msg,
+                            message: data.message,
                             type: "success",
                             close_handler: function () {
                                 location.href = CONTROL;
@@ -52,7 +52,7 @@ $(function () {
                         });
                     } else {
                         $.dialog({
-                            msg: data.msg,
+                            message: data.message,
                             type: "error"
                         });
                     }
@@ -62,10 +62,6 @@ $(function () {
         return false;
     })
 })
-//显示会员
-function user_list(rid){
-
-}
 
 
 

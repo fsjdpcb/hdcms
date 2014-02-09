@@ -3,10 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <css file="__STATIC__/Css/common.css"/>
-    <title>管理员管理</title>
-    <hdui bootstrap="true"/>
-    <js file="__ROOT__/hdcms/static/js/js.js"/>
+    <title>设置权限</title>
+    <hdjs/>
+    <js file="__GROUP__/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>

@@ -55,6 +55,8 @@ class TemplateControl extends AuthControl
             $db->update_config_file();
             //删除前台编译文件
             is_dir("./temp/hdcms/Content/Compile") and Dir::del("./temp/hdcms/Content/Compile");
+            //删除编译文件
+            dir::del('temp/Hdcms/Index');
             $this->ajax(array('state' => 1, 'message' => '操作成功'));
         }
     }

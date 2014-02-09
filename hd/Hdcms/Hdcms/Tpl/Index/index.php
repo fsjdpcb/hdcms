@@ -12,9 +12,9 @@
 <div class="nav">
     <!--头部左侧导航-->
     <div class="top_menu">
-        <a href="javascript:" onclick="get_left_menu(this,0);" class="top_menu">常用</a>
+        <a href="javascript:" onclick="get_left_menu(0);" class="top_menu">常用</a>
         <list from="$top_menu" name="m">
-            <a href="javascript:" onclick="get_left_menu(this,{$m.nid});" class="top_menu">{$m.title}</a>
+            <a href="javascript:" nid="{$m.nid}" onclick="get_left_menu({$m.nid});" class="top_menu">{$m.title}</a>
         </list>
     </div>
     <!--头部左侧导航-->
@@ -47,7 +47,7 @@
                        nid="90002">反馈Bug</a>
                 </dd>
                 <dd>
-                    <a url="?a=Bug&c=Bug&m=showBug" onclick="get_content(this,90003)" href="javascript:;" nid="90003">Bug管理</a>
+                    <a url="?a=Bug&c=Bug&m=showBug" onclick="get_content(this,90005)" href="javascript:;" nid="90005">Bug管理</a>
                 </dd>
                 <list from="$favorite_menu" name="f">
                     <dd>

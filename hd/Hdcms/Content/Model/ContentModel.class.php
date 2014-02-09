@@ -4,7 +4,6 @@ import('Index.Lib.Url');
 import('Index.Control.PublicControl');
 import('Index.Control.ArticleControl');
 import('Index.Tag.ContentTag');
-
 /**
  * 内容管理模型
  * Class ContentModel

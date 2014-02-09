@@ -1,7 +1,8 @@
 <?php
+
 /**
- * Admin应用标签库
- * Class AdminTag
+ * HDCMS标签库
+ * Class ContentTag
  * @author hdxj <houdunwangxj@gmail.com>
  */
 class ContentTag
@@ -97,7 +98,6 @@ str;
         $php .= $content;
         $php .= '<?php endforeach;}?>';
         return $php;
-
     }
 
     //单页面
@@ -355,5 +355,4 @@ str;
         $php .= '<?php endforeach;endif;?>';
         return $php;
     }
-
 }

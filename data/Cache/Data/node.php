@@ -4,6 +4,7 @@ return array (
   array (
     'nid' => '1',
     'title' => '内容',
+    'app_group' => 'Hdcms',
     'app' => '',
     'control' => '',
     'method' => '',
@@ -23,6 +24,7 @@ return array (
   array (
     'nid' => '2',
     'title' => '内容管理',
+    'app_group' => 'Hdcms',
     'app' => '',
     'control' => '',
     'method' => '',
@@ -44,6 +46,7 @@ return array (
   array (
     'nid' => '4',
     'title' => '管理内容',
+    'app_group' => 'Hdcms',
     'app' => 'Content',
     'control' => 'Content',
     'method' => 'index',
@@ -54,7 +57,7 @@ return array (
     'pid' => '2',
     'list_order' => '10',
     'is_system' => '0',
-    'favorite' => '1',
+    'favorite' => '0',
     '_level' => 3,
     '_html' => '',
     '_first' => true,
@@ -65,6 +68,7 @@ return array (
   array (
     'nid' => '13',
     'title' => '栏目管理',
+    'app_group' => 'Hdcms',
     'app' => 'Category',
     'control' => 'Category',
     'method' => 'index',
@@ -75,7 +79,7 @@ return array (
     'pid' => '2',
     'list_order' => '11',
     'is_system' => '0',
-    'favorite' => '1',
+    'favorite' => '0',
     '_level' => 3,
     '_html' => '',
     '_first' => false,
@@ -86,6 +90,7 @@ return array (
   array (
     'nid' => '81',
     'title' => '单页面',
+    'app_group' => 'Hdcms',
     'app' => 'Single',
     'control' => 'single',
     'method' => 'index',
@@ -107,6 +112,7 @@ return array (
   array (
     'nid' => '5',
     'title' => '生成静态',
+    'app_group' => 'Hdcms',
     'app' => '',
     'control' => '',
     'method' => '',
@@ -128,6 +134,7 @@ return array (
   array (
     'nid' => '6',
     'title' => '批量更新栏目页',
+    'app_group' => 'Hdcms',
     'app' => 'Html',
     'control' => 'Html',
     'method' => 'create_category',
@@ -149,6 +156,7 @@ return array (
   array (
     'nid' => '8',
     'title' => '生成首页',
+    'app_group' => 'Hdcms',
     'app' => 'Html',
     'control' => 'Html',
     'method' => 'create_index',
@@ -170,6 +178,7 @@ return array (
   array (
     'nid' => '9',
     'title' => '批量更新内容页',
+    'app_group' => 'Hdcms',
     'app' => 'Html',
     'control' => 'Html',
     'method' => 'create_content',
@@ -191,6 +200,7 @@ return array (
   array (
     'nid' => '61',
     'title' => '一键更新',
+    'app_group' => 'Hdcms',
     'app' => 'Html',
     'control' => 'Html',
     'method' => 'create_all',
@@ -201,7 +211,7 @@ return array (
     'pid' => '5',
     'list_order' => '100',
     'is_system' => '0',
-    'favorite' => '1',
+    'favorite' => '0',
     '_level' => 3,
     '_html' => '',
     '_first' => false,
@@ -212,6 +222,7 @@ return array (
   array (
     'nid' => '10',
     'title' => '内容相关管理',
+    'app_group' => 'Hdcms',
     'app' => '',
     'control' => '',
     'method' => '',
@@ -233,6 +244,7 @@ return array (
   array (
     'nid' => '3',
     'title' => '附件管理',
+    'app_group' => 'Hdcms',
     'app' => 'Upload',
     'control' => 'Index',
     'method' => 'index',
@@ -254,6 +266,7 @@ return array (
   array (
     'nid' => '14',
     'title' => '模型管理',
+    'app_group' => 'Hdcms',
     'app' => 'Model',
     'control' => 'Model',
     'method' => 'index',
@@ -275,6 +288,7 @@ return array (
   array (
     'nid' => '15',
     'title' => '推荐位',
+    'app_group' => 'Hdcms',
     'app' => 'Flag',
     'control' => 'Flag',
     'method' => 'index',
@@ -296,6 +310,7 @@ return array (
   array (
     'nid' => '70',
     'title' => 'TAG标签',
+    'app_group' => 'Hdcms',
     'app' => 'Tag',
     'control' => 'Tag',
     'method' => 'index',
@@ -317,6 +332,7 @@ return array (
   array (
     'nid' => '79',
     'title' => '其他操作',
+    'app_group' => 'Hdcms',
     'app' => '',
     'control' => '',
     'method' => '',
@@ -338,6 +354,7 @@ return array (
   array (
     'nid' => '12',
     'title' => '数据备份',
+    'app_group' => 'Hdcms',
     'app' => 'Backup',
     'control' => 'Backup',
     'method' => 'index',
@@ -348,7 +365,7 @@ return array (
     'pid' => '79',
     'list_order' => '100',
     'is_system' => '0',
-    'favorite' => '1',
+    'favorite' => '0',
     '_level' => 3,
     '_html' => '',
     '_first' => true,
@@ -359,6 +376,7 @@ return array (
   array (
     'nid' => '69',
     'title' => '搜索关键词',
+    'app_group' => 'Hdcms',
     'app' => 'Search',
     'control' => 'Manage',
     'method' => 'index',
@@ -380,6 +398,7 @@ return array (
   array (
     'nid' => '80',
     'title' => '导航菜单',
+    'app_group' => 'Hdcms',
     'app' => 'Navigation',
     'control' => 'Navigation',
     'method' => 'index',
@@ -401,6 +420,7 @@ return array (
   array (
     'nid' => '16',
     'title' => '系统',
+    'app_group' => 'Hdcms',
     'app' => '',
     'control' => '',
     'method' => '',
@@ -420,6 +440,7 @@ return array (
   array (
     'nid' => '11',
     'title' => '管理员设置',
+    'app_group' => 'Hdcms',
     'app' => '',
     'control' => '',
     'method' => '',
@@ -441,6 +462,7 @@ return array (
   array (
     'nid' => '17',
     'title' => '管理员管理',
+    'app_group' => 'Hdcms',
     'app' => 'Admin',
     'control' => 'Admin',
     'method' => 'index',
@@ -462,6 +484,7 @@ return array (
   array (
     'nid' => '18',
     'title' => '角色管理',
+    'app_group' => 'Hdcms',
     'app' => 'Role',
     'control' => 'Role',
     'method' => 'index',
@@ -483,6 +506,7 @@ return array (
   array (
     'nid' => '19',
     'title' => '系统设置',
+    'app_group' => 'Hdcms',
     'app' => '',
     'control' => '',
     'method' => '',
@@ -504,6 +528,7 @@ return array (
   array (
     'nid' => '20',
     'title' => '网站配置',
+    'app_group' => 'Hdcms',
     'app' => 'Config',
     'control' => 'Config',
     'method' => 'edit',
@@ -525,6 +550,7 @@ return array (
   array (
     'nid' => '21',
     'title' => '后台菜单管理',
+    'app_group' => 'Hdcms',
     'app' => 'Node',
     'control' => 'Node',
     'method' => 'index',
@@ -546,6 +572,7 @@ return array (
   array (
     'nid' => '26',
     'title' => '我的面板',
+    'app_group' => 'Hdcms',
     'app' => '',
     'control' => '',
     'method' => '',
@@ -565,6 +592,7 @@ return array (
   array (
     'nid' => '29',
     'title' => '个人信息',
+    'app_group' => 'Hdcms',
     'app' => '',
     'control' => '',
     'method' => '',
@@ -586,6 +614,7 @@ return array (
   array (
     'nid' => '27',
     'title' => '修改个人信息',
+    'app_group' => 'Hdcms',
     'app' => 'Admin',
     'control' => 'Personal',
     'method' => 'edit_info',
@@ -607,6 +636,7 @@ return array (
   array (
     'nid' => '28',
     'title' => '修改密码',
+    'app_group' => 'Hdcms',
     'app' => 'Admin',
     'control' => 'Personal',
     'method' => 'edit_password',
@@ -628,6 +658,7 @@ return array (
   array (
     'nid' => '30',
     'title' => '会员',
+    'app_group' => 'Hdcms',
     'app' => '',
     'control' => '',
     'method' => '',
@@ -647,6 +678,7 @@ return array (
   array (
     'nid' => '31',
     'title' => '会员管理',
+    'app_group' => 'Hdcms',
     'app' => '',
     'control' => '',
     'method' => '',
@@ -668,6 +700,7 @@ return array (
   array (
     'nid' => '32',
     'title' => '会员管理',
+    'app_group' => 'Hdcms',
     'app' => 'Member',
     'control' => 'Member',
     'method' => 'index',
@@ -689,6 +722,7 @@ return array (
   array (
     'nid' => '33',
     'title' => '审核会员',
+    'app_group' => 'Hdcms',
     'app' => 'Member',
     'control' => 'Member',
     'method' => 'verify',
@@ -710,6 +744,7 @@ return array (
   array (
     'nid' => '34',
     'title' => '会员组管理',
+    'app_group' => 'Hdcms',
     'app' => '',
     'control' => '',
     'method' => '',
@@ -731,6 +766,7 @@ return array (
   array (
     'nid' => '35',
     'title' => '管理会员组',
+    'app_group' => 'Hdcms',
     'app' => 'Member',
     'control' => 'Group',
     'method' => 'index',
@@ -752,6 +788,7 @@ return array (
   array (
     'nid' => '36',
     'title' => '模板',
+    'app_group' => 'Hdcms',
     'app' => '',
     'control' => '',
     'method' => '',
@@ -771,6 +808,7 @@ return array (
   array (
     'nid' => '37',
     'title' => '模板管理',
+    'app_group' => 'Hdcms',
     'app' => '',
     'control' => '',
     'method' => '',
@@ -792,6 +830,7 @@ return array (
   array (
     'nid' => '38',
     'title' => '模板风格',
+    'app_group' => 'Hdcms',
     'app' => 'Template',
     'control' => 'Template',
     'method' => 'style_list',
@@ -800,7 +839,7 @@ return array (
     'state' => '1',
     'type' => '1',
     'pid' => '37',
-    'list_order' => '100',
+    'list_order' => '90',
     'is_system' => '0',
     'favorite' => '0',
     '_level' => 3,
@@ -813,6 +852,7 @@ return array (
   array (
     'nid' => '39',
     'title' => '模板文件',
+    'app_group' => 'Hdcms',
     'app' => 'Template',
     'control' => 'Template',
     'method' => 'show_dir',
@@ -834,6 +874,7 @@ return array (
   array (
     'nid' => '40',
     'title' => 'JS标签调用',
+    'app_group' => 'Hdcms',
     'app' => 'TemplateTag',
     'control' => 'CustomJs',
     'method' => 'index',
@@ -855,6 +896,7 @@ return array (
   array (
     'nid' => '91',
     'title' => '插件',
+    'app_group' => 'Hdcms',
     'app' => '',
     'control' => '',
     'method' => '',
@@ -874,6 +916,7 @@ return array (
   array (
     'nid' => '92',
     'title' => '插件管理',
+    'app_group' => 'Hdcms',
     'app' => '',
     'control' => '',
     'method' => '',
@@ -882,7 +925,7 @@ return array (
     'state' => '1',
     'type' => '1',
     'pid' => '91',
-    'list_order' => '100',
+    'list_order' => '99',
     'is_system' => '0',
     'favorite' => '0',
     '_level' => 2,
@@ -895,9 +938,10 @@ return array (
   array (
     'nid' => '93',
     'title' => '插件管理',
+    'app_group' => 'Hdcms',
     'app' => 'Plugin',
     'control' => 'Plugin',
-    'method' => 'Plugin',
+    'method' => 'Plugin_list',
     'param' => '',
     'comment' => '',
     'state' => '1',
@@ -916,6 +960,7 @@ return array (
   array (
     'nid' => '94',
     'title' => '正在使用',
+    'app_group' => 'Hdcms',
     'app' => 'Plugin',
     'control' => '',
     'method' => '',
@@ -931,7 +976,29 @@ return array (
     '_html' => '',
     '_first' => true,
     '_end' => false,
-    '_name' => '└─ 正在使用',
+    '_name' => '├─ 正在使用',
+  ),
+  138 => 
+  array (
+    'nid' => '138',
+    'title' => '友情链接',
+    'app_group' => 'Plugin',
+    'app' => 'Link',
+    'control' => 'Manage',
+    'method' => 'index',
+    'param' => '',
+    'comment' => '',
+    'state' => '1',
+    'type' => '2',
+    'pid' => '94',
+    'list_order' => '100',
+    'is_system' => '0',
+    'favorite' => '0',
+    '_level' => 3,
+    '_html' => '',
+    '_first' => true,
+    '_end' => false,
+    '_name' => '│&nbsp;&nbsp;&nbsp;&nbsp;└─ 友情链接',
   ),
 );
 ?>

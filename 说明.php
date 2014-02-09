@@ -1,1 +1,2 @@
-直接安装，数据就有了，不需要做还原动作。
+node 添加字段plugin 
+alter table hd_node add app_group char(30) not null default ''

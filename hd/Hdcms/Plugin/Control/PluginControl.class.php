@@ -18,8 +18,11 @@ class PluginControl extends AuthControl
     /**
      * 插件列表
      */
-    public function Plugin()
+    public function plugin_list()
     {
-        $this->_db->get_all_plugin();
+        $this->plugin = $this->_db->get_all_plugin();
+        $this->display();
     }
+
+
 }

@@ -12,7 +12,8 @@ class IndexControl extends PublicControl
     public function index()
     {
         $tpl = $this->_template . 'index.html';
-        if (is_file($tpl))
+        if (is_file($tpl)) {
             $this->display($tpl);
+        }
     }
 }

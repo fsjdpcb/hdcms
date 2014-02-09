@@ -21,12 +21,6 @@
                 </td>
             </tr>
             <tr>
-                <th class="w100">真实姓名</th>
-                <td>
-                   {$user.realname}
-                </td>
-            </tr>
-            <tr>
                 <th class="w100">旧密码</th>
                 <td>
                     <input type="password" name="old_password" class="w200"/>

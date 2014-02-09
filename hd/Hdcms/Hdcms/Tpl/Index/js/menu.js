@@ -3,8 +3,9 @@ var menu_cache = {parent: {}, iframe: {}, link: {}};
 menu_cache.parent[0] = true;
 menu_cache.iframe[0] = true;
 //点击顶部导航
-function get_left_menu(obj, nid) {
+function get_left_menu(nid) {
     $("div.nav div.top_menu a").removeClass("action");
+    var obj = $('a[class=top_menu][nid=' + nid + ']');
     $(obj).addClass("action");
     //读取缓存
     if (menu_cache.parent[nid]) {
@@ -12,9 +13,18 @@ function get_left_menu(obj, nid) {
         $("div.left_menu div").hide();
         //显示当前菜单
         $("div.left_menu div.nid_" + nid).show();
+        set_first_action(nid);
     } else {//缓存不存在
         flush_left_menu(nid);
     }
+}
+/**
+ * 点击左侧第一个菜单
+ */
+function set_first_action(nid) {
+    //触发第一个3级菜单点击
+    var win = top || opener;
+    $(win.document).find("div.nid_" + nid).find('a').eq(0).trigger('click');
 }
 //刷新左侧菜单
 function flush_left_menu(nid) {
@@ -29,6 +39,8 @@ function flush_left_menu(nid) {
             //隐藏所有左侧菜单
             $("div.left_menu div").hide();
             $("div.left_menu").append(html);
+            //触发第一个3级菜单点击
+            set_first_action(nid);
         }
     });
 }
@@ -113,7 +125,7 @@ function favorite_menu_position(nid) {
     $("li", ul_obj).each(function (i) {
         ul_len += parseInt($(this).outerWidth());
     })
-    var ul_w = ul_obj.width(ul_len+2);
+    var ul_w = ul_obj.width(ul_len + 2);
     //div
     var div_obj = $("div.menu_nav");
     var div_offset = div_obj.offset();
@@ -168,7 +180,37 @@ $(function () {
 })
 
 
-
+//＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝更新导航＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+/**
+ * 更新导航一级导航（最顶部）
+ * @param id 菜单id号
+ */
+function update_menu(id) {
+    $.post(WEB + '?a=Menu&c=Menu&m=get_child_menu_id&id=' + id, function (ids) {
+        if (ids.length >= 1) {
+            var win = top || opener;
+            //关闭历史导航（标签导航）
+            for (var i = 0; i < ids.length; i++) {
+                del_history_menu(ids[i]);
+            }
+            win.menu_cache.parent[id] = false;
+            win.get_left_menu(id);
+        }
+    }, "JSON");
+}
+/**
+ * 删除历史导航与iframe
+ * @param nid
+ */
+function del_history_menu(nid) {
+    var win = top || opener;
+    //删除历史导航
+    $(win.document).find("div.favorite_menu").find("li[nid='" + nid + "']").remove();
+    //删除iframe
+    $(win.document).find('iframe[nid=' + nid + ']').remove();
+    //清除iframe缓存信息
+    win.menu_cache.iframe[nid] = false;
+}
 
 
 

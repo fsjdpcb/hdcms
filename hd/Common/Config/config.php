@@ -9,11 +9,11 @@ return array_merge(
         //显示debug信息
         "DEBUG_SHOW" => 1,
         //不显示"页面找不到"错误
-        "404_TPL" => "",
+        "404_TPL" => '',
         //session处理
         "SESSION_ENGINE" => "mysql",
         //伪静态后缀
-        "PATHINFO_HTML" => "",
+        "PATHINFO_HTML" => '',
         //普通模式 GET方式
         "URL_TYPE" => 2,
         //默认组

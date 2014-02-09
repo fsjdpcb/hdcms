@@ -26,7 +26,7 @@ class AppStartEvent extends Event
     public function check_install()
     {
 
-        if (!file_exists('install/lock.php')) {
+        if (is_dir('install') && !file_exists('install/lock.php')) {
             echo "<script>
                 top.location.href='install/';
             </script>";

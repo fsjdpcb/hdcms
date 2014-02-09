@@ -117,14 +117,14 @@ class ContentControl extends AuthControl
             $this->flag = F('flag');
             //分配栏目
             $this->category = $this->_category[$this->_cid];
-            //模型type为1时即标准模型，显示编辑器、关键字等字段
+//            //模型type为1时即标准模型，显示编辑器、关键字等字段
             $this->model = $this->_model[$this->_mid];
-            //自定义字段
-            import('Field/Model/FieldModel');
-            //FieldModel模型使用mid参数
-            $_REQUEST['mid'] = $this->_mid;
-            $fieldModel = new FieldModel();
-            $this->custom_field = $fieldModel->field_view();
+//            //自定义字段
+//            import('Field/Model/FieldModel');
+//            //FieldModel模型使用mid参数
+//            $_REQUEST['mid'] = $this->_mid;
+//            $fieldModel = new FieldModel();
+//            $this->custom_field = $fieldModel->field_view();
             $this->display();
         }
     }

@@ -145,24 +145,6 @@
                 <div id="html" class="con">
                     <table class="table1">
                         <tr>
-                            <th class="w100">栏目生成Html</th>
-                            <td>
-                                <label>
-                                    <input type="radio" class="radio" name="is_cat_html" value="1"<if value="$field.is_cat_html==1">checked="checked"</if>/> 是
-                                </label>
-                                <label>
-                                    <input type="radio" class="radio" name="is_cat_html" value="0"<if value="$field.is_cat_html==0">checked="checked"</if>/> 否
-                                </label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>内容页生成Html</th>
-                            <td>
-                                <label><input type="radio" class="radio" name="is_arc_html" value="1"<if value="$field.is_arc_html==1">checked="checked"</if>/> 是</label>
-                                <label><input type="radio" class="radio" name="is_arc_html" value="0" <if value="$field.is_arc_html==0">checked="checked"</if>/> 否</label>
-                            </td>
-                        </tr>
-                        <tr>
                             <th>栏目页URL规则</th>
                             <td>
                                 <input type="text" name="cat_html_url" class="w200" value="{$field.cat_html_url}"/>

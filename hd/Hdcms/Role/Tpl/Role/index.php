@@ -5,7 +5,6 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>管理员角色</title>
     <hdjs/>
-    <js file="__CONTROL_TPL__/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
 <body>
@@ -32,10 +31,10 @@
                 <td>{$r.rname}</td>
                 <td>{$r.title}</td>
                 <td>
-                    <a href="{|U:'Admin/index',array('rid'=>$r['rid'])}">成员</a> |
+                    <a href="{|U:'Admin/Admin/index',array('rid'=>$r['rid'])}">成员</a> |
                     <a href="{|U:'edit',array('rid'=>$r['rid'])}">修改</a> |
-                    <a href="javascript:;" onclick="del({$r.rid})">删除</a> |
-                    <a href="{|U:'Access/set_access',array('rid'=>$r['rid'])}">权限设置</a>
+                    <a href="javascript:hd_ajax('{|U:del}',{rid:{$r.rid}})">删除</a> |
+                    <a href="{|U:'Access/Access/set_access',array('rid'=>$r['rid'])}">权限设置</a>
                 </td>
             </tr>
         </list>

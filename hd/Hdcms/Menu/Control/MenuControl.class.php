@@ -20,6 +20,20 @@ class MenuControl extends AuthControl
         $this->_menu = F('node');
     }
 
+    /**
+     * 更新菜单时获得所有子菜单id
+     * hd/static/js/js.js update_menu()方法使用
+     */
+    public function get_child_menu_id()
+    {
+        $data = Data::channelList($this->_menu, 91, '', 'nid', 'pid');
+        $id = array();
+        foreach ($data as $d) {
+            $id[] = $d['nid'];
+        }
+        $this->ajax($id);
+    }
+
     //获得子菜单
     public function get_child_menu()
     {
@@ -31,7 +45,7 @@ class MenuControl extends AuthControl
             $html .= "<dl><dt>" . $t['title'] . "</dt>";
             if ($t['_data']) {
                 foreach ($t['_data'] as $d) {
-                    $url = __ROOT__ . "/index.php?a=" . $d['app'] . "&c=" . $d['control'] . "&m=" . $d['method'];
+                    $url = __ROOT__ . "/index.php?g=" . $d['app_group'] . "&a=" . $d['app'] . "&c=" . $d['control'] . "&m=" . $d['method'];
                     $html .= "<dd><a nid='" . $d["nid"] . "' href='javascript:;'
                     onclick='get_content(this," . $d["nid"] . ")' url='" . $url . "'>"
                         . $d['title'] . "</a></dd>";

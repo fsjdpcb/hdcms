@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 后台RBAC角色管理
  * Class RoleControl
@@ -6,30 +7,34 @@
  */
 class RoleControl extends AuthControl
 {
+    //模型
     private $_db;
     //角色rid
     private $_rid;
 
+    //构造函数
     public function __init()
     {
-        $this->_db = K("User");
-        $this->_rid = Q("request.rid", null, "intval");
+        $this->_db = K('Role');
+        $this->_rid = Q('request.rid', null, 'intval');
     }
 
     public function index()
     {
-        $role = M("role")->all();
-        $this->role=$role;
+        $role = M('role')->all();
+        $this->role = $role;
         $this->display();
     }
 
-    //添加角色
+    /**
+     * 添加角色
+     */
     public function add()
     {
         if (IS_POST) {
             if ($this->_db->create()) {
                 if ($aid = $this->_db->add()) {
-                    $this->ajax(array("state" => 1, "message" => "添加角色成功！"));
+                    $this->_ajax(1, '添加角色成功！');
                 }
             }
         } else {
@@ -37,25 +42,25 @@ class RoleControl extends AuthControl
         }
     }
 
-    //验证角色是否存在
+    /**
+     * 验证角色是否存在
+     */
     public function check_role()
     {
-
-        $rname = Q("post.rname", NULL, "trim");
-        $rid = Q("post.rid", NULL, "intval,trim");
-        //编辑时验证
+        //角色名称
+        $rname = Q('post.rname', NULL, 'trim');
+        //角色ID（编辑角色时验证）
+        $rid = Q('post.rid', NULL, 'intval,trim');
         if (is_null($rname)) {
-            $this->ajax(0);
-        } else if (!is_null($rid)) {
-            if ($this->_db->join(NULL)->where("rid=$rid AND rname='$rname'")->find()) {
-                $this->ajax(1);
-            } else if ($this->_db->join(NULL)->where("rname ='$rname'")->find()) {
-                $this->ajax(0);
-            }
-        } else if (!$this->_db->join(NULL)->where("rname ='$rname'")->find()) {
-            $this->ajax(1);
+            $stat = 0;
+        } else if (is_null($rid)) {
+            //添加角色时验证
+            $stat = $this->_db->join()->where("rname ='$rname'")->find() ? 0 : 1;
+        } else {
+            //编辑角色时验证
+            $stat = $this->_db->join()->where("rid<>$rid and rname ='$rname'")->find() ? 0 : 1;
         }
-        $this->ajax(0);
+        $this->ajax($stat);
     }
 
     /**
@@ -63,29 +68,25 @@ class RoleControl extends AuthControl
      */
     public function edit()
     {
-        if (Q("post.rid")) {
-            $db = M("role");
-            $db->save();
-            $this->ajax(array("state" => 1, "message" => "修改角色成功！"));
+        if (Q('post.rid')) {
+            M('role')->save();
+            $this->_ajax(1, '修改角色成功！');
         } else {
-            $this->assign("field", M("role")->find($this->_rid));
+            $this->assign('field', M('role')->find($this->_rid));
             $this->display();
         }
     }
 
-    //删除角色
+    /**
+     * 删除角色
+     */
     public function del()
     {
-        $rid = Q("get.rid", null, "intval");
+        $rid = Q('rid', null, 'intval');
         if ($rid) {
             //用户组关联表
-            if ($this->_db->del($rid)) {
-                $this->ajax(array("state" => 1, "message" => "删除角色成功！"));
-            }
+            $this->_db->del($rid);
+            $this->_ajax(1, '删除角色成功！');
         }
     }
-
-
 }
-
-?>
