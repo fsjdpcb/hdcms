@@ -219,9 +219,9 @@ str;
             default:
                 \$where=\$db->tableFull.".cid In(\$cid) and state=1";
         }
-        \$count = \$db->join(NULL)->where(\$where)->count();
+        \$count = \$db->join(NULL)->order("arc_sort ASC")->where(\$where)->count();
         \$page= new Page(\$count,$row);
-        \$result= \$db->join("category")->where(\$where)->limit(\$page->limit())->all();
+        \$result= \$db->join("category")->order("arc_sort ASC")->where(\$where)->limit(\$page->limit())->all();
         if(\$result):
             //有结果集时处理
             foreach(\$result as \$field):

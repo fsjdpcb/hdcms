@@ -13,7 +13,7 @@ $(function () {
                 ajax: "模型已经存在"
             }
         },
-        tablename: {
+        table_name: {
             rule: {
                 required: true,
                 regexp:/^\w+$/,

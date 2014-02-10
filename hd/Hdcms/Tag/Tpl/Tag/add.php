@@ -7,6 +7,7 @@
     <hdjs/>
     <js file="__GROUP__/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/tag.js"/>
+    <js file="__CONTROL_TPL__/js/validate.js"/>
     <css file="__CONTROL_TPL__/css/tag.css"/>
 </head>
 <body>
@@ -23,13 +24,13 @@
             <tr>
                 <th class="w100">tag内容</th>
                 <td>
-                    <input type="text" name="tag_name" value="{$field.tag_name}" class="w200"/>
+                    <input type="text" name="tag_name" class="w200"/>
                 </td>
             </tr>
             <tr>
                 <th class="w100">统计</th>
                 <td>
-                    <input type="text" name="total" value="{$field.total}" class="w200"/>
+                    <input type="text" name="total" value="1" class="w200"/>
                 </td>
             </tr>
         </table>

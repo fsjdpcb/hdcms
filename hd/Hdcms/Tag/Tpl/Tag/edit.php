@@ -7,6 +7,7 @@
     <hdjs/>
     <js file="__GROUP__/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/tag.js"/>
+    <js file="__CONTROL_TPL__/js/validate.js"/>
     <css file="__CONTROL_TPL__/css/tag.css"/>
 </head>
 <body>
