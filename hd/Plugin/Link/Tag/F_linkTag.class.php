@@ -22,7 +22,7 @@ class F_linkTag
         <?php
         \$type='$type';\$tid='$tid';
         //导入模型
-        import('@@.Hdcms.Link.Model.LinkModel');
+        require_cache("hd/Plugin/Link/Model/LinkModel.class.php");
         \$db = K('Link');
         switch(\$type){
             case 'image':
