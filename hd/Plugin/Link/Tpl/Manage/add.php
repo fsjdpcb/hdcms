@@ -6,6 +6,7 @@
     <title>添加分类</title>
     <css file="__GROUP__/static/css/common.css"/>
     <hdjs/>
+    <js file="__CONTROL_TPL__/js/validate.js"/>
 </head>
 <body>
 <div class="wrap">
@@ -13,8 +14,8 @@
         <ul>
             <li><a href="__WEB__?g=Plugin&a=Link&c=Manage&m=index">友情链接</a></li>
             <li><a href="__WEB__?g=Plugin&a=Link&c=Manage&m=audit">审核申请</a></li>
-            <li><a href="__WEB__?g=Plugin&a=Link&c=Manage&m=add">添加链接</a></li>
-            <li><a href="__WEB__?g=Plugin&a=Link&c=Type&m=add" class="action">添加分类</a></li>
+            <li><a href="__WEB__?g=Plugin&a=Link&c=Manage&m=add" class="action">添加链接</a></li>
+            <li><a href="__WEB__?g=Plugin&a=Link&c=Type&m=add">添加分类</a></li>
             <li><a href="__WEB__?g=Plugin&a=Link&c=Type&m=index">分类管理</a></li>
             <li><a href="__WEB__?g=Plugin&a=Link&c=Set&m=set">模块配置</a></li>
         </ul>

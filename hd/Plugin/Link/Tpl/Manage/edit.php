@@ -6,6 +6,7 @@
     <title>添加分类</title>
     <hdjs/>
     <css file="__GROUP__/static/css/common.css"/>
+    <js file="__CONTROL_TPL__/js/validate.js"/>
 </head>
 <body>
 <div class="wrap">

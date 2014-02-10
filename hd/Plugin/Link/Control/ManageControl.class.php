@@ -61,9 +61,10 @@ class ManageControl extends AuthControl
     {
         if (IS_POST) {
             if ($this->_db->edit_link()) {
-                $this->success('修改链接成功', U('index', array('g' => 'Plugin')));
+                $action =$_POST['state']==1?'index':'audit';
+                $this->success('修改链接成功', U($action, array('g' => 'Plugin')));
             } else {
-                $this->error($this->_db->error, U('index', array('g' => 'Plugin')));
+                $this->error($this->_db->error);
             }
         } else {
             //友链分类

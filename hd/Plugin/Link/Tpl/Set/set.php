@@ -6,6 +6,7 @@
     <title>友情链接配置</title>
     <hdjs/>
     <css file="__GROUP__/static/css/common.css"/>
+    <js file="__CONTROL_TPL__/js/set.js"/>
 </head>
 <body>
 <div class="wrap">

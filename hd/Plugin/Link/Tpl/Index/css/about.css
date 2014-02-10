@@ -72,54 +72,12 @@
     line-height: 24px;
 }
 
-.kf {
-    background: #fff url(../images/kfbg.jpg) no-repeat 0px 0px;
-    height: 84px;
-    padding: 5px 13px 0 80px;
-    width: 203px;
-    border: 1px solid #d7d7d7;
-    float: right;
-}
-
-.kf .kftel {
-    font-size: 18px;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #e36903;
-}
-
-.kf p {
-    line-height: 35px;
-    font-size: 12px;
-    border-bottom: 1px dashed #ccc;
-}
 
 .job-juooo {
     padding-left: 126px;
     color: #333;
     font-size: 14px;
     padding-top: 30px;
-}
-
-.other_register2 {
-    background: url(../images/bg.jpg) no-repeat -132px -296px;
-    height: 50px;
-    padding: 34px 0px 0px 70px;
-    line-height: 24px;
-    float: left;
-    width: 289px;
-}
-
-.other_register {
-    background: url(../images/bg.jpg) no-repeat 5px 17px;
-    height: 50px;
-    padding: 34px 0px 0px 90px;
-    float: left;
-}
-
-.other_register a {
-    color: #0a8cd2;
-    font-size: 14px;
-    margin: 0px 0px 0px 5px;
 }
 
 .job-web {
@@ -185,9 +143,6 @@
     margin: 25px 0;
 }
 
-.lks-ico {
-    background: url(images/links-ico.png) no-repeat;
-}
 
 .g-apply {
     border: 1px solid #ece8e8;
@@ -200,19 +155,18 @@
     border: 1px solid #fff;
     border-bottom: 1px solid #ece8e8;
     line-height: 33px;
-    padding-left: 23px;
 }
 
 .m-apply-hd .tit {
     font-size: 14px;
     font-weight: bold;
-    padding-left: 25px;
+    padding-left: 15px;
     background-position: 0 center;
     color: #aec930;
 }
 
 .g-apply .box {
-    padding: 45px 45px 25px;
+    padding: 25px 15px 25px;
     font-size: 14px;
     line-height: 24px;
 }
@@ -259,28 +213,6 @@
     width: 294px;
 }
 
-/*20140110增加加盟聚橙*/
-.about-pic {
-    background: url(../images/about/file0003.png) no-repeat 27px -4px;
-    padding-left: 160px;
-    padding-bottom: 10px;
-    padding-top: 5px;
-    line-height: 20px;
-}
-
-/*成功案例*/
-.cases {
-    background: url(../images/about/case-bg.png) repeat-y;
-    margin-top: 55px;
-    margin-left: 35px;
-}
-
-.cases .time {
-    background: url(../images/about/case.jpg) no-repeat;
-    height: 44px;
-    width: 132px;
-    margin-bottom: 15px;
-}
 
 .cases .time h2 {
     line-height: 44px;
@@ -306,14 +238,6 @@
     _margin-left: 34px;
 }
 
-.cases .nr .arror {
-    background: url(../images/about/case.jpg) no-repeat;
-    height: 11px;
-    margin-top: 12px;
-    width: 89px;
-    background-position: 0px -44px;
-    float: left;
-}
 
 .cases .nr .achieve {
     font-size: 12px;
@@ -329,11 +253,6 @@
     border-radius: 5px;
 }
 
-.cases .nr .achieve li {
-    background: url(../images/about/case.jpg) no-repeat;
-    background-position: -133px 9px;
-    padding-left: 18px;
-}
 
 .c_clear {
     clear: both;

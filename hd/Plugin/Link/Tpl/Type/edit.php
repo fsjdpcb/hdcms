@@ -6,6 +6,7 @@
     <title>修改分类</title>
     <hdjs/>
     <css file="__GROUP__/static/css/common.css"/>
+    <js file="__CONTROL_TPL__/js/edit_validate.js"/>
 </head>
 <body>
 <div class="wrap">
