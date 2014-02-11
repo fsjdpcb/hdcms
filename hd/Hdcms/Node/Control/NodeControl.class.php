@@ -32,7 +32,7 @@ class NodeControl extends AuthControl
     {
         if (IS_POST) {
             if ($this->_db->add_node()) {
-                $this->ajax(array('state' => 1, 'message' => '添加节点成功'));
+                $this->_ajax( 1,  '添加节点成功');
             }
         } else {
             //配置菜单列表
@@ -45,9 +45,9 @@ class NodeControl extends AuthControl
     public function del()
     {
         if ($this->_db->del_node()) {
-            $this->ajax(array('state' => 1, 'message' => '删除节点成功'));
+            $this->_ajax(1, '删除节点成功');
         } else {
-            $this->ajax(array('state' => 0, 'message' => $this->_db->error));
+            $this->_ajax(0, $this->_db->error);
         }
     }
 
@@ -56,7 +56,7 @@ class NodeControl extends AuthControl
     {
         if (IS_POST) {
             if($this->_db->edit_node()){
-                $this->ajax(array('state' => 1, 'message' => '修改节点成功'));
+                $this->_ajax(1,  '修改节点成功');
             }
         } else {
             $nid=Q('nid');
@@ -81,14 +81,14 @@ class NodeControl extends AuthControl
                 "list_order" => $order
             ));
         }
-        $this->ajax(array('state'=>1,'message'=>'更改排序成功'));
+        $this->_ajax(1,'更改排序成功');
     }
 
     //更新缓存
     public function update_cache()
     {
         if ($this->_db->update_cache()) {
-            $this->ajax(array('state' => 1, 'message' => '更新缓存成功'));
+            $this->_ajax( 1,  '更新缓存成功');
         }
     }
 }

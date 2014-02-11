@@ -16,18 +16,19 @@
             <li><a href="javascript:;" class="action">添加会员组</a></li>
         </ul>
     </div>
-    <form action="{|U:'add'}" method="post" onsubmit="return false;" class="form-inline hd-form">
+    <div class="title-header">添加会员组</div>
+    <form action="{|U:'add'}" method="post" onsubmit="return hd_submit(this)" class="hd-form">
         <table class="table1">
             <tr>
                 <th class="w100">会员组名称</th>
                 <td>
-                    <input type="text" name="gname" class="w200"/>
+                    <input type="text" name="gname" class="w300"/>
                 </td>
             </tr>
             <tr>
                 <th class="w100">积分小于</th>
                 <td>
-                    <input type="text" name="point" class="w200" value="0"/>
+                    <input type="text" name="point" class="w300" value="0"/>
                 </td>
             </tr>
             <tr>
@@ -49,7 +50,7 @@
             <tr>
                 <th class="w100">简洁描述</th>
                 <td>
-                    <input type="text" name="description" class="w400"/>
+                    <input type="text" name="description" class="w300"/>
                 </td>
             </tr>
         </table>

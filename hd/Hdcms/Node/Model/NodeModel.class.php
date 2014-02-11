@@ -53,7 +53,7 @@ class NodeModel extends ViewModel
         if (!$state) {
             return $this->del($nid);
         } else {
-            $this->error = '请删除子栏目';
+            $this->error = '请删除子菜单';
             return false;
         }
     }

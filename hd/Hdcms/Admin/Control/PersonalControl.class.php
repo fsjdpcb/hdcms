@@ -38,7 +38,7 @@ class PersonalControl extends AuthControl
     {
         if (IS_POST) {
             if ($this->_db->edit_password()) {
-                $this->ajax(1, '修改修改密码成功');
+                $this->_ajax(1, '修改修改密码成功');
             }
         } else {
             $this->user = $this->_db->join(NULL)->find(session('uid'));

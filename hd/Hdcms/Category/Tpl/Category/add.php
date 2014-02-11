@@ -198,7 +198,6 @@
             </div>
         </div>
     </div>
-    <div class="h60"></div>
 </div>
 <div class="position-bottom">
     <input type="submit" class="hd-success" value="确定"/>

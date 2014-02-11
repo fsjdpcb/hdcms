@@ -12,7 +12,7 @@
 <body>
 <div class="wrap">
     <div class="title-header">修改密码</div>
-    <form action="__METH__" method="post" onsubmit="return hd_submit(this,'__METH__')" class="hd-form">
+    <form action="__METH__" method="post" onsubmit="return hd_submit(this)" class="hd-form">
         <table class="table1">
             <tr>
                 <th class="w100">管理员名称</th>

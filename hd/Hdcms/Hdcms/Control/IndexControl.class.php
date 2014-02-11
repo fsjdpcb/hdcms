@@ -1,6 +1,7 @@
 <?php
 //导入菜单模型
 import('Menu.Model.MenuModel');
+
 /**
  * 后台首页
  * Class IndexControl
@@ -21,7 +22,6 @@ class IndexControl extends AuthControl
     //后台首页
     function index()
     {
-
         //获得顶级菜单
         $this->top_menu = $this->_db->get_top_menu();
         //获得常用菜单

@@ -2,232 +2,230 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7fdfeb72-05e7-437b-b747-905afa58d1a4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hd/Hdcms/Tag/Tpl/Tag/js/validate.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchengbanxiangmuzhanshi/2014/110/100.html" afterPath="$PROJECT_DIR$/html/yuanchengbanxiangmuzhanshi/2014/110/100.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchengbanxiangmuzhanshi/2014/110/101.html" afterPath="$PROJECT_DIR$/html/yuanchengbanxiangmuzhanshi/2014/110/101.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchengbanxiangmuzhanshi/2014/110/102.html" afterPath="$PROJECT_DIR$/html/yuanchengbanxiangmuzhanshi/2014/110/102.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchengbanxiangmuzhanshi/2014/110/103.html" afterPath="$PROJECT_DIR$/html/yuanchengbanxiangmuzhanshi/2014/110/103.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchengbanxiangmuzhanshi/2014/110/104.html" afterPath="$PROJECT_DIR$/html/yuanchengbanxiangmuzhanshi/2014/110/104.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/keyuhuodongzhanshi/2014/111/105.html" afterPath="$PROJECT_DIR$/html/keyuhuodongzhanshi/2014/111/105.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/keyuhuodongzhanshi/2014/111/106.html" afterPath="$PROJECT_DIR$/html/keyuhuodongzhanshi/2014/111/106.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/keyuhuodongzhanshi/2014/111/107.html" afterPath="$PROJECT_DIR$/html/keyuhuodongzhanshi/2014/111/107.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/keyuhuodongzhanshi/2014/111/108.html" afterPath="$PROJECT_DIR$/html/keyuhuodongzhanshi/2014/111/108.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/keyuhuodongzhanshi/2014/111/109.html" afterPath="$PROJECT_DIR$/html/keyuhuodongzhanshi/2014/111/109.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/dunyoujianzheng/2014/111/110.html" afterPath="$PROJECT_DIR$/html/dunyoujianzheng/2014/111/110.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/dunyouxuexichengguo/2014/111/111.html" afterPath="$PROJECT_DIR$/html/dunyouxuexichengguo/2014/111/111.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/dunyoujianzheng/2014/111/112.html" afterPath="$PROJECT_DIR$/html/dunyoujianzheng/2014/111/112.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/dunyoujianzheng/2014/111/113.html" afterPath="$PROJECT_DIR$/html/dunyoujianzheng/2014/111/113.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/dunyouxuexichengguo/2014/111/114.html" afterPath="$PROJECT_DIR$/html/dunyouxuexichengguo/2014/111/114.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/dunyouxuexichengguo/2014/111/115.html" afterPath="$PROJECT_DIR$/html/dunyouxuexichengguo/2014/111/115.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/dunyoujianzheng/2014/111/116.html" afterPath="$PROJECT_DIR$/html/dunyoujianzheng/2014/111/116.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/dunyoujianzheng/2014/111/117.html" afterPath="$PROJECT_DIR$/html/dunyoujianzheng/2014/111/117.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/dunyoujianzheng/2014/111/118.html" afterPath="$PROJECT_DIR$/html/dunyoujianzheng/2014/111/118.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/dunyouxuexichengguo/2014/111/119.html" afterPath="$PROJECT_DIR$/html/dunyouxuexichengguo/2014/111/119.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/dunyoujianzheng/2014/111/120.html" afterPath="$PROJECT_DIR$/html/dunyoujianzheng/2014/111/120.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/dunyouxuexichengguo/2014/111/121.html" afterPath="$PROJECT_DIR$/html/dunyouxuexichengguo/2014/111/121.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/dunyoujianzheng/2014/111/122.html" afterPath="$PROJECT_DIR$/html/dunyoujianzheng/2014/111/122.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/dunyoujianzheng/2014/111/123.html" afterPath="$PROJECT_DIR$/html/dunyoujianzheng/2014/111/123.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/dunyouxuexichengguo/2014/111/124.html" afterPath="$PROJECT_DIR$/html/dunyouxuexichengguo/2014/111/124.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/dunyoujianzheng/2014/111/125.html" afterPath="$PROJECT_DIR$/html/dunyoujianzheng/2014/111/125.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/dunyouxuexichengguo/2014/111/126.html" afterPath="$PROJECT_DIR$/html/dunyouxuexichengguo/2014/111/126.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/dunyoujianzheng/2014/111/127.html" afterPath="$PROJECT_DIR$/html/dunyoujianzheng/2014/111/127.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/dunyoujianzheng/2014/111/128.html" afterPath="$PROJECT_DIR$/html/dunyoujianzheng/2014/111/128.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/dunyoujianzheng/2014/111/129.html" afterPath="$PROJECT_DIR$/html/dunyoujianzheng/2014/111/129.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/dunyoujianzheng/2014/111/130.html" afterPath="$PROJECT_DIR$/html/dunyoujianzheng/2014/111/130.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/dunyoujianzheng/2014/111/131.html" afterPath="$PROJECT_DIR$/html/dunyoujianzheng/2014/111/131.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/dunyoujianzheng/2014/111/132.html" afterPath="$PROJECT_DIR$/html/dunyoujianzheng/2014/111/132.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/dunyoujianzheng/2014/111/133.html" afterPath="$PROJECT_DIR$/html/dunyoujianzheng/2014/111/133.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/dunyouxuexichengguo/2014/111/134.html" afterPath="$PROJECT_DIR$/html/dunyouxuexichengguo/2014/111/134.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/dunyouxuexichengguo/2014/111/135.html" afterPath="$PROJECT_DIR$/html/dunyouxuexichengguo/2014/111/135.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/dunyouxuexichengguo/2014/111/136.html" afterPath="$PROJECT_DIR$/html/dunyouxuexichengguo/2014/111/136.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/dunyouxuexichengguo/2014/111/137.html" afterPath="$PROJECT_DIR$/html/dunyouxuexichengguo/2014/111/137.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/dunyouxuexichengguo/2014/111/138.html" afterPath="$PROJECT_DIR$/html/dunyouxuexichengguo/2014/111/138.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/139.html" afterPath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/139.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/140.html" afterPath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/140.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/141.html" afterPath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/141.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/142.html" afterPath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/142.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/143.html" afterPath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/143.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/144.html" afterPath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/144.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/145.html" afterPath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/145.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/146.html" afterPath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/146.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/147.html" afterPath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/147.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/148.html" afterPath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/148.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/149.html" afterPath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/149.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/150.html" afterPath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/150.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/151.html" afterPath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/151.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/152.html" afterPath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/152.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/153.html" afterPath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/153.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/154.html" afterPath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/154.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/155.html" afterPath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/155.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/156.html" afterPath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/156.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/159.html" afterPath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/159.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/160.html" afterPath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/160.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/161.html" afterPath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/161.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/162.html" afterPath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/162.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/163.html" afterPath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/163.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/164.html" afterPath="$PROJECT_DIR$/html/changjianwentijieda/2014/111/164.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/daohangtiao/2014/112/166.html" afterPath="$PROJECT_DIR$/html/daohangtiao/2014/112/166.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/daohangtiao/2014/112/167.html" afterPath="$PROJECT_DIR$/html/daohangtiao/2014/112/167.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/daohangtiao/2014/112/168.html" afterPath="$PROJECT_DIR$/html/daohangtiao/2014/112/168.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/changjianwentijieda/2014/114/169.html" afterPath="$PROJECT_DIR$/html/changjianwentijieda/2014/114/169.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/changjianwentijieda/2014/114/170.html" afterPath="$PROJECT_DIR$/html/changjianwentijieda/2014/114/170.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/changjianwentijieda/2014/114/171.html" afterPath="$PROJECT_DIR$/html/changjianwentijieda/2014/114/171.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/daohangtiao/2014/115/179.html" afterPath="$PROJECT_DIR$/html/daohangtiao/2014/115/179.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/181.html" afterPath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/181.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/182.html" afterPath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/182.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/183.html" afterPath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/183.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/184.html" afterPath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/184.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/185.html" afterPath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/185.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/186.html" afterPath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/186.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/187.html" afterPath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/187.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/188.html" afterPath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/188.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/189.html" afterPath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/189.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/190.html" afterPath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/190.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/191.html" afterPath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/191.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/192.html" afterPath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/192.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/193.html" afterPath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/193.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/194.html" afterPath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/194.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/195.html" afterPath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/195.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/196.html" afterPath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/196.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/197.html" afterPath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/197.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/198.html" afterPath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/198.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/199.html" afterPath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/199.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/200.html" afterPath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/200.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/201.html" afterPath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/201.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/202.html" afterPath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/202.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/203.html" afterPath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/203.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/204.html" afterPath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/2014/116/204.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/shouyedatulunbo/2014/125/205.html" afterPath="$PROJECT_DIR$/html/shouyedatulunbo/2014/125/205.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/shouyedatulunbo/2014/125/206.html" afterPath="$PROJECT_DIR$/html/shouyedatulunbo/2014/125/206.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/shouyedatulunbo/2014/125/207.html" afterPath="$PROJECT_DIR$/html/shouyedatulunbo/2014/125/207.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/shouyedatulunbo/2014/125/208.html" afterPath="$PROJECT_DIR$/html/shouyedatulunbo/2014/125/208.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/gongyigongkaike/2014/125/209.html" afterPath="$PROJECT_DIR$/html/gongyigongkaike/2014/125/209.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/mingxingxueyuan/2014/126/210.html" afterPath="$PROJECT_DIR$/html/mingxingxueyuan/2014/126/210.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/mingxingxueyuan/2014/126/211.html" afterPath="$PROJECT_DIR$/html/mingxingxueyuan/2014/126/211.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/mingxingxueyuan/2014/126/213.html" afterPath="$PROJECT_DIR$/html/mingxingxueyuan/2014/126/213.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/mingxingxueyuan/2014/126/214.html" afterPath="$PROJECT_DIR$/html/mingxingxueyuan/2014/126/214.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/mingxingxueyuan/2014/126/215.html" afterPath="$PROJECT_DIR$/html/mingxingxueyuan/2014/126/215.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/mingxingxueyuan/2014/126/216.html" afterPath="$PROJECT_DIR$/html/mingxingxueyuan/2014/126/216.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/tuijianzixun/2014/27/217.html" afterPath="$PROJECT_DIR$/html/tuijianzixun/2014/27/217.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/mingxingxueyuan/2014/27/218.html" afterPath="$PROJECT_DIR$/html/mingxingxueyuan/2014/27/218.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/mingxingxueyuan/2014/27/219.html" afterPath="$PROJECT_DIR$/html/mingxingxueyuan/2014/27/219.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/tuijianzixun/2014/27/220.html" afterPath="$PROJECT_DIR$/html/tuijianzixun/2014/27/220.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/mingxingxueyuan/2014/19/38.html" afterPath="$PROJECT_DIR$/html/mingxingxueyuan/2014/19/38.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/mingxingxueyuan/2014/19/40.html" afterPath="$PROJECT_DIR$/html/mingxingxueyuan/2014/19/40.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/mingxingxueyuan/2014/19/41.html" afterPath="$PROJECT_DIR$/html/mingxingxueyuan/2014/19/41.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/mingxingxueyuan/2014/19/42.html" afterPath="$PROJECT_DIR$/html/mingxingxueyuan/2014/19/42.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/tuijianzixun/2014/19/43.html" afterPath="$PROJECT_DIR$/html/tuijianzixun/2014/19/43.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/tuijianzixun/2014/19/44.html" afterPath="$PROJECT_DIR$/html/tuijianzixun/2014/19/44.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/tuijianzixun/2014/19/45.html" afterPath="$PROJECT_DIR$/html/tuijianzixun/2014/19/45.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/tuijianzixun/2014/19/46.html" afterPath="$PROJECT_DIR$/html/tuijianzixun/2014/19/46.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/tuijianzixun/2014/19/47.html" afterPath="$PROJECT_DIR$/html/tuijianzixun/2014/19/47.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/tuijianzixun/2014/19/48.html" afterPath="$PROJECT_DIR$/html/tuijianzixun/2014/19/48.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/tuijianzixun/2014/19/49.html" afterPath="$PROJECT_DIR$/html/tuijianzixun/2014/19/49.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/tuijianzixun/2014/19/50.html" afterPath="$PROJECT_DIR$/html/tuijianzixun/2014/19/50.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/tuijianzixun/2014/19/51.html" afterPath="$PROJECT_DIR$/html/tuijianzixun/2014/19/51.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/tuijianzixun/2014/19/52.html" afterPath="$PROJECT_DIR$/html/tuijianzixun/2014/19/52.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/tuijianzixun/2014/19/53.html" afterPath="$PROJECT_DIR$/html/tuijianzixun/2014/19/53.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/tuijianzixun/2014/19/54.html" afterPath="$PROJECT_DIR$/html/tuijianzixun/2014/19/54.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/xueyuanpingjia/2014/19/55.html" afterPath="$PROJECT_DIR$/html/xueyuanpingjia/2014/19/55.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/xueyuanpingjia/2014/19/56.html" afterPath="$PROJECT_DIR$/html/xueyuanpingjia/2014/19/56.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/xueyuanpingjia/2014/19/57.html" afterPath="$PROJECT_DIR$/html/xueyuanpingjia/2014/19/57.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/xueyuanpingjia/2014/19/58.html" afterPath="$PROJECT_DIR$/html/xueyuanpingjia/2014/19/58.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/xueyuanpingjia/2014/19/59.html" afterPath="$PROJECT_DIR$/html/xueyuanpingjia/2014/19/59.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/xueyuanpingjia/2014/19/60.html" afterPath="$PROJECT_DIR$/html/xueyuanpingjia/2014/19/60.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/xueyuanpingjia/2014/19/61.html" afterPath="$PROJECT_DIR$/html/xueyuanpingjia/2014/19/61.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/xueyuanpingjia/2014/19/62.html" afterPath="$PROJECT_DIR$/html/xueyuanpingjia/2014/19/62.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/gongyigongkaike/2014/19/63.html" afterPath="$PROJECT_DIR$/html/gongyigongkaike/2014/19/63.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/gongyigongkaike/2014/19/64.html" afterPath="$PROJECT_DIR$/html/gongyigongkaike/2014/19/64.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/xiangmuzhanshi/2014/19/65.html" afterPath="$PROJECT_DIR$/html/xiangmuzhanshi/2014/19/65.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/qianduanxiangmuzhanshi/2014/19/66.html" afterPath="$PROJECT_DIR$/html/qianduanxiangmuzhanshi/2014/19/66.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/qianduanxiangmuzhanshi/2014/19/67.html" afterPath="$PROJECT_DIR$/html/qianduanxiangmuzhanshi/2014/19/67.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/qianduanxiangmuzhanshi/2014/19/68.html" afterPath="$PROJECT_DIR$/html/qianduanxiangmuzhanshi/2014/19/68.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/qianduanxiangmuzhanshi/2014/19/69.html" afterPath="$PROJECT_DIR$/html/qianduanxiangmuzhanshi/2014/19/69.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/qianduanxiangmuzhanshi/2014/19/70.html" afterPath="$PROJECT_DIR$/html/qianduanxiangmuzhanshi/2014/19/70.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/qianduanxiangmuzhanshi/2014/19/71.html" afterPath="$PROJECT_DIR$/html/qianduanxiangmuzhanshi/2014/19/71.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/qianduanxiangmuzhanshi/2014/19/72.html" afterPath="$PROJECT_DIR$/html/qianduanxiangmuzhanshi/2014/19/72.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/qianduanxiangmuzhanshi/2014/19/73.html" afterPath="$PROJECT_DIR$/html/qianduanxiangmuzhanshi/2014/19/73.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/qianduanxiangmuzhanshi/2014/19/74.html" afterPath="$PROJECT_DIR$/html/qianduanxiangmuzhanshi/2014/19/74.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/qianduanxiangmuzhanshi/2014/19/75.html" afterPath="$PROJECT_DIR$/html/qianduanxiangmuzhanshi/2014/19/75.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/qianduanxiangmuzhanshi/2014/19/76.html" afterPath="$PROJECT_DIR$/html/qianduanxiangmuzhanshi/2014/19/76.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/qianduanxiangmuzhanshi/2014/19/77.html" afterPath="$PROJECT_DIR$/html/qianduanxiangmuzhanshi/2014/19/77.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/xiangmuzhanshi/2014/110/78.html" afterPath="$PROJECT_DIR$/html/xiangmuzhanshi/2014/110/78.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/xiangmuzhanshi/2014/110/79.html" afterPath="$PROJECT_DIR$/html/xiangmuzhanshi/2014/110/79.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/xiangmuzhanshi/2014/110/80.html" afterPath="$PROJECT_DIR$/html/xiangmuzhanshi/2014/110/80.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/xiangmuzhanshi/2014/110/81.html" afterPath="$PROJECT_DIR$/html/xiangmuzhanshi/2014/110/81.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/xiangmuzhanshi/2014/110/82.html" afterPath="$PROJECT_DIR$/html/xiangmuzhanshi/2014/110/82.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/xiangmuzhanshi/2014/110/83.html" afterPath="$PROJECT_DIR$/html/xiangmuzhanshi/2014/110/83.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/xiangmuzhanshi/2014/110/84.html" afterPath="$PROJECT_DIR$/html/xiangmuzhanshi/2014/110/84.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/xiangmuzhanshi/2014/110/85.html" afterPath="$PROJECT_DIR$/html/xiangmuzhanshi/2014/110/85.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/xiangmuzhanshi/2014/110/86.html" afterPath="$PROJECT_DIR$/html/xiangmuzhanshi/2014/110/86.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/xiangmuzhanshi/2014/110/87.html" afterPath="$PROJECT_DIR$/html/xiangmuzhanshi/2014/110/87.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/xiangmuzhanshi/2014/110/88.html" afterPath="$PROJECT_DIR$/html/xiangmuzhanshi/2014/110/88.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/xiangmuzhanshi/2014/110/89.html" afterPath="$PROJECT_DIR$/html/xiangmuzhanshi/2014/110/89.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/xiangmuzhanshi/2014/110/90.html" afterPath="$PROJECT_DIR$/html/xiangmuzhanshi/2014/110/90.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/xiangmuzhanshi/2014/110/91.html" afterPath="$PROJECT_DIR$/html/xiangmuzhanshi/2014/110/91.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/xiangmuzhanshi/2014/110/92.html" afterPath="$PROJECT_DIR$/html/xiangmuzhanshi/2014/110/92.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchengbanxiangmuzhanshi/2014/110/93.html" afterPath="$PROJECT_DIR$/html/yuanchengbanxiangmuzhanshi/2014/110/93.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchengbanxiangmuzhanshi/2014/110/94.html" afterPath="$PROJECT_DIR$/html/yuanchengbanxiangmuzhanshi/2014/110/94.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchengbanxiangmuzhanshi/2014/110/95.html" afterPath="$PROJECT_DIR$/html/yuanchengbanxiangmuzhanshi/2014/110/95.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchengbanxiangmuzhanshi/2014/110/96.html" afterPath="$PROJECT_DIR$/html/yuanchengbanxiangmuzhanshi/2014/110/96.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchengbanxiangmuzhanshi/2014/110/97.html" afterPath="$PROJECT_DIR$/html/yuanchengbanxiangmuzhanshi/2014/110/97.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchengbanxiangmuzhanshi/2014/110/98.html" afterPath="$PROJECT_DIR$/html/yuanchengbanxiangmuzhanshi/2014/110/98.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchengbanxiangmuzhanshi/2014/110/99.html" afterPath="$PROJECT_DIR$/html/yuanchengbanxiangmuzhanshi/2014/110/99.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hd/Hdcms/Template/Tpl/Template/css/edit_tpl.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/css/quick_menu.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/js/quick_menu.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/cache/js/1.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/cache/js/2.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data/cache/js/3.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/bootstrap/article_default.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/bootstrap/css/style.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/bootstrap/images/Sina_Weibo_Logo_RGB_C_E.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/bootstrap/images/app.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/bootstrap/images/bs-docs-masthead-pattern.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/bootstrap/images/free.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/bootstrap/images/hdphp.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/bootstrap/images/safe.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/bootstrap/images/study.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/bootstrap/images/top.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/bootstrap/images/update.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/bootstrap/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/bootstrap/js/jquery-1.7.2.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/bootstrap/js/js.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/bootstrap/readme.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/bootstrap/template.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/article_index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/article_list.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/css/article_content.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/css/article_list.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/css/index.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/images/01.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/images/04.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/images/09.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/images/1150.gif.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/images/1354793581325.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/images/16.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/images/20.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/images/26.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/images/34.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/images/35.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/images/36.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/images/41.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/images/43.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/images/52.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/images/54.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/images/55.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/images/63.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/images/662.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/images/75.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/images/750.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/images/883.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/images/900.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/images/93.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/images/94.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/images/ba.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/images/bg_flbtn.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/images/cx.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/images/gp.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/images/green_skin.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/images/is.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/images/jb.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/images/logo.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/images/logo.psd" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/images/pa.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/images/pic.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/images/qq_login.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/images/tdflag1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/default/images/wj.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/article_default.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/article_index-sayno.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/article_kecheng.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/article_list.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/css/common.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/css/content.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/css/kechengpage.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/css/list.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/css/style.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/footer.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/head.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/01f6f8771fa1d6fa24906ee8d187975a.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/022522269.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/030202549_180.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/042439352_100.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/042459614_180.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/0701094906.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/072925252.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/095043798.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/10532932.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/110624890_100.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/112912378_100.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/1648800_8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/1904969_9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/1905079_9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/1905184_9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/1905279_9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/1905827_9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/1905883_9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/1906840_9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/1907091_9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/1907603_9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/1907734_8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/1907735_8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/247_460311185_20130106100247.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/247_46031185_20121217154205.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/279_4957059228_20131008114748.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/291_460221185_20121226094548.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/291_4957676234_20131126155121.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/291_4957800229_20131210211026.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/291_4957866232_20131217175715.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/30401091620.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/334_4955662228_20130731195637.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/334_4955956228_20130812114633.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/337_460281185_20121226120710.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/337_460321185_20130108103933.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/337_46081185_20130904111329.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/34234_03.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/4104548.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/544_03.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/7066e3a732f593b273f45fe74961013a.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/9965c00d0ab3d9bc82a725c271257668.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/ba0374f6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/cd528ec.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/dad.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/daike.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/e2c1feab1f.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/guangg/hdinfo.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/guangg/hdjob.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/guangg/hdphphdcms.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/index-7_03.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/index06.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/index08_03.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/index09_03.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/index10_03.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/index_03.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/index_04.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/index_qiangshichuji.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/nav-bg.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/quotes.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/xiangmu/360wenda.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/xiangmu/cikuangjia.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/xiangmu/css3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/xiangmu/douban.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/xiangmu/gongyi.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/xiangmu/hdinfo.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/xiangmu/html5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/xiangmu/javascript.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/xiangmu/javascript特效.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/xiangmu/kankan.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/xiangmu/meituan.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/xiangmu/mysql.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/xiangmu/php-logo.eps" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/xiangmu/thinkphp.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/xiangmu/xuyuanqiang.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/xiangmu/yii.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/images/xiangmu/zhimeng.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/index222.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/js/jquery-1.4a2.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/js/jquery.KinSlideshow-1.2.1.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/readme.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/right.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/guanwang/template.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/heise_shuma/article_default.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/heise_shuma/article_list.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/heise_shuma/article_single.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/heise_shuma/css/base.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/heise_shuma/css/css.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/heise_shuma/footer.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/heise_shuma/header.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/heise_shuma/img/6011.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/heise_shuma/img/6078.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/heise_shuma/img/adxf-com.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/heise_shuma/img/arrow-2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/heise_shuma/img/arrow.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/heise_shuma/img/bg-loop-bottom.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/heise_shuma/img/bg-loop.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/heise_shuma/img/bj.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/heise_shuma/img/button-simple.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/heise_shuma/img/buttons-h30.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/heise_shuma/img/buttons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/heise_shuma/img/info_error.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/heise_shuma/img/info_success.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/heise_shuma/img/logo.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/heise_shuma/img/stat-bar-grey.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/heise_shuma/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/heise_shuma/js/iepng.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/heise_shuma/readme.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/template/heise_shuma/template.jpg" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template/default/template.jpg" afterPath="$PROJECT_DIR$/template/default/template.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Access/Control/AccessControl.class.php" afterPath="$PROJECT_DIR$/hd/Hdcms/Access/Control/AccessControl.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Index/Tag/ContentTag.class.php" afterPath="$PROJECT_DIR$/hd/Hdcms/Index/Tag/ContentTag.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Tag/Tpl/Tag/add.php" afterPath="$PROJECT_DIR$/hd/Hdcms/Tag/Tpl/Tag/add.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Tag/Tpl/Tag/edit.php" afterPath="$PROJECT_DIR$/hd/Hdcms/Tag/Tpl/Tag/edit.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/changjianwentijieda/index.html" afterPath="$PROJECT_DIR$/html/changjianwentijieda/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/daohangtiao/index.html" afterPath="$PROJECT_DIR$/html/daohangtiao/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/dunyoujianzheng/index.html" afterPath="$PROJECT_DIR$/html/dunyoujianzheng/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/dunyoujulebu/index.html" afterPath="$PROJECT_DIR$/html/dunyoujulebu/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/dunyouxuexichengguo/index.html" afterPath="$PROJECT_DIR$/html/dunyouxuexichengguo/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/gongyigongkaike/index.html" afterPath="$PROJECT_DIR$/html/gongyigongkaike/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/houdunkaiyuanchanpinquyu/index.html" afterPath="$PROJECT_DIR$/html/houdunkaiyuanchanpinquyu/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/kechengguanli/index.html" afterPath="$PROJECT_DIR$/html/kechengguanli/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/keyuhuodongzhanshi/index.html" afterPath="$PROJECT_DIR$/html/keyuhuodongzhanshi/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/mingxingxueyuan/index.html" afterPath="$PROJECT_DIR$/html/mingxingxueyuan/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/qianduanxiangmuzhanshi/index.html" afterPath="$PROJECT_DIR$/html/qianduanxiangmuzhanshi/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/shouyedatulunbo/index.html" afterPath="$PROJECT_DIR$/html/shouyedatulunbo/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/thinkphpxiangmuzhanshi/index.html" afterPath="$PROJECT_DIR$/html/thinkphpxiangmuzhanshi/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/tuijianzixun/index.html" afterPath="$PROJECT_DIR$/html/tuijianzixun/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/xiangmuzhanshi/index.html" afterPath="$PROJECT_DIR$/html/xiangmuzhanshi/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/xueyuanpingjia/index.html" afterPath="$PROJECT_DIR$/html/xueyuanpingjia/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/xueyuanyouxiuxiangmuzhanshi/index.html" afterPath="$PROJECT_DIR$/html/xueyuanyouxiuxiangmuzhanshi/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchengbanxiangmuzhanshi/index.html" afterPath="$PROJECT_DIR$/html/yuanchengbanxiangmuzhanshi/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/index.html" afterPath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/TemplateTag/Control/CustomJsControl.class.php" afterPath="$PROJECT_DIR$/hd/Hdcms/TemplateTag/Control/CustomJsControl.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Member/Control/GroupControl.class.php" afterPath="$PROJECT_DIR$/hd/Hdcms/Member/Control/GroupControl.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Hdcms/Control/IndexControl.class.php" afterPath="$PROJECT_DIR$/hd/Hdcms/Hdcms/Control/IndexControl.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Node/Control/NodeControl.class.php" afterPath="$PROJECT_DIR$/hd/Hdcms/Node/Control/NodeControl.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Node/Model/NodeModel.class.php" afterPath="$PROJECT_DIR$/hd/Hdcms/Node/Model/NodeModel.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Admin/Control/PersonalControl.class.php" afterPath="$PROJECT_DIR$/hd/Hdcms/Admin/Control/PersonalControl.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Index/Control/PublicControl.class.php" afterPath="$PROJECT_DIR$/hd/Hdcms/Index/Control/PublicControl.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Template/Control/TemplateControl.class.php" afterPath="$PROJECT_DIR$/hd/Hdcms/Template/Control/TemplateControl.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Category/Tpl/Category/add.php" afterPath="$PROJECT_DIR$/hd/Hdcms/Category/Tpl/Category/add.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Member/Tpl/Group/add.php" afterPath="$PROJECT_DIR$/hd/Hdcms/Member/Tpl/Group/add.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template/default/article_default.html" afterPath="$PROJECT_DIR$/template/default/article_default.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/config/config.inc.php" afterPath="$PROJECT_DIR$/data/config/config.inc.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/css/css.css" afterPath="$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/css/css.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Config/Tpl/Config/edit.php" afterPath="$PROJECT_DIR$/hd/Hdcms/Config/Tpl/Config/edit.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Admin/Tpl/Personal/js/edit_password.js" afterPath="$PROJECT_DIR$/hd/Hdcms/Admin/Tpl/Personal/js/edit_password.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Admin/Tpl/Personal/edit_password.php" afterPath="$PROJECT_DIR$/hd/Hdcms/Admin/Tpl/Personal/edit_password.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Template/Tpl/Template/js/edit_tpl.js" afterPath="$PROJECT_DIR$/hd/Hdcms/Template/Tpl/Template/js/edit_tpl.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Template/Tpl/Template/edit_tpl.php" afterPath="$PROJECT_DIR$/hd/Hdcms/Template/Tpl/Template/edit_tpl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template/default/index.html" afterPath="$PROJECT_DIR$/template/default/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Content/Tpl/Content/js/index.js" afterPath="$PROJECT_DIR$/hd/Hdcms/Content/Tpl/Content/js/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/mingxingxueyuan/list_15_1.html" afterPath="$PROJECT_DIR$/html/mingxingxueyuan/list_15_1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/mingxingxueyuan/list_15_2.html" afterPath="$PROJECT_DIR$/html/mingxingxueyuan/list_15_2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/tuijianzixun/list_16_1.html" afterPath="$PROJECT_DIR$/html/tuijianzixun/list_16_1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/tuijianzixun/list_16_2.html" afterPath="$PROJECT_DIR$/html/tuijianzixun/list_16_2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/xueyuanpingjia/list_17_1.html" afterPath="$PROJECT_DIR$/html/xueyuanpingjia/list_17_1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/gongyigongkaike/list_18_1.html" afterPath="$PROJECT_DIR$/html/gongyigongkaike/list_18_1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/xueyuanyouxiuxiangmuzhanshi/list_19_1.html" afterPath="$PROJECT_DIR$/html/xueyuanyouxiuxiangmuzhanshi/list_19_1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/xueyuanyouxiuxiangmuzhanshi/list_19_2.html" afterPath="$PROJECT_DIR$/html/xueyuanyouxiuxiangmuzhanshi/list_19_2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/xueyuanyouxiuxiangmuzhanshi/list_19_3.html" afterPath="$PROJECT_DIR$/html/xueyuanyouxiuxiangmuzhanshi/list_19_3.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/qianduanxiangmuzhanshi/list_20_1.html" afterPath="$PROJECT_DIR$/html/qianduanxiangmuzhanshi/list_20_1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/qianduanxiangmuzhanshi/list_20_2.html" afterPath="$PROJECT_DIR$/html/qianduanxiangmuzhanshi/list_20_2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/xiangmuzhanshi/list_21_1.html" afterPath="$PROJECT_DIR$/html/xiangmuzhanshi/list_21_1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/xiangmuzhanshi/list_21_2.html" afterPath="$PROJECT_DIR$/html/xiangmuzhanshi/list_21_2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchengbanxiangmuzhanshi/list_23_1.html" afterPath="$PROJECT_DIR$/html/yuanchengbanxiangmuzhanshi/list_23_1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchengbanxiangmuzhanshi/list_23_2.html" afterPath="$PROJECT_DIR$/html/yuanchengbanxiangmuzhanshi/list_23_2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/keyuhuodongzhanshi/list_24_1.html" afterPath="$PROJECT_DIR$/html/keyuhuodongzhanshi/list_24_1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/dunyoujulebu/list_25_1.html" afterPath="$PROJECT_DIR$/html/dunyoujulebu/list_25_1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/dunyoujulebu/list_25_2.html" afterPath="$PROJECT_DIR$/html/dunyoujulebu/list_25_2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/changjianwentijieda/list_26_1.html" afterPath="$PROJECT_DIR$/html/changjianwentijieda/list_26_1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/changjianwentijieda/list_26_2.html" afterPath="$PROJECT_DIR$/html/changjianwentijieda/list_26_2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/changjianwentijieda/list_26_3.html" afterPath="$PROJECT_DIR$/html/changjianwentijieda/list_26_3.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/list_27_1.html" afterPath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/list_27_1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/list_27_2.html" afterPath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/list_27_2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/list_27_3.html" afterPath="$PROJECT_DIR$/html/yuanchuangshipinjiaocheng/list_27_3.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/dunyoujianzheng/list_29_1.html" afterPath="$PROJECT_DIR$/html/dunyoujianzheng/list_29_1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/dunyoujianzheng/list_29_2.html" afterPath="$PROJECT_DIR$/html/dunyoujianzheng/list_29_2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/dunyouxuexichengguo/list_30_1.html" afterPath="$PROJECT_DIR$/html/dunyouxuexichengguo/list_30_1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/dunyouxuexichengguo/list_30_2.html" afterPath="$PROJECT_DIR$/html/dunyouxuexichengguo/list_30_2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/daohangtiao/list_31_1.html" afterPath="$PROJECT_DIR$/html/daohangtiao/list_31_1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/kechengguanli/list_32_1.html" afterPath="$PROJECT_DIR$/html/kechengguanli/list_32_1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/shouyedatulunbo/list_34_1.html" afterPath="$PROJECT_DIR$/html/shouyedatulunbo/list_34_1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Model/Tpl/Model/js/validate.js" afterPath="$PROJECT_DIR$/hd/Hdcms/Model/Tpl/Model/js/validate.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/index.php" afterPath="$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Node/Tpl/Node/index.php" afterPath="$PROJECT_DIR$/hd/Hdcms/Node/Tpl/Node/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Member/Tpl/Group/js/js.js" afterPath="$PROJECT_DIR$/hd/Hdcms/Member/Tpl/Group/js/js.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Node/Tpl/Node/js/js.js" afterPath="$PROJECT_DIR$/hd/Hdcms/Node/Tpl/Node/js/js.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/TemplateTag/Tpl/CustomJs/Js/js.js" afterPath="$PROJECT_DIR$/hd/Hdcms/TemplateTag/Tpl/CustomJs/Js/js.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/js/menu.js" afterPath="$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/js/menu.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/cache/data/node.php" afterPath="$PROJECT_DIR$/data/cache/data/node.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hd/Hdcms/Menu/Tpl/Menu/set_favorite.php" afterPath="$PROJECT_DIR$/hd/Hdcms/Menu/Tpl/Menu/set_favorite.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="hdcms.iws" />
@@ -251,10 +249,50 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ContentTag.class.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/hd/Hdcms/Index/Tag/ContentTag.class.php">
+      <file leaf-file-name="quick_menu.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/js/quick_menu.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="221" column="57" selection-start="8179" selection-end="8179" vertical-scroll-proportion="0.43295637" vertical-offset="3047" max-vertical-offset="5445">
+            <state line="37" column="0" selection-start="875" selection-end="875" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="quick_menu.css" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/css/quick_menu.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="50" column="23" selection-start="1042" selection-end="1042" vertical-scroll-proportion="0.38567072" vertical-offset="597" max-vertical-offset="1581">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="menu.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/js/menu.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="67" column="21" selection-start="1754" selection-end="1754" vertical-scroll-proportion="0.0" vertical-offset="684" max-vertical-offset="3645">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="77" column="14" selection-start="2924" selection-end="2924" vertical-scroll-proportion="-21.083334" vertical-offset="572" max-vertical-offset="1204">
+              <folding>
+                <element signature="n#style#0;n#li#0;n#ul#0;n#div#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#iframe#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="css.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/css/css.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="153" column="23" selection-start="2618" selection-end="2618" vertical-scroll-proportion="0.0" vertical-offset="1909" max-vertical-offset="5130">
               <folding />
             </state>
           </provider>
@@ -278,37 +316,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/hd/Common/Control/PluginControl.class.php" />
-        <option value="$PROJECT_DIR$/hd/Plugin/Link/Control/InstallControl.class.php" />
-        <option value="$PROJECT_DIR$/hd/Hdcms/Admin/Tpl/Personal/edit_password.php" />
-        <option value="$PROJECT_DIR$/hd/Hdcms/Content/Tpl/Content/content.php" />
-        <option value="$PROJECT_DIR$/hd/static/js/js.js" />
-        <option value="$PROJECT_DIR$/hd/Hdcms/Content/Tpl/Content/index.php" />
-        <option value="$PROJECT_DIR$/hd/Hdcms/Plugin/Tpl/Install/uninstall.php" />
-        <option value="$PROJECT_DIR$/hd/Hdcms/Plugin/Tpl/Install/install.php" />
-        <option value="$PROJECT_DIR$/hd/Hdcms/Plugin/Tpl/Install/Js/js.js" />
-        <option value="$PROJECT_DIR$/hd/Hdcms/Plugin/Tpl/Plugin/plugin_list.php" />
-        <option value="$PROJECT_DIR$/hd/Hdcms/Plugin/Control/InstallControl.class.php" />
-        <option value="$PROJECT_DIR$/hd/Hdcms/Plugin/Tpl/Install/help.php" />
-        <option value="$PROJECT_DIR$/hd/Hdcms/Plugin/Tpl/Install/css/help.css" />
-        <option value="$PROJECT_DIR$/hd/Plugin/Link/Data/help.php" />
-        <option value="$PROJECT_DIR$/hd/Hdcms/Plugin/Model/PluginModel.class.php" />
-        <option value="$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/js/menu.js" />
-        <option value="$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/index.php" />
-        <option value="$PROJECT_DIR$/hd/Hdcms/Content/Config/config.php" />
-        <option value="$PROJECT_DIR$/hd/Hdcms/Content/Control/ContentControl.class.php" />
-        <option value="$PROJECT_DIR$/hd/Hdcms/Content/Model/ContentModel.class.php" />
-        <option value="$PROJECT_DIR$/hd/Hdcms/Cache/Control/CacheControl.class.php" />
-        <option value="$PROJECT_DIR$/hd/Common/Event/AppStartEvent.class.php" />
-        <option value="$PROJECT_DIR$/hd/Hdcms/Index/Control/IndexControl.class.php" />
-        <option value="$PROJECT_DIR$/hd/Hdcms/Template/Control/TemplateControl.class.php" />
-        <option value="$PROJECT_DIR$/hd/Plugin/Link/Tpl/Index/close.php" />
-        <option value="$PROJECT_DIR$/hd/Plugin/Link/Tpl/Index/js/validate.js" />
-        <option value="$PROJECT_DIR$/hd/Plugin/Link/Control/IndexControl.class.php" />
-        <option value="$PROJECT_DIR$/hd/Plugin/Link/Tpl/Index/js/link.js" />
-        <option value="$PROJECT_DIR$/hd/Plugin/Link/Data/install.sql" />
-        <option value="$PROJECT_DIR$/hd/Plugin/Link/Tpl/Index/css/about.css" />
-        <option value="$PROJECT_DIR$/hd/Plugin/Link/Tpl/Index/link.php" />
         <option value="$PROJECT_DIR$/hd/Plugin/Link/Tpl/Set/set.php" />
         <option value="$PROJECT_DIR$/hd/Plugin/Link/Tpl/Set/js/set.js" />
         <option value="$PROJECT_DIR$/hd/Plugin/Link/Tpl/Type/js/type.js" />
@@ -323,12 +330,43 @@
         <option value="$PROJECT_DIR$/hd/Hdcms/Menu/Control/MenuControl.class.php" />
         <option value="$PROJECT_DIR$/template/guanwang/index.html" />
         <option value="$PROJECT_DIR$/hd/Plugin/Link/Tag/F_linkTag.class.php" />
-        <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/hd/Hdcms/Tag/Tpl/Tag/js/validate.js" />
         <option value="$PROJECT_DIR$/hd/Hdcms/Tag/Tpl/Tag/add.php" />
         <option value="$PROJECT_DIR$/hd/Hdcms/Tag/Tpl/Tag/edit.php" />
         <option value="$PROJECT_DIR$/hd/Hdcms/Model/Tpl/Model/js/validate.js" />
         <option value="$PROJECT_DIR$/hd/Hdcms/Index/Tag/ContentTag.class.php" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/Index/Control/PublicControl.class.php" />
+        <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/Hdcms/Control/IndexControl.class.php" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/Admin/Tpl/Personal/js/edit_password.js" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/Admin/Control/PersonalControl.class.php" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/Admin/Tpl/Personal/edit_password.php" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/Config/Tpl/Config/edit.php" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/Member/Tpl/Group/add.php" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/Member/Tpl/Group/index.php" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/Member/Control/GroupControl.class.php" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/Member/Tpl/Group/js/js.js" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/Access/Control/AccessControl.class.php" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/TemplateTag/Tpl/CustomJs/Js/js.js" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/TemplateTag/Control/CustomJsControl.class.php" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/Template/Tpl/Template/css/edit_tpl.css" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/Template/Tpl/Template/edit_tpl.php" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/Template/Control/TemplateControl.class.php" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/Template/Tpl/Template/js/edit_tpl.js" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/Menu/Tpl/Menu/set_favorite.php" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/Node/Control/NodeControl.class.php" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/Node/Model/NodeModel.class.php" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/Node/Tpl/Node/index.php" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/Node/Tpl/Node/js/js.js" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/Menu/Tpl/Menu/js/js.js" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/Category/Tpl/Category/add.php" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/Content/Tpl/Content/js/index.js" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/Content/Tpl/Content/css/index.css" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/js/quick_menu.js" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/js/menu.js" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/index.php" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/css/css.css" />
+        <option value="$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/css/quick_menu.css" />
       </list>
     </option>
   </component>
@@ -446,7 +484,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Model" />
+              <option name="myItemId" value="Node" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -454,7 +492,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Model" />
+              <option name="myItemId" value="Node" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -476,7 +514,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Model" />
+              <option name="myItemId" value="Node" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -484,7 +522,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Model" />
+              <option name="myItemId" value="Node" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -510,7 +548,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Model" />
+              <option name="myItemId" value="Node" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -528,7 +566,221 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Common" />
+              <option name="myItemId" value="Hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Menu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tpl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Menu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Menu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tpl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Menu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Menu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tpl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tpl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Index" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tpl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Index" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hdcms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tpl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Index" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -555,7 +807,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="FullScreen" value="false" />
-    <property name="SearchEverywhereHistory" value="&#10;93&#10;saga&#10;011&#10;0114&#10;a&#10;r&#10;bmp&#10;$&#10;comm&#10;per&#10;admin&#10;(&#10;881&#10;\&#10;01140&#10;d2f&#10;441&#10;441f&#10;441fa&#10;install&#10;S&#10;7ec&#10;1d&#10;aja&#10;dum&#10;hc&#10;lag&#10;mage&#10;606&#10;_&#10;;&#10;m&#10;i&#10;f&#10;model&#10;bug&#10;menu&#10;login" />
+    <property name="SearchEverywhereHistory" value="qu&#10;aja&#10;93&#10;saga&#10;011&#10;0114&#10;a&#10;r&#10;bmp&#10;$&#10;comm&#10;per&#10;admin&#10;(&#10;881&#10;\&#10;01140&#10;d2f&#10;441&#10;441f&#10;441fa&#10;install&#10;S&#10;7ec&#10;1d&#10;dum&#10;hc&#10;lag&#10;mage&#10;606&#10;_&#10;;&#10;m&#10;i&#10;f&#10;model&#10;bug&#10;menu&#10;login" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -629,7 +881,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18506752" sideWeight="0.8973607" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26494345" sideWeight="0.5718475" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27382874" sideWeight="0.5718475" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1858618" sideWeight="0.102639295" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -687,324 +939,420 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Plugin/Tpl/Install/uninstall.php">
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Model/Tpl/Model/js/validate.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="4" selection-start="302" selection-end="359" vertical-scroll-proportion="0.16962843" vertical-offset="0" max-vertical-offset="1110" />
+        <state line="34" column="13" selection-start="925" selection-end="925" vertical-scroll-proportion="0.24542683" vertical-offset="349" max-vertical-offset="1005" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Model/Tpl/Model/add.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1530" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Tag/Tpl/Tag/edit.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="42" selection-start="342" selection-end="342" vertical-scroll-proportion="0.16613925" vertical-offset="0" max-vertical-offset="735" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Tag/Tpl/Tag/add.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="4" selection-start="390" selection-end="433" vertical-scroll-proportion="0.07436709" vertical-offset="88" max-vertical-offset="720" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Tag/Tpl/Tag/js/validate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="34" selection-start="411" selection-end="411" vertical-scroll-proportion="0.3887195" vertical-offset="0" max-vertical-offset="656" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hd/Hdcms/Plugin/Control/PluginControl.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="25" selection-start="365" selection-end="365" vertical-scroll-proportion="0.5458861" vertical-offset="0" max-vertical-offset="632" />
+        <state line="2" column="3" selection-start="10" selection-end="10" vertical-scroll-proportion="0.049261082" vertical-offset="0" max-vertical-offset="609">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Plugin/Tpl/Install/Js/js.js">
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Index/Control/PublicControl.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="35" selection-start="332" selection-end="343" vertical-scroll-proportion="0.17073171" vertical-offset="0" max-vertical-offset="656" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Content/Tpl/Content/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="28" selection-start="615" selection-end="615" vertical-scroll-proportion="0.26655897" vertical-offset="0" max-vertical-offset="619" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Plugin/Tpl/Plugin/plugin_list.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="26" selection-start="755" selection-end="755" vertical-scroll-proportion="-9.458333" vertical-offset="133" max-vertical-offset="795" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Plugin/Tpl/Install/install.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="61" selection-start="0" selection-end="1708" vertical-scroll-proportion="0.11867089" vertical-offset="30" max-vertical-offset="945" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Plugin/Control/InstallControl.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="55" selection-start="1665" selection-end="1665" vertical-scroll-proportion="-20.083334" vertical-offset="523" max-vertical-offset="1155" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Plugin/Tpl/Install/help.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="40" selection-start="693" selection-end="693" vertical-scroll-proportion="-12.25" vertical-offset="0" max-vertical-offset="462" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Plugin/Tpl/Install/css/help.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="21" selection-start="0" selection-end="172" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Plugin/Link/Data/help.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="37" selection-start="37" selection-end="37" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="619" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Plugin/Model/PluginModel.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="78" selection-start="1325" selection-end="1325" vertical-scroll-proportion="-6.3333335" vertical-offset="643" max-vertical-offset="1440" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/js/menu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="1" selection-start="738" selection-end="738" vertical-scroll-proportion="0.62986004" vertical-offset="0" max-vertical-offset="3645" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Content/Model/ContentViewModel.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="20" selection-start="274" selection-end="274" vertical-scroll-proportion="0.47818792" vertical-offset="0" max-vertical-offset="2520" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Content/Control/ContentControl.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="120" column="19" selection-start="2933" selection-end="2933" vertical-scroll-proportion="0.32471728" vertical-offset="1599" max-vertical-offset="4335" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Content/Tpl/Content/add.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="137" column="33" selection-start="5604" selection-end="5607" vertical-scroll-proportion="0.25201938" vertical-offset="1899" max-vertical-offset="3270" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Content/Model/ContentModel.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="31" selection-start="171" selection-end="171" vertical-scroll-proportion="0.12315271" vertical-offset="0" max-vertical-offset="7410" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Content/Model/ContentFlagModel.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="1" selection-start="305" selection-end="305" vertical-scroll-proportion="0.2955665" vertical-offset="0" max-vertical-offset="609" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Content/Config/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="42" selection-start="82" selection-end="82" vertical-scroll-proportion="0.047468353" vertical-offset="0" max-vertical-offset="632" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Cache/Control/CacheControl.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="29" selection-start="519" selection-end="519" vertical-scroll-proportion="0.44334975" vertical-offset="165" max-vertical-offset="1320" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="27" selection-start="1549" selection-end="1549" vertical-scroll-proportion="-0.1728188" vertical-offset="688" max-vertical-offset="1320" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Index/Config/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="2" selection-start="134" selection-end="134" vertical-scroll-proportion="0.16613925" vertical-offset="0" max-vertical-offset="632" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Template/Control/TemplateControl.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="30" selection-start="1215" selection-end="1215" vertical-scroll-proportion="0.23734178" vertical-offset="435" max-vertical-offset="2025" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Index/Control/IndexControl.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="9" selection-start="293" selection-end="293" vertical-scroll-proportion="0.37974682" vertical-offset="0" max-vertical-offset="632" />
+        <state line="56" column="15" selection-start="1418" selection-end="1418" vertical-scroll-proportion="0.14556962" vertical-offset="748" max-vertical-offset="1380">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hd/Common/Event/AppStartEvent.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="33" selection-start="521" selection-end="521" vertical-scroll-proportion="0.664557" vertical-offset="0" max-vertical-offset="632" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Plugin/Link/Data/install.sql">
-      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="20" selection-start="1206" selection-end="1206" vertical-scroll-proportion="0.49646643" vertical-offset="94" max-vertical-offset="660">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Plugin/Link/Control/IndexControl.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="19" selection-start="145" selection-end="145" vertical-scroll-proportion="0.26107594" vertical-offset="0" max-vertical-offset="1110">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Plugin/Link/Tpl/Index/close.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="38" selection-start="545" selection-end="545" vertical-scroll-proportion="0.45094937" vertical-offset="0" max-vertical-offset="632">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Plugin/Link/Tpl/Index/link.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="64" selection-start="1451" selection-end="1451" vertical-scroll-proportion="0.15514334" vertical-offset="343" max-vertical-offset="1830">
+        <state line="28" column="33" selection-start="521" selection-end="521" vertical-scroll-proportion="0.664557" vertical-offset="0" max-vertical-offset="632">
           <folding>
-            <element signature="n#style#0;n#strong#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#strong#0;n#div#1;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#textarea#0;n#div#1;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#strong#1;n#div#1;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#textarea#1;n#div#1;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#td#0;n#tr#0;n#if#0;n#table#0;n#form#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1391972721000" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Plugin/Link/Tpl/Index/css/about.css">
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Index/Tag/ContentTag.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="168" column="14" selection-start="2476" selection-end="2476" vertical-scroll-proportion="0.38262194" vertical-offset="2269" max-vertical-offset="3960">
+        <state line="215" column="69" selection-start="7977" selection-end="7977" vertical-scroll-proportion="0.28756058" vertical-offset="3047" max-vertical-offset="5445">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Plugin/Link/Tpl/Set/set.php">
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Hdcms/Control/IndexControl.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="4" selection-start="355" selection-end="393" vertical-scroll-proportion="0.19386107" vertical-offset="0" max-vertical-offset="1380">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Plugin/Link/Tpl/Type/js/edit_validate.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="2" selection-start="248" selection-end="248" vertical-scroll-proportion="0.27439025" vertical-offset="0" max-vertical-offset="656">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Plugin/Link/Tpl/Type/edit.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="37" selection-start="386" selection-end="386" vertical-scroll-proportion="0.19386107" vertical-offset="0" max-vertical-offset="690">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Plugin/Link/Tpl/Type/add.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="4" selection-start="353" selection-end="400" vertical-scroll-proportion="0.19386107" vertical-offset="0" max-vertical-offset="675">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Plugin/Link/Tpl/Type/js/add_validate.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="279" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="656">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Plugin/Link/Tpl/Index/js/link.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="55" selection-start="0" selection-end="1084" vertical-scroll-proportion="0.75457317" vertical-offset="0" max-vertical-offset="810">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Plugin/Link/Tpl/Set/js/set.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="31" selection-start="0" selection-end="1016" vertical-scroll-proportion="0.2682927" vertical-offset="94" max-vertical-offset="765">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/config/tag.inc.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="2" selection-start="163" selection-end="163" vertical-scroll-proportion="0.12315271" vertical-offset="0" max-vertical-offset="609">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/template/guanwang/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="18" selection-start="324" selection-end="324" vertical-scroll-proportion="0.22167487" vertical-offset="0" max-vertical-offset="609">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Plugin/Link/Tag/F_linkTag.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="18" selection-start="200" selection-end="200" vertical-scroll-proportion="0.024630541" vertical-offset="165" max-vertical-offset="885">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Menu/Control/MenuControl.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="30" selection-start="1003" selection-end="1003" vertical-scroll-proportion="0.3634895" vertical-offset="450" max-vertical-offset="1425">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Plugin/Link/Control/ManageControl.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="38" selection-start="1220" selection-end="1220" vertical-scroll-proportion="0.33544305" vertical-offset="733" max-vertical-offset="1380">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Plugin/Link/Tpl/Manage/add.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="41" selection-start="390" selection-end="390" vertical-scroll-proportion="0.18987341" vertical-offset="0" max-vertical-offset="1380">
+        <state line="23" column="5" selection-start="354" selection-end="354" vertical-scroll-proportion="0.45411393" vertical-offset="58" max-vertical-offset="690">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="227" selection-end="227" vertical-scroll-proportion="0.26107594" vertical-offset="0" max-vertical-offset="632">
+        <state line="13" column="0" selection-start="264" selection-end="264" vertical-scroll-proportion="0.3085443" vertical-offset="0" max-vertical-offset="632">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Plugin/Link/Tpl/Manage/js/validate.js">
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Member/Control/GroupControl.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="10" selection-start="0" selection-end="876" vertical-scroll-proportion="0.4054878" vertical-offset="49" max-vertical-offset="705">
+        <state line="57" column="31" selection-start="1532" selection-end="1532" vertical-scroll-proportion="0.87684727" vertical-offset="321" max-vertical-offset="975">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Plugin/Link/Tpl/Manage/edit.php">
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Member/Tpl/Group/add.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="47" selection-start="396" selection-end="396" vertical-scroll-proportion="0.19386107" vertical-offset="0" max-vertical-offset="1440">
+        <state line="19" column="85" selection-start="739" selection-end="739" vertical-scroll-proportion="0.37751678" vertical-offset="60" max-vertical-offset="1020">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Model/Tpl/Model/js/validate.js">
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Config/Tpl/Config/edit.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="13" selection-start="925" selection-end="925" vertical-scroll-proportion="0.24542683" vertical-offset="349" max-vertical-offset="1005">
+        <state line="18" column="43" selection-start="733" selection-end="733" vertical-scroll-proportion="0.44334975" vertical-offset="0" max-vertical-offset="1470">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Model/Tpl/Model/add.php">
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Admin/Tpl/Personal/edit_password.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1530">
+        <state line="14" column="73" selection-start="589" selection-end="589" vertical-scroll-proportion="0.3322785" vertical-offset="0" max-vertical-offset="795">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Tag/Tpl/Tag/edit.php">
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Member/Tpl/Group/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="42" selection-start="342" selection-end="342" vertical-scroll-proportion="0.16613925" vertical-offset="0" max-vertical-offset="735">
+        <state line="46" column="45" selection-start="1568" selection-end="1568" vertical-scroll-proportion="0.64398736" vertical-offset="283" max-vertical-offset="915">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Tag/Tpl/Tag/add.php">
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Member/Tpl/Group/js/js.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="4" selection-start="390" selection-end="433" vertical-scroll-proportion="0.07436709" vertical-offset="88" max-vertical-offset="720">
+        <state line="5" column="1" selection-start="128" selection-end="128" vertical-scroll-proportion="0.11432927" vertical-offset="0" max-vertical-offset="720">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Tag/Tpl/Tag/js/validate.js">
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Admin/Control/PersonalControl.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="34" selection-start="411" selection-end="411" vertical-scroll-proportion="0.3887195" vertical-offset="0" max-vertical-offset="656">
+        <state line="40" column="24" selection-start="740" selection-end="740" vertical-scroll-proportion="0.5490506" vertical-offset="253" max-vertical-offset="990">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Index/Tag/ContentTag.class.php">
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Admin/Tpl/Personal/js/edit_password.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="221" column="57" selection-start="8179" selection-end="8179" vertical-scroll-proportion="0.43295637" vertical-offset="3047" max-vertical-offset="5445">
+        <state line="20" column="34" selection-start="530" selection-end="530" vertical-scroll-proportion="0.45731708" vertical-offset="0" max-vertical-offset="656">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Access/Control/AccessControl.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="32" selection-start="724" selection-end="724" vertical-scroll-proportion="0.32148626" vertical-offset="281" max-vertical-offset="900">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/TemplateTag/Control/CustomJsControl.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="100" column="36" selection-start="3141" selection-end="3141" vertical-scroll-proportion="0.4679803" vertical-offset="1215" max-vertical-offset="2160">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Template/Tpl/Template/css/style_list.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="47" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1350">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Template/Tpl/Template/css/edit_tpl.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="47" selection-start="47" selection-end="47" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="633">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Template/Tpl/Template/js/edit_tpl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="36" selection-start="774" selection-end="774" vertical-scroll-proportion="0.2890995" vertical-offset="297" max-vertical-offset="945">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Template/Control/TemplateControl.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="86" column="25" selection-start="2644" selection-end="2644" vertical-scroll-proportion="0.4187192" vertical-offset="1035" max-vertical-offset="2055">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Template/Tpl/Template/edit_tpl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="59" selection-start="708" selection-end="708" vertical-scroll-proportion="0.38423645" vertical-offset="51" max-vertical-offset="735">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Common/Control/CommonControl.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="23" selection-start="312" selection-end="312" vertical-scroll-proportion="0.47468355" vertical-offset="0" max-vertical-offset="632">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Common/Model/CustomJsModel.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="6" selection-start="52" selection-end="52" vertical-scroll-proportion="0.11867089" vertical-offset="0" max-vertical-offset="632">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/TemplateTag/Tpl/CustomJs/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.40031645" vertical-offset="253" max-vertical-offset="885">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/TemplateTag/Tpl/CustomJs/Js/js.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="45" selection-start="338" selection-end="338" vertical-scroll-proportion="0.3887195" vertical-offset="0" max-vertical-offset="656">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/TemplateTag/Tpl/CustomJs/add.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1860">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Menu/Tpl/Menu/set_favorite.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="52" selection-start="441" selection-end="441" vertical-scroll-proportion="0.2136076" vertical-offset="0" max-vertical-offset="632">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Menu/Control/MenuControl.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="45" column="30" selection-start="1003" selection-end="1003" vertical-scroll-proportion="0.83037156" vertical-offset="161" max-vertical-offset="1425">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="656">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Node/Tpl/Node/js/js.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1125">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Menu/Tpl/Menu/js/js.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="0" selection-start="579" selection-end="579" vertical-scroll-proportion="0.48018292" vertical-offset="0" max-vertical-offset="656">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Node/Tpl/Node/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="60" column="101" selection-start="2214" selection-end="2214" vertical-scroll-proportion="0.53634894" vertical-offset="568" max-vertical-offset="1200">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Node/Model/NodeModel.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="55" column="34" selection-start="983" selection-end="983" vertical-scroll-proportion="0.56962025" vertical-offset="465" max-vertical-offset="1695">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Node/Control/NodeControl.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="46" column="30" selection-start="815" selection-end="815" vertical-scroll-proportion="0.40872374" vertical-offset="437" max-vertical-offset="1725">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Content/Tpl/Content/js/move_content.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="840">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Content/Tpl/Content/js/content.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2190">
+          <folding>
+            <marker date="1391742115000" expanded="false" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Content/Tpl/Content/css/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="0" selection-start="467" selection-end="467" vertical-scroll-proportion="0.5971564" vertical-offset="42" max-vertical-offset="1140">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Content/Tpl/Content/js/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="25" selection-start="1060" selection-end="1060" vertical-scroll-proportion="0.81042653" vertical-offset="27" max-vertical-offset="690">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Content/Tpl/Content/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="620">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Category/Tpl/Category/add.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="199" column="10" selection-start="8979" selection-end="8979" vertical-scroll-proportion="0.6365105" vertical-offset="2591" max-vertical-offset="3210">
+          <folding>
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1392100127000" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Category/Tpl/Category/edit.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-3.9676898" vertical-offset="2456" max-vertical-offset="3075">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/js/menu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="67" column="21" selection-start="1754" selection-end="1754" vertical-scroll-proportion="0.0" vertical-offset="684" max-vertical-offset="3645">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="77" column="14" selection-start="2924" selection-end="2924" vertical-scroll-proportion="-21.083334" vertical-offset="572" max-vertical-offset="1204">
+          <folding>
+            <element signature="n#style#0;n#li#0;n#ul#0;n#div#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#iframe#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/css/css.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="153" column="23" selection-start="2618" selection-end="2618" vertical-scroll-proportion="0.0" vertical-offset="1909" max-vertical-offset="5130">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/js/quick_menu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="0" selection-start="875" selection-end="875" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hd/Hdcms/Hdcms/Tpl/Index/css/quick_menu.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="23" selection-start="1042" selection-end="1042" vertical-scroll-proportion="0.38567072" vertical-offset="597" max-vertical-offset="1581">
           <folding />
         </state>
       </provider>

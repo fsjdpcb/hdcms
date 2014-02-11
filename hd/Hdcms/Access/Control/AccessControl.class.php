@@ -30,7 +30,7 @@ class AccessControl extends AuthControl
                     );
                 }
             }
-            $this->_ajax(1);
+            $this->_ajax(1,'操作成功');
         } else {
             $rid = Q("get.rid");
             $node = $this->db->table("node")->where("menu_type=1")->all();

@@ -4,7 +4,7 @@
  * 自定义JS
  * Class CustomJsControl
  */
-class CustomJsControl extends Control
+class CustomJsControl extends CommonControl
 {
     private $_db;
     private $_category;
@@ -58,7 +58,7 @@ class CustomJsControl extends Control
                 </li>';
                 $con = compress(tag("arclist", $options, $content));
                 file_put_contents(JS_CACHE_PATH . $aid . '.php', $con);
-                $this->_ajax(array("state" => 1, "message" => "操作成功"));
+                $this->_ajax(1,  "操作成功");exit;
             }
         } else {
             $flag = $this->_db->table("flag")->all();
@@ -87,7 +87,7 @@ class CustomJsControl extends Control
     public function check_js_file()
     {
         if (!is_file(JS_CACHE_PATH . $_POST['file_name'])) {
-            $this->_ajax(1);
+            $this->ajax(1);
         }
     }
 
@@ -98,7 +98,7 @@ class CustomJsControl extends Control
         $this->_db->del($id);
         $file = JS_CACHE_PATH . $id . '.php';
         is_file($file) and @unlink($file);
-        $this->_ajax(array("stat" => 1, "msg" => "删除JS标签成功"));
+        $this->_ajax( 1, "删除JS标签成功");
     }
 
     //获得js调用

@@ -56,7 +56,7 @@ class TemplateControl extends AuthControl
             //删除前台编译文件
             is_dir("./temp/hdcms/Content/Compile") and Dir::del("./temp/hdcms/Content/Compile");
             //删除编译文件
-            dir::del('temp/Hdcms/Index');
+            is_dir('temp/Hdcms/Index') and dir::del('temp/Hdcms/Index');
             $this->ajax(array('state' => 1, 'message' => '操作成功'));
         }
     }
@@ -84,7 +84,9 @@ class TemplateControl extends AuthControl
             rename($_POST['file_path'], $new);
             //修改模板内容
             if (file_put_contents($new, $_POST['content'])) {
-                $this->ajax(1);
+                $this->_ajax(1,'修改成功');
+            }else{
+                $this->_ajax(1,'修改失败，请修改模板文件为可写');
             }
         } else {
             $file_path = Q("get.file_path", "", "urldecode");

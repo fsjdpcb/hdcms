@@ -7,6 +7,7 @@
     <hdjs/>
     <js file="__CONTROL_TPL__/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
+    <js file="hd/Hdcms/Hdcms/Tpl/Index/js/menu.js"/>
 </head>
 <body>
 <form method="post" class="hd-form" onsubmit="return false">

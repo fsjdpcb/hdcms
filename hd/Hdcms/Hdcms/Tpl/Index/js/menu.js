@@ -65,7 +65,7 @@ function show_iframe(nid) {
         var frm = $("iframe[nid='" + nid + "']");
         frm.show();
     } else {
-        var obj = $(".left_menu a[nid='" + nid + "']");
+        var obj = $("a[nid='" + nid + "']");
         var url = $(obj).attr("url");
         var html = '<iframe nid="' + nid + '" src="' + url + "&_=" + Math.random() + '" scrolling="auto" frameborder="0" style="height: 100%;width: 100%;"></iframe>';
         $("div.top_content").append(html);

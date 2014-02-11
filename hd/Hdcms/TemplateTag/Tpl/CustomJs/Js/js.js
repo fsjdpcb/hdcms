@@ -15,27 +15,6 @@ $(function () {
 //删除标签
 function del(id) {
     if (confirm('确定要删除吗？')) {
-        $.ajax({
-            type: "POST",
-            url: CONTROL + "&m=del&id=" + id,
-            dataType: "JSON",
-            cache: false,
-            success: function (data) {
-                if (data.stat == 1) {
-                    $.dialog({
-                        msg: data.msg,
-                        type: "success",
-                        close_handler: function () {
-                            location.reload();
-                        }
-                    });
-                } else {
-                    $.dialog({
-                        msg: "操作失败",
-                        type: "error"
-                    });
-                }
-            }
-        })
+        hd_ajax(CONTROL + "&m=del&id=" + id);
     }
 }

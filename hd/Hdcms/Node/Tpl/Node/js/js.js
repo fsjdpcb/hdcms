@@ -19,7 +19,7 @@ function update_order() {
     $.post(CONTROL + "&m=update_order", data, function (data) {
         if (data.state == 1) {
             $.dialog({
-                "message":data.message,
+                "message": data.message,
                 "type": "success",
                 "close_handler": function () {
                     location.href = URL;
@@ -31,7 +31,7 @@ function update_order() {
                 "type": "error"
             });
         }
-    },'json')
+    }, 'json')
 }
 
 

@@ -54,7 +54,7 @@ class PublicControl extends CommonControl
 
 
     /**
-     * 验证网站是否关闭
+     * 验证网站是否开启
      */
     private function verification()
     {
@@ -63,7 +63,7 @@ class PublicControl extends CommonControl
          * 1. 非管理员
          * 2. 网站没有关闭
          */
-        if (session('admin') || C("web_open") == 0) {
+        if (session('admin') || C("web_open") == 1) {
             return true;
         }
     }

@@ -5,14 +5,15 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>HDCMS - 后台管理中心</title>
     <hdjs/>
-    <css file="__CONTROL_TPL__/css/css.css"/>
     <js file="__CONTROL_TPL__/js/menu.js"/>
+    <js file="__CONTROL_TPL__/js/quick_menu.js"/>
+    <css file="__CONTROL_TPL__/css/css.css"/>
+    <css file="__CONTROL_TPL__/css/quick_menu.css"/>
 </head>
 <body>
 <div class="nav">
     <!--头部左侧导航-->
     <div class="top_menu">
-        <a href="javascript:" onclick="get_left_menu(0);" class="top_menu">常用</a>
         <list from="$top_menu" name="m">
             <a href="javascript:" nid="{$m.nid}" onclick="get_left_menu({$m.nid});" class="top_menu">{$m.title}</a>
         </list>
@@ -34,31 +35,7 @@
 <!--左侧导航-->
 <div class="main">
     <!--主体左侧导航-->
-    <div class="left_menu">
-        <div class="nid_0">
-            <dl>
-                <dt>常用</dt>
-                <dd>
-                    <a url="?a=Menu&c=Menu&m=set_favorite" onclick="get_content(this,90001)" href="javascript:;"
-                       nid="90001">设置</a>
-                </dd>
-                <dd>
-                    <a url="?a=Bug&c=Bug&m=feedback" onclick="get_content(this,90002)" href="javascript:;"
-                       nid="90002">反馈Bug</a>
-                </dd>
-                <dd>
-                    <a url="?a=Bug&c=Bug&m=showBug" onclick="get_content(this,90005)" href="javascript:;" nid="90005">Bug管理</a>
-                </dd>
-                <list from="$favorite_menu" name="f">
-                    <dd>
-                        <a url="?a={$f.app}&c={$f.control}&m={$f.method}&nid={$f.nid}"
-                           onclick="get_content(this,{$f.nid})" href="javascript:;" nid="{$f.nid}">{$f.title}</a>
-                    </dd>
-                </list>
-            </dl>
-        </div>
-
-    </div>
+    <div class="left_menu"></div>
     <!--主体左侧导航-->
     <!--内容显示区域-->
     <div class="menu_nav">
@@ -68,16 +45,37 @@
         </div>
         <div class="favorite_menu">
             <ul>
-                <li class="action" nid="0"><a href="javascript:;" class="menu" nid="0">环境</a></li>
+                <li class="action" nid="0" style="border-left:solid 1px #D8D8D8;"><a href="javascript:;" class="menu" nid="0">环境</a></li>
             </ul>
         </div>
     </div>
     <div class="top_content">
         <iframe src="{|U:'feedback'}" nid="0" scrolling="auto" frameborder="0" style="height: 100%;width: 100%;"></iframe>
-
     </div>
     <!--内容显示区域-->
 </div>
+<div id="quick_menu">
+    <div class="set">
+        <a url="?a=Menu&c=Menu&m=set_favorite" onclick="get_content(this,90001)" href="javascript:;" nid="90001">设置</a>
+    </div>
+    <div
+        style="float:left;width:1px;margin-right:5px;overflow: hidden;background: #999999;height:15px;margin-top:12px;"></div>
+    <div class="bottom-menu">
+        <list from="$favorite_menu" name="f">
+            <a url="?a={$f.app}&c={$f.control}&m={$f.method}&nid={$f.nid}"
+               onclick="get_content(this,{$f.nid})" href="javascript:;" nid="{$f.nid}">{$f.title}</a>
+        </list>
+    </div>
+    <div class="quick-hide">
+        <a href="javascript:quick_menu_hide();">隐藏</a>
+    </div>
+</div>
+<div id="show_quick_menu" onclick="show_quick_menu()">
+    显示
+</div>
 <!--左侧导航-->
+<script>
+    $("a[nid=1]").trigger("click");
+</script>
 </body>
 </html>

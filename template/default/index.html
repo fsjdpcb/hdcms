@@ -1,168 +1,182 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <title>{$hd.config.webname}</title>
-    <jquery/>
-    <link rel="stylesheet" href="__TEMPLATE__/css/index.css"/>
-    <slide/>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title>{$hd.config.webname}</title>
+	<link rel="stylesheet" href="__TEMPLATE__/css/style.css" />
+	<script type="text/javascript" src="__TEMPLATE__/js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="__TEMPLATE__/js/js.js"></script>
 </head>
 <body>
-<!-- 最顶部灰色条开始 -->
-<div class="head_top">
-    <div class="head_top_box">
-        <!-- 左边盒子 -->
-        <div class="head_top_l">
-				<span class="top_login">
-				{$hd.config.webname}
-				</span>
-        </div>
-        <!-- 右边盒子结束 -->
-    </div>
-</div>
-<!-- 最顶部灰色条结束 -->
-<!-- 头部开始 -->
-<div class="head">
-    <a href="" class="logo"><img src="__TEMPLATE__/images/logo.gif" alt=""/></a>
-    <a href="" class="logo2"><img src="__TEMPLATE__/images/1328856915439.gif" alt=""/></a>
-</div>
-<!-- 头部结束 -->
-<!-- 导航栏开始 -->
-<div class="nav_list">
+	<!-- 头部开始 -->
+	<div class="head">
+		<div class="head_box">
+			<!-- 左边开始 -->
+			<ul class="nav">
+				<li>
+					<a href="">首页</a>
+				</li>
+				<li class="dropdown">
+					<a href="http://www.houdunwang.com">
+						后盾网
+						<b class="caret"></b>
+					</a>
+				</li>
+				<li class="dropdown">
+					<a href="http://bbs.houdunwang.com">
+						后盾论坛
+						<b class="caret"></b>
+					</a>
+				</li>
+				<li>
+					<a href="http://bbs.houdunwang.com/forum-199-1.html">V5课堂</a>
+				</li>
+			</ul>
+			<!-- 左边结束 -->
+			<!-- 右边开始 -->
+			<div class="right">
+				<a href="">讲真功夫的PHP培训</a>
+			</div>
+			
+			<!-- 右边结束 -->
+		</div>
+	</div>
+	<!-- 头部结束 -->
+	<!-- logo大盒子 -->
+	<div class="logo">
+		<div class="logo_box">
+			<h1>HDPHP & HDCMS</h1>
+			<h2>
+				简洁、直观、强悍的PHP框架与CMS系统，让web开发更迅速、简单。
+			</h2>
+			
+				<a href="https://github.com/houdunwangxj/hdphp" target="_blank" class="one" style="left:300px;">下载 HDPHP(2013.12)</a>
+                <a href="https://github.com/houdunwangxj/hdcms"  target="_blank" class="one" style="left:600px;">下载 HDCMS(2013.12开发版)</a>
+				<a href="" class="two" style="left:380px;">HDPHP 下周升级计划</a>
+            <a href="" class="two" style="left:680px;">HDCMS 下周升级计划</a>
+		</div>
+	</div>
+	<!-- logo大盒子结束 -->
+	<!-- 新浪微博大盒子开始 -->
+	<div class="sina">
+		<div class="sina_box">
+			<div class="qq">
+				<span>HDPHP & HDCMS开发QQ群:</span>{$hd.config.qq}
+			</div>
+			<a class="sina_logo" href="{$hd.config.weibo}" target="_blank">
+				<img src="__TEMPLATE__/images/Sina_Weibo_Logo_RGB_C_E.png" alt="微博" />
+			</a>
+		</div>
+	</div>
+	<!-- 新浪微博大盒子结束 -->
+	<!-- 开源项目推荐开始 -->
+	<div class="rec">
+		<h2>《后盾网》值得信赖的开发团队与培训机构</h2>
+		<p>不浮夸！只认真做技术，认真就够了。《这些年，我们和后盾网一起写程序》</p>
+	</div>
+	<!-- 开源项目推荐结束	 -->
+	<!-- 内容区域开始 -->
+	<div class="content">
 
-    <a href="__ROOT__" class="blue"><span>首  页</span></a>
-    <channel class="blue" level="1" row="8">
-        <a href="{$field.url}" class="two"><span>{$field.catname}</span></a>
-    </channel>
+			<div class="box">
+				<a href="" class="pic"><img src="__TEMPLATE__/images/hdphp.png" alt="" /></a>
 
-    <!-- 右边分享盒子开始 -->
-    <div class="share">
-        <!-- JiaThis Button BEGIN -->
+					<a href="" class="tit">
+                        基于HDPHP开源框架
+					</a>
+					<p>
+                        HDPHP框架供强大的、完整的类库包,满足开发中的项目需求,可以将需要完成的任务代码量最小化，大大提高项目开发效率与质量。高效的核心编译处理机制让系统运行更快。
+					</p>
+			</div>
 
-        <!-- JiaThis Button END -->
-    </div>
-    <!-- 右边分享盒子结束 -->
-</div>
-<!-- 导航栏结束 -->
-<!-- 搜索区域大盒子开始 -->
-<div class="search_box">
-    <!-- 搜索大盒子左边开始 -->
-    <div class="s_left">
-        <form action="{|U:'Search/Search/search'}" method="post">
-            <!-- 搜索框盒子 -->
-            <div class="keybox">
-                <p class="serch_pic"></p>
-                <input type="text" name="search" maxlength="16"/>
-            </div>
-            <!-- 搜索框盒子 -->
-            <!-- 按钮开始 -->
-            <div class="btn">
-                <input type="submit" value="搜索"/>
-            </div>
-            <!-- 按钮结束 -->
-        </form>
-        <!-- 搜索框右侧搜索链接结束 -->
-        <!-- 热门关键字开始 -->
-        <div class="hotkey">
+			<div class="box">
+				<a href="" class="pic"><img src="__TEMPLATE__/images/safe.png" alt="" /></a>
 
-            热门关键字：
-            <searchkey row="10">
-                <a href="{$field.url}">{$field.name}</a>
-            </searchkey>
-        </div>
-        <!-- 热门关键字结束 -->
-    </div>
-    <!-- 搜索大盒子左边结束 -->
-    <!-- 搜索大盒子右边开始 -->
-    <div class="s_right">
-        <div class="pic">
+					<a href="" class="tit">
+                        安全可靠
+					</a>
+					<p>
 
-        </div>
-    </div>
-    <!-- 搜索大盒子右边结束 -->
-</div>
-<!-- 搜索区域大盒子结束 -->
-<!-- 轮换版区域盒子 -->
-<div class="news_index">
-    <div class="left">
-        <div class="news_img">
-            <script>
-                $(function () {
-                    $('#flash').slide({
-                        width: 278,
-                        height: 230,
-                        timeout: 3
-                    });
-                })
-            </script>
-            <div id="flash">
-                <arclist flag="5" row="4" titlelen="12">
-                    <a href="{$field.url}" title="{$field.title}..."><img src="{$field.thumb}"/></a>
-                </arclist>
-            </div>
-        </div>
-    </div>
-    <div class="center">
-        <div class="listbox">
-            <div class="top">
-                <arclist row="1" flag="2" titlelen="13">
-                    <h1><a href="{$field.url}" target="_blank"> {$field.title}</a></h1>
-                    {$field.description}
-                    <a href="{$field.url}">[全文...]</a>
-                </arclist>
-            </div>
-            <ul>
-                <arclist row="6" flag="1" titlelen="13">
-                    <li><a href="{$field.url}" target="_blank"> {$field.title}</a></li>
-                </arclist>
-            </ul>
-        </div>
-    </div>
+                        COOKIE加密处理，
+                        数据预处理机制，
+                        XSS安全防护，
+                        表单自动验证，
+                        强制数据类型转换，
+                        输入数据过滤，
+                        表单令牌验证，
+                        防SQL注入，
+                        图像上传检测
 
-    <div class="right">
-        <div class="listbox">
-            <div class="title">
-                <h2>推荐资讯</h2>
-            </div>
-            <div class="txt">
-                <ul>
-                    <arclist row="9" flag="3" titlelen="13">
-                        <li><a href="{$field.url}"> [{$field.time}]{$field.title}</a></li>
-                    </arclist>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- 轮换版区域盒子结束	 -->
-<!-- 轮换版区域下方盒子 -->
-<div class="news_list">
-    <channel level="2">
-        <div class="left" style="width:310px;margin: 0px 5px;margin-bottom: 10px;">
-            <div class="listbox" style="width:310px;">
-                <div class="title" style="width:310px;">
-                    <a class="left_box">{$field.catname}</a>
-                    <a href="{$field.url}" class="right_box">更多...</a>
-                </div>
-                <div class="txt">
-                    <ul>
+                    </p>
+			</div>
 
-                            <li><a href="{$field.url}" target="_blank"> [{$field.time}]{$field.title}</a></li>
+			<div class="box">
+				<a href="" class="pic"><img src="__TEMPLATE__/images/free.png" alt="" /></a>
 
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </channel>
-</div>
-<!-- 页脚开始 -->
-<div class="footer">
-    <!-- 温馨提示开始 -->
-    <div class="rem">
-        Copyright @ 2011-2015 www.hdphp.com All Right Reserved {$hd.config.webname}
-    </div>
-</div>
-<!-- 页脚结束 -->
+					<a href="" class="tit">
+						免费、开源
+					</a>
+					<p>
+                        HDPHP框架产品与HDCMS内容管理系统都是开源免费的，你可以做任意使用，任意二次开发，任意用在任何商业用户，而不必支付任何费用。同时后盾网提供强大免费技术支持，同时10万盾友与你同行。
+					</p>
+			</div>
+	
+	<div class="box">
+				<a href="" class="pic"><img src="__TEMPLATE__/images/app.png" alt="" /></a>
+
+					<a href="" class="tit">
+						大应用
+					</a>
+					<p>
+                        HDCMS不单纯是一个CMS系统。依托HDCMS优秀的核心设计，可以轻松进行应用与插件的添加。后盾网目前正在开发商城应用与招聘应用，后盾网会不断把优秀的应用集成到HDCMS中，让你体验“大应用”的新时代！
+					</p>
+			</div>
+	
+	<div class="box">
+				<a href="" class="pic"><img src="__TEMPLATE__/images/study.png" alt="" /></a>
+
+					<a href="" class="tit">
+						V5课堂
+					</a>
+					<p>
+                        在国内没有任何一个产品，即提供开源，也提供每周星期5免费远程培训的了。这一切你都可以在后盾网得到，而且不用支付任何费用，不只可以让你轻松使用后盾网产品，同时也可以大大提高你的编程能力。
+					</p>
+			</div>
+	
+	<div class="box">
+				<a href="" class="pic"><img src="__TEMPLATE__/images/update.png" alt="" /></a>
+
+					<a href="" class="tit">
+						每周更新
+					</a>
+					<p>
+                        你一定想不到，HDPHP与HDCMS的开发版会每周一提供更新。稳定版会每月1号发布。新功能，新应用让你应接不暇。
+					</p>
+			</div>
+	
+	</div>
+	<!-- 内容区域开始 -->
+	<!-- 页脚开始 -->
+	<div class="footer">
+		<p>
+			本网站基于HDCMS开源内容管理系统创建，内容全部为
+			<a href="">HDPHP.COM中文网</a>所有
+			转载时请注明“来源后盾网”
+		</p>
+		<p>
+			Powered By 
+			<a href="">HDCMS</a>
+		</p>
+		<p>
+			<a href="http://www.hdphp.com">京ICP备12048441号-1</a>
+		</p>
+	</div>
+	<!-- 页脚结束 -->
+
+	<!-- 返回顶部开始 -->
+	<div class="back_top">
+		<a href="javascript:"><img src="__TEMPLATE__/images/top.png" alt="" /></a>		
+	</div>
+	<!-- 返回顶部结束 -->
 </body>
 </html>

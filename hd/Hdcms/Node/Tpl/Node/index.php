@@ -58,7 +58,7 @@
 
                     <if value="$n.is_system==0">
                         <a href="{|U('edit',array('nid'=>$n['nid']))}">修改</a> |
-                        <a href="javascript:hd_ajax('{|U:del}',{nid:{$n.nid}})">删除</a>
+                        <a href="javascript:if(confirm('确定删除菜单吗？'))hd_ajax('{|U:del}',{nid:{$n.nid}})">删除</a>
                     <else/>
                          <span class="disabled">修改 | </span>
                          <span class="disabled">删除</span>

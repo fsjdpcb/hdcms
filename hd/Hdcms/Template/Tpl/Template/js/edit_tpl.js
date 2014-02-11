@@ -1,8 +1,8 @@
 //表单验证
 $(function () {
-    $("form").validation({
+    $("form").validate({
         //验证规则
-        filename: {
+        file_name: {
             rule: {
                 required: true
             },
@@ -22,7 +22,7 @@ $(function () {
 })
 $(function () {
     $("form").submit(function () {
-        if ($(this).is_validation()) {
+        if ($(this).is_validate()) {
             var _post = $(this).serialize();
             if (confirm("确定修改吗?")) {
                 $.ajax({
@@ -30,10 +30,11 @@ $(function () {
                     url: METH,
                     cache: false,
                     data: _post,
-                    success: function (stat) {
-                        if (stat == 1) {
+                    dataType:'JSON',
+                    success: function (data) {
+                        if (data.state == 1) {
                             $.dialog({
-                                msg: "操作成功",
+                                message: data.message,
                                 type: "success",
                                 close_handler: function () {
                                     if (window.opener)
@@ -41,9 +42,9 @@ $(function () {
                                     window.close();
                                 }
                             });
-                        } else if (stat == 2) {
+                        } else{
                             $.dialog({
-                                msg: "失败!请修改模板文件为可写",
+                                message: data.message,
                                 type: "error",
                                 timeout: 3
                             });

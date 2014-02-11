@@ -24,7 +24,7 @@ $(function () {
         c_password: {
             rule: {
                 required: true,
-                confirm: "password"
+                confirm: "new_password"
             },
             error: {
                 required: "确认密码不能为空",

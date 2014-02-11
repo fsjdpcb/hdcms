@@ -34,7 +34,7 @@ class GroupControl extends AuthControl
         if (IS_POST) {
             if ($this->db->create()) {
                 if ($aid = $this->db->add()) {
-                    $this->_ajax(1);
+                    $this->_ajax(1,'添加成功');
                 }
             }
         } else {
@@ -47,11 +47,14 @@ class GroupControl extends AuthControl
     {
         if (IS_POST) {
             if ($this->db->save()) {
-                $this->_ajax(1);
+                $this->_ajax(1,'修改成功');
             }
         } else {
             $this->assign("field", $this->db->find($this->gid));
             $this->display();
         }
+    }
+    public function del(){
+        $this->_ajax(1,'删除成功');
     }
 }

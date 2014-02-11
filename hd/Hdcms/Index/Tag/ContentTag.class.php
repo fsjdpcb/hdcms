@@ -210,8 +210,8 @@ str;
                 if(\$child){
                     foreach(\$child as \$c)
                         \$cid.=','.\$c['cid'];
-                    //去除尾部逗号
-                    \$cid=substr(\$cid,0,-1);
+                        //去除尾部逗号
+                        \$cid=substr(\$cid,0,-1);
                 }
                 \$where=\$db->tableFull.".cid In(\$cid) and state=1";
                 break;
