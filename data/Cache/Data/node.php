@@ -978,9 +978,9 @@ return array (
     '_end' => false,
     '_name' => '├─ 正在使用',
   ),
-  146 => 
+  157 => 
   array (
-    'nid' => '146',
+    'nid' => '157',
     'title' => '友情链接',
     'app_group' => 'Plugin',
     'app' => 'Link',
