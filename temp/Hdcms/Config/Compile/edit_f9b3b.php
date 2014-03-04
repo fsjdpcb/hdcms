@@ -13,7 +13,7 @@
 		HOST = 'http://localhost';
 		ROOT = 'http://localhost/hdcms';
 		WEB = 'http://localhost/hdcms/index.php';
-		URL = 'http://localhost/hdcms/index.php?g=Hdcms&a=Config&c=Config&m=edit&_=0.31989927124232054';
+		URL = 'http://localhost/hdcms/index.php?g=Hdcms&a=Config&c=Config&m=edit&_=0.28334900538641294#';
 		HDPHP = 'http://localhost/hdphp/hdphp';
 		HDPHPDATA = 'http://localhost/hdphp/hdphp/Data';
 		HDPHPTPL = 'http://localhost/hdphp/hdphp/Lib/Tpl';
@@ -26,8 +26,8 @@
 		CONTROLTPL = 'http://localhost/hdcms/hd/Hdcms/Config/Tpl/Config';
 		STATIC = 'http://localhost/hdcms/Static';
 		PUBLIC = 'http://localhost/hdcms/hd/Hdcms/Config/Tpl/Public';
-		HISTORY = 'http://localhost/hdcms/index.php?a=Hdcms&c=Index&m=index';
-		HTTPREFERER = 'http://localhost/hdcms/index.php?a=Hdcms&c=Index&m=index';
+		HISTORY = 'http://localhost/hdcms/index.php?g=Hdcms&a=Config&c=Config&m=edit&_=0.28334900538641294#';
+		HTTPREFERER = 'http://localhost/hdcms/index.php?g=Hdcms&a=Config&c=Config&m=edit&_=0.28334900538641294#';
 </script>
     <script type="text/javascript" src="http://localhost/hdcms/hd/static/js/js.js"></script>
     <script type="text/javascript" src="http://localhost/hdcms/hd/Hdcms/Config/Tpl/Config/js/js.js"></script>

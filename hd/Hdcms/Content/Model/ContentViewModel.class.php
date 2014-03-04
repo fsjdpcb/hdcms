@@ -42,15 +42,16 @@ class ContentViewModel extends ViewModel
             $this->_stable = $this->table . '_data';
         //表关联
         $this->view = array(
+            //属性表
+            'content_flag' => array(
+                "type" => LEFT_JOIN,
+                "on" => $this->table . ".aid=content_flag.aid",
+                "field"=>"fid"
+            ),
             //栏目表
             "category" => array(
                 "type" => INNER_JOIN,
                 "on" => $this->table . ".cid=category.cid"
-            ),
-            //属性表
-            'content_flag' => array(
-                "type" => LEFT_JOIN,
-                "on" => $this->table . ".aid=content_flag.aid"
             )
         );
         //副表关联

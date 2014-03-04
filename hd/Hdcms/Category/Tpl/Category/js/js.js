@@ -40,15 +40,18 @@ $(function () {
 //获得静态目录(将目录名转为拼音)
 $(function () {
     $("[name='catname']").blur(function () {
-        //栏目名
-        $catname = $.trim($("[name='catname']").val())
-        //静态目录名
-        $catdir = $.trim($("[name='catdir']").val());
-        //静态目录名为空时获得
-        if (!$catdir && $catname) {
-            $.post(CONTROL + "&m=dir_to_pinyin", {catname: $(this).val()}, function (data) {
-                $("[name='catdir']").val(data);
-            })
+        //栏目类型不为外部链接时获取
+        if ($("[name='cattype']:checked").val() != 3) {
+            //栏目名
+            $catname = $.trim($("[name='catname']").val())
+            //静态目录名
+            $catdir = $.trim($("[name='catdir']").val());
+            //静态目录名为空时获得
+            if (!$catdir && $catname) {
+                $.post(CONTROL + "&m=dir_to_pinyin", {catname: $(this).val()}, function (data) {
+                    $("[name='catdir']").val(data);
+                })
+            }
         }
     })
 })

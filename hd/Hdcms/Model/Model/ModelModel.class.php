@@ -62,6 +62,7 @@ class ModelModel extends Model
                       `keywords` CHAR(100) NOT NULL DEFAULT '' COMMENT '关键字' ,
                       `description` VARCHAR(255) NOT NULL DEFAULT '' COMMENT '描述' ,
                       `uid` INT UNSIGNED NOT NULL  COMMENT '用户uid' ,
+                      `favorites` mediumint UNSIGNED NOT NULL  COMMENT '收藏数' ,
                       PRIMARY KEY (`aid`) ,
                       INDEX `cid` (`cid` ASC),
                       INDEX `uid` (`uid` ASC))

@@ -26,8 +26,8 @@
 		CONTROLTPL = 'http://localhost/hdcms/hd/Hdcms/Hdcms/Tpl/Index';
 		STATIC = 'http://localhost/hdcms/Static';
 		PUBLIC = 'http://localhost/hdcms/hd/Hdcms/Hdcms/Tpl/Public';
-		HISTORY = 'http://localhost/hdcms/index.php?a=Hdcms&c=Index&m=index';
-		HTTPREFERER = 'http://localhost/hdcms/index.php?a=Hdcms&c=Index&m=index';
+		HISTORY = 'http://localhost/hdcms/index.php?a=Hdcms&c=Login&m=login';
+		HTTPREFERER = 'http://localhost/hdcms/index.php?a=Hdcms&c=Login&m=login';
 </script>
     <script type="text/javascript" src="http://localhost/hdcms/hd/Hdcms/Hdcms/Tpl/Index/js/menu.js"></script>
     <script type="text/javascript" src="http://localhost/hdcms/hd/Hdcms/Hdcms/Tpl/Index/js/quick_menu.js"></script>

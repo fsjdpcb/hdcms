@@ -13,7 +13,7 @@
 		HOST = 'http://localhost';
 		ROOT = 'http://localhost/hdcms';
 		WEB = 'http://localhost/hdcms/index.php';
-		URL = 'http://localhost/hdcms/index.php?g=Hdcms&a=Member&c=Group&m=index&_=0.7908060888294131';
+		URL = 'http://localhost/hdcms/index.php?g=Hdcms&a=Member&c=Group&m=index&_=0.14402518249076224';
 		HDPHP = 'http://localhost/hdphp/hdphp';
 		HDPHPDATA = 'http://localhost/hdphp/hdphp/Data';
 		HDPHPTPL = 'http://localhost/hdphp/hdphp/Lib/Tpl';

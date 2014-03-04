@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>{$hdcms.title}</title>
+    <jquery/>
+    <bootstrap/>
+    <link rel="stylesheet" href="__TEMPLATE__/css/article.css"/>
+    <link rel="stylesheet" href="__TEMPLATE__/css/comment.css"/>
+</head>
+<body>
+
+
+<div id="top">
+    <div class="nav">
+        <ul class="site-nav">
+            <nav aid="1,2,3">
+                <li>
+                    <a href='{$field.url}'>{$field.title}</a>
+                </li>
+            </nav>
+        </ul>
+        <ul class="log">
+            <li>
+                <a id="login-link" href="http://segmentfault.com/user/login">登录</a>
+            </li>
+            <li>
+                <a href="http://segmentfault.com/user/register">注册</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--顶部-->
+<div id="wrap">
+    <div class="content">
+        <h1>
+            {$hdcms.title}
+        </h1>
+
+        <div class="info">
+            <a href="#" class="author">{$hdcms.author}</a>
+            <!--帐号信息-->
+            <div id="user_info" style="display: none;">
+                <img src="image/face.jpg"/><b>df</b>
+            </div>
+            ·
+            <span>浏览：{$hdcms.click} 发布日期：{$hdcms.time} </span>
+            <span>分类：</span> <a href="">{$hdcms.catname}</a>
+            <a class="reply" href="#content">回复</a>
+        </div>
+        <p>
+            {$hdcms.content}
+        </p>
+
+
+    </div>
+    <div class="list-right">
+        <div class="wrap">
+            <h3>热点推荐</h3>
+            <ul>
+                <li>
+                    <a href="">github中可以访问系统粘贴板里的图片是怎么实现的？</a>
+                    <span>1小时前</span>
+                </li>
+                <li>
+                    <a href="">github中可以访问系统粘贴板里的图片是怎么实现的？</a>
+                    <span>1小时前</span>
+                </li>
+                <li>
+                    <a href="">github中可以访问系统粘贴板里的图片是怎么实现的？</a>
+                    <span>1小时前</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="comment">
+        <div id="hdcms-comment">
+            <div class="hd">回答</div>
+            <div id="comment-1" class="answer-item">
+                <!--头像-->
+                <div class="ans-user">
+                    <a class="user" href="/user/460">
+                        <img src="http://tp2.sinaimg.cn/1778942741/50/5644924815/1">
+                    </a>
+                </div>
+                <!--头像-->
+                <!--评论内容-->
+                <div class="ans-con">
+                    <div class="con-hd">
+                        <a href="/user/460">Yun.kou</a>
+                        <span style="color:#333;"> ，web设计师 前端重构 致力于设计与前端一体设计</span>
+                    </div>
+                    <div class="con-bd">
+                        <p>没亲测，遇到类似问题， 试试 safari浏览器。</p>
+                    </div>
+                    <div class="con-action">
+                        <span style="color:#999;margin-right:10px;">2天前</span>
+                        <a class="add_comment" data-answer-id="722" href="#">
+                            <span class="glyphicon glyphicon-comment"></span>
+                            回复 0
+                        </a>
+                    </div>
+                    <!--回复-->
+                    <div class="con-comments" data-answer-id="714">
+                        <div class="comment-list" data-answer-id="714">
+                            <div class="comment-item clearfix">
+                                <div class="con">
+                                    <span class="author vcard item">
+                                    <a class="value url fn" href="/user/264" rel="author">米粽粽</a>
+                                    @
+                                    <a class="value url fn" href="/user/264" rel="author">后盾网向军</a>
+                                    </span>：
+                                    <span class="content">除了括号，还有很多函数表达式的写法，比如 ! ~ + void，只要能达到`function`不被解析成声明的效果，都可以。</span>
+                                    <span class="time">5天前</span>
+                                    <span class="action">
+                                    <a href="javascript:;" class="reply" data-nick="米粽粽">回复</a>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="comment-item clearfix">
+                                <div class="con">
+                                    <span class="author vcard item">
+                                    <a class="value url fn" href="/user/264" rel="author">米粽粽</a>
+                                    @
+                                    <a class="value url fn" href="/user/264" rel="author">后盾网向军</a>
+                                    </span>：
+                                    <span class="content">除了括号，还有很多函数表达式的写法，比如 ! ~ + void，只要能达到`function`不被解析成声明的效果，都可以。</span>
+                                    <span class="time">5天前</span>
+                                    <span class="action">
+                                    <a href="javascript:;" class="reply" data-nick="米粽粽">回复</a>
+                                    </span>
+                                </div>
+                                <!--回复-->
+                                <div class="con-comments " data-answer-id="722">
+                                    <div class="comment-list" data-answer-id="722"></div>
+                                    <div class="ans-user">
+                                        <a class="user" href="/user/460">
+                                            <img src="http://tp2.sinaimg.cn/1778942741/50/5644924815/1">
+                                        </a>
+                                    </div>
+                                    <div class="comment-publish">
+                                        <div class="comment-reply-con">
+                                        <textarea class="comment-content input-block-level" data-answer-id="722"
+                                                  placeholder="我也来说两句"></textarea>
+                                            </div>
+                                        <div class="btn comment-submit" data-answer-id="722">提交评论</div>
+                                    </div>
+                                </div>
+                                <!--回复-->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!--评论内容-->
+            </div>
+
+            <div class="hd">我来回答</div>
+            <form action="">
+                <input type="hidden" name="mid" value="{$hdcms.mid}"/>
+                <input type="hidden" name="cid" value="{$hdcms.cid}"/>
+                <input type="hidden" name="aid" value="{$hdcms.aid}"/>
+                <input type="hidden" name="title" value="{$hdcms.title}"/>
+
+                <div class="comment-content">
+                    <textarea name="content" id="content" placeholder="我也来说两名..."></textarea>
+                    <input type="submit" class="btn" value="发表"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -20,6 +20,7 @@ class ArticleControl extends PublicControl
                 //获得内容模板
                 $tpl = Template::get_content_tpl($this->_aid, $this->_cid);
                 if ($tpl) {
+                    $field['time']=date("Y/m/d");
                     $this->hdcms = $field;
                     $this->display($tpl);
                 }

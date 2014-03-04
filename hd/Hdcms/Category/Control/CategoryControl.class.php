@@ -53,7 +53,7 @@ class CategoryControl extends AuthControl
     public function dir_to_pinyin()
     {
         $dir = String::pinyin(Q("catname"));
-        echo $dir;
+        echo $dir?$dir:Q('catname');
         exit;
     }
 

@@ -1,0 +1,159 @@
+@import "common.css";
+#ad{
+    font-size:14px;
+    color:#666;
+    text-align: center;
+    margin-top:20px;
+    padding:5px;
+    border-radius: 5px;
+    background: #f6f6f6;
+
+}
+div#wrap div.gbtitle {
+    height: auto;
+    overflow: hidden;
+    margin-bottom: 20px;
+
+}
+
+div#wrap div.gbtitle h4 {
+    border-bottom: solid 1px #dcdcdc;
+    margin-bottom: 20px;
+    height: 30px;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+div#wrap div.gbtitle div.recos ul {
+    float: left;
+}
+
+div#wrap div.gbtitle div.recos ul li {
+    line-height: 2em;
+}
+
+div#wrap div.gbtitle div.recos ul li a {
+    color: #666666;
+    font-size: 26px;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+
+}
+div#wrap div.gbtitle div.recos ul li a:hover{
+    text-decoration: underline;
+	color: #009A61;
+}
+div#wrap div.list-article {
+    width:67%;
+    float: left;
+	padding:25px;
+    background: #ffffff;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+div#wrap div.list-article div.tab-nav {
+    border-bottom: 1px solid #EEEEEE;
+    padding-bottom: 6px;
+}
+
+div#wrap div.list-article div.tab-nav a {
+    color: #666666;
+    padding: 2px 4px;
+}
+div#wrap div.list-article div.tab-nav a:hover{
+	color:#007349;
+}
+
+div#wrap div.list-article div.tab-nav a.current {
+    color: #007349;
+}
+
+div#wrap div.list-article div.tab-nav h2.common-title {
+    margin-bottom: 12px;
+}
+
+div#wrap div.list-article div.article ul li.list {
+    margin-top: 10px;
+    height: 58px;
+    overflow: hidden;
+    border-bottom: 1px solid #EEEEEE;
+}
+
+div#wrap div.list-article div.article ul li div.pic {
+    float: left;
+    margin-right: 15px;
+}
+
+div#wrap div.list-article div.article ul li div.content {
+    float: left;
+}
+
+div#wrap div.list-article div.article ul li div.content h2.title {
+    margin-bottom: 6px;
+    margin-top: 0px;
+    line-height: 0px;
+}
+
+div#wrap div.list-article div.article ul li div.content h2.title a {
+    color: #333333;
+    font-size: 15px;
+    font-family: inherit;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+div#wrap div.list-article div.article ul li div.content h2.title a:hover {
+    color: #007349;
+}
+
+div#wrap div.list-article div.article ul li div.content div.info {
+}
+
+div#wrap div.list-article div.article ul li div.content div.info a {
+    display: inline-block;
+    color: #93B9AB;
+    font-size: 13px;
+}
+
+div#wrap div.list-article div.article ul li i {
+    background: url("../image/icon.png") no-repeat;
+    display: inline-block;
+    height: 14px;
+    text-align: left;
+    text-indent: -9999em;
+    vertical-align: text-top;
+    width: 14px;
+    margin-right: 2px;
+}
+
+div#wrap div.list-article div.article ul li div.content div.info a i.focus {
+    background-position: 0 -256px;
+}
+
+div#wrap div.list-article div.article ul li div.content div.info a i.comment {
+    background-position: 0 -270px;
+}
+
+div#wrap div.list-article div.article ul li div.article-right {
+    float: right;
+}
+
+div#wrap div.list-article div.article ul li div.article-right ul li {
+    margin: 0px;
+    color:#666;
+    line-height: 1.7;
+    font-size: 13px;
+}
+
+div#wrap div.list-article div.article ul li div.article-right ul li i.collection {
+    background-position: 0px -434px;
+}
+
+div#wrap div.list-article div.article ul li div.article-right ul li i.browse {
+    background-position: 0px -464px;
+}
+

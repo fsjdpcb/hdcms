@@ -1,11 +1,12 @@
 <?php if (!defined('HDPHP_PATH')) exit; 
 return array (
-  'webname' => 'HDCMS内容管理系统',
-  'icp' => '京ICP备12048441号-3',
+  'webname' => 'HDPHP开源技术交流',
+  'icp' => '京ICP备12048441号-1',
   'html_path' => 'html',
   'copyright' => 'Copyright © 2012-2013 HDCMS 后盾网 版权所有',
   'keywords' => 'php培训,php实训,后盾网',
-  'description' => '后盾网顶尖PHP培训 内容全面 全程实战!业内顶级讲师亲自授课,千余课时独家视频教程免费下载,超百G原创视频资源,实力不容造假!010-64825057',
+  'description' => 'HDCMS与HDPHP是后盾网发布的100%免费开源项目，您可以用在任何网站（包括任何商业网站）中，而不需要支付任何费用。
+www.hdphp.com是盾友交流开源技术的平台。',
   'email' => 'houdunwangxj@gmail.com',
   'backup_dir' => 'backup',
   'web_open' => '1',
@@ -45,7 +46,7 @@ return array (
   'member_content_status' => '1',
   'member_open' => '0',
   'web_close_message' => '网站暂时关闭，请稍候访问',
-  'web_style' => 'default',
+  'web_style' => 'hdphp',
   'qq' => '1455067020',
   'weibo' => 'houdunwangxj@gmail.com',
   'tweibo' => 'houdunwang@gmail.com',
