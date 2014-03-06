@@ -1,6 +1,13 @@
 # HDCMS（公共测试版）
 后盾网HDCMS是一个用PHP编写的内容管理系统软件包，数据库采用Mysql。提供强大的、完整的功能，满足快速网站开发的目的。你不需要很长时间就可以开发出一个很不错的网站，而且后盾网提供很多优秀模板，让你连做模板的时间也省掉，而且我们会定期举行免费远程培训，让你的学习与使用变得更轻松。
 
+###技术支持：
+>后盾网： [http://www.houdunwang.com](http://www.houdunwang.com "后盾网")
+> 
+>HDPHP官网： [http://www.hdphp.com ](http://www.hdphp.com "HDPHP官网")
+>
+![后盾网  人人做后盾](http://www.hdphp.com/preview/houdunwang.jpg)
+
 ## 优秀特性支持* HDCMS是完全免费的，你不用担心任何版权问题* 你可以用在任意网站（包括商业网站）你不需要支付任何费用* 提供多项优化策略，速度非常快* 采用 MVC 设计模式* 生成干净的 URL
 * 灵活简单的html标签数据调用
 * 内容页tag管理
