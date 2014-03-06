@@ -88,7 +88,9 @@ div#wrap div.list-right {
     border-radius: 3px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
-
+div#wrap div.list-right div.wrap{
+    padding-left: 0px !important;
+}
 div#wrap div.list-right div.wrap {
     padding-left: 15px;
 }

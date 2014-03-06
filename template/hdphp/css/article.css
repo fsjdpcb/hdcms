@@ -1,7 +1,7 @@
 @import "common.css";
 
 div.content {
-    width: 68%;
+    width: 74%;
     float: left;
 	padding:20px;
 	font-size:16px;
@@ -50,7 +50,7 @@ div.content p {
     text-indent: 2em;
 }
 div.comment{
-    width: 68%;
+    width: 74%;
     clear: both;
     padding: 20px;
     margin-top:20px;

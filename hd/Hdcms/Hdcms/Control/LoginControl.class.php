@@ -70,7 +70,7 @@ class LoginControl extends CommonControl
                 $_SESSION['realname'] = $user['realname'];
                 $_SESSION['rid'] = $user['rid'];
                 $_SESSION['rname'] = $user['rname'];
-                $_SESSION['favicon'] = empty($user['favicon']) ? __ROOT__ . "/hdcms/static/img/avatar.jpg" : __ROOT__ . '/' . $user['favicon'];
+                $_SESSION['favicon'] = empty($user['favicon']) ? __ROOT__ . "/data/image/favicon/favicon" : __ROOT__ . '/' . $user['favicon'];
                 //获得角色信息
                 $stat = array("stat" => 1, "msg" => "正在登录...");
                 //修改登录IP与时间

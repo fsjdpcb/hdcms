@@ -6,11 +6,9 @@
     <jquery/>
     <bootstrap/>
     <link rel="stylesheet" href="__TEMPLATE__/css/article.css"/>
-    <link rel="stylesheet" href="__TEMPLATE__/css/comment.css"/>
+    <jsconst/>
 </head>
 <body>
-
-
 <div id="top">
     <div class="nav">
         <ul class="site-nav">
@@ -73,102 +71,62 @@
             </ul>
         </div>
     </div>
+    <!--评论-->
+    <link type="text/css" rel="stylesheet" href="__GROUP__/Plugin/Comment/Tpl/css/comment.css"/>
+    <script type="text/javascript" src="__GROUP__/Plugin/Comment/Tpl/js/comment.js"></script>
     <div class="comment">
         <div id="hdcms-comment">
-            <div class="hd">回答</div>
-            <div id="comment-1" class="answer-item">
-                <!--头像-->
-                <div class="ans-user">
-                    <a class="user" href="/user/460">
-                        <img src="http://tp2.sinaimg.cn/1778942741/50/5644924815/1">
-                    </a>
-                </div>
-                <!--头像-->
-                <!--评论内容-->
-                <div class="ans-con">
-                    <div class="con-hd">
-                        <a href="/user/460">Yun.kou</a>
-                        <span style="color:#333;"> ，web设计师 前端重构 致力于设计与前端一体设计</span>
-                    </div>
-                    <div class="con-bd">
-                        <p>没亲测，遇到类似问题， 试试 safari浏览器。</p>
-                    </div>
-                    <div class="con-action">
-                        <span style="color:#999;margin-right:10px;">2天前</span>
-                        <a class="add_comment" data-answer-id="722" href="#">
-                            <span class="glyphicon glyphicon-comment"></span>
-                            回复 0
-                        </a>
-                    </div>
-                    <!--回复-->
-                    <div class="con-comments" data-answer-id="714">
-                        <div class="comment-list" data-answer-id="714">
-                            <div class="comment-item clearfix">
-                                <div class="con">
-                                    <span class="author vcard item">
-                                    <a class="value url fn" href="/user/264" rel="author">米粽粽</a>
-                                    @
-                                    <a class="value url fn" href="/user/264" rel="author">后盾网向军</a>
-                                    </span>：
-                                    <span class="content">除了括号，还有很多函数表达式的写法，比如 ! ~ + void，只要能达到`function`不被解析成声明的效果，都可以。</span>
-                                    <span class="time">5天前</span>
-                                    <span class="action">
-                                    <a href="javascript:;" class="reply" data-nick="米粽粽">回复</a>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="comment-item clearfix">
-                                <div class="con">
-                                    <span class="author vcard item">
-                                    <a class="value url fn" href="/user/264" rel="author">米粽粽</a>
-                                    @
-                                    <a class="value url fn" href="/user/264" rel="author">后盾网向军</a>
-                                    </span>：
-                                    <span class="content">除了括号，还有很多函数表达式的写法，比如 ! ~ + void，只要能达到`function`不被解析成声明的效果，都可以。</span>
-                                    <span class="time">5天前</span>
-                                    <span class="action">
-                                    <a href="javascript:;" class="reply" data-nick="米粽粽">回复</a>
-                                    </span>
-                                </div>
-                                <!--回复-->
-                                <div class="con-comments " data-answer-id="722">
-                                    <div class="comment-list" data-answer-id="722"></div>
-                                    <div class="ans-user">
-                                        <a class="user" href="/user/460">
-                                            <img src="http://tp2.sinaimg.cn/1778942741/50/5644924815/1">
-                                        </a>
-                                    </div>
-                                    <div class="comment-publish">
-                                        <div class="comment-reply-con">
-                                        <textarea class="comment-content input-block-level" data-answer-id="722"
-                                                  placeholder="我也来说两句"></textarea>
-                                            </div>
-                                        <div class="btn comment-submit" data-answer-id="722">提交评论</div>
-                                    </div>
-                                </div>
-                                <!--回复-->
-                            </div>
-                        </div>
-                    </div>
+            <div class="hd">评论</div>
+            <div id="comment-list">
 
-                </div>
-                <!--评论内容-->
             </div>
-
-            <div class="hd">我来回答</div>
-            <form action="">
-                <input type="hidden" name="mid" value="{$hdcms.mid}"/>
-                <input type="hidden" name="cid" value="{$hdcms.cid}"/>
-                <input type="hidden" name="aid" value="{$hdcms.aid}"/>
-                <input type="hidden" name="title" value="{$hdcms.title}"/>
-
-                <div class="comment-content">
-                    <textarea name="content" id="content" placeholder="我也来说两名..."></textarea>
-                    <input type="submit" class="btn" value="发表"/>
-                </div>
-            </form>
         </div>
+        <div class="hd">我来评论 <a href="javascript:;">查看更多>></a></div>
+        <form action="__WEB__?g=Plugin&a=Comment&c=Comment&m=add" method="post" onsubmit="return send_comment(1);">
+            <input type="hidden" name="mid" value="{$hdcms.mid}"/>
+            <input type="hidden" name="cid" value="{$hdcms.cid}"/>
+            <input type="hidden" name="aid" value="{$hdcms.aid}"/>
+            <input type="hidden" name="title" value="{$hdcms.title}"/>
+
+            <div class="comment-content">
+                <textarea name="content" id="example" placeholder="我也来说两名..."></textarea>
+                <div></div>
+                <div class="btn btn-success btn-sm" data-answer-id="722">
+                    <input type="submit" class="btn btn-success btn-sm" value="发表"/></div>
+            </div>
+        </form>
     </div>
 </div>
+</div>
+<script type="text/javascript">
+    function load_comment(start) {
+        //起始数，首次为0
+        var start = start ? start : 0;
+        $.post(WEB + '?g=Plugin&a=Comment&c=Comment&m=load_comment', {start: start}, function (data) {
+            $("#comment-list").append(data);
+        })
+    }
+    load_comment(0);
+    /**
+     * 发表评论
+     * @param comment_id
+     */
+    function send_comment(comment_id) {
+        var _data = $("form#" + comment_id).serialize();
+        $.post(CONTROL + '&m=add', _data, function (json) {
+            var options = {
+                //提示信息
+                content: json.message,
+                placement: 'top',
+                delay: { show: 500, hide: 100 }
+            }
+            $('#example').popover(options);
+            setTimeout(function () {
+                $('#example').popover('hide');
+            }, 3000);
+        }, 'json');
+    }
+
+</script>
 </body>
 </html>
