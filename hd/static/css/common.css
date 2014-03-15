@@ -1,6 +1,6 @@
 body {
     font-size: 12px;
-
+    font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif;
     background: none repeat scroll 0 0 #F3F3F3;
     overflow-x: hidden;
     overflow-y: auto;
@@ -20,6 +20,10 @@ a {
 
 a:hover {
     text-decoration: none;
+}
+label{
+    color:#666;
+    padding-left:0px 6px;
 }
 
 label {

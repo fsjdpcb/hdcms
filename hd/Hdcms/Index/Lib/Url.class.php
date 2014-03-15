@@ -24,7 +24,7 @@ final class Url
                 //普通栏目
                 if ($category['cat_url_type'] == 1) {
                     //栏目生成静态
-                    return __ROOT__ . '/' . C("HTML_PATH") . '/' . $category['catdir'] . '/index.html';
+                    return __ROOT__ . '/' . C("HTML_PATH") . '/' . $category['catdir'];
                 } else {
                     return U('Index/Category/category', array('cid' => $category['cid']));
                 }

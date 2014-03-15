@@ -1,5 +1,5 @@
 <?php
-
+import("User.Model.UserModel");
 /**
  * 登录处理模块
  * Class LoginControl
@@ -14,8 +14,7 @@ class LoginControl extends CommonControl
     public function __init()
     {
         parent::__init();
-        //实例模型对象
-        $this->db = K("User");
+
     }
 
     /**
@@ -50,7 +49,10 @@ class LoginControl extends CommonControl
      */
     public function Login()
     {
+
         if (IS_POST) { //错误码 stat 状态  msg 错误信息
+            //实例模型对象
+            $this->db = K("User");
             $username = Q("post.username", NULL, "strip_tags,htmlspecialchars,addslashes");
             $user = $this->db->where("username='$username'")->find();
             if (!$user) {

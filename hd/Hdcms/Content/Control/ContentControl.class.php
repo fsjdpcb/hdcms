@@ -64,7 +64,7 @@ class ContentControl extends AuthControl
                 $data['url'] = U('content', array('cid' => $cat['cid'], 'state' => 1));
                 $data['target'] = 'content';
                 $data['open'] = true;
-                $data['name'] = $cat['catname']."({$cat['cid']})";
+                $data['name'] = $cat['catname'] . "({$cat['cid']})";
                 $category[] = $data;
             }
         }
@@ -110,7 +110,7 @@ class ContentControl extends AuthControl
     {
         if (IS_POST) {
             if ($this->_db->add_content()) {
-                $this->_ajax(1,'发表成功！');
+                $this->_ajax(1, '发表成功！');
             }
         } else {
             //分配属性

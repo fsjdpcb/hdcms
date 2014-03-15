@@ -1,4 +1,6 @@
 <?php
+//视图缓存目录
+define("CONTENT_CACHE_PATH", 'data/Cache/Content');
 
 /**
  * 公共继承类
@@ -82,5 +84,24 @@ class PublicControl extends CommonControl
             echo "document.write('" . addslashes(str_replace("\n", "", $con)) . "')";
             exit;
         }
+    }
+
+    /**
+     * 模板文件不存在
+     */
+    protected function template_error($tpl_file)
+    {
+        $this->tpl = $tpl_file;
+        $this->display('./hd/Common/Template/template_error.html');
+    }
+
+    /**
+     * 调用模板
+     */
+    protected function display($tplFile = null, $cacheTime = null, $cachePath = null, $stat = false, $contentType = "text/html", $charset = "", $show = true)
+    {
+        $cachePath = CONTENT_CACHE_PATH;
+        parent::display($tplFile,$cacheTime,$cachePath);
+
     }
 }

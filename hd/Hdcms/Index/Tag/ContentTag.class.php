@@ -16,7 +16,9 @@ class ContentTag
         'pageshow' => array('block' => 0),
         'pagepath' => array('block' => 0),
         'pagenext' => array('block' => 0),
-        'include' => array('block' => 0)
+        'include' => array('block' => 0),
+        'navigate' => array('block' => 0),
+        'tag' => array('block' => 1),
     );
 
     //加载模板标签
@@ -30,6 +32,29 @@ class ContentTag
                 return $view->getCompileContent();
             }
         }
+    }
+
+    //显示标签云
+    public function _tag($attr, $content)
+    {
+        $type = isset($attr['type'])?$attr['type']:'hot';
+        $row = isset($attr['row'])?$attr['row']:10;
+        $php=<<<str
+        <?php \$type= '$type';\$row =$row;
+        \$db=M('tag');
+        switch(\$type){
+            case 'hot':
+                \$result = \$db->order('total DESC')->limit(\$row)->all();
+                break;
+            case 'new':
+                \$result = \$db->order('tid DESC')->limit(\$row)->all();
+                break;
+        }
+        foreach(\$result as \$field):?>
+str;
+        $php.=$content;
+        $php.="<?php endforeach;?>";
+        return $php;
     }
 
     //评论显示标签
@@ -202,22 +227,26 @@ str;
         \$cid=Q('cid',NULL,'intval');
         import('Content.Model.ContentViewModel');
         \$db = K('ContentView');
-        //查询条件
-        switch(\$type){
-            case 'son':
-                //获得所有子栏目
-                \$child=Data::channelList(F('category'),\$cid);
-                if(\$child){
-                    foreach(\$child as \$c)
-                        \$cid.=','.\$c['cid'];
-                        //去除尾部逗号
-                        \$cid=substr(\$cid,0,-1);
-                }
-                \$where=\$db->tableFull.".cid In(\$cid) and state=1";
-                break;
-            case 'current':
-            default:
-                \$where=\$db->tableFull.".cid In(\$cid) and state=1";
+        //有栏目时操作，非列表页模板调用时获得所有栏目文章
+        \$where=null;
+        if(\$cid){
+            //查询条件
+            switch(\$type){
+                case 'son':
+                    //获得所有子栏目
+                    \$child=Data::channelList(F('category'),\$cid);
+                    if(\$child){
+                        foreach(\$child as \$c)
+                            \$cid.=','.\$c['cid'];
+                            //去除尾部逗号
+                            \$cid=substr(\$cid,0,-1);
+                    }
+                    \$where=\$db->tableFull.".cid In(\$cid) and state=1";
+                    break;
+                case 'current':
+                default:
+                    \$where=\$db->tableFull.".cid In(\$cid) and state=1";
+            }
         }
         \$count = \$db->join(NULL)->order("arc_sort ASC")->where(\$where)->count();
         \$page= new Page(\$count,$row);
@@ -251,7 +280,6 @@ str;
 
     }
 
-    //上下篇
     public function _pagenext($attr, $content)
     {
         $get = isset($attr['get']) ? $attr['get'] : 'pre,next';
@@ -269,15 +297,15 @@ str;
             \$db = K('ContentView');
             \$field='aid,cid,title,redirecturl,url_type,html_path,addtime';
         }
-        \$aid = Q('aid',NULL,'intval');
+        \$aid = Q('get.aid',NULL,'intval');
         //上一篇
         if(strstr(\$get,'pre')){
             \$content = \$db->join()->trigger()->field(\$field)->where("aid<\$aid")->order("aid desc")->find();
             if (\$content) {
                 \$url = Url::get_content_url(\$content);
-                echo "<li>$pre_str <a href='\$url'>" . \$content['title'] . "</a></li>";
+                echo "$pre_str <a href='\$url'>" . \$content['title'] . "</a>";
             } else {
-                echo "<li>$pre_str <span>没有了</span></li>";
+                echo "$pre_str <span>没有了</span></li>";
             }
         }
         //下一篇
@@ -285,9 +313,9 @@ str;
             \$content = \$db->join()->trigger()->field(\$field)->where("aid>\$aid")->order("aid ASC")->find();
             if (\$content) {
                 \$url = Url::get_content_url(\$content);
-                echo "<li>$next_str <a href='\$url'>" . \$content['title'] . "</a></li>";
+                echo "$next_str <a href='\$url'>" . \$content['title'] . "</a>";
             } else {
-                echo "<li>$next_str <span>没有了</span></li>";
+                echo "$next_str <span>没有了</span>";
             }
         }
         ?>
@@ -334,7 +362,7 @@ str;
     }
 
     //导航标签
-    public function _nav($attr, $content)
+    public function _navigate($attr, $content)
     {
         $nid = isset($attr['nid']) ? $attr['nid'] : '';
         $php = <<<str

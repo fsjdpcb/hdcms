@@ -1,4 +1,5 @@
 <?php
+import('UploadModel','hd.Hdcms.Upload.Model');
 
 /**
  * 文件上传
@@ -61,7 +62,7 @@ class UploadControl extends Control
         if (!$file) {
             echo "{'title':'" . $upload->error . "','state':'" . $upload->error . "'}";
         } else {
-            $file=$file[0];
+            $file = $file[0];
             $model = K("Upload");
             $model->insert_to_table($file);
             $file['url'] = __ROOT__ . '/' . $file['path'];
@@ -70,6 +71,7 @@ class UploadControl extends Control
         }
         exit;
     }
+
     /**
      * Uploadify上传文件处理
      */
@@ -78,7 +80,7 @@ class UploadControl extends Control
         $upload = new Upload(Q('post.upload_dir'), array(), array(), Q("water", null, "intval"));
         $file = $upload->upload();
         if (!empty($file)) {
-            $file=$file[0];
+            $file = $file[0];
             $data['stat'] = 1;
             $data['url'] = __ROOT__ . '/' . $file['path'];
             $data['path'] = $file['path'];
@@ -148,7 +150,7 @@ class UploadControl extends Control
         $uri = htmlspecialchars($img);
         $uri = str_replace("&amp;", "&", $uri);
         if ($data = $this->getRemoteImage($uri, $config)) {
-            $data['image']=1;
+            $data['image'] = 1;
             if ($id = $this->_db->insert_to_table($data)) {
                 return __ROOT__ . '/' . $data['path'];
             } else {
@@ -221,12 +223,12 @@ class UploadControl extends Control
                 fwrite($fp2, $img);
                 fclose($fp2);
                 array_push($tmpNames, $tmpName);
-                $info=pathinfo($tmpName);
+                $info = pathinfo($tmpName);
                 return array(
                     "size" => $uriSize,
                     "path" => $tmpName,
                     "basename" => $info['basename'],
-                    'filename'=>$info['filename'],
+                    'filename' => $info['filename'],
                     "ext" => substr(strrchr($imgUrl, '.'), 1),
                     "uptime" => time(),
                     "uid" => $_SESSION['uid']

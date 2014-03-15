@@ -4,7 +4,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>修改文章</title>
-    <hdjs/>
+    <hdjs bootstrap="true"/>
+    <bootstrap/>
     <js file="__GROUP__/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/add_edit.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
@@ -14,7 +15,7 @@
     </script>
 </head>
 <body>
-<form action="{|U:edit}" method="post" id="edit" class="hd-form" onsubmit="return false">
+<form action="{|U:edit}" method="post" id="edit" class="hd-form form-horizontal" onsubmit="return false">
     <input type="hidden" value="{$field.aid}" name="aid"/>
     <div class="wrap">
         <!--右侧缩略图区域-->
@@ -100,14 +101,14 @@
             <div class="title-header">添加文章</div>
             <table class="table1">
                 <tr>
-                    <th class="w80">标题<span class="star">*</span></th>
+                    <th class="w100">标题<span class="star">*</span></th>
                     <td>
                         <input id="title" type="text" name="title" value="{$field.title}" class="title w400"/>
                         <label>
-                            标题颜色 <input type="text" name="color" value="{$field.color}" class="w60"/>
+                            标题颜色 <input type="text" name="color" value="{$field.color}" class="w100"/>
                         </label>
-                        <button type="button" onclick="selectColor(this,'color')" class="btn">选取颜色</button>
-                        <label class='checkbox inline'><input type="checkbox" name="new_window" value="1"
+                        <button type="button" onclick="selectColor(this,'color')" class="btn btn-default">选取颜色</button>
+                        <label class='inline'><input type="checkbox" name="new_window" value="1"
                             <if value="$field.new_window==1">checked='checked'</if>
                             /> 新窗口打开</label>
                     </td>
@@ -141,27 +142,27 @@
                         <td>
                             {|tag:"ueditor",array("name"=>$model['table_name']."_data[content]","content"=>$field['content'])}
                             <div class="editor_set">
-                                <label class="checkbox inline">
+                                <label class="inline">
                                     <input type="checkbox" name="down_remote_pic" value="1"
                                     <if value="$hd.config.down_remote_pic==1">checked="checked"</if>
                                     />下载远程图片
                                 </label>
-                                <label class="checkbox inline">
+                                <label class="inline">
                                     <input type="checkbox" name="auto_desc" value="1"
                                     <if value="$hd.config.auto_desc==1">checked="checked"</if>
                                     />截取内容
                                 </label>
-                                <label class="checkbox inline">
+                                <label class="inline">
                                     <input type="text" value="200" class="input-mini" name="auto_desc_length"> 字符至内容摘要
                                 </label>
-                                <label class="checkbox inline">
+                                <label class="inline">
                                     <input type="checkbox" name="auto_thumb" value="1"
                                     <if value="$hd.config.auto_thumb==1">checked="checked"</if>
                                     />获取内容第
                                 </label>
-                                <label class="checkbox inline">
+                                <label class="inline">
                                     <input type="text" class="input-mini" value="1" name="auto_thumb_num">
-                                    张图片作为缩略图
+                                    张图片为缩略图
                                 </label>
                             </div>
                         </td>

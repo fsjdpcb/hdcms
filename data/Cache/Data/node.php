@@ -309,7 +309,7 @@ return array (
   70 => 
   array (
     'nid' => '70',
-    'title' => 'TAG标签',
+    'title' => '标签云',
     'app_group' => 'Hdcms',
     'app' => 'Tag',
     'control' => 'Tag',
@@ -326,7 +326,7 @@ return array (
     '_html' => '',
     '_first' => false,
     '_end' => true,
-    '_name' => '│&nbsp;&nbsp;&nbsp;&nbsp;└─ TAG标签',
+    '_name' => '│&nbsp;&nbsp;&nbsp;&nbsp;└─ 标签云',
   ),
   79 => 
   array (

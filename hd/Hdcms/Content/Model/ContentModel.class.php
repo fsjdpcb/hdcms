@@ -4,6 +4,8 @@ import('Index.Lib.Url');
 import('Index.Control.PublicControl');
 import('Index.Control.ArticleControl');
 import('Index.Tag.ContentTag');
+
+
 /**
  * 内容管理模型
  * Class ContentModel
@@ -278,7 +280,7 @@ class ContentModel extends RelationModel
             }
             $flag[$f['fid']]['html'] = "
                 <input type='hidden' name='content_flag[{$fid}][cid]' value='{$this->_cid}'/>
-                <label class='checkbox inline'>
+                <label class='inline'>
                 <input type='checkbox' name='content_flag[{$fid}][fid]'value='{$fid}' $checked/>
                  {$f['flagname']} [$fid]</label>
             ";
@@ -410,6 +412,7 @@ class ContentModel extends RelationModel
         //获得文章的静态html地址
         $html = Url::get_content_html(M($this->table)->find($aid));
         if ($html) {
+            $_GET = $this->find($aid);
             //生成静态
             ob_start();
             $obj = new ArticleControl($this->_cid, $aid);

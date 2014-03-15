@@ -34,16 +34,6 @@ class CategoryControl extends AuthControl
      */
     public function index()
     {
-        foreach($this->_category as $n=>$c){
-            //添加模型名称
-            $this->_category[$n]['model_name']=$this->_model[$c['mid']]['model_name'];
-            //获得栏目内文章数
-            //表名
-            $table=$this->_model[$c['mid']]['table_name'];
-            //文章数
-            $count=$this->_db->table($table)->where("cid={$c['cid']}")->count();
-            $this->_category[$n]['_name'].=$count?" <span style='color:#999;'>($count)</span>":'';
-        }
         $this->category = $this->_category;
         //添加模型名称
         $this->display();

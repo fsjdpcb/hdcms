@@ -19,15 +19,25 @@ class ArticleControl extends PublicControl
                 $field['source'] = empty($field['source']) ? C("WEBNAME") : $field['source'];
                 //获得内容模板
                 $tpl = Template::get_content_tpl($this->_aid, $this->_cid);
-                if ($tpl) {
-                    $field['time']=date("Y/m/d");
+                if (is_file($tpl)) {
+                    $field['time'] = date("Y/m/d");
                     $this->hdcms = $field;
                     $this->display($tpl);
+                } else {
+                    $this->template_error($tpl);
                 }
             }
         }
     }
-
+    //获得评论数
+    public function get_comment_num(){
+        $aid=Q('aid',null,'intval');
+        if($aid){
+             $count = M('comment')->where("aid={$aid}")->cache(60)->count('');
+            echo "document.write($count);";
+            exit;
+        }
+    }
     //修改文章点击次数
     public function updateClick()
     {

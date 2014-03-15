@@ -13,7 +13,9 @@ class IndexControl extends PublicControl
     {
         $tpl = $this->_template . 'index.html';
         if (is_file($tpl)) {
-            $this->display($tpl);
+            $this->display($tpl,-1);
+        } else {
+            $this->template_error('index.html');
         }
     }
 }
