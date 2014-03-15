@@ -1,0 +1,91 @@
+@import "style.less";
+
+div#main {
+  header {
+    font-size: 12px;
+  }
+  div.title {
+    background: #FBFBFB;
+    height: auto;
+    overflow: hidden;
+    padding: 0px 10px;
+    h2 {
+      font-size: 20px;
+      color: #444;
+      margin: 0px;
+      padding-bottom: 10px;
+      padding-top: 15px;
+      font-family: @font-family !important;
+    }
+    p {
+      color: #999;
+      font-size: 12px;
+    }
+  }
+  //正文
+  div.content {
+    margin: 0px;
+    font-size: 14px;
+    color: @gray;
+    background: @white;
+    line-height: 2em;
+    padding: 10px;
+  }
+  //tag
+  div.tag {
+    margin-top: 1px;
+    font-size: 12px;
+    background: @white;
+    padding: 15px;
+    a {
+      padding: 2px 5px;
+      background: @red;
+      color: @white;
+      opacity: 0.8;
+      text-decoration: none;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+  //上一篇与下一篇
+  div.next-article {
+    background: #FBFBFB;
+    padding: 0px;
+    margin: 0px;
+    margin-top: 1px;
+    p {
+      line-height: 3em;
+      margin: 0px;
+      color: @gray;
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+  //相关文章
+  div.related {
+    background: @white;
+    height: auto;
+    overflow: hidden;
+    margin-top: 1px;
+    header {
+      background: @white;
+      font-size: 14px;
+
+      padding: 10px;
+    }
+    ul {
+      li {
+        list-style: none;
+        width: 50%;
+        float: left;
+        line-height: 2em;
+        padding-left: 10px;
+        a{
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}

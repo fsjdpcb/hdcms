@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>仿大前端首页</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
+    <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript" src="js/less-1.5.0.min.js"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet/less" href="css/user-edit.less?ver=1.0 "/>
+</head>
+<body>
+<header class="header center-block">
+    <h1>
+        <a href="#"><img src="images/360-logo.png"/></a>
+    </h1>
+</header>
+<nav class="top-menu">
+    <div class="nav center-block">
+        <a href="#">首页</a>
+        <a href="#">我的文章</a>
+        <a href="#">个人主页</a>
+    </div>
+</nav>
+<article class="center-block main">
+    <section class="menu">
+        <div class="center-block user">
+            <img src="images/xiangjun.jpg" title="点击修改头像"/>
+
+            <p class="nickname">后盾网向军</p>
+
+            <p class="edit-nickname">
+                <span></span>
+                修改昵称
+            </p>
+
+            <p>
+                积 分：10 <br/>
+                经验值：14
+            </p>
+        </div>
+        <nav>
+            <a href="#">
+                <span class="glyphicon glyphicon-fire"></span>
+                修改资料
+            </a>
+            <a href="#">
+                <span class="glyphicon glyphicon-book"></span>
+                我的文章
+            </a>
+            <a href="#">
+                <span class="glyphicon glyphicon-comment"></span>
+                我的消息
+                <span class="badge">42</span>
+            </a>
+            <a href="#">
+                <span class="glyphicon glyphicon-envelope"></span>
+                我的私信
+                <span class="badge">21</span>
+            </a>
+            <a href="#">
+                <span class="glyphicon glyphicon-folder-open"></span>
+                我的收藏
+            </a>
+        </nav>
+    </section>
+    <section class="edit-user">
+        <div>
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#edit-base" data-toggle="tab">基本信息</a></li>
+                <li><a href="#edit-face" data-toggle="tab">修改头像</a></li>
+                <li><a href="#edit-password" data-toggle="tab">修改密码</a></li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane active" id="edit-base">
+                    <table>
+                        <tr>
+                            <th>
+                                <img src="images/face.png" class="face"/>
+                            </th>
+                            <td class="field" colspan="2">
+                                <textarea style="height: 100px;" placeholder="请输入个性签名"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>个性域名</th>
+                            <td class="field">
+                                www.hdphp.com/u/
+                                <input type="text"/>
+                            </td>
+                            <td class="message">
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td class="field">
+                                <input type="submit" class="btn btn-primary" value="确定"/>
+                            </td>
+                            <td class="message">
+
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="tab-pane" id="edit-face">
+                    <div class="source-face">
+                        <img src="images/face.png" style="width: 250px;height: 250px;"/>
+                        <button class="btn btn-primary">保存</button>
+                        <button class="btn btn-default">重新上传</button>
+                    </div>
+                    <div class="face-preview">
+                        <h2>头像预览</h2>
+
+                        <div class="help">
+                            请注意中小尺寸的头像是否清晰
+                        </div>
+                        <div class="face">
+                            <img src="images/face.png" style="width: 100px;height: 100px;"/>
+
+                            <p>
+                                头像尺寸150X150
+                            </p>
+                        </div>
+                        <div class="face">
+                            <img src="images/face.png" style="width: 50px;height: 50px;"/>
+
+                            <p>
+                                头像尺寸50X50
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="edit-password">
+                    <table>
+                        <tr>
+                            <th>当前密码</th>
+                            <td class="field">
+                                <input type="text"/>
+                            </td>
+                            <td class="message">
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>新密码</th>
+                            <td class="field">
+                                <input type="text"/>
+                            </td>
+                            <td class="message">
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>重复密码</th>
+                            <td class="field">
+                                <input type="text"/>
+                            </td>
+                            <td class="message">
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td class="field">
+                                <input type="submit" class="btn btn-primary" value="确定"/>
+                            </td>
+                            <td class="message">
+
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</article>
+<footer class="container">
+    <nav>
+        <a href="#">PHP培训</a>
+        <a href="#">HDPHP框架</a>
+        <a href="#">论坛</a>
+    </nav>
+    Copyright © 2014 so.com All Rights Reserved <a href="#">京公安网备11000000000006</a>
+</footer>
+</body>
+</html>
