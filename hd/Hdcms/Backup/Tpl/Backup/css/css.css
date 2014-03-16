@@ -1,1 +1,6 @@
 @import "../../../../../static/css/common.css";
+
+/*隐藏模态弹出框的滚动条*/
+div.hd-modal div.content {
+    overflow: hidden;
+}

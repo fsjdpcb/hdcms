@@ -48,6 +48,8 @@ class FlagControl extends AuthControl
         if (IS_POST) {
             if ($this->_db->add_flag()) {
                 $this->_ajax(1, '添加成功');
+            }else{
+                $this->_ajax(0,$this->_db->error);
             }
         } else {
             $this->display();

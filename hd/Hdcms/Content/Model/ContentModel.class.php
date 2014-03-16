@@ -30,13 +30,34 @@ class ContentModel extends RelationModel
     public $auto = array(
         array('addtime', 'time', 'function', 2, 1),
         array('updatetime', 'get_update_time', 'method', 2, 3),
-        array('uid', 'get_uid', 'method', 2, 3)
+        //发布者id
+        array('uid', '_auto_uid', 'method', 2, 3),
+        //属性flag字段
+        array('flag', '_auto_flag', 'method', 2, 3),
     );
 
     //添加内容时获得发布者id
-    protected function get_uid()
+    protected function _auto_uid()
     {
         return session('uid');
+    }
+
+    //flag文章属性
+    protected function _auto_flag($flag)
+    {
+        if (empty($flag)) {
+            $flag = array();
+        }
+        if (isset($_POST['thumb']) && !empty($_POST['thumb'])) {
+            $flag[] = '图片';
+        } else {
+            //查找有无图片属性，返回图片属性key,然后删除
+            $i = array_search('图片', $flag);
+            if ($i) {
+                unset($flag[$i]);
+            }
+        }
+        return implode(',', array_unique($flag));
     }
 
     //修改时间处理
@@ -50,18 +71,18 @@ class ContentModel extends RelationModel
     {
         $this->_model = F("model");
         $this->_category = F("category");
-        $this->_field = F($this->_mid, false, FIELD_CACHE_PATH);
         $this->_cid = Q("cid", null, "intval");
-        $this->_mid = $this->_category[$this->_cid]['mid'];
         $this->_aid = Q('aid', NULL, 'intval');
+        $this->_mid = $this->_category[$this->_cid]['mid'];
+        //自定义字段
+        $this->_field = F($this->_mid, false, FIELD_CACHE_PATH);
         //主表
         $this->table = $this->_model[$this->_mid]['table_name'];
         if (is_null($this->table)) {
             halt("没有可操作的表,缺少cid或mid参数");
         }
         //副表
-        if ($this->_model[$this->_mid]['type'] == 1)
-            $this->_stable = $this->table . '_data';
+        $this->_stable = $this->table . '_data';
         //关联栏目表
         $this->join = array(
             "category" => array(
@@ -69,21 +90,14 @@ class ContentModel extends RelationModel
                 "foreign_key" => "cid",
                 "parent_key" => "cid",
                 "field" => array("cid", "catname", "mid")
-            ),
-            "content_flag" => array(
-                "type" => HAS_MANY,
-                "foreign_key" => "aid",
-                "parent_key" => "aid"
             )
         );
         //关联副表
-        if ($this->_stable) {
-            $this->join[$this->_stable] = array(
-                "type" => HAS_ONE,
-                "foreign_key" => "aid",
-                "parent_key" => "aid"
-            );
-        }
+        $this->join[$this->_stable] = array(
+            "type" => HAS_ONE,
+            "foreign_key" => "aid",
+            "parent_key" => "aid"
+        );
     }
 
     /**
@@ -135,20 +149,6 @@ class ContentModel extends RelationModel
         }
     }
 
-    //移除没有选中的flag
-    private function _format_flag(&$data)
-    {
-        if (isset($data['content_flag'])) {
-            $flag = $data['content_flag'];
-            $data['content_flag'] = array();
-            foreach ($flag as $f) {
-                if (isset($f['fid'])) {
-                    $data['content_flag'][$f['fid']] = $f;
-                }
-            }
-        }
-    }
-
     /**
      * 组织$_POST自定义字段KEY与值
      * 如果自定义字段为附表时，加附表名
@@ -162,24 +162,21 @@ class ContentModel extends RelationModel
             //获得字段信息
             if ($field = $this->_get_field_info($field_name)) {
                 $_v = $this->_get_field_value($field, $post);
-                //副表字段时，添加表附表名
-                if ($this->_stable) {
-                    $data[$this->_stable][$field_name] = $_v;
-                    unset($data[$field_name]);
-                } else {
-                    $data[$field_name] = $_v;
-                }
+                //添加副表表名
+                $data[$this->_stable][$field_name] = $_v;
+                unset($data[$field_name]);
             }
         }
     }
 
     /**
      * 获得自定义字段结构信息
-     * @param $field_name Post来的字段Key
+     * @param string $field_name Post来的字段Key
      * @return null
      */
     private function _get_field_info($field_name)
     {
+        //如果有自定义字段时处理
         if ($this->_field) {
             foreach ($this->_field as $info) {
                 if ($info['field_name'] == $field_name) {
@@ -254,54 +251,6 @@ class ContentModel extends RelationModel
             default:
                 //其他情况不做处理
                 return $postData;
-        }
-    }
-
-    /**
-     * 编辑商品时获得属性flag
-     * 将当前商品使用的Flag选中
-     * @param $aid 文章id
-     * @return mixed
-     */
-    public function get_content_flag($aid)
-    {
-        //查找当前文章所有属性
-        $data = M("content_flag")->table("content_flag")->where(array("aid" => $aid, "cid" => $this->_cid))->getField('fid', true);
-        //所有属性
-        $flag = F('flag');
-        //所有属性
-        foreach ($flag as $fid => $f) {
-            $checked = '';
-            if ($data) {
-                //文章存在的属性添加checked
-                if (in_array($fid, $data)) {
-                    $checked = "checked='checked'";
-                }
-            }
-            $flag[$f['fid']]['html'] = "
-                <input type='hidden' name='content_flag[{$fid}][cid]' value='{$this->_cid}'/>
-                <label class='inline'>
-                <input type='checkbox' name='content_flag[{$fid}][fid]'value='{$fid}' $checked/>
-                 {$f['flagname']} [$fid]</label>
-            ";
-        }
-        return $flag;
-    }
-
-    /**
-     * 图片Flag属性处理
-     * 如果没有缩略图时删除文章的图片Flag属性
-     * @param $data
-     */
-    private function _remove_img_flag(&$data)
-    {
-        if (isset($data['thumb']) && !empty($data['thumb'])) {
-            $data['content_flag'][4] = array("fid" => 4, "cid" => $this->_cid);
-        } else {
-            if (isset($data['content_flag'][4])) {
-                unset($data['content_flag'][4]);
-
-            }
         }
     }
 
@@ -401,6 +350,27 @@ class ContentModel extends RelationModel
         }
     }
 
+    //插入与编辑成功后修改文件上传表  使用__after_add等触发器调用
+    private function _update_upload_table($aid)
+    {
+        //修改本次上传图片（新图片）
+        $data = array(
+            "mid" => $this->_mid,
+            "cid" => $this->_cid,
+            "aid" => $aid
+        );
+        $upload = session('upload_file');
+        $db = M("upload");
+        if (!empty($upload)) {
+            foreach ($upload as $filename => $i) {
+                $db->where = array('uid' => session('uid'), 'filename' => $filename, 'aid' => 0);
+                $db->save($data);
+            }
+        }
+        //删除SESSION中上传文件数据
+        session('upload_file', array());
+    }
+
     //添加与修改后执行的动作
     private function _after_action($data)
     {
@@ -424,27 +394,6 @@ class ContentModel extends RelationModel
         }
     }
 
-    //插入与编辑成功后修改文件上传表  使用__after_add等触发器调用
-    private function _update_upload_table($aid)
-    {
-        //修改本次上传图片（新图片）
-        $data = array(
-            "mid" => $this->_mid,
-            "cid" => $this->_cid,
-            "aid" => $aid
-        );
-        $upload = session('upload_file');
-        $db = M("upload");
-        if (!empty($upload)) {
-            foreach ($upload as $filename => $i) {
-                $db->where = array('uid' => session('uid'), 'filename' => $filename, 'aid' => 0);
-                $db->save($data);
-            }
-        }
-        //删除SESSION中上传文件数据
-        session('upload_file', array());
-    }
-
     //插入与编辑前执行的动作
     private function _before_action(&$data)
     {
@@ -452,12 +401,8 @@ class ContentModel extends RelationModel
         $this->_get_content_pic($data);
         //下载远程图片
         $this->_down_remote_pic($data);
-        //移除没有选中的flag
-        $this->_format_flag($data);
         //处理参数，将复选框值合并
         $this->_current_field_data($data);
-        //如果没有缩略图时删除图片属性
-        $this->_remove_img_flag($data);
         //摘要为空时截取内容做为摘要
         $this->_get_description($data);
         //关键字处理

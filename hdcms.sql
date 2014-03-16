@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50535
 File Encoding         : 65001
 
-Date: 2014-03-15 22:41:51
+Date: 2014-03-17 00:27:36
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -76,16 +76,18 @@ CREATE TABLE `hd_category` (
   `cat_seo_title` char(100) DEFAULT NULL COMMENT 'SEO标题',
   `cat_seo_description` varchar(255) DEFAULT NULL COMMENT 'SEO描述',
   PRIMARY KEY (`cid`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='栏目表';
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='栏目表';
 
 -- ----------------------------
 -- Records of hd_category
 -- ----------------------------
-INSERT INTO `hd_category` VALUES ('1', '0', '教程', 'course', '', '', '{style}/article_index.html', '{style}/article_list.html', '{style}/article_default.html', '', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '100', '1', '', '');
-INSERT INTO `hd_category` VALUES ('2', '0', '最新消息', 'news', '', '', '{style}/article_index.html', '{style}/article_list.html', '{style}/article_default.html', '', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '100', '1', '', '');
-INSERT INTO `hd_category` VALUES ('3', '0', '案例', 'case', '', '', '{style}/article_index.html', '{style}/article_list.html', '{style}/article_default.html', '', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '100', '1', '', '');
+INSERT INTO `hd_category` VALUES ('2', '0', '最新消息', 'news', '', '', '{style}/article_index.html', '{style}/article_list.html', '{style}/article_default.html', '', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '100', '2', '', '');
 INSERT INTO `hd_category` VALUES ('4', '0', '问答', 'question', '', '', '{style}/article_index.html', '{style}/article_list.html', '{style}/article_default.html', '', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '100', '1', '', '');
 INSERT INTO `hd_category` VALUES ('5', '0', '新闻', 'news', '', '', '{style}/article_index.html', '{style}/article_list.html', '{style}/article_default.html', '', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '100', '1', '', '');
+INSERT INTO `hd_category` VALUES ('12', '8', '前端', 'div', '', '', '{style}/article_index.html', '{style}/article_list.html', '{style}/article_default.html', '', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '100', '1', '', '');
+INSERT INTO `hd_category` VALUES ('11', '8', '服务器', 'server', '', '', '{style}/article_index.html', '{style}/article_list.html', '{style}/article_default.html', '', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '100', '1', '', '');
+INSERT INTO `hd_category` VALUES ('8', '0', '每日教程', 'lesson', '', '', '{style}/article_index.html', '{style}/article_list.html', '{style}/article_default.html', '', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '2', '1', '1', '', '100', '1', '', '');
+INSERT INTO `hd_category` VALUES ('10', '8', 'php', 'php', '', '', '{style}/article_index.html', '{style}/article_list.html', '{style}/article_default.html', '', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '100', '1', '', '');
 
 -- ----------------------------
 -- Table structure for hd_category_access
@@ -202,6 +204,7 @@ CREATE TABLE `hd_content` (
   `aid` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
   `cid` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '栏目cid',
   `title` char(100) NOT NULL DEFAULT '' COMMENT '标题',
+  `flag` set('热门','置顶','推荐','图片','精华','幻灯片','站长推荐') DEFAULT NULL,
   `new_window` tinyint(1) NOT NULL DEFAULT '0' COMMENT '新窗口打开',
   `seo_title` char(100) NOT NULL DEFAULT '' COMMENT '标题',
   `thumb` char(200) NOT NULL DEFAULT '' COMMENT '缩略图',
@@ -226,14 +229,11 @@ CREATE TABLE `hd_content` (
   PRIMARY KEY (`aid`),
   KEY `cid` (`cid`),
   KEY `uid` (`uid`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=gbk;
+) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
 -- ----------------------------
 -- Records of hd_content
 -- ----------------------------
-INSERT INTO `hd_content` VALUES ('1', '5', '动若脱兔 测试2014款讴歌MDX 3.5L豪华版', '0', '', 'upload/Content/2014/03/13/79061394723294.jpg', '100', '', '', '', '1', 'admin', '1394723292', '1394680076', '', '', '1', '100', '1', '这样,山路,这股,精灵,轻如,舒畅,一切,仿佛,变身', '春寒料峭，冻杀年少，这样的天确实不是个郊游的好日子，偏偏放眼望去全是光秃的树枝和泛黄的山体，更别说挥之不散的雾霾。走在这样的山路不但没法心情愉悦，反而惨淡得让人动起自杀念头。但身处在全新MDX上，凌厉直接的表现让你自如通过迂回的山路，庞然大物变身身轻如燕的精灵，这股舒畅仿佛让一切有了生气，这难道不是动若脱兔的最好诠释吗？体验读图模式　　2014款MDX的革新不少，从外到内都变得更加科技和与时俱进，', '1', '0', '0');
-INSERT INTO `hd_content` VALUES ('2', '5', '福特改款翼虎假想图 采用最新家族设计', '0', '', 'upload/Content/2014/03/13/76251394723350.jpg', '100', '', '', '', '1', 'admin', '1394723349', '1394680114', '', '', '2', '100', '1', '翼虎,采用了,假想,设计,前脸,已经,福特,改款,马丁', '在2014日内瓦车展上，那个换上了“马丁”脸的新款福克斯吸引了无数人的目光。而近日，海外媒体又曝光了一组改款翼虎的假想图，呵呵，估计您不看图也能猜到了，新车也同样采用了家族式的设计前脸。福特新款翼虎假想图　　福特目前已经在蒙迪欧、嘉年华、福克斯等等车型上都采用了那个十分令人注目的“马丁”前脸，因此改款后的翼虎采用这个设计也是无可厚非了。不过笔者已经开始觉得有点审美疲劳了，不知道广大网友怎么看呢？另', '1', '0', '0');
-INSERT INTO `hd_content` VALUES ('3', '2', 'HDPHP盛大发布', '0', '', '', '100', '', '', '', '1', 'admin', '1394723636', '1394680423', '', '', '2', '100', '1', '发布,盛大', 'HDPHP盛大发布', '1', '0', '0');
 
 -- ----------------------------
 -- Table structure for hd_content_data
@@ -242,37 +242,13 @@ DROP TABLE IF EXISTS `hd_content_data`;
 CREATE TABLE `hd_content_data` (
   `aid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '文章主表ID',
   `content` text COMMENT '正文',
+  `sdfsdf` varchar(255) NOT NULL DEFAULT '',
   KEY `aid` (`aid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hd_content_data
 -- ----------------------------
-INSERT INTO `hd_content_data` VALUES ('1', '<p style=\"margin: 0px auto 20px; padding: 0px; font-size: 16px; word-wrap: normal; color: rgb(51, 51, 51); font-family: 宋体, arial, sans-serif; line-height: 30px; white-space: normal; background-color: rgb(255, 255, 255);\">春寒料峭，冻杀年少，这样的天确实不是个郊游的好日子，偏偏放眼望去全是光秃的树枝和泛黄的山体，更别说挥之不散的雾霾。走在这样的山路不但没法心情愉悦，反而惨淡得让人动起自杀念头。但身处在全新MDX上，凌厉直接的表现让你自如通过迂回的山路，庞然大物变身身轻如燕的精灵，这股舒畅仿佛让一切有了生气，这难道不是动若脱兔的最好诠释吗？</p><table cellpadding=\"0\" cellspacing=\"0\" class=\"artPicBox tabB10\" width=\"NaN\"><tbody><tr class=\"firstRow\"><td class=\"colL\" style=\"margin: 0px; padding: 0px; word-break: break-all;\"><a href=\"http://price.pcauto.com.cn/cars/image/1408221-1.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); text-decoration: none; outline: none;\"><img alt=\"动若脱兔 测试2014款讴歌MDX 3.5L豪华版\" src=\"http://img.pcauto.com.cn/images/pcautogallery/modle/article/20143/11/13945328204865280_600.jpg\" title=\"动若脱兔 测试2014款讴歌MDX 3.5L豪华版\" style=\"border: 1px solid rgb(198, 198, 198); vertical-align: middle;\"/></a></td><td class=\"colR\" style=\"margin: 0px; padding: 0px; word-break: break-all; vertical-align: top;\"><span style=\"position: absolute; width: 30px; height: 145px; font-weight: bold; line-height: 18px; color: rgb(255, 255, 255);\"><a href=\"http://price.pcauto.com.cn/cars/image/1408221-1.html\" target=\"_blank\" style=\"color: rgb(255, 255, 255); text-decoration: none; outline: none; width: 18px; background-image: url(http://www1.pcauto.com.cn/20120917/art_dt/picPattern.png); background-color: rgb(255, 130, 19); padding: 30px 5px 5px 7px; display: inline-block; background-position: 6px 7px; background-repeat: no-repeat no-repeat;\">体验读图模式</a></span></td></tr></tbody></table><p style=\"margin: 0px auto 20px; padding: 0px; font-size: 16px; word-wrap: normal; color: rgb(51, 51, 51); font-family: 宋体, arial, sans-serif; line-height: 30px; white-space: normal; background-color: rgb(255, 255, 255);\">　　2014款MDX的革新不少，从外到内都变得更加科技和与时俱进，不过在车型配置上只有两款可以选择，均配置3.5L V6<a class=\"cmsLink\" href=\"http://price.pcauto.com.cn/qcbk/canshu/fadongji/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); text-decoration: none; outline: none; border-bottom-width: 1px; border-bottom-color: rgb(255, 102, 0); border-bottom-style: dashed;\">发动机</a>，此次试驾的车型是顶配的3.5L豪华版，售价79.5万。顶配车型在配置上更加具有吸引力，而且它的出现不仅仅是为了树立标杆形象，结合它的价格也同样具有不小的竞争力，亮点完全不输同级热门车型。</p><p><br/></p>');
-INSERT INTO `hd_content_data` VALUES ('2', '<p style=\"margin: 0px auto 20px; padding: 0px; font-size: 16px; word-wrap: normal; color: rgb(51, 51, 51); font-family: 宋体, arial, sans-serif; line-height: 30px; white-space: normal; background-color: rgb(255, 255, 255);\">在2014<a class=\"cmsLink\" href=\"http://price.pcauto.com.cn/qcbk/qczl/gwcz/rnw/1207/2053612.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); text-decoration: none; outline: none; border-bottom-width: 1px; border-bottom-color: rgb(255, 102, 0); border-bottom-style: dashed;\">日内瓦车展</a>上，那个换上了“马丁”脸的新款<a class=\"cmsLink\" href=\"http://price.pcauto.com.cn/sg3404/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); text-decoration: none; outline: none; border-bottom-width: 1px; border-bottom-color: rgb(255, 102, 0); border-bottom-style: dashed;\">福克斯</a>吸引了无数人的目光。而近日，海外媒体又曝光了一组改款翼虎的假想图，呵呵，估计您不看图也能猜到了，新车也同样采用了家族式的设计前脸。</p><p style=\"margin: 0px auto 20px; padding: 0px; font-size: 16px; word-wrap: normal; color: rgb(51, 51, 51); font-family: 宋体, arial, sans-serif; line-height: 30px; white-space: normal; background-color: rgb(255, 255, 255); text-align: center;\"><a href=\"http://www.pcauto.com.cn/images/html/viewpic_pcauto.htm?http://img0.pcauto.com.cn/pcauto/1403/11/4019360_4.jpg&channel=6234\" target=\"_blank\" style=\"color: rgb(51, 51, 51); text-decoration: none; outline: none;\"><img alt=\"福特新款翼虎假想图\" src=\"http://img0.pcauto.com.cn/pcauto/1403/11/4019360_4_thumb.jpg\" title=\"福特新款翼虎假想图\" style=\"border: 1px solid rgb(198, 198, 198); vertical-align: middle;\"/></a><br/><a class=\"cmsLink\" href=\"http://price.pcauto.com.cn/price/nb21/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); text-decoration: none; outline: none; border-bottom-width: 1px; border-bottom-color: rgb(255, 102, 0); border-bottom-style: dashed;\">福特</a>新款翼虎假想图</p><p style=\"margin: 0px auto 20px; padding: 0px; font-size: 16px; word-wrap: normal; color: rgb(51, 51, 51); font-family: 宋体, arial, sans-serif; line-height: 30px; white-space: normal; background-color: rgb(255, 255, 255);\">　　福特目前已经在<a class=\"cmsLink\" href=\"http://price.pcauto.com.cn/sg2143/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); text-decoration: none; outline: none; border-bottom-width: 1px; border-bottom-color: rgb(255, 102, 0); border-bottom-style: dashed;\">蒙迪欧</a>、<a class=\"cmsLink\" href=\"http://price.pcauto.com.cn/sg3542/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); text-decoration: none; outline: none; border-bottom-width: 1px; border-bottom-color: rgb(255, 102, 0); border-bottom-style: dashed;\">嘉年华</a>、福克斯等等车型上都采用了那个十分令人注目的“马丁”前脸，因此改款后的翼虎采用这个设计也是无可厚非了。不过笔者已经开始觉得有点审美疲劳了，不知道广大网友怎么看呢？另外，在图上我们能看出，新车还更换了全<a class=\"cmsLink\" href=\"http://price.pcauto.com.cn/qcbk/canshu/dianpei/chedeng/1208/2084501.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); text-decoration: none; outline: none; border-bottom-width: 1px; border-bottom-color: rgb(255, 102, 0); border-bottom-style: dashed;\">LED大灯</a>。</p><p><br/></p>');
-INSERT INTO `hd_content_data` VALUES ('3', '<p>HDPHP盛大发布</p>');
-
--- ----------------------------
--- Table structure for hd_content_flag
--- ----------------------------
-DROP TABLE IF EXISTS `hd_content_flag`;
-CREATE TABLE `hd_content_flag` (
-  `aid` int(11) unsigned NOT NULL COMMENT '文章id',
-  `fid` mediumint(9) unsigned NOT NULL COMMENT '属性id',
-  `cid` smallint(6) unsigned NOT NULL COMMENT '栏目ID'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of hd_content_flag
--- ----------------------------
-INSERT INTO `hd_content_flag` VALUES ('3', '4', '2');
-INSERT INTO `hd_content_flag` VALUES ('9', '4', '2');
-INSERT INTO `hd_content_flag` VALUES ('10', '3', '1');
-INSERT INTO `hd_content_flag` VALUES ('2', '4', '5');
-INSERT INTO `hd_content_flag` VALUES ('10', '4', '1');
-INSERT INTO `hd_content_flag` VALUES ('1', '3', '5');
-INSERT INTO `hd_content_flag` VALUES ('1', '4', '5');
-INSERT INTO `hd_content_flag` VALUES ('2', '3', '5');
 
 -- ----------------------------
 -- Table structure for hd_content_single
@@ -322,7 +298,7 @@ CREATE TABLE `hd_custom_js` (
   `addtime` int(10) DEFAULT NULL COMMENT '添加时间',
   `username` char(30) DEFAULT NULL COMMENT '添加者',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='自定义js';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='自定义js';
 
 -- ----------------------------
 -- Records of hd_custom_js
@@ -353,45 +329,22 @@ CREATE TABLE `hd_field` (
   `fid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
   `mid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '模型ID',
   `show_type` varchar(45) NOT NULL DEFAULT '' COMMENT '字段类型 text|textarea|radio|checkbox|image|images|datetime|',
-  `table_type` tinyint(1) NOT NULL DEFAULT '1',
   `table_name` varchar(30) NOT NULL DEFAULT '' COMMENT '所在表名',
   `field_name` varchar(45) NOT NULL DEFAULT '' COMMENT '字段name名称',
   `title` varchar(45) NOT NULL DEFAULT '' COMMENT '字段标题 ',
   `enable` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 开启 0 关闭',
   `is_system` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否为系统字段',
   `fieldsort` smallint(6) NOT NULL DEFAULT '50' COMMENT '字段排序',
-  `member_show` tinyint(1) NOT NULL DEFAULT '1',
+  `member_show` tinyint(1) NOT NULL DEFAULT '1' COMMENT '会员中心显示',
   `set` text NOT NULL COMMENT '字段设置',
   PRIMARY KEY (`fid`),
   KEY `mid` (`mid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='模型字段';
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='模型字段';
 
 -- ----------------------------
 -- Records of hd_field
 -- ----------------------------
-
--- ----------------------------
--- Table structure for hd_flag
--- ----------------------------
-DROP TABLE IF EXISTS `hd_flag`;
-CREATE TABLE `hd_flag` (
-  `fid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `flagname` char(20) NOT NULL,
-  `system` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '1 系统属性(不能删除)  2 用户定义属性',
-  PRIMARY KEY (`fid`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of hd_flag
--- ----------------------------
-INSERT INTO `hd_flag` VALUES ('1', '热门', '1');
-INSERT INTO `hd_flag` VALUES ('2', '置顶', '1');
-INSERT INTO `hd_flag` VALUES ('3', '推荐', '1');
-INSERT INTO `hd_flag` VALUES ('4', '图片', '1');
-INSERT INTO `hd_flag` VALUES ('5', '幻灯片', '1');
-INSERT INTO `hd_flag` VALUES ('6', '精华', '1');
-INSERT INTO `hd_flag` VALUES ('7', '置顶', '1');
-INSERT INTO `hd_flag` VALUES ('8', '站长推荐', '1');
+INSERT INTO `hd_field` VALUES ('5', '1', 'input', 'content_data', 'sdfsdf', 'sddf', '1', '0', '50', '1', 'a:11:{s:7:\"message\";s:0:\"\";s:4:\"size\";s:3:\"300\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";s:3:\"css\";s:0:\"\";s:10:\"validation\";s:5:\"false\";s:8:\"required\";s:1:\"0\";s:5:\"error\";s:0:\"\";s:5:\"width\";s:0:\"\";s:6:\"height\";s:0:\"\";s:7:\"options\";s:0:\"\";}');
 
 -- ----------------------------
 -- Table structure for hd_link
@@ -684,31 +637,11 @@ CREATE TABLE `hd_tag` (
   PRIMARY KEY (`tid`),
   UNIQUE KEY `name` (`tag_name`),
   KEY `total` (`total`)
-) ENGINE=MyISAM AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hd_tag
 -- ----------------------------
-INSERT INTO `hd_tag` VALUES ('1', '这样', '1');
-INSERT INTO `hd_tag` VALUES ('2', '山路', '1');
-INSERT INTO `hd_tag` VALUES ('3', '这股', '1');
-INSERT INTO `hd_tag` VALUES ('4', '精灵', '1');
-INSERT INTO `hd_tag` VALUES ('5', '轻如', '1');
-INSERT INTO `hd_tag` VALUES ('6', '舒畅', '1');
-INSERT INTO `hd_tag` VALUES ('7', '一切', '1');
-INSERT INTO `hd_tag` VALUES ('8', '仿佛', '1');
-INSERT INTO `hd_tag` VALUES ('9', '变身', '1');
-INSERT INTO `hd_tag` VALUES ('19', '翼虎', '2');
-INSERT INTO `hd_tag` VALUES ('20', '采用了', '2');
-INSERT INTO `hd_tag` VALUES ('21', '假想', '2');
-INSERT INTO `hd_tag` VALUES ('22', '设计', '2');
-INSERT INTO `hd_tag` VALUES ('23', '前脸', '2');
-INSERT INTO `hd_tag` VALUES ('24', '已经', '2');
-INSERT INTO `hd_tag` VALUES ('25', '福特', '2');
-INSERT INTO `hd_tag` VALUES ('26', '改款', '2');
-INSERT INTO `hd_tag` VALUES ('27', '马丁', '2');
-INSERT INTO `hd_tag` VALUES ('34', '发布', '4');
-INSERT INTO `hd_tag` VALUES ('35', '盛大', '4');
 
 -- ----------------------------
 -- Table structure for hd_template_tag
@@ -750,14 +683,11 @@ CREATE TABLE `hd_upload` (
   KEY `id` (`id`) USING BTREE,
   KEY `uid` (`uid`),
   KEY `aid` (`aid`,`cid`,`mid`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='上传文件';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='上传文件';
 
 -- ----------------------------
 -- Records of hd_upload
 -- ----------------------------
-INSERT INTO `hd_upload` VALUES ('1', '1', '1', '5', '79061394723294', '79061394723294.jpg', 'upload/Content/2014/03/13/79061394723294.jpg', 'jpg', '1', '223033', '1394723294', '1');
-INSERT INTO `hd_upload` VALUES ('2', '2', '1', '5', '76251394723350', '76251394723350.jpg', 'upload/Content/2014/03/13/76251394723350.jpg', 'jpg', '1', '74544', '1394723350', '1');
-INSERT INTO `hd_upload` VALUES ('3', '0', '0', '0', '42971394764293', '42971394764293.jpg', 'upload/editor/2014/03/14/42971394764293.jpg', 'jpg', '1', '83925', '1394764293', '1');
 
 -- ----------------------------
 -- Table structure for hd_user
@@ -787,4 +717,4 @@ CREATE TABLE `hd_user` (
 -- ----------------------------
 -- Records of hd_user
 -- ----------------------------
-INSERT INTO `hd_user` VALUES ('1', 'admin', '7fef6171469e80d32c0559f88b377245', 'houdunwangxj@gmail.com', '1394763957', '0.0.0.0', '后盾网', '1', '', '1', '', '0', '1', '1');
+INSERT INTO `hd_user` VALUES ('1', 'admin', '7fef6171469e80d32c0559f88b377245', 'houdunwangxj@gmail.com', '1394953046', '0.0.0.0', '后盾网', '1', '', '1', '', '0', '1', '1');

@@ -79,7 +79,7 @@ class CategoryModel extends RelationModel
         foreach ($category as $n => $v) {
             $v['_type_name'] = $type[$v['cattype']];
             $data[$v['cid']] = $v;
-            $data[$v['cid']]['model_name']=$this->table('model')->where("mid={$v[mid]}")->getField('model_name');
+            $data[$v['cid']]['model_name']=$this->table('model')->where("mid={$v['mid']}")->getField('model_name');
         }
         return F("category", $data);
     }

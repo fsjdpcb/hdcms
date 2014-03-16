@@ -1,8 +1,5 @@
 <?php
 if (!defined("HDPHP_PATH")) exit;
-$tags=require './data/config/tag.inc.php';
-return array(
-    //标签
-    'TPL_TAGS' =>$tags
-);
+//基本标签类
+return array();
 ?>

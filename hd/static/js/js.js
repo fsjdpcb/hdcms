@@ -35,20 +35,19 @@ function field_check(obj, validataion, msg, error, required) {
     var _val = $.trim($(obj).val());
     //提示信息span表单
     var _span = $(obj).next("span");
-    $(obj).attr("validation", 1);
+    $(obj).attr("validate", 1);
     _span.removeClass("validate-error validate-success validate-message");
     //表单为空且为非必填项时返回真
     if (!required && !_val) {
-        _span.html(msg).addClass('validate-message');
+        _span.html('&nbsp;').addClass('validate-success');
         return true;
     }
     //验证通过
     if (validataion.test(_val)) {
-        $(obj).attr("validation", 1);
-        _span.addClass("validate-message");
-        _span.text(msg);
+        $(obj).attr("validate", 1);
+        _span.html('').addClass("validate-success").html('&nbsp;');
     } else {
-        $(obj).attr("validation", 0);
+        $(obj).attr("validate", 0);
         _span.addClass("validate-error").text(error || "输入错误");
     }
 }

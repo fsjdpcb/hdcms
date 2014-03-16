@@ -14,6 +14,7 @@
     <form action="__METH__&cid={$hd.get.cid}" method="post" class="hd-form">
         <input type="hidden" name="cid" value="{$hd.get.cid}"/>
         <input type="hidden" name="status" value="{$status}"/>
+
         <div class="search">
             添加时间：<input id="begin_time" readonly="readonly" class="w80" type="text" value="" name="search_begin_time">
             <script>
@@ -25,10 +26,10 @@
                 $('#end_time').calendar({format: 'yyyy-MM-dd'});
             </script>
             &nbsp;&nbsp;&nbsp;
-            <select name="search_flag" class="w100">
+            <select name="flag" class="w100">
                 <option selected="" value="">全部</option>
                 <list from="$flag" name="f">
-                    <option value="{$f.fid}">{$f.flagname}</option>
+                    <option value="{$f}">{$f}</option>
                 </list>
             </select>&nbsp;&nbsp;&nbsp;
             <select name="search_type" class="w100">
@@ -44,8 +45,12 @@
     </form>
     <div class="menu_list">
         <ul>
-            <li><a href="{|U:'content',array('cid'=>$_GET['cid'],'state'=>1)}" <if value="$hd.get.state==1">class="action"</if>>内容列表</a></li>
-            <li><a href="{|U:'content',array('cid'=>$_GET['cid'],'state'=>0)}" <if value="$hd.get.state==0">class="action"</if>>未审核文章</a></li>
+            <li><a href="{|U:'content',array('cid'=>$_GET['cid'],'state'=>1)}"
+                <if value="$hd.get.state==1">class="action"</if>
+                >内容列表</a></li>
+            <li><a href="{|U:'content',array('cid'=>$_GET['cid'],'state'=>0)}"
+                <if value="$hd.get.state==0">class="action"</if>
+                >未审核文章</a></li>
             <li><a href="javascript:;" onclick="window.open('{|U:add,array('cid'=>$_GET['cid'])}')">添加内容</a></li>
         </ul>
     </div>
@@ -75,10 +80,14 @@
                 </td>
                 <td>
                     <a href="{|U:edit,array('aid'=>$c['aid'],'cid'=>$_GET['cid'])}" target="_blank">{$c.title}</a>
-                    {$c.flag}
+                    <if value="$c.flag">
+                        <span style="color:#FF0000"> [{$c.flag}]</span>
+                    </if>
                 </td>
                 <td>
-                    <if value="$c.state==1">已审核<else>未审核</if>
+                    <if value="$c.state==1">已审核
+                        <else>未审核
+                    </if>
                 </td>
                 <td>{$c.catname}</td>
                 <td>{$c.model_name}</td>
@@ -87,10 +96,11 @@
                 <td align="right">
                     <a href="{$c.url}" target="_blank">访问</a><span
                         class="line">|</span>
-                    <a href="javascript:;" onclick="window.open('{|U:edit,array('aid'=>$c['aid'],'cid'=>$_GET['cid'])}')">编辑</a><span
+                    <a href="javascript:;"
+                       onclick="window.open('{|U:edit,array('aid'=>$c['aid'],'cid'=>$_GET['cid'])}')">编辑</a><span
                         class="line">|</span>
                     <a href="javascript:;" onclick="del({$hd.get.cid},{$c.aid})">删除</a>
-<!--                    <span class="line">|</span><a href="">评论</a>-->
+                    <!--                    <span class="line">|</span><a href="">评论</a>-->
                 </td>
             </tr>
         </list>

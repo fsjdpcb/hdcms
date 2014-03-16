@@ -17,9 +17,9 @@ class CategoryControl extends AuthControl
     private $_model;
 
     //构造函数
-    public function __init()
+    public function __construct()
     {
-        parent::__init();
+        parent::__construct();
         $this->_category = F("category", false);
         $this->_model = F("model", false);
         $this->_db = K("Category");

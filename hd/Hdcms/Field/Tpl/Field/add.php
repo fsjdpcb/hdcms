@@ -50,18 +50,6 @@
                     </select>
                 </td>
             </tr>
-            <if value="$model.type==1">
-                <tr>
-                    <th>表</th>
-                    <td>
-                        <label><input type="radio" name="table_type" value="1"/> 主表</label>
-                        <label><input type="radio" name="table_type" value="2" checked="checked"/> 附表</label>
-                    </td>
-                </tr>
-                <else>
-                    <input type="hidden" name="is_main_table" value="1"/>
-            </if>
-
             <tr>
                 <th>
                     字段标题<span class="star">*</span>

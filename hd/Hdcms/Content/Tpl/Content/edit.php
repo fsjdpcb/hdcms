@@ -4,8 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>修改文章</title>
-    <hdjs bootstrap="true"/>
-    <bootstrap/>
+    <hdjs/>
     <js file="__GROUP__/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/add_edit.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
@@ -123,7 +122,11 @@
                     <th>属性</th>
                     <td>
                         <list from="$flag" name="f">
-                            {$f.html}
+                            <label class="checkbox inline">
+                                <input type="checkbox" name="flag[]" value="{$f}"
+                                       <?php if(strstr($field['flag'],$f)){?>checked="chedked"<?php } ?>/>
+                                {$f} {$hd.list.f.index}
+                            </label>
                         </list>
                     </td>
                 </tr>

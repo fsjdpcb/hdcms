@@ -23,29 +23,25 @@
             <tr>
                 <td class="w30">fid</td>
                 <td>属性名称</td>
-                <td class="w100">系统属性</td>
                 <td width="50">操作</td>
             </tr>
             </thead>
             <tbody>
-            <list from="$flag" name="f">
+            <list from="$flag" name="name">
                 <tr>
-                    <td>
-                        {$f.fid}
+                    <td class="w100">
+                        {$name}
                     </td>
                     <td>
-                        <input type="text" name="flag[{$f.fid}][flagname]" value="{$f.flagname}"/>
+                        <input type="text" name="flag[]" value="{$name}"/>
                     </td>
                     <td>
-                        <if value="$f.system==1">是<else/>否</if>
-                    </td>
-                    <td>
-                        <if value="$f.system==1">
-                            <span style="color:#999;">删除</span>
-                            <else/>
-                            <a href="javascript:;" onclick="if(confirm('确定要删除属性吗？'))hd_ajax('{|U:del}',{fid:{$f.fid}})">删除</a>
+                        <if value="$hd.list.name.index gt 7">
+                            <a href="javascript:;"
+                               onclick="if(confirm('确定要删除属性吗？'))hd_ajax('{|U:del}',{number:<?php echo $hd['list']['name']['index'] - 1; ?>})">删除</a>
+                        <else>
+                            无
                         </if>
-
                     </td>
                 </tr>
             </list>

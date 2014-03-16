@@ -1,9 +1,13 @@
 <?php
+
+/**
+ * 访问权限验证
+ * Class AuthControl
+ */
 class AuthControl extends CommonControl
 {
     public function __init()
     {
-        parent::__init();
         header("Cache-Control: no-cache, must-revalidate");
         header("Cache-control: private");
         if (!$this->checkAdminAccess()) {

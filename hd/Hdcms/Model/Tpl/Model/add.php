@@ -42,13 +42,6 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>类型</th>
-                    <td>
-                        <label><input type="radio" name="type" value="1" checked="checked"/> 基本模型</label>
-                        <label><input type="radio" name="type" value="2"/> 独立模型(只有主表)</label>
-                    </td>
-                </tr>
-                <tr>
                     <th>允许前台投稿</th>
                     <td>
                         <label><input type="radio" name="is_submit" value="1"/> 允许</label>

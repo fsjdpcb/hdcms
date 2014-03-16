@@ -23,7 +23,7 @@
             <tr>
                 <th class="w100">属性名称</th>
                 <td>
-                    <input type="text" name="flagname" class="w200"/>
+                    <input type="text" name="value" class="w200"/>
                 </td>
             </tr>
         </table>

@@ -43,7 +43,7 @@ class ContentControl extends AuthControl
     }
 
     /**
-     * 显示文章列表
+     * 选择栏目
      */
     public function index()
     {
@@ -71,20 +71,67 @@ class ContentControl extends AuthControl
         $this->ajax($category);
     }
 
-    //待审核文章
-    public function audit()
-    {
-        $_GET['status'] = 0;
-        $this->content();
-    }
-
     //已审核文章内容页列表
     public function content()
     {
-        $db = K('ContentView');
-        $this->flag = F('flag');
-        //$data=array('data'=>'文章数据','page'=>’页码')
-        $this->assign($db->get_content());
+        $db = K("ContentView");
+        //---------------------搜索条件----------------------
+        //文章开始时间
+        if ($beginTime = Q('search_begin_time', NULL, 'strtotime'))
+            $where[] = "addtime>=$beginTime";
+        //文章结束时间
+        if ($endTime = Q('search_end_time', NULL, 'strtotime'))
+            $where[] = "addtime<=$endTime";
+        //文章属性flag
+        if ($flag = Q('flag', NULL, ''))
+            $where[] = "find_in_set('$flag',flag)";
+        //文章关键词
+        $searchKeyword = Q("search_keyword");
+        //按类型搜索
+        $searchType = Q("search_type");
+        if ($searchType && $searchKeyword) {
+            switch ($searchType) {
+                case 1:
+                    //按标题
+                    $where[] = "title like '%{$searchKeyword}%'";
+                    break;
+                case 2:
+                    //按简介
+                    $where[] = "description like '%{$searchKeyword}%'";
+                    break;
+                case 3:
+                    //按用户名
+                    $where[] = "author like '%{$searchKeyword}%'";
+                    break;
+                case 4:
+                    //按用户aid
+                    $where[] = "aid=" . intval($searchKeyword);
+                    break;
+            }
+        }
+        //文章状态：1 已审核 0未审核
+        $where[] = "state=" . Q("state", 1, "intval");
+        //搜索栏目
+        $cid = Q('cid', null, 'intval');
+        if (Q("cid")) {
+            $cid = array($cid);
+            //获得所有子栏目
+            $sCategory = Data::channelList($this->_category, $this->_cid);
+            foreach ($sCategory as $cat) {
+                $cid[] = $cat['cid'];
+            }
+            $where[] = $db->tableFull . '.cid IN(' . implode(',', $cid) . ')';
+        }
+        //组合SQL中WHERE的部分
+        $where = implode(" AND ", $where);
+        //---------------------搜索条件----------------------
+        //总记录数
+        $count = $db->join('category')->where($where)->count();
+        $page = new Page($count, C("ADMIN_LIST_ROW"));
+        $this->page = $page->show();
+        $this->data = $db->where($where)->join('category')->order('arc_sort ASC,aid DESC')->limit($page->limit())->all();
+        //分配属性flag
+        $this->flag= F('flag');
         $this->display();
     }
 
@@ -117,14 +164,14 @@ class ContentControl extends AuthControl
             $this->flag = F('flag');
             //分配栏目
             $this->category = $this->_category[$this->_cid];
-//            //模型type为1时即标准模型，显示编辑器、关键字等字段
+            //模型type为1时即标准模型，显示编辑器、关键字等字段
             $this->model = $this->_model[$this->_mid];
-//            //自定义字段
-//            import('Field/Model/FieldModel');
-//            //FieldModel模型使用mid参数
-//            $_REQUEST['mid'] = $this->_mid;
-//            $fieldModel = new FieldModel();
-//            $this->custom_field = $fieldModel->field_view();
+            //自定义字段
+            import('Field/Model/FieldModel');
+            //FieldModel模型使用mid参数
+            $_REQUEST['mid'] = $this->_mid;
+            $fieldModel = new FieldModel();
+            $this->custom_field = $fieldModel->field_view();
             $this->display();
         }
     }
@@ -147,7 +194,7 @@ class ContentControl extends AuthControl
                 //模型type为1时即标准模型，显示编辑器、关键字等字段
                 $this->model = $this->_model[$this->_mid];
                 //FLAG属性
-                $this->flag = $this->_db->get_content_flag($aid);
+                $this->flag =F('flag');
                 $field['thumb_img'] = empty($field['thumb']) || !is_file($field['thumb']) ? __ROOT__ . '/hd/static/img/upload-pic.png' : __ROOT__ . '/' . $field['thumb'];
                 $this->field = $field;
                 //自定义字段处理

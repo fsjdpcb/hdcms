@@ -115,10 +115,9 @@
                     <th>属性</th>
                     <td>
                         <list from="$flag" name="f">
-                            <input type="hidden" name="content_flag[{$f.fid}][cid]" value="{$category.cid}"/>
                             <label class="checkbox inline">
-                                <input type="checkbox" name="content_flag[{$f.fid}][fid]" value="{$f.fid}"/>
-                                {$f.flagname} [{$f.fid}]
+                                <input type="checkbox" name="flag[]" value="{$f}"/>
+                                {$f} {$hd.list.f.index}
                             </label>
                         </list>
                     </td>
@@ -131,7 +130,7 @@
                     </td>
                 </tr>
                 <!--标准模型显示正文字段-->
-                <if value="$model.type==1">
+                <if value="$model.mid==1">
                     <tr>
                         <th>内容<span class="star">*</span></th>
                         <td>

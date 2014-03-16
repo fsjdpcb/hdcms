@@ -149,8 +149,8 @@ str;
     //数据块
     public function _arclist($attr, $content)
     {
-        $cid = isset($attr['cid']) ? trim($attr['cid']) : 0;
-        $aid = isset($attr['aid']) ? $attr['aid'] : '';
+        $cid = isset($attr['cid']) ? trim($attr['cid']) : '';
+        $aid = isset($attr['aid']) ? trim($attr['aid']) : '';
         $mid = isset($attr['mid']) ? $attr['mid'] : 1;
         $row = isset($attr['row']) ? intval($attr['row']) : 10;
         //简单长度
@@ -158,43 +158,70 @@ str;
         //标题长度
         $titlelen = isset($attr['titlelen']) ? intval($attr['titlelen']) : 80;
         //属性
-        $flag = isset($attr['flag']) ? $attr['flag'] : '';
+        $fid = isset($attr['fid']) ? trim($attr['fid']) : '';
+        //获取类型（排序）
+        $order = isset($attr['order']) ? strtolower(trim($attr['order'])) : 'new';
+        //子栏目处理
+        $sub_channel = isset($attr['sub_channel']) ? intval($attr['sub_channel']) : 1;
         $php = <<<str
-        <?php \$mid="$mid";\$cid ='$cid';\$flag='$flag';\$aid='$aid';
+        <?php \$mid="$mid";\$cid ='$cid';\$fid='$fid';\$aid='$aid';\$order='$order';\$sub_channel=$sub_channel;
+            //设置cid条件
+            \$cid = \$cid?\$cid:Q('cid',null,'intval');
+            //导入模型类
+            import('Content.Model.ContentViewModel');
+            \$db = K('ContentView',array('mid'=>\$mid));
+            //主表（有表前缀）
+            \$table=\$db->tableFull;
             //没有设置栏目属性时取get值
             if(empty(\$cid)){
                 \$cid= Q('cid',NULL,'intval');
             }
-            //没有设置属性也没有\$_GET['cid']时取所有栏目
-            if(empty(\$cid)){
-                \$tmp = M('category')->where('mid=1')->getField('cid',true);
-                if(\$tmp)
-                    \$cid=implode(',',\$tmp);
+            //---------------------------排序类型-------------------------------
+            switch(\$order){
+                case 'hot':
+                    //查询次数最多
+                    \$db->order('click DESC');
+                    break;
+                case 'rand':
+                    //随机排序
+                    \$db->order('rand()');
+                    break;
+                case 'new':
+                default:
+                    //最新排序
+                    \$db->order('updatetime DESC');
+                    break;
             }
-            //存在栏目时进行数据读取操作
-            if(\$cid){
-            \$cid = explode(',',preg_replace('@\s@','',\$cid));
-            //取一个cid为了实例化模型
-            import('Content.Model.ContentViewModel');
-            \$db = K('ContentView',array('cid'=>\$cid[0]));
-                //主表
-                \$table=\$db->tableFull;
-                if(!empty(\$flag)){
-                    \$db->in(array("fid" => \$flag));
+            //---------------------------查询条件-------------------------------
+                \$where=array();
+                //获取指定栏目的文章,子栏目处理
+                if(\$cid){
+                    //查询条件
+                    if(\$sub_channel){
+                        \$category = get_son_category(\$cid);
+                        \$where[]=\$db->tableFull.".cid IN(".implode(',',\$category).")";
+                    }else{
+                        \$where[]=\$db->tableFull.".cid IN(\$cid)";
+                    }
                 }
-                \$db->where = \$table.'.cid in('.implode(',',\$cid).')';
+                //根据fid获得数据
+                if(\$fid){
+                    \$where[]=C('DB_PREFIX')."content_flag.fid IN(\$fid)";
+                }
                 //指定文章
                 if (\$aid) {
-                    \$db->where=\$table.'.aid IN('.\$aid.')';
+                    \$where[]=\$table.".aid IN(\$aid)";
                 }
-                \$db->where=\$table.'.state=1';
+                //已经审核的文章
+                \$where[]=\$table.'.state=1';
+                \$where = implode(" AND ",\$where);
+                //------------------关联content_flag表后有重复数据，去掉重复的文章---------------------
                 \$db->group=\$table.'.aid';
+                //------------------指定显示条数---------------------------------------------
                 \$db->limit($row);
-                \$field = "*,\$table.cid,\$table.aid";
-                \$db->field(\$field);
-                \$result = \$db->join('category,content_flag')->order('arc_sort ASC,updatetime DESC')->all();
-
-                if(\$result){
+            //--------------------------获取数据------------------------------------
+                \$result = \$db->join('category,content_flag')->where(\$where)->all();
+                if(\$result):
                     foreach(\$result as \$index=>\$field):
                         \$field['index']=\$index+1;
                         \$field['caturl']=U('category',array('cid'=>\$field['cid']));
@@ -207,7 +234,7 @@ str;
                 ?>
 str;
         $php .= $content;
-        $php .= '<?php endforeach;}}?>';
+        $php .= '<?php endforeach;endif;?>';
         return $php;
     }
 
@@ -219,38 +246,61 @@ str;
         $titlelen = isset($attr['titlelen']) ? intval($attr['titlelen']) : 80;
         //简介长度
         $infolen = isset($attr['infolen']) ? intval($attr['infolen']) : 500;
-        //类型 son 包含子栏目
-        $type = isset($attr['type']) ? $attr['type'] : 'son';
+        //获取类型（排序）
+        $order = isset($attr['order']) ? strtolower(trim($attr['order'])) : 'new';
+        $fid = isset($attr['fid']) ? $attr['fid'] : '';
+        //模型mid
+        $mid = isset($attr['mid']) ? intval($attr['mid']) :1;
+        //栏目cid
+        $cid = isset($attr['cid']) ? trim($attr['cid']) :'';
+        //子栏目处理
+        $sub_channel = isset($attr['sub_channel']) ? intval($attr['sub_channel']) : 1;
         $php = <<<str
         <?php
-        \$type=strtolower('$type');
-        \$cid=Q('cid',NULL,'intval');
+        \$mid =$mid;\$cid='$cid';\$fid = '$fid';\$sub_channel=$sub_channel;\$order = '$order';
+        \$cid = \$cid?\$cid:Q('cid',NULL,'intval');
+        //导入模型类
         import('Content.Model.ContentViewModel');
-        \$db = K('ContentView');
-        //有栏目时操作，非列表页模板调用时获得所有栏目文章
-        \$where=null;
+        \$db = K('ContentView',array('mid'=>\$mid));
+        //---------------------------排序Order-------------------------------
+            switch(\$order){
+                case 'hot':
+                    //查看次数最多
+                    \$order='click DESC';
+                    break;
+                case 'rand':
+                    //随机排序
+                    \$order='rand()';
+                    break;
+                case 'new':
+                default:
+                    //最新排序
+                    \$order='updatetime DESC';
+                    break;
+            }
+        //----------------------------条件Where-------------------------------------
+        \$where=array();
+        //子栏目处理
         if(\$cid){
             //查询条件
-            switch(\$type){
-                case 'son':
-                    //获得所有子栏目
-                    \$child=Data::channelList(F('category'),\$cid);
-                    if(\$child){
-                        foreach(\$child as \$c)
-                            \$cid.=','.\$c['cid'];
-                            //去除尾部逗号
-                            \$cid=substr(\$cid,0,-1);
-                    }
-                    \$where=\$db->tableFull.".cid In(\$cid) and state=1";
-                    break;
-                case 'current':
-                default:
-                    \$where=\$db->tableFull.".cid In(\$cid) and state=1";
+            if(\$sub_channel){
+                \$category = get_son_category(\$cid);
+                \$where[]=\$db->tableFull.".cid IN(".implode(',',\$category).")";
+            }else{
+                \$where[]=\$db->tableFull.".cid IN(\$cid)";
             }
         }
-        \$count = \$db->join(NULL)->order("arc_sort ASC")->where(\$where)->count();
+        //指定筛选属性fid='1,2,3'时,获取指定属性的文章
+        if(\$fid){
+          \$where[]=C('DB_PREFIX')."content_flag.fid IN(\$fid)";
+        }
+        \$where= implode(' AND ',\$where);
+        //-------------------------获得数据-----------------------------
+        //关联表
+        \$join = "content_flag,category";
+        \$count = \$db->join(\$join)->order("arc_sort ASC")->where(\$where)->count(\$db->tableFull.'.aid');
         \$page= new Page(\$count,$row);
-        \$result= \$db->join("category")->order("arc_sort ASC")->where(\$where)->limit(\$page->limit())->all();
+        \$result= \$db->join(\$join)->order("arc_sort ASC")->where(\$where)->order(\$order)->limit(\$page->limit())->all();
         if(\$result):
             //有结果集时处理
             foreach(\$result as \$field):

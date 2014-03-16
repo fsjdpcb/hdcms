@@ -20,23 +20,20 @@ class FieldControl extends AuthControl
     //构造函数
     public function __init()
     {
-        parent::__init();
         //模型mid
         $this->_mid = Q("mid", null, "intval");
         //验证模型mid
         if (!$this->_mid) {
             $this->error("模型不存在！");
         }
-        //当前字段模型缓存
-        $this->_model = F("model", false);
+        //模型缓存
+        $this->_model = F("model");
         //字段缓存
         $this->_field = F($this->_mid, false, FIELD_CACHE_PATH);
         //字段fid
         $this->_fid = Q("fid", null, "intval");
         //模型对象
         $this->_db = K("Field");
-        //分配mid，全局使用
-        $this->mid = $this->_mid;
     }
 
     /**
@@ -74,7 +71,7 @@ class FieldControl extends AuthControl
                 $this->ajax(array('state' => 1, 'message' => '添加字段成功'));
             }
         } else {
-            $this->assign("model", $this->_model[$this->_mid]);
+            $this->model=$this->_model[$this->_mid];
             $this->display();
         }
     }

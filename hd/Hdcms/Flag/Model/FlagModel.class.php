@@ -5,19 +5,28 @@
  * Class FlagModel
  * @author hdxj
  */
-class FlagModel extends CommonModel
+class FlagModel extends Model
 {
-    public $table = "flag";
+    public $table = "content";
+    //缓存
+    public $_flag;
+    public $validate = array(
+        array('value', 'nonull', '标签值不能为空', 1, 3),
+    );
+
+    //构造函数
+    public function __init()
+    {
+        $this->_flag = F('flag');
+    }
 
     //删除属性
     public function del_flag()
     {
-        $fid = Q("fid", null, "intval");
-        if ($fid) {
-            //删除内容属性表中数据
-            if ($this->table("content_flag")->where("fid=$fid")->del()) {
-                return $this->del($fid);
-            }
+        //大于7的属性可以删除（用户定义）
+        if (isset($_POST['number']) && intval($_POST['number']) > 7) {
+            unset($this->_flag[$_POST['number']]);
+            return $this->alter_table();
         }
     }
 
@@ -27,12 +36,8 @@ class FlagModel extends CommonModel
     public function edit_flag()
     {
         if (!empty($_POST['flag'])) {
-            foreach ($_POST['flag'] as $fid => $data) {
-                $data['fid'] = $fid;
-                $this->trigger()->save($data);
-            }
-            $this->update_cache();
-            return true;
+            $this->_flag = $_POST['flag'];
+            return $this->alter_table();
         }
     }
 
@@ -42,7 +47,19 @@ class FlagModel extends CommonModel
     public function add_flag()
     {
         if ($this->create()) {
-            return $this->add();
+            $this->_flag[] = $_POST['value'];
+            return $this->alter_table();
+        }
+    }
+
+    /**
+     * 修改表结构
+     */
+    private function alter_table()
+    {
+        $sql = "ALTER TABLE " . C('DB_PREFIX') . "content MODIFY flag set('" . implode("','", $this->_flag) . "')";
+        if ($this->exe($sql)) {
+            return $this->update_cache();
         }
     }
 
@@ -51,19 +68,17 @@ class FlagModel extends CommonModel
      */
     public function update_cache()
     {
-        $flag = $this->getField('fid,flagname,system', true);
-        return F('flag', $flag);
+        $result = M()->query('DESC hd_content');
+        foreach ($result as $field) {
+            if ($field['Field'] == 'flag') {
+                $tmp = substr($field['Type'], 4, -2);
+                $flag = explode(',', str_replace("'", '', $tmp));
+                break;
+            }
+        }
+        return F("flag", $flag);
     }
 
-    public function __after_update($data)
-    {
-        $this->update_cache();
-    }
-
-    public function __after_insert($data)
-    {
-        $this->update_cache();
-    }
     public function __after_delete($data)
     {
         $this->update_cache();
