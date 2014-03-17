@@ -35,13 +35,13 @@ article.header {
   }
   nav {
     //点击后背景颜色修改
-    .open{
-      a.dropdown-toggle{
+    .open {
+      a.dropdown-toggle {
         background: @bgcolor-gray;
       }
     }
-    a.dropdown-toggle{
-      &:hover{
+    a.dropdown-toggle {
+      &:hover {
         background: @bgcolor-gray;
       }
     }
@@ -175,6 +175,29 @@ div.content {
         color: #666;
       }
     }
+    div.page {
+      margin-top:20px;
+      span, a, strong,span.close {
+        display: block;
+        float: left;
+        padding: 3px 15px;
+        line-height: 2em;
+        text-align: center;
+        margin-right: 8px;
+        border: solid 1px #dcdcdc;
+        background: #ffffff;
+        font-size: 14px;
+        color:#666;
+      }
+      a{
+        text-decoration: none;
+      }
+      a:hover,strong{
+        background: #7AC143;
+        color:#fff;
+        border:solid 1px #EEEEEE;
+      }
+    }
   }
   //--------------------右侧列表-----------------
   div.right-list {
@@ -278,13 +301,14 @@ div.content {
     }
   }
 }
+
 //底部版权
-footer{
+footer {
   background: @bgcolor-gray;
-  color:#aaa;
-  padding:20px 10px;
-  font-size:12px;
-  border-left:solid 8px @blue;
-  margin-top:20px;
+  color: #aaa;
+  padding: 20px 10px;
+  font-size: 12px;
+  border-left: solid 8px @blue;
+  margin-top: 20px;
 }
 

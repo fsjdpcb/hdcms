@@ -44,7 +44,7 @@ class UserModel extends RelationModel
     }
 
     public $join = array(
-        "member_group" => array(
+        "group" => array(
             "type" => BELONGS_TO,
             "foreign_key" => "gid",
             "parent_key" => "gid"

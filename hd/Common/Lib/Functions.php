@@ -1,19 +1,7 @@
 <?php
 if (!defined("HDPHP_PATH")) exit;
-/**
- * 获得用户密码
- * @param string $password 密码
- * @param null $code 加密因子
- * @return array
- */
-function user_password($password, $code = null)
-{
-    if (is_null($code)) {
-        $code = md5(C("AUTH_KEY") . mt_rand() . time());
-    }
-    $password = md5(trim($password) . $code);
-    return array('password' => $password, 'code' => $code);
-}
+
+
 /**
  * 获取指定栏目的所有子栏目（包含栏目本身）
  * @param $cid 栏目cid
@@ -33,4 +21,24 @@ function get_son_category($cid)
         }
     }
     return $data;
+}
+
+/**
+ * 获取用户密码加密key
+ * @return string
+ */
+function get_user_code()
+{
+    return substr(md5(C("AUTH_KEY") . mt_rand() . time() . C('AUTH_KEY')), 0, 10);
+}
+
+/**
+ * 获得用户密码
+ * @param $password 密码
+ * @param $code 加密key
+ * @return string 储存到数据库中的密码
+ */
+function get_user_password($password, $code)
+{
+    return md5($password . $code);
 }

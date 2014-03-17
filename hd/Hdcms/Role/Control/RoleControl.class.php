@@ -48,18 +48,14 @@ class RoleControl extends AuthControl
     public function check_role()
     {
         //角色名称
-        $rname = Q('post.rname', NULL, 'trim');
+        $rname = Q('rname', NULL, 'trim');
         //角色ID（编辑角色时验证）
-        $rid = Q('post.rid', NULL, 'intval,trim');
-        if (is_null($rname)) {
-            $stat = 0;
-        } else if (is_null($rid)) {
-            //添加角色时验证
-            $stat = $this->_db->join()->where("rname ='$rname'")->find() ? 0 : 1;
-        } else {
-            //编辑角色时验证
-            $stat = $this->_db->join()->where("rid<>$rid and rname ='$rname'")->find() ? 0 : 1;
+        $rid = Q('rid', NULL, 'intval,trim');
+        if ($rid) {
+            $stat = $this->_db->join()->where("rid <>$rid");
         }
+        //编辑角色时验证
+        $stat = $this->_db->join()->where("rname ='$rname'")->find() ? 0 : 1;
         $this->ajax($stat);
     }
 

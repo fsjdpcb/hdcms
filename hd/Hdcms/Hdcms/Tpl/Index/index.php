@@ -24,11 +24,10 @@
         {$hd.session.rname} : admin <a href="{|U:'Login/out'}" target="_self">[退出]</a><span>|</span>
         <a href="javascript:hd_ajax('{|U:'Cache/Cache/update_all'}');">更新全站缓存</a><span>|</span>
         <a href="__WEB__" target="_blank">前台首页</a>
-        <!--        <span>|</span>-->
-        <!--        <a href="{|U:'Member/Index/index'}" target="_blank">会员中心</a></a>-->
-        <!--        <span>|</span>-->
-        <!--        <a href="__ROOT__" target="_blank">后台地图</a><span>|</span>-->
-        <!--        <a href="__ROOT__" target="_blank">更新缓存</a>-->
+        <span>|</span>
+        <a href="{|U:'Home/Home/index',array('g'=>'Member')}" target="_blank">会员中心</a></a>
+        <span>|</span>
+        <a href="__ROOT__" target="_blank">后台地图</a>
     </div>
     <!--头部右侧导航-->
 </div>
@@ -45,12 +44,14 @@
         </div>
         <div class="favorite_menu">
             <ul>
-                <li class="action" nid="0" style="border-left:solid 1px #D8D8D8;"><a href="javascript:;" class="menu" nid="0">环境</a></li>
+                <li class="action" nid="0" style="border-left:solid 1px #D8D8D8;"><a href="javascript:;" class="menu"
+                                                                                     nid="0">环境</a></li>
             </ul>
         </div>
     </div>
     <div class="top_content">
-        <iframe src="{|U:'feedback'}" nid="0" scrolling="auto" frameborder="0" style="height: 100%;width: 100%;"></iframe>
+        <iframe src="{|U:'feedback'}" nid="0" scrolling="auto" frameborder="0"
+                style="height: 100%;width: 100%;"></iframe>
     </div>
     <!--内容显示区域-->
 </div>

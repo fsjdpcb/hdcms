@@ -19,12 +19,12 @@ class AuthControl extends CommonControl
     private function checkAdminAccess()
     {
         //站长放行
-        if (session("WEB_MASTER") || session("admin")) {
+        if (session("WEB_MASTER")) {
             return TRUE;
         }
         //没有登录用户或非后台管理员跳转到登录入口
-        if (!isset($_SESSION['uid']) or !isset($_SESSION['admin'])) {
-            echo "<script>top.location.href='?a=Hdcms&c=Login'</script>";
+        if (!isset($_SESSION['rid'])) {
+            echo "<script>top.location.href='?a=Hdcms&c=Login&m=login'</script>";
             exit;
         }
         //检测后台权限
@@ -35,6 +35,7 @@ class AuthControl extends CommonControl
             "method" => METHOD,
         );
         $node = $db->field("nid")->find();
+
         //node不存在的节点自动通过验证
         if (is_null($node)) {
             return true;

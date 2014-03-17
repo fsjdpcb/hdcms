@@ -5,7 +5,6 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>修改角色</title>
     <hdjs/>
-    <js file="__GROUP__/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
@@ -18,7 +17,7 @@
         </ul>
     </div>
     <div class="title-header">角色信息</div>
-    <form action="{|U:'edit'}" method="post" class="form-inline hd-form">
+    <form action="{|U:'edit'}" method="post" class="hd-form" onsubmit="return hd_submit(this,'{|U:index}')">
         <input type="hidden" name="rid" value="{$field.rid}"/>
         <table class="table1">
             <tr>

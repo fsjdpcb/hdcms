@@ -36,6 +36,8 @@ class ContentViewModel extends ViewModel
         } else if ($this->_cid) {
             //如果指定栏目cid，根据栏目cid设置模型
             $this->_mid = $this->_category[$this->_cid]['mid'];
+        } else {
+            $this->_mid = 1;
         }
         //主表
         $this->table = $this->_model[$this->_mid]['table_name'];

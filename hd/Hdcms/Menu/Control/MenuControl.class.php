@@ -45,7 +45,8 @@ class MenuControl extends AuthControl
             $html .= "<dl><dt>" . $t['title'] . "</dt>";
             if ($t['_data']) {
                 foreach ($t['_data'] as $d) {
-                    $url = __ROOT__ . "/index.php?g=" . $d['app_group'] . "&a=" . $d['app'] . "&c=" . $d['control'] . "&m=" . $d['method'];
+                    $param = $d['param'] ? '&' . $d['param'] : '';
+                    $url = __ROOT__ . "/index.php?g=" . $d['app_group'] . "&a=" . $d['app'] . "&c=" . $d['control'] . "&m=" . $d['method'] . $param;
                     $html .= "<dd><a nid='" . $d["nid"] . "' href='javascript:;'
                     onclick='get_content(this," . $d["nid"] . ")' url='" . $url . "'>"
                         . $d['title'] . "</a></dd>";

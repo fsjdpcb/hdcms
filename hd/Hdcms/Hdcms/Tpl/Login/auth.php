@@ -10,7 +10,7 @@
 <script type="text/javascript">
     var data = jQuery.parseJSON('{$stat}');
     if (data.stat == 1) {
-        parent.window.location.href = "{|U:'index'}";
+        parent.window.location.href = "{|U:'login'}";
     } else {
         parent.window.error_tips_hide(data.msg);
     }

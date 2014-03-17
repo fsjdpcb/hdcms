@@ -1,5 +1,6 @@
 <?php
 import("User.Model.UserModel");
+
 /**
  * 登录处理模块
  * Class LoginControl
@@ -14,16 +15,26 @@ class LoginControl extends CommonControl
     public function __init()
     {
         parent::__init();
-
+        //判断浏览器
+        if (!$this->check_browser()) {
+            $this->display('check_browser');
+            exit;
+        }
     }
 
     /**
-     * 登录页面
-     * @access public
+     * 浏览器检测
+     * @return bool
      */
-    public function index()
+    public function check_browser()
     {
-        go("login");
+        $browser = browser_info();
+        if (strstr($browser, 'msie')) {
+            if (intval(substr($browser, 4)) < 9) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -50,43 +61,26 @@ class LoginControl extends CommonControl
     public function Login()
     {
 
-        if (IS_POST) { //错误码 stat 状态  msg 错误信息
+        if (IS_POST) {
             //实例模型对象
             $this->db = K("User");
             $username = Q("post.username", NULL, "strip_tags,htmlspecialchars,addslashes");
             $user = $this->db->where("username='$username'")->find();
+            $stat = null;
             if (!$user) {
                 $stat = array("stat" => 0, "msg" => "帐号输入错误");
-            } else if ($user['password'] != md5($_POST['password'])) {
+            } else if ($user['password'] != md5($_POST['password'] . $user['code'])) {
                 $stat = array("stat" => 0, "msg" => "密码输入错误");
             } else if (Q('post.code', '', 'strtoupper') != Q('session.code')) {
                 $stat = array("stat" => 0, "msg" => "验证码输入错误");
             } else {
-                $_SESSION = array_merge($_SESSION, array(
-                    "uid" => $user['uid'],
-                    "admin" => 1,
-                ));
-                //是否为超级管理员
-                $_SESSION['WEB_MASTER'] = C("WEB_MASTER") == $user['username'];
-                $_SESSION['username'] = $user['username'];
-                $_SESSION['realname'] = $user['realname'];
-                $_SESSION['rid'] = $user['rid'];
-                $_SESSION['rname'] = $user['rname'];
-                $_SESSION['favicon'] = empty($user['favicon']) ? __ROOT__ . "/data/image/favicon/favicon" : __ROOT__ . '/' . $user['favicon'];
-                //获得角色信息
-                $stat = array("stat" => 1, "msg" => "正在登录...");
-                //修改登录IP与时间
-                $this->db->save(array(
-                    "uid" => $user['uid'],
-                    "logintime" => time(),
-                    "ip" => ip_get_client()
-                ));
+                $this->record_user($user['uid']);
+                $stat = array("stat" => 1, "msg" => "OK");
             }
             $this->assign("stat", json_encode($stat));
             $this->display("auth");
         } else {
-            //已经登录的管理员直接登录后台
-            if (isset($_SESSION['WEB_MASTER']) or isset($_SESSION['admin'])) {
+            if (session('rid')) {
                 go("Hdcms/Index/index");
             }
             $this->display();
@@ -101,7 +95,8 @@ class LoginControl extends CommonControl
         //清空SESSION
         session(NULL);
         echo "<script>
-            window.top.location.href='" . U("index") . "';
+            window.top.location.href='" . U("login") . "';
         </script>";
+        exit;
     }
 }

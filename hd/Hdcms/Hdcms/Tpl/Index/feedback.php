@@ -31,10 +31,7 @@
     <div class="title-header">HDCMS动态</div>
     <table class="table2">
         <tr>
-            <td><a href="#">[2013-2-22] 增加DISCUZ论坛整合</a></td>
-        </tr>
-        <tr>
-            <td><a href="#">[2013-2-22] 增加SINA接口整合</a></td>
+            <td><a href="#">[2014-5-22] DISCUZ论坛整合</a></td>
         </tr>
     </table>
     &nbsp;&nbsp;&nbsp;<a href="http://www.hdphp.com">>>查看所有动态</a>

@@ -11,7 +11,7 @@ return array (
     'index_tpl' => '{style}/article_index.html',
     'list_tpl' => '{style}/article_list.html',
     'arc_tpl' => '{style}/article_default.html',
-    'cat_html_url' => '',
+    'cat_html_url' => '{catdir}/list_{cid}_{page}.html',
     'arc_html_url' => '{catdir}/{y}/{m}{d}/{aid}.html',
     'mid' => '1',
     'cattype' => '1',

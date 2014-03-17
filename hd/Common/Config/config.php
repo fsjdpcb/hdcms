@@ -23,14 +23,16 @@ return array_merge(
         //模板后缀
         "TPL_FIX" => ".php",
         //编辑器上传文件储存位置
-        'EDITOR_SAVE_PATH'          => ROOT_PATH . 'upload/editor/'.date('Y/m/d/'), //文件储存目录
+        'EDITOR_SAVE_PATH' => ROOT_PATH . 'upload/editor/' . date('Y/m/d/'), //文件储存目录
         //公共函数库
-        "AUTO_LOAD_FILE" => array(GROUP_PATH.'Common/Functions/common.php'),//自动加载文件
+        "AUTO_LOAD_FILE" => array('functions.php'),
         "TPL_ERROR" => "./hd/Common/Template/error.html", //错误页面
         "TPL_SUCCESS" => "./hd/Common/Template/success.html", //正确页面
-        'ROUTE'=>array(
-              //跳转到注册页
-              '/reg$/'=>"g=Member&a=Login&c=Reg&m=reg",
+        'ROUTE' => array(
+            //跳转到注册页
+            '/^login$/' => "g=Member&a=Login&c=Login&m=login",
+            '/^reg$/' => "g=Member&a=Login&c=Login&m=reg",
+            '/^quit$/' => "g=Member&a=Login&c=Login&m=quit",
 //            //栏目
 //            '/^list_(\d+).html$/'=>'a=Index&c=Index&m=category&cid=#1',
 //            //普通文章

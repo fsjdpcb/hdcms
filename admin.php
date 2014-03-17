@@ -1,2 +1,2 @@
 <?php
-header("location:index.php?a=Hdcms");
+header("location:index.php?a=Hdcms&c=Login&m=login");

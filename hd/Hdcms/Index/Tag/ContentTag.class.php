@@ -206,7 +206,12 @@ str;
                 }
                 //根据fid获得数据
                 if(\$fid){
-                    \$where[]=C('DB_PREFIX')."content_flag.fid IN(\$fid)";
+                    \$fid = explode(',',\$fid);
+                    \$flag = F('flag');
+                    foreach(\$fid as \$f){
+                        \$f=\$flag[\$f-1];
+                        \$where[]="find_in_set('\$f',flag)";
+                    }
                 }
                 //指定文章
                 if (\$aid) {
@@ -292,7 +297,12 @@ str;
         }
         //指定筛选属性fid='1,2,3'时,获取指定属性的文章
         if(\$fid){
-          \$where[]=C('DB_PREFIX')."content_flag.fid IN(\$fid)";
+            \$fid = explode(',',\$fid);
+            \$flag = F('flag');
+            foreach(\$fid as \$f){
+                \$f=\$flag[\$f-1];
+                \$where[]="find_in_set('\$f',flag)";
+            }
         }
         \$where= implode(' AND ',\$where);
         //-------------------------获得数据-----------------------------

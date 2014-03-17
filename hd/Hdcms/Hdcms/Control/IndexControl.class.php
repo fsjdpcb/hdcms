@@ -12,12 +12,13 @@ class IndexControl extends AuthControl
 {
     //内容模型对象
     private $_db;
-
     public function __init()
     {
         parent::__init();
         $this->_db = K("Menu");
     }
+
+
 
     //后台首页
     function index()

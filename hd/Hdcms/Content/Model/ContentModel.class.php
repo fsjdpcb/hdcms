@@ -7,7 +7,7 @@ import('Index.Tag.ContentTag');
 
 
 /**
- * 内容管理模型
+ * 管理员文章内容管理
  * Class ContentModel
  */
 class ContentModel extends RelationModel
@@ -73,7 +73,7 @@ class ContentModel extends RelationModel
         $this->_category = F("category");
         $this->_cid = Q("cid", null, "intval");
         $this->_aid = Q('aid', NULL, 'intval');
-        $this->_mid = $this->_category[$this->_cid]['mid'];
+        $this->_mid = $this->_cid ? $this->_category[$this->_cid]['mid'] : 1;
         //自定义字段
         $this->_field = F($this->_mid, false, FIELD_CACHE_PATH);
         //主表
@@ -284,7 +284,8 @@ class ContentModel extends RelationModel
                 if (preg_match("@" . __ROOT__ . "@", $d_img)) {
                     $data['thumb'] = str_ireplace(__ROOT__ . '/', "", $d_img);
                 }
-
+                //设置图片属性
+                $data['flag'] = empty($data['flag']) ? '图片' : $data['flag'] . ",图片";
             }
         }
     }

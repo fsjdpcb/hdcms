@@ -17,10 +17,8 @@ class ContentControl extends AuthControl
     private $_cid;
     //文章aid
     private $_aid;
-    //当前模型
+    //模型对象
     private $_db;
-    //文章主表
-    private $_table;
 
     //构造函数
     public function __init()
@@ -36,7 +34,6 @@ class ContentControl extends AuthControl
                 $this->error("栏目不存在！");
             }
             $this->_mid = $this->_category[$this->_cid]['mid'];
-            $this->_table = $this->_model[$this->_mid]['table_name'];
             $this->_db = K("Content");
         }
 

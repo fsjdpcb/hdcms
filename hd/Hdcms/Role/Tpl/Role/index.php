@@ -19,9 +19,10 @@
         <thead>
         <tr>
             <td class="w30">rid</td>
-            <td class="w100">角色名称</td>
+            <td class="w150">角色名称</td>
             <td>描述</td>
-            <td width="180">操作</td>
+            <td class="w100">系统</td>
+            <td class="w180">操作</td>
         </tr>
         </thead>
         <tbody>
@@ -31,10 +32,22 @@
                 <td>{$r.rname}</td>
                 <td>{$r.title}</td>
                 <td>
-                    <a href="{|U:'Admin/Admin/index',array('rid'=>$r['rid'])}">成员</a> |
+                    <if value="$r.system_role">
+                        <font color="red">√</font>
+                        <else/>
+                        ×
+                    </if>
+                </td>
+                <td>
+                    <a href="{|U:'Admin/index',array('rid'=>$r['rid'])}">成员</a> |
                     <a href="{|U:'edit',array('rid'=>$r['rid'])}">修改</a> |
-                    <a href="javascript:hd_ajax('{|U:del}',{rid:{$r.rid}})">删除</a> |
-                    <a href="{|U:'Access/Access/set_access',array('rid'=>$r['rid'])}">权限设置</a>
+                    <if value="$r.system_role">
+                        <span>删除</span>
+                        <else/>
+                        <a href="javascript:hd_ajax('{|U:del}',{rid:{$r.rid}})">删除</a> |
+                    </if>
+
+                    <a href="{|U:'Access/edit',array('rid'=>$r['rid'])}">权限设置</a>
                 </td>
             </tr>
         </list>

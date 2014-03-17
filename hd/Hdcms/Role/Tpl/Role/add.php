@@ -17,7 +17,7 @@
         </ul>
     </div>
     <div class="title-header">角色信息</div>
-    <form action="{|U:'add'}" method="post" onsubmit="return false;" class="form-inline hd-form">
+    <form action="{|U:'add'}" method="post" class="hd-form"  onsubmit="return hd_submit(this,'{|U:index}')">
         <table class="table1">
             <tr>
                 <th class="w100">角色名称</th>

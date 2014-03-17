@@ -48,7 +48,7 @@
                         <tr>
                             <th>栏目名称</th>
                             <td>
-                                <input type="text" name="catname" value="{$field.catname}" class="w300"/>
+                                <input type="text" name="catname" value="{$field.catname}" class="w300" required=""/>
                             </td>
                         </tr>
                         <tr>
@@ -68,7 +68,7 @@
                         <tr>
                             <th>静态目录</th>
                             <td>
-                                <input type="text" name="catdir" value="{$field.catdir}" class="w300"/>
+                                <input type="text" name="catdir" value="{$field.catdir}" class="w300" required=""/>
                             </td>
                         </tr>
                         <tr>
@@ -119,7 +119,7 @@
                         <tr>
                             <th class="w100">封面模板</th>
                             <td>
-                                <input type="text" name="index_tpl" class="w200" id="index_tpl" value="{$field.index_tpl}" onclick="select_template('index_tpl')"/>
+                                <input type="text" name="index_tpl" required="" class="w300" id="index_tpl" value="{$field.index_tpl}" onclick="select_template('index_tpl')"/>
                                 <button type="button" class="hd-cancel" onclick="select_template('index_tpl')">选择首页模板</button>
                                 <span class="message">{style}指模板风格</span>
                             </td>
@@ -127,7 +127,7 @@
                         <tr>
                             <th>列表页模板</th>
                             <td>
-                                <input type="text" name="list_tpl" id="list_tpl" class="w200" value="{$field.list_tpl}" onclick="select_template('list_tpl')"/>
+                                <input type="text" name="list_tpl" required="" id="list_tpl" class="w300" value="{$field.list_tpl}" onclick="select_template('list_tpl')"/>
                                 <button type="button" class="hd-cancel" onclick="select_template('list_tpl')">选择列表模板</button>
                                 <span class="message">{style}指模板风格</span>
                             </td>
@@ -135,7 +135,7 @@
                         <tr>
                             <th>内容页模板</th>
                             <td>
-                                <input type="text" name="arc_tpl" id="arc_tpl" class="w200" value="{$field.arc_tpl}" onclick="select_template('arc_tpl')"/>
+                                <input type="text" name="arc_tpl" required="" id="arc_tpl" class="w300" value="{$field.arc_tpl}" onclick="select_template('arc_tpl')"/>
                                 <button type="button" class="hd-cancel" onclick="select_template('arc_tpl')">选择内容页模板</button>
                                 <span class="message">{style}指模板风格</span>
                             </td>
@@ -145,16 +145,16 @@
                 <div id="html" class="con">
                     <table class="table1">
                         <tr>
-                            <th>栏目页URL规则</th>
+                            <th class="w100">栏目页URL规则</th>
                             <td>
-                                <input type="text" name="cat_html_url" class="w200" value="{$field.cat_html_url}"/>
+                                <input type="text" name="cat_html_url" required="" class="w300" value="{$field.cat_html_url}"/>
                                 <span class="message">{cid} 栏目ID, {catdir} 栏目目录, {page} 列表的页码</span>
                             </td>
                         </tr>
                         <tr>
                             <th>内容页URL规则</th>
                             <td>
-                                <input type="text" name="arc_html_url" class="w200" value="{$field.arc_html_url}"/>
+                                <input type="text" name="arc_html_url" required="" class="w300" value="{$field.arc_html_url}"/>
                                 <span class="message">{y}、{m}、{d} 年月日,{timestamp}UNIX时间戳,{aid} 文章ID,{catdir} 栏目目录</span>
                             </td>
                         </tr>

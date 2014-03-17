@@ -62,12 +62,12 @@ class MenuModel extends ViewModel
     private function get_all_menu()
     {
         //超级管理员获得所有菜单
-        if (session("WEB_MASTER") || session("admin")) {
-            $data = $this->join(NULL)->where("state=1")->order(array("list_order" => "ASC",'nid'=>'DESC'))->all();
+        if (session("WEB_MASTER")) {
+            $data = $this->join(NULL)->where("state=1")->order(array("list_order" => "ASC", 'nid' => 'DESC'))->all();
         } else {
             //所有菜单数据
-            $data = $this->field("node.nid,node.title,access.rid")
-                ->where("access.rid=" . $this->rid . " AND state=1")
+            $data = $this
+                ->where(C('DB_PREFIX') . "access.rid=" . $this->rid . " AND state=1")
                 ->order(array("list_order" => "DESC"))->all();
         }
         return $data;

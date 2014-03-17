@@ -57,7 +57,7 @@ class ConfigControl extends AuthControl
                 foreach ($conf as $m => $c) {
                     //会员组
                     if ($c['id'] == 121) {
-                        $group = $this->_db->table("member_group")->all();
+                        $group = $this->_db->table("group")->all();
                         $config[$n][$m]['html'] = <<<str
                                 <tr>
                                     <th class="w150">{$c['title']}</th>

@@ -25,6 +25,7 @@
             <li lab="tpl"><a href="#">模板设置</a></li>
             <li lab="html"><a href="#">静态HTML设置</a></li>
             <li lab="seo"><a href="#">SEO</a></li>
+            <li lab="access"><a href="#">权限设置</a></li>
         </ul>
         <div class="tab_content">
             <div id="base">
@@ -57,7 +58,7 @@
                     <tr>
                         <th>栏目名称</th>
                         <td>
-                            <input type="text" name="catname" class="w300"/>
+                            <input type="text" name="catname" required="" class="w300"/>
                         </td>
                     </tr>
                     <tr>
@@ -71,7 +72,7 @@
                     <tr>
                         <th>静态目录</th>
                         <td>
-                            <input type="text" name="catdir" class="w300"/>
+                            <input type="text" name="catdir" required="" class="w300"/>
                         </td>
                     </tr>
                     <tr>
@@ -114,7 +115,7 @@
                     <tr>
                         <th class="w100">封面模板</th>
                         <td>
-                            <input type="text" name="index_tpl" class="w200" id="index_tpl"
+                            <input type="text" name="index_tpl" required="" class="w200" id="index_tpl"
                                    value="{style}/article_index.html" onclick="select_template('index_tpl');"/>
                             <button type="button" onclick="select_template('index_tpl');"
                                     class="btn btn-small hd-cancel">
@@ -126,7 +127,7 @@
                     <tr>
                         <th>列表页模板</th>
                         <td>
-                            <input type="text" name="list_tpl" id="list_tpl" class="w200"
+                            <input type="text" name="list_tpl" required="" id="list_tpl" class="w200"
                                    value="{style}/article_list.html" onclick="select_template('list_tpl');"/>
                             <button type="button" onclick="select_template('list_tpl');"
                                     class="btn btn-small hd-cancel">选择列表模板
@@ -137,7 +138,7 @@
                     <tr>
                         <th>内容页模板</th>
                         <td>
-                            <input type="text" name="arc_tpl" id="arc_tpl" class="w200"
+                            <input type="text" name="arc_tpl" required="" id="arc_tpl" class="w200"
                                    value="{style}/article_default.html" onclick="select_template('arc_tpl');"/>
                             <button type="button" onclick="select_template('arc_tpl');" class="btn btn-small hd-cancel">
                                 选择内容页模板
@@ -151,9 +152,9 @@
                 <table class="table1">
 
                     <tr>
-                        <th>栏目页URL规则</th>
+                        <th class="w100">栏目页URL规则</th>
                         <td>
-                            <input type="text" name="list_html_url" class="w200"
+                            <input type="text" name="list_html_url" required="" class="w200"
                                    value="{catdir}/list_{cid}_{page}.html"/>
                             <span class="message">{cid} 栏目ID, {catdir} 栏目目录, {page} 列表的页码</span>
                         </td>
@@ -161,7 +162,7 @@
                     <tr>
                         <th>内容页URL规则</th>
                         <td>
-                            <input type="text" name="arc_html_url" class="w200"
+                            <input type="text" name="arc_html_url" required="" class="w200"
                                    value="{catdir}/{y}/{m}{d}/{aid}.html"/>
                             <span class="message">{y}、{m}、{d} 年月日,{timestamp}UNIX时间戳,{aid} 文章ID,{catdir} 栏目目录</span>
                         </td>
@@ -192,6 +193,64 @@
                         <th>SEO描述</th>
                         <td>
                             <textarea name="cat_seo_description" class="w400 h150"></textarea>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="access">
+                <table class="table1">
+                    <tr>
+                        <th class="w100">
+                            管理组权限
+                        </th>
+                        <td>
+                            <table class="table2">
+                                <thead>
+                                    <tr>
+                                        <td class="w250">组名</td>
+                                        <td>查看</td>
+                                        <td>添加</td>
+                                        <td>修改</td>
+                                        <td>删除</td>
+                                        <td>排序</td>
+                                        <td>移动</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input type="checkbox" name="" value=""/></td>
+                                        <td><input type="checkbox" name="" value=""/></td>
+                                        <td><input type="checkbox" name="" value=""/></td>
+                                        <td><input type="checkbox" name="" value=""/></td>
+                                        <td><input type="checkbox" name="" value=""/></td>
+                                        <td><input type="checkbox" name="" value=""/></td>
+                                        <td><input type="checkbox" name="" value=""/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="w100">
+                            会员组权限
+                        </th>
+                        <td>
+                            <table class="table2">
+                                <thead>
+                                <tr>
+                                    <td class="w250">组名</td>
+                                    <td>允许访问</td>
+                                    <td>允许投稿</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><input type="checkbox" name="" value=""/> </td>
+                                    <td><input type="checkbox" name="" value=""/></td>
+                                    <td><input type="checkbox" name="" value=""/></td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </td>
                     </tr>
                 </table>
