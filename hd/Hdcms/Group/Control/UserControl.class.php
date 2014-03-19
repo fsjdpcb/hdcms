@@ -36,11 +36,11 @@ class UserControl extends AuthControl
     public function add()
     {
         if (IS_POST) {
-            $_POST['code'] = $this->get_user_code();
-            $_POST['password'] = $this->get_user_password($_POST['password'], $_POST['code']);
-            $_POST['nickname'] = $_POST['username'];
-            $this->_db->add();
-            $this->_ajax(1, '添加成功');
+            if ($this->_db->add_user()) {
+                $this->_ajax(1, '添加成功');
+            } else {
+                $this->_ajax(0, $this->_db->error);
+            }
         } else {
             //会员组
             $this->role = M('role')->where('admin=0')->all();
@@ -54,22 +54,12 @@ class UserControl extends AuthControl
     public function edit()
     {
         if (IS_POST) {
-            //如果有post.state为未审核状态
-            Q("post.state", 0, 'intval');
-            //修改密码
-            if (!empty($_POST['password'])) {
-                $_POST['code'] = $this->get_user_code();
-                $_POST['password'] = $this->get_user_password($_POST['password'], $_POST['code']);
-            }
-            $this->_db->save();
+            $this->_db->edit_user();
             $this->_ajax(1, '修改成功');
         } else {
             //会员组
             $this->role = M('role')->where('admin=0')->all();
             $user = $this->_db->where("uid=" . Q('uid'))->find();
-            if (!$user['icon100']) {
-                $user['icon100'] = __ROOT__ . '/data/image/user/100.jpg';
-            }
             $this->field = $user;
             $this->display();
         }
@@ -83,9 +73,9 @@ class UserControl extends AuthControl
         $username = Q('username');
         //编辑时，去年当前会员组
         if ($uid = Q("uid")) {
-            $this->_db->where("uid<>$uid");
+            $this->_db->join()->where("uid<>$uid");
         }
-        echo $this->_db->where("username='$username'")->find() ? 0 : 1;
+        echo $this->_db->join()->where("username='$username'")->find() ? 0 : 1;
         exit;
     }
 

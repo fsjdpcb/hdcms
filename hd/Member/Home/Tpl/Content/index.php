@@ -28,7 +28,7 @@
 <article class="center-block main">
     <section class="menu">
         <div class="center-block user">
-            <img src="{$hd.session.favicon}150.jpg" title="点击修改头像"/>
+            <img src="{$hd.session.icon150}" title="点击修改头像"/>
 
             <p class="nickname">后盾网向军</p>
 

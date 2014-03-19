@@ -6,9 +6,7 @@
     <title>修改管理员</title>
     <hdjs/>
     <bootstrap/>
-    <js file="__GROUP__/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/edit_validate.js"/>
-    <js file="__CONTROL_TPL__/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
 <body>
@@ -24,9 +22,15 @@
         <input type="hidden" name="uid" value="{$field.uid}"/>
         <table class="table1">
             <tr>
-                <th class="w100">管理员名称</th>
+                <th class="w100">帐号</th>
                 <td>
-                    <input type="text" value="{$field.username}" disabled="disabled" class="w200"/>
+                    {$field.username}
+                </td>
+            </tr>
+            <tr>
+                <th class="w100">昵称</th>
+                <td>
+                    <input type="text" name="nickname" value="{$field.nickname}" class="w200"/>
                 </td>
             </tr>
             <tr>
@@ -34,7 +38,7 @@
                 <td>
                     <select name="rid">
                         <list from="$role" name="r">
-                            <option value="{$r.rid}" {$r.selected}>{$r.rname}</option>
+                            <option value="{$r.rid}" <if value="$field.rid eq $r.rid">selected="selected"</if>>{$r.rname}</option>
                         </list>
                     </select>
                 </td>
@@ -42,19 +46,13 @@
             <tr>
                 <th class="w100">密码</th>
                 <td>
-                    <input type="password" name="password" class="w200"/>
+                    <input type="password" name="password" class="w200" value=""/>
                 </td>
             </tr>
             <tr>
                 <th class="w100">确认密码</th>
                 <td>
-                    <input type="password" name="password2" class="w200"/>
-                </td>
-            </tr>
-            <tr>
-                <th class="w100">昵称</th>
-                <td>
-                    <input type="text" name="nickname" value="{$field.nickname}" class="w200"/>
+                    <input type="password" name="c_password" class="w200"/>
                 </td>
             </tr>
             <tr>

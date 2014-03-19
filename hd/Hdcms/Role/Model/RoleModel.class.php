@@ -5,18 +5,10 @@
  * Class RoleModel
  * @author hdxj <houdunwangxj@gmail.com>
  */
-class RoleModel extends RelationModel
+class RoleModel extends Model
 {
     //操作表
     public $table = 'role';
-    //多表关联
-    public $join = array(
-        "access" => array(
-            "type" => HAS_MANY,
-            "foreign_key" => "rid",
-            "parent_key" => "rid"
-        )
-    );
 
     /**
      * 删除角色

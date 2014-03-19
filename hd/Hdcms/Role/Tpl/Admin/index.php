@@ -5,7 +5,6 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>管理员管理</title>
     <hdjs/>
-    <js file="__CONTROL_TPL__/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
 <body>
@@ -41,11 +40,7 @@
                 <td>{$a.email}</td>
                 <td>
                     <a href="{|U:'edit',array('uid'=>$a['uid'])}">修改</a>|
-                    <if value="$a.username==C('WEB_MASTER')">
-                        <span>删除</span>
-                        <else>
-                            <a href="javascript:;" onclick="del({$a.uid})">删除</a>
-                    </if>
+                    <a href="javascript:confirm('确定删除管理员吗?')?hd_ajax('{|U:'del'}',{'uid':{$a.uid}}):false;">删除</a>
                 </td>
             </tr>
         </list>

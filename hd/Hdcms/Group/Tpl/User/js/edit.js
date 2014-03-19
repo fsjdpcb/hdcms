@@ -2,13 +2,13 @@ $(function () {
     $("form").validate({
         password: {
             rule: {
-                regexp:/^\w{5,}$/
+                regexp: /^\w{5,}$/
             },
             error: {
-                regexp:'密码不能小于5位'
+                regexp: '密码不能小于5位'
             }
         },
-        'password-c': {
+        'password_c': {
             rule: {
                 confirm: 'password'
             },
@@ -24,6 +24,14 @@ $(function () {
             error: {
                 required: "积分不能为空",
                 regexp: "积分必须为数字"
+            }
+        },
+        qq: {
+            rule: {
+                qq: true
+            },
+            error: {
+                qq: 'QQ号输入错误'
             }
         },
         email: {

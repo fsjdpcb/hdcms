@@ -32,7 +32,7 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-3 control-label">帐　号：</label>
                     <div class="col-sm-7">
-                        <input type="text" name="username" class="form-control" id="inputEmail3" placeholder="请输入帐号，不能小于5位" pattern="\w{5,}" required=""/>
+                        <input type="text" name="username" class="form-control" id="inputEmail3" placeholder="请输入帐号，不能小于5位" title='不能小于5位' pattern="\w{5,}" required=""/>
                     </div>
                 </div>
                 <div class="form-group">
@@ -50,7 +50,7 @@
                 <div class="form-group">
                     <label for="inputPassword3" class="col-sm-3 control-label">确认密码：</label>
                     <div class="col-sm-7">
-                        <input type="password" name="password-c" class="form-control" id="inputPassword3" placeholder="Password" required=""/>
+                        <input type="password" name="password_c" class="form-control" id="inputPassword3" placeholder="Password" required=""/>
                     </div>
                 </div>
                 <div class="form-group">

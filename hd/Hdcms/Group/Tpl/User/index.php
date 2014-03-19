@@ -40,7 +40,7 @@
                 <td>{$d.regip}</td>
                 <td>{$d.lastip}</td>
                 <td>
-                    <if value="$d.status">
+                    <if value="$d.state">
                         <font color="red">√</font>
                         <else/>
                         ×
@@ -50,7 +50,7 @@
                 <td>
                     <a href="{|U:'edit',array('uid'=>$d['uid'])}">修改</a>
                     <span class="line">|</span>
-                    <a href="javascript:confirm('删除用户将删除所有信息,确定删除吗？')?hd_ajax('{|U:'del'}',{uid:{$d.uid}}):''">删除</a>
+                    <a href="javascript:confirm('删除用户将删除所有信息,确定删除吗？')?hd_ajax('{|U:'del'}',{uid:{$d.uid}}):false">删除</a>
                 </td>
             </tr>
         </list>

@@ -28,7 +28,7 @@
             <tr>
                 <th class="w100">积分小于</th>
                 <td>
-                    <input type="text" name="creditslower" class="w300" value="{$field.creditslower}" rrequired=""/>
+                    <input type="text" name="creditslower" class="w300" value="{$field.creditslower}" required=""/>
                 </td>
             </tr>
             <tr>

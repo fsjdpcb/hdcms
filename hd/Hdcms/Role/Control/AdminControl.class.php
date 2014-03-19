@@ -22,19 +22,27 @@ class AdminControl extends AuthControl
         if ($rid) {
             $this->_db->where("rid=$rid");
         }
-        $this->admin = $this->_db->join("role")->all();
+        $this->admin = $this->_db->join("role")->where("username<>'" . C("WEB_MASTER") . "'")->all();
         $this->display();
     }
 
     //验证用户是否存在
     public function check_admin()
     {
-        $username = Q("post.username", NULL, "trim");
-        if (is_null($username) || !$this->_db->join()->where("status=1")->find("username='$username'")) {
-            $this->ajax(0);
-        } else {
-            $this->ajax(1);
+        $username = Q("post.username");
+        echo $this->_db->join()->find("username='$username'") ? 0 : 1;
+        exit;
+    }
+
+    //验证用户昵称
+    public function check_nickname()
+    {
+        $nickname = Q("post.nickname");
+        if ($uid = Q('uid')) {
+            $this->_db->where("uid<>$uid");
         }
+        echo $this->_db->join()->find("nickname='$nickname'") ? 0 : 1;
+        exit;
     }
 
     //删除管理员
@@ -42,9 +50,8 @@ class AdminControl extends AuthControl
     {
         $uid = Q("POST.uid", null, "intval");
         if ($uid) {
-            //用户组关联表
-            if ($this->_db->save(array("uid" => $uid, "rid" => 0))) {
-                $this->ajax(1);
+            if ($this->_db->del_user()) {
+                $this->_ajax(1, '删除成功');
             }
         }
     }
@@ -53,17 +60,13 @@ class AdminControl extends AuthControl
     public function add()
     {
         if (IS_POST) {
-            if (!empty($_POST['password'])) {
-                $code = get_user_code();
-                $_POST['code'] = $code;
-                $_POST['password'] = get_user_password($_POST['password'], $code);
-            }
-            if ($this->_db->join(NULL)->replace()) {
+            if ($this->_db->add_user()) {
                 $this->_ajax(1, "添加管理员成功！");
+            } else {
+                $this->_ajax(0, $this->_db->error);
             }
         } else {
-            $role = $this->_db->table("role")->all();
-            $this->assign("role", $role);
+            $this->role = $this->_db->table("role")->where('admin=1')->all();
             $this->display();
         }
     }
@@ -74,28 +77,17 @@ class AdminControl extends AuthControl
     public function edit()
     {
         if (IS_POST) {
-            if (!empty($_POST['password'])) {
-                $code = get_user_code();
-                $_POST['code'] = $code;
-                $_POST['password'] = get_user_password($_POST['password'], $code);
+            if ($this->_db->edit_user()) {
+                $this->_ajax(1, "修改管理员成功！");
+            } else {
+                $this->_ajax(0, $this->_db->error);
             }
-            $this->_db->join(null)->save();
-            $this->_ajax(1, "修改管理员成功！");
         } else {
             $uid = Q("request.uid", null, "intval");
             if ($uid) {
                 //会员信息
-                $field = $this->_db->find($uid);
-                //所有角色
-                $role = $this->_db->table("role")->all();
-                foreach ($role as $n => $r) {
-                    $role[$n]["selected"] = "";
-                    if ($r['rid'] == $field['rid']) {
-                        $role[$n]["selected"] = "selected='selected'";
-                    }
-                }
-                $this->assign("field", $field);
-                $this->assign("role", $role);
+                $this->field = $this->_db->find($uid);
+                $this->role = $this->_db->table("role")->where('admin=1')->all();
                 $this->display();
             }
         }

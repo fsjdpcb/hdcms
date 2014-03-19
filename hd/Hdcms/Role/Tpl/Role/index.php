@@ -32,21 +32,17 @@
                 <td>{$r.rname}</td>
                 <td>{$r.title}</td>
                 <td>
-                    <if value="$r.system_role">
+                    <if value="$r.system">
                         <font color="red">√</font>
                         <else/>
                         ×
                     </if>
                 </td>
                 <td>
-                    <a href="{|U:'Admin/index',array('rid'=>$r['rid'])}">成员</a> |
                     <a href="{|U:'edit',array('rid'=>$r['rid'])}">修改</a> |
-                    <if value="$r.system_role">
-                        <span>删除</span>
-                        <else/>
-                        <a href="javascript:hd_ajax('{|U:del}',{rid:{$r.rid}})">删除</a> |
+                    <if value="$r.system eq 0">
+                        <a href="javascript:confirm('确定删除吗?')?hd_ajax('{|U:del}',{rid:{$r.rid}}):false">删除</a> |
                     </if>
-
                     <a href="{|U:'Access/edit',array('rid'=>$r['rid'])}">权限设置</a>
                 </td>
             </tr>

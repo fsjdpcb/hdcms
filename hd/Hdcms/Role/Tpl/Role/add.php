@@ -18,6 +18,7 @@
     </div>
     <div class="title-header">角色信息</div>
     <form action="{|U:'add'}" method="post" class="hd-form"  onsubmit="return hd_submit(this,'{|U:index}')">
+        <input type="hidden" name="admin" value="1"/>
         <table class="table1">
             <tr>
                 <th class="w100">角色名称</th>

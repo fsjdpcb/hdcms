@@ -3,14 +3,14 @@ $(function () {
         'rname': {
             rule: {
                 required: true,
-                ajax: {url: CONTROL + '&m=check_rname', field: ['gid']}
+                ajax: {url: CONTROL + '&m=check_rname', field: ['rid']}
             },
             error: {
                 required: '组名不能为空',
                 ajax: '会员组已经存在'
             }
         },
-        'point': {
+        'creditslower': {
             rule: {
                 required: true,
                 regexp: /^\d+$/

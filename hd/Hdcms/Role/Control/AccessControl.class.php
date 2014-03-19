@@ -35,8 +35,9 @@ class AccessControl extends AuthControl
                 ON n.nid = a.nid";
             $result = $this->_db->query($sql);
             foreach ($result as $n => $r) {
-                $checked = $r['access_rid'] ? " checked=''" : '';
-                $result[$n]['checkbox'] = "<label><input type='checkbox' name='nid[]' value='{$r['nid']}' $checked/> {$r['title']}</label>";
+                $checked = $r['access_rid'] ||$r['type']==2? " checked=''" : '';
+                $disabled=$r['type']==2?'disabled=""':'';
+                $result[$n]['checkbox'] = "<label><input type='checkbox' name='nid[]' value='{$r['nid']}' $checked $disabled/> {$r['title']}</label>";
             }
             $this->access = Data::channelLevel($result, 0, '-', 'nid');
             $this->rid = $rid;

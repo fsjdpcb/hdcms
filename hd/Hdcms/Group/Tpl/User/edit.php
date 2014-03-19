@@ -46,9 +46,9 @@
             <tr>
                 <th class="w100">状态</th>
                 <td>
-                    <label><input type="checkbox" name="state" value="1"
-                        <if value="$field.state eq 1">checked="checked"</if>
-                        /> 审核</label>
+                    <label><input type="checkbox" name="state" value="0"
+                        <if value="$field.state eq 0">checked="checked"</if>
+                        /> 锁定</label>
                 </td>
             </tr>
             <tr>
@@ -60,7 +60,7 @@
             <tr>
                 <th class="w100">确认密码</th>
                 <td>
-                    <input type="password" name="password-c" value="" class="w300"/>
+                    <input type="password" name="password_c" value="" class="w300"/>
                 </td>
             </tr>
             <tr>

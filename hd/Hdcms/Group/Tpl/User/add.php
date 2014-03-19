@@ -12,7 +12,7 @@
     <div class="menu_list">
         <ul>
             <li><a href="{|U:'index'}">会员列表</a></li>
-            <li><a href="javascript:;" class="action">修改会员</a></li>
+            <li><a href="javascript:;" class="action">添加会员</a></li>
         </ul>
     </div>
     <div class="title-header">添加会员组</div>
@@ -43,7 +43,7 @@
             <tr>
                 <th class="w100">确认密码</th>
                 <td>
-                    <input type="password" name="password-c" class="w300" required=""/>
+                    <input type="password" name="password_c" class="w300" required=""/>
                 </td>
             </tr>
             <tr>

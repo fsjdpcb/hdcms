@@ -10,7 +10,7 @@ class GroupControl extends AuthControl
 
     public function __init()
     {
-        $this->_db = K('Group');
+        $this->_db = K('Role');
     }
 
     /**
@@ -55,11 +55,26 @@ class GroupControl extends AuthControl
     public function check_rname()
     {
         $rname = Q('rname');
-        //编辑时，去年当前会员组
-        if ($gid = Q("gid")) {
-            $this->_db->where("gid<>$rid");
+        //编辑时
+        if ($rid = Q("rid")) {
+            $this->_db->where("rid<>$rid");
         }
         echo $this->_db->where("rname='$rname'")->find() ? 0 : 1;
         exit;
+    }
+
+    /**
+     * 删除用户组
+     */
+    public function del()
+    {
+        $rid = Q("rid");
+        if ($rid) {
+            $default_rid = O('CommonUserModel', 'get_default_rid');
+            //改变会员组
+            $this->_db->table('user')->where("rid=$rid")->save(array('rid' => $default_rid));
+            $this->_db->del($rid);
+            $this->_ajax(1, '删除成功');
+        }
     }
 }

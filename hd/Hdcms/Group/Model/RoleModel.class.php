@@ -1,6 +1,6 @@
 <?php
 
-class GroupModel extends Model
+class RoleModel extends Model
 {
     public $table = 'role';
 

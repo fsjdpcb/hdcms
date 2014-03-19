@@ -16,31 +16,17 @@ class LoginControl extends CommonControl
             go(U("Home/Home/Index", array('g' => "Member")));
         }
         //实例模型对象
-        $this->_db = K("Login");
+        $this->_db = K("User");
     }
 
     //登录
     public function login()
     {
         if (IS_POST) {
-            $password = Q('password');
-            $username = Q('username', null, "htmlspecialchars,addslashes,trim,strip_tags");
-            $error = null;
-            if (!$username) {
-                $error = '帐号不能为空';
+            if ($this->_db->user_login()) {
+                $this->ajax('success');
             } else {
-                $result = $this->_db->where("username='$username' or email='$username'")->find();
-                if (!$result) {
-                    $error = '帐号不存在';
-                } else if ($result['password'] != md5($password . $result['code'])) {
-                    $error = '密码输入错误';
-                }
-            }
-            if ($error) {
-                $this->ajax($error);
-            } else {
-                $this->record_user($result['uid']);
-                $this->ajax(18);
+                $this->ajax($this->_db->error);
             }
         } else {
             $this->display();
@@ -51,9 +37,10 @@ class LoginControl extends CommonControl
     public function reg()
     {
         if (IS_POST) {
-            if ($uid = $this->_db->user_reg()) {
-                $this->session_record($uid);
-                $this->ajax(18);
+            if ($uid = $this->_db->add_user()) {
+                //储存SESSION数据
+                $this->_db->record_user($uid);
+                $this->ajax('success');
             } else {
                 $this->ajax($this->_db->error);
             }

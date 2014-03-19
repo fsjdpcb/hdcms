@@ -21,8 +21,7 @@ class RoleControl extends AuthControl
 
     public function index()
     {
-        $role = M('role')->all();
-        $this->role = $role;
+        $this->role = $this->_db->join()->where('admin=1')->all();
         $this->display();
     }
 
@@ -50,9 +49,9 @@ class RoleControl extends AuthControl
         //角色名称
         $rname = Q('rname', NULL, 'trim');
         //角色ID（编辑角色时验证）
-        $rid = Q('rid', NULL, 'intval,trim');
+        $rid = Q('rid', NULL, 'intval');
         if ($rid) {
-            $stat = $this->_db->join()->where("rid <>$rid");
+           $this->_db->join()->where("rid <>$rid");
         }
         //编辑角色时验证
         $stat = $this->_db->join()->where("rname ='$rname'")->find() ? 0 : 1;

@@ -5,10 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>管理员管理</title>
     <hdjs/>
-    <bootstrap/>
-    <js file="__GROUP__/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/add_validate.js"/>
-    <js file="__CONTROL_TPL__/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
 <body>
@@ -21,11 +18,18 @@
     </div>
     <div class="title-header">管理员信息</div>
     <form action="{|U:'add'}" method="post" class="form-inline hd-form" onsubmit="return hd_submit(this,'__CONTROL__')">
+        <input type="hidden" name="admin" value="1"/>
         <table class="table1">
             <tr>
-                <th class="w100">管理员名称</th>
+                <th class="w100">帐号</th>
                 <td>
                     <input type="text" name="username" class="w200"/>
+                </td>
+            </tr>
+            <tr>
+                <th class="w100">昵称</th>
+                <td>
+                    <input type="text" name="nickname" class="w200"/>
                 </td>
             </tr>
             <tr>
@@ -48,12 +52,6 @@
                 <th class="w100">确认密码</th>
                 <td>
                     <input type="password" name="c_password" class="w200"/>
-                </td>
-            </tr>
-            <tr>
-                <th class="w100">昵称</th>
-                <td>
-                    <input type="text" name="nickname" class="w200"/>
                 </td>
             </tr>
             <tr>

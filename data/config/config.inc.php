@@ -28,7 +28,7 @@ return array (
   'tel' => '010-64825057',
   'water_text' => 'houdunwang.com',
   'water_text_size' => '16',
-  'water_img' => './data/water/water.png',
+  'water_img' => 'data/water/water.png',
   'water_pct' => '0',
   'water_quality' => '90',
   'water_pos' => '9',

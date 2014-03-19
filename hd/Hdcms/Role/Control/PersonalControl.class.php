@@ -13,7 +13,7 @@ class PersonalControl extends AuthControl
     //构造函数
     public function __construct()
     {
-        $this->_db = K('Personal');
+        $this->_db = K('User');
     }
 
     /**
@@ -22,7 +22,7 @@ class PersonalControl extends AuthControl
     public function edit_info()
     {
         if (IS_POST) {
-            if ($this->_db->where("uid=" . session('uid'))->save()) {
+            if ($this->_db->join()->where("uid=" . session('uid'))->save()) {
                 $this->_ajax(1, '修改个人资料成功');
             }
         } else {
@@ -37,14 +37,14 @@ class PersonalControl extends AuthControl
     public function edit_password()
     {
         if (IS_POST) {
-            $_POST['code'] = $this->get_user_code();
-            $_POST['password'] = $this->get_user_password($_POST['new_password'], $_POST['code']);
+            $_POST['code'] = $this->_db->get_user_code();
+            $_POST['password'] = $this->_db->get_user_password($_POST['new_password'], $_POST['code']);
             $_POST['uid'] = session('uid');
-            if ($this->_db->save()) {
+            if ($this->_db->join()->save()) {
                 $this->_ajax(1, '修改修改密码成功');
             }
         } else {
-            $this->user = $this->_db->find(session('uid'));
+            $this->user = $this->_db->join()->find(session('uid'));
             $this->display();
         }
     }
@@ -54,11 +54,11 @@ class PersonalControl extends AuthControl
      */
     public function check_password()
     {
-        $user = $this->_db->find(session('uid'));
+        $user = $this->_db->join()->find(session('uid'));
         $this->_db->where('uid=' . session('uid'));
-        $password = $this->get_user_password($_POST['old_password'], $user['code']);
-        $this->_db->where("password='$password'");
-        if ($this->_db->find()) {
+        $password = $this->_db->get_user_password($_POST['old_password'], $user['code']);
+        $this->_db->join()->where("password='$password'");
+        if ($this->_db->join()->find()) {
             $this->ajax(1);
         }
         exit;

@@ -63,7 +63,7 @@
                     <a href="{|U:'edit',array('rid'=>$d['rid'])}">修改</a>
                     <if value="$d.system eq 0">
                         <span class="line">|</span>
-                        <a href="{|U:'edit',array('rid'=>$d['rid'])}">删除</a>
+                        <a href="javascript:confirm('确定删除吗？')?hd_ajax('{|U:'del'}',{'rid':{$d['rid']}}):false">删除</a>
                     </if>
                 </td>
             </tr>

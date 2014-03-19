@@ -1,17 +1,25 @@
 //表单验证 添加管理员
 $(function () {
     $("form").validate({
-        //验证规则,
+        nickname: {
+            rule: {
+                required: true,
+                ajax: {url: CONTROL + '&m=check_nickname',field:['uid']}
+            },
+            error: {
+                required: "昵称不能为空",
+                ajax: '昵称已经存在'
+            }
+        },
         password: {
             rule: {
                 regexp: /^\w{5,}$/
             },
             error: {
                 regexp: "密码不能小于5位"
-            },
-            message:"不修改密码请留空"
+            }
         },
-        password2: {
+        c_password: {
             rule: {
                 confirm: "password"
             },
@@ -21,9 +29,11 @@ $(function () {
         },
         email: {
             rule: {
+                required: true,
                 email: true
             },
             error: {
+                required: '邮箱不能为空',
                 email: "邮箱输入错误"
             }
 

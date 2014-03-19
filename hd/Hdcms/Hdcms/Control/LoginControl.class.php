@@ -9,7 +9,7 @@ import("User.Model.UserModel");
 class LoginControl extends CommonControl
 {
     //模型
-    protected $db;
+    protected $_db;
 
     //构造函数
     public function __init()
@@ -20,6 +20,7 @@ class LoginControl extends CommonControl
             $this->display('check_browser');
             exit;
         }
+        $this->_db = K("User");
     }
 
     /**
@@ -61,28 +62,12 @@ class LoginControl extends CommonControl
     public function Login()
     {
         if (IS_POST) {
-            $username = Q("post.username", NULL, "strip_tags,htmlspecialchars,addslashes");
-            $user = M('user')->where("username='$username'")->find();
-            $error = '';
-            //-----------------------验证码------------------------
-            if (Q('post.code', '', 'strtoupper') != Q('session.code')) {
-                $error = "验证码输入错误";
-            }
-            //-----------------------帐号验证------------------------
-            if (!$user) {
-                $error = "帐号不存在";
-            }
-            //-----------------------密码验证------------------------
-            if ($user && $user['password'] != md5($_POST['password'] . $user['code'])) {
-                $error = "密码输入错误";
-            }
-            //-----------------------验证通过------------------------
-            if (empty($error)) {
-                $this->record_user($user['uid']);
+            if ($this->_db->user_login()) {
                 go("Hdcms/Index/index");
+            } else {
+                $this->error = $this->_db->error;
+                $this->display();
             }
-            $this->error = $error;
-            $this->display();
         } else {
             $this->display();
         }

@@ -22,6 +22,8 @@ return array_merge(
         "DEFAULT_APP" => "Index",
         //模板后缀
         "TPL_FIX" => ".php",
+        //图片上传缩放开启
+        "UPLOAD_IMG_RESIZE_ON" => true,
         //编辑器上传文件储存位置
         'EDITOR_SAVE_PATH' => ROOT_PATH . 'upload/editor/' . date('Y/m/d/'), //文件储存目录
         //公共函数库
