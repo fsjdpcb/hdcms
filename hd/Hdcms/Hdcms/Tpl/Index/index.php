@@ -44,8 +44,7 @@
         </div>
         <div class="favorite_menu">
             <ul>
-                <li class="action" nid="0" style="border-left:solid 1px #D8D8D8;"><a href="javascript:;" class="menu"
-                                                                                     nid="0">环境</a></li>
+                <li class="action" nid="0" style="border-left:solid 1px #D8D8D8;"><a href="javascript:;" class="menu" nid="0">环境</a></li>
             </ul>
         </div>
     </div>

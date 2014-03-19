@@ -5,6 +5,16 @@
     <title>HDCMS后台登录</title>
     <hdjs/>
     <css file="__CONTROL_TPL__/Css/css.css"/>
+    <script>
+        $(function () {
+            var error = '{$error}';
+            if (error) {
+                $("div#error_tips").show();
+                $(".err_m").html(error);
+                setTimeout(function(){ $("div#error_tips").hide()},5000);
+            }
+        })
+    </script>
     <js file="__CONTROL_TPL__/Js/js.js"/>
 </head>
 <body>
@@ -24,24 +34,25 @@
         <div id="tips" class="tips"></div>
         <div class="web_login">
             <div class="login_form">
-                <div id="error_tips" class="error_tips">
-                    <span id="error_logo" class="error_logo"></span>
-                    <span id="err_m" class="err_m">12</span>
+                <div id="error_tips">
+                    <span class="error_logo"></span>
+                    <span class="err_m">12dssfd</span>
                 </div>
-                <form action="{|U:'login'}" method="post" target="checkLogin" class="form-inline hd-form">
+                <form action="{|U:'login'}" method="post" class="hd-form">
                     <div class="input">
                         <div class="inputOuter">
-                            <input type="text" name="username" title="帐号" value="帐号" class="empty w300"/>
+                            <input type="text" name="username" value="帐号" autofocus='true' placeholder="帐号"
+                                   class="w300" required=""/>
                         </div>
                     </div>
                     <div class="input">
                         <div class="inputOuter">
-                            <input type="password" name="password">
+                            <input type="password" name="password" placeholder="密码" required=""/>
                         </div>
                     </div>
                     <div class="input">
                         <div class="inputOuter">
-                            <input type="text" name="code" title="验证码" value="验证码" class="empty"/>
+                            <input type="text" name="code" placeholder="验证码" required=""/>
                         </div>
                     </div>
 

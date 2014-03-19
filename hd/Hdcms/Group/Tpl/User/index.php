@@ -20,7 +20,8 @@
             <td class="w200">昵称</td>
             <td>帐号</td>
             <td class="w150">登录时间</td>
-            <td class="w150">登录IP</td>
+            <td class="w150">注册IP</td>
+            <td class="w150">最近登录IP</td>
             <td class="w150">已审核</td>
             <td class="w150">积分</td>
             <td class="w100">操作</td>
@@ -36,7 +37,8 @@
                     {$d.username}
                 </td>
                 <td>{$d.logintime}</td>
-                <td>{$d.ip}</td>
+                <td>{$d.regip}</td>
+                <td>{$d.lastip}</td>
                 <td>
                     <if value="$d.status">
                         <font color="red">√</font>

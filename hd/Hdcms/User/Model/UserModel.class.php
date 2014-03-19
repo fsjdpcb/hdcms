@@ -44,21 +44,11 @@ class UserModel extends RelationModel
     }
 
     public $join = array(
-        "group" => array(
-            "type" => BELONGS_TO,
-            "foreign_key" => "gid",
-            "parent_key" => "gid"
-        ),
         "role" => array(
             "type" => BELONGS_TO,
             'foreign_key' => 'rid',
             'parent_key' => 'rid'
-        ),
-        "extcredits" => array( //扩展积分表
-            "type" => HAS_MANY,
-            'foreign_key' => 'uid',
-            'parent_key' => 'uid'
-        ),
+        )
     );
 
     /**

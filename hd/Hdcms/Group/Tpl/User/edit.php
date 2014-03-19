@@ -29,8 +29,10 @@
                 <th class="w100">会员组</th>
                 <td>
                     <select name="gid">
-                        <list from="$group" name="g">
-                            <option value="{$g.gid}" <if value="$field.gid eq $g.gid">selected=""</if>>{$g.gname}</option>
+                        <list from="$role" name="r">
+                            <option value="{$r.rid}"
+                            <if value="$field.gid eq $r.rid">selected=""</if>
+                            >{$r.rname}</option>
                         </list>
                     </select>
                 </td>
@@ -42,28 +44,23 @@
                 </td>
             </tr>
             <tr>
-                <th class="w100">头像</th>
-                <td>
-                   <img src="__ROOT__/<if value='$field.favicon'>{$field.favicon}<else>data/image/favicon/favicon-100.jpg</if>"/>
-                    <label><input type="checkbox" name="del_favicon" value="1"/> 删除头像</label>
-                </td>
-            </tr>
-            <tr>
                 <th class="w100">状态</th>
                 <td>
-                    <label><input type="checkbox" name="state" value="1" <if value="$field.state eq 1">checked="checked"</if>/> 审核</label>
+                    <label><input type="checkbox" name="state" value="1"
+                        <if value="$field.state eq 1">checked="checked"</if>
+                        /> 审核</label>
                 </td>
             </tr>
             <tr>
                 <th class="w100">密码</th>
                 <td>
-                    <input type="text" name="password" value="" class="w300"/>
+                    <input type="password" name="password" value="" class="w300"/>
                 </td>
             </tr>
             <tr>
                 <th class="w100">确认密码</th>
                 <td>
-                    <input type="text" name="password-c" value="" class="w300"/>
+                    <input type="password" name="password-c" value="" class="w300"/>
                 </td>
             </tr>
             <tr>

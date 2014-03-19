@@ -30,13 +30,13 @@
             <tr>
                 <th class="w100">最后登录IP</th>
                 <td>
-                    {$user.ip}
+                    {$user.lastip}
                 </td>
             </tr>
             <tr>
                 <th class="w100">昵称</th>
                 <td>
-                    <input type="text" name="realname" class="w200" value="{$user.nickname}"/>
+                    <input type="text" name="nickname" class="w200" value="{$user.nickname}"/>
                 </td>
             </tr>
             <tr>

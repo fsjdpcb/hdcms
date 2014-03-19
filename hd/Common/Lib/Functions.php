@@ -23,22 +23,3 @@ function get_son_category($cid)
     return $data;
 }
 
-/**
- * 获取用户密码加密key
- * @return string
- */
-function get_user_code()
-{
-    return substr(md5(C("AUTH_KEY") . mt_rand() . time() . C('AUTH_KEY')), 0, 10);
-}
-
-/**
- * 获得用户密码
- * @param $password 密码
- * @param $code 加密key
- * @return string 储存到数据库中的密码
- */
-function get_user_password($password, $code)
-{
-    return md5($password . $code);
-}

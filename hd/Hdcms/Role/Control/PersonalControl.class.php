@@ -22,7 +22,7 @@ class PersonalControl extends AuthControl
     public function edit_info()
     {
         if (IS_POST) {
-            if ($this->_db->edit_info()) {
+            if ($this->_db->where("uid=" . session('uid'))->save()) {
                 $this->_ajax(1, '修改个人资料成功');
             }
         } else {
@@ -37,8 +37,8 @@ class PersonalControl extends AuthControl
     public function edit_password()
     {
         if (IS_POST) {
-            $_POST['code'] = get_user_code();
-            $_POST['password'] = get_user_password($_POST['new_password'], $_POST['code']);
+            $_POST['code'] = $this->get_user_code();
+            $_POST['password'] = $this->get_user_password($_POST['new_password'], $_POST['code']);
             $_POST['uid'] = session('uid');
             if ($this->_db->save()) {
                 $this->_ajax(1, '修改修改密码成功');
@@ -56,7 +56,7 @@ class PersonalControl extends AuthControl
     {
         $user = $this->_db->find(session('uid'));
         $this->_db->where('uid=' . session('uid'));
-        $password = get_user_password($_POST['old_password'], $user['code']);
+        $password = $this->get_user_password($_POST['old_password'], $user['code']);
         $this->_db->where("password='$password'");
         if ($this->_db->find()) {
             $this->ajax(1);

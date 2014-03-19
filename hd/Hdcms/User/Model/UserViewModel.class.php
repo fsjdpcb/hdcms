@@ -7,7 +7,7 @@ class UserViewModel extends ViewModel
 {
     public $table = "user";
     public $view = array(
-        "member_group" => array(
+        "role" => array(
             "type" => INNER_JOIN,
             "on" => "user.gid=member_group.gid"
         )

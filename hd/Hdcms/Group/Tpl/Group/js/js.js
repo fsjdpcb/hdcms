@@ -1,9 +1,9 @@
 $(function () {
     $("form").validate({
-        'gname': {
+        'rname': {
             rule: {
                 required: true,
-                ajax: {url: CONTROL + '&m=check_gname', field: ['gid']}
+                ajax: {url: CONTROL + '&m=check_rname', field: ['gid']}
             },
             error: {
                 required: '组名不能为空',

@@ -1,11 +1,23 @@
 $(function () {
     $("form").validate({
-        password: {
+        username: {
             rule: {
                 required: true
+                ,ajax: {url: CONTROL + "&m=check_username", field: ['uid']}
             },
             error: {
-                required: "密码不能为空"
+                required: "密码不能为空",
+                ajax: '帐号已经存在'
+            }
+        },
+        password: {
+            rule: {
+                required: true,
+                regexp:/^\w{5,}$/
+            },
+            error: {
+                required: "密码不能为空",
+                regexp:'密码不能小于5位'
             }
         },
         'password-c': {
@@ -28,9 +40,11 @@ $(function () {
         },
         email: {
             rule: {
-                ajax: {url: CONTROL + "&m=check_email", field: ['uid']}
+                email: true,
+                ajax: {url: CONTROL + "&m=check_email"}
             },
             error: {
+                email: '邮箱格式不正确',
                 ajax: '邮箱已经使用'
             }
         }

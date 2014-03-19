@@ -2,7 +2,7 @@
 
 class GroupModel extends Model
 {
-    public $table = 'group';
+    public $table = 'role';
 
     /**
      * 构造函数

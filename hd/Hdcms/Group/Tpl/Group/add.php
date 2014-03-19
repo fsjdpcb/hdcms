@@ -21,13 +21,13 @@
             <tr>
                 <th class="w100">会员组名</th>
                 <td>
-                    <input type="text" name="gname" class="w300" required=""/>
+                    <input type="text" name="rname" class="w300" required=""/>
                 </td>
             </tr>
             <tr>
                 <th class="w100">积分小于</th>
                 <td>
-                    <input type="text" name="point" class="w300" required=""/>
+                    <input type="text" name="creditslower" class="w300" required=""/>
                 </td>
             </tr>
             <tr>
@@ -41,7 +41,7 @@
             <tr>
                 <th class="w100">描述</th>
                 <td>
-                    <textarea class="w300 h100" name="message"></textarea>
+                    <input type="text" name="title" class="w300"/>
                 </td>
             </tr>
         </table>

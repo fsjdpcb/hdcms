@@ -27,17 +27,11 @@
             <tr>
                 <th class="w100">会员组</th>
                 <td>
-                    <select name="gid">
-                        <list from="$group" name="g">
-                            <option value="{$g.gid}">{$g.gname}</option>
+                    <select name="rid">
+                        <list from="$role" name="r">
+                            <option value="{$r.rid}">{$r.rname}</option>
                         </list>
                     </select>
-                </td>
-            </tr>
-            <tr>
-                <th class="w100">昵称</th>
-                <td>
-                    <input type="text" name="nickname" class="w300" required=""/>
                 </td>
             </tr>
             <tr>
@@ -49,7 +43,7 @@
             <tr>
                 <th class="w100">确认密码</th>
                 <td>
-                    <input type="password" name="password-c" class="w300"/>
+                    <input type="password" name="password-c" class="w300" required=""/>
                 </td>
             </tr>
             <tr>

@@ -18,7 +18,7 @@ class GroupControl extends AuthControl
      */
     public function index()
     {
-        $this->data = $this->_db->all();
+        $this->data = $this->_db->where('admin=0')->all();
         $this->display();
     }
 
@@ -31,7 +31,7 @@ class GroupControl extends AuthControl
             $this->_db->save();
             $this->_ajax(1, '修改成功');
         } else {
-            $this->field = $this->_db->find(Q('gid'));
+            $this->field = $this->_db->find(Q('rid'));
             $this->display();
         }
     }
@@ -52,14 +52,14 @@ class GroupControl extends AuthControl
     /**
      * 验证会员组
      */
-    public function check_gname()
+    public function check_rname()
     {
-        $gname = Q('gname');
+        $rname = Q('rname');
         //编辑时，去年当前会员组
         if ($gid = Q("gid")) {
-            $this->_db->where("gid<>$gid");
+            $this->_db->where("gid<>$rid");
         }
-        echo $this->_db->where("gname='$gname'")->find() ? 0 : 1;
+        echo $this->_db->where("rname='$rname'")->find() ? 0 : 1;
         exit;
     }
 }

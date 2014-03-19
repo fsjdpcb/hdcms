@@ -17,38 +17,44 @@
     </div>
     <div class="title-header">添加会员组</div>
     <form action="{|U:edit}" method="post" class="hd-form" onsubmit="return hd_submit(this,'{|U:index}');">
-        <input type="hidden" name="gid" class="w300" value="{$field.gid}"/>
+        <input type="hidden" name="rid" class="w300" value="{$field.rid}"/>
         <table class="table1">
             <tr>
-                <th class="w100">会员组名</th>
+                <th class="w100">组名</th>
                 <td>
-                    <input type="text" name="gname" class="w300" value="{$field.gname}" required=""/>
+                    <input type="text" name="rname" class="w300" value="{$field.rname}" required=""/>
                 </td>
             </tr>
             <tr>
                 <th class="w100">积分小于</th>
                 <td>
-                    <input type="text" name="point" class="w300" value="{$field.point}" rrequired=""/>
+                    <input type="text" name="creditslower" class="w300" value="{$field.creditslower}" rrequired=""/>
                 </td>
             </tr>
             <tr>
                 <th class="w100">用户权限</th>
                 <td>
-                    <label><input type="checkbox" name="allowpost" value="1"
+                    <label>
+                        <input type="checkbox" name="allowpost" value="1"
                         <if value="$field.allowpost">checked="checked"</if>
-                        /> 允许投稿</label>&nbsp&nbsp&nbsp&nbsp;
-                    <label><input type="checkbox" name="allowpostverify" value="1"
+                        /> 允许投稿
+                    </label>&nbsp&nbsp&nbsp&nbsp;
+                    <label>
+                        <input type="checkbox" name="allowpostverify" value="1"
                         <if value="$field.allowpostverify">checked="checked"</if>
-                        /> 投稿不需要审核</label>&nbsp&nbsp&nbsp&nbsp;
-                    <label><input type="checkbox" name="allowsendmessage" value="1"
+                        /> 投稿不需要审核
+                    </label>&nbsp&nbsp&nbsp&nbsp;
+                    <label>
+                        <input type="checkbox" name="allowsendmessage" value="1"
                         <if value="$field.allowsendmessage">checked="checked"</if>
-                        /> 允许发短消息</label>
+                        /> 允许发短消息
+                    </label>
                 </td>
             </tr>
             <tr>
                 <th class="w100">描述</th>
                 <td>
-                    <textarea class="w300 h100" name="message">{$field.message}</textarea>
+                    <input type="text" name="title" class="w300" value="{$field.title}"/>
                 </td>
             </tr>
         </table>

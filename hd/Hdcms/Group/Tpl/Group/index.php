@@ -28,18 +28,18 @@
         </thead>
         <list from="$data" name="d">
             <tr>
-                <td>{$d.gid}</td>
+                <td>{$d.rid}</td>
                 <td>
-                    {$d.gname}
+                    {$d.rname}
                 </td>
                 <td>
-                    <if value="$d.system_group">
+                    <if value="$d.system">
                         <font color="red">√</font>
                         <else/>
                         ×
                     </if>
                 </td>
-                <td>{$d.point}</td>
+                <td>{$d.creditslower}</td>
                 <td>
                     <if value="$d.allowpost">
                         <font color="red">√</font>
@@ -60,10 +60,10 @@
                         ×
                     </if></td>
                 <td>
-                    <a href="{|U:'edit',array('gid'=>$d['gid'])}">修改</a>
-                    <if value="$d.system_group eq 0">
+                    <a href="{|U:'edit',array('rid'=>$d['rid'])}">修改</a>
+                    <if value="$d.system eq 0">
                         <span class="line">|</span>
-                        <a href="javascript:del_category({$c.cid})">删除</a>
+                        <a href="{|U:'edit',array('rid'=>$d['rid'])}">删除</a>
                     </if>
                 </td>
             </tr>

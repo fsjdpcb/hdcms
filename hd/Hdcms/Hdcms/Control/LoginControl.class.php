@@ -60,29 +60,30 @@ class LoginControl extends CommonControl
      */
     public function Login()
     {
-
         if (IS_POST) {
-            //实例模型对象
-            $this->db = K("User");
             $username = Q("post.username", NULL, "strip_tags,htmlspecialchars,addslashes");
-            $user = $this->db->where("username='$username'")->find();
-            $stat = null;
-            if (!$user) {
-                $stat = array("stat" => 0, "msg" => "帐号输入错误");
-            } else if ($user['password'] != md5($_POST['password'] . $user['code'])) {
-                $stat = array("stat" => 0, "msg" => "密码输入错误");
-            } else if (Q('post.code', '', 'strtoupper') != Q('session.code')) {
-                $stat = array("stat" => 0, "msg" => "验证码输入错误");
-            } else {
-                $this->record_user($user['uid']);
-                $stat = array("stat" => 1, "msg" => "OK");
+            $user = M('user')->where("username='$username'")->find();
+            $error = '';
+            //-----------------------验证码------------------------
+            if (Q('post.code', '', 'strtoupper') != Q('session.code')) {
+                $error = "验证码输入错误";
             }
-            $this->assign("stat", json_encode($stat));
-            $this->display("auth");
-        } else {
-            if (session('rid')) {
+            //-----------------------帐号验证------------------------
+            if (!$user) {
+                $error = "帐号不存在";
+            }
+            //-----------------------密码验证------------------------
+            if ($user && $user['password'] != md5($_POST['password'] . $user['code'])) {
+                $error = "密码输入错误";
+            }
+            //-----------------------验证通过------------------------
+            if (empty($error)) {
+                $this->record_user($user['uid']);
                 go("Hdcms/Index/index");
             }
+            $this->error = $error;
+            $this->display();
+        } else {
             $this->display();
         }
     }

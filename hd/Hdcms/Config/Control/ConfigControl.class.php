@@ -55,9 +55,9 @@ class ConfigControl extends AuthControl
             $config['content'] = $this->_db->all("type=8");
             foreach ($config as $n => $conf) {
                 foreach ($conf as $m => $c) {
-                    //会员组
+                    //会员角色
                     if ($c['id'] == 121) {
-                        $group = $this->_db->table("group")->all();
+                        $group = $this->_db->table("role")->where("admin=0")->all();
                         $config[$n][$m]['html'] = <<<str
                                 <tr>
                                     <th class="w150">{$c['title']}</th>
@@ -65,8 +65,8 @@ class ConfigControl extends AuthControl
                                        <select name="121">
 str;
                         foreach ($group as $g) {
-                            $checked = $c['value'] == $g['gid'] ? "selected='selected'" : "";
-                            $config[$n][$m]['html'] .= "<option value='{$g['gid']}' {$checked}>{$g['gname']}</option>";
+                            $checked = $c['value'] == $g['rid'] ? "selected='selected'" : "";
+                            $config[$n][$m]['html'] .= "<option value='{$g['rid']}' {$checked}>{$g['rname']}</option>";
                         }
                         $config[$n][$m]['html'] .= <<<str
                                     </select>
