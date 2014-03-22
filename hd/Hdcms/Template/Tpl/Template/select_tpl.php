@@ -10,7 +10,7 @@
 </head>
 <body>
 <div id="select_tpl">
-    <if value="$history">
+    <if value="$hd.get.dir_name">
         <a href="javascript:window.history.back()" class="back">返回</a>
     </if>
     <table class="table2">

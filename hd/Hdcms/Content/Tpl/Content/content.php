@@ -68,7 +68,7 @@
             <td class="w80">模型</td>
             <td class="w80">作者</td>
             <td class="w80">修改时间</td>
-            <td class="w100">操作</td>
+            <td class="w150">操作</td>
         </tr>
         </thead>
         <list from="$data" name="c">
@@ -94,13 +94,14 @@
                 <td>{$c.author}</td>
                 <td>{$c.updatetime|date:"Y-m-d",@@}</td>
                 <td align="right">
-                    <a href="{$c.url}" target="_blank">访问</a><span
+                    <a href="{|U:'Index/Article/show',array('aid'=>$c['aid'])}" target="_blank">访问</a><span
                         class="line">|</span>
                     <a href="javascript:;"
                        onclick="window.open('{|U:edit,array('aid'=>$c['aid'],'cid'=>$_GET['cid'])}')">编辑</a><span
                         class="line">|</span>
                     <a href="javascript:;" onclick="del({$hd.get.cid},{$c.aid})">删除</a>
-                    <!--                    <span class="line">|</span><a href="">评论</a>-->
+                                        <span class="line">|</span>
+                    <a href="">评论</a>
                 </td>
             </tr>
         </list>

@@ -8,7 +8,7 @@
 class ArticleControl extends PublicControl
 {
     //内容页
-    public function content()
+    public function show()
     {
         if ($this->_aid) {
             import('Content.Model.ContentViewModel');

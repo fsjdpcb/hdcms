@@ -27,6 +27,7 @@
                 <li lab="tpl"><a href="#">模板设置</a></li>
                 <li lab="html"><a href="#">静态HTML设置</a></li>
                 <li lab="seo"><a href="#">SEO</a></li>
+                <li lab="access"><a href="#">权限设置</a></li>
             </ul>
             <div class="tab_content">
                 <div id="base">
@@ -184,6 +185,79 @@
                             <th>SEO描述</th>
                             <td>
                                 <textarea name="cat_seo_description" class="w400 h150">{$field.cat_seo_description}</textarea>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div id="access">
+                    <table class="table1">
+                        <tr>
+                            <th class="w100">
+                                管理组权限
+                            </th>
+                            <td>
+                                <table class="table2">
+                                    <thead>
+                                    <tr>
+                                        <td class="w250">组名</td>
+                                        <td>查看</td>
+                                        <td>添加</td>
+                                        <td>修改</td>
+                                        <td>删除</td>
+                                        <td>排序</td>
+                                        <td>移动</td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <list from="$role_admin" name="r">
+                                        <tr>
+                                            <td>
+                                                {$r.rname}
+                                                <input type="hidden" name="access[{$r.rid}][rid]" value="{$r.rid}" <if value="$r.isshow">checked=""</if>/>
+                                            </td>
+                                            <td><input type="checkbox" name="access[{$r.rid}][show]" value="1" <if value="$r.isshow">checked=""</if>/></td>
+                                            <td><input type="checkbox" name="access[{$r.rid}][add]" value="1" <if value="$r.add">checked=""</if>/></td>
+                                            <td><input type="checkbox" name="access[{$r.rid}][edit]" value="1" <if value="$r.edit">checked=""</if>/></td>
+                                            <td><input type="checkbox" name="access[{$r.rid}][del]" value="1" <if value="$r.del">checked=""</if>/></td>
+                                            <td><input type="checkbox" name="access[{$r.rid}][update_order]" value="1" <if value="$r.update_order">checked=""</if>/></td>
+                                            <td><input type="checkbox" name="access[{$r.rid}][move_content]" value="1" <if value="$r.move_content">checked=""</if>/></td>
+                                        </tr>
+                                    </list>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="w100">
+                                会员组权限
+                            </th>
+                            <td>
+                                <table class="table2">
+                                    <thead>
+                                    <tr>
+                                        <td class="w250">组名</td>
+                                        <td>允许访问</td>
+                                        <td>允许投稿</td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <list from="$role_user" name="r">
+                                        <tr>
+                                            <td>
+                                                {$r.rname}
+                                                <input type="hidden" name="access[{$r.rid}][rid]" value="{$r.rid}"/>
+                                            </td>
+                                            <td>
+                                                <input type="checkbox" name="access[{$r.rid}][show]" value="1" <if value="$r.isshow">checked=""</if>/>
+                                            </td>
+                                            <td>
+                                                <input type="checkbox" name="access[{$r.rid}][add]" value="1" <if value="$r.add">checked=""</if>/>
+                                            </td>
+                                        </tr>
+                                    </list>
+                                    </tbody>
+                                </table>
                             </td>
                         </tr>
                     </table>

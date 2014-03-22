@@ -84,7 +84,7 @@ class CommonUserModel extends ViewModel
         if (empty($username) || strlen($username) < 5) {
             $this->error = '帐号不能为空也不能小于5位';
         }
-        $user =$db->where("username='$username'")->find();
+        $user = $db->where("username='$username'")->find();
         //-----------------------帐号验证------------------------
         if ($user) {
             $this->error = "帐号已存在";
@@ -101,9 +101,11 @@ class CommonUserModel extends ViewModel
         }
         //-----------------------验证邮箱-----------------
         $email = Q("post.email", NULL, 'htmlspecialchars,strip_tags,addslashes');
-        $chk_email = $db->where("email='$email'")->find();
-        if ($chk_email) {
-            $this->error = '邮箱已经存在';
+        if ($email) {
+            $chk_email = $db->where("email='$email'")->find();
+            if ($chk_email) {
+                $this->error = '邮箱已经存在';
+            }
         }
         //-----------------------添加帐号------------------------
         if ($this->error) {
@@ -150,6 +152,8 @@ class CommonUserModel extends ViewModel
         if ($this->error) {
             return false;
         } else {
+            //删除验证码
+            unset($_SESSION['code']);
             return $this->record_user($user['uid']);
         }
     }
@@ -166,6 +170,9 @@ class CommonUserModel extends ViewModel
                 ON u.uid=c.user_uid
                 JOIN " . C('DB_PREFIX') . "role AS r ON u.rid = r.rid WHERE u.uid=$uid";
         $user = current($db->query($sql));
+        unset($user['password']);
+        unset($user['code']);
+        unset($user['user_uid']);
         //------------------头像
         if (empty($user['p50'])) {
             $user['icon50'] = __ROOT__ . "/data/image/user/50.jpg";

@@ -12,32 +12,41 @@ class TemplateControl extends AuthControl
     public function style_list()
     {
         $style = array();
-        foreach (glob("./template/*") as $tpl) {
-            //去除plug公共模板目录
-            if (strstr($tpl, 'plug')) continue;
+        foreach (scandir("./template") as $tpl) {
+            if (in_array($tpl, array('.', '..'))) continue;
             //说明文档
-            $readme = $tpl . '/readme.txt';
+            $readme = "template/{$tpl}/readme.txt";
             if (is_file($readme) && is_readable($readme)) {
-                $readme = trim(preg_replace('@#.*@im', "", file_get_contents($readme)));
-                $config = preg_split('@\n@', $readme);
+                $tmp = preg_split('@\n@', file_get_contents($readme));
+                $config['name'] = mb_substr($tmp[0],0,8,'utf-8');
+                $config['author'] = mb_substr($tmp[1],0,8,'utf-8');
+                $config['email'] = mb_substr($tmp[2],0,9,'utf-8');
             } else {
-                $config = array("HDCMS免费模板", "后盾网", "houdunwang.com");
+                $config = array("name"=>"HDCMS免费模板", "author"=>"后盾网", "email"=>"houdunwang.com");
             }
             //模板目录名
-            $config['dir_name'] = basename($tpl);
+            $config['dir_name'] = $tpl;
             //模板缩略图
-            if (is_file($tpl . '/template.jpg')) {
-                $config['img'] = $tpl . '/template.jpg';
+            $template_img = "template/{$tpl}/template.jpg";
+            if (is_file($template_img)) {
+                $config['template_img'] = __ROOT__ . '/' . $template_img;
             } else {
-                $config['img'] = __CONTROL_TPL__ . '/img/default.jpg';
+                $config['template_img'] = __CONTROL_TPL__ . '/img/default.jpg';
             }
             //正在使用的模板
-            if (C("WEB_STYLE") == $config['dir_name']) {
+            if (C("WEB_STYLE") == $tpl) {
                 $config['current'] = true;
             }
             $style[] = $config;
         }
         $this->style = $style;
+        $this->display();
+    }
+    //读取模板目录
+    public function show_dir()
+    {
+        $dir_name = "./template/" . Q("get.dir_name")? Q("get.dir_name"):C("WEB_STYLE");
+        $this->dirs = Dir::tree($dir_name, 'html');
         $this->display();
     }
 
@@ -61,14 +70,6 @@ class TemplateControl extends AuthControl
         }
     }
 
-    //读取模板目录
-    public function show_dir()
-    {
-        $dir_name = "./template/" . Q("get.dir_name", C("WEB_STYLE"));
-        $dirs = Dir::tree($dir_name, 'html');
-        $this->assign("dirs", $dirs);
-        $this->display();
-    }
 
     //编辑模板
     public function edit_tpl()
@@ -76,7 +77,7 @@ class TemplateControl extends AuthControl
         if (IS_POST) {
             //检测模板文件写权限
             if (!is_writable($_POST['file_path'])) {
-                $this->ajax(2);
+                $this->_ajax(0,'请修改模板文件权限后编辑');
             }
             //新文件名
             $new = dirname($_POST['file_path']) . '/' . $_POST['file_name'] . '.html';
@@ -86,11 +87,11 @@ class TemplateControl extends AuthControl
             if (file_put_contents($new, $_POST['content'])) {
                 $this->_ajax(1,'修改成功');
             }else{
-                $this->_ajax(1,'修改失败，请修改模板文件为可写');
+                $this->_ajax(0,'修改失败，请修改模板文件为可写');
             }
         } else {
             $file_path = Q("get.file_path", "", "urldecode");
-            $content = file_get_contents($file_path);
+            $content = htmlspecialchars(file_get_contents($file_path));
             //模板文件详细信息
             $info = pathinfo($file_path);
             $field = array(
@@ -98,7 +99,7 @@ class TemplateControl extends AuthControl
                 "file_name" => $info['filename'],
                 "content" => $content
             );
-            $this->assign("field", $field);
+            $this->field= $field;
             $this->display();
         }
     }

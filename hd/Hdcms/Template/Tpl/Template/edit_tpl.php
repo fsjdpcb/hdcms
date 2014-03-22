@@ -18,7 +18,7 @@
     </div>
     <div class="title-header">修改模板</div>
     <form action="{|U:add}" method="post" onsubmit="return false">
-        <input type="hidden" name="file_path" value="{$field.file_path}"/>
+        <input type="hidden" name="file_path" value="{$field.file_path}" />
         <!--右侧缩略图区域-->
         <table class="table1 hd-form">
             <tr>
@@ -30,7 +30,7 @@
             <tr>
                 <th class="w100">内容</th>
                 <td>
-                    <textarea name="content" style="width:80%;height:350px;">{$field.content}</textarea>
+                    <textarea name="content" style="width:80%;height:500px;">{$field.content}</textarea>
                 </td>
             </tr>
         </table>

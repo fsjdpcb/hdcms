@@ -217,15 +217,20 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                <list from="$role_admin" name="r">
                                     <tr>
-                                        <td><input type="checkbox" name="" value=""/></td>
-                                        <td><input type="checkbox" name="" value=""/></td>
-                                        <td><input type="checkbox" name="" value=""/></td>
-                                        <td><input type="checkbox" name="" value=""/></td>
-                                        <td><input type="checkbox" name="" value=""/></td>
-                                        <td><input type="checkbox" name="" value=""/></td>
-                                        <td><input type="checkbox" name="" value=""/></td>
+                                        <td>
+                                            {$r.rname}
+                                            <input type="hidden" name="access[{$r.rid}][rid]" value="{$r.rid}"/>
+                                        </td>
+                                        <td><input type="checkbox" name="access[{$r.rid}][show]" value="1"/></td>
+                                        <td><input type="checkbox" name="access[{$r.rid}][add]" value="1"/></td>
+                                        <td><input type="checkbox" name="access[{$r.rid}][edit]" value="1"/></td>
+                                        <td><input type="checkbox" name="access[{$r.rid}][del]" value="1"/></td>
+                                        <td><input type="checkbox" name="access[{$r.rid}][update_order]" value="1"/></td>
+                                        <td><input type="checkbox" name="access[{$r.rid}][move_content]" value="1"/></td>
                                     </tr>
+                                </list>
                                 </tbody>
                             </table>
                         </td>
@@ -244,11 +249,20 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <list from="$role_user" name="r">
                                 <tr>
-                                    <td><input type="checkbox" name="" value=""/> </td>
-                                    <td><input type="checkbox" name="" value=""/></td>
-                                    <td><input type="checkbox" name="" value=""/></td>
+                                    <td>
+                                        {$r.rname}
+                                        <input type="hidden" name="access[{$r.rid}][rid]" value="{$r.rid}"/>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="access[{$r.rid}][show]" value="1"/>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="access[{$r.rid}][add]" value="1"/>
+                                    </td>
                                 </tr>
+                                    </list>
                                 </tbody>
                             </table>
                         </td>

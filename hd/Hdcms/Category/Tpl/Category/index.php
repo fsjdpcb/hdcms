@@ -47,7 +47,7 @@
                     <span class="line">|</span>
                     <a href="{|U:'edit',array('cid'=>$c['cid'])}">修改</a>
                     <span class="line">|</span>
-                    <a href="javascript:del_category({$c.cid})">删除</a>
+                    <a href="javascript:hd_confirm('确证删除吗？',function(){hd_ajax(CONTROL + '&m=del_category', {cid: {$c.cid}})})">删除</a>
                 </td>
             </tr>
         </list>

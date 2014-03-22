@@ -85,11 +85,14 @@ class UserControl extends AuthControl
     public function check_email()
     {
         $email = Q('email');
-        //编辑时，去年当前会员组
-        if ($uid = Q("uid")) {
-            $this->_db->join()->where("uid<>$uid");
+        if (empty($email)) {
+            $this->ajax(1);
+        } else {
+            if ($uid = Q("uid")) {
+                $this->_db->join()->where("uid<>$uid");
+            }
+            echo $this->_db->join()->where("email='$email'")->find() ? 0 : 1;
+            exit;
         }
-        echo $this->_db->join()->where("email='$email'")->find() ? 0 : 1;
-        exit;
     }
 }

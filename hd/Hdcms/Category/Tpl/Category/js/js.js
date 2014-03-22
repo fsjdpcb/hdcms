@@ -61,7 +61,7 @@ $(function () {
  */
 function del_category(cid) {
     if (confirm('删除栏目将删除栏目下所有文章，确定删除吗？'))
-        hd_ajax(CONTROL + '&m=del_category', {cid: cid});
+        ;
 }
 
 //更新排序

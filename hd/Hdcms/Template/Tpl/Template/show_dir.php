@@ -5,16 +5,15 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>内容列表</title>
     <hdjs/>
-    <js file="__CONTROL_TPL__/js/js.js"/>
 </head>
 <body>
-<div class="wrap" style="bottom: 0px;">
+<div class="wrap">
     <div class="title-header">温馨提示</div>
     <div class="help">
         修改模板文件前，请做好备份操作！
     </div>
     <if value="$hd.get.dir_name">
-        <a href="javascript:window.back();" class="hd-cancel" style="display: inline-block;margin-bottom: 15px;">返回</a>
+        <a href="javascript:window.history.back();" target="_self" class="hd-cancel" style="margin-bottom: 15px;">返回</a>
     </if>
     <table class="table2">
         <thead>

@@ -127,6 +127,7 @@ class ContentControl extends AuthControl
         $page = new Page($count, C("ADMIN_LIST_ROW"));
         $this->page = $page->show();
         $this->data = $db->where($where)->join('category')->order('arc_sort ASC,aid DESC')->limit($page->limit())->all();
+
         //分配属性flag
         $this->flag= F('flag');
         $this->display();

@@ -31,10 +31,12 @@ return array_merge(
         "TPL_ERROR" => "./hd/Common/Template/error.html", //错误页面
         "TPL_SUCCESS" => "./hd/Common/Template/success.html", //正确页面
         'ROUTE' => array(
+            //后台登录
+            '/^admin$/i' => "a=Hdcms&c=Login&m=login",
             //跳转到注册页
-            '/^login$/' => "g=Member&a=Login&c=Login&m=login",
+            '/^login$/i' => "g=Member&a=Login&c=Login&m=login",
             '/^reg$/' => "g=Member&a=Login&c=Login&m=reg",
-            '/^quit$/' => "g=Member&a=Login&c=Login&m=quit",
+            '/^quit$/i' => "g=Member&a=Login&c=Login&m=quit",
 //            //栏目
 //            '/^list_(\d+).html$/'=>'a=Index&c=Index&m=category&cid=#1',
 //            //普通文章

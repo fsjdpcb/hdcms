@@ -38,6 +38,34 @@ class CategoryModel extends RelationModel
     }
 
     /**
+     * 设置栏目权限
+     * @param $cid 栏目cid
+     * @return bool
+     */
+    public function set_category_access($cid)
+    {
+        $db = M("category_access");
+        //获得栏目mid
+        $mid =$db->table('category')->where("cid=$cid")->getField('mid');
+        //删除原有权限配置
+        $db->where("cid=$cid")->del();
+        //设置管理员权限
+        $access = $_POST["access"];
+        if (empty($access)) {
+            return true;
+        } else {
+            foreach ($access as $a) {
+                //没有选择权限，只有rid的数据，不进行操作
+                if (count($a) <= 1) continue;
+                //添加cid,mid等数据字段
+                $a['cid'] = $cid;
+                $a['mid'] = $mid;
+                $db->add($a);
+            }
+        }
+    }
+
+    /**
      * 修改栏目
      */
     public function edit_category()
@@ -79,7 +107,7 @@ class CategoryModel extends RelationModel
         foreach ($category as $n => $v) {
             $v['_type_name'] = $type[$v['cattype']];
             $data[$v['cid']] = $v;
-            $data[$v['cid']]['model_name']=$this->table('model')->where("mid={$v['mid']}")->getField('model_name');
+            $data[$v['cid']]['model_name'] = $this->table('model')->where("mid={$v['mid']}")->getField('model_name');
         }
         return F("category", $data);
     }
@@ -108,10 +136,12 @@ class CategoryModel extends RelationModel
     public function __after_insert($data)
     {
         $this->update_cache();
+        $this->set_category_access($data);
     }
 
     public function __after_update($data)
     {
         $this->update_cache();
+        $this->set_category_access(Q('cid'));
     }
 }

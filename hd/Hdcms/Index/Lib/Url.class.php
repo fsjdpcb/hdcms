@@ -75,7 +75,7 @@ final class Url
                             return __ROOT__ . '/' . self::get_content_html($field);
                         case 2:
                             //文章字段设置为动态访问
-                            return U('Index/Article/content', array('cid' => $field['cid'], 'aid' => $field['aid']));
+                            return U('Index/Article/show', array('cid' => $field['cid'], 'aid' => $field['aid']));
                     }
                 } else {
                     //文章设置跳转地址

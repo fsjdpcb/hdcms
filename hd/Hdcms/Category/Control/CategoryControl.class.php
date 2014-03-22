@@ -57,6 +57,9 @@ class CategoryControl extends AuthControl
             }
         } else {
             $this->category = $this->_category;
+            //获得角色
+            $this->role_admin= $this->_db->table('role')->join()->where('admin=1')->all();
+            $this->role_user= $this->_db->table('role')->join()->where('admin=0')->all();
             $this->model = $this->_model;
             $this->display();
         }
@@ -86,6 +89,16 @@ class CategoryControl extends AuthControl
             }
             $this->field = $field;
             $this->category = $category;
+            //分配角色权限
+            $db=V('role');
+            $db->view=array(
+                'category_access'=>array(
+                    'type' => LEFT_JOIN, //指定连接方式
+                    'on' => 'role.rid=category_access.rid', //关联条件
+                )
+            );
+            $this->role_admin= $db->where('admin=1')->all();
+            $this->role_user= $db->where('admin=0')->all();
             $this->display();
         }
     }
