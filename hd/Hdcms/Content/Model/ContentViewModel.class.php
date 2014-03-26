@@ -50,6 +50,14 @@ class ContentViewModel extends ViewModel
             "category" => array(
                 "type" => INNER_JOIN,
                 "on" => $this->table . ".cid=category.cid"
+            ),
+            "user" => array(
+                "type" => INNER_JOIN,
+                "on" => $this->table . ".uid=user.uid"
+            ),
+            "model"=> array(
+                "type" => INNER_JOIN,
+                "on" => "model.mid=category.mid"
             )
         );
         //副表关联

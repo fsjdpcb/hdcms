@@ -1,11 +1,13 @@
-@import "member-common";
+@import "member-common.less";
 
 //文章列表
-article.main {
+article.activity {
   section.article {
     float: left;
     width: 750px;
     padding: 25px;
+    height: auto;
+    overflow: hidden;
     header {
       border-bottom: 1px solid #dadada;
       padding-bottom: 4px;
@@ -61,7 +63,11 @@ article.main {
             font-weight: bold;
             margin-bottom: 5px;
             font-size: 14px;
-
+            span {
+              color: #666;
+              font-size: 12px;
+              font-weight: normal;
+            }
           }
           a.category {
             font-size: 12px;

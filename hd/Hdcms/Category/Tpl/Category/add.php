@@ -26,6 +26,7 @@
             <li lab="html"><a href="#">静态HTML设置</a></li>
             <li lab="seo"><a href="#">SEO</a></li>
             <li lab="access"><a href="#">权限设置</a></li>
+            <li lab="charge"><a href="#">收费设置</a></li>
         </ul>
         <div class="tab_content">
             <div id="base">
@@ -79,7 +80,7 @@
                         <th>跳转Url</th>
                         <td>
                             <input type="text" name="cat_redirecturl" class="w300"/>
-                            <span class="message">栏目类型选择为“外部链接”才有效</span>
+                            <span class="validate-message">栏目类型选择为“外部链接”才有效</span>
                         </td>
                     </tr>
                     <tr>
@@ -105,7 +106,7 @@
                         <td>
                             <label><input type="radio" name="cat_show" value="1" checked="checked"/> 是</label>
                             <label><input type="radio" name="cat_show" value="0"/> 否</label>
-                            <span class="message">前台使用&lt;channel&gt;标签时是否显示</span>
+                            <span class="validate-message">前台使用&lt;channel&gt;标签时是否显示</span>
                         </td>
                     </tr>
                 </table>
@@ -117,11 +118,8 @@
                         <td>
                             <input type="text" name="index_tpl" required="" class="w200" id="index_tpl"
                                    value="{style}/article_index.html" onclick="select_template('index_tpl');"/>
-                            <button type="button" onclick="select_template('index_tpl');"
-                                    class="btn btn-small hd-cancel">
-                                选择封面模板
-                            </button>
-                            <span class="message">{style}指模板目录</span>
+                            <button type="button" onclick="select_template('index_tpl');" class="hd-cancel">选择封面模板</button>
+                            <span id="hd_index_tpl"></span>
                         </td>
                     </tr>
                     <tr>
@@ -129,10 +127,8 @@
                         <td>
                             <input type="text" name="list_tpl" required="" id="list_tpl" class="w200"
                                    value="{style}/article_list.html" onclick="select_template('list_tpl');"/>
-                            <button type="button" onclick="select_template('list_tpl');"
-                                    class="btn btn-small hd-cancel">选择列表模板
-                            </button>
-                            <span class="message">{style}指模板目录</span>
+                            <button type="button" onclick="select_template('list_tpl');" class="hd-cancel">选择列表模板</button>
+                            <span id="hd_list_tpl"></span>
                         </td>
                     </tr>
                     <tr>
@@ -140,10 +136,8 @@
                         <td>
                             <input type="text" name="arc_tpl" required="" id="arc_tpl" class="w200"
                                    value="{style}/article_default.html" onclick="select_template('arc_tpl');"/>
-                            <button type="button" onclick="select_template('arc_tpl');" class="btn btn-small hd-cancel">
-                                选择内容页模板
-                            </button>
-                            <span class="message">{style}指模板目录</span>
+                            <button type="button" onclick="select_template('arc_tpl');" class="hd-cancel">选择内容页模板</button>
+                            <span id="hd_arc_tpl"></span>
                         </td>
                     </tr>
                 </table>
@@ -154,9 +148,9 @@
                     <tr>
                         <th class="w100">栏目页URL规则</th>
                         <td>
-                            <input type="text" name="list_html_url" required="" class="w200"
+                            <input type="text" name="cat_html_url" required="" class="w200"
                                    value="{catdir}/list_{cid}_{page}.html"/>
-                            <span class="message">{cid} 栏目ID, {catdir} 栏目目录, {page} 列表的页码</span>
+                            <span id="hd_cat_html_url"></span>
                         </td>
                     </tr>
                     <tr>
@@ -164,7 +158,7 @@
                         <td>
                             <input type="text" name="arc_html_url" required="" class="w200"
                                    value="{catdir}/{y}/{m}{d}/{aid}.html"/>
-                            <span class="message">{y}、{m}、{d} 年月日,{timestamp}UNIX时间戳,{aid} 文章ID,{catdir} 栏目目录</span>
+                            <span id="hd_arc_html_url"></span>
                         </td>
                     </tr>
                 </table>
@@ -201,6 +195,17 @@
                 <table class="table1">
                     <tr>
                         <th class="w100">
+                            投稿默认状态
+                        </th>
+                        <td>
+                            <label><input type="radio" name="member_send_state" value="1" checked=""/> 审核 </label>
+                            <label><input type="radio" name="member_send_state" value="0"/> 未审核 </label>
+                        </td>
+                    </tr>
+                </table>
+                <table class="table1">
+                    <tr>
+                        <th class="w100">
                             管理组权限
                         </th>
                         <td>
@@ -220,15 +225,15 @@
                                 <list from="$role_admin" name="r">
                                     <tr>
                                         <td>
-                                            {$r.rname}
+                                            <a href="javascript:" onclick="select_access_checkbox(this)">{$r.rname}</a>
                                             <input type="hidden" name="access[{$r.rid}][rid]" value="{$r.rid}"/>
                                         </td>
                                         <td><input type="checkbox" name="access[{$r.rid}][show]" value="1"/></td>
                                         <td><input type="checkbox" name="access[{$r.rid}][add]" value="1"/></td>
                                         <td><input type="checkbox" name="access[{$r.rid}][edit]" value="1"/></td>
                                         <td><input type="checkbox" name="access[{$r.rid}][del]" value="1"/></td>
-                                        <td><input type="checkbox" name="access[{$r.rid}][update_order]" value="1"/></td>
-                                        <td><input type="checkbox" name="access[{$r.rid}][move_content]" value="1"/></td>
+                                        <td><input type="checkbox" name="access[{$r.rid}][order]" value="1"/></td>
+                                        <td><input type="checkbox" name="access[{$r.rid}][move]" value="1"/></td>
                                     </tr>
                                 </list>
                                 </tbody>
@@ -252,7 +257,7 @@
                                 <list from="$role_user" name="r">
                                 <tr>
                                     <td>
-                                        {$r.rname}
+                                        <a href="javascript:" onclick="select_access_checkbox(this)">{$r.rname}</a>
                                         <input type="hidden" name="access[{$r.rid}][rid]" value="{$r.rid}"/>
                                     </td>
                                     <td>
@@ -265,6 +270,44 @@
                                     </list>
                                 </tbody>
                             </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="charge">
+                <table class="table1">
+                    <tr>
+                        <th class="w100">会员设置阅读金币</th>
+                        <td>
+                            <label><input type="radio" name="allow_user_set_credits" value="1" checked="checked"/> 允许</label>
+                            <label><input type="radio" name="allow_user_set_credits" value="0"/> 不允许</label>
+                                <span class="validate-message">
+                                    是否允许会员投稿时设置阅读金币 （只对前台投稿有效）
+                                </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="w100">投稿奖励</th>
+                        <td>
+                            <input type="text" name="add_reward" required="" class="w100" value="1"/> 金币
+                            <span id="hd_add_reward"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="w100">阅读金币</th>
+                        <td>
+                            <input type="text" name="show_credits" required="" class="w100" value="0"/> 金币
+                            <span id="hd_show_credits"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="w100">重复收费设置</th>
+                        <td>
+                            <input type="text" name="repeat_charge_day" required="" class="w100" value="1"/> 天
+                                <span id='hd_repeat_charge_day'>
+
+                                </span>
                         </td>
                     </tr>
                 </table>

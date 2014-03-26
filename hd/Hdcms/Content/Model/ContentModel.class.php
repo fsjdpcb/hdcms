@@ -1,10 +1,9 @@
 <?php
-import('Index.Lib.Template');
-import('Index.Lib.Url');
-import('Index.Control.PublicControl');
-import('Index.Control.ArticleControl');
-import('Index.Tag.ContentTag');
-
+import('Template', 'hd/Hdcms/Index/Lib');
+import('Url', 'hd/Hdcms/Index/Lib');
+import('PublicControl', 'hd/Hdcms/Index/Control');
+import('ArticleControl', 'hd/Hdcms/Index/Control');
+import('ContentTag', 'hd/Hdcms/Index/Lib');
 
 /**
  * 管理员文章内容管理
@@ -28,19 +27,44 @@ class ContentModel extends RelationModel
     private $_field;
     //自动完成
     public $auto = array(
+        //新增文章时的添加时间
         array('addtime', 'time', 'function', 2, 1),
+        //更新时间
         array('updatetime', 'get_update_time', 'method', 2, 3),
         //发布者id
         array('uid', '_auto_uid', 'method', 2, 3),
         //属性flag字段
         array('flag', '_auto_flag', 'method', 2, 3),
+        //投稿状态
+        array('state', '_state', 'method', 2, 3),
+        //关键字
+        array('keywords', '_keywords', 'method', 2, 3)
     );
+
+    //内容关键字自动完成处理
+    protected function _keywords($v)
+    {
+        return str_replace('，', ',', $v);
+    }
+
+    //投稿状态
+    protected function _state($v)
+    {
+        $category = F('category');
+        return session('admin') == 1 ? 1 : $category[Q('cid')]['member_send_state'];
+    }
 
     //添加内容时获得发布者id
     protected function _auto_uid()
     {
         return session('uid');
     }
+
+    //自动验证
+    public $validate = array(
+        array('title', 'nonull', '标题不能为空', 1, 3),
+        array('content', 'nonull', '内容不能为空', 1, 3)
+    );
 
     //flag文章属性
     protected function _auto_flag($flag)
@@ -98,6 +122,25 @@ class ContentModel extends RelationModel
             "foreign_key" => "aid",
             "parent_key" => "aid"
         );
+    }
+
+    /**
+     * 删除文章
+     * @param $cid 栏目cid
+     * @param $aid 文章aid
+     * @param null $uid 用户uid
+     * @return boolean
+     */
+    public function del_content($cid, $aid, $uid = null)
+    {
+        if ($uid)
+            $where = "uid=$uid";
+        //删除文章
+        if ($this->join()->where($where)->del($aid)) {
+            //删除评论
+            $this->table("comment")->where("cid =$cid and aid=$aid")->del();
+            return true;
+        }
     }
 
     /**
@@ -255,14 +298,24 @@ class ContentModel extends RelationModel
     }
 
     /**
+     * 获得缩略图
+     * 如果有$_POST['thumb']时，取此值，否则根据从内容中取图
      * 从正文中提出第n张图为缩略图
      * 本功能需要发表文章时勾选了字获取内容第N张图为缩略图Checkbox
      * 如果缩略图字段不为空时（已经上传缩略图）不做任何处理
      * @param $data
      * @return bool
      */
-    private function _get_content_pic(&$data)
+    private function _get_thumb_pic(&$data)
     {
+        /**
+         * 会员中心上传文章使用uploadify表单
+         * 后台使用input表单
+         * 以下处理会员中心上传的情况
+         */
+        if (isset($_POST['thumb']) && isset($_POST['thumb'][1]['path'])) {
+            $data['thumb'] = $_POST['thumb'][1]['path'];
+        }
         //服务器是否允许远程下载
         $php_ini = @ini_get("allow_url_fopen");
         //有正文时处理
@@ -320,8 +373,8 @@ class ContentModel extends RelationModel
     {
         if (isset($data['keywords'])) {
             $keywords = $data['keywords'];
-            $description = preg_replace("@[\s\w]@is", "", $data['description']);
             if (empty($keywords)) {
+                $description = preg_replace("@\s@is", "", $data['description']);
                 $words = String::splitWord($description);
                 //没有分词不处理
                 if (empty($words)) return;
@@ -342,7 +395,7 @@ class ContentModel extends RelationModel
     {
         $keywords = $this->join()->where("aid=$aid")->getField('keywords');
         if (!empty($keywords)) {
-            import('Tag/Model/TagModel');
+            import('TagModel', 'hd/Hdcms/Tag/Model');
             $db = K("Tag");
             foreach (explode(',', $keywords) as $tag) {
                 $_POST['tag_name'] = $tag;
@@ -376,6 +429,7 @@ class ContentModel extends RelationModel
     private function _after_action($data)
     {
         $aid = Q('aid') ? Q('aid') : $data[$this->table];
+
         //修改文件上传表upload
         $this->_update_upload_table($aid);
         //修改内容tag
@@ -395,15 +449,27 @@ class ContentModel extends RelationModel
         }
     }
 
+    /**
+     * 设置正文数字表单
+     */
+    public function _set_content_field(&$data)
+    {
+        if (isset($_POST['content'])) {
+            $data['content_data']['content'] = $_POST['content'];
+        }
+    }
+
     //插入与编辑前执行的动作
     private function _before_action(&$data)
     {
         //设置缩略图
-        $this->_get_content_pic($data);
+        $this->_get_thumb_pic($data);
         //下载远程图片
         $this->_down_remote_pic($data);
         //处理参数，将复选框值合并
         $this->_current_field_data($data);
+        //获得内容表单
+        $this->_set_content_field($data);
         //摘要为空时截取内容做为摘要
         $this->_get_description($data);
         //关键字处理
@@ -413,6 +479,8 @@ class ContentModel extends RelationModel
 
     public function __before_insert(&$data)
     {
+
+        //------------------------------------------后续动作
         $this->_before_action($data);
     }
 
@@ -423,6 +491,13 @@ class ContentModel extends RelationModel
 
     public function __after_insert($data)
     {
+        //------------------------------------修改会员金币数
+        $credits = session('credits');
+        //修改分员投稿积分
+        $add_reward = $this->_category[$this->_cid]['add_reward'];
+        M('user')->where('uid=' . session('uid'))->save(array('credits', $credits + $add_reward));
+        //更新会员session
+        session('credits', $credits + $add_reward);
         if ($data)
             $this->_after_action($data);
     }
@@ -434,5 +509,17 @@ class ContentModel extends RelationModel
             $this->_after_action($data);
     }
 
+    public function __after_delete($data)
+    {
+        //------------------------------------修改会员金币数
+        $credits = session('credits');
+        //栏目配置奖励积分
+        $add_reward = $this->_category[$this->_cid]['add_reward'];
+        $s = max(0, $credits - $add_reward);
+        //修改分员投稿积分
+        M('user')->where('uid=' . session('uid'))->save(array('credits', $s));
+        //更新会员session
+        session('credits', $s);
+    }
 
 }

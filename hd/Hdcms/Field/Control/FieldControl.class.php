@@ -71,7 +71,7 @@ class FieldControl extends AuthControl
                 $this->ajax(array('state' => 1, 'message' => '添加字段成功'));
             }
         } else {
-            $this->model=$this->_model[$this->_mid];
+            $this->model = $this->_model[$this->_mid];
             $this->display();
         }
     }
@@ -80,7 +80,11 @@ class FieldControl extends AuthControl
     public function field_is_exists()
     {
         //字段名
-        $field_name = Q("request.field_name");
+        $field_name = Q("request.field_name", '', 'strtolower');
+        //content字段不允许使用，用于正文
+        if ($field_name == 'content') {
+            $this->ajax(0);
+        }
         $table = array();
         $table[] = $this->_model[$this->_mid]['table_name'];
         if ($this->_model[$this->_mid]['type'] == 1) {
@@ -121,7 +125,7 @@ class FieldControl extends AuthControl
     {
         if (IS_POST) {
             if ($this->_db->create() && $this->_db->save()) {
-                $this->ajax(1);
+                $this->_ajax(1, '修改成功');
             }
         } else {
             if ($this->_fid) {

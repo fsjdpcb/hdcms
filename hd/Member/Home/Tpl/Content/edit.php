@@ -32,56 +32,50 @@
                 <img src="{$hd.session.icon50}"/>
             </div>
             <div class="username">
-                <p>{$hd.session.nickname}</p>
+                <p>后盾向军</p>
                 <span class="time">{|date:"Y-m-d"}</span>
             </div>
         </div>
         <form method="post" onsubmit="return false;">
+            <input type="hidden" name="aid" value="{$field.aid}"/>
             <table>
                 <tr>
                     <th>简&nbsp;&nbsp;&nbsp;&nbsp;述</th>
                     <td colspan="2">
-                        <input type="text" name="title" class="w300"/>
-                    </td>
-                </tr>
-                <tr>
-                    <th>缩&nbsp;略&nbsp;图</th>
-                    <td colspan="2">
-                        <upload name="thumb" limit="1" alt="false" waterbtn="false"/>
+                        <input type="text" name="title" class="w300" value="{$field.title}"/>
                     </td>
                 </tr>
                 <tr>
                     <th>栏&nbsp;&nbsp;&nbsp;&nbsp;目</th>
                     <td colspan="2">
-                        <input type="hidden" name="cid" value=" {$category.cid}"/>
-                        {$category.catname}
+                        <input type="hidden" name="cid" value="{$field.cid}"/>
+                        {$field.catname}
                     </td>
                 </tr>
                 <tr>
                     <th>摘&nbsp;&nbsp;&nbsp;&nbsp;要</th>
                     <td colspan="2">
-                        <textarea name="description"></textarea>
+                        <textarea name="description">{$field.description}</textarea>
                     </td>
                 </tr>
-
+                <tr>
+                    <th>标&nbsp;&nbsp;&nbsp;&nbsp;签</th>
+                    <td>
+                        <input type="text" name="keywords" value="{$field.keywords}"/>
+                    </td>
+                    <td>
+                        <span>用空格分隔</span>
+                    </td>
+                </tr>
                 <if value="$model.mid=1">
                     <tr>
                         <th>内&nbsp;&nbsp;&nbsp;&nbsp;容</th>
                         <td colspan="2">
-                            <keditor name="content" style="2"/>
+                            <keditor name="content" style="2" content="{$field.content}"/>
                             <span class="hd_content validate-message">请点击全屏编辑</span>
                         </td>
                     </tr>
                 </if>
-                <tr>
-                    <th>标&nbsp;&nbsp;&nbsp;&nbsp;签</th>
-                    <td>
-                        <input type="text" name="keywords"/>
-                    </td>
-                    <td>
-                        <span>用逗号分隔</span>
-                    </td>
-                </tr>
                 {$custom_field}
                 <tr>
                     <th></th>

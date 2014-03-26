@@ -1,3 +1,37 @@
+//表单验证
+$(function () {
+    $("form").validate({
+        title: {
+            rule: {
+                required: true,
+                regexp: /^.{10,100}$/
+            },
+            error: {
+                required: "标题不能为空",
+                regexp: '标题字数在10~100间'
+            }
+        },
+        keywords: {
+            message: '如果不填，系统将自动从内容中提取'
+        },
+        description: {
+            message: '如果不填，系统将自动从内容中提取'
+        },
+        html_path: {
+            message: '如:houdunwang.html,如果不填将按栏目规则生成静态。栏目开启生成静态才有效'
+        },
+        read_credits: {
+            rule: {
+                required: true,
+                regexp: /^\d+$/
+            },
+            error: {
+                required: "阅读积分不能为空",
+                regexp: '必须为数字'
+            }
+        }
+    })
+})
 //添加或修改文章
 $(function () {
     $("form#add,form#edit").submit(function () {
@@ -5,11 +39,6 @@ $(function () {
         $("[onblur*='field_check']").each(function () {
             $(this).trigger("blur");
         })
-        //验证标题
-        if (!$.trim($("[name='title']").val())) {
-            alert('标题不能为空');
-            return false;
-        }
         //验证内容
         if ($("[id='" + editor_id + "']").length > 0 && !UE.getEditor(editor_id).hasContents()) {
             alert("内容不能为空");

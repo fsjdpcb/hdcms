@@ -65,6 +65,7 @@ class ModelModel extends Model
                       `favorites` mediumint UNSIGNED NOT NULL DEFAULT 0 COMMENT '收藏数' ,
                       `comment_num` mediumint UNSIGNED NOT NULL DEFAULT 0  COMMENT '评论数' ,
                       `flag` set('热门','置顶','推荐','图片','精华','幻灯片','站长推荐') DEFAULT NULL COMMENT '文章属性',
+                      `read_credits` smallint UNSIGNED NOT NULL DEFAULT 0  COMMENT '阅读积分' ,
                       PRIMARY KEY (`aid`) ,
                       INDEX `cid` (`cid` ASC),
                       INDEX `uid` (`uid` ASC))

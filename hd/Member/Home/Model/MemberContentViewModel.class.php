@@ -4,6 +4,7 @@ import('ContentViewModel', 'hd/Hdcms/Content/Model');
 
 /**
  * 会员文章管理
+ * 主要用于Select操作
  * Class ContentModel
  */
 class MemberContentViewModel extends ContentViewModel
@@ -14,11 +15,11 @@ class MemberContentViewModel extends ContentViewModel
     public function get_content()
     {
         $count = $this->join(null)->where("uid=" . session('uid'))->count();
-        $page = new Page($count, 10);
-        $data = $this->limit($page->limit())->order('updatetime DESC')->all();
+        $page = new Page($count, 6);
+        $data = $this->limit($page->limit())->where($this->tableFull.".uid=" . session('uid'))->order('updatetime DESC')->all();
         return array(
             'page' => $page->show(),
-            'date' => $data
+            'data' => $data
         );
     }
 }

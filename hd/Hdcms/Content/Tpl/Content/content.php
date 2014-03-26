@@ -91,7 +91,7 @@
                 </td>
                 <td>{$c.catname}</td>
                 <td>{$c.model_name}</td>
-                <td>{$c.author}</td>
+                <td>{$c.username}</td>
                 <td>{$c.updatetime|date:"Y-m-d",@@}</td>
                 <td align="right">
                     <a href="{|U:'Index/Article/show',array('aid'=>$c['aid'])}" target="_blank">访问</a><span

@@ -14,7 +14,7 @@ class MemberAuthControl extends CommonControl
             $this->display("./data/Template/close_member");
             exit;
         } else if (!session('uid')) {
-            go(U("Login/login", array('g' => 'Member')));
+            go(U("Login/Login/login", array('g' => 'Member')));
         }
     }
 

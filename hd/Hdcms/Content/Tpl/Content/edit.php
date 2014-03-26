@@ -93,6 +93,14 @@
                         <input type="text" name="author" class="w150" value="{$field.author}"/>
                     </td>
                 </tr>
+                <tr>
+                    <th>阅读积分</th>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" name="read_credits" class="w150" value="{$field.read_credits}"/>
+                    </td>
+                </tr>
             </table>
 
         </div>

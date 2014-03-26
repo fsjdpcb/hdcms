@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50535
 File Encoding         : 65001
 
-Date: 2014-03-17 00:27:36
+Date: 2014-03-23 22:08:35
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -29,6 +29,43 @@ CREATE TABLE `hd_access` (
 -- ----------------------------
 -- Records of hd_access
 -- ----------------------------
+INSERT INTO `hd_access` VALUES ('2', '17');
+INSERT INTO `hd_access` VALUES ('2', '11');
+INSERT INTO `hd_access` VALUES ('2', '20');
+INSERT INTO `hd_access` VALUES ('2', '21');
+INSERT INTO `hd_access` VALUES ('2', '19');
+INSERT INTO `hd_access` VALUES ('2', '16');
+INSERT INTO `hd_access` VALUES ('2', '80');
+INSERT INTO `hd_access` VALUES ('2', '69');
+INSERT INTO `hd_access` VALUES ('2', '12');
+INSERT INTO `hd_access` VALUES ('2', '79');
+INSERT INTO `hd_access` VALUES ('2', '61');
+INSERT INTO `hd_access` VALUES ('2', '9');
+INSERT INTO `hd_access` VALUES ('2', '8');
+INSERT INTO `hd_access` VALUES ('2', '6');
+INSERT INTO `hd_access` VALUES ('2', '5');
+INSERT INTO `hd_access` VALUES ('2', '70');
+INSERT INTO `hd_access` VALUES ('2', '15');
+INSERT INTO `hd_access` VALUES ('2', '14');
+INSERT INTO `hd_access` VALUES ('2', '3');
+INSERT INTO `hd_access` VALUES ('2', '10');
+INSERT INTO `hd_access` VALUES ('2', '81');
+INSERT INTO `hd_access` VALUES ('2', '4');
+INSERT INTO `hd_access` VALUES ('2', '13');
+INSERT INTO `hd_access` VALUES ('2', '2');
+INSERT INTO `hd_access` VALUES ('2', '1');
+INSERT INTO `hd_access` VALUES ('3', '81');
+INSERT INTO `hd_access` VALUES ('3', '4');
+INSERT INTO `hd_access` VALUES ('3', '13');
+INSERT INTO `hd_access` VALUES ('3', '2');
+INSERT INTO `hd_access` VALUES ('3', '1');
+INSERT INTO `hd_access` VALUES ('2', '18');
+INSERT INTO `hd_access` VALUES ('2', '30');
+INSERT INTO `hd_access` VALUES ('2', '31');
+INSERT INTO `hd_access` VALUES ('2', '32');
+INSERT INTO `hd_access` VALUES ('2', '33');
+INSERT INTO `hd_access` VALUES ('2', '34');
+INSERT INTO `hd_access` VALUES ('2', '35');
 
 -- ----------------------------
 -- Table structure for hd_bug
@@ -71,39 +108,58 @@ CREATE TABLE `hd_category` (
   `arc_url_type` tinyint(1) NOT NULL DEFAULT '1' COMMENT '文章访问方式 1 静态访问 2 动态访问',
   `cat_url_type` tinyint(1) NOT NULL DEFAULT '1' COMMENT '栏目访问方式 1 静态访问 2 动态访问',
   `cat_redirecturl` varchar(100) NOT NULL DEFAULT '' COMMENT '跳转url',
-  `catorder` smallint(5) unsigned DEFAULT '100' COMMENT '栏目排序',
-  `cat_show` tinyint(1) DEFAULT '1' COMMENT 'channel标签调用时是否显示',
-  `cat_seo_title` char(100) DEFAULT NULL COMMENT 'SEO标题',
-  `cat_seo_description` varchar(255) DEFAULT NULL COMMENT 'SEO描述',
+  `catorder` smallint(5) unsigned NOT NULL DEFAULT '100' COMMENT '栏目排序',
+  `cat_show` tinyint(1) NOT NULL DEFAULT '1' COMMENT 'channel标签调用时是否显示',
+  `cat_seo_title` char(100) NOT NULL DEFAULT '' COMMENT 'SEO标题',
+  `cat_seo_description` varchar(255) NOT NULL DEFAULT '' COMMENT 'SEO描述',
+  `add_reward` smallint(5) NOT NULL DEFAULT '0' COMMENT '搞稿奖励',
+  `show_credits` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '查看积分',
+  `repeat_charge_day` smallint(5) unsigned NOT NULL DEFAULT '1' COMMENT '重复收费天数',
+  `allow_user_set_credits` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否允许会员投稿设置积分 1 允许 0 不允许',
   PRIMARY KEY (`cid`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='栏目表';
+) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COMMENT='栏目表';
 
 -- ----------------------------
 -- Records of hd_category
 -- ----------------------------
-INSERT INTO `hd_category` VALUES ('2', '0', '最新消息', 'news', '', '', '{style}/article_index.html', '{style}/article_list.html', '{style}/article_default.html', '', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '100', '2', '', '');
-INSERT INTO `hd_category` VALUES ('4', '0', '问答', 'question', '', '', '{style}/article_index.html', '{style}/article_list.html', '{style}/article_default.html', '', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '100', '1', '', '');
-INSERT INTO `hd_category` VALUES ('5', '0', '新闻', 'news', '', '', '{style}/article_index.html', '{style}/article_list.html', '{style}/article_default.html', '', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '100', '1', '', '');
-INSERT INTO `hd_category` VALUES ('12', '8', '前端', 'div', '', '', '{style}/article_index.html', '{style}/article_list.html', '{style}/article_default.html', '', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '100', '1', '', '');
-INSERT INTO `hd_category` VALUES ('11', '8', '服务器', 'server', '', '', '{style}/article_index.html', '{style}/article_list.html', '{style}/article_default.html', '', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '100', '1', '', '');
-INSERT INTO `hd_category` VALUES ('8', '0', '每日教程', 'lesson', '', '', '{style}/article_index.html', '{style}/article_list.html', '{style}/article_default.html', '', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '2', '1', '1', '', '100', '1', '', '');
-INSERT INTO `hd_category` VALUES ('10', '8', 'php', 'php', '', '', '{style}/article_index.html', '{style}/article_list.html', '{style}/article_default.html', '', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '100', '1', '', '');
+INSERT INTO `hd_category` VALUES ('2', '0', '最新消息', 'news', '', '', '{style}/article_index.html', '{style}/article_list.html', '{style}/article_default.html', '1', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '100', '2', '', '', '0', '0', '1', '1');
+INSERT INTO `hd_category` VALUES ('4', '0', '问答', 'question', '', '', '{style}/article_index.html', '{style}/article_list.html', '{style}/article_default.html', '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '100', '1', '', '', '0', '0', '1', '1');
+INSERT INTO `hd_category` VALUES ('5', '0', '新闻', 'news', '', '', '{style}/article_index.html', '{style}/article_list.html', '{style}/article_default.html', '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '100', '1', '', '', '0', '0', '1', '1');
+INSERT INTO `hd_category` VALUES ('12', '8', '前端', 'div', '', '', '{style}/article_index.html', '{style}/article_list.html', '{style}/article_default.html', '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '100', '1', '', '', '0', '0', '1', '1');
+INSERT INTO `hd_category` VALUES ('11', '8', '服务器', 'server', '', '', '{style}/article_index.html', '{style}/article_list.html', '{style}/article_default.html', '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '100', '1', '', '', '0', '0', '1', '1');
+INSERT INTO `hd_category` VALUES ('8', '0', '每日教程', 'lesson', '', '', '{style}/article_index.html', '{style}/article_list.html', '{style}/article_default.html', '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '2', '1', '1', '', '100', '1', '', '', '0', '0', '1', '1');
+INSERT INTO `hd_category` VALUES ('10', '8', 'php', 'php', '', '', '{style}/article_index.html', '{style}/article_list.html', '{style}/article_default.html', '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '100', '1', '', '', '0', '0', '1', '1');
 
 -- ----------------------------
 -- Table structure for hd_category_access
 -- ----------------------------
 DROP TABLE IF EXISTS `hd_category_access`;
 CREATE TABLE `hd_category_access` (
+  `rid` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '角色id',
   `cid` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '栏目cid',
   `mid` smallint(1) NOT NULL DEFAULT '0' COMMENT '模型mid',
-  `issend` tinyint(1) NOT NULL DEFAULT '0' COMMENT '允许投稿 1允许 0 不允许',
-  `isshow` tinyint(1) NOT NULL DEFAULT '0' COMMENT '允许访问 1 允许 0 不允许',
-  `rid` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '角色id'
+  `show` tinyint(1) NOT NULL DEFAULT '0' COMMENT '允许访问 1 允许 0 不允许',
+  `add` tinyint(1) NOT NULL DEFAULT '0' COMMENT '允许投稿(添加) 1允许 0 不允许',
+  `edit` tinyint(1) NOT NULL DEFAULT '0' COMMENT '允许更新 1允许 0 不允许',
+  `del` tinyint(1) NOT NULL DEFAULT '0' COMMENT '允许删除 1允许 0 不允许',
+  `order` tinyint(1) NOT NULL DEFAULT '0' COMMENT '允许排序 1允许 0 不允许',
+  `move` tinyint(1) NOT NULL DEFAULT '0' COMMENT '允许移动 1允许 0 不允许'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hd_category_access
 -- ----------------------------
+INSERT INTO `hd_category_access` VALUES ('6', '32', '1', '0', '1', '0', '0', '0', '0');
+INSERT INTO `hd_category_access` VALUES ('5', '32', '1', '1', '0', '0', '0', '0', '0');
+INSERT INTO `hd_category_access` VALUES ('4', '32', '1', '0', '1', '0', '0', '0', '0');
+INSERT INTO `hd_category_access` VALUES ('2', '32', '1', '0', '1', '0', '0', '0', '0');
+INSERT INTO `hd_category_access` VALUES ('1', '32', '1', '1', '0', '0', '0', '0', '0');
+INSERT INTO `hd_category_access` VALUES ('1', '33', '1', '1', '1', '1', '1', '1', '1');
+INSERT INTO `hd_category_access` VALUES ('2', '33', '1', '1', '1', '1', '1', '1', '1');
+INSERT INTO `hd_category_access` VALUES ('3', '33', '1', '1', '1', '1', '1', '1', '1');
+INSERT INTO `hd_category_access` VALUES ('4', '33', '1', '1', '1', '0', '0', '0', '0');
+INSERT INTO `hd_category_access` VALUES ('5', '33', '1', '1', '1', '0', '0', '0', '0');
+INSERT INTO `hd_category_access` VALUES ('6', '33', '1', '1', '1', '0', '0', '0', '0');
 
 -- ----------------------------
 -- Table structure for hd_comment
@@ -118,8 +174,8 @@ CREATE TABLE `hd_comment` (
   `ip` char(15) NOT NULL DEFAULT '' COMMENT 'IP地址',
   `c_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否显示 1 显示  0 不显示',
   `addtime` int(11) NOT NULL DEFAULT '0' COMMENT '回复时间',
-  `pid` int(11) DEFAULT '0' COMMENT '父级id',
-  `path` varchar(255) DEFAULT '',
+  `pid` int(11) NOT NULL DEFAULT '0' COMMENT '父级id',
+  `reply_id` int(11) NOT NULL DEFAULT '0' COMMENT '回复的最顶层评论id',
   PRIMARY KEY (`comment_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -139,7 +195,7 @@ CREATE TABLE `hd_config` (
   `title` char(30) NOT NULL DEFAULT '',
   `show_type` enum('文本','数字','布尔(1/0)','多行文本') DEFAULT '文本',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=157 DEFAULT CHARSET=utf8 COMMENT='系统配置';
+) ENGINE=MyISAM AUTO_INCREMENT=159 DEFAULT CHARSET=utf8 COMMENT='系统配置';
 
 -- ----------------------------
 -- Records of hd_config
@@ -158,12 +214,12 @@ INSERT INTO `hd_config` VALUES ('16', 'upload_path', 'upload', '上传配置', '
 INSERT INTO `hd_config` VALUES ('17', 'upload_img_path', 'img', '上传配置', '上传图片目录', '文本');
 INSERT INTO `hd_config` VALUES ('18', 'allow_type', 'jpg,jpeg,png,bmp,gif', '上传配置', '允许上传文件类型', '文本');
 INSERT INTO `hd_config` VALUES ('19', 'allow_size', '2048000', '上传配置', '允许上传大小（字节）', '数字');
-INSERT INTO `hd_config` VALUES ('20', 'water_on', '0', '水印设置', '上传文件加水印', '布尔(1/0)');
+INSERT INTO `hd_config` VALUES ('20', 'water_on', '1', '水印设置', '上传文件加水印', '布尔(1/0)');
 INSERT INTO `hd_config` VALUES ('115', 'member_verify', '0', '会员设置', '会员注册是否需要审核', '布尔(1/0)');
 INSERT INTO `hd_config` VALUES ('116', 'reg_show_code', '1', '会员设置', '会员注册是否显示验证码', '布尔(1/0)');
 INSERT INTO `hd_config` VALUES ('119', 'reg_email', '1', '会员设置', '注册成功是否发邮件', '布尔(1/0)');
 INSERT INTO `hd_config` VALUES ('120', 'reg_interval', '0', '会员设置', '2次注册间隔间间', '数字');
-INSERT INTO `hd_config` VALUES ('121', 'default_member_group', '1', '会员设置', '新注册会员初始组', '数字');
+INSERT INTO `hd_config` VALUES ('121', 'default_member_group', '4', '会员设置', '新注册会员初始组', '数字');
 INSERT INTO `hd_config` VALUES ('122', 'admin_list_row', '15', '高级设置', '后台列表页数据显示行数', '数字');
 INSERT INTO `hd_config` VALUES ('123', 'token_on', '0', '安全设置', '表单使用令牌验证', '布尔(1/0)');
 INSERT INTO `hd_config` VALUES ('124', 'log_key', 'houdunwang.com', '安全设置', '日志文件加密KEY', '文本');
@@ -172,7 +228,7 @@ INSERT INTO `hd_config` VALUES ('126', 'super_admin_key', 'SUPER_ADMIN', '安全
 INSERT INTO `hd_config` VALUES ('127', 'tel', '010-64825057', '站点配置', '联系电话', '文本');
 INSERT INTO `hd_config` VALUES ('128', 'water_text', 'houdunwang.com', '水印设置', '水印文字', '文本');
 INSERT INTO `hd_config` VALUES ('129', 'water_text_size', '16', '水印设置', '文字大小', '数字');
-INSERT INTO `hd_config` VALUES ('130', 'water_img', './data/water/water.png', '水印设置', '水印图像', '文本');
+INSERT INTO `hd_config` VALUES ('130', 'water_img', 'data/water/water.png', '水印设置', '水印图像', '文本');
 INSERT INTO `hd_config` VALUES ('131', 'water_pct', '0', '水印设置', '水印图片透明度', '数字');
 INSERT INTO `hd_config` VALUES ('132', 'water_quality', '90', '水印设置', '图片压缩比', '数字');
 INSERT INTO `hd_config` VALUES ('133', 'water_pos', '9', '水印设置', '水印位置', '数字');
@@ -181,13 +237,11 @@ INSERT INTO `hd_config` VALUES ('136', 'down_remove_pic_size', '500', '高级设
 INSERT INTO `hd_config` VALUES ('137', 'comment_status', '1', '会员设置', '评论需要审核', '布尔(1/0)');
 INSERT INTO `hd_config` VALUES ('138', 'favicon_width', '180', '会员设置', '会员头像宽度', '数字');
 INSERT INTO `hd_config` VALUES ('139', 'favicon_height', '180', '会员设置', '会员头像高度', '数字');
-INSERT INTO `hd_config` VALUES ('140', 'upload_img_max_width', '650', '高级设置', '图片超过这个尺寸进行缩放', '数字');
-INSERT INTO `hd_config` VALUES ('141', 'upload_img_max_height', '650', '高级设置', '图片超过这个尺寸进行缩放', '数字');
 INSERT INTO `hd_config` VALUES ('142', 'down_remote_pic', '0', '内容相关', '下载远程图片', '布尔(1/0)');
 INSERT INTO `hd_config` VALUES ('143', 'auto_desc', '1', '内容相关', '截取内容为摘要', '布尔(1/0)');
 INSERT INTO `hd_config` VALUES ('144', 'auto_thumb', '0', '内容相关', '提取内容图片为缩略图', '布尔(1/0)');
-INSERT INTO `hd_config` VALUES ('145', 'upload_img_max_width', '2000', '内容相关', '上传图片宽度超过此值，进行缩放', '数字');
-INSERT INTO `hd_config` VALUES ('146', 'upload_img_max_height', '2000', '内容相关', '上传图片高度超过此值，进行缩放', '数字');
+INSERT INTO `hd_config` VALUES ('145', 'upload_img_max_width', '600', '内容相关', '上传图片宽度超过此值，进行缩放', '数字');
+INSERT INTO `hd_config` VALUES ('146', 'upload_img_max_height', '600', '内容相关', '上传图片高度超过此值，进行缩放', '数字');
 INSERT INTO `hd_config` VALUES ('147', 'member_content_status', '1', '会员设置', '会员发表文章需要审核', '布尔(1/0)');
 INSERT INTO `hd_config` VALUES ('149', 'member_open', '0', '会员设置', '开启会员中心', '布尔(1/0)');
 INSERT INTO `hd_config` VALUES ('150', 'web_close_message', '网站暂时关闭，请稍候访问', '站点配置', '网站关闭提示信息', '文本');
@@ -195,6 +249,8 @@ INSERT INTO `hd_config` VALUES ('151', 'web_style', 'default', '私有配置', '
 INSERT INTO `hd_config` VALUES ('155', 'qq', '1455067020', '站点配置', 'QQ号', '文本');
 INSERT INTO `hd_config` VALUES ('154', 'weibo', 'houdunwangxj@gmail.com', '站点配置', '新浪微博', '文本');
 INSERT INTO `hd_config` VALUES ('156', 'tweibo', 'houdunwang@gmail.com', '站点配置', '腾讯微博', '文本');
+INSERT INTO `hd_config` VALUES ('157', 'email', 'houdunwangxj@gmail.com', '站点配置', '企业邮箱', '文本');
+INSERT INTO `hd_config` VALUES ('158', 'init_credits', '100', '会员设置', '初始积分', '文本');
 
 -- ----------------------------
 -- Table structure for hd_content
@@ -226,14 +282,26 @@ CREATE TABLE `hd_content` (
   `uid` int(10) unsigned NOT NULL COMMENT '用户uid',
   `favorites` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '收藏数',
   `comment_num` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '评论数',
+  `read_credits` smallint(6) unsigned NOT NULL DEFAULT '0' COMMENT '阅读金币',
   PRIMARY KEY (`aid`),
   KEY `cid` (`cid`),
   KEY `uid` (`uid`)
-) ENGINE=MyISAM DEFAULT CHARSET=gbk;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=gbk;
 
 -- ----------------------------
 -- Records of hd_content
 -- ----------------------------
+INSERT INTO `hd_content` VALUES ('1', '5', '舒适又不失乐趣 测试新奥迪A3 1.8T三厢', '置顶,图片', '0', '', 'upload/Content/2014/03/17/51901394988144.jpg', '100', '', '', '', '1', 'admin', '1394988143', '1395031302', '', '', '2', '100', '1', '奥迪,市场,似乎,上市,读书,太子,角色,同门,如日中天', '[汽车之家专业评测] 提到豪华品牌紧凑型车市场，大家脑海中率先浮现出来的或许就是宝马1系、奔驰A级和雷克萨斯CT等车型，作为这一细分市场的开拓者，老款奥迪A3由于产品过于老迈，在过去的很长一段时间内人气不高，似乎一直扮演着陪太子读书的角色，与它同门师兄A4L和A6L如日中天的市场表现，不可同日而语。奥迪应该也意识到了这个问题，似乎有借助全新A3上市（3月21日上市）强势回归的意味，并且将同时提供进', '1', '0', '0', '0');
+INSERT INTO `hd_content` VALUES ('2', '5', '将月底发布 现代新一代索纳塔实车曝光', '图片', '0', '', 'upload/Content/2014/03/17/97711394989116.jpg', '100', '', '', '', '1', 'admin', '1394989115', '1395032141', '', '', '2', '100', '1', '新一代,索纳塔,动力,看起来,新车,方面,线条,配合,现代', '[汽车之家新闻] 前段时间现代公布了新一代索纳塔的预告图，日前，国外媒体曝光了新一代索纳塔的实车图。这款车将在3月底发布。 外观方面，新车使用了现代最新的流体雕塑设计理念。新车的六边形前进气格栅和犀利的前大灯与全新设计的保险杠相配合，让新一代索纳塔的前脸看起来很动感。而流畅的车身线条与饱满的车头线条相配合则让整车看起来稳重而优雅。 动力方面，海外媒体报道，新一代索纳塔的动力配置将会有变化，2.4L', '1', '0', '0', '0');
+INSERT INTO `hd_content` VALUES ('3', '5', '顶替顶替', '图片', '0', '', 'upload/Content/2014/03/17/55811394989281.jpg', '100', '', '', '', '1', 'admin', '1394989281', '1394989272', '', '', '2', '100', '1', '新一代,索纳塔,动力,看起来,新车,方面,线条,配合,现代', '[汽车之家新闻] 前段时间现代公布了新一代索纳塔的预告图，日前，国外媒体曝光了新一代索纳塔的实车图。这款车将在3月底发布。 外观方面，新车使用了现代最新的流体雕塑设计理念。新车的六边形前进气格栅和犀利的前大灯与全新设计的保险杠相配合，让新一代索纳塔的前脸看起来很动感。而流畅的车身线条与饱满的车头线条相配合则让整车看起来稳重而优雅。 动力方面，海外媒体报道，新一代索纳塔的动力配置将会有变化，2.4L', '1', '0', '0', '0');
+INSERT INTO `hd_content` VALUES ('4', '5', '夺', '图片', '0', '', 'upload/Content/2014/03/17/23051394989383.jpg', '100', '', '', '', '1', 'admin', '1394989383', '1394989376', '', '', '1', '100', '1', '新一代,索纳塔,动力,看起来,新车,方面,线条,配合,现代', '[汽车之家新闻] 前段时间现代公布了新一代索纳塔的预告图，日前，国外媒体曝光了新一代索纳塔的实车图。这款车将在3月底发布。 外观方面，新车使用了现代最新的流体雕塑设计理念。新车的六边形前进气格栅和犀利的前大灯与全新设计的保险杠相配合，让新一代索纳塔的前脸看起来很动感。而流畅的车身线条与饱满的车头线条相配合则让整车看起来稳重而优雅。 动力方面，海外媒体报道，新一代索纳塔的动力配置将会有变化，2.4L', '1', '0', '0', '0');
+INSERT INTO `hd_content` VALUES ('5', '5', '大厦大厦大厦大厦dd', '图片', '0', '', 'upload/Content/2014/03/17/12221394989399.jpg', '100', '', '', '', '1', 'admin', '1394989399', '1394989389', '', '', '1', '100', '1', '新一代,索纳塔,动力,看起来,新车,方面,线条,配合,现代', '[汽车之家新闻] 前段时间现代公布了新一代索纳塔的预告图，日前，国外媒体曝光了新一代索纳塔的实车图。这款车将在3月底发布。 外观方面，新车使用了现代最新的流体雕塑设计理念。新车的六边形前进气格栅和犀利的前大灯与全新设计的保险杠相配合，让新一代索纳塔的前脸看起来很动感。而流畅的车身线条与饱满的车头线条相配合则让整车看起来稳重而优雅。 动力方面，海外媒体报道，新一代索纳塔的动力配置将会有变化，2.4L', '1', '0', '0', '0');
+INSERT INTO `hd_content` VALUES ('6', '5', 'sdfsdfsdfdsf', '置顶,精华', '0', '', 'upload/Content/2014/03/17/84761394989415.jpg', '100', '', '', '', '1', 'admin', '1394989415', '1394989408', '', '', '1', '100', '1', '新一代,索纳塔,动力,看起来,新车,方面,线条,配合,现代', '[汽车之家新闻] 前段时间现代公布了新一代索纳塔的预告图，日前，国外媒体曝光了新一代索纳塔的实车图。这款车将在3月底发布。 外观方面，新车使用了现代最新的流体雕塑设计理念。新车的六边形前进气格栅和犀利的前大灯与全新设计的保险杠相配合，让新一代索纳塔的前脸看起来很动感。而流畅的车身线条与饱满的车头线条相配合则让整车看起来稳重而优雅。 动力方面，海外媒体报道，新一代索纳塔的动力配置将会有变化，2.4L', '1', '0', '0', '0');
+INSERT INTO `hd_content` VALUES ('7', '5', 'sdfdsfdsffd', '热门,置顶,推荐,精华', '0', '', 'upload/Content/2014/03/17/40791394989434.jpg', '100', '', '', '', '1', 'admin', '1394989434', '1394989425', '', '', '1', '100', '1', '新一代,索纳塔,动力,看起来,新车,方面,线条,配合,现代', '[汽车之家新闻] 前段时间现代公布了新一代索纳塔的预告图，日前，国外媒体曝光了新一代索纳塔的实车图。这款车将在3月底发布。 外观方面，新车使用了现代最新的流体雕塑设计理念。新车的六边形前进气格栅和犀利的前大灯与全新设计的保险杠相配合，让新一代索纳塔的前脸看起来很动感。而流畅的车身线条与饱满的车头线条相配合则让整车看起来稳重而优雅。 动力方面，海外媒体报道，新一代索纳塔的动力配置将会有变化，2.4L', '1', '0', '0', '0');
+INSERT INTO `hd_content` VALUES ('8', '5', 'sdfdf', '置顶,图片', '0', '', 'upload/Content/2014/03/17/90581394989473.jpg', '100', '', '', '', '1', 'admin', '1394989473', '1394989448', '', '', '1', '100', '1', '新一代,索纳塔,动力,看起来,新车,方面,线条,配合,现代', '[汽车之家新闻] 前段时间现代公布了新一代索纳塔的预告图，日前，国外媒体曝光了新一代索纳塔的实车图。这款车将在3月底发布。 外观方面，新车使用了现代最新的流体雕塑设计理念。新车的六边形前进气格栅和犀利的前大灯与全新设计的保险杠相配合，让新一代索纳塔的前脸看起来很动感。而流畅的车身线条与饱满的车头线条相配合则让整车看起来稳重而优雅。 动力方面，海外媒体报道，新一代索纳塔的动力配置将会有变化，2.4L', '1', '0', '0', '0');
+INSERT INTO `hd_content` VALUES ('9', '5', 'dsdfdsf', '置顶,推荐,图片,精华', '0', '', 'upload/Content/2014/03/17/35481394989486.jpg', '100', '', '', '', '1', 'admin', '1394989486', '1394989478', '', '', '1', '100', '1', '新一代,索纳塔,动力,看起来,新车,方面,线条,配合,现代', '[汽车之家新闻] 前段时间现代公布了新一代索纳塔的预告图，日前，国外媒体曝光了新一代索纳塔的实车图。这款车将在3月底发布。 外观方面，新车使用了现代最新的流体雕塑设计理念。新车的六边形前进气格栅和犀利的前大灯与全新设计的保险杠相配合，让新一代索纳塔的前脸看起来很动感。而流畅的车身线条与饱满的车头线条相配合则让整车看起来稳重而优雅。 动力方面，海外媒体报道，新一代索纳塔的动力配置将会有变化，2.4L', '1', '0', '0', '0');
+INSERT INTO `hd_content` VALUES ('10', '5', 'sdfsdfdsf', '图片', '0', '', 'upload/content/2014/03/19/8231395242592.jpg', '100', '', '', '', '1', 'admin', '1395242599', '1395199374', '', '', '1', '100', '1', '', 'sdfsddsf', '1', '0', '0', '0');
+INSERT INTO `hd_content` VALUES ('11', '5', '1111222', '图片', '0', '', 'upload/content/2014/03/19/71201395242782.jpg', '100', '', '', '', '1', 'admin', '1395242798', '1395199561', '', '', '1', '100', '1', '', '1212', '1', '0', '0', '0');
 
 -- ----------------------------
 -- Table structure for hd_content_data
@@ -249,6 +317,17 @@ CREATE TABLE `hd_content_data` (
 -- ----------------------------
 -- Records of hd_content_data
 -- ----------------------------
+INSERT INTO `hd_content_data` VALUES ('1', '<p style=\"margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\">[<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/shuyu/detail_29_31_100.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">汽车之家</a>&nbsp;专业评测]&nbsp; 提到豪华品牌<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/shuyu/detail_18_19_220.html#529\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">紧凑型车</a>市场，大家脑海中率先浮现出来的或许就是<a class=\"ShuKeyWordLink\" href=\"http://www.autohome.com.cn/373/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">宝马1系</a>、<a class=\"ShuKeyWordLink\" href=\"http://www.autohome.com.cn/52/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">奔驰A级</a>和<a class=\"ShuKeyWordLink\" href=\"http://www.autohome.com.cn/2063/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">雷克萨斯CT</a>等车型，作为这一细分市场的开拓者，老款<a class=\"ShuKeyWordLink\" href=\"http://www.autohome.com.cn/3170/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">奥迪A3</a>由于产品过于老迈，在过去的很长一段时间内人气不高，似乎一直扮演着陪太子读书的角色，与它同门师兄A4L和A6L如日中天的市场表现，不可同日而语。<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/price/brand-33.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">奥迪</a>应该也意识到了这个问题，似乎有借助全新A3上市（3月21日上市）强势回归的意味，并且将同时提供进口、国产以及Sportback（<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/shuyu/detail_3_4_281.html#153\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">两厢</a>）和Limousine（<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/shuyu/detail_3_4_281.html#152\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">三厢</a>）等非常丰富的车型选择。</p><p style=\"text-align:center;margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\"><a href=\"http://www.autohome.com.cn/img/?img=newspic/2014/3/16/2014031601442579351.jpg\" target=\"_blank\" style=\"color: rgb(59, 89, 152); outline: 0px; text-decoration: none;\"><img alt=\"\" src=\"http://img.autohome.com.cn/newspic/2014/3/16/620x0_0_2014031601442579351.jpg\" width=\"620\" height=\"680\" original=\"http://img.autohome.com.cn/newspic/2014/3/16/620x0_0_2014031601442579351.jpg\" style=\"vertical-align: top; background-image: url(http://x.autoimg.cn/news/show20/1210/default_bg.png); display: inline-block; border: 0px !important; background-position: 50% 50%; background-repeat: no-repeat no-repeat;\"/></a><a href=\"http://www.autohome.com.cn/img/?img=newspic/2014/3/16/2014031601595093335.jpg\" target=\"_blank\" style=\"color: rgb(59, 89, 152); outline: 0px; text-decoration: none;\"><img alt=\"\" src=\"http://img.autohome.com.cn/newspic/2014/3/16/620x0_0_2014031601595093335.jpg\" width=\"620\" height=\"240\" original=\"http://img.autohome.com.cn/newspic/2014/3/16/620x0_0_2014031601595093335.jpg\" style=\"vertical-align: top; background-image: url(http://x.autoimg.cn/news/show20/1210/default_bg.png); display: inline-block; border: 0px !important; background-position: 50% 50%; background-repeat: no-repeat no-repeat;\"/></a></p><p style=\"margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\">&nbsp;&nbsp;&nbsp; 3月21日将上市的全新<a class=\"blackclink\" href=\"http://www.autohome.com.cn/3170/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">奥迪A3</a>会推出1.4T和1.8T两种排量以及Sportback（<a class=\"blackclink\" href=\"http://car.autohome.com.cn/shuyu/detail_3_4_281.html#153\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">两厢</a>）和Limousine（<a class=\"blackclink\" href=\"http://car.autohome.com.cn/shuyu/detail_3_4_281.html#152\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">三厢</a>）<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/shuyu/detail_3_4_281.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">车身结构</a>，但具体车型数量尚未公布。不过与会的<a class=\"blackclink\" href=\"http://car.autohome.com.cn/price/brand-33.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">奥迪</a>方面相关人员表示，先期上市的1.4T车型均来自于<a class=\"blackclink\" href=\"http://car.autohome.com.cn/price/brand-33.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">奥迪</a><a class=\"ShuKeyWordLink\" href=\"http://www.autohome.com.cn/foshan/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">佛山</a>工厂，而1.8T车型都产自<a class=\"blackclink\" href=\"http://car.autohome.com.cn/price/brand-33.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">奥迪</a>匈牙利工厂。在这次试驾会上，<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/shuyu/detail_18_19_218.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">厂商</a>带来的全是进口版的1.8T车型（40<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/shuyu/detail_8_10_78.html#102\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">TFSI</a>），我拿到手的正是一台A3 Limousine 40&nbsp;<a class=\"blackclink\" href=\"http://car.autohome.com.cn/shuyu/detail_8_10_78.html#102\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">TFSI</a>（1.8T<a class=\"blackclink\" href=\"http://car.autohome.com.cn/shuyu/detail_3_4_281.html#152\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">三厢</a>）版车型，两天开下来，它留给我最大的印象就是：舒适但又不失驾驶乐趣，而且开起来的愉悦性明显优于A4L。本文的介绍内容，也主要针对这款车型。至于1.4T和Sportback车型，我们会在后期做更详细的报道。</p><p style=\"margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\"><strong>● 提供Sportback（<a class=\"blackclink\" href=\"http://car.autohome.com.cn/shuyu/detail_3_4_281.html#153\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">两厢</a>）和Limousine（<a class=\"blackclink\" href=\"http://car.autohome.com.cn/shuyu/detail_3_4_281.html#152\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">三厢</a>）<a class=\"blackclink\" href=\"http://car.autohome.com.cn/shuyu/detail_3_4_281.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">车身结构</a></strong></p><p style=\"margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\">&nbsp;&nbsp;&nbsp; 大家眼前的这款全新<a class=\"blackclink\" href=\"http://www.autohome.com.cn/3170/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">奥迪A3</a>，是A3家族的第三代车型，该车于2012年3月在<a class=\"ShuKeyWordLink\" href=\"http://www.autohome.com.cn/chezhan/rineiwa/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">日内瓦车展</a>正式亮相，并在2013年<a class=\"ShuKeyWordLink\" href=\"http://www.autohome.com.cn/chezhan/shanghai/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">上海车展</a>上发布了Limousine（<a class=\"blackclink\" href=\"http://car.autohome.com.cn/shuyu/detail_3_4_281.html#152\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">三厢</a>）版车型，这也是<a class=\"blackclink\" href=\"http://www.autohome.com.cn/3170/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">奥迪A3</a>自1996年问世以来首款<a class=\"blackclink\" href=\"http://car.autohome.com.cn/shuyu/detail_3_4_281.html#152\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">三厢</a>版车型，据<a class=\"blackclink\" href=\"http://car.autohome.com.cn/price/brand-33.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">奥迪</a>厂方工作人员介绍，该车有望成为日后A3家族在国内的销售主力。</p><p><br/></p>', '');
+INSERT INTO `hd_content_data` VALUES ('2', '<p style=\"margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\">[<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/shuyu/detail_29_31_100.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">汽车之家</a>&nbsp;新闻]&nbsp; 前段时间<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/price/brand-12.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">现代</a>公布了新一代<a class=\"ShuKeyWordLink\" href=\"http://www.autohome.com.cn/2649/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">索纳塔</a>的预告图，日前，国外媒体曝光了新一代<a class=\"blackclink\" href=\"http://www.autohome.com.cn/2649/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">索纳塔</a>的实车图。这款车将在3月底发布。</p><p style=\"text-align:center;margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\"><a href=\"http://www.autohome.com.cn/img/?img=newspic/2014/3/13/2014031309320636514.jpg\" target=\"_blank\" style=\"color: rgb(214, 0, 0); outline: 0px;\"><img alt=\"汽车之家\" src=\"http://www1.autoimg.cn/newspic/2014/3/13/620x0_0_2014031309320636514.jpg\" width=\"620\" height=\"426\" original=\"http://www1.autoimg.cn/newspic/2014/3/13/620x0_0_2014031309320636514.jpg\" style=\"vertical-align: top; background-image: url(http://x.autoimg.cn/news/show20/1210/default_bg.png); display: inline-block; border: 0px !important; background-position: 50% 50%; background-repeat: no-repeat no-repeat;\"/></a></p><p style=\"margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\">&nbsp;&nbsp;&nbsp; 外观方面，新车使用了<a class=\"blackclink\" href=\"http://car.autohome.com.cn/price/brand-12.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">现代</a>最新的流体雕塑设计<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/price/brand-124.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">理念</a>。新车的六边形前进气格栅和犀利的前大灯与全新设计的保险杠相配合，让新一代<a class=\"blackclink\" href=\"http://www.autohome.com.cn/2649/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">索纳塔</a>的前脸看起来很动感。而流畅的车身线条与饱满的车头线条相配合则让整车看起来稳重而<a class=\"ShuKeyWordLink\" href=\"http://www.autohome.com.cn/2484/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">优雅</a>。</p><p style=\"text-align:center;margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\"><a href=\"http://www.autohome.com.cn/img/?img=newspic/2014/3/13/2014031309320876335.jpg\" target=\"_blank\" style=\"color: rgb(59, 89, 152); outline: 0px; text-decoration: none;\"><img alt=\"汽车之家\" src=\"http://www1.autoimg.cn/newspic/2014/3/13/620x0_0_2014031309320876335.jpg\" width=\"620\" height=\"370\" original=\"http://www1.autoimg.cn/newspic/2014/3/13/620x0_0_2014031309320876335.jpg\" style=\"vertical-align: top; background-image: url(http://x.autoimg.cn/news/show20/1210/default_bg.png); display: inline-block; border: 0px !important; background-position: 50% 50%; background-repeat: no-repeat no-repeat;\"/></a></p><p style=\"margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\">&nbsp;&nbsp;&nbsp; 动力方面，海外媒体报道，新一代<a class=\"blackclink\" href=\"http://www.autohome.com.cn/2649/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">索纳塔</a>的动力配置将会有变化，2.4L自然吸气<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/shuyu/detail_8_9_555.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">发动机</a>将被最大<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/shuyu/detail_40_41_98.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">功率</a>201马力的1.6T<a class=\"blackclink\" href=\"http://car.autohome.com.cn/shuyu/detail_8_9_555.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">发动机</a>替换。（信息来源：BOBAEDREAM；编译/<a class=\"blackclink\" href=\"http://car.autohome.com.cn/shuyu/detail_29_31_100.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">汽车之家</a>&nbsp;章宁）</p><p><br/></p>', '');
+INSERT INTO `hd_content_data` VALUES ('3', '<p style=\"margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\">[<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/shuyu/detail_29_31_100.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">汽车之家</a>&nbsp;新闻]&nbsp; 前段时间<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/price/brand-12.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">现代</a>公布了新一代<a class=\"ShuKeyWordLink\" href=\"http://www.autohome.com.cn/2649/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">索纳塔</a>的预告图，日前，国外媒体曝光了新一代<a class=\"blackclink\" href=\"http://www.autohome.com.cn/2649/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">索纳塔</a>的实车图。这款车将在3月底发布。</p><p style=\"text-align:center;margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\"><a href=\"http://www.autohome.com.cn/img/?img=newspic/2014/3/13/2014031309320636514.jpg\" target=\"_blank\" style=\"color: rgb(214, 0, 0); outline: 0px;\"><img alt=\"汽车之家\" src=\"http://www1.autoimg.cn/newspic/2014/3/13/620x0_0_2014031309320636514.jpg\" width=\"620\" height=\"426\" original=\"http://www1.autoimg.cn/newspic/2014/3/13/620x0_0_2014031309320636514.jpg\" style=\"vertical-align: top; background-image: url(http://x.autoimg.cn/news/show20/1210/default_bg.png); display: inline-block; border: 0px !important; background-position: 50% 50%; background-repeat: no-repeat no-repeat;\"/></a></p><p style=\"margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\">&nbsp;&nbsp;&nbsp; 外观方面，新车使用了<a class=\"blackclink\" href=\"http://car.autohome.com.cn/price/brand-12.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">现代</a>最新的流体雕塑设计<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/price/brand-124.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">理念</a>。新车的六边形前进气格栅和犀利的前大灯与全新设计的保险杠相配合，让新一代<a class=\"blackclink\" href=\"http://www.autohome.com.cn/2649/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">索纳塔</a>的前脸看起来很动感。而流畅的车身线条与饱满的车头线条相配合则让整车看起来稳重而<a class=\"ShuKeyWordLink\" href=\"http://www.autohome.com.cn/2484/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">优雅</a>。</p><p style=\"text-align:center;margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\"><a href=\"http://www.autohome.com.cn/img/?img=newspic/2014/3/13/2014031309320876335.jpg\" target=\"_blank\" style=\"color: rgb(59, 89, 152); outline: 0px; text-decoration: none;\"><img alt=\"汽车之家\" src=\"http://www1.autoimg.cn/newspic/2014/3/13/620x0_0_2014031309320876335.jpg\" width=\"620\" height=\"370\" original=\"http://www1.autoimg.cn/newspic/2014/3/13/620x0_0_2014031309320876335.jpg\" style=\"vertical-align: top; background-image: url(http://x.autoimg.cn/news/show20/1210/default_bg.png); display: inline-block; border: 0px !important; background-position: 50% 50%; background-repeat: no-repeat no-repeat;\"/></a></p><p style=\"margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\">&nbsp;&nbsp;&nbsp; 动力方面，海外媒体报道，新一代<a class=\"blackclink\" href=\"http://www.autohome.com.cn/2649/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">索纳塔</a>的动力配置将会有变化，2.4L自然吸气<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/shuyu/detail_8_9_555.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">发动机</a>将被最大<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/shuyu/detail_40_41_98.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">功率</a>201马力的1.6T<a class=\"blackclink\" href=\"http://car.autohome.com.cn/shuyu/detail_8_9_555.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">发动机</a>替换。（信息来源：BOBAEDREAM；编译/<a class=\"blackclink\" href=\"http://car.autohome.com.cn/shuyu/detail_29_31_100.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">汽车之家</a>&nbsp;章宁）</p><p><br/></p>', '');
+INSERT INTO `hd_content_data` VALUES ('4', '<p style=\"margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\">[<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/shuyu/detail_29_31_100.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">汽车之家</a>&nbsp;新闻]&nbsp; 前段时间<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/price/brand-12.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">现代</a>公布了新一代<a class=\"ShuKeyWordLink\" href=\"http://www.autohome.com.cn/2649/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">索纳塔</a>的预告图，日前，国外媒体曝光了新一代<a class=\"blackclink\" href=\"http://www.autohome.com.cn/2649/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">索纳塔</a>的实车图。这款车将在3月底发布。</p><p style=\"text-align:center;margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\"><a href=\"http://www.autohome.com.cn/img/?img=newspic/2014/3/13/2014031309320636514.jpg\" target=\"_blank\" style=\"color: rgb(59, 89, 152); outline: 0px; text-decoration: none;\"><img alt=\"汽车之家\" src=\"http://www1.autoimg.cn/newspic/2014/3/13/620x0_0_2014031309320636514.jpg\" width=\"620\" height=\"426\" original=\"http://www1.autoimg.cn/newspic/2014/3/13/620x0_0_2014031309320636514.jpg\" style=\"vertical-align: top; background-image: url(http://x.autoimg.cn/news/show20/1210/default_bg.png); display: inline-block; border: 0px !important; background-position: 50% 50%; background-repeat: no-repeat no-repeat;\"/></a></p><p style=\"margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\">&nbsp;&nbsp;&nbsp; 外观方面，新车使用了<a class=\"blackclink\" href=\"http://car.autohome.com.cn/price/brand-12.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">现代</a>最新的流体雕塑设计<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/price/brand-124.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">理念</a>。新车的六边形前进气格栅和犀利的前大灯与全新设计的保险杠相配合，让新一代<a class=\"blackclink\" href=\"http://www.autohome.com.cn/2649/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">索纳塔</a>的前脸看起来很动感。而流畅的车身线条与饱满的车头线条相配合则让整车看起来稳重而<a class=\"ShuKeyWordLink\" href=\"http://www.autohome.com.cn/2484/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">优雅</a>。</p><p style=\"text-align:center;margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\"><a href=\"http://www.autohome.com.cn/img/?img=newspic/2014/3/13/2014031309320876335.jpg\" target=\"_blank\" style=\"color: rgb(59, 89, 152); outline: 0px; text-decoration: none;\"><img alt=\"汽车之家\" src=\"http://www1.autoimg.cn/newspic/2014/3/13/620x0_0_2014031309320876335.jpg\" width=\"620\" height=\"370\" original=\"http://www1.autoimg.cn/newspic/2014/3/13/620x0_0_2014031309320876335.jpg\" style=\"vertical-align: top; background-image: url(http://x.autoimg.cn/news/show20/1210/default_bg.png); display: inline-block; border: 0px !important; background-position: 50% 50%; background-repeat: no-repeat no-repeat;\"/></a></p><p style=\"margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\">&nbsp;&nbsp;&nbsp; 动力方面，海外媒体报道，新一代<a class=\"blackclink\" href=\"http://www.autohome.com.cn/2649/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">索纳塔</a>的动力配置将会有变化，2.4L自然吸气<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/shuyu/detail_8_9_555.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">发动机</a>将被最大<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/shuyu/detail_40_41_98.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">功率</a>201马力的1.6T<a class=\"blackclink\" href=\"http://car.autohome.com.cn/shuyu/detail_8_9_555.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">发动机</a>替换。（信息来源：BOBAEDREAM；编译/<a class=\"blackclink\" href=\"http://car.autohome.com.cn/shuyu/detail_29_31_100.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">汽车之家</a>&nbsp;章宁）</p><p><br/></p>', '');
+INSERT INTO `hd_content_data` VALUES ('5', '<p style=\"margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\">[<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/shuyu/detail_29_31_100.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">汽车之家</a>&nbsp;新闻]&nbsp; 前段时间<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/price/brand-12.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">现代</a>公布了新一代<a class=\"ShuKeyWordLink\" href=\"http://www.autohome.com.cn/2649/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">索纳塔</a>的预告图，日前，国外媒体曝光了新一代<a class=\"blackclink\" href=\"http://www.autohome.com.cn/2649/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">索纳塔</a>的实车图。这款车将在3月底发布。</p><p style=\"text-align:center;margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\"><a href=\"http://www.autohome.com.cn/img/?img=newspic/2014/3/13/2014031309320636514.jpg\" target=\"_blank\" style=\"color: rgb(59, 89, 152); outline: 0px; text-decoration: none;\"><img alt=\"汽车之家\" src=\"http://www1.autoimg.cn/newspic/2014/3/13/620x0_0_2014031309320636514.jpg\" width=\"620\" height=\"426\" original=\"http://www1.autoimg.cn/newspic/2014/3/13/620x0_0_2014031309320636514.jpg\" style=\"vertical-align: top; background-image: url(http://x.autoimg.cn/news/show20/1210/default_bg.png); display: inline-block; border: 0px !important; background-position: 50% 50%; background-repeat: no-repeat no-repeat;\"/></a></p><p style=\"margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\">&nbsp;&nbsp;&nbsp; 外观方面，新车使用了<a class=\"blackclink\" href=\"http://car.autohome.com.cn/price/brand-12.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">现代</a>最新的流体雕塑设计<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/price/brand-124.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">理念</a>。新车的六边形前进气格栅和犀利的前大灯与全新设计的保险杠相配合，让新一代<a class=\"blackclink\" href=\"http://www.autohome.com.cn/2649/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">索纳塔</a>的前脸看起来很动感。而流畅的车身线条与饱满的车头线条相配合则让整车看起来稳重而<a class=\"ShuKeyWordLink\" href=\"http://www.autohome.com.cn/2484/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">优雅</a>。</p><p style=\"text-align:center;margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\"><a href=\"http://www.autohome.com.cn/img/?img=newspic/2014/3/13/2014031309320876335.jpg\" target=\"_blank\" style=\"color: rgb(59, 89, 152); outline: 0px; text-decoration: none;\"><img alt=\"汽车之家\" src=\"http://www1.autoimg.cn/newspic/2014/3/13/620x0_0_2014031309320876335.jpg\" width=\"620\" height=\"370\" original=\"http://www1.autoimg.cn/newspic/2014/3/13/620x0_0_2014031309320876335.jpg\" style=\"vertical-align: top; background-image: url(http://x.autoimg.cn/news/show20/1210/default_bg.png); display: inline-block; border: 0px !important; background-position: 50% 50%; background-repeat: no-repeat no-repeat;\"/></a></p><p style=\"margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\">&nbsp;&nbsp;&nbsp; 动力方面，海外媒体报道，新一代<a class=\"blackclink\" href=\"http://www.autohome.com.cn/2649/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">索纳塔</a>的动力配置将会有变化，2.4L自然吸气<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/shuyu/detail_8_9_555.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">发动机</a>将被最大<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/shuyu/detail_40_41_98.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">功率</a>201马力的1.6T<a class=\"blackclink\" href=\"http://car.autohome.com.cn/shuyu/detail_8_9_555.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">发动机</a>替换。（信息来源：BOBAEDREAM；编译/<a class=\"blackclink\" href=\"http://car.autohome.com.cn/shuyu/detail_29_31_100.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">汽车之家</a>&nbsp;章宁）</p><p><br/></p>', '');
+INSERT INTO `hd_content_data` VALUES ('6', '<p style=\"margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\">[<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/shuyu/detail_29_31_100.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">汽车之家</a>&nbsp;新闻]&nbsp; 前段时间<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/price/brand-12.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">现代</a>公布了新一代<a class=\"ShuKeyWordLink\" href=\"http://www.autohome.com.cn/2649/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">索纳塔</a>的预告图，日前，国外媒体曝光了新一代<a class=\"blackclink\" href=\"http://www.autohome.com.cn/2649/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">索纳塔</a>的实车图。这款车将在3月底发布。</p><p style=\"text-align:center;margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\"><a href=\"http://www.autohome.com.cn/img/?img=newspic/2014/3/13/2014031309320636514.jpg\" target=\"_blank\" style=\"color: rgb(59, 89, 152); outline: 0px; text-decoration: none;\"><img alt=\"汽车之家\" src=\"http://www1.autoimg.cn/newspic/2014/3/13/620x0_0_2014031309320636514.jpg\" width=\"620\" height=\"426\" original=\"http://www1.autoimg.cn/newspic/2014/3/13/620x0_0_2014031309320636514.jpg\" style=\"vertical-align: top; background-image: url(http://x.autoimg.cn/news/show20/1210/default_bg.png); display: inline-block; border: 0px !important; background-position: 50% 50%; background-repeat: no-repeat no-repeat;\"/></a></p><p style=\"margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\">&nbsp;&nbsp;&nbsp; 外观方面，新车使用了<a class=\"blackclink\" href=\"http://car.autohome.com.cn/price/brand-12.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">现代</a>最新的流体雕塑设计<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/price/brand-124.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">理念</a>。新车的六边形前进气格栅和犀利的前大灯与全新设计的保险杠相配合，让新一代<a class=\"blackclink\" href=\"http://www.autohome.com.cn/2649/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">索纳塔</a>的前脸看起来很动感。而流畅的车身线条与饱满的车头线条相配合则让整车看起来稳重而<a class=\"ShuKeyWordLink\" href=\"http://www.autohome.com.cn/2484/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">优雅</a>。</p><p style=\"text-align:center;margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\"><a href=\"http://www.autohome.com.cn/img/?img=newspic/2014/3/13/2014031309320876335.jpg\" target=\"_blank\" style=\"color: rgb(59, 89, 152); outline: 0px; text-decoration: none;\"><img alt=\"汽车之家\" src=\"http://www1.autoimg.cn/newspic/2014/3/13/620x0_0_2014031309320876335.jpg\" width=\"620\" height=\"370\" original=\"http://www1.autoimg.cn/newspic/2014/3/13/620x0_0_2014031309320876335.jpg\" style=\"vertical-align: top; background-image: url(http://x.autoimg.cn/news/show20/1210/default_bg.png); display: inline-block; border: 0px !important; background-position: 50% 50%; background-repeat: no-repeat no-repeat;\"/></a></p><p style=\"margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\">&nbsp;&nbsp;&nbsp; 动力方面，海外媒体报道，新一代<a class=\"blackclink\" href=\"http://www.autohome.com.cn/2649/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">索纳塔</a>的动力配置将会有变化，2.4L自然吸气<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/shuyu/detail_8_9_555.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">发动机</a>将被最大<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/shuyu/detail_40_41_98.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">功率</a>201马力的1.6T<a class=\"blackclink\" href=\"http://car.autohome.com.cn/shuyu/detail_8_9_555.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">发动机</a>替换。（信息来源：BOBAEDREAM；编译/<a class=\"blackclink\" href=\"http://car.autohome.com.cn/shuyu/detail_29_31_100.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">汽车之家</a>&nbsp;章宁）</p><p><br/></p>', '');
+INSERT INTO `hd_content_data` VALUES ('7', '<p style=\"margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\">[<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/shuyu/detail_29_31_100.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">汽车之家</a>&nbsp;新闻]&nbsp; 前段时间<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/price/brand-12.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">现代</a>公布了新一代<a class=\"ShuKeyWordLink\" href=\"http://www.autohome.com.cn/2649/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">索纳塔</a>的预告图，日前，国外媒体曝光了新一代<a class=\"blackclink\" href=\"http://www.autohome.com.cn/2649/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">索纳塔</a>的实车图。这款车将在3月底发布。</p><p style=\"text-align:center;margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\"><a href=\"http://www.autohome.com.cn/img/?img=newspic/2014/3/13/2014031309320636514.jpg\" target=\"_blank\" style=\"color: rgb(59, 89, 152); outline: 0px; text-decoration: none;\"><img alt=\"汽车之家\" src=\"http://www1.autoimg.cn/newspic/2014/3/13/620x0_0_2014031309320636514.jpg\" width=\"620\" height=\"426\" original=\"http://www1.autoimg.cn/newspic/2014/3/13/620x0_0_2014031309320636514.jpg\" style=\"vertical-align: top; background-image: url(http://x.autoimg.cn/news/show20/1210/default_bg.png); display: inline-block; border: 0px !important; background-position: 50% 50%; background-repeat: no-repeat no-repeat;\"/></a></p><p style=\"margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\">&nbsp;&nbsp;&nbsp; 外观方面，新车使用了<a class=\"blackclink\" href=\"http://car.autohome.com.cn/price/brand-12.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">现代</a>最新的流体雕塑设计<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/price/brand-124.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">理念</a>。新车的六边形前进气格栅和犀利的前大灯与全新设计的保险杠相配合，让新一代<a class=\"blackclink\" href=\"http://www.autohome.com.cn/2649/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">索纳塔</a>的前脸看起来很动感。而流畅的车身线条与饱满的车头线条相配合则让整车看起来稳重而<a class=\"ShuKeyWordLink\" href=\"http://www.autohome.com.cn/2484/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">优雅</a>。</p><p style=\"text-align:center;margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\"><a href=\"http://www.autohome.com.cn/img/?img=newspic/2014/3/13/2014031309320876335.jpg\" target=\"_blank\" style=\"color: rgb(59, 89, 152); outline: 0px; text-decoration: none;\"><img alt=\"汽车之家\" src=\"http://www1.autoimg.cn/newspic/2014/3/13/620x0_0_2014031309320876335.jpg\" width=\"620\" height=\"370\" original=\"http://www1.autoimg.cn/newspic/2014/3/13/620x0_0_2014031309320876335.jpg\" style=\"vertical-align: top; background-image: url(http://x.autoimg.cn/news/show20/1210/default_bg.png); display: inline-block; border: 0px !important; background-position: 50% 50%; background-repeat: no-repeat no-repeat;\"/></a></p><p style=\"margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\">&nbsp;&nbsp;&nbsp; 动力方面，海外媒体报道，新一代<a class=\"blackclink\" href=\"http://www.autohome.com.cn/2649/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">索纳塔</a>的动力配置将会有变化，2.4L自然吸气<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/shuyu/detail_8_9_555.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">发动机</a>将被最大<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/shuyu/detail_40_41_98.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">功率</a>201马力的1.6T<a class=\"blackclink\" href=\"http://car.autohome.com.cn/shuyu/detail_8_9_555.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">发动机</a>替换。（信息来源：BOBAEDREAM；编译/<a class=\"blackclink\" href=\"http://car.autohome.com.cn/shuyu/detail_29_31_100.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">汽车之家</a>&nbsp;章宁）</p><p><br/></p>', '');
+INSERT INTO `hd_content_data` VALUES ('8', '<p style=\"margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\">[<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/shuyu/detail_29_31_100.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">汽车之家</a>&nbsp;新闻]&nbsp; 前段时间<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/price/brand-12.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">现代</a>公布了新一代<a class=\"ShuKeyWordLink\" href=\"http://www.autohome.com.cn/2649/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">索纳塔</a>的预告图，日前，国外媒体曝光了新一代<a class=\"blackclink\" href=\"http://www.autohome.com.cn/2649/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">索纳塔</a>的实车图。这款车将在3月底发布。</p><p style=\"text-align:center;margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\"><a href=\"http://www.autohome.com.cn/img/?img=newspic/2014/3/13/2014031309320636514.jpg\" target=\"_blank\" style=\"color: rgb(59, 89, 152); outline: 0px; text-decoration: none;\"><img alt=\"汽车之家\" src=\"http://www1.autoimg.cn/newspic/2014/3/13/620x0_0_2014031309320636514.jpg\" width=\"620\" height=\"426\" original=\"http://www1.autoimg.cn/newspic/2014/3/13/620x0_0_2014031309320636514.jpg\" style=\"vertical-align: top; background-image: url(http://x.autoimg.cn/news/show20/1210/default_bg.png); display: inline-block; border: 0px !important; background-position: 50% 50%; background-repeat: no-repeat no-repeat;\"/></a></p><p style=\"margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\">&nbsp;&nbsp;&nbsp; 外观方面，新车使用了<a class=\"blackclink\" href=\"http://car.autohome.com.cn/price/brand-12.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">现代</a>最新的流体雕塑设计<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/price/brand-124.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">理念</a>。新车的六边形前进气格栅和犀利的前大灯与全新设计的保险杠相配合，让新一代<a class=\"blackclink\" href=\"http://www.autohome.com.cn/2649/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">索纳塔</a>的前脸看起来很动感。而流畅的车身线条与饱满的车头线条相配合则让整车看起来稳重而<a class=\"ShuKeyWordLink\" href=\"http://www.autohome.com.cn/2484/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">优雅</a>。</p><p style=\"text-align:center;margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\"><a href=\"http://www.autohome.com.cn/img/?img=newspic/2014/3/13/2014031309320876335.jpg\" target=\"_blank\" style=\"color: rgb(59, 89, 152); outline: 0px; text-decoration: none;\"><img alt=\"汽车之家\" src=\"http://www1.autoimg.cn/newspic/2014/3/13/620x0_0_2014031309320876335.jpg\" width=\"620\" height=\"370\" original=\"http://www1.autoimg.cn/newspic/2014/3/13/620x0_0_2014031309320876335.jpg\" style=\"vertical-align: top; background-image: url(http://x.autoimg.cn/news/show20/1210/default_bg.png); display: inline-block; border: 0px !important; background-position: 50% 50%; background-repeat: no-repeat no-repeat;\"/></a></p><p style=\"margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\">&nbsp;&nbsp;&nbsp; 动力方面，海外媒体报道，新一代<a class=\"blackclink\" href=\"http://www.autohome.com.cn/2649/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">索纳塔</a>的动力配置将会有变化，2.4L自然吸气<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/shuyu/detail_8_9_555.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">发动机</a>将被最大<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/shuyu/detail_40_41_98.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">功率</a>201马力的1.6T<a class=\"blackclink\" href=\"http://car.autohome.com.cn/shuyu/detail_8_9_555.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">发动机</a>替换。（信息来源：BOBAEDREAM；编译/<a class=\"blackclink\" href=\"http://car.autohome.com.cn/shuyu/detail_29_31_100.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">汽车之家</a>&nbsp;章宁）</p><p><br/></p>', '');
+INSERT INTO `hd_content_data` VALUES ('9', '<p style=\"margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\">[<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/shuyu/detail_29_31_100.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">汽车之家</a>&nbsp;新闻]&nbsp; 前段时间<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/price/brand-12.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">现代</a>公布了新一代<a class=\"ShuKeyWordLink\" href=\"http://www.autohome.com.cn/2649/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">索纳塔</a>的预告图，日前，国外媒体曝光了新一代<a class=\"blackclink\" href=\"http://www.autohome.com.cn/2649/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">索纳塔</a>的实车图。这款车将在3月底发布。</p><p style=\"text-align:center;margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\"><a href=\"http://www.autohome.com.cn/img/?img=newspic/2014/3/13/2014031309320636514.jpg\" target=\"_blank\" style=\"color: rgb(59, 89, 152); outline: 0px; text-decoration: none;\"><img alt=\"汽车之家\" src=\"http://www1.autoimg.cn/newspic/2014/3/13/620x0_0_2014031309320636514.jpg\" width=\"620\" height=\"426\" original=\"http://www1.autoimg.cn/newspic/2014/3/13/620x0_0_2014031309320636514.jpg\" style=\"vertical-align: top; background-image: url(http://x.autoimg.cn/news/show20/1210/default_bg.png); display: inline-block; border: 0px !important; background-position: 50% 50%; background-repeat: no-repeat no-repeat;\"/></a></p><p style=\"margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\">&nbsp;&nbsp;&nbsp; 外观方面，新车使用了<a class=\"blackclink\" href=\"http://car.autohome.com.cn/price/brand-12.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">现代</a>最新的流体雕塑设计<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/price/brand-124.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">理念</a>。新车的六边形前进气格栅和犀利的前大灯与全新设计的保险杠相配合，让新一代<a class=\"blackclink\" href=\"http://www.autohome.com.cn/2649/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">索纳塔</a>的前脸看起来很动感。而流畅的车身线条与饱满的车头线条相配合则让整车看起来稳重而<a class=\"ShuKeyWordLink\" href=\"http://www.autohome.com.cn/2484/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">优雅</a>。</p><p style=\"text-align:center;margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\"><a href=\"http://www.autohome.com.cn/img/?img=newspic/2014/3/13/2014031309320876335.jpg\" target=\"_blank\" style=\"color: rgb(59, 89, 152); outline: 0px; text-decoration: none;\"><img alt=\"汽车之家\" src=\"http://www1.autoimg.cn/newspic/2014/3/13/620x0_0_2014031309320876335.jpg\" width=\"620\" height=\"370\" original=\"http://www1.autoimg.cn/newspic/2014/3/13/620x0_0_2014031309320876335.jpg\" style=\"vertical-align: top; background-image: url(http://x.autoimg.cn/news/show20/1210/default_bg.png); display: inline-block; border: 0px !important; background-position: 50% 50%; background-repeat: no-repeat no-repeat;\"/></a></p><p style=\"margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\">&nbsp;&nbsp;&nbsp; 动力方面，海外媒体报道，新一代<a class=\"blackclink\" href=\"http://www.autohome.com.cn/2649/\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">索纳塔</a>的动力配置将会有变化，2.4L自然吸气<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/shuyu/detail_8_9_555.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">发动机</a>将被最大<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/shuyu/detail_40_41_98.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">功率</a>201马力的1.6T<a class=\"blackclink\" href=\"http://car.autohome.com.cn/shuyu/detail_8_9_555.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">发动机</a>替换。（信息来源：BOBAEDREAM；编译/<a class=\"blackclink\" href=\"http://car.autohome.com.cn/shuyu/detail_29_31_100.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">汽车之家</a>&nbsp;章宁）</p><p><br/></p>', '');
+INSERT INTO `hd_content_data` VALUES ('10', '<p>sdfsddsf</p>', '');
+INSERT INTO `hd_content_data` VALUES ('11', '<p>1212</p>', '');
 
 -- ----------------------------
 -- Table structure for hd_content_single
@@ -302,23 +381,6 @@ CREATE TABLE `hd_custom_js` (
 
 -- ----------------------------
 -- Records of hd_custom_js
--- ----------------------------
-
--- ----------------------------
--- Table structure for hd_extcredits
--- ----------------------------
-DROP TABLE IF EXISTS `hd_extcredits`;
-CREATE TABLE `hd_extcredits` (
-  `uid` int(10) unsigned DEFAULT NULL COMMENT '用户uid',
-  `extcredits1` int(10) unsigned DEFAULT NULL COMMENT '积分1',
-  `extcredits2` int(10) unsigned DEFAULT NULL COMMENT '积分2',
-  `extcredits3` int(10) unsigned DEFAULT NULL COMMENT '积分3',
-  `extcredits4` int(10) unsigned DEFAULT NULL,
-  `extcredits5` int(10) unsigned DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='用户积分表';
-
--- ----------------------------
--- Records of hd_extcredits
 -- ----------------------------
 
 -- ----------------------------
@@ -405,29 +467,6 @@ CREATE TABLE `hd_link_type` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for hd_member_group
--- ----------------------------
-DROP TABLE IF EXISTS `hd_member_group`;
-CREATE TABLE `hd_member_group` (
-  `gid` smallint(5) unsigned NOT NULL AUTO_INCREMENT COMMENT '会员组id',
-  `is_system` smallint(5) unsigned NOT NULL DEFAULT '2' COMMENT '1 系统组 2 普通组',
-  `point` mediumint(8) unsigned NOT NULL DEFAULT '100' COMMENT '积分<=时为此会员组',
-  `allowpost` smallint(1) NOT NULL DEFAULT '1' COMMENT '允许投稿  1 允许 2 不允许',
-  `allowpostverify` smallint(1) NOT NULL DEFAULT '1' COMMENT '投稿不需要审核  1 不需要  2 需要',
-  `allowsendmessage` smallint(1) NOT NULL DEFAULT '1' COMMENT '允许发短消息  1 允许  2 不允许',
-  `description` varchar(255) NOT NULL DEFAULT '' COMMENT '用户组描述',
-  `gname` char(30) NOT NULL DEFAULT '' COMMENT '会员组名称',
-  PRIMARY KEY (`gid`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of hd_member_group
--- ----------------------------
-INSERT INTO `hd_member_group` VALUES ('1', '1', '100', '1', '1', '1', '', '普通会员');
-INSERT INTO `hd_member_group` VALUES ('2', '2', '0', '1', '1', '1', '投稿 ', '投稿');
-INSERT INTO `hd_member_group` VALUES ('3', '2', '0', '1', '1', '1', '投稿 ', '投稿');
-
--- ----------------------------
 -- Table structure for hd_model
 -- ----------------------------
 DROP TABLE IF EXISTS `hd_model`;
@@ -511,42 +550,42 @@ INSERT INTO `hd_node` VALUES ('15', '推荐位', 'Hdcms', 'Flag', 'Flag', 'index
 INSERT INTO `hd_node` VALUES ('19', '系统设置', 'Hdcms', '', '', '', '', '', '1', '1', '16', '100', '0', '0');
 INSERT INTO `hd_node` VALUES ('4', '管理内容', 'Hdcms', 'Content', 'Content', 'index', '', '', '1', '1', '2', '10', '0', '1');
 INSERT INTO `hd_node` VALUES ('11', '管理员设置', 'Hdcms', '', '', '', '', '', '1', '1', '16', '100', '0', '0');
-INSERT INTO `hd_node` VALUES ('17', '管理员管理', 'Hdcms', 'Admin', 'Admin', 'index', '', '', '1', '1', '11', '100', '0', '0');
+INSERT INTO `hd_node` VALUES ('17', '管理员管理', 'Hdcms', 'Role', 'Admin', 'index', '', '', '1', '1', '11', '100', '0', '0');
 INSERT INTO `hd_node` VALUES ('18', '角色管理', 'Hdcms', 'Role', 'Role', 'index', '', '', '1', '1', '11', '100', '0', '0');
 INSERT INTO `hd_node` VALUES ('20', '网站配置', 'Hdcms', 'Config', 'Config', 'edit', '', '', '1', '1', '19', '90', '0', '0');
 INSERT INTO `hd_node` VALUES ('5', '生成静态', 'Hdcms', '', '', '', '', '', '1', '1', '1', '11', '0', '0');
 INSERT INTO `hd_node` VALUES ('6', '批量更新栏目页', 'Hdcms', 'Html', 'Html', 'create_category', '&', '', '1', '1', '5', '100', '0', '0');
 INSERT INTO `hd_node` VALUES ('8', '生成首页', 'Hdcms', 'Html', 'Html', 'create_index', '&', '', '1', '1', '5', '100', '0', '0');
 INSERT INTO `hd_node` VALUES ('9', '批量更新内容页', 'Hdcms', 'Html', 'Html', 'create_content', '&', '', '1', '1', '5', '100', '0', '1');
-INSERT INTO `hd_node` VALUES ('28', '修改密码', 'Hdcms', 'Admin', 'Personal', 'edit_password', '&', '', '1', '1', '29', '100', '0', '0');
-INSERT INTO `hd_node` VALUES ('27', '修改个人信息', 'Hdcms', 'Admin', 'Personal', 'edit_info', '', '', '1', '1', '29', '100', '0', '0');
+INSERT INTO `hd_node` VALUES ('28', '修改密码', 'Hdcms', 'Role', 'Personal', 'edit_password', '&', '', '1', '1', '29', '100', '0', '0');
+INSERT INTO `hd_node` VALUES ('27', '修改个人信息', 'Hdcms', 'Role', 'Personal', 'edit_info', '', '', '1', '1', '29', '100', '0', '0');
 INSERT INTO `hd_node` VALUES ('26', '我的面板', 'Hdcms', '', '', '', '', '', '1', '1', '0', '100', '0', '0');
 INSERT INTO `hd_node` VALUES ('29', '个人信息', 'Hdcms', '', '', '', '', '', '1', '1', '26', '100', '0', '0');
 INSERT INTO `hd_node` VALUES ('61', '一键更新', 'Hdcms', 'Html', 'Html', 'create_all', '', '一键更新全站', '1', '1', '5', '100', '0', '0');
 INSERT INTO `hd_node` VALUES ('40', 'JS标签调用', 'Hdcms', 'TemplateTag', 'CustomJs', 'index', '', '', '1', '1', '37', '100', '0', '0');
 INSERT INTO `hd_node` VALUES ('30', '会员', 'Hdcms', '', '', '', '', '', '1', '1', '0', '100', '0', '0');
 INSERT INTO `hd_node` VALUES ('31', '会员管理', 'Hdcms', '', '', '', '', '', '1', '1', '30', '100', '0', '0');
-INSERT INTO `hd_node` VALUES ('32', '会员管理', 'Hdcms', 'Member', 'Member', 'index', '', '', '1', '1', '31', '100', '0', '0');
-INSERT INTO `hd_node` VALUES ('33', '审核会员', 'Hdcms', 'Member', 'Member', 'verify', '', '', '1', '1', '31', '100', '0', '0');
+INSERT INTO `hd_node` VALUES ('32', '会员管理', 'Hdcms', 'Group', 'User', 'index', '', '', '1', '1', '31', '100', '0', '0');
+INSERT INTO `hd_node` VALUES ('33', '审核会员', 'Hdcms', 'Group', 'User', 'index', 'state=0', '', '1', '1', '31', '100', '0', '1');
 INSERT INTO `hd_node` VALUES ('34', '会员组管理', 'Hdcms', '', '', '', '', '', '1', '1', '30', '100', '0', '0');
-INSERT INTO `hd_node` VALUES ('35', '管理会员组', 'Hdcms', 'Member', 'Group', 'index', '', '', '1', '1', '34', '100', '0', '0');
+INSERT INTO `hd_node` VALUES ('35', '管理会员组', 'Hdcms', 'Group', 'Group', 'index', '', '', '1', '1', '34', '100', '0', '0');
 INSERT INTO `hd_node` VALUES ('36', '模板', 'Hdcms', '', '', '', '', '', '1', '1', '0', '100', '0', '0');
 INSERT INTO `hd_node` VALUES ('37', '模板管理', 'Hdcms', '', '', '', '', '', '1', '1', '36', '100', '0', '0');
 INSERT INTO `hd_node` VALUES ('38', '模板风格', 'Hdcms', 'Template', 'Template', 'style_list', '', '', '1', '1', '37', '90', '0', '0');
-INSERT INTO `hd_node` VALUES ('39', '模板文件', 'Hdcms', 'Template', 'Template', 'show_dir', '', '', '1', '1', '37', '100', '0', '0');
+INSERT INTO `hd_node` VALUES ('39', '模板文件', 'Hdcms', 'Template', 'Template', 'show_dir', '', '', '1', '1', '37', '90', '0', '0');
 INSERT INTO `hd_node` VALUES ('70', '标签云', 'Hdcms', 'Tag', 'Tag', 'index', '', '', '1', '1', '10', '100', '0', '0');
 INSERT INTO `hd_node` VALUES ('69', '搜索关键词', 'Hdcms', 'Search', 'Manage', 'index', '3', '', '1', '1', '79', '100', '0', '0');
 INSERT INTO `hd_node` VALUES ('79', '其他操作', 'Hdcms', '', '', '', '', '', '1', '1', '1', '100', '0', '0');
 INSERT INTO `hd_node` VALUES ('80', '导航菜单', 'Hdcms', 'Navigation', 'Navigation', 'index', '', '', '1', '1', '79', '100', '0', '0');
 INSERT INTO `hd_node` VALUES ('81', '单页面', 'Hdcms', 'Single', 'single', 'index', '', '', '1', '1', '2', '12', '0', '1');
-INSERT INTO `hd_node` VALUES ('91', '插件', 'Hdcms', '', '', '', '', '', '1', '2', '0', '1000', '0', '0');
+INSERT INTO `hd_node` VALUES ('91', '插件', 'Hdcms', '', '', '', '', '', '1', '1', '0', '1000', '0', '0');
 INSERT INTO `hd_node` VALUES ('92', '插件管理', 'Hdcms', '', '', '', '', '', '1', '1', '91', '99', '0', '0');
 INSERT INTO `hd_node` VALUES ('93', '插件管理', 'Hdcms', 'Plugin', 'Plugin', 'Plugin_list', '', '', '1', '1', '92', '100', '0', '0');
 INSERT INTO `hd_node` VALUES ('94', '正在使用', 'Hdcms', 'Plugin', '', '', '', '', '1', '1', '91', '100', '0', '0');
-INSERT INTO `hd_node` VALUES ('153', '反馈', 'Hdcms', '', '', '', '', '', '1', '1', '0', '2000', '0', '0');
-INSERT INTO `hd_node` VALUES ('154', '问题反馈', 'Hdcms', '', '', '', '', '', '1', '1', '153', '100', '0', '0');
-INSERT INTO `hd_node` VALUES ('157', '友情链接', 'Plugin', 'Link', 'Manage', 'index', '', '', '1', '2', '94', '100', '0', '0');
-INSERT INTO `hd_node` VALUES ('155', '提交BUG', 'Hdcms', 'Bug', 'Bug', 'feedback', '', '', '1', '1', '154', '100', '0', '0');
+INSERT INTO `hd_node` VALUES ('153', '反馈', 'Hdcms', '', '', '', '', '', '1', '2', '0', '2000', '0', '0');
+INSERT INTO `hd_node` VALUES ('154', '问题反馈', 'Hdcms', '', '', '', '', '', '1', '2', '153', '100', '0', '0');
+INSERT INTO `hd_node` VALUES ('157', '友情链接', 'Plugin', 'Link', 'Manage', 'index', '', '', '1', '1', '94', '100', '0', '0');
+INSERT INTO `hd_node` VALUES ('155', '提交BUG', 'Hdcms', 'Bug', 'Bug', 'feedback', '', '', '1', '2', '154', '100', '0', '0');
 INSERT INTO `hd_node` VALUES ('156', 'BUG管理', 'Hdcms', 'Bug', 'Bug', 'showBug', '', '', '1', '1', '154', '100', '0', '0');
 
 -- ----------------------------
@@ -578,20 +617,26 @@ DROP TABLE IF EXISTS `hd_role`;
 CREATE TABLE `hd_role` (
   `rid` smallint(5) NOT NULL AUTO_INCREMENT,
   `rname` char(60) NOT NULL DEFAULT '',
-  `pid` smallint(5) NOT NULL DEFAULT '0',
-  `title` varchar(100) NOT NULL DEFAULT '',
-  `creditslower` int(255) NOT NULL DEFAULT '0' COMMENT '当前角色积分最小值',
-  `is_admin` tinyint(1) DEFAULT '2' COMMENT '1 管理组  2 会员组',
+  `title` varchar(100) NOT NULL DEFAULT '' COMMENT '描述',
+  `admin` tinyint(1) NOT NULL DEFAULT '0' COMMENT '管理组 1 是 0 不是',
+  `system` tinyint(1) NOT NULL DEFAULT '0' COMMENT '系统角色',
+  `creditslower` mediumint(9) NOT NULL DEFAULT '0' COMMENT '积分<=时为此会员组',
+  `allowpost` tinyint(1) NOT NULL DEFAULT '1' COMMENT '允许投稿  1 允许 2 不允许',
+  `allowpostverify` tinyint(1) NOT NULL DEFAULT '1' COMMENT '投稿不需要审核  1 不需要  2 需要',
+  `allowsendmessage` tinyint(1) NOT NULL DEFAULT '1' COMMENT '允许发短消息  1 允许  2 不允许',
   PRIMARY KEY (`rid`),
   KEY `gid` (`rid`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=78 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hd_role
 -- ----------------------------
-INSERT INTO `hd_role` VALUES ('1', '超级管理员', '0', '超级管理员', '0', '1');
-INSERT INTO `hd_role` VALUES ('2', '编辑', '0', '内容编辑', '0', '1');
-INSERT INTO `hd_role` VALUES ('3', '发布人员', '0', '发布人员', '0', '1');
+INSERT INTO `hd_role` VALUES ('1', '超级管理员', '超级管理员', '1', '1', '0', '1', '1', '1');
+INSERT INTO `hd_role` VALUES ('2', '编辑', '内容编辑', '1', '1', '0', '1', '1', '1');
+INSERT INTO `hd_role` VALUES ('3', '发布人员', '发布人员', '1', '1', '0', '1', '1', '1');
+INSERT INTO `hd_role` VALUES ('4', '新手上路', '新手上路', '0', '1', '100', '1', '1', '1');
+INSERT INTO `hd_role` VALUES ('5', '中级会员', '中级会员', '0', '1', '200', '1', '1', '1');
+INSERT INTO `hd_role` VALUES ('6', '高级会员', '高级会员', '0', '1', '300', '1', '1', '1');
 
 -- ----------------------------
 -- Table structure for hd_search
@@ -683,11 +728,23 @@ CREATE TABLE `hd_upload` (
   KEY `id` (`id`) USING BTREE,
   KEY `uid` (`uid`),
   KEY `aid` (`aid`,`cid`,`mid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='上传文件';
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='上传文件';
 
 -- ----------------------------
 -- Records of hd_upload
 -- ----------------------------
+INSERT INTO `hd_upload` VALUES ('1', '1', '1', '5', '51901394988144', '51901394988144.jpg', 'upload/Content/2014/03/17/51901394988144.jpg', 'jpg', '1', '117966', '1394988144', '1');
+INSERT INTO `hd_upload` VALUES ('2', '2', '1', '5', '97711394989116', '97711394989116.jpg', 'upload/Content/2014/03/17/97711394989116.jpg', 'jpg', '1', '52286', '1394989116', '1');
+INSERT INTO `hd_upload` VALUES ('3', '3', '1', '5', '55811394989281', '55811394989281.jpg', 'upload/Content/2014/03/17/55811394989281.jpg', 'jpg', '1', '52286', '1394989281', '1');
+INSERT INTO `hd_upload` VALUES ('4', '4', '1', '5', '23051394989383', '23051394989383.jpg', 'upload/Content/2014/03/17/23051394989383.jpg', 'jpg', '1', '52286', '1394989383', '1');
+INSERT INTO `hd_upload` VALUES ('5', '5', '1', '5', '12221394989399', '12221394989399.jpg', 'upload/Content/2014/03/17/12221394989399.jpg', 'jpg', '1', '52286', '1394989399', '1');
+INSERT INTO `hd_upload` VALUES ('6', '6', '1', '5', '84761394989415', '84761394989415.jpg', 'upload/Content/2014/03/17/84761394989415.jpg', 'jpg', '1', '52286', '1394989415', '1');
+INSERT INTO `hd_upload` VALUES ('7', '7', '1', '5', '40791394989434', '40791394989434.jpg', 'upload/Content/2014/03/17/40791394989434.jpg', 'jpg', '1', '52286', '1394989434', '1');
+INSERT INTO `hd_upload` VALUES ('8', '8', '1', '5', '90581394989473', '90581394989473.jpg', 'upload/Content/2014/03/17/90581394989473.jpg', 'jpg', '1', '52286', '1394989473', '1');
+INSERT INTO `hd_upload` VALUES ('9', '9', '1', '5', '35481394989486', '35481394989486.jpg', 'upload/Content/2014/03/17/35481394989486.jpg', 'jpg', '1', '52286', '1394989486', '1');
+INSERT INTO `hd_upload` VALUES ('10', '10', '1', '5', '8231395242592', '8231395242592.jpg', 'upload/content/2014/03/19/8231395242592.jpg', 'jpg', '1', '165538', '1395242593', '1');
+INSERT INTO `hd_upload` VALUES ('11', '11', '1', '5', '34701395242771', '34701395242771.jpg', 'upload/content/2014/03/19/34701395242771.jpg', 'jpg', '1', '165538', '1395242771', '1');
+INSERT INTO `hd_upload` VALUES ('12', '11', '1', '5', '71201395242782', '71201395242782.jpg', 'upload/content/2014/03/19/71201395242782.jpg', 'jpg', '1', '165538', '1395242782', '1');
 
 -- ----------------------------
 -- Table structure for hd_user
@@ -695,26 +752,45 @@ CREATE TABLE `hd_upload` (
 DROP TABLE IF EXISTS `hd_user`;
 CREATE TABLE `hd_user` (
   `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `nickname` char(30) NOT NULL DEFAULT '' COMMENT '昵称',
   `username` char(30) NOT NULL DEFAULT '',
   `password` char(40) NOT NULL DEFAULT '',
+  `code` char(20) NOT NULL DEFAULT '' COMMENT '校验码',
   `email` char(30) NOT NULL DEFAULT '' COMMENT '邮箱',
+  `regtime` int(11) NOT NULL DEFAULT '0' COMMENT '注册时间',
   `logintime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '登录时间',
-  `ip` char(15) NOT NULL DEFAULT '' COMMENT '登录IP',
-  `realname` char(30) NOT NULL DEFAULT '' COMMENT '真实姓名',
-  `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 正常  2 锁定',
+  `regip` char(255) NOT NULL DEFAULT '' COMMENT '注册IP',
+  `lastip` char(15) NOT NULL DEFAULT '' COMMENT '最后登录ip',
+  `state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1  正常  2 锁定',
   `qq` char(20) NOT NULL DEFAULT '' COMMENT 'qq号码',
   `sex` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 男 2 女 3 保密',
   `favicon` varchar(255) NOT NULL DEFAULT '' COMMENT '头像',
-  `credits` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '用户积分',
-  `rid` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '管理员角色id',
-  `gid` smallint(6) NOT NULL DEFAULT '1' COMMENT '会员组',
+  `credits` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '用户金币',
+  `rid` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '角色id',
+  `allow_user_set_credits` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '允许前台会员设置投稿积分',
   PRIMARY KEY (`uid`),
   UNIQUE KEY `username` (`username`) USING BTREE,
   KEY `password` (`password`),
   KEY `credits` (`credits`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=84 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hd_user
 -- ----------------------------
-INSERT INTO `hd_user` VALUES ('1', 'admin', '7fef6171469e80d32c0559f88b377245', 'houdunwangxj@gmail.com', '1394953046', '0.0.0.0', '后盾网', '1', '', '1', '', '0', '1', '1');
+INSERT INTO `hd_user` VALUES ('1', '后盾网', 'admin', '67a52a373a64b0a4ce05d47150b85ce2', '861bfc56d5', 'houdunwangxj@gmail.com', '0', '1395547335', '', '0.0.0.0', '1', '', '1', '', '0', '1', '1');
+INSERT INTO `hd_user` VALUES ('25', '李四', 'lisi', 'eef592a724549ee2c9d0e4337c07cd9d', '07041b46e0', 'a@qq.com', '0', '1395066799', '', '0.0.0.0', '1', '', '1', '', '100', '1', '1');
+
+-- ----------------------------
+-- Table structure for hd_user_icon
+-- ----------------------------
+DROP TABLE IF EXISTS `hd_user_icon`;
+CREATE TABLE `hd_user_icon` (
+  `user_uid` int(11) NOT NULL DEFAULT '0',
+  `icon50` varchar(255) NOT NULL DEFAULT '',
+  `icon100` varchar(255) NOT NULL DEFAULT '',
+  `icon150` varchar(255) NOT NULL DEFAULT ''
+) ENGINE=MyISAM DEFAULT CHARSET=gbk COMMENT='用户头像';
+
+-- ----------------------------
+-- Records of hd_user_icon
+-- ----------------------------

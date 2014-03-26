@@ -46,7 +46,7 @@ class CategoryModel extends RelationModel
     {
         $db = M("category_access");
         //获得栏目mid
-        $mid =$db->table('category')->where("cid=$cid")->getField('mid');
+        $mid = $db->table('category')->where("cid=$cid")->getField('mid');
         //删除原有权限配置
         $db->where("cid=$cid")->del();
         //设置管理员权限
@@ -94,7 +94,8 @@ class CategoryModel extends RelationModel
     //更新栏目缓存
     public function update_cache()
     {
-        $category = $this->join()->order("catorder ASC,cid ASC")->all();
+        $db = M('category');
+        $category = $db->order("catorder ASC,cid ASC")->all();
         if (!empty($category)) {
             foreach ($category as $n => $v) {
                 //封面与链接栏目添加disabled属性
@@ -107,8 +108,19 @@ class CategoryModel extends RelationModel
         foreach ($category as $n => $v) {
             $v['_type_name'] = $type[$v['cattype']];
             $data[$v['cid']] = $v;
-            $data[$v['cid']]['model_name'] = $this->table('model')->where("mid={$v['mid']}")->getField('model_name');
+            $data[$v['cid']]['model_name'] = $db->table('model')->where("mid={$v['mid']}")->getField('model_name');
+            //权限
+            $tmp = $db->table('category_access')->where("cid={$v['cid']}")->all();
+            $access = array();
+            if (!is_null($tmp)) {
+                foreach ($tmp as $i => $a) {
+                    $access[$a['rid']] = $a;
+                }
+            }
+            $data[$v['cid']]['access'] = $access;
         }
+        //获得栏目权限信息
+
         return F("category", $data);
     }
 
@@ -122,10 +134,43 @@ class CategoryModel extends RelationModel
         if ($db->where("cid=$cid")->del()) {
             //删除栏目
             if ($this->del($cid)) {
+                //删除栏目权限
+                M("category_access")->where("cid=$cid")->del();
                 return true;
             }
         }
         return false;
+    }
+
+    /**
+     *
+     */
+    public function get_category_access($rid){
+
+    }
+    /**
+     * 修改与添加栏目时获得管理员或会员的权限列表(后台操作）
+     * 用于获得管理员或前台会员权限
+     *
+     * @param int $cid 栏目cid
+     * @param null $admin 管理员权限
+     */
+    public function get_access_list($cid = null,$admin = null)
+    {
+        //表前缀
+        $pre = C("DB_PREFIX");
+        $db = M("category_access");
+        $field = 'a.cid,r.rid,r.rname,r.admin,r.allowpost,r.allowpostverify,r.allowsendmessage,a.add,a.del,a.edit,a.show,a.move,a.order';
+        $cat_where = $where = '';
+        //如果有栏目cid只获取取指定栏目的权限，否则获得所有栏目权限
+        if ($cid) {
+            $cat_where = " WHERE cid={$cid}";
+        }
+        //指定条件
+        $where = $rid ? "  r.rid=$rid " : "  admin=$admin";
+        $sql = "SELECT $field FROM  {$pre}role AS r  LEFT JOIN (SELECT * FROM {$pre}category_access AS ca $cat_where) AS a
+                    ON r.rid = a.rid WHERE $where";
+        return $db->query($sql);
     }
 
     public function __after_delete($data)

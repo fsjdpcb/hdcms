@@ -18,7 +18,8 @@
         <tr>
             <td class="w30">uid</td>
             <td class="w200">昵称</td>
-            <td>帐号</td>
+            <td class="w200">帐号</td>
+            <td>会员组</td>
             <td class="w150">登录时间</td>
             <td class="w150">注册IP</td>
             <td class="w150">最近登录IP</td>
@@ -30,12 +31,9 @@
         <list from="$data" name="d">
             <tr>
                 <td>{$d.uid}</td>
-                <td>
-                    {$d.nickname}
-                </td>
-                <td>
-                    {$d.username}
-                </td>
+                <td>{$d.nickname}</td>
+                <td>{$d.username}</td>
+                <td>{$d.rname}</td>
                 <td>{$d.logintime}</td>
                 <td>{$d.regip}</td>
                 <td>{$d.lastip}</td>

@@ -107,7 +107,7 @@ class ContentControl extends AuthControl
             }
         }
         //文章状态：1 已审核 0未审核
-        $where[] = "state=" . Q("state", 1, "intval");
+        $where[] = $db->tableFull.".state=" . Q("state", 1, "intval");
         //搜索栏目
         $cid = Q('cid', null, 'intval');
         if (Q("cid")) {
@@ -126,10 +126,9 @@ class ContentControl extends AuthControl
         $count = $db->join('category')->where($where)->count();
         $page = new Page($count, C("ADMIN_LIST_ROW"));
         $this->page = $page->show();
-        $this->data = $db->where($where)->join('category')->order('arc_sort ASC,aid DESC')->limit($page->limit())->all();
-
+        $this->data = $db->where($where)->join('category,user,model')->order('arc_sort ASC,aid DESC')->limit($page->limit())->all();
         //分配属性flag
-        $this->flag= F('flag');
+        $this->flag = F('flag');
         $this->display();
     }
 
@@ -192,7 +191,7 @@ class ContentControl extends AuthControl
                 //模型type为1时即标准模型，显示编辑器、关键字等字段
                 $this->model = $this->_model[$this->_mid];
                 //FLAG属性
-                $this->flag =F('flag');
+                $this->flag = F('flag');
                 $field['thumb_img'] = empty($field['thumb']) || !is_file($field['thumb']) ? __ROOT__ . '/hd/static/img/upload-pic.png' : __ROOT__ . '/' . $field['thumb'];
                 $this->field = $field;
                 //自定义字段处理
@@ -209,14 +208,19 @@ class ContentControl extends AuthControl
     //删除文章
     public function del()
     {
-        $aid = Q("request.aid");
-        if (!empty($aid)) {
-            if (!is_array($aid)) {
-                $aid = array($aid);
+        $aids = Q("request.aid");
+        $cid = Q('cid', null, 'intval');
+        if (!empty($aids) && $cid) {
+            if (!is_array($aids)) {
+                $aids = array($aids);
             }
-            $this->_db->del($aid);
+            foreach ($aids as $aid)
+                $this->_db->del_content($cid, $aid);
+            $this->_ajax(1, '删除成功');
+        } else {
+            $this->_ajax(0, '参数错误');
         }
-        $this->_ajax(1, '删除成功');
+
     }
 
     //审核或取消审核

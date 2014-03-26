@@ -21,9 +21,22 @@ body {
   background: @white;
 }
 
+//模态
+div.modal-content {
+  border-radius: 0px;
+  div.modal-header {
+    padding: 10px;
+    background: #F5F9F9;
+    h4.modal-title {
+      font-family: @font-family;
+      font-size:14px;
+    }
+  }
+}
+
 header {
   background: @white;
-  padding-bottom:10px;
+  padding-bottom: 10px;
   h1 {
     width: 960px;
     margin: 0px auto;
@@ -55,18 +68,18 @@ nav.top-menu {
   }
 }
 
-article.main {
+article.activity {
   margin-top: 20px;
   border: 1px solid @border-gray;
   padding: 0px;
   width: 960px;
-  height: 500px;
+  height: 650px;
   overflow: hidden;
   section.menu {
     background: #FBFBFB;
     border-right: solid 1px @border-gray;
     width: 200px;
-    height: 500px;
+    height: 650px;
     padding-left: 10px;
     float: left;
     div.user {
@@ -83,6 +96,7 @@ article.main {
         padding: 0px;
         margin: 0px;
         color: #666;
+        height: 25px;
       }
       p.nickname {
         color: #333333;
@@ -96,19 +110,10 @@ article.main {
       p.edit-nickname {
         color: #0a9d00;
         cursor: pointer;
-        span {
-          background: url("../images/edit_nickname.png");
-          display: inline-block;
-          width: 12px;
-          height: 13px;
-          line-height: 15px;
-          margin-right: 2px;
-          vertical-align: middle;
-        }
       }
     }
     nav {
-      margin-top: 20px;
+      margin-top: 10px;
       a {
         display: block;
         border-bottom: solid 1px @bgcolor-gray;
@@ -126,7 +131,6 @@ article.main {
       }
     }
   }
-
 }
 
 footer {

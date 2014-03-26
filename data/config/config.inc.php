@@ -43,7 +43,7 @@ return array (
   'upload_img_max_width' => '600',
   'upload_img_max_height' => '600',
   'member_content_status' => '1',
-  'member_open' => '0',
+  'member_open' => '1',
   'web_close_message' => '网站暂时关闭，请稍候访问',
   'web_style' => 'default',
   'qq' => '1455067020',

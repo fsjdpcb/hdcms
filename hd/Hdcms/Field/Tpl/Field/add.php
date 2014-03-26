@@ -14,8 +14,7 @@
     </script>
 </head>
 <body>
-<form action="__METH__" method="post" onsubmit="return hd_submit(this,'{|U:index,array('mid'=>$_GET['mid'])}');"
-      class="hd-form">
+<form action="__METH__" method="post" class="hd-form" onsubmit="return hd_submit(this,'{|U:index,array('mid'=>$_GET['mid'])}');">
     <div class="wrap">
         <div class="menu_list">
             <ul>

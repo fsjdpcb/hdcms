@@ -13,9 +13,8 @@
     </script>
 </head>
 <body>
-<form action="{|U:'edit'}" method="post" class="hd-form">
+<form action="{|U:'edit'}" method="post" class="hd-form" onsubmit="return hd_submit(this,'{|U:index,array('mid'=>$_GET['mid'])}');">
     <input type="hidden" name="fid" value="{$hd.get.fid}"/>
-
     <div class="wrap">
         <div class="menu_list">
             <ul>

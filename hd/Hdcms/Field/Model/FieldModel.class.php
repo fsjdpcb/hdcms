@@ -93,7 +93,7 @@ class FieldModel extends Model
     public function alter_table_field()
     {
         //字段所在表
-        $table = $this->_model[$this->_mid]['table_name']. '_data';
+        $table = $this->_model[$this->_mid]['table_name'] . '_data';
         //SQL
         switch ($_POST['show_type']) {
             case "input":
@@ -149,7 +149,32 @@ class FieldModel extends Model
         }
         //删除Content表结构缓存
         is_dir("./Temp/hdcms/Content/Table") && Dir::del("./Temp/hdcms/Content/Table");
-        return F($this->_mid, $_cache, FIELD_CACHE_PATH);
+        if (F($this->_mid, $_cache, FIELD_CACHE_PATH)) {
+            //更新字段验证规则
+//            return $this->update_validate();
+            return true;
+        }
+    }
+
+    /**
+     * 更新模型字段验证规则
+     */
+    private function update_validate()
+    {
+        $field = F($this->_mid,false,FIELD_CACHE_PATH);
+        $validate=array();
+        foreach($field as $f){
+            //没有验证规则时返回
+            if($f['set']['validation']=='false')continue;
+            //字段名
+            $fieldName = $f['table_name']."[{$f['field_name']}]";
+            $validate[$fieldName]=array(
+                'rule'=>array(
+                    'required'=>$f['set']['required'],
+//                    'validation'=>
+                )
+            );
+        }
     }
 
     /**
@@ -181,8 +206,10 @@ class FieldModel extends Model
         $type = $set['ispasswd'] == 1 ? "password" : "text";
         //验证
         $valid = "field_check(this,{$set['validation']},'{$set['message']}','{$set['error']}',{$set['required']})";
+        //是否必须输入
+        $validate = $set['required']==0?1:0;
         $h = "<tr><th>{$f['title']}</th><td>";
-        $h .= "<input onblur=\"{$valid}\" style=\"width:{$set['size']}px\" type=\"{$type}\" class=\"{$set['css']}\" name=\"{$f['field_name']}\" value=\"$value\"/>";
+        $h .= "<input onblur=\"{$valid}\" validate='{$validate}' style=\"width:{$set['size']}px\" type=\"{$type}\" class=\"{$set['css']}\" name=\"{$f['field_name']}\" value=\"$value\"/>";
         $h .= " <span class='{$f['field_name']} validate-message'>" . $set['message'] . "</span>";
         $h .= "</td>";
         $h .= "</tr>";

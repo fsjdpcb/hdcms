@@ -90,15 +90,9 @@ class CategoryControl extends AuthControl
             $this->field = $field;
             $this->category = $category;
             //分配角色权限
-            $db=V('role');
-            $db->view=array(
-                'category_access'=>array(
-                    'type' => LEFT_JOIN, //指定连接方式
-                    'on' => 'role.rid=category_access.rid', //关联条件
-                )
-            );
-            $this->role_admin= $db->where('admin=1')->all();
-            $this->role_user= $db->where('admin=0')->all();
+            $this->role_admin=$this->_db->get_access_list($this->_cid,1);
+            //普通用户组
+            $this->role_user= $this->_db->get_access_list($this->_cid,0);
             $this->display();
         }
     }

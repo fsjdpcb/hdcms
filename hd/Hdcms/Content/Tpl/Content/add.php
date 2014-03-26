@@ -87,6 +87,15 @@
                         <input type="text" name="author" class="w150" value="{$hd.session.username}"/>
                     </td>
                 </tr>
+                <tr>
+                    <th>阅读金币</th>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" name="read_credits" class="w80" value="0"/>
+                         <span id="hd_read_creddits">金币</span>
+                    </td>
+                </tr>
             </table>
         </div>
         <div class="content_left">
@@ -103,6 +112,7 @@
                         <label class="checkbox inline">
                             <input type="checkbox" name="new_window" value="1"/> 新窗口打开
                         </label>
+                        <span id="hd_title"></span>
                     </td>
                 </tr>
                 <tr>
@@ -165,14 +175,14 @@
                         <th>关键字</th>
                         <td>
                             <input type="text" name="keywords" class="w400"/>
-                            <span class="message">如果不填，系统将自动从内容中提取</span>
+                            <span id="hd_keywords"></span>
                         </td>
                     </tr>
                     <tr>
                         <th>摘要</th>
                         <td>
                             <textarea name="description" class="w450 h80"></textarea>
-                            <span class="message">如果不填，系统将自动从内容中提取</span>
+                            <span id="hd_description"></span>
                         </td>
                     </tr>
                 </if>
@@ -197,7 +207,7 @@
                     <th>静态文件</th>
                     <td>
                         <input class="w250" type="text" name="html_path">
-                        <span class="message">如:houdunwang.html,如果不填将按栏目规则生成静态。栏目开启生成静态才有效</span>
+                        <span id="hd_html_path"></span>
                     </td>
                 </tr>
             </table>

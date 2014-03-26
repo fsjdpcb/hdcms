@@ -69,6 +69,7 @@ class CommonUserModel extends ViewModel
         }
     }
 
+
     /**
      * 添加帐号
      */
@@ -78,16 +79,30 @@ class CommonUserModel extends ViewModel
         //-----------------------验证码------------------------
         if (Q('session.code') && Q('code', '', 'strtoupper') != Q('session.code')) {
             $this->error = "验证码输入错误";
+            return false;
         }
-        //-----------------------帐号与密码-----------------
+        //-----------------------帐号-----------------
         $username = Q("post.username", NULL, 'htmlspecialchars,strip_tags,addslashes');
-        if (empty($username) || strlen($username) < 5) {
-            $this->error = '帐号不能为空也不能小于5位';
+        if (empty($username) || ! preg_match('@^[a-z]\w{4,}$@i',$username)) {
+            $this->error = '帐号输入错误';
+            return false;
         }
         $user = $db->where("username='$username'")->find();
         //-----------------------帐号验证------------------------
         if ($user) {
             $this->error = "帐号已存在";
+        }
+        //-----------------------邮箱-----------------
+        $email = Q("post.email", NULL, 'htmlspecialchars,strip_tags,addslashes');
+        $preg = "/^([a-zA-Z0-9_\-\.])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/i";
+        if (!preg_match($preg, $email)) {
+            $this->error = "邮箱格式不正确";
+        }
+
+        $email = $db->where("username='$username'")->find();
+        //-----------------------帐号验证------------------------
+        if ($email) {
+            $this->error = "邮箱已经存在";
         }
         //------------------------验证密码-----------------------
         if (empty($_POST['password'])) {
@@ -111,9 +126,10 @@ class CommonUserModel extends ViewModel
         if ($this->error) {
             return false;
         } else {
-            $_POST['code'] = $this->get_user_code();
+            $code = $this->get_user_code();
+            $_POST['code'] = $code;
             $_POST['username'] = $username;
-            $_POST['password'] = $this->get_user_password($_POST['password'], $this->get_user_code());
+            $_POST['password'] = $this->get_user_password($_POST['password'], $code);
             $_POST['nickname'] = Q('nickname', $_POST['username']);
             $default_rid = $this->get_default_rid();
             $_POST['rid'] = Q('post.rid', $default_rid, 'intval');
@@ -134,20 +150,24 @@ class CommonUserModel extends ViewModel
         //-----------------------验证码------------------------
         if (Q('session.code') && Q('code', '', 'strtoupper') != Q('session.code')) {
             $this->error = "验证码输入错误";
+            return false;
         }
         //-----------------------帐号与密码-----------------
         $username = Q("post.username", NULL, 'htmlspecialchars,strip_tags,addslashes');
         if (empty($username)) {
             $this->error = '帐号不能为空';
+            return false;
         }
-        $user = $this->join()->where("username='$username'")->find();
+        $user = $this->join()->where("username='$username' || email='$username'")->find();
         //-----------------------帐号验证------------------------
         if (!$user) {
             $this->error = "帐号不存在";
+            return false;
         }
         //-----------------------密码验证------------------------
         if ($user && $user['password'] != md5($_POST['password'] . $user['code'])) {
             $this->error = "密码输入错误";
+            return false;
         }
         if ($this->error) {
             return false;
