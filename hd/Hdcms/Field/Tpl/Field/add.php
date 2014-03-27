@@ -31,7 +31,7 @@
             <tr>
                 <th class="w100">模型</th>
                 <td>
-                    <input type="text" disabled="disabled" value="{$model.model_name}"/>
+                    {$model.model_name}
                 </td>
             </tr>
             <tr>
@@ -46,6 +46,7 @@
                         <option value="image">图片</option>
                         <option value="images">多图片</option>
                         <option value="date">日期与时间</option>
+                        <option value="files">文件</option>
                     </select>
                 </td>
             </tr>
@@ -71,21 +72,22 @@
                     <input type="text" name="set[message]" class="w200"/>
                 </td>
             </tr>
+            <table class="table1">
+                <tr>
+                    <th class="w100">
+                        会员中心显示
+                    </th>
+                    <td>
+                        <label><input type="radio" name="member_show" value="1" checked="checked"/> 是</label>
+                        <label><input type="radio" name="member_show" value="0"/> 否</label>
+                    </td>
+                </tr>
+            </table>
         </table>
         <div class="field_tpl">
 
         </div>
-        <table class="table1">
-            <tr>
-                <th class="w100">
-                    会员中心显示
-                </th>
-                <td>
-                    <label><input type="radio" name="ismember" value="1" checked="checked"/> 是</label>
-                    <label><input type="radio" name="ismember" value="0"/> 否</label>
-                </td>
-            </tr>
-        </table>
+
         <div class="position-bottom">
             <input type="submit" value="确定" class="hd-success"/>
         </div>

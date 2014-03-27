@@ -9,7 +9,7 @@
     <css file="__CONTROL_TPL__/css/css.css"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
     <script type="text/javascript">
-        var mid = '{$hd.get.mid}';
+//        var mid = '{$hd.get.mid}';
     </script>
 </head>
 <body>
@@ -19,7 +19,7 @@
         <div class="menu_list">
             <ul>
                 <li><a href="{|U:'Hdcms/Model/index'}">模型列表</a></li>
-                <li><a href="{|U('index',array('mid'=>$_GET['mid']))}">字段列表</a></li>
+                <li><a href="{|U('index',array('mid'=>$field['mid']))}">字段列表</a></li>
                 <li><a href="javascript:;" class="action">修改字段</a></li>
             </ul>
         </div>
@@ -31,7 +31,7 @@
             <tr>
                 <th class="w100">模型</th>
                 <td>
-                    <input type="text" disabled="disabled" value="{$model.model_name}"/>
+                    {$field.model_name}
                 </td>
             </tr>
             <tr>
@@ -40,21 +40,22 @@
                     <input type="text" name="title" class="w200" value="{$field.title}"/>
                 </td>
             </tr>
+
             <tr>
-                <th>会员中心显示</th>
+                <th>输入提示</th>
                 <td>
-                    <label><input type="radio" name="ismember" value="1"
-                        <if value='$field.ismember==1'>checked="checked"</if>
-                        /> 是</label>
-                    <label><input type="radio" name="ismember" value="0"
-                        <if value='$field.ismember==0'>checked="checked"</if>
-                        /> 否</label>
+                    <input type="text" name="set[message]" class="w200"/>
                 </td>
             </tr>
             <tr>
-                <th>提示</th>
+                <th>会员中心显示</th>
                 <td>
-                    <input type="text" name="set[message]" class="w350"/>
+                    <label><input type="radio" name="member_show" value="1"
+                        <if value='$field.member_show==1'>checked="checked"</if>
+                        /> 是</label>
+                    <label><input type="radio" name="member_show" value="0"
+                        <if value='$field.member_show==0'>checked="checked"</if>
+                        /> 否</label>
                 </td>
             </tr>
         </table>

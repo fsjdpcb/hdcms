@@ -128,15 +128,12 @@ class ContentModel extends RelationModel
      * 删除文章
      * @param $cid 栏目cid
      * @param $aid 文章aid
-     * @param null $uid 用户uid
      * @return boolean
      */
-    public function del_content($cid, $aid, $uid = null)
+    public function del_content($cid, $aid)
     {
-        if ($uid)
-            $where = "uid=$uid";
         //删除文章
-        if ($this->join()->where($where)->del($aid)) {
+        if ($this->join()->del($aid)) {
             //删除评论
             $this->table("comment")->where("cid =$cid and aid=$aid")->del();
             return true;
@@ -171,9 +168,9 @@ class ContentModel extends RelationModel
         $php_ini = @ini_get("allow_url_fopen");
         $allowDown = isset($data['down_remote_pic']) ? intval($data['down_remote_pic']) : false;
         if ($php_ini && $allowDown) {
-            $table = $this->table . '_data';
-            if (isset($data[$table]) && isset($data[$table]['content'])) {
-                $content = & $data[$this->table . '_data']['content'];
+            //内容不为空时操作
+            if (!empty($data['content'])) {
+                $content = & $data['content'];
                 //查找所有图片
                 preg_match_all("@<img.*?src=['\"](http://.*?[jpg|jpeg|png|gif])['\"].*?>@i", $content, $imgs);
                 if (empty($imgs[1])) {
@@ -183,9 +180,9 @@ class ContentModel extends RelationModel
                 $upload = new UploadControl();
                 foreach ($imgs[1] as $img) {
                     //本站图片不进行处理
-                    if (strstr($img, __ROOT__)) continue;;
+                    if (strstr($img, __ROOT__)) continue;
                     if ($d_img = $upload->down_remote_pic($img)) {
-                        $content = preg_replace("@$img@", $d_img, $content);
+                        $content = preg_replace("@$img@i", $d_img, $content);
                     }
                 }
             }
@@ -201,6 +198,8 @@ class ContentModel extends RelationModel
      */
     private function _current_field_data(&$data)
     {
+        //设置附表content字段数据
+        $data[$this->_stable]['content'] = $data['content'];
         foreach ($data as $field_name => $post) {
             //获得字段信息
             if ($field = $this->_get_field_info($field_name)) {
@@ -241,35 +240,17 @@ class ContentModel extends RelationModel
     private function _get_field_value($field, $postData)
     {
         /**
-         * 如果是图片字段
-         * 将值记录到$_SESSION['use_upload_file']中
-         * 当文章上传完成后，修改upload上传表，上传文件状态
-         * 这是为了考虑图片等上传资源的已使用或未使用状态的
-         * 如果这个图片原来已经使用了，后面的修改上传表操作，就不对他作用
-         */
-        if (!isset($_SESSION['uses_upload_file']))
-            $_SESSION['uses_upload_file'] = array();
-        /**
          * 根据显示类型做不同处理
          */
         switch ($field['show_type']) {
             case 'image':
-                if (!empty($v)) {
-                    //记录图片上传主文件名，用于后面修改upload表
-                    $info = pathinfo($postData);
-                    $_SESSION['upload_file'][$info['filename']] = 1;
-                }
                 return $postData;
-                break;
             case 'images':
                 $d = array();
                 foreach ($postData['url'] as $n => $path) {
                     if (!empty($path)) {
                         $d[$n]['path'] = $path;
-                        $d[$n]['alt'] = isset($v['alt'][$n]) ? $v['alt'][$n] : "";
-                        //记录图片上传主文件名，用于后面修改upload表
-                        $info = pathinfo($path);
-                        $_SESSION['upload_file'][$info['filename']] = 1;;
+                        $d[$n]['alt'] = isset($postData['alt'][$n]) ? $postData['alt'][$n] : "";
                     }
                 }
                 return serialize($d);
@@ -319,8 +300,8 @@ class ContentModel extends RelationModel
         //服务器是否允许远程下载
         $php_ini = @ini_get("allow_url_fopen");
         //有正文时处理
-        if ($php_ini && isset($data['auto_thumb']) && empty($data['thumb']) && $this->_stable) {
-            $content = $data[$this->_stable]['content'];
+        if ($php_ini && isset($data['auto_thumb']) && empty($data['thumb'])) {
+            $content = & $data['content'];
             //取得所有图片
             preg_match_all("@<img.*?src=['\"](http://.*?[jpg|jpeg|png|gif])['\"].*?>@i", $content, $imgs);
             //没有图片不进行缩略图自动处理
@@ -358,9 +339,7 @@ class ContentModel extends RelationModel
          * 3 选择了截取内容复选框
          */
         if (empty($data['description']) && isset($data['auto_desc'])) {
-            //副表
-            $table = $this->table . '_data';
-            $content = $data[$table]['content'];
+            $content = $data['content'];
             //截取长度
             $len = intval($data['auto_desc_length']) ? intval($data['auto_desc_length']) : 100;
             $content = str_replace('&nbsp;', '', @strip_tags($content));
@@ -397,7 +376,8 @@ class ContentModel extends RelationModel
         if (!empty($keywords)) {
             import('TagModel', 'hd/Hdcms/Tag/Model');
             $db = K("Tag");
-            foreach (explode(',', $keywords) as $tag) {
+            $tags = explode(',', $keywords);
+            foreach ($tags as $tag) {
                 $_POST['tag_name'] = $tag;
                 $db->add_tag();
             }
@@ -407,29 +387,14 @@ class ContentModel extends RelationModel
     //插入与编辑成功后修改文件上传表  使用__after_add等触发器调用
     private function _update_upload_table($aid)
     {
-        //修改本次上传图片（新图片）
-        $data = array(
-            "mid" => $this->_mid,
-            "cid" => $this->_cid,
-            "aid" => $aid
-        );
-        $upload = session('upload_file');
-        $db = M("upload");
-        if (!empty($upload)) {
-            foreach ($upload as $filename => $i) {
-                $db->where = array('uid' => session('uid'), 'filename' => $filename, 'aid' => 0);
-                $db->save($data);
-            }
-        }
-        //删除SESSION中上传文件数据
-        session('upload_file', array());
+        M('upload')->where('uid='.$_SESSION['uid'])->save(array('state' => 1));
     }
 
     //添加与修改后执行的动作
     private function _after_action($data)
     {
+        //文章aid
         $aid = Q('aid') ? Q('aid') : $data[$this->table];
-
         //修改文件上传表upload
         $this->_update_upload_table($aid);
         //修改内容tag
@@ -449,16 +414,6 @@ class ContentModel extends RelationModel
         }
     }
 
-    /**
-     * 设置正文数字表单
-     */
-    public function _set_content_field(&$data)
-    {
-        if (isset($_POST['content'])) {
-            $data['content_data']['content'] = $_POST['content'];
-        }
-    }
-
     //插入与编辑前执行的动作
     private function _before_action(&$data)
     {
@@ -466,22 +421,20 @@ class ContentModel extends RelationModel
         $this->_get_thumb_pic($data);
         //下载远程图片
         $this->_down_remote_pic($data);
-        //处理参数，将复选框值合并
-        $this->_current_field_data($data);
-        //获得内容表单
-        $this->_set_content_field($data);
         //摘要为空时截取内容做为摘要
         $this->_get_description($data);
         //关键字处理
         $this->_get_keywords($data);
+        //处理参数，将复选框值合并
+        $this->_current_field_data($data);
     }
 
 
     public function __before_insert(&$data)
     {
-
         //------------------------------------------后续动作
         $this->_before_action($data);
+
     }
 
     public function __before_update(&$data)
@@ -498,6 +451,7 @@ class ContentModel extends RelationModel
         M('user')->where('uid=' . session('uid'))->save(array('credits', $credits + $add_reward));
         //更新会员session
         session('credits', $credits + $add_reward);
+        //------------------------------------修改会员金币数
         if ($data)
             $this->_after_action($data);
     }

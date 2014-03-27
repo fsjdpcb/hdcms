@@ -16,7 +16,7 @@ $(function () {
         field_name: {
             rule: {
                 required: true,
-                regexp: /^[a-z]\w*$/,
+                regexp: /^[a-z]\w*$/i,
                 ajax: {url: CONTROL + "&m=field_is_exists", field: ["mid"]}
             },
             error: {

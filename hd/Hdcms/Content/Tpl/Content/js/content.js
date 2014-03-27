@@ -67,13 +67,13 @@ function del(cid, aid) {
     }
 }
 //设置状态
-function set_status(cid, status) {
+function audit(cid, status) {
     //单文章删除
     var ids = $("input:checked").serialize();
     if (ids) {
         $.ajax({
             type: "POST",
-            url: CONTROL + "&m=set_status" + "&status=" + status + "&cid=" + cid,
+            url: CONTROL + "&m=audit" + "&status=" + status + "&cid=" + cid,
             dataType: "JSON",
             cache: false,
             data: ids,

@@ -36,7 +36,28 @@ class ContentControl extends AuthControl
             $this->_mid = $this->_category[$this->_cid]['mid'];
             $this->_db = K("Content");
         }
+        //验证权限
+        $this->check_auth();
+    }
 
+    /**
+     * 验证操作权限
+     */
+    private function check_auth()
+    {
+        switch (strtolower(METHOD)) {
+            //查看
+            case 'content':
+                break;
+            case 'add':
+                break;
+            case 'edit':
+                break;
+            case 'del':
+                break;
+            case 'audit':
+                break;
+        }
     }
 
     /**
@@ -107,7 +128,7 @@ class ContentControl extends AuthControl
             }
         }
         //文章状态：1 已审核 0未审核
-        $where[] = $db->tableFull.".state=" . Q("state", 1, "intval");
+        $where[] = $db->tableFull . ".state=" . Q("state", 1, "intval");
         //搜索栏目
         $cid = Q('cid', null, 'intval');
         if (Q("cid")) {
@@ -185,6 +206,7 @@ class ContentControl extends AuthControl
         } else {
             $aid = Q("aid", null, "intval");
             if ($aid) {
+                //文章字段数据
                 $field = $this->_db->find($aid);
                 //分配栏目
                 $this->category = $this->_category[$this->_cid];
@@ -224,7 +246,7 @@ class ContentControl extends AuthControl
     }
 
     //审核或取消审核
-    public function set_status()
+    public function audit()
     {
         //1 审核  0 取消审核
         $state = Q("status", 1, "intval");

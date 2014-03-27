@@ -43,6 +43,7 @@ class ModelModel extends Model
                       `aid` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键' ,
                       `cid` SMALLINT UNSIGNED NOT NULL default 0 COMMENT '栏目cid' ,
                       `title` char(100) NOT NULL DEFAULT '' COMMENT '标题' ,
+                      `flag` set('热门','置顶','推荐','图片','精华','幻灯片','站长推荐') DEFAULT NULL COMMENT '文章属性',
                       `new_window` TINYINT(1) NOT NULL DEFAULT 0  COMMENT '新窗口打开' ,
                       `seo_title` char(100) NOT NULL DEFAULT '' COMMENT '标题' ,
                       `thumb` CHAR(200) NOT NULL DEFAULT '' COMMENT '缩略图' ,
@@ -51,7 +52,6 @@ class ModelModel extends Model
                       `redirecturl` CHAR(100) NOT NULL DEFAULT '' COMMENT '转向链接' ,
                       `html_path` VARCHAR(255) NOT NULL DEFAULT '' COMMENT '自定义生成的静态文件地址' ,
                       `allowreply` TINYINT(1) NOT NULL DEFAULT 1 COMMENT '是否允许回复' ,
-                      `author` CHAR(45) NOT NULL default '' COMMENT '作者' ,
                       `addtime` INT(10) NOT NULL default 0 COMMENT '添加时间' ,
                       `updatetime` INT(10) NOT NULL default 0 COMMENT '发布时间 ' ,
                       `color` CHAR(7) NOT NULL default '' COMMENT '标题颜色' ,
@@ -64,11 +64,11 @@ class ModelModel extends Model
                       `uid` INT UNSIGNED NOT NULL  COMMENT '用户uid' ,
                       `favorites` mediumint UNSIGNED NOT NULL DEFAULT 0 COMMENT '收藏数' ,
                       `comment_num` mediumint UNSIGNED NOT NULL DEFAULT 0  COMMENT '评论数' ,
-                      `flag` set('热门','置顶','推荐','图片','精华','幻灯片','站长推荐') DEFAULT NULL COMMENT '文章属性',
                       `read_credits` smallint UNSIGNED NOT NULL DEFAULT 0  COMMENT '阅读积分' ,
                       PRIMARY KEY (`aid`) ,
                       INDEX `cid` (`cid` ASC),
-                      INDEX `uid` (`uid` ASC))
+                      INDEX `uid` (`uid` ASC)),
+                      INDEX `flag` (`flag` ASC))
                     ENGINE = MyISAM;
 str;
         //创建主表

@@ -21,7 +21,11 @@ class IndexControl extends Control
         $upload = $this->db->order("id desc")->limit($page->limit())->all();
         if ($upload) {
             foreach ($upload as $id => $v) {
-                $upload[$id]['pic'] = $v['image'] == 1 && is_file($v['path']) ? __ROOT__ . '/' . $v['path'] : __GROUP__ . '/static/img/upload-pic.png';
+                if ($v['image'] == 1 && is_file($v['path'])) {
+                    $upload[$id]['pic'] = __ROOT__ . '/' . $v['path'];
+                } else {
+                    $upload[$id]['pic'] = __GROUP__ . '/static/img/upload-pic.png';
+                }
             }
         }
         $this->upload = $upload;

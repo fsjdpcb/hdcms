@@ -1,12 +1,12 @@
 <?php
-import('UploadModel','hd.Hdcms.Upload.Model');
+import('UploadModel', 'hd.Hdcms.Upload.Model');
 
 /**
  * 文件上传
  * Class IndexControl
  * @author hdxj<houdunwangxj@gmail.com>
  */
-class UploadControl extends Control
+class UploadControl extends CommonControl
 {
     //模型
     protected $_db;
@@ -21,19 +21,47 @@ class UploadControl extends Control
     //显示文件列表
     public function index()
     {
+        //上传类型
+        $type = Q('type', null, 'strtolower');
         //上传目录
         $dir = "./upload/" . Q("get.dir", "content") . "/" . date("Y") . '/' . date("m") . '/' . date("d") . '/';
         //上传数量
         $limit = Q("get.num", 1, "intval");
-        //上传标签
-        $upload = tag("upload",
-            array(
-                "name" => "hdcms",
-                "dir" => $dir,
-                "limit" => $limit,
-                "width" => 88,
-                "height" => 78)
-        );
+        //会员中心使用配置项，后台时显示改变水印按钮
+        $waterBtn = strtoupper(GROUP_NAME) == 'HDCMS' ? 1 : 0;
+        switch ($type) {
+            case 'image':
+            case 'images';
+                //最大上传图片尺寸
+                $upload_img_max_width = Q('upload_img_max_width') ? Q('upload_img_max_width') : C('upload_img_max_width');
+                $upload_img_max_height = Q('upload_img_max_height') ? Q('upload_img_max_height') : C('upload_img_max_height');
+                $tag = array(
+                    "type" => "*.jpg,*.png,*.gif,*.jpeg",
+                    "name" => "hdcms",
+                    "dir" => $dir,
+                    "limit" => $limit,
+                    "width" => 88,
+                    "height" => 78,
+                    "waterbtn" => $waterBtn,
+                    "upload_img_max_width" => $upload_img_max_width,
+                    "upload_img_max_height" => $upload_img_max_height,
+                );
+                break;
+            case 'files':
+                $filetype = '*.'.str_replace(',',',*.',Q('filetype'));
+                $tag = array(
+                    "type" => $filetype,
+                    "name" => "hdcms",
+                    "dir" => $dir,
+                    "width" => 88,
+                    "height" => 78,
+                    "limit" => $limit,
+                    "waterbtn" => 0,
+                );
+                break;
+        }
+
+        $upload = tag("upload", $tag);
         $get = '';
         foreach ($_GET as $name => $v) {
             $get .= "var $name='$v';\n";
@@ -64,7 +92,7 @@ class UploadControl extends Control
         } else {
             $file = $file[0];
             $model = K("Upload");
-            $model->insert_to_table($file);
+            $model->save_to_table($file);
             $file['url'] = __ROOT__ . '/' . $file['path'];
             $file["state"] = "SUCCESS";
             echo "{'url':'" . $file['url'] . "','title':'" . $title . "','original':'" . $file["filename"] . "','state':'" . $file["state"] . "'}";
@@ -77,6 +105,11 @@ class UploadControl extends Control
      */
     public function hd_uploadify()
     {
+        //开启裁切
+        C('UPLOAD_IMG_RESIZE_ON', true);
+        C('upload_img_max_width', $_POST['upload_img_max_width']);
+        C('upload_img_max_height', $_POST['upload_img_max_height']);
+
         $upload = new Upload(Q('post.upload_dir'), array(), array(), Q("water", null, "intval"));
         $file = $upload->upload();
         if (!empty($file)) {
@@ -85,11 +118,12 @@ class UploadControl extends Control
             $data['url'] = __ROOT__ . '/' . $file['path'];
             $data['path'] = $file['path'];
             $data['filename'] = $file['filename'];
+            $data['name'] = $file['filename'];
             $data['basename'] = $file['basename'];
             $data['thumb'] = array();
             $data['isimage'] = $file['image'];
             //写入upload表
-            $this->_db->insert_to_table($file);
+            $this->_db->save_to_table($file);
         } else {
             $data['stat'] = 0;
             $data['msg'] = $upload->error;
@@ -98,18 +132,7 @@ class UploadControl extends Control
         exit;
     }
 
-    /**
-     * 上传插件Ajax删除文件
-     * 同时删除session中记录
-     */
-    public function hd_uploadify_del()
-    {
-        $file = array_filter(explode("@@", $_POST['file']));
-        $this->_db->del_file($file);
-        $this->ajax(1);
-    }
-
-    //站内图片
+    //站内文件
     public function site()
     {
         //只查找自己的图片
@@ -121,11 +144,11 @@ class UploadControl extends Control
         $this->display('pic_list');
     }
 
-    //未使用的图片
+    //未使用的文件
     public function untreated()
     {
         //只查找自己的图片
-        $where = 'uid=' . $_SESSION['uid'] . ' AND aid=0';
+        $where = 'uid=' . $_SESSION['uid'] . ' AND state=0';
         $count = $this->_db->where($where)->count();
         $page = new Page($count, 18);
         $this->file = $this->_db->where($where)->limit($page->limit())->all();
@@ -151,7 +174,7 @@ class UploadControl extends Control
         $uri = str_replace("&amp;", "&", $uri);
         if ($data = $this->getRemoteImage($uri, $config)) {
             $data['image'] = 1;
-            if ($id = $this->_db->insert_to_table($data)) {
+            if ($id = $this->_db->save_to_table($data)) {
                 return __ROOT__ . '/' . $data['path'];
             } else {
                 return $img;

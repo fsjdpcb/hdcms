@@ -1,4 +1,3 @@
-
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝模板选择START＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 /**
  * 更换模板
@@ -54,22 +53,52 @@ function field_check(obj, validataion, msg, error, required) {
 
 
 /**
- * 文件上传
+ *
  * @param id    id
  * @param type 上传类型 thumb 缩略图  images多图
  * @param num 上传数量
  * @param name 表单名
  */
-function file_upload(id, type, num, name) {
-    //多图上传时，判断是否已经超出了允许上传的图片数量
-    if (type == 'images') {
-        num = $('#hd_up_' + id).text() * 1;
-        if (num == 0) {
-            alert('已经达到上传最大数!');
-            return false;
-        }
+/**
+ * 文件上传
+ * @param id 显示图片列表id
+ * @param type 类型 images image
+ * @param num 数量
+ * @param name 表单名
+ * @param upload_img_max_width 最大宽度（超过这个尺寸，会进行图片裁切)
+ * @param upload_img_max_width 最大高度（超过这个尺寸，会进行图片裁切)
+ * @param water 是否加水印
+ * @returns {boolean}
+ * id, type, num, name, upload_img_max_width, upload_img_max_height
+ */
+function file_upload(options) {
+    //多文件(图片与文件)上传时，判断是否已经超出了允许上传的图片数量
+    switch(options.type){
+        case 'image':
+            var url = WEB + "?a=Upload&c=Upload&m=index&id=" + options.id + "&type=" + options.type + "&num=" + options.num +
+                "&name=" + options.name;
+            break;
+        case 'images':
+                num = $('#hd_up_' + options.id).text() * 1;
+                if (num == 0) {
+                    alert('已经达到上传最大数!');
+                    return false;
+                }
+            var url = WEB + "?a=Upload&c=Upload&m=index&id=" + options.id + "&type=" + options.type + "&num=" + options.num +
+                "&name=" + options.name+
+                '&upload_img_max_width='+options.upload_img_max_width+'&upload_img_max_height='+options.upload_img_max_height;
+            break;
+        case 'files':
+            num = $('#hd_up_' + options.id).text() * 1;
+            if (num == 0) {
+                alert('已经达到上传最大数!');
+                return false;
+            }
+            var url = WEB + "?a=Upload&c=Upload&m=index&id=" + options.id + "&type=" + options.type + "&num=" + options.num +
+                "&name=" + options.name+"&filetype="+options.filetype;
+
+            break;
     }
-    var url = WEB + "?a=Upload&c=Upload&m=index&id=" + id + "&type=" + type + "&num=" + num + "&name=" + name;
     $.modal({
         title: '文件上传',
         width: 600,
@@ -119,10 +148,10 @@ function remove_upload_one_img(obj) {
  * 删除多图上传的图片（自定义字段）
  * @param obj 按钮对象
  */
-function remove_upload(obj, id, type) {
+function remove_upload(obj, id) {
     //记录上传数量的span
     var _span = $('#hd_up_' + id);
     _span.text(_span.text() * 1 + 1);
-    $(obj).parent().remove();
+    $(obj).parents('li').eq(0).remove();
 }
 //------------------------上传图片处理（自定义表单）-------------------------

@@ -29,6 +29,24 @@ $(function () {
                 required: "阅读积分不能为空",
                 regexp: '必须为数字'
             }
+        },
+        click: {
+            rule: {
+                required: true,
+                regexp: /^\d+$/
+            },
+            error: {
+                required: "点击数不能为空",
+                regexp: '必须为数字'
+            }
+        },
+        redirecturl: {
+            rule: {
+                http: true
+            },
+            error: {
+                http: '网址格式错误'
+            }
         }
     })
 })
@@ -40,7 +58,7 @@ $(function () {
             $(this).trigger("blur");
         })
         //验证内容
-        if ($("[id='" + editor_id + "']").length > 0 && !UE.getEditor(editor_id).hasContents()) {
+        if (!UE.getEditor('hd_content').hasContents()) {
             alert("内容不能为空");
             return false;
         }

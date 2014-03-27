@@ -8,10 +8,6 @@
     <js file="__GROUP__/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/add_edit.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
-    <script>
-        //内容编辑器id，用于验证正文时使用
-        var editor_id ='hd_{$model.table_name}_data[content]';
-    </script>
 </head>
 <body>
 <form action="{|U:edit}" method="post" id="edit" class="hd-form form-horizontal" onsubmit="return false">
@@ -86,14 +82,6 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>作者</th>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="text" name="author" class="w150" value="{$field.author}"/>
-                    </td>
-                </tr>
-                <tr>
                     <th>阅读积分</th>
                 </tr>
                 <tr>
@@ -114,7 +102,7 @@
                         <label>
                             标题颜色 <input type="text" name="color" value="{$field.color}" class="w100"/>
                         </label>
-                        <button type="button" onclick="selectColor(this,'color')" class="btn btn-default">选取颜色</button>
+                        <button type="button" onclick="selectColor(this,'color')" class="hd-cancel">选取颜色</button>
                         <label class='inline'><input type="checkbox" name="new_window" value="1"
                             <if value="$field.new_window==1">checked='checked'</if>
                             /> 新窗口打开</label>
@@ -146,39 +134,37 @@
                     </td>
                 </tr>
                 <!--标准模型显示正文字段-->
-                <if value="$model.type==1">
-
                     <tr>
                         <th>内容<span class="star">*</span></th>
                         <td>
-                            {|tag:"ueditor",array("name"=>$model['table_name']."_data[content]","content"=>$field['content'])}
-                            <div class="editor_set">
-                                <label class="inline">
+                            <ueditor name='content' content="$field['content']"/>
+                            <div class="editor_set control-group">
+                                <label class="checkbox inline">
                                     <input type="checkbox" name="down_remote_pic" value="1"
                                     <if value="$hd.config.down_remote_pic==1">checked="checked"</if>
                                     />下载远程图片
                                 </label>
-                                <label class="inline">
+                                <label class="checkbox inline">
                                     <input type="checkbox" name="auto_desc" value="1"
                                     <if value="$hd.config.auto_desc==1">checked="checked"</if>
                                     />截取内容
                                 </label>
-                                <label class="inline">
-                                    <input type="text" value="200" class="input-mini" name="auto_desc_length"> 字符至内容摘要
+                                <label class="checkbox inline">
+                                    <input type="text" value="200" class="w80" name="auto_desc_length"> 字符至内容摘要
                                 </label>
-                                <label class="inline">
+                                &nbsp;&nbsp;&nbsp;
+                                <label class="checkbox inline">
                                     <input type="checkbox" name="auto_thumb" value="1"
                                     <if value="$hd.config.auto_thumb==1">checked="checked"</if>
                                     />获取内容第
                                 </label>
-                                <label class="inline">
-                                    <input type="text" class="input-mini" value="1" name="auto_thumb_num">
-                                    张图片为缩略图
+                                <label class="checkbox inline">
+                                    <input type="text" class="w80" value="1" name="auto_thumb_num">
+                                    张图片作为缩略图
                                 </label>
                             </div>
                         </td>
                     </tr>
-                </if>
                 <!--自定义字段-->
                 {$custom_field}
                 <!--自定义字段-->
@@ -186,14 +172,14 @@
                     <th>关键字</th>
                     <td>
                         <input type="text" name="keywords" value="{$field.keywords}" class="w400"/>
-                        <span class="validate-message">如果不填，系统将自动从内容中提取</span>
+                        <span id="hd_keywords"></span>
                     </td>
                 </tr>
                 <tr>
                     <th>摘要</th>
                     <td>
                         <textarea name="description" class="w450 h80">{$field.description}</textarea>
-                        <span class="validate-message">如果不填，系统将自动从内容中提取</span>
+                        <span id="hd_description"></span>
                     </td>
                 </tr>
                 <tr>
@@ -215,7 +201,7 @@
                     <th>HTML文件</th>
                     <td>
                         <input class="w250" type="text" name="html_path" value="{$field.html_path}">
-                        <span class="validate-message">如:houdunwang.html,如果不填将按栏目规则生成静态。栏目开启生成静态才有效</span>
+                        <span class="hd_html_path"></span>
                     </td>
                 </tr>
             </table>

@@ -1,7 +1,7 @@
-<js file="__TPL__/Field/js/editor.js"/>
+<script type="text/javascript" src="<?php echo __TPL__;?>/Field/js/editor.js"></script>
 <table class="table1">
     <tr class="input action">
-        <td class="w100">参数</td>
+        <th class="w100">参数</th>
         <td>
             <table class="table1">
                 <tr>

@@ -41,7 +41,7 @@ class FieldControl extends AuthControl
      */
     public function index()
     {
-        $this->assign("field", $this->_field);
+        $this->field= $this->_field;
         $this->display();
     }
 
@@ -75,28 +75,31 @@ class FieldControl extends AuthControl
             $this->display();
         }
     }
-
+    //修改字段
+    public function edit()
+    {
+        if (IS_POST) {
+            if ($this->_db->create() && $this->_db->save()) {
+                $this->_ajax(1, '修改成功');
+            }
+        } else {
+            if ($this->_fid) {
+                $field = $this->_field[$this->_fid];
+                /**
+                 * 设置validation的默认值
+                 * 在js的field_check表单验证函数中validation不能为空,所以validation不能为空
+                 * 在编辑时如果validation=="''"时，表单显示空
+                 */
+                $this->field= $field;
+                $this->display();
+            }
+        }
+    }
     //验证字段是否已经存在
     public function field_is_exists()
     {
-        //字段名
-        $field_name = Q("request.field_name", '', 'strtolower');
-        //content字段不允许使用，用于正文
-        if ($field_name == 'content') {
-            $this->ajax(0);
-        }
-        $table = array();
-        $table[] = $this->_model[$this->_mid]['table_name'];
-        if ($this->_model[$this->_mid]['type'] == 1) {
-            $table[] = $this->_model[$this->_mid]['table_name'] . "_data";
-        }
-        //检查主，副表
-        foreach ($table as $t) {
-            if ($this->_db->fieldExists($field_name, $t)) {
-                $this->ajax(0);
-            }
-        }
-        $this->ajax(1);
+        $state = $this->_db->check_field_exists()?0:1;
+        $this->ajax($state);
     }
 
     //选择字段类型模板
@@ -120,30 +123,7 @@ class FieldControl extends AuthControl
         }
     }
 
-    //修改字段
-    public function edit()
-    {
-        if (IS_POST) {
-            if ($this->_db->create() && $this->_db->save()) {
-                $this->_ajax(1, '修改成功');
-            }
-        } else {
-            if ($this->_fid) {
-                $field = $this->_field[$this->_fid];
-                /**
-                 * 设置validation的默认值
-                 * 在js的field_check表单验证函数中validation不能为空,所以validation不能为空
-                 * 在编辑时如果validation=="''"时，表单显示空
-                 */
-                $field['set']['validation'] = $field['set']['validation'] == "false" ? "" : $field['set']['validation'];
-                $this->assign("field", $field);
-                $this->assign("model", $this->_model[$this->_mid]);
-                $this->display();
-            } else {
-                $this->error("你要修改的字段不存在");
-            }
-        }
-    }
+
 
     //更新字段缓存
     public function update_cache()

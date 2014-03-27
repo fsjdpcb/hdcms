@@ -13,12 +13,16 @@ class FieldModel extends Model
     private $_field;
     //模型缓存
     private $_model;
+    //类型
+    private $_type = array('input' => '单行文本', 'textarea' => '多行文本', 'number' => '数字', 'select' => '选项', 'editor' => '编辑器', 'image' => '图片', 'images' => '多图片', 'date' => '日期与时间', 'files' => '文件');
     //自动完成
     public $auto = array(
         //模型表名小写
         array("table_name", "_table_name", "method", 2, 1),
         //控制器首字母大写
         array("set", "_field_set", "method", 1, 3),
+        //字段名
+        array("field_name", "strtolower", "function", 1, 3)
     );
     //自动验证
     public $validate = array(
@@ -118,6 +122,9 @@ class FieldModel extends Model
             case "images":
                 $_field = '`' . $_POST['field_name'] . '`' . " MEDIUMTEXT";
                 break;
+            case "files":
+                $_field = '`' . $_POST['field_name'] . '`' . " MEDIUMTEXT";
+                break;
             case "select":
                 $_field = '`' . $_POST['field_name'] . '`' . " CHAR(80) NOT NULL DEFAULT ''";
                 break;
@@ -130,6 +137,30 @@ class FieldModel extends Model
         return M()->exe($sql);
     }
 
+    /**
+     * 验证字段是否存在
+     * @return bool
+     */
+    public function check_field_exists()
+    {
+        //字段名
+        $field_name = Q("request.field_name", '', 'strtolower');
+        if ($field_name) {
+            $table = array();
+            //主表名
+            $table[] = $this->_model[$this->_mid]['table_name'];
+            //副表名
+            $table[] = $this->_model[$this->_mid]['table_name'] . "_data";
+            //检查字段是否在主表与副表中存在
+            foreach ($table as $t) {
+                if ($this->fieldExists($field_name, $t)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     //更新字段缓存
     public function update_cache()
     {
@@ -138,6 +169,11 @@ class FieldModel extends Model
         $_cache = array();
         if (is_array($field) && !empty($field)) {
             foreach ($field as $f) {
+                //添加中文类型名 如 多图片
+                $f['type_name'] = $this->_type[$f['show_type']];
+                //添加模型中文名
+                $f['model_name'] = $this->_model[$f['mid']]['model_name'];
+                //反序列化字段的set值
                 if (isset($f['set']) && !empty($f['set'])) {
                     //返序列化set字段
                     $f["set"] = unserialize($f['set']);
@@ -151,29 +187,7 @@ class FieldModel extends Model
         is_dir("./Temp/hdcms/Content/Table") && Dir::del("./Temp/hdcms/Content/Table");
         if (F($this->_mid, $_cache, FIELD_CACHE_PATH)) {
             //更新字段验证规则
-//            return $this->update_validate();
             return true;
-        }
-    }
-
-    /**
-     * 更新模型字段验证规则
-     */
-    private function update_validate()
-    {
-        $field = F($this->_mid,false,FIELD_CACHE_PATH);
-        $validate=array();
-        foreach($field as $f){
-            //没有验证规则时返回
-            if($f['set']['validation']=='false')continue;
-            //字段名
-            $fieldName = $f['table_name']."[{$f['field_name']}]";
-            $validate[$fieldName]=array(
-                'rule'=>array(
-                    'required'=>$f['set']['required'],
-//                    'validation'=>
-                )
-            );
         }
     }
 
@@ -207,7 +221,7 @@ class FieldModel extends Model
         //验证
         $valid = "field_check(this,{$set['validation']},'{$set['message']}','{$set['error']}',{$set['required']})";
         //是否必须输入
-        $validate = $set['required']==0?1:0;
+        $validate = $set['required'] == 0 ? 1 : 0;
         $h = "<tr><th>{$f['title']}</th><td>";
         $h .= "<input onblur=\"{$valid}\" validate='{$validate}' style=\"width:{$set['size']}px\" type=\"{$type}\" class=\"{$set['css']}\" name=\"{$f['field_name']}\" value=\"$value\"/>";
         $h .= " <span class='{$f['field_name']} validate-message'>" . $set['message'] . "</span>";
@@ -291,7 +305,7 @@ class FieldModel extends Model
     {
         $set = $f['set'];
         $h = "<tr><th>{$f['title']}</th><td>";
-        $h .= tag("ueditor", array("name" => $f['field_name'], "content" => $value, "height" => $set['height']));
+        $h .= tag('ueditor', array("name" => $f['field_name'], "content" => $value, "height" => $set['height']));
         $h .= " <span class='{$f['field_name']} validate-message'>" . $set['message'] . "</span>";
         $h .= "</td>";
         $h .= "</tr>";
@@ -335,7 +349,7 @@ class FieldModel extends Model
 <div style='color:#666;font-size:12px;margin-bottom: 5px;'>
 您最多可以同时上传
 <span style='color:red' id='hd_up_{$id}'>$num</span>
-张
+张图片
 </div>
 </center>
 <div id='$id' class='picList'>";
@@ -345,18 +359,86 @@ class FieldModel extends Model
                 $h .= '<ul>';
                 foreach ($img as $i) {
                     if (!empty($i['path'])) {
-                        $h .= "<li><input type='text' name='" . $f['field_name'] . "[url][]'  value='" . $i['path'] . "' src='" . __ROOT__ . '/' . $i['path'] . "' class='w400 images'/> ";
-                        $h .= "<input type='text' name='" . $f['field_name'] . "[alt][]' class='w200' value='" . $i['alt'] . "'/>";
-                        $h .= " <a href='javascript:;' class='hd-cancel-small' onclick='remove_upload(this,\"$id\",\"images\");'>移除</a>";
+                        $h .= "<li><div class='img'><img src='" . __ROOT__ . "/" . $i['path'] . "' style='width:150px;height:150px;'/>";
+                        $h .= "<a href='javascript:;' onclick='remove_upload(this,\"hd_up_{$id}\")'>X</a>";
+                        $h .= "</div>";
+                        $h .= "<input type='hidden' name='" . $f['field_name'] . "[url][]'  value='" . $i['path'] . "' src='" . __ROOT__ . '/' . $i['path'] . "' class='w400 images'/> ";
+                        $h .= "<input type='text' name='" . $f['field_name'] . "[alt][]' value='" . $i['alt'] . "'style='width:135px;' placeholder='图片描述...'/>";
                         $h .= "</li>";
                     }
                 }
                 $h .= '</ul>';
             }
         }
+        $options = json_encode(array(
+            'id' => $id,
+            'type' => 'images',
+            'num' => $num,
+            'name' => $f['field_name'],
+            'filetype' =>'jpg,png,gif,jpeg',
+            'upload_img_max_width'=>$f['set']['upload_img_max_width'],
+            'upload_img_max_height'=>$f['set']['upload_img_max_height']
+        ));
         $h .= "</div>
 </fieldset>
-<button class='hd-cancel-small' onclick='file_upload(\"$id\",\"images\",$num,\"{$f['field_name']}\")' type='button'>上传图片</button>";
+<button class='hd-cancel-small' onclick='file_upload({$options})' type='button'>上传图片</button>";
+        $h .= " <span class='{$f['field_name']} validate-message'>" . $set['message'] . "</span>";
+        $h .= "</td>";
+        $h .= "</tr>";
+        return $h;
+    }
+
+    //多文件上传
+    private function _files($f, $value)
+    {
+        $set = $f['set'];
+        $id = "img_" . $f['field_name'];
+        //允许上传数量
+        $num = $set['num'];
+        //已经上传图片
+        if (!empty($value)) {
+            $img = unserialize($value);
+            if (is_array($img))
+                $num = $num - count($img);
+        }
+        $h = "<tr><th>{$f['title']}</th><td>";
+        $h .= "<fieldset class='img_list'>
+<legend style='color:#666;font-size: 12px;line-height: 25px;padding: 0px 10px; text-align:center;margin: 0px;'>文件列表</legend>
+<center>
+<div style='color:#666;font-size:12px;margin-bottom: 5px;'>
+您最多可以同时上传
+<span style='color:red' id='hd_up_{$id}'>$num</span>
+个文件
+</div>
+</center>
+<div id='$id' class='picList'>";
+        if (!empty($value)) {
+            $img = unserialize($value);
+            if (!empty($img) && is_array($img)) {
+                $h .= '<ul>';
+                foreach ($img as $i) {
+                    if (!empty($i['path'])) {
+                        $h .= "<li><div class='img'><img src='" . __ROOT__ . "/" . $i['path'] . "' style='width:150px;height:150px;'/>";
+                        $h .= "<a href='javascript:;' onclick='remove_upload(this,\"hd_up_{$id}\")'>X</a>";
+                        $h .= "</div>";
+                        $h .= "<input type='hidden' name='" . $f['field_name'] . "[url][]'  value='" . $i['path'] . "' src='" . __ROOT__ . '/' . $i['path'] . "' class='w400 images'/> ";
+                        $h .= "<input type='text' name='" . $f['field_name'] . "[alt][]' value='" . $i['alt'] . "'style='width:135px;' placeholder='图片描述...'/>";
+                        $h .= "</li>";
+                    }
+                }
+                $h .= '</ul>';
+            }
+        }
+        $options = json_encode(array(
+            'id' => $id,
+            'type' => 'files',
+            'num' => $num,
+            'name' => $f['field_name'],
+            'filetype' => $set['filetype']
+        ));
+        $h .= "</div>
+</fieldset>
+<button class='hd-cancel-small' onclick='file_upload($options)' type='button'>上传文件</button>";
         $h .= " <span class='{$f['field_name']} validate-message'>" . $set['message'] . "</span>";
         $h .= "</td>";
         $h .= "</tr>";

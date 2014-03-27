@@ -7,10 +7,6 @@
     <js file="__GROUP__/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/add_edit.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
-    <script>
-        //内容编辑器id，用于验证正文时使用
-        var editor_id ='hd_{$model.table_name}_data[content]';
-    </script>
 </head>
 <body>
 <form action="{|U:add}" method="post" onsubmit="return false;" id="add" class="hd-form">
@@ -80,14 +76,6 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>作者</th>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="text" name="author" class="w150" value="{$hd.session.username}"/>
-                    </td>
-                </tr>
-                <tr>
                     <th>阅读金币</th>
                 </tr>
                 <tr>
@@ -140,11 +128,10 @@
                     </td>
                 </tr>
                 <!--标准模型显示正文字段-->
-                <if value="$model.mid==1">
                     <tr>
                         <th>内容<span class="star">*</span></th>
                         <td>
-                            {|tag:"ueditor",array("name"=>$model['table_name']."_data[content]",'php'=>'__ROOT__/index.php?a=Upload&c=Upload&m=ueditor_upload')}
+                            <ueditor name='content'>
                             <div class="editor_set control-group">
                                 <label class="checkbox inline">
                                     <input type="checkbox" name="down_remote_pic" value="1"
@@ -157,15 +144,16 @@
                                     />截取内容
                                 </label>
                                 <label class="checkbox inline">
-                                    <input type="text" value="200" class="input-mini" name="auto_desc_length"> 字符至内容摘要
+                                    <input type="text" value="200" class="w80" name="auto_desc_length"> 字符至内容摘要
                                 </label>
+                                &nbsp;&nbsp;&nbsp;
                                 <label class="checkbox inline">
                                     <input type="checkbox" name="auto_thumb" value="1"
                                     <if value="$hd.config.auto_thumb==1">checked="checked"</if>
                                     />获取内容第
                                 </label>
                                 <label class="checkbox inline">
-                                    <input type="text" class="input-mini" value="1" name="auto_thumb_num">
+                                    <input type="text" class="w80" value="1" name="auto_thumb_num">
                                      张图片作为缩略图
                                 </label>
                             </div>
@@ -185,7 +173,6 @@
                             <span id="hd_description"></span>
                         </td>
                     </tr>
-                </if>
                 <!--自定义字段-->
                 {$custom_field}
                 <!--自定义字段-->

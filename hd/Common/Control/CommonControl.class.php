@@ -32,5 +32,20 @@ class CommonControl extends Control
     {
         $this->ajax(array('state' => $state, 'message' => $message));
     }
-
+    /**
+     * Ueditor 编辑器图片上传处理方法
+     */
+    public function ueditor_upload()
+    {
+        import('UploadControl','hd.Hdcms.Upload.Control');
+        O('UploadControl',__FUNCTION__);
+    }
+    /**
+     * Uploadify上传文件处理
+     */
+    public function hd_uploadify()
+    {
+        import('UploadControl','hd.Hdcms.Upload.Control');
+        O('UploadControl',__FUNCTION__);
+    }
 }

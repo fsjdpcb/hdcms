@@ -63,15 +63,43 @@ $(function () {
                 _input_obj.val(_img.attr("path"));
                 break;
             //images多图
+//            case "images":
+//                var img_div = $(parent.document).find("#" + id);
+//                //所有选中的图片
+//                var _img = $("img[selected='selected']");
+//                var _ul = "<ul>";
+//                $(_img).each(function (i) {
+//                    _ul += "<li><input type='text' name='" + name + "[url][]'  value='" + $(_img[i]).attr("path") + "' src='" + $(_img[i]).attr("src") + "' class='w400 images'/> ";
+//                    _ul += "<input type='text' name='" + name + "[alt][]' class='w200'/>";
+//                    _ul += " <a href='javascript:;' class='hd-cancel-small' onclick='remove_upload(this,\""+id+"\",\""+type+"\")'>移除</a>";
+//                    _ul += "</li>";
+//                })
+//                _ul = _ul + "</ul>";
+//                img_div.append(_ul);
+//                //父窗口中记录数量的span标签
+//                var _num_span = $(parent.document).find('#hd_up_'+id);
+//                //更改数量
+//                _num_span.text(_num_span.text()*1-_img.length);
+//                break;
+            //单图
+            case "image":
+                var _input_obj = $(parent.document).find("#" + id);
+                var _img = $("img[selected='selected']").eq(0);
+                _input_obj.val(_img.attr("path"));
+                _input_obj.attr("src", _img.attr("src"));
+                break;
             case "images":
                 var img_div = $(parent.document).find("#" + id);
                 //所有选中的图片
                 var _img = $("img[selected='selected']");
                 var _ul = "<ul>";
                 $(_img).each(function (i) {
-                    _ul += "<li><input type='text' name='" + name + "[url][]'  value='" + $(_img[i]).attr("path") + "' src='" + $(_img[i]).attr("src") + "' class='w400 images'/> ";
-                    _ul += "<input type='text' name='" + name + "[alt][]' class='w200'/>";
-                    _ul += " <a href='javascript:;' class='hd-cancel-small' onclick='remove_upload(this,\""+id+"\",\""+type+"\")'>移除</a>";
+                    _ul += "<li>" ;
+                    _ul += "<div class='img'><img src='"+ROOT+"/"+$(_img[i]).attr("path")+"' style='width:150px;height:150px;'/>";
+                    _ul += "<a href='javascript:;' onclick='remove_upload(this,\""+id+"\")'>X</a>";
+                    _ul +="</div>";
+                    _ul += "<input type='hidden' name='" + name + "[url][]'  value='" + $(_img[i]).attr("path") + "' src='" + $(_img[i]).attr("src") + "' class='w400 images'/> ";
+                    _ul += "<input type='text' name='" + name + "[alt][]' style='width:135px;' placeholder='图片描述...'/>";
                     _ul += "</li>";
                 })
                 _ul = _ul + "</ul>";
@@ -81,15 +109,29 @@ $(function () {
                 //更改数量
                 _num_span.text(_num_span.text()*1-_img.length);
                 break;
-            //单图
-            case "image":
-                var _input_obj = $(parent.document).find("#" + id);
-                var _img = $("img[selected='selected']").eq(0);
-                _input_obj.val(_img.attr("path"));
-                _input_obj.attr("src", _img.attr("src"));
+            case "files":
+                var img_div = $(parent.document).find("#" + id);
+                //所有选中的图片
+                var _img = $("img[selected='selected']");
+                var _ul = "<ul>";
+                $(_img).each(function (i) {
+                    _ul += "<li>" ;
+                    _ul += "<div class='img'><img src='"+HDPHPEXTEND +"/Org/Uploadify/default.png' style='width:130px;height:100px;'/>";
+                    _ul += "<a href='javascript:;' onclick='remove_upload(this,\""+id+"\")'>X</a>";
+                    _ul +="</div>";
+                    _ul += "<input type='hidden' name='" + name + "[url][]'  value='" + $(_img[i]).attr("path") + "' src='" + $(_img[i]).attr("src") + "' class='w400 images'/> ";
+                    _ul += "<input type='text' name='" + name + "[alt][]' style='width:115px;' placeholder='文件描述...'/>";
+                    _ul += "</li>";
+                })
+                _ul = _ul + "</ul>";
+                img_div.append(_ul);
+                //父窗口中记录数量的span标签
+                var _num_span = $(parent.document).find('#hd_up_'+id);
+                //更改数量
+                _num_span.text(_num_span.text()*1-_img.length);
                 break;
         }
-        close_window();
+//        close_window();
     })
 })
 //关闭

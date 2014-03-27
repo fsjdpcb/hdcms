@@ -21,13 +21,14 @@
     <table class="table2 hd-form">
         <thead>
         <tr>
-            <td width="30">排序</td>
-            <td width="30">Fid</td>
-            <td width="200">描述</td>
+            <td class="w50">排序</td>
+            <td class="w50">Fid</td>
+            <td class="w200">描述</td>
             <td>字段名</td>
-            <td width="80">系统</td>
-            <td width="60">主表</td>
-            <td width="100">操作</td>
+            <td class="w100">类型</td>
+            <td class="w80">系统</td>
+            <td class="w80">主表</td>
+            <td class="w100">操作</td>
         </tr>
         </thead>
         <tbody>
@@ -40,7 +41,9 @@
                     {$f.fid}
                 </td>
                 <td>{$f.title}</td>
-                <td>{$f.field_name}</td><td>
+                <td>{$f.field_name}</td>
+                <td>{$f.type_name}</td>
+                <td>
                     <if value="{$f.is_system}">是
                         <else>否
                     </if>
@@ -54,7 +57,7 @@
                     <a href="{|U:'edit',array('mid'=>$f['mid'],'fid'=>$f['fid'])}">修改</a>
                     |
                     <a href="javascript:"
-                       onclick="return confirm('确定删除【{$f.field_name}】字段吗？')?hd_ajax('{|U:del}',{mid:{$f['mid']},fid:{$f['fid']}}):false;">删除</a>
+                       onclick="return confirm('确定删除【{$f.title}】字段吗？')?hd_ajax('{|U:del}',{mid:{$f['mid']},fid:{$f['fid']}}):false;">删除</a>
                 </td>
             </tr>
         </list>
