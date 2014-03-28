@@ -29,14 +29,49 @@ class UploadControl extends CommonControl
         $limit = Q("get.num", 1, "intval");
         //会员中心使用配置项，后台时显示改变水印按钮
         $waterBtn = strtoupper(GROUP_NAME) == 'HDCMS' ? 1 : 0;
+        //上传文件类型
+        $filetype = Q('filetype', 'jpg,png,gif,jpeg', 'strtolower');
+        //uploadify插件使用的上传类型
+        $uploadtype = '*.' . str_replace(',', ',*.', $filetype);
         switch ($type) {
+            case 'thumb':
+                //最大上传图片尺寸
+                $upload_img_max_width = C('upload_img_max_width');
+                $upload_img_max_height = C('upload_img_max_height');
+                $tag = array(
+                    "type" => $filetype,
+                    "name" => "hdcms",
+                    "dir" => $dir,
+                    "limit" => 1,
+                    "width" => 88,
+                    "height" => 78,
+                    "waterbtn" => $waterBtn,
+                    "upload_img_max_width" => $upload_img_max_width,
+                    "upload_img_max_height" => $upload_img_max_height,
+                );
+                break;
             case 'image':
+                //最大上传图片尺寸
+                $upload_img_max_width = C('upload_img_max_width');
+                $upload_img_max_height = C('upload_img_max_height');
+                $tag = array(
+                    "type" => $filetype,
+                    "name" => "hdcms",
+                    "dir" => $dir,
+                    "limit" => 1,
+                    "width" => 88,
+                    "height" => 78,
+                    "waterbtn" => $waterBtn,
+                    "upload_img_max_width" => $upload_img_max_width,
+                    "upload_img_max_height" => $upload_img_max_height,
+                );
+                break;
             case 'images';
                 //最大上传图片尺寸
                 $upload_img_max_width = Q('upload_img_max_width') ? Q('upload_img_max_width') : C('upload_img_max_width');
                 $upload_img_max_height = Q('upload_img_max_height') ? Q('upload_img_max_height') : C('upload_img_max_height');
                 $tag = array(
-                    "type" => "*.jpg,*.png,*.gif,*.jpeg",
+                    "type" => $uploadtype,
                     "name" => "hdcms",
                     "dir" => $dir,
                     "limit" => $limit,
@@ -48,9 +83,9 @@ class UploadControl extends CommonControl
                 );
                 break;
             case 'files':
-                $filetype = '*.'.str_replace(',',',*.',Q('filetype'));
+
                 $tag = array(
-                    "type" => $filetype,
+                    "type" => $uploadtype,
                     "name" => "hdcms",
                     "dir" => $dir,
                     "width" => 88,
@@ -68,6 +103,10 @@ class UploadControl extends CommonControl
         }
         $this->get = $get;
         $this->upload = $upload;
+        //站内图片
+        $this->site($filetype);
+        //未使用图片
+        $this->untreated($filetype);
         $this->display();
     }
 
@@ -118,12 +157,12 @@ class UploadControl extends CommonControl
             $data['url'] = __ROOT__ . '/' . $file['path'];
             $data['path'] = $file['path'];
             $data['filename'] = $file['filename'];
-            $data['name'] = $file['filename'];
+            $data['name'] = $file['name'];
             $data['basename'] = $file['basename'];
             $data['thumb'] = array();
             $data['isimage'] = $file['image'];
             //写入upload表
-            $this->_db->save_to_table($file);
+            $data['table_id'] = $this->_db->save_to_table($file);
         } else {
             $data['stat'] = 0;
             $data['msg'] = $upload->error;
@@ -132,28 +171,55 @@ class UploadControl extends CommonControl
         exit;
     }
 
-    //站内文件
-    public function site()
+    /**
+     * 当修改图片的alt表单数据时，Ajax更改upload表中的name字段值
+     */
+    public function update_file_name()
     {
-        //只查找自己的图片
-        $where = 'uid=' . $_SESSION['uid'];
-        $count = $this->_db->where($where)->count();
-        $page = new Page($count, 18, 8);
-        $this->file = $this->_db->where($where)->limit($page->limit())->all();
-        $this->page = $page->show();
-        $this->display('pic_list');
+        $name = Q('name');
+        $id = Q('id', null, 'intval');
+        $this->_db->save(array(
+            "id" => $id,
+            "name" => $name
+        ));
     }
 
-    //未使用的文件
+    /**
+     * 站内文件
+     */
+    public function site()
+    {
+        //上传文件类型
+        $type = explode(',', Q('filetype'));
+        $type = implode("','", $type);
+        //只查找自己的图片
+        $where = 'uid=' . $_SESSION['uid'] . " AND ext IN('$type') AND state=1";
+        $count = $this->_db->where($where)->count();
+        $page = new Page($count, 10, 8, '', '', __WEB__ . '?a=Upload&c=Upload&m=site&filetype=' . Q('filetype'));
+        $this->site_data = $this->_db->where($where)->limit($page->limit())->all();
+        $this->site_page = $page->show();
+        if (METHOD == 'site') {
+            $this->display('site');
+        }
+    }
+
+    /**
+     * 未使用的文件
+     */
     public function untreated()
     {
         //只查找自己的图片
-        $where = 'uid=' . $_SESSION['uid'] . ' AND state=0';
+        $type = explode(',', Q('filetype'));
+        $type = implode("','", $type);
+        //只查找自己的图片
+        $where = 'uid=' . $_SESSION['uid'] . " AND ext IN('$type') AND state=0";
         $count = $this->_db->where($where)->count();
-        $page = new Page($count, 18);
-        $this->file = $this->_db->where($where)->limit($page->limit())->all();
-        $this->page = $page->show();
-        $this->display('pic_list');
+        $page = new Page($count, 10, 8, '', '', __WEB__ . '?a=Upload&c=Upload&m=untreated&filetype=' . Q('filetype'));
+        $this->untreated_data = $this->_db->where($where)->limit($page->limit())->all();
+        $this->untreated_page = $page->show();
+        if (METHOD == 'untreated') {
+            $this->display('untreated');
+        }
     }
 
     //下载远程图片

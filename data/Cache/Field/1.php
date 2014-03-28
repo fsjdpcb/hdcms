@@ -14,11 +14,10 @@ return array (
     'member_show' => '1',
     'set' => 
     array (
-      'message' => '',
+      'message' => '不要乱选图',
       'upload_img_max_width' => '600',
       'upload_img_max_height' => '600',
       'num' => '10',
-      'water' => '1',
       'error' => '',
       'css' => '',
       'validation' => 'false',

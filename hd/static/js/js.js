@@ -74,6 +74,10 @@ function field_check(obj, validataion, msg, error, required) {
 function file_upload(options) {
     //多文件(图片与文件)上传时，判断是否已经超出了允许上传的图片数量
     switch(options.type){
+        case 'thumb':
+            var url = WEB + "?a=Upload&c=Upload&m=index&id=" + options.id + "&type=" + options.type + "&num=" + options.num +
+                "&name=" + options.name;
+            break;
         case 'image':
             var url = WEB + "?a=Upload&c=Upload&m=index&id=" + options.id + "&type=" + options.type + "&num=" + options.num +
                 "&name=" + options.name;
@@ -85,7 +89,7 @@ function file_upload(options) {
                     return false;
                 }
             var url = WEB + "?a=Upload&c=Upload&m=index&id=" + options.id + "&type=" + options.type + "&num=" + options.num +
-                "&name=" + options.name+
+                "&name=" + options.name+"&filetype="+options.filetype+
                 '&upload_img_max_width='+options.upload_img_max_width+'&upload_img_max_height='+options.upload_img_max_height;
             break;
         case 'files':

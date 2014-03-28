@@ -16,7 +16,7 @@
                         <input type="text" class="w200" name="set[filetype]" value="<?php echo $field['set']['filetype'];?>"/>
                     </td>
                 </tr>
-               
+
             </table>
         </td>
     </tr>

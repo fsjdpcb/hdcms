@@ -192,7 +192,7 @@ class FieldModel extends Model
     }
 
     /**
-     * 自定义字段
+     * 编辑与修改动作时根据不同字段类型获取界面
      * @param array $data 编辑数据时的数据
      * @return string
      */
@@ -362,7 +362,7 @@ class FieldModel extends Model
                         $h .= "<li><div class='img'><img src='" . __ROOT__ . "/" . $i['path'] . "' style='width:150px;height:150px;'/>";
                         $h .= "<a href='javascript:;' onclick='remove_upload(this,\"hd_up_{$id}\")'>X</a>";
                         $h .= "</div>";
-                        $h .= "<input type='hidden' name='" . $f['field_name'] . "[url][]'  value='" . $i['path'] . "' src='" . __ROOT__ . '/' . $i['path'] . "' class='w400 images'/> ";
+                        $h .= "<input type='hidden' name='" . $f['field_name'] . "[path][]'  value='" . $i['path'] . "' src='" . __ROOT__ . '/' . $i['path'] . "' class='w400 images'/> ";
                         $h .= "<input type='text' name='" . $f['field_name'] . "[alt][]' value='" . $i['alt'] . "'style='width:135px;' placeholder='图片描述...'/>";
                         $h .= "</li>";
                     }
@@ -413,17 +413,19 @@ class FieldModel extends Model
 </center>
 <div id='$id' class='picList'>";
         if (!empty($value)) {
-            $img = unserialize($value);
-            if (!empty($img) && is_array($img)) {
+            $file = unserialize($value);
+            if (!empty($file) && is_array($file)) {
                 $h .= '<ul>';
-                foreach ($img as $i) {
+                foreach ($file as $i) {
                     if (!empty($i['path'])) {
-                        $h .= "<li><div class='img'><img src='" . __ROOT__ . "/" . $i['path'] . "' style='width:150px;height:150px;'/>";
-                        $h .= "<a href='javascript:;' onclick='remove_upload(this,\"hd_up_{$id}\")'>X</a>";
-                        $h .= "</div>";
-                        $h .= "<input type='hidden' name='" . $f['field_name'] . "[url][]'  value='" . $i['path'] . "' src='" . __ROOT__ . '/' . $i['path'] . "' class='w400 images'/> ";
-                        $h .= "<input type='text' name='" . $f['field_name'] . "[alt][]' value='" . $i['alt'] . "'style='width:135px;' placeholder='图片描述...'/>";
-                        $h .= "</li>";
+                        $h .=  "<li style='width:45%'>";
+                        $h .=  "<img src='".__HDPHP_EXTEND__."/Org/Uploadify/default.png' style='width:50px;height:50px;'/>";
+                        $h .=  "<input type='hidden' name='" . $f['field_name'] .  "[path][]'  value='" . $i['path'] . "'/> ";
+                    $h .=  "描述：<input type='text' name='". $f['field_name'] .  "[alt][]' style='width:200px;' value='" . $i['alt'] . "'/>";
+                   $h .=  "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                   $h .=  "下载金币：<input type='text' name='". $f['field_name'] . "[credits][]' style='width:200px;' value='" . $i['credits'] . "'/>";
+                    $h .=  "&nbsp;&nbsp;&nbsp;<a href='javascript:;' onclick='remove_upload(this)'>删除</a>";
+                    $h .=  "</li>";
                     }
                 }
                 $h .= '</ul>';

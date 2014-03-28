@@ -247,13 +247,25 @@ class ContentModel extends RelationModel
                 return $postData;
             case 'images':
                 $d = array();
-                foreach ($postData['url'] as $n => $path) {
+                foreach ($postData['path'] as $n => $path) {
                     if (!empty($path)) {
                         $d[$n]['path'] = $path;
                         $d[$n]['alt'] = isset($postData['alt'][$n]) ? $postData['alt'][$n] : "";
                     }
                 }
                 return serialize($d);
+            case 'files':
+                $d = array();
+                foreach ($postData['path'] as $n => $path) {
+                    if (!empty($path)) {
+                        $d[$n]['path'] = $path;
+                        $d[$n]['alt'] = isset($postData['alt'][$n]) ? $postData['alt'][$n] : "";
+                        //下载积分
+                        $d[$n]['credits'] = isset($postData['credits'][$n]) ? intval($postData['credits'][$n]) : 0;
+                    }
+                }
+                return serialize($d);
+                break;
             case 'select':
                 /**
                  * 下拉列表框处理

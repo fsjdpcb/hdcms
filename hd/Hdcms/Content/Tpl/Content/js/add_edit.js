@@ -4,7 +4,7 @@ $(function () {
         title: {
             rule: {
                 required: true,
-                regexp: /^.{10,100}$/
+                regexp: /^.{1,100}$/
             },
             error: {
                 required: "标题不能为空",

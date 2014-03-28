@@ -19,10 +19,10 @@
                 </tr>
                 <tr>
                     <td align="center">
-                        <img id="thumb" src="__GROUP__/static/img/upload-pic.png" style="cursor: pointer;width:145px;height:123px;" onclick="file_upload('thumb','thumb',1,'thumb')"/>
+                        <img id="thumb" src="__GROUP__/static/img/upload-pic.png" style="cursor: pointer;width:145px;height:123px;" onclick="file_upload({id:'thumb',type:'thumb',num:1,name:'thumb'})"/>
                         <input type="hidden" name="thumb"/>
                         <!--<button type="button" class="btn btn-small" onclick="imageCrop('thumb')">裁切图片</button>-->
-                        <button type="button" class="hd-cancel-small" onclick="file_upload('thumb','thumb',1,'thumb')">上传图片</button>
+                        <button type="button" class="hd-cancel-small" onclick="file_upload({id:'thumb',type:'thumb',num:1,name:'thumb'})">上传图片</button>
                         &nbsp;&nbsp;
                         <button type="button" class="hd-cancel-small" onclick="remove_thumb(this)">取消上传</button>
                     </td>

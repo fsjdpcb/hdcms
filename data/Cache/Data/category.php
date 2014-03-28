@@ -34,17 +34,17 @@ return array (
     'model_name' => '普通文章',
     'access' => 
     array (
-      1 => 
+      6 => 
       array (
-        'rid' => '1',
+        'rid' => '6',
         'cid' => '2',
         'mid' => '1',
         'show' => '1',
         'add' => '1',
-        'edit' => '1',
-        'del' => '1',
-        'order' => '1',
-        'move' => '1',
+        'edit' => '0',
+        'del' => '0',
+        'order' => '0',
+        'move' => '0',
       ),
       5 => 
       array (
@@ -58,17 +58,17 @@ return array (
         'order' => '0',
         'move' => '0',
       ),
-      6 => 
+      1 => 
       array (
-        'rid' => '6',
+        'rid' => '1',
         'cid' => '2',
         'mid' => '1',
         'show' => '1',
         'add' => '1',
-        'edit' => '0',
-        'del' => '0',
-        'order' => '0',
-        'move' => '0',
+        'edit' => '1',
+        'del' => '1',
+        'order' => '1',
+        'move' => '1',
       ),
     ),
   ),

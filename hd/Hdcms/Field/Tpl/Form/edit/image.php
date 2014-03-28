@@ -16,13 +16,6 @@
                         <label>高 <input type="text" class="w30 image_width" name="set[height]" value="<?php echo $field['set']['height'];?>"/> px</label>
                     </td>
                 </tr>
-                <tr>
-                    <td>是否添加水印</td>
-                    <td>
-                        <label><input type="radio" name="set[water]" value="1" <?php if($field['set']['ispasswd']==1){?>checked="checked"<?php }?>/> 是</label>
-                        <label><input type="radio" name="set[water]" value="0" <?php if($field['set']['ispasswd']==0){?>checked="checked"<?php }?>/> 否</label>
-                    </td>
-                </tr>
             </table>
         </td>
     </tr>
