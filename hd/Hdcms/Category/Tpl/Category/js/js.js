@@ -120,14 +120,6 @@ $(function () {
         }
     })
 })
-/**
- * 删除栏目
- * @param cid 栏目id
- */
-function del_category(cid) {
-    if (confirm('删除栏目将删除栏目下所有文章，确定删除吗？'))
-        ;
-}
 
 //更新排序
 function update_order() {

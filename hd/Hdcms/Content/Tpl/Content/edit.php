@@ -22,9 +22,9 @@
                 <tr>
                     <td>
                         <img id="thumb" src="{$field.thumb_img}" style="cursor: pointer;width:135px;height:113px;"
-                             onclick="file_upload('thumb','thumb',1,'thumb')"/>
+                             onclick="file_upload({id:'thumb',type:'thumb',num:1,name:'thumb'})"/>
                         <input type="hidden" name="thumb" value="{$field.thumb}"/>
-                        <button type="button" class="hd-cancel-small" onclick="file_upload('thumb','thumb',1,'thumb')">
+                        <button type="button" class="hd-cancel-small" onclick="file_upload({id:'thumb',type:'thumb',num:1,name:'thumb'})">
                             上传图片
                         </button>
                         <button type="button" class="hd-cancel-small" onclick="remove_thumb(this)">取消上传</button>

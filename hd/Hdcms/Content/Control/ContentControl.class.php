@@ -76,10 +76,17 @@ class ContentControl extends AuthControl
         $category = array();
         foreach ($this->_category as $n => $cat) {
             $data = array();
+            //过滤掉外部链接栏目
             if ($cat['cattype'] != 3) {
+                //单文章栏目
+                if($cat['cattype']==4){
+                    $url = U('Single/Content/edit', array('cid' => $cat['cid']));
+                }else{
+                    $url = U('content', array('cid' => $cat['cid'], 'state' => 1));
+                }
                 $data['id'] = $cat['cid'];
                 $data['pId'] = $cat['pid'];
-                $data['url'] = U('content', array('cid' => $cat['cid'], 'state' => 1));
+                $data['url'] = $url;
                 $data['target'] = 'content';
                 $data['open'] = true;
                 $data['name'] = $cat['catname'] . "({$cat['cid']})";

@@ -64,6 +64,7 @@
                                 <label>
                                     <input type="radio" name="cattype" value="3" <if value="$field.cattype==3">checked="checked"</if>/> 外部链接(在跳转Url处填写网址)
                                 </label>
+                                <label><input type="radio" name="cattype" value="4" <if value="$field.cattype==4">checked="checked"</if>/>单页面(直接发布文章，如:公司简介)</label>
                             </td>
                         </tr>
                         <tr>

@@ -1,3 +1,55 @@
+//表单验证
+$(function () {
+    $("form").validate({
+        title: {
+            rule: {
+                required: true,
+                regexp: /^.{1,100}$/i
+            },
+            error: {
+                required: "标题不能为空",
+                regexp: '标题字数在10~100间'
+            }
+        },
+        keywords: {
+            message: '如果不填，系统将自动从内容中提取'
+        },
+        description: {
+            message: '如果不填，系统将自动从内容中提取'
+        },
+        html_path: {
+            message: '如:houdunwang.html,如果不填将按栏目规则生成静态。栏目开启生成静态才有效'
+        },
+        read_credits: {
+            rule: {
+                required: true,
+                regexp: /^\d+$/
+            },
+            error: {
+                required: "阅读积分不能为空",
+                regexp: '必须为数字'
+            }
+        },
+        click: {
+            rule: {
+                required: true,
+                regexp: /^\d+$/
+            },
+            error: {
+                required: "点击数不能为空",
+                regexp: '必须为数字'
+            }
+        },
+        redirecturl: {
+            rule: {
+                http: true
+            },
+            error: {
+                http: '网址格式错误'
+            }
+        }
+    })
+})
 //添加或修改文章
 $(function () {
     $("form#add,form#edit").submit(function () {
@@ -5,20 +57,9 @@ $(function () {
         $("[onblur*='field_check']").each(function () {
             $(this).trigger("blur");
         })
-        //验证标题
-        if (!$.trim($("[name='title']").val())) {
-            alert('标题不能为空');
-            return false;
-        }
         //验证内容
-        if ($("[id='" + editor_id + "']").length > 0 && !UE.getEditor(editor_id).hasContents()) {
+        if (!UE.getEditor('hd_content').hasContents()) {
             alert("内容不能为空");
-            return false;
-        }
-        //验证跳转地址
-        var redirecturl = $.trim($("[name='redirecturl']").val());
-        if (redirecturl != '' && !/^(http[s]?:)?(\/{2})?([a-z0-9]+\.)?[a-z0-9]+(\.(com|cn|cc|org|net|com.cn))$/i.test(redirecturl)) {
-            alert("跳转地址格式不正确");
             return false;
         }
         //表单验证
@@ -35,35 +76,25 @@ $(function () {
                     //关闭提示框
                     dialog_message(false);
                     if (data.state == 1) {
-                        $.modal({
-                            width: 230, height: 180, button: true,
-                            title: '消息',
-                            button_success: "继续操作",
-                            button_cancel: "关闭窗口",
-                            message: "操作成功!",
-                            type: "success",
-                            success: function () {
-                                if (window.opener) {
-                                    window.opener.location.reload();
-                                }
-                                window.location.reload();
-                            },
-                            cancel: function () {
-                                if (window.opener) {
-                                    window.opener.location.reload();
-                                }
-                                window.close();
-                            }
-
-                        })
-                    } else {
                         $.dialog({
-                            message: "操作失败",
-                            type: "error",
-                            close_handler: function () {
-                                location.href = URL;
+                            "message":"编辑成功",
+                            "type":"success",
+                            "timeout":2,
+                            "close_handler":function(){
+                                location.reload(true);
                             }
                         });
+
+                    } else {
+                        $.dialog({
+                            "message":"欢迎使用后盾网HDJS前端库",
+                            "type":"error",
+                            "timeout":2,
+                            "close_handler":function(){
+                                location.reload(true);
+                            }
+                        });
+
                     }
                 }
             })

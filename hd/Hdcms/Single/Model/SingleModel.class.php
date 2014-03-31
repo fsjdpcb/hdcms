@@ -1,5 +1,8 @@
 <?php
-
+//导入Index应用SingleControl单页显示控制器
+import('PublicControl','hd.Hdcms.Index.Control');
+import('SingleControl','hd.Hdcms.Index.Control');
+import('ContentModel','hd.Hdcms.Content.Model');
 class SingleModel extends Model
 {
     //表
@@ -32,29 +35,13 @@ class SingleModel extends Model
     }
 
     /**
-     * 添加内容
-     */
-    public function add_content()
-    {
-        if ($this->create()) {
-            return $this->add();
-        }
-    }
-
-    /**
      * 修改内容
      */
     public function edit_content()
     {
         if ($this->create()) {
-            return $this->save();
+            return $this->replace();
         }
-    }
-
-    public function del_content()
-    {
-        if ($this->_aid)
-            return $this->del($this->_aid);
     }
 
     /**
@@ -66,22 +53,16 @@ class SingleModel extends Model
         $aid = $this->_aid ? $this->_aid : $data;
         if ($aid) {
             $field = $this->find($aid);
-            if ($field['ishtml'] == 1) {
-                $file = empty($field['html_path']) ? $aid . '.html' : str_replace('{aid}', $aid, $field['html_path']);
-                $html = C("HTML_PATH") . '/' . $file;
-                ob_start();
-                O("Index.Control.SingleControl", "Single");
-                $con = ob_get_clean();
-                $dir = dirname($html);
-                is_dir($dir) or dir_create($dir, 0755);
-                file_put_contents($html, $con);
-            }
+            //获得文章的静态html地址
+            $html = Url::get_content_html($field);
+            ob_start();
+            $obj = new SingleControl();
+            $obj->show();
+            $con = ob_get_clean();
+            $dir = dirname($html);
+            is_dir($dir) or dir_create($dir, 0755);
+            file_put_contents($html, $con);
         }
-    }
-
-    public function __after_insert($data)
-    {
-        $this->create_html_file($data);
     }
 
     public function __after_update($data)

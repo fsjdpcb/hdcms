@@ -104,7 +104,7 @@ class CategoryModel extends RelationModel
         }
         $category = Data::tree($category, "catname", "cid", "pid");
         $data = array();
-        $type = array(1 => '栏目', 2 => '封面', 3 => '外链');
+        $type = array(1 => '栏目', 2 => '封面', 3 => '外链', 4 => '单文章');
         foreach ($category as $n => $v) {
             $v['_type_name'] = $type[$v['cattype']];
             $data[$v['cid']] = $v;
@@ -145,17 +145,20 @@ class CategoryModel extends RelationModel
     /**
      *
      */
-    public function get_category_access($rid){
+    public function get_category_access($rid)
+    {
 
     }
+
     /**
      * 修改与添加栏目时获得管理员或会员的权限列表(后台操作）
      * 用于获得管理员或前台会员权限
      *
      * @param int $cid 栏目cid
      * @param null $admin 管理员权限
+     * @param null $rid 角色id($admin有值才有效)
      */
-    public function get_access_list($cid = null,$admin = null)
+    public function get_access_list($cid = null, $admin = null, $rid = null)
     {
         //表前缀
         $pre = C("DB_PREFIX");
@@ -166,10 +169,18 @@ class CategoryModel extends RelationModel
         if ($cid) {
             $cat_where = " WHERE cid={$cid}";
         }
+
         //指定条件
-        $where = $rid ? "  r.rid=$rid " : "  admin=$admin";
-        $sql = "SELECT $field FROM  {$pre}role AS r  LEFT JOIN (SELECT * FROM {$pre}category_access AS ca $cat_where) AS a
-                    ON r.rid = a.rid WHERE $where";
+        if ($admin) {
+            //根据$admin获得前台或后台角色权限
+            $where = " WHERE admin=$admin";
+            //获得指定角色id的栏目权限
+            if ($rid) {
+                $where .= " AND rid=$rid";
+            }
+        }
+        $sql = "SELECT $field FROM  {$pre}role AS r  LEFT JOIN (SELECT * FROM {$pre}category_access $cat_where) AS a
+                    ON r.rid = a.rid  $where";
         return $db->query($sql);
     }
 

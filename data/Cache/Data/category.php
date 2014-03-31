@@ -58,6 +58,42 @@ return array (
         'order' => '0',
         'move' => '0',
       ),
+      4 => 
+      array (
+        'rid' => '4',
+        'cid' => '2',
+        'mid' => '1',
+        'show' => '1',
+        'add' => '1',
+        'edit' => '0',
+        'del' => '0',
+        'order' => '0',
+        'move' => '0',
+      ),
+      3 => 
+      array (
+        'rid' => '3',
+        'cid' => '2',
+        'mid' => '1',
+        'show' => '1',
+        'add' => '1',
+        'edit' => '0',
+        'del' => '0',
+        'order' => '0',
+        'move' => '0',
+      ),
+      2 => 
+      array (
+        'rid' => '2',
+        'cid' => '2',
+        'mid' => '1',
+        'show' => '1',
+        'add' => '1',
+        'edit' => '0',
+        'del' => '0',
+        'order' => '0',
+        'move' => '0',
+      ),
       1 => 
       array (
         'rid' => '1',
@@ -294,12 +330,12 @@ return array (
     array (
     ),
   ),
-  34 => 
+  38 => 
   array (
-    'cid' => '34',
+    'cid' => '38',
     'pid' => '0',
-    'catname' => 'dsfsdf',
-    'catdir' => 'dsfsdf',
+    'catname' => '公司简介',
+    'catdir' => 'gongsijianjie',
     'cat_keyworks' => '',
     'cat_description' => '',
     'index_tpl' => '{style}/article_index.html',
@@ -308,7 +344,7 @@ return array (
     'cat_html_url' => '{catdir}/list_{cid}_{page}.html',
     'arc_html_url' => '{catdir}/{y}/{m}{d}/{aid}.html',
     'mid' => '1',
-    'cattype' => '1',
+    'cattype' => '4',
     'arc_url_type' => '1',
     'cat_url_type' => '1',
     'cat_redirecturl' => '',
@@ -323,51 +359,27 @@ return array (
     'member_send_state' => '1',
     '_level' => 1,
     '_html' => '',
-    '_name' => 'dsfsdf',
-    '_type_name' => '栏目',
+    '_name' => '公司简介',
+    '_type_name' => '单文章',
     'model_name' => '普通文章',
     'access' => 
     array (
-      1 => 
+      4 => 
       array (
-        'rid' => '1',
-        'cid' => '34',
+        'rid' => '4',
+        'cid' => '38',
         'mid' => '1',
-        'show' => '1',
+        'show' => '0',
         'add' => '1',
-        'edit' => '1',
-        'del' => '1',
-        'order' => '1',
-        'move' => '1',
-      ),
-      2 => 
-      array (
-        'rid' => '2',
-        'cid' => '34',
-        'mid' => '1',
-        'show' => '1',
-        'add' => '1',
-        'edit' => '1',
-        'del' => '1',
-        'order' => '1',
-        'move' => '1',
+        'edit' => '0',
+        'del' => '0',
+        'order' => '0',
+        'move' => '0',
       ),
       3 => 
       array (
         'rid' => '3',
-        'cid' => '34',
-        'mid' => '1',
-        'show' => '1',
-        'add' => '1',
-        'edit' => '1',
-        'del' => '1',
-        'order' => '1',
-        'move' => '1',
-      ),
-      4 => 
-      array (
-        'rid' => '4',
-        'cid' => '34',
+        'cid' => '38',
         'mid' => '1',
         'show' => '1',
         'add' => '1',
@@ -376,10 +388,10 @@ return array (
         'order' => '0',
         'move' => '0',
       ),
-      5 => 
+      2 => 
       array (
-        'rid' => '5',
-        'cid' => '34',
+        'rid' => '2',
+        'cid' => '38',
         'mid' => '1',
         'show' => '1',
         'add' => '1',
@@ -388,10 +400,10 @@ return array (
         'order' => '0',
         'move' => '0',
       ),
-      6 => 
+      1 => 
       array (
-        'rid' => '6',
-        'cid' => '34',
+        'rid' => '1',
+        'cid' => '38',
         'mid' => '1',
         'show' => '1',
         'add' => '1',
@@ -400,42 +412,6 @@ return array (
         'order' => '0',
         'move' => '0',
       ),
-    ),
-  ),
-  35 => 
-  array (
-    'cid' => '35',
-    'pid' => '0',
-    'catname' => 'cccccc',
-    'catdir' => 'cccccc',
-    'cat_keyworks' => '',
-    'cat_description' => '',
-    'index_tpl' => '{style}/article_index.html',
-    'list_tpl' => '{style}/article_list.html',
-    'arc_tpl' => '{style}/article_default.html',
-    'cat_html_url' => '{catdir}/list_{cid}_{page}.html',
-    'arc_html_url' => '{catdir}/{y}/{m}{d}/{aid}.html',
-    'mid' => '1',
-    'cattype' => '1',
-    'arc_url_type' => '1',
-    'cat_url_type' => '1',
-    'cat_redirecturl' => '',
-    'catorder' => '100',
-    'cat_show' => '1',
-    'cat_seo_title' => '',
-    'cat_seo_description' => '',
-    'add_reward' => '1',
-    'show_credits' => '0',
-    'repeat_charge_day' => '1',
-    'allow_user_set_credits' => '1',
-    'member_send_state' => '1',
-    '_level' => 1,
-    '_html' => '',
-    '_name' => 'cccccc',
-    '_type_name' => '栏目',
-    'model_name' => '普通文章',
-    'access' => 
-    array (
     ),
   ),
 );

@@ -68,6 +68,7 @@
                             <label><input type="radio" name="cattype" checked="checked" value="1"/> 普通栏目</label>
                             <label><input type="radio" name="cattype" value="2"/> 频道封面</label>
                             <label><input type="radio" name="cattype" value="3"/> 外部链接(在跳转Url处填写网址)</label>
+                            <label><input type="radio" name="cattype" value="4"/> 单页面(直接发布文章，如:公司简介)</label>
                         </td>
                     </tr>
                     <tr>

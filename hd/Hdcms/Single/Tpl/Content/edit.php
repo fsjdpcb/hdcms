@@ -6,15 +6,12 @@
     <title>修改文章</title>
     <hdjs/>
     <js file="__GROUP__/static/js/js.js"/>
-    <js file="__TPL__/Single/js/add_edit.js"/>
-    <css file="__TPL__/Single/css/css.css"/>
-    <script>
-        //内容编辑器id，用于验证正文时使用
-        var editor_id ='hd_{$model.tablename}_data[content]';
-    </script>
+    <js file="__TPL__/Content/js/js.js"/>
+    <css file="__TPL__/Content/css/css.css"/>
 </head>
 <body>
 <form action="{|U:edit}" method="post" id="edit" class="hd-form" onsubmit="return false">
+    <input type="hidden" value="{$field.cid}" name="cid"/>
     <input type="hidden" value="{$field.aid}" name="aid"/>
     <div class="wrap">
         <!--右侧缩略图区域-->
@@ -26,9 +23,9 @@
                 <tr>
                     <td>
                         <img id="thumb" src="{$field.thumb_img}" style="cursor: pointer;width:135px;height:113px;"
-                             onclick="file_upload('thumb','thumb',1,'thumb')"/>
+                             onclick="file_upload({id:'thumb',type:'thumb',num:1,name:'thumb'})"/>
                         <input type="hidden" name="thumb" value="{$field.thumb}"/>
-                        <button type="button" class="hd-cancel-small" onclick="file_upload('thumb','thumb',1,'thumb')">
+                        <button type="button" class="hd-cancel-small" onclick="file_upload({id:'thumb',type:'thumb',num:1,name:'thumb'})">
                             上传图片
                         </button>
                         <button type="button" class="hd-cancel-small" onclick="remove_thumb(this)">取消上传</button>
@@ -87,7 +84,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <input type="text" name="click" class="w150" value="{$field.click}"/>
+                        <input type="text" name="click" class="w150" value="{$field.click|default:0}"/>
                     </td>
                 </tr>
                 <tr>
@@ -96,14 +93,6 @@
                 <tr>
                     <td>
                         <input type="text" name="source" value="{$field.source}" class="w150"/>
-                    </td>
-                </tr>
-                <tr>
-                    <th>作者</th>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="text" name="author" class="w150" value="{$field.author}"/>
                     </td>
                 </tr>
             </table>
@@ -119,7 +108,7 @@
                         <label>
                             标题颜色 <input type="text" name="color" value="{$field.color}" class="w60"/>
                         </label>
-                        <button type="button" onclick="selectColor(this,'color')" class="btn">选取颜色</button>
+                        <button type="button" onclick="selectColor(this,'color')" class="hd-cancel">选取颜色</button>
                         <label class='checkbox inline'><input type="checkbox" name="new_window" value="1"
                             <if value="$field.new_window==1">checked='checked'</if>
                             /> 新窗口打开</label>
@@ -136,44 +125,18 @@
                         <th>内容<span class="star">*</span></th>
                         <td>
                             {|tag:"ueditor",array("name"=>"content","content"=>$field['content'])}
-                            <div class="editor_set">
-                                <label class="checkbox inline">
-                                    <input type="checkbox" name="down_remote_pic" value="1"
-                                    <if value="$hd.config.down_remote_pic==1">checked="checked"</if>
-                                    />下载远程图片
-                                </label>
-                                <label class="checkbox inline">
-                                    <input type="checkbox" name="auto_desc" value="1"
-                                    <if value="$hd.config.auto_desc==1">checked="checked"</if>
-                                    />截取内容
-                                </label>
-                                <label class="checkbox inline">
-                                    <input type="text" value="200" class="input-mini" name="auto_desc_length"> 字符至内容摘要
-                                </label>
-                                <label class="checkbox inline">
-                                    <input type="checkbox" name="auto_thumb" value="1"
-                                    <if value="$hd.config.auto_thumb==1">checked="checked"</if>
-                                    />获取内容第
-                                </label>
-                                <label class="checkbox inline">
-                                    <input type="text" class="input-mini" value="1" name="auto_thumb_num">
-                                    张图片作为缩略图
-                                </label>
-                            </div>
                         </td>
                     </tr>
                 <tr>
                     <th>关键字</th>
                     <td>
                         <input type="text" name="keywords" value="{$field.keywords}" class="w400"/>
-                        <span class="message">如果不填，系统将自动从内容中提取</span>
                     </td>
                 </tr>
                 <tr>
                     <th>摘要</th>
                     <td>
                         <textarea name="description" class="w450 h80">{$field.description}</textarea>
-                        <span class="message">如果不填，系统将自动从内容中提取</span>
                     </td>
                 </tr>
                 <tr>
@@ -188,7 +151,6 @@
                     <th>HTML文件</th>
                     <td>
                         <input class="w250" type="text" name="html_path" value="{$field.html_path}">
-                        <span class="validate-message">如果不填,将按栏目规则生成静态</span>
                     </td>
                 </tr>
             </table>
