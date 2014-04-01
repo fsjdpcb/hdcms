@@ -50,6 +50,14 @@ class BackupControl extends AuthControl
     }
 
     /**
+     * 停止备份
+     */
+    public function backup_stop()
+    {
+        Backup::cancel();
+    }
+
+    /**
      * 还原数据
      */
     public function recovery()

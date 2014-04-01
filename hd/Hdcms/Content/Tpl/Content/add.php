@@ -10,6 +10,7 @@
 </head>
 <body>
 <form action="{|U:add}" method="post" onsubmit="return false;" id="add" class="hd-form">
+    <input type="hidden" name="mid" value="{$hd.get.mid}"/>
     <div class="wrap">
         <!--右侧缩略图区域-->
         <div class="content_right">
@@ -107,6 +108,12 @@
                     <th class="w80">SEO标题</th>
                     <td>
                         <input type="text" name="seo_title" class="w400"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>TAG</th>
+                    <td>
+                        <input type="text" name="tag" class="w400"/>
                     </td>
                 </tr>
                 <tr>

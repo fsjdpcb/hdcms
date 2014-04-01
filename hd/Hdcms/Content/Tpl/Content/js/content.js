@@ -24,8 +24,13 @@ function update_order(cid) {
     var data = $("input[type='text']").serialize();
     hd_ajax(CONTROL + "&m=update_order&cid=" + cid, data);
 }
-//删除文章
-function del(cid, aid) {
+/**
+ * 删除文章
+ * @param mid
+ * @param cid
+ * @param aid
+ */
+function del(mid,cid,aid) {
     //单文章删除
     if (aid) {
         var ids = {aid: aid}
@@ -36,7 +41,7 @@ function del(cid, aid) {
         if (confirm("确定要删除文章吗?")) {
             $.ajax({
                 type: "POST",
-                url: CONTROL + "&m=del" + "&cid=" + cid,
+                url: CONTROL + "&m=del" + "&mid=" + mid+"&cid="+cid,
                 dataType: "JSON",
                 cache: false,
                 data: ids,

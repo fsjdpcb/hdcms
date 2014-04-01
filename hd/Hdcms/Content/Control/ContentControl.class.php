@@ -29,13 +29,14 @@ class ContentControl extends AuthControl
         $this->_category = F("category", false);
         $this->_cid = Q("cid", NULL, "intval");
         $this->_aid = Q("aid", NULL, "intval");
-        if ($this->_cid) {
-            if (!isset($this->_category[$this->_cid])) {
-                $this->error("栏目不存在！");
-            }
-            $this->_mid = $this->_category[$this->_cid]['mid'];
-            $this->_db = K("Content");
+        $this->_mid = Q('mid', null, 'intval');
+        if (!isset($this->_model[$this->_mid])) {
+            $this->error("模型不存在！");
         }
+        if (!isset($this->_category[$this->_cid])) {
+            $this->error("栏目不存在！");
+        }
+        $this->_db = K("Content");
         //验证权限
         $this->check_auth();
     }
@@ -60,101 +61,10 @@ class ContentControl extends AuthControl
         }
     }
 
-    /**
-     * 选择栏目
-     */
-    public function index()
-    {
-        $this->display();
-    }
-
-    /**
-     * 异步获得目录树，内容左侧目录列表
-     */
-    public function ajax_category_ztree()
-    {
-        $category = array();
-        foreach ($this->_category as $n => $cat) {
-            $data = array();
-            //过滤掉外部链接栏目
-            if ($cat['cattype'] != 3) {
-                //单文章栏目
-                if($cat['cattype']==4){
-                    $url = U('Single/Content/edit', array('cid' => $cat['cid']));
-                }else{
-                    $url = U('content', array('cid' => $cat['cid'], 'state' => 1));
-                }
-                $data['id'] = $cat['cid'];
-                $data['pId'] = $cat['pid'];
-                $data['url'] = $url;
-                $data['target'] = 'content';
-                $data['open'] = true;
-                $data['name'] = $cat['catname'] . "({$cat['cid']})";
-                $category[] = $data;
-            }
-        }
-        $this->ajax($category);
-    }
-
     //已审核文章内容页列表
     public function content()
     {
-        $db = K("ContentView");
-        //---------------------搜索条件----------------------
-        //文章开始时间
-        if ($beginTime = Q('search_begin_time', NULL, 'strtotime'))
-            $where[] = "addtime>=$beginTime";
-        //文章结束时间
-        if ($endTime = Q('search_end_time', NULL, 'strtotime'))
-            $where[] = "addtime<=$endTime";
-        //文章属性flag
-        if ($flag = Q('flag', NULL, ''))
-            $where[] = "find_in_set('$flag',flag)";
-        //文章关键词
-        $searchKeyword = Q("search_keyword");
-        //按类型搜索
-        $searchType = Q("search_type");
-        if ($searchType && $searchKeyword) {
-            switch ($searchType) {
-                case 1:
-                    //按标题
-                    $where[] = "title like '%{$searchKeyword}%'";
-                    break;
-                case 2:
-                    //按简介
-                    $where[] = "description like '%{$searchKeyword}%'";
-                    break;
-                case 3:
-                    //按用户名
-                    $where[] = "author like '%{$searchKeyword}%'";
-                    break;
-                case 4:
-                    //按用户aid
-                    $where[] = "aid=" . intval($searchKeyword);
-                    break;
-            }
-        }
-        //文章状态：1 已审核 0未审核
-        $where[] = $db->tableFull . ".state=" . Q("state", 1, "intval");
-        //搜索栏目
-        $cid = Q('cid', null, 'intval');
-        if (Q("cid")) {
-            $cid = array($cid);
-            //获得所有子栏目
-            $sCategory = Data::channelList($this->_category, $this->_cid);
-            foreach ($sCategory as $cat) {
-                $cid[] = $cat['cid'];
-            }
-            $where[] = $db->tableFull . '.cid IN(' . implode(',', $cid) . ')';
-        }
-        //组合SQL中WHERE的部分
-        $where = implode(" AND ", $where);
-        //---------------------搜索条件----------------------
-        //总记录数
-        $count = $db->join('category')->where($where)->count();
-        $page = new Page($count, C("ADMIN_LIST_ROW"));
-        $this->page = $page->show();
-        $this->data = $db->where($where)->join('category,user,model')->order('arc_sort ASC,aid DESC')->limit($page->limit())->all();
+        $this->assign(K("ContentView")->search());
         //分配属性flag
         $this->flag = F('flag');
         $this->display();
@@ -189,14 +99,8 @@ class ContentControl extends AuthControl
             $this->flag = F('flag');
             //分配栏目
             $this->category = $this->_category[$this->_cid];
-            //模型type为1时即标准模型，显示编辑器、关键字等字段
-            $this->model = $this->_model[$this->_mid];
-            //自定义字段
-            import('Field/Model/FieldModel');
-            //FieldModel模型使用mid参数
-            $_REQUEST['mid'] = $this->_mid;
-            $fieldModel = new FieldModel();
-            $this->custom_field = $fieldModel->field_view();
+            //分配自定义字段界面
+            $this->custom_field = $this->_db->get_current_field_view();
             $this->display();
         }
     }
@@ -208,27 +112,17 @@ class ContentControl extends AuthControl
         //添加文章神图
         if (IS_POST) {
             if ($this->_db->edit_content()) {
-                $this->ajax(array('state' => 1, 'message' => '修改文章成功'));
+                $this->_ajax(1, '修改文章成功');
             }
         } else {
             $aid = Q("aid", null, "intval");
             if ($aid) {
                 //文章字段数据
-                $field = $this->_db->find($aid);
-                //分配栏目
-                $this->category = $this->_category[$this->_cid];
-                //模型type为1时即标准模型，显示编辑器、关键字等字段
-                $this->model = $this->_model[$this->_mid];
+                $this->field = $this->_db->get_one_content($aid);
                 //FLAG属性
                 $this->flag = F('flag');
-                $field['thumb_img'] = empty($field['thumb']) || !is_file($field['thumb']) ? __ROOT__ . '/hd/static/img/upload-pic.png' : __ROOT__ . '/' . $field['thumb'];
-                $this->field = $field;
                 //自定义字段处理
-                import('Field/Model/FieldModel');
-                //FieldModel模型使用mid参数
-                $_REQUEST['mid'] = $this->_mid;
-                $fieldModel = new FieldModel();
-                $this->custom_field = $fieldModel->field_view($field);
+                $this->custom_field = $this->_db->get_current_field_view($aid);
                 $this->display();
             }
         }
@@ -238,13 +132,12 @@ class ContentControl extends AuthControl
     public function del()
     {
         $aids = Q("request.aid");
-        $cid = Q('cid', null, 'intval');
-        if (!empty($aids) && $cid) {
+        if (!empty($aids)) {
             if (!is_array($aids)) {
                 $aids = array($aids);
             }
             foreach ($aids as $aid)
-                $this->_db->del_content($cid, $aid);
+                $this->_db->del_content($aid);
             $this->_ajax(1, '删除成功');
         } else {
             $this->_ajax(0, '参数错误');

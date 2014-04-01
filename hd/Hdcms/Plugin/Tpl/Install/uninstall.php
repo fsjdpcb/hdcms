@@ -22,46 +22,46 @@
     </div>
     <div class="title-header">安装插件</div>
     <form method="post" onsubmit="return false">
-        <input type="hidden" name="plug" value="{$plug.plug}"/>
+        <input type="hidden" name="plugin" value="{$field.plugin}"/>
         <table class="table1 hd-form">
             <tr>
                 <th class="w150">插件名称</th>
-                <td>{$plug.name}</td>
+                <td>{$field.name}</td>
             </tr>
             <tr>
                 <th>插件版本</th>
-                <td>{$plug.version}</td>
+                <td>{$field.version}</td>
             </tr>
             <tr>
                 <th>团队名称</th>
-                <td>{$plug.team}</td>
+                <td>{$field.team}</td>
             </tr>
             <tr>
                 <th>发布时间</th>
-                <td>{$plug.pubdate}</td>
+                <td>{$field.pubdate}</td>
             </tr>
             <tr>
                 <th>网站</th>
-                <td>{$plug.web}</td>
+                <td>{$field.web}</td>
             </tr>
             <tr>
                 <th>电子邮箱</th>
-                <td>{$plug.email}</td>
+                <td>{$field.email}</td>
             </tr>
             <tr>
                 <th>对于模块的文件处理方法</th>
                 <td>
                     <label>
-                        <input type="radio" name="del_file" value="0" checked="checked"/> 手工删除文件，仅运行卸载程序
+                        <input type="radio" name="del_dir" value="0" checked="checked"/> 手工删除文件，仅运行卸载程序
                     </label>
                     <label>
-                        <input type="radio" name="del_file" value="1"/> 删除模块的所有文件
+                        <input type="radio" name="del_dir" value="1"/> 删除模块的所有文件
                     </label>
                 </td>
             </tr>
         </table>
         <div class="position-bottom">
-            <input type="submit" value="安装" class="hd-success"/>
+            <input type="submit" value="删除" class="hd-success"/>
         </div>
     </form>
 </div>

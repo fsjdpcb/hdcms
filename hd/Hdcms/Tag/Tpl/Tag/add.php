@@ -5,7 +5,6 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>添加tag</title>
     <hdjs/>
-    <js file="__GROUP__/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/tag.js"/>
     <js file="__CONTROL_TPL__/js/validate.js"/>
     <css file="__CONTROL_TPL__/css/tag.css"/>
@@ -24,7 +23,7 @@
             <tr>
                 <th class="w100">tag内容</th>
                 <td>
-                    <input type="text" name="tag_name" class="w200"/>
+                    <input type="text" name="tag" class="w200"/>
                 </td>
             </tr>
             <tr>

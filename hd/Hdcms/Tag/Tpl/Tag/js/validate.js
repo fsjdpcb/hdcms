@@ -1,6 +1,6 @@
 $(function () {
     $('form').validate({
-        tag_name: {
+        tag: {
             rule: {
                 required: true
             },

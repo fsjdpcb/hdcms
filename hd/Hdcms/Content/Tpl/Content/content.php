@@ -11,10 +11,7 @@
 </head>
 <body>
 <div class="wrap">
-    <form action="__METH__&cid={$hd.get.cid}" method="post" class="hd-form">
-        <input type="hidden" name="cid" value="{$hd.get.cid}"/>
-        <input type="hidden" name="status" value="{$status}"/>
-
+    <form action="{|U:'content',array('mid'=>$_GET['mid'],'cid'=>$_GET['cid'],'state'=>$_GET['state'])}" method="post" class="hd-form">
         <div class="search">
             添加时间：<input id="begin_time" readonly="readonly" class="w80" type="text" value="" name="search_begin_time">
             <script>
@@ -37,6 +34,7 @@
                 <option value="2">简介</option>
                 <option value="3">用户名</option>
                 <option value="4">作者uid</option>
+                <option value="5">Tag</option>
             </select>&nbsp;&nbsp;&nbsp;
             关键字：
             <input class="w200" type="text" placeholder="请输入关键字..." value="" name="search_keyword">
@@ -45,13 +43,13 @@
     </form>
     <div class="menu_list">
         <ul>
-            <li><a href="{|U:'content',array('cid'=>$_GET['cid'],'state'=>1)}"
+            <li><a href="{|U:'content',array('mid'=>$_GET['mid'],'cid'=>$_GET['cid'],'state'=>1)}"
                 <if value="$hd.get.state==1">class="action"</if>
                 >内容列表</a></li>
-            <li><a href="{|U:'content',array('cid'=>$_GET['cid'],'state'=>0)}"
+            <li><a href="{|U:'content',array('mid'=>$_GET['mid'],'cid'=>$_GET['cid'],'state'=>0)}"
                 <if value="$hd.get.state==0">class="action"</if>
                 >未审核文章</a></li>
-            <li><a href="javascript:;" onclick="hd_open_window('{|U:add,array('cid'=>$_GET['cid'])}')">添加内容</a></li>
+            <li><a href="javascript:;" onclick="hd_open_window('{|U:add,array('cid'=>$_GET['cid'],'mid'=>$_GET['mid'])}')">添加内容</a></li>
         </ul>
     </div>
     <table class="table2 hd-form">
@@ -65,8 +63,7 @@
             <td>标题</td>
             <td class="w50">状态</td>
             <td class="w100">栏目</td>
-            <td class="w80">模型</td>
-            <td class="w80">作者</td>
+            <td class="w100">作者</td>
             <td class="w80">修改时间</td>
             <td class="w150">操作</td>
         </tr>
@@ -79,27 +76,24 @@
                     <input type="text" class="w30" value="{$c.arc_sort}" name="arc_order[{$c.aid}]"/>
                 </td>
                 <td>
-                    <a href="{|U:edit,array('aid'=>$c['aid'],'cid'=>$_GET['cid'])}" target="_blank">{$c.title}</a>
+                    <a href="{|U:edit,array('mid'=>$c['mid'],'cid'=>$c['cid'],'aid'=>$c['aid'])}" target="_blank">{$c.title}</a>
                     <if value="$c.flag">
                         <span style="color:#FF0000"> [{$c.flag}]</span>
                     </if>
                 </td>
                 <td>
-                    <if value="$c.state==1">已审核
-                        <else>未审核
-                    </if>
+                    <if value="$c.state eq 1">已审核<else>未审核</if>
                 </td>
                 <td>{$c.catname}</td>
-                <td>{$c.model_name}</td>
                 <td>{$c.username}</td>
                 <td>{$c.updatetime|date:"Y-m-d",@@}</td>
                 <td align="right">
-                    <a href="{|U:'Index/Article/show',array('aid'=>$c['aid'])}" target="_blank">访问</a><span
+                    <a href="{|U:'Index/Article/show',array('mid'=>$_GET['mid'],'cid'=>$_GET['cid'],'aid'=>$c['aid'])}" target="_blank">访问</a><span
                         class="line">|</span>
                     <a href="javascript:;"
-                       onclick="hd_open_window('{|U:edit,array('aid'=>$c['aid'],'cid'=>$_GET['cid'])}')">编辑</a><span
+                       onclick="hd_open_window('{|U:edit,array('mid'=>$_GET['mid'],'cid'=>$_GET['cid'],'aid'=>$c['aid'])}')">编辑</a><span
                         class="line">|</span>
-                    <a href="javascript:;" onclick="del({$hd.get.cid},{$c.aid})">删除</a>
+                    <a href="javascript:;" onclick="del({$hd.get.mid},{$hd.get.cid},{$c.aid})">删除</a>
                     <span class="line">|</span>
                     <a href="">评论</a>
                 </td>

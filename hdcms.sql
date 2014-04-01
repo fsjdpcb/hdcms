@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50535
 File Encoding         : 65001
 
-Date: 2014-03-28 00:45:59
+Date: 2014-03-31 23:25:00
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -104,7 +104,7 @@ CREATE TABLE `hd_category` (
   `cat_html_url` varchar(200) NOT NULL DEFAULT '' COMMENT '栏目页URL规则\n\n',
   `arc_html_url` varchar(200) NOT NULL DEFAULT '' COMMENT '内容页URL规则',
   `mid` smallint(6) NOT NULL DEFAULT '0' COMMENT '模型ID',
-  `cattype` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 栏目,2 封面,3 外部链接',
+  `cattype` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 栏目,2 封面,3 外部链接,4 单文章',
   `arc_url_type` tinyint(1) NOT NULL DEFAULT '1' COMMENT '文章访问方式 1 静态访问 2 动态访问',
   `cat_url_type` tinyint(1) NOT NULL DEFAULT '1' COMMENT '栏目访问方式 1 静态访问 2 动态访问',
   `cat_redirecturl` varchar(100) NOT NULL DEFAULT '' COMMENT '跳转url',
@@ -118,20 +118,11 @@ CREATE TABLE `hd_category` (
   `allow_user_set_credits` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否允许会员投稿设置积分 1 允许 0 不允许',
   `member_send_state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '会员投稿状态 1 审核 2 未审核',
   PRIMARY KEY (`cid`)
-) ENGINE=MyISAM AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COMMENT='栏目表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='栏目表';
 
 -- ----------------------------
 -- Records of hd_category
 -- ----------------------------
-INSERT INTO `hd_category` VALUES ('2', '0', '最新消息', 'news', '', '', '{style}/article_index.html', '{style}/article_list.html', '{style}/article_default.html', '1', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '100', '2', '', '', '0', '0', '1', '1', '1');
-INSERT INTO `hd_category` VALUES ('4', '0', '问答', 'question', '', '', '{style}/article_index.html', '{style}/article_list.html', '{style}/article_default.html', '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '100', '1', '', '', '0', '0', '1', '1', '1');
-INSERT INTO `hd_category` VALUES ('5', '0', '新闻', 'news', '', '', '{style}/article_index.html', '{style}/article_list.html', '{style}/article_default.html', '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '100', '1', '', '', '0', '0', '1', '1', '1');
-INSERT INTO `hd_category` VALUES ('12', '8', '前端', 'div', '', '', '{style}/article_index.html', '{style}/article_list.html', '{style}/article_default.html', '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '100', '1', '', '', '0', '0', '1', '1', '1');
-INSERT INTO `hd_category` VALUES ('11', '8', '服务器', 'server', '', '', '{style}/article_index.html', '{style}/article_list.html', '{style}/article_default.html', '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '100', '1', '', '', '0', '0', '1', '1', '1');
-INSERT INTO `hd_category` VALUES ('8', '0', '每日教程', 'lesson', '', '', '{style}/article_index.html', '{style}/article_list.html', '{style}/article_default.html', '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '2', '1', '1', '', '100', '1', '', '', '0', '0', '1', '1', '1');
-INSERT INTO `hd_category` VALUES ('10', '8', 'php', 'php', '', '', '{style}/article_index.html', '{style}/article_list.html', '{style}/article_default.html', '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '100', '1', '', '', '2', '0', '1', '1', '0');
-INSERT INTO `hd_category` VALUES ('34', '0', 'dsfsdf', 'dsfsdf', '', '', '{style}/article_index.html', '{style}/article_list.html', '{style}/article_default.html', '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '100', '1', '', '', '1', '0', '1', '1', '1');
-INSERT INTO `hd_category` VALUES ('35', '0', 'cccccc', 'cccccc', '', '', '{style}/article_index.html', '{style}/article_list.html', '{style}/article_default.html', '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '100', '1', '', '', '1', '0', '1', '1', '1');
 
 -- ----------------------------
 -- Table structure for hd_category_access
@@ -152,15 +143,6 @@ CREATE TABLE `hd_category_access` (
 -- ----------------------------
 -- Records of hd_category_access
 -- ----------------------------
-INSERT INTO `hd_category_access` VALUES ('1', '34', '1', '1', '1', '1', '1', '1', '1');
-INSERT INTO `hd_category_access` VALUES ('2', '34', '1', '1', '1', '1', '1', '1', '1');
-INSERT INTO `hd_category_access` VALUES ('3', '34', '1', '1', '1', '1', '1', '1', '1');
-INSERT INTO `hd_category_access` VALUES ('4', '34', '1', '1', '1', '0', '0', '0', '0');
-INSERT INTO `hd_category_access` VALUES ('5', '34', '1', '1', '1', '0', '0', '0', '0');
-INSERT INTO `hd_category_access` VALUES ('6', '34', '1', '1', '1', '0', '0', '0', '0');
-INSERT INTO `hd_category_access` VALUES ('1', '2', '1', '1', '1', '1', '1', '1', '1');
-INSERT INTO `hd_category_access` VALUES ('5', '2', '1', '1', '1', '0', '0', '0', '0');
-INSERT INTO `hd_category_access` VALUES ('6', '2', '1', '1', '1', '0', '0', '0', '0');
 
 -- ----------------------------
 -- Table structure for hd_comment
@@ -286,13 +268,11 @@ CREATE TABLE `hd_content` (
   PRIMARY KEY (`aid`),
   KEY `cid` (`cid`),
   KEY `uid` (`uid`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=gbk;
+) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
 -- ----------------------------
 -- Records of hd_content
 -- ----------------------------
-INSERT INTO `hd_content` VALUES ('1', '10', '　新款B90搭载了锦湖Ecsta LX系列轮胎，其节能环保的设计，降低了20％的滚动阻力。另外，现款B90全系均为16寸轮毂，而新款则全部升级为17寸，看上去更为大方。  14款奔腾B90', '图片', '0', '', 'upload/Content/2014/03/27/45591395853239.jpg', '100', '', '', '', '1', '1395852482', '1395895642', '', '', '2', '100', '0', '新款,B90,轮毂,16寸,全系,全部,均为,升级,大方', '　新款B90搭载了锦湖Ecsta LX系列轮胎，其节能环保的设计，降低了20％的滚动阻力。另外，现款B90全系均为16寸轮毂，而新款则全部升级为17寸，看上去更为大方。', '1', '0', '0', '0');
-INSERT INTO `hd_content` VALUES ('2', '10', '常我们关注一款车的动力表现时都是看发动机功率参数，这个数', '图片', '0', '', 'upload/Content/2014/03/27/46821395926649.jpg', '100', '', '', '', '1', '1395926649', '1395883164', '', '', '1', '100', '1', '功率,厂家,发动机,数值,驱动,车辆,真正,才是,面上', '常我们关注一款车的动力表现时都是看发动机功率参数，这个数值是厂家在特定的环境下实验得出的，不过在现实中这台发动机装在汽车上，经过变速箱、传动轴和车轮，最终作用在路面上的才是驱动车辆时真正能用到的功率，那么实际功率和厂家公布的数值究竟有多大差距？这就是功率测试的目的。', '1', '0', '0', '0');
 
 -- ----------------------------
 -- Table structure for hd_content_data
@@ -309,8 +289,6 @@ CREATE TABLE `hd_content_data` (
 -- ----------------------------
 -- Records of hd_content_data
 -- ----------------------------
-INSERT INTO `hd_content_data` VALUES ('1', '<p style=\"margin: 0px auto 20px; padding: 0px; font-size: 16px; word-wrap: normal; color: rgb(51, 51, 51); font-family: 宋体, arial, sans-serif; line-height: 30px; white-space: normal; background-color: rgb(255, 255, 255);\">　新款B90搭载了锦湖Ecsta LX系列轮胎，其节能环保的设计，降低了20％的滚动阻力。另外，现款B90全系均为16寸轮毂，而新款则全部升级为17寸，看上去更为大方。</p><p style=\"margin: 0px auto 20px; padding: 0px; font-size: 16px; word-wrap: normal; color: rgb(51, 51, 51); font-family: 宋体, arial, sans-serif; line-height: 30px; white-space: normal; background-color: rgb(255, 255, 255); text-align: center;\"><a href=\"http://price.pcauto.com.cn/cars/image/1432551-1.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); text-decoration: none; outline: none;\"><img alt=\"14款奔腾B90\" class=\"piclibImg2\" src=\"http://img.pcauto.com.cn/images/pcautogallery/modle/article/20143/25/13957438506175460_600.jpg\" title=\"14款奔腾B90\" style=\"border: 1px solid rgb(198, 198, 198); vertical-align: middle;\"/></a></p><p><br/></p>', null, null);
-INSERT INTO `hd_content_data` VALUES ('2', '<p style=\"margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\">常我们关注一款车的动力表现时都是看<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/shuyu/detail_8_9_555.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">发动机</a><a class=\"blackclink\" href=\"http://car.autohome.com.cn/shuyu/detail_40_41_98.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">功率</a>参数，这个数值是厂家在特定的环境下实验得出的，不过在现实中这台<a class=\"blackclink\" href=\"http://car.autohome.com.cn/shuyu/detail_8_9_555.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">发动机</a>装在汽车上，经过变速箱、<a class=\"ShuKeyWordLink\" href=\"http://car.autohome.com.cn/shuyu/detail_3_5_397.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(59, 89, 152);\">传动轴</a>和车轮，最终作用在路面上的才是驱动车辆时真正能用到的<a class=\"blackclink\" href=\"http://car.autohome.com.cn/shuyu/detail_40_41_98.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">功率</a>，那么实际<a class=\"blackclink\" href=\"http://car.autohome.com.cn/shuyu/detail_40_41_98.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">功率</a>和厂家公布的数值究竟有多大差距？这就是<a class=\"blackclink\" href=\"http://car.autohome.com.cn/shuyu/detail_40_41_98.html\" target=\"_blank\" style=\"color: rgb(51, 51, 51); outline: 0px; text-decoration: none;\">功率</a>测试的目的。</p><p style=\"text-align:center;margin-top: 15px; margin-bottom: 15px; padding: 0px; line-height: 28px; color: rgb(51, 51, 51); font-family: 宋体, arial, tahoma, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255);\"><a href=\"http://www.autohome.com.cn/img/?img=newspic/2014/3/27/2014032707273885455.jpg\" target=\"_blank\" style=\"color: rgb(59, 89, 152); outline: 0px; text-decoration: none;\"></a><a href=\"http://www.autohome.com.cn/img/?img=newspic/2014/3/27/2014032718345159695.jpg\" target=\"_blank\" style=\"color: rgb(59, 89, 152); outline: 0px; text-decoration: none;\"><img alt=\"汽车之家\" src=\"http://localhost/hdcms/upload/Content/2014/03/27/21651395926650.jpg\" width=\"620\" height=\"680\" original=\"http://localhost/hdcms/upload/Content/2014/03/27/21651395926650.jpg\" style=\"vertical-align: top; background-image: url(http://x.autoimg.cn/news/show20/1210/default_bg.png); display: inline-block; border: 0px !important; background-position: 50% 50%; background-repeat: no-repeat no-repeat;\"/></a></p><p><br/></p>', 'a:5:{i:0;a:2:{s:4:\"path\";s:44:\"upload/content/2014/03/27/47251395852460.jpg\";s:3:\"alt\";s:0:\"\";}i:1;a:2:{s:4:\"path\";s:44:\"upload/content/2014/03/27/94081395852466.jpg\";s:3:\"alt\";s:0:\"\";}i:2;a:2:{s:4:\"path\";s:44:\"upload/Content/2014/03/27/45591395853239.jpg\";s:3:\"alt\";s:0:\"\";}i:3;a:2:{s:4:\"path\";s:41:\"upload/content/2014/03/27/31395895818.jpg\";s:3:\"alt\";s:0:\"\";}i:4;a:2:{s:4:\"path\";s:44:\"upload/content/2014/03/27/20211395895962.jpg\";s:3:\"alt\";s:0:\"\";}}', null);
 
 -- ----------------------------
 -- Table structure for hd_content_single
@@ -318,6 +296,7 @@ INSERT INTO `hd_content_data` VALUES ('2', '<p style=\"margin-top: 15px; margin-
 DROP TABLE IF EXISTS `hd_content_single`;
 CREATE TABLE `hd_content_single` (
   `aid` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `cid` smallint(6) NOT NULL DEFAULT '0' COMMENT '栏目id',
   `title` char(100) NOT NULL DEFAULT '' COMMENT '标题',
   `new_window` tinyint(1) NOT NULL DEFAULT '0' COMMENT '新窗口打开',
   `thumb` char(200) NOT NULL DEFAULT '' COMMENT '缩略图',
@@ -333,7 +312,6 @@ CREATE TABLE `hd_content_single` (
   `ishtml` tinyint(1) NOT NULL DEFAULT '1',
   `arc_sort` smallint(5) unsigned NOT NULL DEFAULT '100',
   `state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 已审核 0 未审核',
-  `cid` smallint(6) NOT NULL DEFAULT '0' COMMENT '栏目id',
   `seo_title` char(100) NOT NULL DEFAULT '' COMMENT 'seo标题',
   `keywords` char(100) NOT NULL DEFAULT '' COMMENT '关键字',
   `description` varchar(255) NOT NULL DEFAULT '' COMMENT '描述',
@@ -345,6 +323,22 @@ CREATE TABLE `hd_content_single` (
 
 -- ----------------------------
 -- Records of hd_content_single
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for hd_content_tag
+-- ----------------------------
+DROP TABLE IF EXISTS `hd_content_tag`;
+CREATE TABLE `hd_content_tag` (
+  `mid` smallint(6) NOT NULL DEFAULT '0' COMMENT '模型cid',
+  `cid` smallint(6) NOT NULL DEFAULT '0' COMMENT '栏目cid',
+  `aid` int(11) NOT NULL DEFAULT '0' COMMENT '文章aid',
+  `tid` int(11) NOT NULL DEFAULT '0' COMMENT '标签id',
+  `uid` int(11) NOT NULL DEFAULT '0' COMMENT '用户uid'
+) ENGINE=MyISAM DEFAULT CHARSET=gbk;
+
+-- ----------------------------
+-- Records of hd_content_tag
 -- ----------------------------
 
 -- ----------------------------
@@ -389,7 +383,7 @@ CREATE TABLE `hd_field` (
 -- ----------------------------
 -- Records of hd_field
 -- ----------------------------
-INSERT INTO `hd_field` VALUES ('13', '1', 'images', 'content_data', 'images', '图片集', '1', '0', '50', '1', 'a:13:{s:7:\"message\";s:0:\"\";s:20:\"upload_img_max_width\";s:3:\"600\";s:21:\"upload_img_max_height\";s:3:\"600\";s:3:\"num\";s:2:\"10\";s:5:\"water\";s:1:\"1\";s:5:\"error\";s:0:\"\";s:3:\"css\";s:0:\"\";s:10:\"validation\";s:5:\"false\";s:5:\"width\";s:0:\"\";s:6:\"height\";s:0:\"\";s:7:\"default\";s:0:\"\";s:8:\"required\";s:0:\"\";s:7:\"options\";s:0:\"\";}');
+INSERT INTO `hd_field` VALUES ('13', '1', 'images', 'content_data', 'images', '图片集', '1', '0', '50', '1', 'a:12:{s:7:\"message\";s:15:\"不要乱选图\";s:20:\"upload_img_max_width\";s:3:\"600\";s:21:\"upload_img_max_height\";s:3:\"600\";s:3:\"num\";s:2:\"10\";s:5:\"error\";s:0:\"\";s:3:\"css\";s:0:\"\";s:10:\"validation\";s:5:\"false\";s:5:\"width\";s:0:\"\";s:6:\"height\";s:0:\"\";s:7:\"default\";s:0:\"\";s:8:\"required\";s:0:\"\";s:7:\"options\";s:0:\"\";}');
 INSERT INTO `hd_field` VALUES ('14', '1', 'files', 'content_data', 'downs', '文件下载', '1', '0', '50', '1', 'a:12:{s:7:\"message\";s:0:\"\";s:3:\"num\";s:2:\"10\";s:8:\"filetype\";s:7:\"zip,rar\";s:12:\"down_credits\";s:1:\"0\";s:5:\"error\";s:0:\"\";s:3:\"css\";s:0:\"\";s:10:\"validation\";s:5:\"false\";s:5:\"width\";s:0:\"\";s:6:\"height\";s:0:\"\";s:7:\"default\";s:0:\"\";s:8:\"required\";s:0:\"\";s:7:\"options\";s:0:\"\";}');
 
 -- ----------------------------
@@ -532,7 +526,7 @@ INSERT INTO `hd_node` VALUES ('13', '栏目管理', 'Hdcms', 'Category', 'Catego
 INSERT INTO `hd_node` VALUES ('14', '模型管理', 'Hdcms', 'Model', 'Model', 'index', '', '', '1', '1', '10', '100', '0', '0');
 INSERT INTO `hd_node` VALUES ('15', '推荐位', 'Hdcms', 'Flag', 'Flag', 'index', '', '', '1', '1', '10', '100', '0', '0');
 INSERT INTO `hd_node` VALUES ('19', '系统设置', 'Hdcms', '', '', '', '', '', '1', '1', '16', '100', '0', '0');
-INSERT INTO `hd_node` VALUES ('4', '管理内容', 'Hdcms', 'Content', 'Content', 'index', '', '', '1', '1', '2', '10', '0', '1');
+INSERT INTO `hd_node` VALUES ('4', '管理内容', 'Hdcms', 'Content', 'Index', 'index', '', '', '1', '1', '2', '10', '0', '1');
 INSERT INTO `hd_node` VALUES ('11', '管理员设置', 'Hdcms', '', '', '', '', '', '1', '1', '16', '100', '0', '0');
 INSERT INTO `hd_node` VALUES ('17', '管理员管理', 'Hdcms', 'Role', 'Admin', 'index', '', '', '1', '1', '11', '100', '0', '0');
 INSERT INTO `hd_node` VALUES ('18', '角色管理', 'Hdcms', 'Role', 'Role', 'index', '', '', '1', '1', '11', '100', '0', '0');
@@ -561,7 +555,6 @@ INSERT INTO `hd_node` VALUES ('70', '标签云', 'Hdcms', 'Tag', 'Tag', 'index',
 INSERT INTO `hd_node` VALUES ('69', '搜索关键词', 'Hdcms', 'Search', 'Manage', 'index', '3', '', '1', '1', '79', '100', '0', '0');
 INSERT INTO `hd_node` VALUES ('79', '其他操作', 'Hdcms', '', '', '', '', '', '1', '1', '1', '100', '0', '0');
 INSERT INTO `hd_node` VALUES ('80', '导航菜单', 'Hdcms', 'Navigation', 'Navigation', 'index', '', '', '1', '1', '79', '100', '0', '0');
-INSERT INTO `hd_node` VALUES ('81', '单页面', 'Hdcms', 'Single', 'single', 'index', '', '', '1', '1', '2', '12', '0', '1');
 INSERT INTO `hd_node` VALUES ('91', '插件', 'Hdcms', '', '', '', '', '', '1', '1', '0', '1000', '0', '0');
 INSERT INTO `hd_node` VALUES ('92', '插件管理', 'Hdcms', '', '', '', '', '', '1', '1', '91', '99', '0', '0');
 INSERT INTO `hd_node` VALUES ('93', '插件管理', 'Hdcms', 'Plugin', 'Plugin', 'Plugin_list', '', '', '1', '1', '92', '100', '0', '0');
@@ -661,81 +654,16 @@ CREATE TABLE `hd_session` (
 DROP TABLE IF EXISTS `hd_tag`;
 CREATE TABLE `hd_tag` (
   `tid` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `tag_name` varchar(30) DEFAULT '' COMMENT 'tag字符',
+  `tag` varchar(30) DEFAULT '' COMMENT 'tag字符',
   `total` mediumint(9) DEFAULT '1' COMMENT '次数',
   PRIMARY KEY (`tid`),
-  UNIQUE KEY `name` (`tag_name`),
+  UNIQUE KEY `name` (`tag`),
   KEY `total` (`total`)
-) ENGINE=MyISAM AUTO_INCREMENT=401 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hd_tag
 -- ----------------------------
-INSERT INTO `hd_tag` VALUES ('12', 'smarty', '1');
-INSERT INTO `hd_tag` VALUES ('13', 'dsfdsffdfds', '1');
-INSERT INTO `hd_tag` VALUES ('14', 'fdsdsdsfsdfsdsfdsfddsfsfdsdsds', '1');
-INSERT INTO `hd_tag` VALUES ('15', 'cccccccccccccccccccc', '1');
-INSERT INTO `hd_tag` VALUES ('18', 'ffffffffffffffff', '3');
-INSERT INTO `hd_tag` VALUES ('28', '是否', '2');
-INSERT INTO `hd_tag` VALUES ('29', '已经', '2');
-INSERT INTO `hd_tag` VALUES ('30', '填写', '2');
-INSERT INTO `hd_tag` VALUES ('31', '完整', '2');
-INSERT INTO `hd_tag` VALUES ('32', '内容', '2');
-INSERT INTO `hd_tag` VALUES ('33', '标题', '2');
-INSERT INTO `hd_tag` VALUES ('34', '提交', '2');
-INSERT INTO `hd_tag` VALUES ('35', '代码', '2');
-INSERT INTO `hd_tag` VALUES ('36', '检查', '2');
-INSERT INTO `hd_tag` VALUES ('37', 'sdfsdfsdsfdfssfd', '1');
-INSERT INTO `hd_tag` VALUES ('38', '文件', '1');
-INSERT INTO `hd_tag` VALUES ('39', '现有', '1');
-INSERT INTO `hd_tag` VALUES ('40', '单文件', '1');
-INSERT INTO `hd_tag` VALUES ('41', '最大', '1');
-INSERT INTO `hd_tag` VALUES ('42', '2MB', '1');
-INSERT INTO `hd_tag` VALUES ('43', '一些', '1');
-INSERT INTO `hd_tag` VALUES ('44', '删掉', '1');
-INSERT INTO `hd_tag` VALUES ('45', '上限', '1');
-INSERT INTO `hd_tag` VALUES ('46', '若要', '1');
-INSERT INTO `hd_tag` VALUES ('47', 'zzzzzzzzzzzzzzzzzzzzzz', '1');
-INSERT INTO `hd_tag` VALUES ('51', 'sdffds', '3');
-INSERT INTO `hd_tag` VALUES ('49', 'sdfdsf', '1');
-INSERT INTO `hd_tag` VALUES ('52', 'sdf', '1');
-INSERT INTO `hd_tag` VALUES ('384', 'B90', '18');
-INSERT INTO `hd_tag` VALUES ('291', '改款', '8');
-INSERT INTO `hd_tag` VALUES ('293', '后的', '8');
-INSERT INTO `hd_tag` VALUES ('101', '体验', '6');
-INSERT INTO `hd_tag` VALUES ('292', '奔腾', '8');
-INSERT INTO `hd_tag` VALUES ('295', '的当', '8');
-INSERT INTO `hd_tag` VALUES ('383', '新款', '16');
-INSERT INTO `hd_tag` VALUES ('105', '将会', '6');
-INSERT INTO `hd_tag` VALUES ('294', '注目', '8');
-INSERT INTO `hd_tag` VALUES ('275', '配置', '29');
-INSERT INTO `hd_tag` VALUES ('276', '丰富', '29');
-INSERT INTO `hd_tag` VALUES ('277', '科技', '29');
-INSERT INTO `hd_tag` VALUES ('278', '不变', '29');
-INSERT INTO `hd_tag` VALUES ('279', '样式', '29');
-INSERT INTO `hd_tag` VALUES ('280', '内饰', '29');
-INSERT INTO `hd_tag` VALUES ('296', '中最', '2');
-INSERT INTO `hd_tag` VALUES ('297', '迎来', '2');
-INSERT INTO `hd_tag` VALUES ('298', '一次', '2');
-INSERT INTO `hd_tag` VALUES ('299', '柘城', '1');
-INSERT INTO `hd_tag` VALUES ('385', '轮毂', '10');
-INSERT INTO `hd_tag` VALUES ('386', '16寸', '10');
-INSERT INTO `hd_tag` VALUES ('387', '全系', '10');
-INSERT INTO `hd_tag` VALUES ('388', '全部', '10');
-INSERT INTO `hd_tag` VALUES ('389', '均为', '10');
-INSERT INTO `hd_tag` VALUES ('390', '升级', '10');
-INSERT INTO `hd_tag` VALUES ('391', '大方', '10');
-INSERT INTO `hd_tag` VALUES ('309', 'dsfdsfdsfdsdf', '1');
-INSERT INTO `hd_tag` VALUES ('337', '1212', '1');
-INSERT INTO `hd_tag` VALUES ('392', '功率', '1');
-INSERT INTO `hd_tag` VALUES ('393', '厂家', '1');
-INSERT INTO `hd_tag` VALUES ('394', '发动机', '1');
-INSERT INTO `hd_tag` VALUES ('395', '数值', '1');
-INSERT INTO `hd_tag` VALUES ('396', '驱动', '1');
-INSERT INTO `hd_tag` VALUES ('397', '车辆', '1');
-INSERT INTO `hd_tag` VALUES ('398', '真正', '1');
-INSERT INTO `hd_tag` VALUES ('399', '才是', '1');
-INSERT INTO `hd_tag` VALUES ('400', '面上', '1');
 
 -- ----------------------------
 -- Table structure for hd_template_tag
@@ -761,6 +689,7 @@ CREATE TABLE `hd_template_tag` (
 DROP TABLE IF EXISTS `hd_upload`;
 CREATE TABLE `hd_upload` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '文章ID',
+  `name` varchar(255) DEFAULT '' COMMENT '原文件名',
   `filename` varchar(100) NOT NULL DEFAULT '' COMMENT '文件名',
   `basename` varchar(100) NOT NULL DEFAULT '',
   `path` char(200) NOT NULL DEFAULT '' COMMENT '文件路径 ',
@@ -773,47 +702,11 @@ CREATE TABLE `hd_upload` (
   PRIMARY KEY (`id`),
   KEY `basename` (`basename`),
   KEY `id` (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COMMENT='上传文件';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='上传文件';
 
 -- ----------------------------
 -- Records of hd_upload
 -- ----------------------------
-INSERT INTO `hd_upload` VALUES ('1', '47251395852460', '47251395852460.jpg', 'upload/content/2014/03/27/47251395852460.jpg', 'jpg', '1', '165538', '1395852461', '1', '1');
-INSERT INTO `hd_upload` VALUES ('2', '94081395852466', '94081395852466.jpg', 'upload/content/2014/03/27/94081395852466.jpg', 'jpg', '1', '165538', '1395852466', '1', '1');
-INSERT INTO `hd_upload` VALUES ('3', '45591395853239', '45591395853239.jpg', 'upload/Content/2014/03/27/45591395853239.jpg', 'jpg', '1', '94750', '1395853239', '1', '1');
-INSERT INTO `hd_upload` VALUES ('4', '31701395895195', '31701395895195.jpg', 'upload/content/2014/03/27/31701395895195.jpg', 'jpg', '1', '165538', '1395895195', '1', '1');
-INSERT INTO `hd_upload` VALUES ('5', '23371395895797', '23371395895797.jpg', 'upload/content/2014/03/27/23371395895797.jpg', 'jpg', '1', '165538', '1395895798', '1', '1');
-INSERT INTO `hd_upload` VALUES ('6', '31395895818', '31395895818.jpg', 'upload/content/2014/03/27/31395895818.jpg', 'jpg', '1', '165538', '1395895818', '1', '1');
-INSERT INTO `hd_upload` VALUES ('7', '83521395895843', '83521395895843.jpg', 'upload/content/2014/03/27/83521395895843.jpg', 'jpg', '1', '165538', '1395895843', '1', '1');
-INSERT INTO `hd_upload` VALUES ('8', '20211395895962', '20211395895962.jpg', 'upload/content/2014/03/27/20211395895962.jpg', 'jpg', '1', '165538', '1395895963', '1', '1');
-INSERT INTO `hd_upload` VALUES ('9', '80741395895989', '80741395895989.jpg', 'upload/content/2014/03/27/80741395895989.jpg', 'jpg', '1', '165538', '1395895989', '1', '1');
-INSERT INTO `hd_upload` VALUES ('10', '97051395896136', '97051395896136.jpg', 'upload/content/2014/03/27/97051395896136.jpg', 'jpg', '1', '165538', '1395896137', '1', '1');
-INSERT INTO `hd_upload` VALUES ('11', '99971395926569', '99971395926569.jpg', 'upload/content/2014/03/27/99971395926569.jpg', 'jpg', '1', '165538', '1395926569', '1', '1');
-INSERT INTO `hd_upload` VALUES ('12', '46821395926649', '46821395926649.jpg', 'upload/Content/2014/03/27/46821395926649.jpg', 'jpg', '1', '139192', '1395926649', '1', '1');
-INSERT INTO `hd_upload` VALUES ('13', '21651395926650', '21651395926650.jpg', 'upload/Content/2014/03/27/21651395926650.jpg', 'jpg', '1', '139192', '1395926650', '1', '1');
-INSERT INTO `hd_upload` VALUES ('14', '10781395934228', '10781395934228.zip', 'upload/content/2014/03/27/10781395934228.zip', 'zip', '0', '165362', '1395934228', '0', '1');
-INSERT INTO `hd_upload` VALUES ('15', '7421395935153', '7421395935153.zip', 'upload/content/2014/03/27/7421395935153.zip', 'zip', '0', '165362', '1395935153', '0', '1');
-INSERT INTO `hd_upload` VALUES ('16', '89851395935175', '89851395935175.zip', 'upload/content/2014/03/27/89851395935175.zip', 'zip', '0', '165362', '1395935175', '0', '1');
-INSERT INTO `hd_upload` VALUES ('17', '86961395935441', '86961395935441.jpg', 'upload/content/2014/03/27/86961395935441.jpg', 'jpg', '1', '165538', '1395935442', '0', '1');
-INSERT INTO `hd_upload` VALUES ('18', '80901395935616', '80901395935616.jpg', 'upload/content/2014/03/27/80901395935616.jpg', 'jpg', '1', '165538', '1395935616', '0', '1');
-INSERT INTO `hd_upload` VALUES ('19', '59411395935718', '59411395935718.jpg', 'upload/content/2014/03/27/59411395935718.jpg', 'jpg', '1', '165538', '1395935719', '0', '1');
-INSERT INTO `hd_upload` VALUES ('20', '56551395935842', '56551395935842.jpg', 'upload/content/2014/03/27/56551395935842.jpg', 'jpg', '1', '165538', '1395935842', '0', '1');
-INSERT INTO `hd_upload` VALUES ('21', '34741395935867', '34741395935867.jpg', 'upload/content/2014/03/27/34741395935867.jpg', 'jpg', '1', '165538', '1395935868', '0', '1');
-INSERT INTO `hd_upload` VALUES ('22', '511395935957', '511395935957.jpg', 'upload/content/2014/03/27/511395935957.jpg', 'jpg', '1', '22071', '1395935957', '0', '1');
-INSERT INTO `hd_upload` VALUES ('23', '37641395936361', '37641395936361.png', 'upload/content/2014/03/28/37641395936361.png', 'png', '1', '26618', '1395936361', '0', '1');
-INSERT INTO `hd_upload` VALUES ('24', '951395936414', '951395936414.jpg', 'upload/content/2014/03/28/951395936414.jpg', 'jpg', '1', '165538', '1395936414', '0', '1');
-INSERT INTO `hd_upload` VALUES ('25', '37561395936758', '37561395936758.jpg', 'upload/content/2014/03/28/37561395936758.jpg', 'jpg', '1', '165538', '1395936759', '0', '1');
-INSERT INTO `hd_upload` VALUES ('26', '6741395936874', '6741395936874.jpg', 'upload/content/2014/03/28/6741395936874.jpg', 'jpg', '1', '165538', '1395936875', '0', '1');
-INSERT INTO `hd_upload` VALUES ('27', '82861395936981', '82861395936981.zip', 'upload/content/2014/03/28/82861395936981.zip', 'zip', '0', '165362', '1395936981', '0', '1');
-INSERT INTO `hd_upload` VALUES ('28', '49641395937105', '49641395937105.jpg', 'upload/content/2014/03/28/49641395937105.jpg', 'jpg', '1', '165538', '1395937106', '0', '1');
-INSERT INTO `hd_upload` VALUES ('29', '48791395937293', '48791395937293.jpg', 'upload/content/2014/03/28/48791395937293.jpg', 'jpg', '1', '165538', '1395937293', '0', '1');
-INSERT INTO `hd_upload` VALUES ('30', '75521395937509', '75521395937509.jpg', 'upload/content/2014/03/28/75521395937509.jpg', 'jpg', '1', '165538', '1395937510', '0', '1');
-INSERT INTO `hd_upload` VALUES ('31', '37871395937664', '37871395937664.zip', 'upload/content/2014/03/28/37871395937664.zip', 'zip', '0', '165362', '1395937664', '0', '1');
-INSERT INTO `hd_upload` VALUES ('32', '96561395937797', '96561395937797.zip', 'upload/content/2014/03/28/96561395937797.zip', 'zip', '0', '165362', '1395937797', '0', '1');
-INSERT INTO `hd_upload` VALUES ('33', '34631395937838', '34631395937838.zip', 'upload/content/2014/03/28/34631395937838.zip', 'zip', '0', '165362', '1395937838', '0', '1');
-INSERT INTO `hd_upload` VALUES ('34', '32971395937880', '32971395937880.zip', 'upload/content/2014/03/28/32971395937880.zip', 'zip', '0', '165362', '1395937880', '0', '1');
-INSERT INTO `hd_upload` VALUES ('35', '10461395937922', '10461395937922.zip', 'upload/content/2014/03/28/10461395937922.zip', 'zip', '0', '165362', '1395937922', '0', '1');
-INSERT INTO `hd_upload` VALUES ('36', '1381395938584', '1381395938584.zip', 'upload/content/2014/03/28/1381395938584.zip', 'zip', '0', '165362', '1395938584', '0', '1');
 
 -- ----------------------------
 -- Table structure for hd_user
@@ -846,7 +739,7 @@ CREATE TABLE `hd_user` (
 -- ----------------------------
 -- Records of hd_user
 -- ----------------------------
-INSERT INTO `hd_user` VALUES ('1', '后盾网', 'admin', '67a52a373a64b0a4ce05d47150b85ce2', '861bfc56d5', 'houdunwangxj@gmail.com', '0', '1395926341', '', '0.0.0.0', '1', '', '1', '', '10008', '1', '1');
+INSERT INTO `hd_user` VALUES ('1', '后盾网', 'admin', '67a52a373a64b0a4ce05d47150b85ce2', '861bfc56d5', 'houdunwangxj@gmail.com', '0', '1396263554', '', '0.0.0.0', '1', '', '1', '', '10008', '1', '1');
 INSERT INTO `hd_user` VALUES ('25', '李四', 'lisi', 'eef592a724549ee2c9d0e4337c07cd9d', '07041b46e0', 'a@qq.com', '0', '1395066799', '', '0.0.0.0', '1', '', '1', '', '100', '1', '1');
 INSERT INTO `hd_user` VALUES ('85', '向军', 'houdunwang', '72c8e536d1e2db29db9f46c44ab8933a', '848c619651', 'houdunwang@gmail.com', '1395668246', '1395760521', '0.0.0.0', '0.0.0.0', '1', '', '1', '', '100', '4', '1');
 

@@ -22,16 +22,21 @@ class MenuControl extends AuthControl
 
     /**
      * 更新菜单时获得所有子菜单id
-     * hd/static/js/js.js update_menu()方法使用
+     * hd/Hdcms/Hdcms/js/menu.js update_menu()方法使用
      */
     public function get_child_menu_id()
     {
-        $data = Data::channelList($this->_menu, 91, '', 'nid', 'pid');
-        $id = array();
-        foreach ($data as $d) {
-            $id[] = $d['nid'];
+        //父级菜单(顶级菜单)
+        $pid = Q('pid', null, 'intval');
+        $data = Data::channelList($this->_menu, $pid, '', 'nid', 'pid');
+        //子菜单
+        $sid = array();
+        if (is_array($data)) {
+            foreach ($data as $d) {
+                $sid[] = $d['nid'];
+            }
         }
-        $this->ajax($id);
+        $this->ajax($sid);
     }
 
     //获得子菜单

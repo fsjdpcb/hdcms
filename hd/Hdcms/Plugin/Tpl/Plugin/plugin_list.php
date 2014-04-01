@@ -37,7 +37,7 @@
                 <td>{$p.state}</td>
                 <td>{$p.app}</td>
                 <td>
-                    <a href="{|U:'Install/help',array('plug'=>$p['app'])}">使用说明</a>
+                    <a href="{|U:'Install/help',array('plugin'=>$p['app'])}">使用说明</a>
                 </td>
             </tr>
         </list>

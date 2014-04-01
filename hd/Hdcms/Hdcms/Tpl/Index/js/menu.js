@@ -180,21 +180,24 @@ $(function () {
 })
 
 
-//＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝更新导航＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+//＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝更新导航＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 /**
  * 更新导航一级导航（最顶部）
  * @param id 菜单id号
  */
-function update_menu(id) {
-    $.post(WEB + '?a=Menu&c=Menu&m=get_child_menu_id&id=' + id, function (ids) {
-        if (ids.length >= 1) {
+function update_menu(pid, url) {
+    $.post(WEB + '?a=Menu&c=Menu&m=get_child_menu_id&pid=' + pid, function (sids) {
+        // ids 所有子菜单
+        if (sids.length >= 1) {
             var win = top || opener;
-            //关闭历史导航（标签导航）
-            for (var i = 0; i < ids.length; i++) {
-                del_history_menu(ids[i]);
-            }
-            win.menu_cache.parent[id] = false;
-            win.get_left_menu(id);
+            //清除点击顶部菜单后产生的缓存
+            win.menu_cache.parent[pid] = false;
+            //触发顶部导航点击事件
+            win.get_left_menu(pid);
+        }
+        //iframe跳转url
+        if (url) {
+            location.href = url;
         }
     }, "JSON");
 }
@@ -209,9 +212,10 @@ function del_history_menu(nid) {
     //删除iframe
     $(win.document).find('iframe[nid=' + nid + ']').remove();
     //清除iframe缓存信息
-    win.menu_cache.iframe[nid] = false;
+    if (win.menu_cache.iframe[nid])
+        win.menu_cache.iframe[nid] = false;
 }
-
+//＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝更新导航＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 
 
 

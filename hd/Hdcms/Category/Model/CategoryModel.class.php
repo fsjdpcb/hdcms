@@ -136,6 +136,8 @@ class CategoryModel extends RelationModel
             if ($this->del($cid)) {
                 //删除栏目权限
                 M("category_access")->where("cid=$cid")->del();
+                //如果是单文章栏目，删除单文章
+                M('content_single')->where("cid=$cid")->del();
                 return true;
             }
         }
@@ -143,18 +145,9 @@ class CategoryModel extends RelationModel
     }
 
     /**
-     *
-     */
-    public function get_category_access($rid)
-    {
-
-    }
-
-    /**
      * 修改与添加栏目时获得管理员或会员的权限列表(后台操作）
      * 用于获得管理员或前台会员权限
-     *
-     * @param int $cid 栏目cid
+     * @param null $cid 栏目cid
      * @param null $admin 管理员权限
      * @param null $rid 角色id($admin有值才有效)
      */
@@ -164,20 +157,20 @@ class CategoryModel extends RelationModel
         $pre = C("DB_PREFIX");
         $db = M("category_access");
         $field = 'a.cid,r.rid,r.rname,r.admin,r.allowpost,r.allowpostverify,r.allowsendmessage,a.add,a.del,a.edit,a.show,a.move,a.order';
-        $cat_where = $where = '';
         //如果有栏目cid只获取取指定栏目的权限，否则获得所有栏目权限
-        if ($cid) {
-            $cat_where = " WHERE cid={$cid}";
-        }
-
-        //指定条件
-        if ($admin) {
-            //根据$admin获得前台或后台角色权限
-            $where = " WHERE admin=$admin";
+        if ($cid)
+            $cat_where = " WHERE cid=$cid";
+        //根据$admin获得前台或后台角色权限
+        if ($rid) {
             //获得指定角色id的栏目权限
-            if ($rid) {
-                $where .= " AND rid=$rid";
+            $where = " WHERE rid=$rid";
+        } else {
+            $role = M('role')->where("admin=$admin")->all();
+            $rid = array();
+            foreach ($role as $r) {
+                $rid[] = $r['rid'];
             }
+            $where = " WHERE r.rid IN (" . implode(",", $rid) . ")";
         }
         $sql = "SELECT $field FROM  {$pre}role AS r  LEFT JOIN (SELECT * FROM {$pre}category_access $cat_where) AS a
                     ON r.rid = a.rid  $where";

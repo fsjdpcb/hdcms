@@ -18,8 +18,8 @@ class TagControl extends AuthControl
     //显示关键词列表
     public function index()
     {
-        $page = new Page($this->_db->count(), C("ADMIN_LIST_ROW'"));
-        $this->data = $this->_db->limit($page->limit())->order("total DESC")->all();
+        $page = new Page($this->_db->join()->count(), 15);
+        $this->data = $this->_db->join()->limit($page->limit())->order("total DESC")->all();
         $this->page = $page->show();
         $this->display();
     }
@@ -32,9 +32,9 @@ class TagControl extends AuthControl
             if (!is_array($tid))
                 $tid = array($tid);
             foreach ($tid as $i) {
-                $this->_db->del(intval($i));
+                $this->_db->del_tag(intval($i));
             }
-            $this->ajax(array('state' => 1, 'message' => '删除成功!'));
+            $this->_ajax(1, '删除成功!');
         }
     }
 
@@ -42,8 +42,8 @@ class TagControl extends AuthControl
     public function edit()
     {
         if (IS_POST) {
-            if ($this->_db->replace()) {
-                $this->ajax(array('state' => 1, 'message' => '修改成功!'));
+            if ($this->_db->add_tag()) {
+                $this->_ajax(1, '修改成功!');
             }
         } else {
             $tid = Q("get.tid", NULL, "intval");
@@ -56,8 +56,8 @@ class TagControl extends AuthControl
     public function add()
     {
         if (IS_POST) {
-            if ($this->_db->replace()) {
-                $this->ajax(array('state' => 1, 'message' => '添加成功!'));
+            if ($this->_db->add_tag()) {
+                $this->_ajax(1, '添加成功!');
             }
         } else {
             $this->display();

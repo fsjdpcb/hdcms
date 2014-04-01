@@ -34,7 +34,7 @@
                 <td><input type="checkbox" name="tid[]" value="{$d.tid}"/></td>
                 <td>{$d.tid}</td>
                 <td>
-                    <a href="{|U:edit,array('tid'=>$d['tid'])}">{$d.tag_name}</a>
+                    <a href="{|U:edit,array('tid'=>$d['tid'])}">{$d.tag}</a>
                 </td>
                 <td>
                     {$d.total}

@@ -25,7 +25,7 @@
             <tr>
                 <th class="w100">tag内容</th>
                 <td>
-                    <input type="text" name="tag_name" value="{$field.tag_name}" class="w200"/>
+                    <input type="text" name="tag" value="{$field.tag}" class="w200"/>
                 </td>
             </tr>
             <tr>

@@ -11,6 +11,7 @@
 </head>
 <body>
 <form action="{|U:edit}" method="post" id="edit" class="hd-form form-horizontal" onsubmit="return false">
+    <input type="hidden" name="mid" value="{$hd.get.mid}"/>
     <input type="hidden" value="{$field.aid}" name="aid"/>
     <div class="wrap">
         <!--右侧缩略图区域-->
@@ -112,6 +113,12 @@
                     <th class="w80">SEO标题</th>
                     <td>
                         <input type="text" name="seo_title" value="{$field.seo_title}" class="w400"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>TAG</th>
+                    <td>
+                        <input type="text" name="tag"  value="{$field.tag}" class="w400"/>
                     </td>
                 </tr>
                 <tr>

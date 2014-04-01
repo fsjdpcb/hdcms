@@ -40,7 +40,7 @@
                     <td>{$d.size|get_size}</td>
                     <td>
                         <a href="javascript:recovery('{$d.name}')">还原</a> |
-                        <a href="javascript:hd_ajax('{|U:del}',{dir:['{$d.name}']})">删除</a>
+                        <a href="javascript:confirm('确定删除吗？')?hd_ajax('{|U:del}',{dir:['{$d.name}']}):false;">删除</a>
                     </td>
                 </tr>
             </list>

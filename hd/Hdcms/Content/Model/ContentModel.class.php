@@ -4,6 +4,8 @@ import('Url', 'hd/Hdcms/Index/Lib');
 import('PublicControl', 'hd/Hdcms/Index/Control');
 import('ArticleControl', 'hd/Hdcms/Index/Control');
 import('ContentTag', 'hd/Hdcms/Index/Lib');
+import('TagModel', 'hd.Hdcms.Tag.Model');
+import('FieldModel', 'hd.Hdcms.Field.Model');
 
 /**
  * 管理员文章内容管理
@@ -125,17 +127,62 @@ class ContentModel extends RelationModel
     }
 
     /**
+     * 获得内容数据（单一文章）
+     */
+    public function get_one_content()
+    {
+        $field = $this->find($this->_aid);
+        if ($field) {
+            //缩略图
+            $field['thumb_img'] = empty($field['thumb']) || !is_file($field['thumb']) ? __ROOT__ . '/hd/static/img/upload-pic.png' : __ROOT__ . '/' . $field['thumb'];
+            //当前文章tag
+            $tags = K('Tag')->where(array('mid' => $this->_mid, 'aid' => $this->_aid))->getField('tag', true);
+            if ($tags) {
+                $tmp = array();
+                foreach ($tags as $t) {
+                    $tmp[] = $t;
+                }
+                $tag = implode(',', $tmp);
+            } else {
+                $tag = '';
+            }
+            $field['tag'] = $tag;
+            //获得栏目标签
+            return $field;
+        }
+    }
+
+    /**
+     * 获得自定义字段的编辑与添加的视图界面
+     * @param null $aid 文章aid
+     * @return string
+     */
+    public function get_current_field_view($aid = null)
+    {
+        //自定义字段
+        $db = new FieldModel();
+        if (is_null($aid)) {
+            $field = array();
+        } else {
+            $field = $this->find($aid);
+        }
+        return $db->field_view($field);
+    }
+
+    /**
      * 删除文章
-     * @param $cid 栏目cid
      * @param $aid 文章aid
      * @return boolean
      */
-    public function del_content($cid, $aid)
+    public function del_content($aid)
     {
+        $aid = intval($aid);
         //删除文章
-        if ($this->join()->del($aid)) {
+        if ($this->del($aid)) {
+            //删除tag
+            M('content_tag')->where(array('cid' => $this->_cid, 'aid' => $aid))->del();
             //删除评论
-            $this->table("comment")->where("cid =$cid and aid=$aid")->del();
+            $this->table("comment")->where("cid =$this->_cid and aid=$aid")->del();
             return true;
         }
     }
@@ -384,14 +431,25 @@ class ContentModel extends RelationModel
     //修改内容tag
     private function _update_tag($aid)
     {
-        $keywords = $this->join()->where("aid=$aid")->getField('keywords');
-        if (!empty($keywords)) {
-            import('TagModel', 'hd/Hdcms/Tag/Model');
+        $tag = Q('tag', null);
+        //内容tag表
+        $content_tag = M('content_tag');
+        //删除旧tag数据
+        $content_tag->where("aid=$aid")->del();
+        if ($tag) {
+            //替换全角
+            $tag = String::toSemiangle($tag);
+            //没有tag时不处理
+            if (empty($tag)) return;
+            //拆分tag标签
+            $tags = explode(',', $tag);
+            $tags = array_unique($tags);
             $db = K("Tag");
-            $tags = explode(',', $keywords);
             foreach ($tags as $tag) {
-                $_POST['tag_name'] = $tag;
-                $db->add_tag();
+                $tid = $db->add_tag($tag);
+
+                //添加新tag数据
+                $content_tag->add(array('tid' => $tid, 'aid' => $aid, 'mid' => $this->_mid, 'cid' => $this->_cid, 'uid' => session('uid')));
             }
         }
     }
@@ -399,7 +457,7 @@ class ContentModel extends RelationModel
     //插入与编辑成功后修改文件上传表  使用__after_add等触发器调用
     private function _update_upload_table($aid)
     {
-        M('upload')->where('uid='.$_SESSION['uid'])->save(array('state' => 1));
+        M('upload')->where('uid=' . $_SESSION['uid'])->save(array('state' => 1));
     }
 
     //添加与修改后执行的动作

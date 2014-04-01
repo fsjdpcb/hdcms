@@ -30,13 +30,13 @@ class PluginModel extends Model
             if ($state) {
                 $plug[$d['name']]['state'] =
                     "<font color='green'>已安装</font>
-<a href='" . __WEB__ . "?a=Plugin&c=Install&m=uninstall&plug=$app' style='color:green'>
+<a href='" . __WEB__ . "?a=Plugin&c=Install&m=uninstall&plugin=$app' style='color:green'>
 <u>卸载</u>
 </a>";
             } else {
                 $plug[$d['name']]['state'] =
                     "未安装
-    <a href='" . __WEB__ . "?a=Plugin&c=Install&m=install&plug=$app'>
+    <a href='" . __WEB__ . "?a=Plugin&c=Install&m=install&plugin=$app'>
 <u>安装</u>
 </a>";
             }
@@ -50,26 +50,33 @@ class PluginModel extends Model
      */
     public function install_plugin($plugin_name)
     {
-        //创建表
-        if (M()->runSql(file_get_contents('hd/Plugin/' . $plugin_name . '/Data/install.sql'))) {
-            $data = require 'hd/Plugin/' . $plugin_name . '/Config/config.php';
-            $data = array_change_key_case_d($data);
-            $data['app'] = $plugin_name; //应用名
-            $data['install_time'] = date("Y-m-d"); //安装时间
-            //添加菜单
-            if ($this->add($data)) {
-                $data = array(
-                    'title' => $data['name'], //节点名称
-                    'app_group' => 'Plugin', //应用组
-                    'app' => $plugin_name, //应用名称
-                    'control' => 'Manage', //默认控制器
-                    'method' => 'index', //默认方法
-                    'state' => 1, //状态
-                    'pid' => 94, //父级菜单id(正在使用)
-                    'plugin' => 1, //是否为插件
-                    'type' => 2, //普通菜单
-                );
-                return $this->table('node')->add($data);
+        //检测插件是否已经存在
+        if (M('node')->where(array('app_group' => 'Plugin', 'app' => $plugin_name))->find()) {
+            //创建表
+            $this->error = '插件已经存在，请删除后再安装';
+        } else {
+            if (M()->runSql(file_get_contents('hd/Plugin/' . $plugin_name . '/Data/install.sql'))) {
+                $data = require 'hd/Plugin/' . $plugin_name . '/Config/config.php';
+                $data = array_change_key_case_d($data);
+                $data['app'] = $plugin_name; //应用名
+                $data['install_time'] = date("Y-m-d"); //安装时间
+                //添加菜单
+                if ($this->add($data)) {
+                    $data = array(
+                        'title' => $data['name'], //节点名称
+                        'app_group' => 'Plugin', //应用组
+                        'app' => $plugin_name, //应用名称
+                        'control' => 'Manage', //默认控制器
+                        'method' => 'index', //默认方法
+                        'state' => 1, //状态
+                        'pid' => 94, //父级菜单id(正在使用)
+                        'plugin' => 1, //是否为插件
+                        'type' => 2, //普通菜单
+                    );
+                    return $this->table('node')->add($data);
+                }
+            } else {
+                $this->error = '插入数据失败';
             }
         }
     }
@@ -83,9 +90,10 @@ class PluginModel extends Model
         //删除表
         if (M()->runSql(file_get_contents("hd/Plugin/{$plugin_name}/Data/uninstall.sql"))) {
             //删除插件信息
-            $this->del("app='$plugin_name'");
-            //删除插件菜单信息
-            return $this->table('node')->where(array('app_group' => 'Plugin', 'app' => $plugin_name))->del();
+            if ($this->del("app='$plugin_name'")) {
+                //删除插件菜单信息
+                return $this->table('node')->where(array('app_group' => 'Plugin', 'app' => $plugin_name))->del();
+            }
         }
     }
 }

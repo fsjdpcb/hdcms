@@ -39,11 +39,11 @@ div#move span {
     z-index: 1000;
 }
 div#move span.left{
-    background: url("../img/ico_left.gif") no-repeat;
+    background: url("../../Content/img/ico_left.gif") no-repeat;
     left: -10px;
 }
 div#move span.right{
-    background: url("../img/ico_right.gif") no-repeat;
+    background: url("../../Content/img/ico_right.gif") no-repeat;
     left: 5px;
 }
 /*右侧内容显示区*/

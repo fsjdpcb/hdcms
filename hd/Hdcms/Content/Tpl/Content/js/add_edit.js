@@ -11,6 +11,9 @@ $(function () {
                 regexp: '标题字数在10~100间'
             }
         },
+        tags: {
+            message: '使用用逗号分隔，如:HDPHP,HDCMS,后盾网'
+        },
         keywords: {
             message: '如果不填，系统将自动从内容中提取'
         },
