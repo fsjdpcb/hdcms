@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>修改栏目</title>
     <hdjs/>
+    <js file="__GROUP__/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
@@ -121,7 +122,8 @@
                         <tr>
                             <th class="w100">封面模板</th>
                             <td>
-                                <input type="text" name="index_tpl" required="" class="w300" id="index_tpl" value="{$field.index_tpl}" onclick="select_template('index_tpl')"/>
+                                <input type="text" name="index_tpl" required="" class="w200" id="index_tpl" value="{$field.index_tpl}"
+                                       onclick="select_template('index_tpl')" readonly="" onfocus="select_template('index_tpl');"/>
                                 <button type="button" class="hd-cancel" onclick="select_template('index_tpl')">选择首页模板</button>
                                 <span id="hd_index_tpl"></span>
                             </td>
@@ -129,7 +131,8 @@
                         <tr>
                             <th>列表页模板</th>
                             <td>
-                                <input type="text" name="list_tpl" required="" id="list_tpl" class="w300" value="{$field.list_tpl}" onclick="select_template('list_tpl')"/>
+                                <input type="text" name="list_tpl" required="" id="list_tpl" class="w200" value="{$field.list_tpl}"
+                                       onclick="select_template('list_tpl')" readonly="" onfocus="select_template('list_tpl');"/>
                                 <button type="button" class="hd-cancel" onclick="select_template('list_tpl')">选择列表模板</button>
                                 <span id="hd_list_tpl"></span>
                             </td>
@@ -137,7 +140,8 @@
                         <tr>
                             <th>内容页模板</th>
                             <td>
-                                <input type="text" name="arc_tpl" required="" id="arc_tpl" class="w300" value="{$field.arc_tpl}" onclick="select_template('arc_tpl')"/>
+                                <input type="text" name="arc_tpl" required="" id="arc_tpl" class="w200" value="{$field.arc_tpl}"
+                                       onclick="select_template('arc_tpl')" readonly="" onfocus="select_template('arc_tpl');"/>
                                 <button type="button" class="hd-cancel" onclick="select_template('arc_tpl')">选择内容页模板</button>
                                 <span id="hd_arc_tpl"></span>
                             </td>

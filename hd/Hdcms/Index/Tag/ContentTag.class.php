@@ -37,9 +37,9 @@ class ContentTag
     //显示标签云
     public function _tag($attr, $content)
     {
-        $type = isset($attr['type'])?$attr['type']:'hot';
-        $row = isset($attr['row'])?$attr['row']:10;
-        $php=<<<str
+        $type = isset($attr['type']) ? $attr['type'] : 'hot';
+        $row = isset($attr['row']) ? $attr['row'] : 10;
+        $php = <<<str
         <?php \$type= '$type';\$row =$row;
         \$db=M('tag');
         switch(\$type){
@@ -50,10 +50,12 @@ class ContentTag
                 \$result = \$db->order('tid DESC')->limit(\$row)->all();
                 break;
         }
-        foreach(\$result as \$field):?>
+        foreach(\$result as \$field):
+            \$field['url']=U('Search/Search/search',array('g'=>'Hdcms','tag'=>\$field['tag'],'type'=>'tag'));
+        ?>
 str;
-        $php.=$content;
-        $php.="<?php endforeach;?>";
+        $php .= $content;
+        $php .= "<?php endforeach;?>";
         return $php;
     }
 
@@ -125,28 +127,7 @@ str;
         return $php;
     }
 
-    //单页面
-    public function _single($attr, $content)
-    {
-        $aid = $attr['aid'];
-        $php = <<<str
-        <?php
-        \$db = M("content_single");
-        \$db->where = "aid IN ($aid)";
-        \$result = \$db->order("arc_sort ASC,aid DESC")->all();
-        foreach (\$result as \$field):
-            \$field['url'] = Url::get_content_url(\$field);
-            \$field['time'] = date("Y-m-d", \$field['updatetime']);
-            \$field['thumb'] = '__ROOT__' . '/' . \$field['thumb'];
-            \$field['title'] = \$field['color'] ? "<span style='color:" . \$field['color'] . "'>" . \$field['title'] . "</span>" : \$field['title'];
-        ?>
-str;
-        $php .= $content;
-        $php .= '<?php  endforeach;?>';
-        return $php;
-    }
-
-    //数据块
+    //文章列表
     public function _arclist($attr, $content)
     {
         $cid = isset($attr['cid']) ? trim($attr['cid']) : '';
@@ -168,8 +149,8 @@ str;
             //设置cid条件
             \$cid = \$cid?\$cid:Q('cid',null,'intval');
             //导入模型类
-            import('Content.Model.ContentViewModel');
-            \$db = K('ContentView',array('mid'=>\$mid));
+            import('ArticleModel','hd.Hdcms.Index.Model');
+            \$db = K('Article',array('mid'=>\$mid));
             //主表（有表前缀）
             \$table=\$db->tableFull;
             //没有设置栏目属性时取get值
@@ -206,8 +187,8 @@ str;
                 }
                 //根据fid获得数据
                 if(\$fid){
+                    \$flag =F('flag');
                     \$fid = explode(',',\$fid);
-                    \$flag = F('flag');
                     foreach(\$fid as \$f){
                         \$f=\$flag[\$f-1];
                         \$where[]="find_in_set('\$f',flag)";
@@ -232,6 +213,7 @@ str;
                         \$field['caturl']=U('category',array('cid'=>\$field['cid']));
                         \$field['url']=Url::get_content_url(\$field);
                         \$field['time']=date("Y-m-d",\$field['updatetime']);
+                        \$field['tag']=\$db->get_tag(\$field['aid']);
                         \$field['thumb']='__ROOT__'.'/'.\$field['thumb'];
                         \$field['title']=mb_substr(\$field['title'],0,$titlelen,'utf8');
                         \$field['title']=\$field['color']?"<span style='color:".\$field['color']."'>".\$field['title']."</span>":\$field['title'];
@@ -255,9 +237,9 @@ str;
         $order = isset($attr['order']) ? strtolower(trim($attr['order'])) : 'new';
         $fid = isset($attr['fid']) ? $attr['fid'] : '';
         //模型mid
-        $mid = isset($attr['mid']) ? intval($attr['mid']) :1;
+        $mid = isset($attr['mid']) ? intval($attr['mid']) : 1;
         //栏目cid
-        $cid = isset($attr['cid']) ? trim($attr['cid']) :'';
+        $cid = isset($attr['cid']) ? trim($attr['cid']) : '';
         //子栏目处理
         $sub_channel = isset($attr['sub_channel']) ? intval($attr['sub_channel']) : 1;
         $php = <<<str
@@ -265,8 +247,8 @@ str;
         \$mid =$mid;\$cid='$cid';\$fid = '$fid';\$sub_channel=$sub_channel;\$order = '$order';
         \$cid = \$cid?\$cid:Q('cid',NULL,'intval');
         //导入模型类
-        import('Content.Model.ContentViewModel');
-        \$db = K('ContentView',array('mid'=>\$mid));
+        import('ArticleModel','hd.Hdcms.Index.Model');
+        \$db = K('Article',array('mid'=>\$mid));
         //---------------------------排序Order-------------------------------
             switch(\$order){
                 case 'hot':
@@ -297,8 +279,8 @@ str;
         }
         //指定筛选属性fid='1,2,3'时,获取指定属性的文章
         if(\$fid){
+            \$flag =F('flag');
             \$fid = explode(',',\$fid);
-            \$flag = F('flag');
             foreach(\$fid as \$f){
                 \$f=\$flag[\$f-1];
                 \$where[]="find_in_set('\$f',flag)";
@@ -318,6 +300,7 @@ str;
                     \$field['url']=Url::get_content_url(\$field);
                     \$field['thumb']='__ROOT__'.'/'.\$field['thumb'];
                     \$field['title']=mb_substr(\$field['title'],0,$titlelen,'utf8');
+                    \$field['tag']=\$db->get_tag(\$field['aid']);
                     \$field['title']=\$field['color']?"<span style='color:".\$field['color']."'>".\$field['title']."</span>":\$field['title'];
                     \$field['time']=date("Y-m-d",\$field['addtime']);
                     \$field['description']=mb_substr(\$field['description'],0,$infolen,'utf-8');
@@ -354,7 +337,8 @@ str;
             \$field='aid,title,redirecturl,url_type,html_path,addtime';
         }else{
             //普通文章
-            \$db = K('ContentView');
+            import('ArticleModel','hd.Hdcms.Index.Model');
+            \$db = K('Article');
             \$field='aid,cid,title,redirecturl,url_type,html_path,addtime';
         }
         \$aid = Q('get.aid',NULL,'intval');

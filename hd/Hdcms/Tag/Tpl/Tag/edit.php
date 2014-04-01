@@ -23,7 +23,7 @@
         <input type="hidden" name="tid" value="{$field.tid}"/>
         <table class="table1">
             <tr>
-                <th class="w100">tag内容</th>
+                <th class="w100">tag</th>
                 <td>
                     <input type="text" name="tag" value="{$field.tag}" class="w200"/>
                 </td>

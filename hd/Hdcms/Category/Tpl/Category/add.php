@@ -118,7 +118,7 @@
                         <th class="w100">封面模板</th>
                         <td>
                             <input type="text" name="index_tpl" required="" class="w200" id="index_tpl"
-                                   value="{style}/article_index.html" onclick="select_template('index_tpl');"/>
+                                   value="article_index.html" onclick="select_template('index_tpl');" readonly="" onfocus="select_template('index_tpl');"/>
                             <button type="button" onclick="select_template('index_tpl');" class="hd-cancel">选择封面模板</button>
                             <span id="hd_index_tpl"></span>
                         </td>
@@ -127,7 +127,7 @@
                         <th>列表页模板</th>
                         <td>
                             <input type="text" name="list_tpl" required="" id="list_tpl" class="w200"
-                                   value="{style}/article_list.html" onclick="select_template('list_tpl');"/>
+                                   value="article_list.html" onclick="select_template('list_tpl');" readonly="" onfocus="select_template('list_tpl');"/>
                             <button type="button" onclick="select_template('list_tpl');" class="hd-cancel">选择列表模板</button>
                             <span id="hd_list_tpl"></span>
                         </td>
@@ -136,7 +136,7 @@
                         <th>内容页模板</th>
                         <td>
                             <input type="text" name="arc_tpl" required="" id="arc_tpl" class="w200"
-                                   value="{style}/article_default.html" onclick="select_template('arc_tpl');"/>
+                                   value="article_default.html" onclick="select_template('arc_tpl');" readonly="" onfocus="select_template('arc_tpl');"/>
                             <button type="button" onclick="select_template('arc_tpl');" class="hd-cancel">选择内容页模板</button>
                             <span id="hd_arc_tpl"></span>
                         </td>

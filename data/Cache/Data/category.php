@@ -1,22 +1,23 @@
 <?php if(!defined('HDPHP_PATH'))exit;
 return array (
-  3 => 
+  6 => 
   array (
-    'cid' => '3',
+    'cid' => '6',
     'pid' => '0',
-    'catname' => '可想而知',
-    'catdir' => 'kexiangerzhi',
+    'catname' => '汽车',
+    'catdir' => 'qiche',
     'cat_keyworks' => '',
     'cat_description' => '',
-    'index_tpl' => '{style}/article_index.html',
-    'list_tpl' => '{style}/article_list.html',
-    'arc_tpl' => '{style}/article_default.html',
+    'index_tpl' => 'article_index.html',
+    'list_tpl' => 'article_list.html',
+    'arc_tpl' => 'article_default.html',
+    'single_tpl' => 'single_default.html',
     'cat_html_url' => '{catdir}/list_{cid}_{page}.html',
     'arc_html_url' => '{catdir}/{y}/{m}{d}/{aid}.html',
     'mid' => '1',
     'cattype' => '1',
-    'arc_url_type' => '1',
-    'cat_url_type' => '1',
+    'arc_url_type' => '2',
+    'cat_url_type' => '2',
     'cat_redirecturl' => '',
     'catorder' => '100',
     'cat_show' => '1',
@@ -29,47 +30,11 @@ return array (
     'member_send_state' => '1',
     '_level' => 1,
     '_html' => '',
-    '_name' => '可想而知',
+    '_name' => '汽车',
     '_type_name' => '栏目',
     'model_name' => '普通文章',
     'access' => 
     array (
-      4 => 
-      array (
-        'rid' => '4',
-        'cid' => '3',
-        'mid' => '1',
-        'show' => '1',
-        'add' => '1',
-        'edit' => '0',
-        'del' => '0',
-        'order' => '0',
-        'move' => '0',
-      ),
-      2 => 
-      array (
-        'rid' => '2',
-        'cid' => '3',
-        'mid' => '1',
-        'show' => '1',
-        'add' => '1',
-        'edit' => '1',
-        'del' => '1',
-        'order' => '1',
-        'move' => '1',
-      ),
-      1 => 
-      array (
-        'rid' => '1',
-        'cid' => '3',
-        'mid' => '1',
-        'show' => '1',
-        'add' => '1',
-        'edit' => '1',
-        'del' => '1',
-        'order' => '1',
-        'move' => '1',
-      ),
     ),
   ),
 );

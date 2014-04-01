@@ -24,7 +24,7 @@ class FlagModel extends Model
     public function del_flag()
     {
         //大于7的属性可以删除（用户定义）
-        if (isset($_POST['number']) && intval($_POST['number']) > 7) {
+        if (isset($_POST['number']) && intval($_POST['number']) > 6) {
             unset($this->_flag[$_POST['number']]);
             return $this->alter_table();
         }
@@ -68,7 +68,7 @@ class FlagModel extends Model
      */
     public function update_cache()
     {
-        $result = M()->query('DESC hd_content');
+        $result = M()->query('DESC '.C('DB_PREFIX').'content');
         foreach ($result as $field) {
             if ($field['Field'] == 'flag') {
                 $tmp = substr($field['Type'], 4, -2);

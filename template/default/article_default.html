@@ -69,26 +69,28 @@
             <h2>{$hdcms.title}</h2>
 
             <p>
-                <a href="#">{$hdcms.author}</a> 发表于 12个月前 (03-28) -
+                <a href="#">{$hdcms.author}</a> 发表于 12个月前 ({$hdcms.time}) -
                 <a href="#">46条评论</a> 所属分类：<a href="#">{$hdcms.catname}</a>
             </p>
         </div>
         <div class="content">
-           {$hdcms.content}
+            {$hdcms.content}
         </div>
         <div class="tag">
-            继续浏览有关 <a href="#">wordpress</a>
-            <a href="#">Wordpress主机</a>
-            <a href="#">wordpress主题</a> 的文章
+            <if value="$hdcms.tag">
+                继续浏览有关 {$hdcms.tag} 的文章
+            </if>
         </div>
         <!--下一篇与下一篇-->
         <div class="next-article row">
             <p class="col-md-6">
-                上一篇 <pagenext pre="" get="pre"/>
+                上一篇
+                <pagenext pre="" get="pre"/>
             </p>
 
             <p class="col-md-6">
-                下一篇 <pagenext next="" get="next"/>
+                下一篇
+                <pagenext next="" get="next"/>
             </p>
         </div>
         <!--与本文相关文章-->
@@ -216,7 +218,7 @@
                             <li>
                                 <div class="hd-comment-face">
                                     <img src="__TEMPLATE__/images/face.png"/>
-                                </div>
+                                </div>Tag：
                                 <div class="hd-comment-content">
                                     路过看看
                                     <div class="hd-author-info">

@@ -9,28 +9,30 @@ class ContentViewModel extends ViewModel
     //表
     public $table;
     //副表
-    private $_stable;
+    protected $_stable;
     //模型mid
-    private $_mid;
+    protected $_mid;
     //栏目id
-    private $_cid;
+    protected $_cid;
     //文章id
-    private $_aid;
+    protected $_aid;
     //模型缓存
-    private $_model;
+    protected $_model;
     //栏目缓存
-    private $_category;
+    protected $_category;
 
     /**
      * 构造函数
+     * $options=array('mid'=>模型mid)
      */
-    public function __init()
+    public function __init($options)
     {
         //----------------缓存数据
         $this->_category = F("category");
         $this->_model = F("model");
-        $this->_mid = Q('mid', null, 'intval');
+        $this->_mid = isset($options['mid']) ? intval($options['mid']) : Q('mid', 1, 'intval');
         $this->_cid = Q('cid', null, 'intval');
+        $this->_aid = Q('aid', null, 'intval');
         //主表
         $this->table = $this->_model[$this->_mid]['table_name'];
         //副表
@@ -52,11 +54,11 @@ class ContentViewModel extends ViewModel
             ),
             'content_tag' => array(
                 'type' => LEFT_JOIN,
-                'on' => 'content.aid=content_tag.content_aid'
+                'on' => 'content.aid=content_tag.aid'
             ),
             'tag' => array(
                 'type' => LEFT_JOIN,
-                "on" => "content_tag.tag_tid=tag.tid"
+                "on" => "content_tag.tid=tag.tid"
             )
         );
         //副表关联
@@ -138,7 +140,7 @@ class ContentViewModel extends ViewModel
                 RIGHT JOIN {$this->tableFull} ON {$this->tableFull}.aid = {$pre}content_tag.aid
                 INNER JOIN {$pre}category ON {$this->tableFull}.cid = {$pre}category.cid AND {$pre}category.cid={$this->tableFull}.cid
                 INNER JOIN {$pre}user ON {$this->tableFull}.uid = {$pre}user.uid
-                WHERE $where GROUP BY {$this->tableFull}.aid LIMIT " . $page->limit(true);
+                WHERE $where GROUP BY {$this->tableFull}.aid ORDER BY {$this->tableFull}.aid DESC LIMIT " . $page->limit(true);
         $data = $this->join()->query($sql);
         return array('page' => $page_list, 'data' => $data);
     }

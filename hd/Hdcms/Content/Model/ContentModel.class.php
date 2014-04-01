@@ -1,11 +1,13 @@
 <?php
-import('Template', 'hd/Hdcms/Index/Lib');
-import('Url', 'hd/Hdcms/Index/Lib');
-import('PublicControl', 'hd/Hdcms/Index/Control');
-import('ArticleControl', 'hd/Hdcms/Index/Control');
-import('ContentTag', 'hd/Hdcms/Index/Lib');
+import('Template', 'hd.Hdcms.Index.Lib');
+import('Url', 'hd.Hdcms.Index.Lib');
+import('PublicControl', 'hd.Hdcms.Index.Control');
+import('ArticleControl', 'hd.Hdcms.Index.Control');
+import('ArticleModel', 'hd.Hdcms.Index.Model');
+import('ContentTag', 'hd.Hdcms.Index.Lib');
 import('TagModel', 'hd.Hdcms.Tag.Model');
 import('FieldModel', 'hd.Hdcms.Field.Model');
+import('UploadControl', 'hd.Hdcms.Upload.Control');
 
 /**
  * 管理员文章内容管理
@@ -223,12 +225,12 @@ class ContentModel extends RelationModel
                 if (empty($imgs[1])) {
                     return false;
                 }
-                import("Upload.Control.UploadControl");
                 $upload = new UploadControl();
                 foreach ($imgs[1] as $img) {
                     //本站图片不进行处理
                     if (strstr($img, __ROOT__)) continue;
-                    if ($d_img = $upload->down_remote_pic($img)) {
+                    $d_img = $upload->down_remote_pic($img);
+                    if (preg_match("@" . __ROOT__ . "@", $d_img)) {
                         $content = preg_replace("@$img@i", $d_img, $content);
                     }
                 }
@@ -351,7 +353,7 @@ class ContentModel extends RelationModel
         /**
          * 会员中心上传文章使用uploadify表单
          * 后台使用input表单
-         * 以下处理会员中心上传的情况
+         * 以下是处理会员中心上传的情况
          */
         if (isset($_POST['thumb']) && isset($_POST['thumb'][1]['path'])) {
             $data['thumb'] = $_POST['thumb'][1]['path'];
@@ -371,14 +373,15 @@ class ContentModel extends RelationModel
             $num = intval($data['auto_thumb_num']) - 1;
             //是否存在这张图
             if (isset($imgs[1][$num])) {
-                import("Upload.Control.UploadControl");
                 $upload = new UploadControl();
                 $d_img = $upload->down_remote_pic($imgs[1][$num]);
                 if (preg_match("@" . __ROOT__ . "@", $d_img)) {
                     $data['thumb'] = str_ireplace(__ROOT__ . '/', "", $d_img);
+                    //设置图片属性
+                    $data['flag'] = empty($data['flag']) ? '图片' : $data['flag'] . ",图片";
+                } else {
+                    $data['flag'] = trim(str_replace(array('图片', ',,'), '', $data['flag']), ',');
                 }
-                //设置图片属性
-                $data['flag'] = empty($data['flag']) ? '图片' : $data['flag'] . ",图片";
             }
         }
     }
@@ -447,7 +450,6 @@ class ContentModel extends RelationModel
             $db = K("Tag");
             foreach ($tags as $tag) {
                 $tid = $db->add_tag($tag);
-
                 //添加新tag数据
                 $content_tag->add(array('tid' => $tid, 'aid' => $aid, 'mid' => $this->_mid, 'cid' => $this->_cid, 'uid' => session('uid')));
             }

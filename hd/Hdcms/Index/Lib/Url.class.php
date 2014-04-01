@@ -48,40 +48,34 @@ final class Url
      */
     static public function get_content_url($field)
     {
-        $_category = F("category");
-        switch (strtoupper(CONTROL)) {
-            case "SINGLE":
-                //单页面处理
-                if ($field['ishtml'] == 1) {
-                    //生成静态
-                    return __ROOT__ . '/' .
-                    (empty($data['html_path']) ? C("HTML_PATH") . "/single/{$field['aid']}.html" : $data['html_path']);
-                } else {
-                    //动态访问
-                    return U('Index/Single/single', array('aid' => $field['aid']));
-                }
-            default:
-                //普通文章
-                $category = $_category[$field['cid']];
-                if (empty($field['redirecturl'])) {
-                    /**
-                     * 满足以下任意条件才生成静态
-                     * 1 文章字段定义生成静态
-                     * 2 栏目开启内容页生成静态并且生成静态规则不为空
-                     */
-                    switch ($field['url_type']) {
+        //没有跳转地址时
+        if (empty($field['redirecturl'])) {
+            /**
+             * 满足以下任意条件才生成静态
+             * 1 文章字段定义生成静态
+             * 2 栏目开启内容页生成静态并且生成静态规则不为空
+             */
+            switch ($field['url_type']) {
+                case 1:
+                    //文章字段设置为静态访问
+                    return __ROOT__ . '/' . self::get_content_html($field);
+                case 2:
+                    //文章字段设置为动态访问
+                    return U('Index/Article/show', array('mid' => $field['mid'], 'cid' => $field['cid'], 'aid' => $field['aid']));
+                case 3:
+                    //继承栏目
+                    switch ($field['arc_url_type']) {
                         case 1:
-                            //文章字段设置为静态访问
+                            //静态
                             return __ROOT__ . '/' . self::get_content_html($field);
                         case 2:
-                            //文章字段设置为动态访问
-                            return U('Index/Article/show', array('cid' => $field['cid'], 'aid' => $field['aid']));
+                            //动态
+                            return U('Index/Article/show', array('mid' => $field['mid'], 'cid' => $field['cid'], 'aid' => $field['aid']));
                     }
-                } else {
-                    //文章设置跳转地址
-                    return $field['redirecturl'];
-                }
-
+            }
+        } else {
+            //文章设置跳转地址
+            return $field['redirecturl'];
         }
 
     }

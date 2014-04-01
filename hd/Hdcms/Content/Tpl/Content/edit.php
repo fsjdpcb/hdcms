@@ -200,8 +200,9 @@
                 <tr>
                     <th>访问方式</th>
                     <td>
-                        <label><input type="radio" name="url_type" value="1" <if value="$field.url_type==3">checked="checked"</if>/> 静态</label>
-                        <label><input type="radio" name="url_type" value="2" <if value="$field.url_type==1">checked="checked"</if>/> 动态</label>
+                        <label><input type="radio" name="url_type" value="1" <if value="$field.url_type==1">checked="checked"</if>/> 静态</label>
+                        <label><input type="radio" name="url_type" value="2" <if value="$field.url_type==2">checked="checked"</if>/> 动态</label>
+                        <label><input type="radio" name="url_type" value="3" <if value="$field.url_type==3">checked="checked"</if>/> 继承栏目</label>
                     </td>
                 </tr>
                 <tr>

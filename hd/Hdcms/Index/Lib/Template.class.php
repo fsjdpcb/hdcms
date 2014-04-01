@@ -1,4 +1,5 @@
 <?php
+import('ArticleModel', 'hd.Hdcms.Index.Model');
 
 /**
  * 栏目与文章模板文件
@@ -18,11 +19,15 @@ final class Template
         switch ($category[$cid]['cattype']) {
             case 1:
                 //普通栏目
-                return str_replace('{style}', 'template/' . C("WEB_STYLE"), $category[$cid]['list_tpl']);
-                break;
+                return $category[$cid]['list_tpl'];
             case 2:
                 //封面栏目
-                return str_replace('{style}', 'template/' . C("WEB_STYLE"), $category[$cid]['index_tpl']);
+                return $category[$cid]['index_tpl'];
+            case 3:
+                //单页面栏目
+                $result = M('content_single')->where("cid=$cid")->find();
+                //单页面文章指定模板时使用指定的否则使用栏目单页面模板
+                return $result['template'] ? $result['template'] : $category[$cid]['single_tpl'];
         }
     }
 
@@ -34,21 +39,10 @@ final class Template
      */
     static public function get_content_tpl($aid, $cid = null)
     {
-        if (CONTROL == 'Single') {
-            //单页面
-            $template = M('content_single')->where("aid=$aid")->getField('template');
-            if (!empty($template)) {
-                return str_replace('{style}', 'template/' . C("WEB_STYLE"), $template);
-            }
-        } else {
-            //普通文章
-            $db = K("ContentView", array('cid' => $cid));
-            $content = $db->join("category")->find($aid);
-            $tpl = empty($content['template']) ? $content['arc_tpl'] : $content['template'];
-            if (!empty($tpl)) {
-                return str_replace('{style}', './template/' . C("WEB_STYLE"), $tpl);
-            }
-        }
+        //普通文章
+        $db = K("Article", array('cid' => $cid));
+        $content = $db->join("category")->find($aid);
+        return empty($content['template']) ? $content['arc_tpl'] : $content['template'];
     }
 
 }

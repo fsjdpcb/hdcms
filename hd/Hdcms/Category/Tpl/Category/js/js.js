@@ -26,7 +26,7 @@ $(function () {
             error: {
                 required: "封面模板不能为空"
             },
-            message:'请输入封面模板 {style}指模板风格目录'
+            message:'请输入封面模板'
         },
         list_tpl: {
             rule: {
@@ -35,7 +35,7 @@ $(function () {
             error: {
                 required: "列表页模板不能为空"
             },
-            message:'请输入列表页模板 {style}指模板风格目录'
+            message:'请输入列表页模板'
         },
         arc_tpl: {
             rule: {
@@ -44,7 +44,16 @@ $(function () {
             error: {
                 required: "内容页模板不能为空"
             },
-            message:'请输入内容页模板 {style}指模板风格目录'
+            message:'请输入内容页模板'
+        },
+        single_tpl: {
+            rule: {
+                required: true
+            },
+            error: {
+                required: "单页面模板不能为空"
+            },
+            message:'请输入单页面模板'
         },
         cat_html_url: {
             rule: {

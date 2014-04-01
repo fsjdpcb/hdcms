@@ -20,7 +20,7 @@ return array (
   'reg_email' => '1',
   'reg_interval' => '0',
   'default_member_group' => '4',
-  'admin_list_row' => '15',
+  'cache_index' => '-1',
   'token_on' => '0',
   'log_key' => 'houdunwang.com',
   'session_name' => 'hdsid',
@@ -50,5 +50,7 @@ return array (
   'weibo' => 'houdunwangxj@gmail.com',
   'tweibo' => 'houdunwang@gmail.com',
   'init_credits' => '100',
+  'cache_category' => '-1',
+  'cache_content' => '-1',
 );
 ?>

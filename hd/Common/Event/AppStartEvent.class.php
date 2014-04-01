@@ -20,6 +20,8 @@ class AppStartEvent extends Event
         define("FIELD_CACHE_PATH", 'data/cache/field/');
         //JS文件缓存目录
         define("JS_CACHE_PATH", 'data/cache/js/');
+        //视图缓存目录(模板显示数据)
+        define("CONTENT_CACHE_PATH", 'data/Cache/Content/');
     }
 
     //验证安装

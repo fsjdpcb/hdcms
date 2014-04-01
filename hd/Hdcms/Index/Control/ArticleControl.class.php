@@ -7,37 +7,68 @@
  */
 class ArticleControl extends PublicControl
 {
+    //模型
+    protected $_db;
+
+    //模型mid
+    protected $_mid;
+    //栏目id
+    protected $_cid;
+    //文章id
+    protected $_aid;
+    //文章主表
+    protected $_table;
+    //模型缓存
+    protected $_model;
+    //栏目缓存
+    protected $_category;
+
+    //构造函数
+    public function __init()
+    {
+        //----------------------设置变量----------------------
+        $this->_model = F("model");
+        $this->_category = F("category");
+        $this->_mid = Q('mid', null, 'intval');
+        $this->_cid = Q("cid", null, "intval");
+        $this->_aid = Q("aid", null, "intval");
+        $this->_db = K('Article');
+        if ($this->_cid) {
+            if (!$this->_model[$this->_category[$this->_cid]['mid']]) {
+                _404('参数错误');
+            }
+        }
+
+    }
+
     //内容页
     public function show()
     {
         if ($this->_aid) {
-            import('Content.Model.ContentViewModel');
-            $db = new ContentViewModel();
-            $field = $db->where($db->tableFull . ".aid=" . $this->_aid)->find();
+            $field = $this->_db->get_one();
             if ($field) {
                 $field['caturl'] = U("category", array("cid" => $field['cid']));
                 $field['source'] = empty($field['source']) ? C("WEBNAME") : $field['source'];
                 //获得内容模板
                 $tpl = Template::get_content_tpl($this->_aid, $this->_cid);
-                if (is_file($tpl)) {
-                    $field['time'] = date("Y/m/d");
-                    $this->hdcms = $field;
-                    $this->display($tpl);
-                } else {
-                    $this->template_error($tpl);
-                }
+                $field['time'] = date("Y/m/d");
+                $this->hdcms = $field;
+                $this->display($tpl, C('cache_article'));
             }
         }
     }
+
     //获得评论数
-    public function get_comment_num(){
-        $aid=Q('aid',null,'intval');
-        if($aid){
-             $count = M('comment')->where("aid={$aid}")->cache(60)->count('');
+    public function get_comment_num()
+    {
+        $aid = Q('aid', null, 'intval');
+        if ($aid) {
+            $count = M('comment')->where("aid={$aid}")->cache(60)->count('');
             echo "document.write($count);";
             exit;
         }
     }
+
     //修改文章点击次数
     public function updateClick()
     {

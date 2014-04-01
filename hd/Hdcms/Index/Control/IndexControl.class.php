@@ -11,11 +11,6 @@ class IndexControl extends PublicControl
     //网站首页
     public function index()
     {
-        $tpl = $this->_template . 'index.html';
-        if (is_file($tpl)) {
-            $this->display($tpl,-1);
-        } else {
-            $this->template_error('index.html');
-        }
+        $this->display('index.html',  C('cache_index'));
     }
 }

@@ -193,8 +193,9 @@
                 <tr>
                     <th>访问方式</th>
                     <td>
-                        <label><input type="radio" name="url_type" value="1" checked="checked"/> 静态</label>
+                        <label><input type="radio" name="url_type" value="1"/> 静态</label>
                         <label><input type="radio" name="url_type" value="2"/> 动态</label>
+                        <label><input type="radio" name="url_type" value="3" checked="checked"/> 继承栏目</label>
                     </td>
                 </tr>
                 <tr>

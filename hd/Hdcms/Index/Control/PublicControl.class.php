@@ -1,6 +1,5 @@
 <?php
-//视图缓存目录
-define("CONTENT_CACHE_PATH", 'data/Cache/Content');
+
 
 /**
  * 公共继承类
@@ -8,50 +7,24 @@ define("CONTENT_CACHE_PATH", 'data/Cache/Content');
  */
 class PublicControl extends CommonControl
 {
-    //模型
-    protected $_db;
     //网站模板风格
     protected $_template;
-    //模型mid
-    protected $_mid;
-    //栏目id
-    protected $_cid;
-    //文章id
-    protected $_aid;
-    //文章主表
-    protected $_table;
-    //模型缓存
-    protected $_model;
-    //栏目缓存
-    protected $_category;
 
     /**
      * 构造函数
-     * @param int $cid 栏目cid
-     * @param int $aid 文章aid
      */
-    public function __construct($cid = null, $aid = null)
+    public function __construct()
     {
         parent::__construct();
         //网站开启验证
         if (!$this->verification()) {
             $this->display("./data/Template/web_close");
             exit;
-        } else {
-            //----------------------设置变量----------------------
-            $this->_model = F("model");
-            $this->_category = F("category");
-            $this->_cid = $cid ? $cid : Q("cid", null, "intval");
-            $this->_aid = $aid ? $aid : Q("aid", null, "intval");
-            if ($this->_cid) {
-                $this->_mid = $this->_category[$this->_cid]['mid'];
-                $this->_table = $this->_model[$this->_mid]['table_name'];
-            }
-            //模板风格路径
-            $this->_template = "./template/" . C("WEB_STYLE") . '/';
-            //分配模板目录URL
-            defined("__TEMPLATE__") or define("__TEMPLATE__", __ROOT__ . "/template/" . C("WEB_STYLE"));
         }
+        //模板风格路径
+        $this->_template = "./template/" . C("WEB_STYLE") . '/';
+        //分配模板目录URL
+        defined("__TEMPLATE__") or define("__TEMPLATE__", __ROOT__ . "/template/" . C("WEB_STYLE"));
     }
 
 
@@ -87,12 +60,16 @@ class PublicControl extends CommonControl
     }
 
     /**
-     * 模板文件不存在
+     * 获得缓存目录
      */
-    protected function template_error($tpl_file)
+    protected function get_cache_path()
     {
-        $this->tpl = $tpl_file;
-        $this->display('./hd/Common/Template/template_error.html');
+        if ($cid = Q('cid', '', 'intval')) {
+            $cachePath = CONTENT_CACHE_PATH . $cid . '/';
+        } else {
+            $cachePath = CONTENT_CACHE_PATH;
+        }
+        return $cachePath;
     }
 
     /**
@@ -100,8 +77,17 @@ class PublicControl extends CommonControl
      */
     protected function display($tplFile = null, $cacheTime = null, $cachePath = null, $stat = false, $contentType = "text/html", $charset = "", $show = true)
     {
-        $cachePath = CONTENT_CACHE_PATH;
-        parent::display($tplFile,$cacheTime,$cachePath);
+        $tplFile = $this->_template . $tplFile;
+        //验证模板文件
+        if (is_file($tplFile)) {
+            //设置缓存目录
+            $cachePath = $this->get_cache_path();
+            parent::display($tplFile, $cacheTime, $cachePath);
+        } else {
+            $this->tpl_file = $tplFile;
+            parent::display('./hd/Common/Template/template_error.html');
+            exit;
+        }
 
     }
 }

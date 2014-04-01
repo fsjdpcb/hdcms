@@ -108,14 +108,14 @@ class TemplateControl extends AuthControl
     public function select_tpl()
     {
         //模板目录
-        $stylePath = ROOT_PATH . 'template/' . C("WEB_STYLE");
+        $stylePath = ROOT_PATH . 'template/' . C("WEB_STYLE").'/';
         $path = Q("get.path", $stylePath);
         $file = Dir::tree($path, "html");
         foreach ($file as $n => $v) {
             if ($v['type'] == 'dir') {
                 $file[$n]['path'] = $v['path'];
             } else {
-                $file[$n]['path'] = str_replace($stylePath, '{style}', $v['path']);
+                $file[$n]['path'] = str_replace($stylePath, '', $v['path']);
             }
         }
         $history = "";

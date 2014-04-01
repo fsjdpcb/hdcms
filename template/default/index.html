@@ -100,7 +100,7 @@
             <!--内容列表-->
             <div class="article-list">
                 <header>最新发布<span>(图文)</span></header>
-                <pagelist infolen="30" titlelen="20" fid="4" row="2">
+                <pagelist infolen="30" titlelen="20" fid="4" row="15">
                     <article>
                         <div class="pic">
                             <a href="{$field.url}">
@@ -118,6 +118,7 @@
                             <a href="{$field.url}">{$field.author}</a>
                             发表于 {$field.addtime|date_before} -
                             {$field.comment_num}条评论
+                            Tag：{$field.tag}
                         </div>
                         <p> {$field.description} </p>
                     </article>
@@ -137,7 +138,7 @@
                 </header>
                 <div>
                     <tag row="30" type="hot">
-                        <a href="{$field.url}">{$field.tag_name}({$field.total})</a>
+                        <a href="{$field.url}">{$field.tag}({$field.total})</a>
                     </tag>
                 </div>
                 <!--Tag随机变色-->

@@ -53,6 +53,8 @@ class ConfigControl extends AuthControl
             $config['water'] = $this->_db->all("type=7");
             //内容相关
             $config['content'] = $this->_db->all("type=8");
+            //性能优化
+            $config['optimize'] = $this->_db->all("type=9");
             foreach ($config as $n => $conf) {
                 foreach ($conf as $m => $c) {
                     //会员角色
@@ -96,7 +98,8 @@ str;
                                         <input type="text" name="{$c['id']}" value="{$c['value']}" class="w400"/>
                                     </td>
                                     <td>
-                                        {$c['name']}
+                                        变量名: <strong>{$c['name']}</strong>
+                                        <span class='validate-message'>{$c['message']}</span>
                                     </td>
                                 </tr>
 str;

@@ -25,6 +25,7 @@
                 <li lab="content"><a href="#">内容相关</a></li>
                 <li lab="water"><a href="#">水印设置</a></li>
                 <li lab="safe"><a href="#">安全配置</a></li>
+                <li lab="optimize"><a href="#">性能优化</a></li>
                 <li lab="grand"><a href="#">高级配置</a></li>
             </ul>
             <div class="tab_content">
@@ -70,7 +71,13 @@
                         </list>
                     </table>
                 </div>
-
+                <div id="optimize">
+                    <table class="table1">
+                        <list from="$config.optimize" name="c">
+                            {$c.html}
+                        </list>
+                    </table>
+                </div>
                 <div id="grand">
                     <table class="table1">
                         <list from="$config.grand" name="c">
