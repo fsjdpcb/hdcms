@@ -14,7 +14,7 @@ class UserControl extends AuthControl
      */
     public function index()
     {
-        if (Q('state')) {
+        if (isset($_GET['state'])) {
             $this->_db->where("state=" . Q("state"));
         }
         $this->data = $this->_db->order("uid ASC")->where("admin=0")->all();
@@ -71,11 +71,12 @@ class UserControl extends AuthControl
     public function check_username()
     {
         $username = Q('username');
-        //编辑时，去年当前会员组
+        //编辑时，去除当前会员组
+        $db= M("user");
         if ($uid = Q("uid")) {
-            $this->_db->join()->where("uid<>$uid");
+            $db->where("uid<>$uid");
         }
-        echo $this->_db->join()->where("username='$username'")->find() ? 0 : 1;
+        echo $db->where("username='$username'")->find() ? 0 : 1;
         exit;
     }
 
@@ -84,14 +85,15 @@ class UserControl extends AuthControl
      */
     public function check_email()
     {
+        $db =M('user');
         $email = Q('email');
         if (empty($email)) {
             $this->ajax(1);
         } else {
             if ($uid = Q("uid")) {
-                $this->_db->join()->where("uid<>$uid");
+                $db->where("uid<>$uid");
             }
-            echo $this->_db->join()->where("email='$email'")->find() ? 0 : 1;
+            echo $db->where("email='$email'")->find() ? 0 : 1;
             exit;
         }
     }

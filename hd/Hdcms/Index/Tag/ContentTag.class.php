@@ -1,4 +1,6 @@
 <?php
+import('Template', 'hd.Hdcms.Index.Lib');
+import('Url', 'hd.Hdcms.Index.Lib');
 
 /**
  * HDCMS标签库
@@ -14,11 +16,13 @@ class ContentTag
         'comment' => array('block' => 1, 'level' => 4),
         'pagelist' => array('block' => 1, 'level' => 4),
         'pageshow' => array('block' => 0),
-        'pagepath' => array('block' => 0),
+        'location' => array('block' => 0),
         'pagenext' => array('block' => 0),
         'include' => array('block' => 0),
         'navigate' => array('block' => 0),
         'tag' => array('block' => 1),
+        'user' => array('block' => 1),
+        'comment' => array('block' => 1),
     );
 
     //加载模板标签
@@ -51,7 +55,7 @@ class ContentTag
                 break;
         }
         foreach(\$result as \$field):
-            \$field['url']=U('Search/Search/search',array('g'=>'Hdcms','tag'=>\$field['tag'],'type'=>'tag'));
+            \$field['url']=U('Search/Search/search',array('g'=>'Hdcms','word'=>\$field['tag'],'type'=>'tag'));
         ?>
 str;
         $php .= $content;
@@ -60,7 +64,7 @@ str;
     }
 
     //评论显示标签
-    public function _comment($attr, $content)
+    public function _cofdmment($attr, $content)
     {
         $row = isset($attr['row']) ? $attr['row'] : 10;
         $php = <<<str
@@ -112,7 +116,7 @@ str;
                     break;
             }
         }
-        \$result = \$db->where(\$where)->where("cat_show=1")->order()->order("catorder DESC")->limit($row)->all();
+        \$result = \$db->where(\$where)->where("cat_show=1")->order()->order("catorder ASC")->limit($row)->all();
         //无结果
         if(\$result){
             //当前栏目,用于改变样式
@@ -141,15 +145,14 @@ str;
         //属性
         $fid = isset($attr['fid']) ? trim($attr['fid']) : '';
         //获取类型（排序）
-        $order = isset($attr['order']) ? strtolower(trim($attr['order'])) : 'new';
+        $type = isset($attr['type']) ? strtolower(trim($attr['type'])) : 'new';
         //子栏目处理
         $sub_channel = isset($attr['sub_channel']) ? intval($attr['sub_channel']) : 1;
         $php = <<<str
-        <?php \$mid="$mid";\$cid ='$cid';\$fid='$fid';\$aid='$aid';\$order='$order';\$sub_channel=$sub_channel;
+        <?php \$mid="$mid";\$cid ='$cid';\$fid='$fid';\$aid='$aid';\$type='$type';\$sub_channel=$sub_channel;
             //设置cid条件
             \$cid = \$cid?\$cid:Q('cid',null,'intval');
             //导入模型类
-            import('ArticleModel','hd.Hdcms.Index.Model');
             \$db = K('Article',array('mid'=>\$mid));
             //主表（有表前缀）
             \$table=\$db->tableFull;
@@ -158,7 +161,7 @@ str;
                 \$cid= Q('cid',NULL,'intval');
             }
             //---------------------------排序类型-------------------------------
-            switch(\$order){
+            switch(\$type){
                 case 'hot':
                     //查询次数最多
                     \$db->order('click DESC');
@@ -166,6 +169,27 @@ str;
                 case 'rand':
                     //随机排序
                     \$db->order('rand()');
+                    break;
+                case 'relative':
+                    //与本文相关的，按标签相关联的
+                    if(!empty(\$_GET['aid']) && is_numeric(\$_GET['aid'])){
+                        \$_aid = \$_GET['aid'];
+                        \$_tag = M('content_tag')->field('tid')->where("mid=\$mid AND aid=\$_aid")->limit(10)->all();
+                        if(\$_tag){
+                            \$_tid=array();
+                            foreach(\$_tag as \$tid){
+                                \$_tid['tid'][]=\$tid['tid'];
+                            }
+                            \$_result = M('content_tag')->field('aid')->where(\$_tid)->where("aid <>\$_aid")->group('aid')->all();
+                            if(!empty(\$_result)){
+                                \$_tag_aid=array();
+                                foreach(\$_result as \$d){
+                                    \$_tag_aid[]=\$d['aid'];
+                                }
+                                \$db->where("aid IN(".implode(',',\$_tag_aid).")");
+                            }
+                        }
+                    }
                     break;
                 case 'new':
                 default:
@@ -203,16 +227,17 @@ str;
                 \$where = implode(" AND ",\$where);
                 //------------------关联content_flag表后有重复数据，去掉重复的文章---------------------
                 \$db->group=\$table.'.aid';
-                //------------------指定显示条数---------------------------------------------
+                //---------------------------------指定显示条数--------------------------------------
                 \$db->limit($row);
-            //--------------------------获取数据------------------------------------
-                \$result = \$db->join('category,content_flag')->where(\$where)->all();
+                //-----------------------------------获取数据----------------------------------------
+                \$result = \$db->join('category')->where(\$where)->all();
                 if(\$result):
                     foreach(\$result as \$index=>\$field):
                         \$field['index']=\$index+1;
                         \$field['caturl']=U('category',array('cid'=>\$field['cid']));
                         \$field['url']=Url::get_content_url(\$field);
                         \$field['time']=date("Y-m-d",\$field['updatetime']);
+                        \$field['date_before']=date_before(\$field['addtime']);
                         \$field['tag']=\$db->get_tag(\$field['aid']);
                         \$field['thumb']='__ROOT__'.'/'.\$field['thumb'];
                         \$field['title']=mb_substr(\$field['title'],0,$titlelen,'utf8');
@@ -247,7 +272,6 @@ str;
         \$mid =$mid;\$cid='$cid';\$fid = '$fid';\$sub_channel=$sub_channel;\$order = '$order';
         \$cid = \$cid?\$cid:Q('cid',NULL,'intval');
         //导入模型类
-        import('ArticleModel','hd.Hdcms.Index.Model');
         \$db = K('Article',array('mid'=>\$mid));
         //---------------------------排序Order-------------------------------
             switch(\$order){
@@ -262,7 +286,7 @@ str;
                 case 'new':
                 default:
                     //最新排序
-                    \$order='updatetime DESC';
+                    \$order='aid DESC';
                     break;
             }
         //----------------------------条件Where-------------------------------------
@@ -289,9 +313,9 @@ str;
         \$where= implode(' AND ',\$where);
         //-------------------------获得数据-----------------------------
         //关联表
-        \$join = "content_flag,category";
+        \$join = "content_flag,category,user";
         \$count = \$db->join(\$join)->order("arc_sort ASC")->where(\$where)->count(\$db->tableFull.'.aid');
-        \$page= new Page(\$count,$row);
+        \$page= new Page(\$count,$row,'','','','?list_'.\$_GET['cid'].'_{page}.html','{page}');
         \$result= \$db->join(\$join)->order("arc_sort ASC")->where(\$where)->order(\$order)->limit(\$page->limit())->all();
         if(\$result):
             //有结果集时处理
@@ -299,9 +323,11 @@ str;
                     \$field['caturl']=U('category',array('cid'=>\$field['cid']));
                     \$field['url']=Url::get_content_url(\$field);
                     \$field['thumb']='__ROOT__'.'/'.\$field['thumb'];
-                    \$field['title']=mb_substr(\$field['title'],0,$titlelen,'utf8');
+                    \$field['member']='__WEB__'.'?'.\$field['username'];//会员中心
+                    \$field['date_before']=date_before(\$field['addtime']);
                     \$field['tag']=\$db->get_tag(\$field['aid']);
-                    \$field['title']=\$field['color']?"<span style='color:".\$field['color']."'>".\$field['title']."</span>":\$field['title'];
+                    \$_title=mb_substr(\$field['title'],0,$titlelen,'utf8');
+                    \$field['title']=\$field['color']?"<span style='color:".\$field['color']."'>".\$_title."</span>":\$_title;
                     \$field['time']=date("Y-m-d",\$field['addtime']);
                     \$field['description']=mb_substr(\$field['description'],0,$infolen,'utf-8');
             ?>
@@ -325,39 +351,33 @@ str;
 
     public function _pagenext($attr, $content)
     {
-        $get = isset($attr['get']) ? $attr['get'] : 'pre,next';
+        $type = isset($attr['type']) ? $attr['type'] : 'pre,next';
         $pre_str = isset($attr['pre']) ? $attr['pre'] : "上一篇: ";
         $next_str = isset($attr['next']) ? $attr['next'] : "上一篇: ";
+        $titlelen = isset($attr['titlelen']) ? intval($attr['titlelen']) : 10;
         $php = <<<str
         <?php
-        \$get='$get';
-        if(METHOD=='single'){
-            //单页面
-            \$db=M('content_single');
-            \$field='aid,title,redirecturl,url_type,html_path,addtime';
-        }else{
-            //普通文章
-            import('ArticleModel','hd.Hdcms.Index.Model');
-            \$db = K('Article');
-            \$field='aid,cid,title,redirecturl,url_type,html_path,addtime';
-        }
+        \$type='$type';\$titlelen = $titlelen;
+        \$db = K('Article');
         \$aid = Q('get.aid',NULL,'intval');
         //上一篇
-        if(strstr(\$get,'pre')){
-            \$content = \$db->join()->trigger()->field(\$field)->where("aid<\$aid")->order("aid desc")->find();
+        if(strstr(\$type,'pre')){
+            \$content = \$db->join('category')->where("aid<\$aid")->order("aid desc")->find();
             if (\$content) {
+                \$content['title']=mb_substr(\$content['title'],0,\$titlelen,'utf-8');
                 \$url = Url::get_content_url(\$content);
-                echo "$pre_str <a href='\$url'>" . \$content['title'] . "</a>";
+                echo "$pre_str <a href='".\$url."'>" . \$content['title'] . "</a>";
             } else {
                 echo "$pre_str <span>没有了</span></li>";
             }
         }
         //下一篇
-        if(strstr(\$get,'next')){
-            \$content = \$db->join()->trigger()->field(\$field)->where("aid>\$aid")->order("aid ASC")->find();
+        if(strstr(\$type,'next')){
+            \$content = \$db->join('category')->where("aid>\$aid")->order("aid ASC")->find();
             if (\$content) {
+                \$content['title']=mb_substr(\$content['title'],0,\$titlelen,'utf-8');
                 \$url = Url::get_content_url(\$content);
-                echo "$next_str <a href='\$url'>" . \$content['title'] . "</a>";
+                echo "$next_str <a href='".\$url."'>" . \$content['title'] . "</a>";
             } else {
                 echo "$next_str <span>没有了</span>";
             }
@@ -368,18 +388,20 @@ str;
     }
 
     //当前位置
-    public function _pagepath($attr, $content)
+    public function _location($attr, $content)
     {
+        $sep = isset($attr['sep']) ? $attr['sep'] : ' > '; //分隔符
         $php = <<<str
         <?php
+        \$sep = "$sep";
         if(!empty(\$_GET['cid'])){
-            \$cat = F("category",false,CATEGORY_CACHE_PATH);
+            \$cat = F("category");
             \$cat= array_reverse(Data::parentChannel(\$cat,\$_GET['cid']));
-            \$str = "<a href='__ROOT__'>首页</a> > ";
+            \$str = "<a href='__ROOT__'>首页</a>{$sep}";
             foreach(\$cat as \$c){
-                \$str.="<a href='".Url::get_category_url(\$c['cid'])."'>".\$c['title'].'</a> > ';
+                \$str.="<a href='".Url::get_category_url(\$c)."'>".\$c['catname']."</a>".\$sep;
             }
-            echo \$str;
+            echo substr(\$str,0,-(strlen(\$sep)));
         }
         ?>
 str;
@@ -427,4 +449,53 @@ str;
         $php .= '<?php endforeach;endif;?>';
         return $php;
     }
+
+    //获得用户
+    public function _user($attr, $content)
+    {
+        $row = isset($attr['row']) ? $attr['row'] : 20;
+        $php=<<<str
+        <?php
+            \$db=M('user');
+            \$pre=C('DB_PREFIX');
+            \$sql = "SELECT uid,nickname,domain,ifnull(icon50,'__ROOT__/data/images/user/50.png') AS icon FROM ".\$pre."user AS u
+                JOIN ".\$pre."user_icon AS ui ON u.uid=ui.user_uid ORDER BY credits DESC limit $row";
+            \$data = \$db->query(\$sql);
+            foreach(\$data as \$field):
+                \$_tmp = empty(\$field['domain']) ? \$field['uid'] : \$field['domain'];
+                \$field['url'] = ' __ROOT__ /index.php?' . \$_tmp;
+            ?>
+str;
+        $php.=$content;
+        $php.="<?php endforeach;?>";
+        return $php;
+
+    }
+    //获得评论
+    public function _comment($attr, $content)
+    {
+        $row = isset($attr['row']) ? $attr['row'] : 20;
+        $len = isset($attr['titlelen']) ? $attr['titlelen'] : 20;
+        $php=<<<str
+        <?php
+            \$db=M('comment');
+            \$pre=C('DB_PREFIX');
+            \$sql = "SELECT u.uid,mid,cid,aid,nickname,pubtime,content,domain,ifnull(icon50,'__ROOT__/data/images/user/50.png') AS icon FROM ".\$pre."user AS u
+                JOIN ".\$pre."user_icon AS ui ON u.uid=ui.user_uid
+                JOIN ".\$pre."comment AS c ORDER BY comment_id DESC limit $row";
+            \$data = \$db->query(\$sql);
+            foreach(\$data as \$field):
+                \$_tmp = empty(\$field['domain']) ? \$field['uid'] : \$field['domain'];
+                \$field['userlink'] = ' __ROOT__/index.php?' . \$_tmp;
+                \$field['url']=U('Index/Article/show',array('mid'=>\$field['mid'],'cid'=>\$field['cid'],'aid'=>\$field['aid']));
+                \$field['content'] =mb_substr(\$field['content'],0,$len,'utf-8');
+                \$field['pubtime'] =date_before(\$field['pubtime']);
+            ?>
+str;
+        $php.=$content;
+        $php.="<?php endforeach;?>";
+        return $php;
+
+    }
+
 }

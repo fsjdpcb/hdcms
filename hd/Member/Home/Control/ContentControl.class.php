@@ -1,6 +1,6 @@
 <?php
 //导入栏目操作模型
-import('CategoryModel', 'hd/Hdcms/Category/Model');
+import('CategoryModel', 'hd.Hdcms.Category.Model');
 
 /**
  * 文章管理
@@ -38,7 +38,7 @@ class ContentControl extends MemberAuthControl
         } else {
             $this->_mid = 1;
         }
-        $this->_db = K("MemberContent");
+        $this->_db = K("Content");
     }
 
     /**
@@ -51,7 +51,7 @@ class ContentControl extends MemberAuthControl
          * page=>页码
          * data=>文章内容
          */
-        $db = K('MemberContentView');
+        $db = K('ContentView');
         $this->assign($db->get_content());
         $this->display();
     }
@@ -113,14 +113,6 @@ class ContentControl extends MemberAuthControl
         }
     }
 
-    /**
-     * keditor 编辑器图片上传处理方法
-     */
-    public function keditor_upload()
-    {
-        import('UploadControl', 'hd.Hdcms.Upload.Control');
-        O('UploadControl', __FUNCTION__);
-    }
 
     /**
      * keditor 编辑器图片上传处理方法
@@ -144,26 +136,27 @@ class ContentControl extends MemberAuthControl
                 $this->_ajax(1, '修改文章成功');
             }
         } else {
-            if ($this->_aid and $this->_cid) {
-                $field = $this->_db->where("aid={$this->_aid} and uid=" . session('uid'))->find();
-                if (!$field) {
-                    $this->error('文章不存在参数错误');
-                }
-                //分配栏目
-                $this->category = $this->_category[$this->_cid];
-                //模型type为1时即标准模型，显示编辑器、关键字等字段
-                $this->model = $this->_model[$this->_mid];
-
-                $field['thumb_img'] = empty($field['thumb']) || !is_file($field['thumb']) ? __ROOT__ . '/hd/static/img/upload-pic.png' : __ROOT__ . '/' . $field['thumb'];
-                $this->field = $field;
+            $aid = Q("aid", null, "intval");
+            if ($aid) {
+                //文章字段数据
+                $field = $this->_db->get_one_content($aid);
+                //FLAG属性
+                $this->flag = F('flag');
                 //自定义字段处理
-                import('Field/Model/FieldModel');
-                //FieldModel模型使用mid参数
-                $_REQUEST['mid'] = $this->_category[$this->_cid]['mid'];
-                //自定义字段
-                import('FieldModel', 'hd/Hdcms/Field/Model');
-                $fieldModel = new FieldModel();
-                $this->custom_field = $fieldModel->field_view($field);
+                $this->custom_field = $this->_db->get_current_field_view($aid);
+                //分配缩略图数据
+                if (!empty($field['thumb']) && is_file($field['thumb'])) {
+                    $thumb = array(
+                        0 => array(
+                            'path' => $field['thumb'], //原图路径
+                            'thumb' => array( //缩略图列表
+                                $field['thumb']
+                            )
+                        )
+                    );
+                    $this->thumb = $thumb;
+                }
+                $this->field = $field;
                 $this->display();
             }
         }

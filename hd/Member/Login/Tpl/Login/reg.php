@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>仿大前端首页</title>
+    <title>{$hd.config.webname}</title>
     <link rel="shortcut icon" href="favicon.ico">
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,30 +9,37 @@
     <bootstrap/>
     <link rel="stylesheet/less" href="__CONTROL_TPL__/css/reg.less?ver=1.0 "/>
     <less/>
-    <js file="__CONTROL_TPL__/js/js.js"/>
+    <script>
+        $(function () {
+            var error = '{$error}';
+            if (error) {
+                $("div#error_tips").show().html(error);
+                setTimeout(function(){ $("div#error_tips").hide().html('')},5000);
+            }
+        })
+    </script>
 </head>
 <body>
 <div class="header container">
-    <a href="#">
+    <a href="__ROOT__">
         后盾网 人人做后盾
     </a>
 </div>
 <div class="content container">
     <header>
-        <span>求职者注册</span>
+        <span>盾友注册</span>
 
-        <p>海量名企职位，拓展人脉关系，体验社交招聘，让伯乐主动联系你</p>
+        <p>拓展人脉关系，体验分享乐趣，让技术真正属于你，后盾网 人人做后盾！</p>
         <strong>客户服务邮箱 <a href="mailto:{$hd.config.email}">{$hd.config.email}</a></strong>
     </header>
     <article class="row">
-
         <div class="field col-md-8">
-            <div class="alert alert-warning hide"></div>
-            <form class="form-horizontal" role="form" method="post" action="__URL__" onsubmit="return false;">
+            <div id="error_tips" class="alert alert-warning " style="display: none"></div>
+            <form class="form-horizontal" role="form" method="post" action="__URL__">
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-3 control-label">帐　号：</label>
                     <div class="col-sm-7">
-                        <input type="text" name="username" class="form-control" id="inputEmail3" placeholder="请输入帐号" title='字母与数字组成，不能小于5位' pattern="\w{5,}" required=""/>
+                        <input type="text" name="username" class="form-control" id="inputEmail3" placeholder="请输入帐号" title='字母与数字组成，不能小于5位' pattern=".{3,}" required=""/>
                     </div>
                 </div>
                 <div class="form-group">
@@ -50,7 +57,14 @@
                 <div class="form-group">
                     <label for="inputPassword3" class="col-sm-3 control-label">确认密码：</label>
                     <div class="col-sm-7">
-                        <input type="password" name="password_c" class="form-control" id="inputPassword3" placeholder="Password" required=""/>
+                        <input type="password" name="passwordc" class="form-control" id="inputPassword3" placeholder="Password" required=""/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-3 control-label">验证码：</label>
+                    <div class="col-sm-7">
+                        <input type="text" name="code" class="form-control" placeholder="验证码" required=""/><br/>
+                        <img src="__CONTROL__&m=code&g=Member" style="cursor: pointer" onclick="this.src='__CONTROL__&m=code&g=Member&_'+Math.random()"/>
                     </div>
                 </div>
                 <div class="form-group">
@@ -61,7 +75,7 @@
             </form>
         </div>
         <div class="field col-md-4">
-            > 已经有 账号？ <a href="?login">立即登录</a>
+            > 已经有 账号？ <a href="?a=Login&c=Login&m=login&g=Member">立即登录</a>
         </div>
     </article>
 </div>

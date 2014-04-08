@@ -23,7 +23,7 @@
             <td class="w150">登录时间</td>
             <td class="w150">注册IP</td>
             <td class="w150">最近登录IP</td>
-            <td class="w150">已审核</td>
+            <td class="w150">锁定</td>
             <td class="w150">积分</td>
             <td class="w100">操作</td>
         </tr>
@@ -38,7 +38,7 @@
                 <td>{$d.regip}</td>
                 <td>{$d.lastip}</td>
                 <td>
-                    <if value="$d.state">
+                    <if value="$d.state==0">
                         <font color="red">√</font>
                         <else/>
                         ×

@@ -64,7 +64,7 @@ class ContentControl extends AuthControl
     //已审核文章内容页列表
     public function content()
     {
-        $this->assign(K("ContentView")->search());
+        $this->assign(K("ContentView")->get_article());
         //分配属性flag
         $this->flag = F('flag');
         $this->display();

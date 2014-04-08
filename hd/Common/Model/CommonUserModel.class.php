@@ -83,7 +83,7 @@ class CommonUserModel extends ViewModel
         }
         //-----------------------帐号-----------------
         $username = Q("post.username", NULL, 'htmlspecialchars,strip_tags,addslashes');
-        if (empty($username) || ! preg_match('@^[a-z]\w{4,}$@i',$username)) {
+        if (empty($username) || ! preg_match('@^.{3,}$@i',$username)) {
             $this->error = '帐号输入错误';
             return false;
         }
@@ -126,6 +126,9 @@ class CommonUserModel extends ViewModel
         if ($this->error) {
             return false;
         } else {
+            if(isset($_SESSION['admin'])){
+                unset($_SESSION['admin']);
+            }
             $code = $this->get_user_code();
             $_POST['code'] = $code;
             $_POST['username'] = $username;

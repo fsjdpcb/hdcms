@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 内容关键字搜索(只适应文章模型）
+ * 内容关键字搜索
  * Class IndexControl
  * @author <houdunwangxj@gmail.com>
  */
@@ -32,13 +32,16 @@ class SearchControl extends Control
     //搜索内容
     public function search()
     {
-        $result = $this->_db->search();
-        $this->assign("data", $result['data']);
-        $this->assign("page", $result['page']);
-        $this->display("./template/plug/search_list.html");
+        if (!Q('word') || !Q('type')) {
+            $this->error("参数错误");
+        } else {
+            $data = $this->_db->search();
+            $this->assign($data);
+            $this->display();
+        }
     }
 
-    /**搜索关键词
+    /**热门搜索词
      * 前台通过js调用
      * <script type="text/javascript" src="__ROOT__/index.php?a=Search&c=Search&m=search_word&row=10"></script>
      */

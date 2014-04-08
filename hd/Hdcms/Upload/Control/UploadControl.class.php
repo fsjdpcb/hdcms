@@ -6,7 +6,7 @@ import('UploadModel', 'hd.Hdcms.Upload.Model');
  * Class IndexControl
  * @author hdxj<houdunwangxj@gmail.com>
  */
-class UploadControl extends CommonControl
+class UploadControl extends Control
 {
     //模型
     protected $_db;
@@ -137,6 +137,26 @@ class UploadControl extends CommonControl
             echo "{'url':'" . $file['url'] . "','title':'" . $title . "','original':'" . $file["filename"] . "','state':'" . $file["state"] . "'}";
         }
         exit;
+    }
+
+    /**
+     * Keditor 编辑器图片上传处理方法
+     */
+    public function keditor_upload()
+    {
+        $upload = new Upload(C('EDITOR_SAVE_PATH'), '', intval($_GET['uploadsize']));
+        $file = $upload->upload();
+        if (!$file) {
+            echo json_encode(array('error' => 1, 'message' => $upload->error));
+            exit;
+        } else {
+            $file = $file[0];
+            $model = K("Upload");
+            $model->save_to_table($file);
+            $file_url = __ROOT__ . '/' . $file['path'];
+            echo json_encode(array('error' => 0, 'url' => $file_url));
+            exit;
+        }
     }
 
     /**

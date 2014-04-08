@@ -43,7 +43,7 @@ class CategoryControl extends AuthControl
     public function dir_to_pinyin()
     {
         $dir = String::pinyin(Q("catname"));
-        echo $dir?$dir:Q('catname');
+        echo $dir ? $dir : Q('catname');
         exit;
     }
 
@@ -58,8 +58,8 @@ class CategoryControl extends AuthControl
         } else {
             $this->category = $this->_category;
             //获得角色
-            $this->role_admin= $this->_db->table('role')->join()->where('admin=1')->all();
-            $this->role_user= $this->_db->table('role')->join()->where('admin=0')->all();
+            $this->role_admin = $this->_db->table('role')->join()->where('admin=1')->all();
+            $this->role_user = $this->_db->table('role')->join()->where('admin=0')->all();
             $this->model = $this->_model;
             $this->display();
         }
@@ -90,9 +90,9 @@ class CategoryControl extends AuthControl
             $this->field = $field;
             $this->category = $category;
             //分配角色权限
-            $this->role_admin=$this->_db->get_access_list($this->_cid,1);
+            $this->role_admin = $this->_db->get_access_list($this->_cid, 1);
             //普通用户组
-            $this->role_user= $this->_db->get_access_list($this->_cid,0);
+            $this->role_user = $this->_db->get_access_list($this->_cid, 0);
             $this->display();
         }
     }
@@ -101,7 +101,7 @@ class CategoryControl extends AuthControl
     public function update_order()
     {
         if ($this->_db->update_order())
-            $this->ajax(array('state' => 1, 'message' => '更改排序成功'));
+            $this->_ajax(1, '更改排序成功');
     }
 
     /**
@@ -110,7 +110,7 @@ class CategoryControl extends AuthControl
     public function update_cache()
     {
         if ($this->_db->update_cache())
-            $this->ajax(array('state' => 1, 'message' => '更新缓存成功'));
+            $this->_ajax(1, '更新缓存成功');
     }
 
     //删除栏目
@@ -118,11 +118,11 @@ class CategoryControl extends AuthControl
     {
         //存在子栏目不允许删除
         if ($this->_db->find("pid=" . $this->_cid)) {
-            $this->ajax(array('state' => 0, 'message' => '请先删除子栏目'));
+            $this->_ajax(0, '请先删除子栏目');
         }
         //存在文章不允许删除
         if ($this->_db->del_category()) {
-            $this->ajax(array('state' => 1, 'message' => '删除栏目成功'));
+            $this->_ajax(1, '删除栏目成功');
         }
     }
 }

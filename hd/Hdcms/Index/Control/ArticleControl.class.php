@@ -47,11 +47,12 @@ class ArticleControl extends PublicControl
         if ($this->_aid) {
             $field = $this->_db->get_one();
             if ($field) {
-                $field['caturl'] = U("category", array("cid" => $field['cid']));
+                $field['caturl'] = U("Index/Category/category", array("cid" => $field['cid']));
                 $field['source'] = empty($field['source']) ? C("WEBNAME") : $field['source'];
                 //获得内容模板
                 $tpl = Template::get_content_tpl($this->_aid, $this->_cid);
-                $field['time'] = date("Y/m/d");
+                $field['time'] = date("Y/m/d", $field['addtime']);
+                $field['date_before'] = date_before($field['addtime']);
                 $this->hdcms = $field;
                 $this->display($tpl, C('cache_article'));
             }
@@ -95,5 +96,24 @@ class ArticleControl extends PublicControl
         $field = $this->_db->JOIN(NULL)->find($aid);
         echo "document.write({$field['click']})";
         exit;
+    }
+
+    /**
+     * 加入收藏夹
+     */
+    public function add_favorite()
+    {
+        $data = array(
+            'mid' => $this->_mid,
+            'cid' => $this->_cid,
+            'aid' => $this->_aid,
+            'uid' => $_SESSION['uid']
+        );
+        M("favorite")->where($data)->del();
+        if (M("favorite")->add($data)) {
+            $this->_ajax(1, '添加收藏夹成功!');
+        } else {
+            $this->_ajax(0, '添加失败');
+        }
     }
 }

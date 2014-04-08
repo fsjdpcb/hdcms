@@ -49,14 +49,11 @@ class ArticleModel extends ViewModel
                 'type' => INNER_JOIN,
                 'on' => 'model.mid=category.mid'
             ),
-            'content_tag' => array(
+            "content_tag" => array(
                 'type' => LEFT_JOIN,
-                'on' => 'content.aid=content_tag.aid'
+                'on' => $this->table . '.aid=content_tag.aid',
+                'as'
             ),
-            'tag' => array(
-                'type' => LEFT_JOIN,
-                "on" => "content_tag.tid=tag.tid"
-            )
         );
         //副表关联
         $this->view [$this->_stable] = array(
@@ -70,7 +67,7 @@ class ArticleModel extends ViewModel
      */
     public function get_one()
     {
-        $field = $this->where($this->tableFull . '.aid=' . $this->_aid)->find();
+        $field = $this->join('category,user,model,'.$this->_stable)->where($this->tableFull . '.aid=' . $this->_aid)->find();
         //获得tag
         $field['tag'] = $this->get_tag($this->_aid);
         return $field;
@@ -90,7 +87,7 @@ class ArticleModel extends ViewModel
         $tag = '';
         if (!empty($tag_result)) {
             foreach ($tag_result as $t) {
-                $url = U('Search/Search/search', array('g' => 'Hdcms', 'tag' => $t['tag'], 'type' => 'tag'));
+                $url = U('Search/Search/search', array('g' => 'Hdcms', 'word' => $t['tag'], 'type' => 'tag'));
                 $tag .= " <a href='$url'>{$t['tag']}</a> ";
             }
         }

@@ -5,18 +5,11 @@
     <link rel="shortcut icon" href="favicon.ico">
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="__TEMPLATE__/css/bootstrap.min.css">
-    <!-- Jquery -->
-    <script src="__TEMPLATE__/js/jquery.min.js"></script>
-    <script src="__TEMPLATE__/js/bootstrap.min.js"></script>
-
-    <!--[if lt IE 9]>
-    <script src="__TEMPLATE__/js/html5shiv.min.js"></script>
-    <script src="__TEMPLATE__/js/respond.min.js"></script>
-    <![endif]-->
-    <link rel="stylesheet/less" href="__TEMPLATE__/css/style.less?ver=1.0"/>
-    <script type="text/javascript" src="__TEMPLATE__/js/less-1.5.0.min.js"></script>
+    <jquery/>
+    <bootstrap/>
+    <link rel="stylesheet" type="text/css" href="__TEMPLATE__/css/comment.css?ver=1.0 "/>
+    <link rel="stylesheet/less" href="__TEMPLATE__/css/index.less?ver=1.0 "/>
+    <less/>
 </head>
 <body>
 <article class="header container">
@@ -26,13 +19,15 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">首页</a></li>
+                <li class="active"><a href="__ROOT__">首页</a></li>
                 <channel type="top">
                     <li><a href='{$field.url}'>{$field.catname}</a></li>
                 </channel>
             </ul>
-            <form class="navbar-form navbar-left" role="search" action="__WEB__?g=Hdcms&a=search&c=search">
+            <form class="navbar-form navbar-left" role="search" method="post"
+                  action="__WEB__?g=Hdcms&a=Search&c=Search&m=search">
                 <div class="form-group">
+                    <input type="hidden" name='type' class="form-control" value="tag">
                     <input type="text" name='word' class="form-control" placeholder="输入关键字搜索">
                 </div>
                 <button type="submit" class="btn btn-primary">搜索</button>
@@ -45,21 +40,23 @@
                     </a>
                     <if value="$hd.session.uid">
                         <ul class="dropdown-menu">
-                            <li><a href="__WEB__?g=Member&a=Home&c=Home&m=index">我的文章</a></li>
+                            <li><a href="__WEB__?a=Home&c=User&m=edit&g=Member">修改资料</a></li>
+                            <li><a href="__WEB__?a=Home&c=Content&m=index&g=Member">我的文章</a></li>
+                            <li><a href="__WEB__?a=Home&c=Content&m=index&g=Member">我的消息</a></li>
+                            <li><a href="__WEB__?a=Home&c=Favorite&m=index&g=Member">我的收藏</a></li>
+                            <li><a href="__WEB__?a=Login&c=login&m=quit&g=Member">退出</a></li>
                         </ul>
-                    <else>
-                        <ul class="dropdown-menu">
-                            <li><a href="?login">登录</a></li>
-                            <li><a href="?reg">注册</a></li>
-                        </ul>
+                        <else>
+                            <ul class="dropdown-menu">
+                                <li><a href="?a=Login&c=Login&m=login&g=Member">登录</a></li>
+                                <li><a href="?a=Login&c=Login&m=reg&g=Member">注册</a></li>
+                            </ul>
                     </if>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">后盾网 <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="http://www.hdphp.com">HDPHP框架</a></li>
-                        <li><a href="http://www.hdphp.com">HDCMS系统</a></li>
-                        <li><a href="http://www.kuaixuewang.com">快学网</a></li>
+                        <li><a href="http://www.houdunwang.com">后盾网</a></li>
                         <li><a href="http://bbs.houdunwang.com">论坛</a></li>
                     </ul>
                 </li>
@@ -70,7 +67,7 @@
 <!--最新消息-->
 <div class="message container">
     <span>最新消息：</span>
-    <arclist cid="2" row="1" titlelen=20>
+    <arclist cid="11" row="1" titlelen=20>
         <a href='{$field.url}'>{$field.title}</a>
     </arclist>
 </div>
@@ -100,7 +97,7 @@
             <!--内容列表-->
             <div class="article-list">
                 <header>最新发布<span>(图文)</span></header>
-                <pagelist infolen="30" titlelen="20" fid="4" row="15">
+                <pagelist infolen="30" titlelen="20" fid="4" row="10">
                     <article>
                         <div class="pic">
                             <a href="{$field.url}">
@@ -115,8 +112,8 @@
                             <a href="{$field.url}">{$field.title}</a>
                         </header>
                         <div class="author">
-                            <a href="{$field.url}">{$field.author}</a>
-                            发表于 {$field.addtime|date_before} -
+                            <a href="{$field.member}">{$field.username}</a>
+                            发表于 {$field.date_before} -
                             {$field.comment_num}条评论
                             Tag：{$field.tag}
                         </div>
@@ -134,11 +131,10 @@
             <article class="tag">
                 <header>
                     标签云
-                    <a href="#">标签云</a>
                 </header>
                 <div>
                     <tag row="30" type="hot">
-                        <a href="{$field.url}">{$field.tag}({$field.total})</a>
+                        <a href="{$field.url}">{$field.tag}</a>
                     </tag>
                 </div>
                 <!--Tag随机变色-->
@@ -150,95 +146,49 @@
                     })
                 </script>
             </article>
-            <!--活跃读者-->
+            <!--精英-->
             <article class="reader">
-                <header>活跃读者</header>
+                <header>精英</header>
                 <section>
-                    <a href="#">
-                        <img src="__TEMPLATE__/images/face.png"/>
-                    </a>
-                    <a href="#">
-                        <img src="__TEMPLATE__/images/face.png"/>
-                    </a>
-                    <a href="#">
-                        <img src="__TEMPLATE__/images/face.png"/>
-                    </a>
-                    <a href="#">
-                        <img src="__TEMPLATE__/images/face.png"/>
-                    </a>
-                    <a href="#">
-                        <img src="__TEMPLATE__/images/face.png"/>
-                    </a>
-                    <a href="#">
-                        <img src="__TEMPLATE__/images/face.png"/>
-                    </a>
-                    <a href="#">
-                        <img src="__TEMPLATE__/images/face.png"/>
-                    </a>
-                    <a href="#">
-                        <img src="__TEMPLATE__/images/face.png"/>
-                    </a>
-                    <a href="#">
-                        <img src="__TEMPLATE__/images/face.png"/>
-                    </a>
+                    <user row="14">
+                        <a href="{$field.url}">
+                            <img src="{$field.icon}" title="{$field.nickname}"/>
+                        </a>
+                    </user>
                 </section>
             </article>
             <!--最新评论-->
             <article class="comment">
                 <header>最新评论</header>
-                <section>
-                    <a href="#">
-                        <img src="__TEMPLATE__/images/face.png"/>
+                <comment row="6">
+                    <section>
+                        <a href="{$field.url}">
+                            <img src="{$field.icon}" style="width: 36px;height: 36px;"/>
 
-                        <p class="man">
-                            <span>C-Drea</span> 3小时前说：
-                        </p>
+                            <p class="man">
+                                <span>{$field.nickname}</span> {$field.pubtime}说：
+                            </p>
 
-                        <p class="content">
-                            请问浩哥怎样才能让首页不显示文章摘要，只
-                        </p>
-                    </a>
-                </section>
-                <section>
-                    <a href="#">
-                        <img src="__TEMPLATE__/images/face.png"/>
+                            <p class="content">
+                                {$field.content}
+                            </p>
+                        </a>
+                    </section>
+                </comment>
 
-                        <p class="man">
-                            <span>C-Drea</span> 3小时前说：
-                        </p>
-
-                        <p class="content">
-                            请问浩哥怎样才能让首页不显示文章摘要，只
-                        </p>
-                    </a>
-                </section>
-                <section>
-                    <a href="#">
-                        <img src="__TEMPLATE__/images/face.png"/>
-
-                        <p class="man">
-                            <span>C-Drea</span> 3小时前说：
-                        </p>
-
-                        <p class="content">
-                            请问浩哥怎样才能让首页不显示文章摘要，只
-                        </p>
-                    </a>
-                </section>
             </article>
             <!--猜你喜欢-->
             <article class="news">
                 <header>
                     猜你喜欢
-                    <a href="#">猜你喜欢</a>
                 </header>
-                <arclist order="rand" row="5">
+                <arclist type="rand" row="5" titlelen="22">
                     <section>
                         <a href="{$field.url}">
                             <h3>{$field.title}</h3>
 
                             <p>
-                                {$field.time} {$field.comment_num}评论
+                                {$field.time}
                             </p>
                         </a>
                     </section>
@@ -249,7 +199,7 @@
 </div>
 <!--copyright-->
 <footer class="container">
-    后盾网PHP培训是唯一拥有开源框架与开源CMS系统的培训机构！ © 2014 <a href="#">后盾网</a> 网站地图
+    后盾网PHP培训是唯一拥有开源框架与开源CMS系统的培训机构！ © 2014 <a href="http://www.houdunwang.com">后盾网</a>
 </footer>
 </body>
 </html>

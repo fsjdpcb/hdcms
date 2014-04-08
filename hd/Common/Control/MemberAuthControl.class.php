@@ -16,6 +16,8 @@ class MemberAuthControl extends CommonControl
         } else if (!session('uid')) {
             go(U("Login/Login/login", array('g' => 'Member')));
         }
+        //消息数
+        $this->message_count = M('user_message')->where('state=0 AND to_uid='.$_SESSION['uid'])->count();
     }
 
 }

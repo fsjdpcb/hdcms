@@ -42,7 +42,7 @@
                     <div class="input">
                         <div class="inputOuter">
                             <input type="text" name="username" value="帐号" autofocus='true' placeholder="帐号"
-                                   class="w300" required=""/>
+                                   required=""/>
                         </div>
                     </div>
                     <div class="input">

@@ -22,18 +22,19 @@ class TagModel extends ViewModel
 
     /**
      * 用于添加文章时设置tag标签
-     * @param null $tagName 标签名
+     * @param null $tag 标签名
      */
-    public function add_tag($tagName = null)
+    public function add_tag($tag = null)
     {
-        $tagName = $tagName ? $tagName : Q('tag');
-        if ($this->create() && $tagName) {
-            $field = $this->where("tag='$tagName'")->find();
+        $tag = $tag ? $tag : Q('tag');
+        $db = M('tag');
+        if ($this->create() && $tag) {
+            $field = $db->where("tag='$tag'")->find();
             if ($field) {
-                $this->replace(array("tag" => $tagName, "total" => $field['total'] + 1));
+                $db->where("tag='$tag'")->save(array("total" => $field['total'] + 1));
                 return $field['tid'];
             } else {
-                return $this->replace(array("tag" => $tagName, "total" => 1));
+                return $db->add(array("tag" => $tag, "total" => 1));
             }
 
         }

@@ -5,7 +5,7 @@
  * Class CategoryModel
  * @author hdxj <houdunwangxj@gamil.com>
  */
-class CategoryModel extends RelationModel
+class CategoryModel extends Model
 {
     //表
     public $table = "category";
@@ -81,11 +81,12 @@ class CategoryModel extends RelationModel
     public function update_order()
     {
         $list_order = Q("post.list_order");
+        $db = M('category');
         foreach ($list_order as $cid => $order) {
             $cid = intval($cid);
             $order = intval($order);
             $data = array("cid" => $cid, "catorder" => $order);
-            $this->save($data);
+            $db->save($data);
         }
         //重建缓存
         return $this->update_cache();

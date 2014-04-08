@@ -10,6 +10,15 @@ $(function () {
                     required: "标题不能为空"
                 }
             },
+            tag: {
+                rule: {
+                    required: true
+                },
+                error: {
+                    required: "标签不能为空"
+                },
+                message:'用逗号分隔'
+            },
             read_credits: {
                 rule: {
                     required: true,
@@ -45,6 +54,7 @@ $(function () {
                                     window.opener.location.reload();
                                 }
                                 hd_close_window();
+                                window.close();
                             }
                         });
                     } else {

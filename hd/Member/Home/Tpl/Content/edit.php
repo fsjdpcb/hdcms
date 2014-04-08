@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>文章管理</title>
+    <title>修改文章</title>
     <link rel="shortcut icon" href="favicon.ico">
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,9 +20,9 @@
 </header>
 <nav class="top-menu">
     <div class="nav center-block">
-        <a href="#">首页</a>
-        <a href="#">我的文章</a>
-        <a href="#">个人主页</a>
+        <a href="__ROOT__">首页</a>
+        <a href="__ROOT__/index.php?a=Home&c=Content&m=index&g=Member">我的文章</a>
+        <a href="__ROOT__/index.php?<?php echo $_SESSION['domain']?$_SESSION['domain']:$_SESSION['uid'];?>" target="_blank">个人主页</a>
     </div>
 </nav>
 <div class="main center-block">
@@ -41,20 +41,26 @@
             <table>
                 <tr>
                     <th>简&nbsp;&nbsp;&nbsp;&nbsp;述</th>
-                    <td colspan="2">
+                    <td>
                         <input type="text" name="title" class="w300" value="{$field.title}"/>
                     </td>
                 </tr>
                 <tr>
                     <th>栏&nbsp;&nbsp;&nbsp;&nbsp;目</th>
-                    <td colspan="2">
+                    <td>
                         <input type="hidden" name="cid" value="{$field.cid}"/>
                         {$field.catname}
                     </td>
                 </tr>
                 <tr>
+                    <th>缩&nbsp;略&nbsp;图</th>
+                    <td>
+                        <upload name="thumb" limit="1" alt="false" waterbtn="false" data="$thumb" message="false"/>
+                    </td>
+                </tr>
+                <tr>
                     <th>摘&nbsp;&nbsp;&nbsp;&nbsp;要</th>
-                    <td colspan="2">
+                    <td>
                         <textarea name="description">{$field.description}</textarea>
                     </td>
                 </tr>
@@ -67,18 +73,21 @@
                         <span>用空格分隔</span>
                     </td>
                 </tr>
-                <if value="$model.mid=1">
                     <tr>
                         <th>内&nbsp;&nbsp;&nbsp;&nbsp;容</th>
-                        <td colspan="2">
+                        <td>
                             <keditor name="content" style="2" content="{$field.content}"/>
                             <span class="hd_content validate-message">请点击全屏编辑</span>
                         </td>
                     </tr>
-                </if>
+                <tr>
+                    <th>标&nbsp;&nbsp;&nbsp;&nbsp;签</th>
+                    <td>
+                        <input type="text" name="tag" class="w300" value="{$field.tag}"/>
+                    </td>
+                </tr>
                 {$custom_field}
                 <tr>
-                    <th></th>
                     <td colspan="2">
                         <input type="submit" class="btn btn-primary" value="提交"/>
                     </td>

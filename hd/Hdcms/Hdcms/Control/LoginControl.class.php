@@ -14,29 +14,9 @@ class LoginControl extends CommonControl
     //构造函数
     public function __init()
     {
-        parent::__init();
-        //判断浏览器
-        if (!$this->check_browser()) {
-            $this->display('check_browser');
-            exit;
-        }
         $this->_db = K("User");
     }
 
-    /**
-     * 浏览器检测
-     * @return bool
-     */
-    public function check_browser()
-    {
-        $browser = browser_info();
-        if (strstr($browser, 'msie')) {
-            if (intval(substr($browser, 4)) < 9) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     /**
      * 登录页面显示验证码
@@ -62,11 +42,28 @@ class LoginControl extends CommonControl
     public function Login()
     {
         if (IS_POST) {
-            if ($this->_db->user_login()) {
-                go("Hdcms/Index/index");
-            } else {
-                $this->error = $this->_db->error;
+            $error=null;
+            $username = Q("post.username", NULL, 'htmlspecialchars,strip_tags,addslashes');
+            $user = $this->_db->where("username='$username' || email='$username'")->find();
+            //-----------------------验证码------------------------
+            if (Q('post.code', '', 'strtoupper') != Q('session.code')) {
+                $error = "验证码输入错误";
+            } else if (empty($username)) {
+                //-----------------------帐号与密码-----------------
+                $error = '帐号不能为空';
+            } else if (!$user) {
+                //-----------------------帐号验证------------------------
+                $error = "帐号不存在";
+            } else if ($user['password'] != md5($_POST['password'] . $user['code'])) {
+                //-----------------------密码验证------------------------
+                $error = "密码输入错误";
+            }
+            if ($error) {
+                $this->error = $error;
                 $this->display();
+            } else {
+                $this->_db->record_user($user['uid']);
+                go("Hdcms/Index/index");
             }
         } else {
             $this->display();

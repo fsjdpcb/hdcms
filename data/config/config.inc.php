@@ -14,7 +14,7 @@ return array (
   'upload_img_path' => 'img',
   'allow_type' => 'jpg,jpeg,png,bmp,gif',
   'allow_size' => '2048000',
-  'water_on' => '1',
+  'water_on' => '0',
   'member_verify' => '0',
   'reg_show_code' => '1',
   'reg_email' => '1',
@@ -34,7 +34,7 @@ return array (
   'water_pos' => '9',
   'del_content_model' => '1',
   'down_remove_pic_size' => '500',
-  'comment_status' => '1',
+  'comment_state' => '1',
   'favicon_width' => '180',
   'favicon_height' => '180',
   'down_remote_pic' => '0',
@@ -42,7 +42,7 @@ return array (
   'auto_thumb' => '0',
   'upload_img_max_width' => '600',
   'upload_img_max_height' => '600',
-  'member_content_status' => '1',
+  'member_content_status' => '0',
   'member_open' => '1',
   'web_close_message' => '网站暂时关闭，请稍候访问',
   'web_style' => 'default',
@@ -52,5 +52,6 @@ return array (
   'init_credits' => '100',
   'cache_category' => '-1',
   'cache_content' => '-1',
+  'comment_step_time' => '10',
 );
 ?>

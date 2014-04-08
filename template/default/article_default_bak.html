@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{$hd.config.webname}</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <jquery/>
+    <bootstrap/>
+    <link rel="stylesheet" type="text/css" href="__TEMPLATE__/css/comment.css?ver=1.0 "/>
+    <link rel="stylesheet/less" href="__TEMPLATE__/css/article.less?ver=1.0 "/>
+    <less/>
+</head>
+<body>
+<article class="header container">
+    <h1>{$hd.config.webname}</h1>
+    <!--导航-->
+    <nav class=".navbar-fixed-top" role="navigation">
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="__ROOT__">首页</a></li>
+                <channel type="top">
+                    <li><a href='{$field.url}'>{$field.catname}</a></li>
+                </channel>
+            </ul>
+            <form class="navbar-form navbar-left" role="search" method="post" action="__WEB__?g=Hdcms&a=Search&c=Search&m=search">
+                <div class="form-group">
+                    <input type="hidden" name='type' class="form-control" value="tag">
+                    <input type="text" name='word' class="form-control" placeholder="输入关键字搜索">
+                </div>
+                <button type="submit" class="btn btn-primary">搜索</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-user"></span>
+                        <span class="glyphicon glyphicon-cloud-download"></span>
+                    </a>
+                    <if value="$hd.session.uid">
+                        <ul class="dropdown-menu">
+                            <li><a href="__WEB__?g=Member&a=Home&c=Home&m=index">我的文章</a></li>
+                        </ul>
+                        <else>
+                            <ul class="dropdown-menu">
+                                <li><a href="?login">登录</a></li>
+                                <li><a href="?reg">注册</a></li>
+                            </ul>
+                    </if>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">后盾网 <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="http://www.hdphp.com">HDPHP框架</a></li>
+                        <li><a href="http://www.hdphp.com">HDCMS系统</a></li>
+                        <li><a href="http://www.kuaixuewang.com">快学网</a></li>
+                        <li><a href="http://bbs.houdunwang.com">论坛</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</article>
+<!--最新消息-->
+<div class="message container">
+    <span>最新消息：</span>
+    <a href="http://www.hdphp.com">HDPHP 2014.03 发布</a>
+</div>
+<!--内容主体-->
+<div class="content container">
+<div class="row">
+<div class="col-md-8">
+    <!--内容主体-->
+    <div id="main">
+        <header>你的位置：<location sep="&nbsp;&gt;&nbsp;"/></header>
+        <div class="title">
+            <h2>{$hdcms.title}</h2>
+
+            <p>
+                <a href="#">{$hdcms.author}</a> 发表于 {$hdcms.date_before} ({$hdcms.time}) -
+                <a href="#">46条评论</a> 所属分类：<a href="{$hdcms.caturl}">{$hdcms.catname}</a>
+            </p>
+        </div>
+        <div class="content">
+            {$hdcms.content}
+        </div>
+        <div class="tag">
+            <if value="$hdcms.tag">
+                继续浏览有关 {$hdcms.tag} 的文章
+            </if>
+        </div>
+        <!--下一篇与下一篇-->
+        <div class="next-article row">
+            <p class="col-md-6">
+                上一篇
+                <pagenext pre="" type="pre" titlelen="18"/>
+            </p>
+
+            <p class="col-md-6">
+                下一篇
+                <pagenext next="" type="next" titlelen="18"/>
+            </p>
+        </div>
+        <!--与本文相关文章-->
+        <div class="related">
+            <header>与本文相关的文章</header>
+            <ul>
+                <arclist type="relative" titlelen="25" row="6">
+                <li>
+                    <a href="{$field.url}">{$field.title}</a>
+                </li>
+                </arclist>
+            </ul>
+        </div>
+    </div>
+    <!--发表评论-->
+    <div class="hd-comment">
+        <!--评论标题-->
+        <div class="title">
+            <img src="__TEMPLATE__/images/face.png"/> 发表我的评论
+        </div>
+        <!--发表评论-->
+        <div class="publish">
+            <textarea placeholder="写点什么..."></textarea>
+            <input type="submit" value="提交评论" class="comment-submit"/>
+        </div>
+        <!--评论列表-->
+        <div class="hd-comment-list">
+            <ul>
+                <li>
+                    <div class="hd-comment-face">
+                        <img src="__TEMPLATE__/images/face.png"/>
+                    </div>
+                    <div class="hd-comment-content">
+                        路过看看
+                        <div class="hd-author-info">
+                            <span class="hd-comment-author">
+                                <a href="#">长春驾校</a>&nbsp;&nbsp;
+                            </span>
+                            2014-03-06 13:36 (5天前)
+                            <a class="comment-reply-link" href="#">回复</a>
+                        </div>
+                        <ul>
+                            <li>
+                                <div class="hd-comment-face">
+                                    <img src="__TEMPLATE__/images/face.png"/>
+                                </div>
+                                <div class="hd-comment-content">
+                                    路过看看
+                                    <div class="hd-author-info">
+                                        <span class="hd-comment-author">
+                                            <a href="#">长春驾校</a>&nbsp;&nbsp;
+                                        </span>
+                                        2014-03-06 13:36 (5天前)
+                                        <a class="comment-reply-link" href="#">回复</a>
+                                    </div>
+                                    <!--回复-->
+                                    <div class="hd-comment-reply">
+                                        <div class="hd-comment-face">
+                                            <img src="__TEMPLATE__/images/face.png"/>
+                                        </div>
+                                        <div class="hd-reply-content">
+                                            <textarea placeholder="写点什么..."></textarea>
+                                            <input type="submit" value="发表评论(CTRL+ENTER)" class="comment-submit"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="hd-comment-face">
+                                    <img src="__TEMPLATE__/images/face.png"/>
+                                </div>
+                                <div class="hd-comment-content">
+                                    路过看看
+                                    <div class="hd-author-info">
+                            <span class="hd-comment-author">
+                                <a href="#">长春驾校</a>&nbsp;&nbsp;
+                            </span>
+                                        2014-03-06 13:36 (5天前)
+                                        <a class="comment-reply-link" href="#">回复</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="hd-comment-face">
+                                    <img src="__TEMPLATE__/images/face.png"/>
+                                </div>
+                                <div class="hd-comment-content">
+                                    路过看看
+                                    <div class="hd-author-info">
+                            <span class="hd-comment-author">
+                                <a href="#">长春驾校</a>&nbsp;&nbsp;
+                            </span>
+                                        2014-03-06 13:36 (5天前)
+                                        <a class="comment-reply-link" href="#">回复</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="hd-comment-face">
+                        <img src="__TEMPLATE__/images/face.png"/>
+                    </div>
+                    <div class="hd-comment-content">
+                        IOS环境下的按钮都是经过美化的，但通常我们在设计web app的时候不需要这些看上去老土的样式，所以，去除这些显得很有必要。 下面这句代码就是重置这些样式的：
+                        -webkit-appearance: none; 通常，我们在写移动端的web开发时
+                        <div class="hd-author-info">
+                            <span class="hd-comment-author">
+                                <a href="#">长春驾校</a>&nbsp;&nbsp;
+                            </span>
+                            2014-03-06 13:36 (5天前)
+                            <a class="comment-reply-link" href="#">回复</a>
+                        </div>
+
+                        <ul>
+                            <li>
+                                <div class="hd-comment-face">
+                                    <img src="__TEMPLATE__/images/face.png"/>
+                                </div>Tag：
+                                <div class="hd-comment-content">
+                                    路过看看
+                                    <div class="hd-author-info">
+                                        <span class="hd-comment-author">
+                                            <a href="#">长春驾校</a>&nbsp;&nbsp;
+                                        </span>
+                                        2014-03-06 13:36 (5天前)
+                                        <a class="comment-reply-link" href="#">回复</a>
+                                    </div>
+                                    <!--回复-->
+                                    <div class="hd-comment-reply">
+                                        <div class="hd-comment-face">
+                                            <img src="__TEMPLATE__/images/face.png"/>
+                                        </div>
+                                        <div class="hd-reply-content">
+                                            <textarea placeholder="写点什么..."></textarea>
+                                            <input type="submit" value="发表评论(CTRL+ENTER)" class="comment-submit"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--右侧列表-->
+<div class="right-list col-md-4">
+    <!--热门标签-->
+    <article class="tag">
+        <header>
+            标签云
+        </header>
+        <div>
+            <tag row="30" type="hot">
+                <a href="{$field.url}">{$field.tag}</a>
+            </tag>
+            <!--Tag随机变色-->
+            <script>
+                $(".tag div a ").each(function (i) {
+                    var color = ['red', '#428BCA', '#5CB85C', '#D9534F', '#567E95', '#FF8433', '#4A4A4A', '#5CB85C', '#B433FF', '#33BBBA', '#C28F5B'];
+                    var t = Math.floor(Math.random() * color.length);
+                    $(this).css({'background-color': color[t]});
+                })
+            </script>
+        </div>
+    </article>
+    <!--精英-->
+    <article class="reader">
+        <header>精英</header>
+        <section>
+            <a href="#">
+                <img src="__TEMPLATE__/images/face.png"/>
+            </a>
+            <a href="#">
+                <img src="__TEMPLATE__/images/face.png"/>
+            </a>
+            <a href="#">
+                <img src="__TEMPLATE__/images/face.png"/>
+            </a>
+            <a href="#">
+                <img src="__TEMPLATE__/images/face.png"/>
+            </a>
+            <a href="#">
+                <img src="__TEMPLATE__/images/face.png"/>
+            </a>
+            <a href="#">
+                <img src="__TEMPLATE__/images/face.png"/>
+            </a>
+            <a href="#">
+                <img src="__TEMPLATE__/images/face.png"/>
+            </a>
+            <a href="#">
+                <img src="__TEMPLATE__/images/face.png"/>
+            </a>
+            <a href="#">
+                <img src="__TEMPLATE__/images/face.png"/>
+            </a>
+        </section>
+    </article>
+    <!--最新评论-->
+    <article class="comment">
+        <header>最新评论</header>
+        <section>
+            <a href="#">
+                <img src="__TEMPLATE__/images/face.png"/>
+
+                <p class="man">
+                    <span>C-Drea</span> 3小时前说：
+                </p>
+
+                <p class="content">
+                    请问浩哥怎样才能让首页不显示文章摘要，只
+                </p>
+            </a>
+        </section>
+        <section>
+            <a href="#">
+                <img src="__TEMPLATE__/images/face.png"/>
+
+                <p class="man">
+                    <span>C-Drea</span> 3小时前说：
+                </p>
+
+                <p class="content">
+                    请问浩哥怎样才能让首页不显示文章摘要，只
+                </p>
+            </a>
+        </section>
+        <section>
+            <a href="#">
+                <img src="__TEMPLATE__/images/face.png"/>
+
+                <p class="man">
+                    <span>C-Drea</span> 3小时前说：
+                </p>
+
+                <p class="content">
+                    请问浩哥怎样才能让首页不显示文章摘要，只
+                </p>
+            </a>
+        </section>
+    </article>
+    <!--猜你喜欢-->
+    <article class="news">
+        <header>
+            猜你喜欢
+        </header>
+        <arclist type="rand" row="5" titlelen="22">
+            <section>
+                <a href="{$field.url}">
+                    <h3>{$field.title}</h3>
+                    <p>
+                        {$field.time}
+                    </p>
+                </a>
+            </section>
+        </arclist>
+    </article>
+</div>
+</div>
+</div>
+<!--copyright-->
+<footer class="container">
+    后盾网PHP培训是唯一拥有开源框架与开源CMS系统的培训机构！ © 2014 <a href="http://www.houdunwang.com">后盾网</a>
+</footer>
+</body>
+</html>

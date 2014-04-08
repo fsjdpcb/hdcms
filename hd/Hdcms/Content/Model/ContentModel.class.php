@@ -133,6 +133,9 @@ class ContentModel extends RelationModel
      */
     public function get_one_content()
     {
+        if(!isset($_SESSION['admin'])){
+            $this->where('uid='.$_SESSION['uid']);
+        }
         $field = $this->find($this->_aid);
         if ($field) {
             //缩略图
@@ -350,18 +353,16 @@ class ContentModel extends RelationModel
      */
     private function _get_thumb_pic(&$data)
     {
-        /**
-         * 会员中心上传文章使用uploadify表单
-         * 后台使用input表单
-         * 以下是处理会员中心上传的情况
-         */
-        if (isset($_POST['thumb']) && isset($_POST['thumb'][1]['path'])) {
-            $data['thumb'] = $_POST['thumb'][1]['path'];
+
+        //没有缩略图时，去除属性中的图片属性
+        if(empty($data['thumb']) && isset($data['flag'])){
+            $data['flag'] = trim(str_replace(array('图片', ',,'), '', $data['flag']), ',');
         }
         //服务器是否允许远程下载
         $php_ini = @ini_get("allow_url_fopen");
         //有正文时处理
         if ($php_ini && isset($data['auto_thumb']) && empty($data['thumb'])) {
+
             $content = & $data['content'];
             //取得所有图片
             preg_match_all("@<img.*?src=['\"](http://.*?[jpg|jpeg|png|gif])['\"].*?>@i", $content, $imgs);
@@ -379,8 +380,6 @@ class ContentModel extends RelationModel
                     $data['thumb'] = str_ireplace(__ROOT__ . '/', "", $d_img);
                     //设置图片属性
                     $data['flag'] = empty($data['flag']) ? '图片' : $data['flag'] . ",图片";
-                } else {
-                    $data['flag'] = trim(str_replace(array('图片', ',,'), '', $data['flag']), ',');
                 }
             }
         }
@@ -438,7 +437,7 @@ class ContentModel extends RelationModel
         //内容tag表
         $content_tag = M('content_tag');
         //删除旧tag数据
-        $content_tag->where("aid=$aid")->del();
+        $content_tag->where("mid={$this->_mid} and aid=$aid")->del();
         if ($tag) {
             //替换全角
             $tag = String::toSemiangle($tag);
@@ -447,9 +446,9 @@ class ContentModel extends RelationModel
             //拆分tag标签
             $tags = explode(',', $tag);
             $tags = array_unique($tags);
-            $db = K("Tag");
+            $tag_db = K("Tag");
             foreach ($tags as $tag) {
-                $tid = $db->add_tag($tag);
+                $tid = $tag_db->add_tag($tag);
                 //添加新tag数据
                 $content_tag->add(array('tid' => $tid, 'aid' => $aid, 'mid' => $this->_mid, 'cid' => $this->_cid, 'uid' => session('uid')));
             }

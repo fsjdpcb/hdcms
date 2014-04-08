@@ -32,15 +32,6 @@ final class Url
     }
 
     /**
-     * 获得栏目静态html路径
-     * @param $category 栏目字段
-     */
-    static public function get_category_html($category)
-    {
-
-    }
-
-    /**
      * 获得内容页url地址
      * 用于处理单页面与普通文章的url
      * @param array $field 文章字段

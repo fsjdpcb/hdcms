@@ -1,55 +1,166 @@
-<hdui/>
-<link type="text/css" href="__ROOT__/hdcms/App/Comment/Tpl/Comment/css/css.css" rel="stylesheet"/>
-<script src="__ROOT__/hdcms/App/Comment/Tpl/Comment/js/js.js" type="text/javascript"></script>
-
-<div class="show_comment">
-    <div class="respond" id="respond">
-        <?php if(session("uid")):?>
-        <div class="comt-title">
-            <div class="comt-avatar">
-                <img class="avatar avatar-28 photo" width="28" height="28"
-                     src="<if value='$hd.session.favicon'>{$hd.session.favicon}<else>__CONTROL_TPL__/img/face/face.png</if>">
-            </div>
-            <div class="comt-author pull-left">
-                <if value="$hd.session.uid">{$hd.session.realname}
-                    <else><a href="__WEB__?a=Member&c=Login&m=login">登录</a>
-                </if>
-                <span>发表我的评论</span>
-            </div>
-        </div>
-        <form action="__WEB__?a=Comment&c=Comment&m=add&cid={$hd.get.cid}&aid={$hd.get.aid}" method="post" onsubmit="return false">
+<link rel="stylesheet/less" href="__CONTROL_TPL__/css/comment.less?ver=1.0 "/>
+<less/>
+<js file="__CONTROL_TPL__/js/comment.js"/>
+<!--发表评论-->
+<div class="hd-comment">
+    <!--评论标题-->
+    <div class="title">
+        <img src="{$hd.session.icon50|default:'__ROOT__/data/image/user/50-gray.png'}"/> 发表我的评论
+    </div>
+    <!--发表评论-->
+    <div class="publish">
+        <form method="post" onsubmit="return add_comment(this)">
+            <input type="hidden" name="mid" value="{$hd.get.mid}"/>
+            <input type="hidden" name="cid" value="{$hd.get.cid}"/>
             <input type="hidden" name="aid" value="{$hd.get.aid}"/>
-            <input type="hidden" name="cid" value="{$hd.get.ci}"/>
-            <input type="hidden" name="path" value="0"/>
             <input type="hidden" name="pid" value="0"/>
-
-            <div class="comment-box">
-                <textarea class="input-block-level comt-area" name="comment" placeholder="写点什么..."></textarea>
-            </div>
-            <div class="comment_submit">
-                         <span class="com_sub_bt">
-                            <input type="submit" value="提交评论 [Ctrl+Enter]"/>
-                         </span>
-            </div>
+            <textarea name="content" placeholder="写点什么..." name="content"></textarea>
+            <input type="submit" value="提交评论" class="comment-submit"/>
         </form>
-        <?php else:?>
-            <h2><a href="{|U:'Member/Login/login'}">登录</a>后可发表评论！</h2>
-        <?php endif;?>
     </div>
-    <div id="postcomments">
-        <h3 id="comments">
-            网友最新评论
-            <b> ({$count})</b>
-        </h3>
-
-        <div class="comment_list">
-            <ul>
-                {$comment}
-            </ul>
-        </div>
-        <div class="page1">
-            {$page}
-        </div>
+    <!--评论列表-->
+    <div class="hd-comment-list">
+        <ol class="comment-list">
+            <list from="$data" name="a">
+                <li>
+                    <div class="hd-comment-face">
+                        <img src="{$a.icon50}"/>
+                    </div>
+                    <div class="hd-comment-content">
+                        {$a.content}
+                        <div class="hd-author-info">
+                            <span class="hd-comment-author">
+                                <a href="__WEB__?{$a.uid}">{$a.nickname}</a>&nbsp;&nbsp;
+                            </span>
+                            {$a.pubtime|date:"Y-m-d H:i",@@} ({$a.pubtime|date_before})
+                            <a class="comment-reply-link" href="javascript:;">回复 </a>
+                        </div>
+                    </div>
+                    <!--回复-->
+                    <div class="hd-comment-reply">
+                        <div class="hd-comment-face">
+                            <img src="{$a.icon50}"/>
+                        </div>
+                        <div class="hd-reply-content">
+                            <form method="post" onsubmit="return add_comment(this,'reply')">
+                                <input type="hidden" name="mid" value="{$a.mid}"/>
+                                <input type="hidden" name="cid" value="{$a.cid}"/>
+                                <input type="hidden" name="aid" value="{$a.aid}"/>
+                                <input type="hidden" name="pid" value="{$a.comment_id}"/>
+                                <input type="hidden" name="reply_comment_id" value="{$a.comment_id}"/>
+                                <textarea name="content" placeholder="写点什么..."></textarea>
+                                <input type="submit" value="发表评论" class="comment-submit"/>
+                                <input type="submit" value="取消评论" class="comment-cancel"/>
+                            </form>
+                        </div>
+                    </div>
+                    <!--子评论-->
+                    <ul class="children">
+                        <list from="$a._data" name="b">
+                            <li>
+                                <div class="hd-comment-face">
+                                    <img src="{$b.icon50}"/>
+                                </div>
+                                <div class="hd-comment-content">
+                                    {$b.content}
+                                    <div class="hd-author-info">
+                            <span class="hd-comment-author">
+                                <a href="__WEB__?{$b.uid}">{$b.nickname}</a>&nbsp;&nbsp;
+                            </span>
+                                        {$b.pubtime|date:"Y-m-d H:i",@@} ({$b.pubtime|date_before})
+                                        <a class="comment-reply-link" href="javascript:;">回复 </a>
+                                    </div>
+                                </div>
+                                <!--回复-->
+                                <div class="hd-comment-reply">
+                                    <div class="hd-comment-face">
+                                        <img src="{$b.icon50}"/>
+                                    </div>
+                                    <div class="hd-reply-content">
+                                        <form method="post" onsubmit="return add_comment(this,'reply')">
+                                            <input type="hidden" name="mid" value="{$b.mid}"/>
+                                            <input type="hidden" name="cid" value="{$b.cid}"/>
+                                            <input type="hidden" name="aid" value="{$b.aid}"/>
+                                            <input type="hidden" name="pid" value="{$b.comment_id}"/>
+                                            <input type="hidden" name="reply_comment_id" value="{$a.comment_id}"/>
+                                            <textarea name="content" placeholder="写点什么..."></textarea>
+                                            <input type="submit" value="发表评论" class="comment-submit"/>
+                                            <input type="submit" value="取消评论" class="comment-cancel"/>
+                                        </form>
+                                    </div>
+                                </div>
+                                <ul class="children">
+                                    <list from="$b._data" name="c">
+                                        <li class="bg-white">
+                                            <div class="hd-comment-face">
+                                                <img src="{$c.icon50}"/>
+                                            </div>
+                                            <div class="hd-comment-content">
+                                                {$c.content}
+                                                <div class="hd-author-info">
+                                                <span class="hd-comment-author">
+                                                    <a href="__WEB__?{$c.uid}">{$c.nickname}</a>&nbsp;&nbsp;
+                                                </span>
+                                                    {$c.pubtime|date:"Y-m-d H:i",@@} ({$c.pubtime|date_before})
+                                                    <a class="comment-reply-link" href="javascript:;">回复 </a>
+                                                </div>
+                                            </div>
+                                            <!--回复-->
+                                            <div class="hd-comment-reply">
+                                                <div class="hd-comment-face">
+                                                    <img src="{$c.icon50}"/>
+                                                </div>
+                                                <div class="hd-reply-content">
+                                                    <form method="post" onsubmit="return add_comment(this,'reply')">
+                                                        <input type="hidden" name="mid" value="{$c.mid}"/>
+                                                        <input type="hidden" name="cid" value="{$c.cid}"/>
+                                                        <input type="hidden" name="aid" value="{$c.aid}"/>
+                                                        <input type="hidden" name="pid" value="{$c.comment_id}"/>
+                                                        <input type="hidden" name="reply_comment_id"
+                                                               value="{$a.comment_id}"/>
+                                                        <textarea name="content" placeholder="写点什么..."></textarea>
+                                                        <input type="submit" value="发表评论" class="comment-submit"/>
+                                                        <input type="submit" value="取消评论" class="comment-cancel"/>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <ul class="children">
+                                                <list from="$c._data" name="d">
+                                                    <li>
+                                                        <div class="hd-comment-face">
+                                                            <img src="{$d.icon50}"/>
+                                                        </div>
+                                                        <div class="hd-comment-content">
+                                                            {$d.content}
+                                                            <div class="hd-author-info">
+                                                            <span class="hd-comment-author">
+                                                                <a href="__WEB__?{$d.uid}">{$d.nickname}</a>&nbsp;&nbsp;
+                                                            </span>
+                                                                {$d.pubtime|date:"Y-m-d H:i",@@}
+                                                                ({$d.pubtime|date_before})
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </list>
+                                            </ul>
+                                        </li>
+                                    </list>
+                                </ul>
+                            </li>
+                        </list>
+                    </ul>
+                </li>
+            </list>
+        </ol>
     </div>
-
+    <div class="page">
+        {$page}
+    </div>
 </div>
+<div class="comment_alter">
+    发表成功了哟！
+</div>
+
+
+
+

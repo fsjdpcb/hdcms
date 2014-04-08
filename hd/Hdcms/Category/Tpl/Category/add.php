@@ -88,18 +88,18 @@
                         <th>栏目访问</th>
                         <td>
                             <label>
-                                <input type="radio" name="cat_url_type" value="1" checked="checked"/> 静态</label>
+                                <input type="radio" name="cat_url_type" value="1"/> 静态</label>
                             <label>
-                                <input type="radio" name="cat_url_type" value="2"/> 动态</label>
+                                <input type="radio" name="cat_url_type" value="2" checked="checked"/> 动态</label>
                         </td>
                     </tr>
                     <tr>
                         <th>文章访问</th>
                         <td>
                             <label>
-                                <input type="radio" name="arc_url_type" value="1" checked="checked"/> 静态</label>
+                                <input type="radio" name="arc_url_type" value="1"/> 静态</label>
                             <label>
-                                <input type="radio" name="arc_url_type" value="2"/> 动态</label>
+                                <input type="radio" name="arc_url_type" value="2" checked="checked"/> 动态</label>
                         </td>
                     </tr>
                     <tr>

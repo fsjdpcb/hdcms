@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>仿大前端首页</title>
+    <title>{$hd.config.webname}</title>
     <link rel="shortcut icon" href="favicon.ico">
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,25 +9,33 @@
     <bootstrap/>
     <link rel="stylesheet/less" href="__CONTROL_TPL__/css/reg.less?ver=1.0 "/>
     <less/>
-    <js file="__CONTROL_TPL__/js/js.js"/>
+    <script>
+        $(function () {
+            var error = '{$error}';
+            if (error) {
+                $("div#error_tips").show().html(error);
+                setTimeout(function(){ $("div#error_tips").hide().html('')},5000);
+            }
+        })
+    </script>
 </head>
 <body>
 <div class="header container">
-    <a href="#">
+    <a href="__ROOT__">
        后盾网 人人做后盾
     </a>
 </div>
 <div class="content container">
     <header>
-        <span>求职者注册</span>
+        <span>盾友注册</span>
 
-        <p>海量名企职位，拓展人脉关系，体验社交招聘，让伯乐主动联系你</p>
+        <p>拓展人脉关系，体验分享乐趣，让技术真正属于你，后盾网 人人做后盾！</p>
         <strong>客户服务邮箱 <a href="mailto:{$hd.config.email}">{$hd.config.email}</a></strong>
     </header>
     <article class="row">
         <div class="field col-md-8">
-            <div class="alert alert-warning hide"></div>
-            <form class="form-horizontal" role="form" action="__URL__" method="post" onsubmit="return false;">
+            <div id="error_tips" class="alert alert-warning " style="display: none"></div>
+            <form class="form-horizontal" role="form" action="__URL__" method="post">
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-3 control-label">帐　号：</label>
                     <div class="col-sm-7">
@@ -48,7 +56,7 @@
             </form>
         </div>
         <div class="field col-md-4">
-            > 还没有游戏葡萄 账号？ <a href="?reg">立即注册</a>
+            > 还没有游戏葡萄 账号？ <a href="?a=Login&c=Login&m=reg&g=Member">立即注册</a>
         </div>
     </article>
 </div>

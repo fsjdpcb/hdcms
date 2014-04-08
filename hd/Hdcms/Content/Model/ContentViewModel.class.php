@@ -69,9 +69,9 @@ class ContentViewModel extends ViewModel
     }
 
     /**
-     * 搜索内容
+     * 获得列表页内容
      */
-    public function search()
+    public function get_article()
     {
         //文章开始时间
         if ($beginTime = Q('search_begin_time', NULL, 'strtotime'))
@@ -118,6 +118,13 @@ class ContentViewModel extends ViewModel
         } else {
             $where[] = $this->tableFull . '.state=1';
         }
+        //=================设置不前栏目与子栏目条件
+        $_cat = Data::channelList($this->_category,$this->_cid);
+        $_cid=array($this->_cid);
+        foreach($_cat as $c){
+            $_cid[]=$c['cid'];
+        }
+        $where[]=$this->tableFull.'.cid IN ('.implode(',',$_cid).')';
         //组合SQL中WHERE的部分
         $where = implode(" AND ", $where);
         //关联表

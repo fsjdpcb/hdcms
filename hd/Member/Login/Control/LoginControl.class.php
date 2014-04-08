@@ -23,10 +23,11 @@ class LoginControl extends CommonControl
     public function login()
     {
         if (IS_POST) {
-            if ($this->_db->user_login()) {
-                $this->ajax('success');
+            if ($this->_db->login()) {
+                go(U('reg', array('g' => 'Member')));
             } else {
-                $this->ajax($this->_db->error);
+                $this->error = $this->_db->error;
+                $this->display();
             }
         } else {
             $this->display();
@@ -37,16 +38,25 @@ class LoginControl extends CommonControl
     public function reg()
     {
         if (IS_POST) {
-            if ($uid = $this->_db->add_user()) {
-                //储存SESSION数据
-                $this->_db->record_user($uid);
-                $this->ajax('success');
+            if ($this->_db->add_user()) {
+                go(U('reg', array('g' => 'Member')));
             } else {
-                $this->ajax($this->_db->error);
+                $this->error = $this->_db->error;
+                $this->display();
             }
         } else {
             $this->display();
         }
+    }
+
+    /**
+     * 验证码
+     */
+    public function code()
+    {
+        $code = new Code();
+        $code->show();
+        exit;
     }
 
     /**
