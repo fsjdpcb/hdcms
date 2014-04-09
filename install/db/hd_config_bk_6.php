@@ -19,7 +19,6 @@ $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('119','reg_email','1','会员设置','注册成功是否发邮件','布尔(1/0)','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('120','reg_interval','0','会员设置','2次注册间隔间间','数字','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('121','default_member_group','4','会员设置','新注册会员初始组','数字','')");
-$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('159','cache_index','','站点配置','','文本','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('123','token_on','0','安全设置','表单使用令牌验证','布尔(1/0)','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('124','log_key','houdunwang.com','安全设置','日志文件加密KEY','文本','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('125','session_name','hdsid','安全设置','SESSION_NAME值','文本','')");
@@ -36,13 +35,11 @@ $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('137','comment_state','0','会员设置','评论不需要审核，直接显示','布尔(1/0)','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('138','favicon_width','180','会员设置','会员头像宽度','数字','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('139','favicon_height','180','会员设置','会员头像高度','数字','')");
-$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('160','cache_index','-1','站点配置','','文本','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('142','down_remote_pic','0','内容相关','下载远程图片','布尔(1/0)','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('143','auto_desc','1','内容相关','截取内容为摘要','布尔(1/0)','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('144','auto_thumb','0','内容相关','提取内容图片为缩略图','布尔(1/0)','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('145','upload_img_max_width','600','内容相关','上传图片宽度超过此值，进行缩放','数字','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('146','upload_img_max_height','600','内容相关','上传图片高度超过此值，进行缩放','数字','')");
-$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('147','member_content_status','1','会员设置','会员发表文章需要审核','布尔(1/0)','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('149','member_open','1','会员设置','开启会员中心','布尔(1/0)','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('150','web_close_message','网站暂时关闭，请稍候访问','站点配置','网站关闭提示信息','文本','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('151','web_style','default','私有配置','网站模板','文本','')");

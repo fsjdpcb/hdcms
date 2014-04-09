@@ -34,7 +34,7 @@
             <list from="$data" name="a">
                 <li id="c{$a.comment_id}">
                     <div class="hd-comment-face">
-                        <img src="__ROOT__/{$a.icon50}"/>
+                        <img src="{$a.icon50}"/>
                     </div>
                     <div class="hd-comment-content">
                         {$a.content}
@@ -49,7 +49,7 @@
                     <!--回复-->
                     <div class="hd-comment-reply">
                         <div class="hd-comment-face">
-                            <img src="__ROOT__/{$a.icon50}"/>
+                            <img src="{$a.icon50}"/>
                         </div>
                         <div class="hd-reply-content">
                             <form method="post" onsubmit="return add_comment(this,'reply')">
@@ -69,7 +69,7 @@
                         <list from="$a._data" name="b">
                             <li id="c{$b.comment_id}">
                                 <div class="hd-comment-face">
-                                    <img src="__ROOT__/{$b.icon50}"/>
+                                    <img src="{$b.icon50}"/>
                                 </div>
                                 <div class="hd-comment-content">
                                     {$b.content}
@@ -84,7 +84,7 @@
                                 <!--回复-->
                                 <div class="hd-comment-reply">
                                     <div class="hd-comment-face">
-                                        <img src="__ROOT__/{$b.icon50}"/>
+                                        <img src="{$b.icon50}"/>
                                     </div>
                                     <div class="hd-reply-content">
                                         <form method="post" onsubmit="return add_comment(this,'reply')">
@@ -103,7 +103,7 @@
                                     <list from="$b._data" name="c">
                                         <li class="bg-white" id="c{$c.comment_id}">
                                             <div class="hd-comment-face">
-                                                <img src="__ROOT__/{$c.icon50}"/>
+                                                <img src="{$c.icon50}"/>
                                             </div>
                                             <div class="hd-comment-content">
                                                 {$c.content}
@@ -118,7 +118,7 @@
                                             <!--回复-->
                                             <div class="hd-comment-reply">
                                                 <div class="hd-comment-face">
-                                                    <img src="__ROOT__/{$c.icon50}"/>
+                                                    <img src="{$c.icon50}"/>
                                                 </div>
                                                 <div class="hd-reply-content">
                                                     <form method="post" onsubmit="return add_comment(this,'reply')">
@@ -138,7 +138,7 @@
                                                 <list from="$c._data" name="d">
                                                     <li id="c{$d.comment_id}">
                                                         <div class="hd-comment-face">
-                                                            <img src="__ROOT__/{$d.icon50}"/>
+                                                            <img src="{$d.icon50}"/>
                                                         </div>
                                                         <div class="hd-comment-content">
                                                             {$d.content}

@@ -25,6 +25,8 @@
         <div class="success">
             <h2>
                 非常感谢使用HDCMS!
+                <br/>
+                <span style="color:#A60000">请进入后台后，更新全站缓存</span>
             </h2>
             <div class="link">
                 <a href="../index.php">访问首页</a>

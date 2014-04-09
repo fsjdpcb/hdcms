@@ -74,13 +74,14 @@ class CommentControl extends CommonControl
                     ->where("content='$content'")
                     ->order("comment_id DESC")->find();
                 if ($data) {
-                    $this->_ajax(0, '请不要发表重复内');
+                    $this->_ajax(0, '请不要发表重复内容');
                 }
             }
             //-----------------------------------------发表评论
             if ($comment_id = $this->_db->add_comment()) {
                 $comment = $this->get_one($comment_id);
-                $this->_ajax(1, '评论发表成功！', $comment);
+                $msg = C('comment_state')==1?'评论发表成功！':'评论成功，审核后显示';
+                $this->_ajax(1, $msg, $comment);
             } else {
                 $this->_ajax(0, '失败了哟');
             }

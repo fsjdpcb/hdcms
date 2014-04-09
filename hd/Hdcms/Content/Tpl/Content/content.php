@@ -94,8 +94,6 @@
                        onclick="hd_open_window('{|U:edit,array('mid'=>$_GET['mid'],'cid'=>$_GET['cid'],'aid'=>$c['aid'])}')">编辑</a><span
                         class="line">|</span>
                     <a href="javascript:;" onclick="del({$hd.get.mid},{$hd.get.cid},{$c.aid})">删除</a>
-                    <span class="line">|</span>
-                    <a href="">评论</a>
                 </td>
             </tr>
         </list>
