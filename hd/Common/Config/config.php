@@ -12,7 +12,7 @@ return array_merge(
         ),
         //自动加载文件
         'AUTO_LOAD_FILE' => array(
-            'Functions.php'
+            'functions.php'
         ),
         //不显示"页面找不到"错误
         "404_TPL" => '',
