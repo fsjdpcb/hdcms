@@ -26,7 +26,7 @@
             <h2>
                 非常感谢使用HDCMS!
                 <br/>
-                <span style="color:#A60000">请进入后台后，更新全站缓存</span>
+                <span style="color:#A60000;display:block;padding:10px;font-size:16px;">请进入后台后，更新全站缓存</span>
             </h2>
             <div class="link">
                 <a href="../index.php">访问首页</a>
