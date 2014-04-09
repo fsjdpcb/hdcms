@@ -314,9 +314,9 @@ str;
         //-------------------------获得数据-----------------------------
         //关联表
         \$join = "content_flag,category,user";
-        \$count = \$db->join(\$join)->order("arc_sort ASC")->where(\$where)->count(\$db->tableFull.'.aid');
+        \$count = \$db->join(\$join)->order("arc_sort ASC")->where(\$where)->where(\$db->tableFull.'.state=1')->count(\$db->tableFull.'.aid');
         \$page= new Page(\$count,$row,'','','','?list_'.\$_GET['cid'].'_{page}.html','{page}');
-        \$result= \$db->join(\$join)->order("arc_sort ASC")->where(\$where)->order(\$order)->limit(\$page->limit())->all();
+        \$result= \$db->join(\$join)->order("arc_sort ASC")->where(\$where)->where(\$db->tableFull.'.state=1')->order(\$order)->limit(\$page->limit())->all();
         if(\$result):
             //有结果集时处理
             foreach(\$result as \$field):
@@ -458,12 +458,13 @@ str;
         <?php
             \$db=M('user');
             \$pre=C('DB_PREFIX');
-            \$sql = "SELECT uid,nickname,domain,ifnull(icon50,'__ROOT__/data/images/user/50.png') AS icon FROM ".\$pre."user AS u
+            \$sql = "SELECT uid,nickname,domain,ifnull(icon50,'data/images/user/50.png') AS icon FROM ".\$pre."user AS u
                 JOIN ".\$pre."user_icon AS ui ON u.uid=ui.user_uid ORDER BY credits DESC limit $row";
             \$data = \$db->query(\$sql);
             foreach(\$data as \$field):
                 \$_tmp = empty(\$field['domain']) ? \$field['uid'] : \$field['domain'];
-                \$field['url'] = ' __ROOT__ /index.php?' . \$_tmp;
+                \$field['url'] = ' __ROOT__/index.php?' . \$_tmp;
+                \$field['icon']='__ROOT__/'.\$field['icon'];
             ?>
 str;
         $php.=$content;
@@ -475,21 +476,22 @@ str;
     public function _comment($attr, $content)
     {
         $row = isset($attr['row']) ? $attr['row'] : 20;
-        $len = isset($attr['titlelen']) ? $attr['titlelen'] : 20;
+        $len = isset($attr['contentlen']) ? $attr['contentlen'] : 20;
         $php=<<<str
         <?php
             \$db=M('comment');
             \$pre=C('DB_PREFIX');
-            \$sql = "SELECT u.uid,mid,cid,aid,nickname,pubtime,content,domain,ifnull(icon50,'__ROOT__/data/images/user/50.png') AS icon FROM ".\$pre."user AS u
+            \$sql = "SELECT u.uid,comment_id,mid,cid,aid,nickname,pubtime,content,domain,ifnull(icon50,'data/images/user/50.png') AS icon FROM ".\$pre."user AS u
                 JOIN ".\$pre."user_icon AS ui ON u.uid=ui.user_uid
                 JOIN ".\$pre."comment AS c ORDER BY comment_id DESC limit $row";
             \$data = \$db->query(\$sql);
             foreach(\$data as \$field):
                 \$_tmp = empty(\$field['domain']) ? \$field['uid'] : \$field['domain'];
                 \$field['userlink'] = ' __ROOT__/index.php?' . \$_tmp;
-                \$field['url']=U('Index/Article/show',array('mid'=>\$field['mid'],'cid'=>\$field['cid'],'aid'=>\$field['aid']));
+                \$field['url']='__WEB__?a=Index&c=Article&m=show&g=Hdcms&mid='.\$field['mid'].'&cid='.\$field['cid'].'&aid='.\$field['aid'].'&comment_id='.\$field['comment_id'];
                 \$field['content'] =mb_substr(\$field['content'],0,$len,'utf-8');
                 \$field['pubtime'] =date_before(\$field['pubtime']);
+                \$field['icon']='__ROOT__/'.\$field['icon'];
             ?>
 str;
         $php.=$content;

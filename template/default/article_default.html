@@ -34,35 +34,7 @@
                 </div>
                 <button type="submit" class="btn btn-primary">搜索</button>
             </form>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <span class="glyphicon glyphicon-user"></span>
-                        <span class="glyphicon glyphicon-cloud-download"></span>
-                    </a>
-                    <if value="$hd.session.uid">
-                        <ul class="dropdown-menu">
-                            <li><a href="__WEB__?a=Home&c=User&m=edit&g=Member">修改资料</a></li>
-                            <li><a href="__WEB__?a=Home&c=Content&m=index&g=Member">我的文章</a></li>
-                            <li><a href="__WEB__?a=Home&c=Content&m=index&g=Member">我的消息</a></li>
-                            <li><a href="__WEB__?a=Home&c=Favorite&m=index&g=Member">我的收藏</a></li>
-                            <li><a href="__WEB__?a=Login&c=login&m=quit&g=Member">退出</a></li>
-                        </ul>
-                        <else>
-                            <ul class="dropdown-menu">
-                                <li><a href="?a=Login&c=Login&m=login&g=Member">登录</a></li>
-                                <li><a href="?a=Login&c=Login&m=reg&g=Member">注册</a></li>
-                            </ul>
-                    </if>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">后盾网 <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="http://www.houdunwang.com">后盾网</a></li>
-                        <li><a href="http://bbs.houdunwang.com">论坛</a></li>
-                    </ul>
-                </li>
-            </ul>
+            <script type="text/javascript" src="__WEB__?a=Login&c=User&m=user&g=Member"></script>
         </div>
     </nav>
 </article>
@@ -85,7 +57,7 @@
 
             <p>
                 <a href="#">{$hdcms.author}</a> 发表于 {$hdcms.date_before} ({$hdcms.time}) -
-                <a href="#">46条评论</a> 所属分类：<a href="{$hdcms.caturl}">{$hdcms.catname}</a>
+                <a href="#">{$hdcms.commentnum}条评论</a> 所属分类：<a href="{$hdcms.caturl}">{$hdcms.catname}</a>
                 <a href="javascript:add_favorite({$hdcms.mid},{$hdcms.cid},{$hdcms.aid})">加入收藏</a>
             </p>
         </div>
@@ -122,10 +94,13 @@
         </div>
     </div>
     <!--发表评论-->
-    <script type="text/javascript" id="comment" src="__WEB__?a=Comment&c=Comment&m=show&mid={$hdcms.mid}&cid={$hdcms.cid}&aid={$hdcms.aid}"></script>
+    <script type="text/javascript" id="comment" src="__WEB__?a=Comment&c=Comment&m=show&mid={$hdcms.mid}&cid={$hdcms.cid}&aid={$hdcms.aid}&comment_id={$hd.get.comment_id}"></script>
 </div>
 <!--右侧列表-->
 <div class="right-list col-md-4">
+    <a class="publish">
+        <strong>+</strong>发表文章
+    </a>
     <!--热门标签-->
     <article class="tag">
         <header>
@@ -151,7 +126,7 @@
         <section>
             <user row="14">
                 <a href="{$field.url}">
-                    <img src="{$field.icon}" title="{$field.nickname}"/>
+                    <img src="{$field.icon}" title="{$field.nickname}" style="width: 50px;height: 50px;border-radius: 10%;"/>
                 </a>
             </user>
         </section>
@@ -159,10 +134,10 @@
     <!--最新评论-->
     <article class="comment">
         <header>最新评论</header>
-        <comment row="6">
+        <comment row="6" contentlen="20">
             <section>
                 <a href="{$field.url}">
-                    <img src="{$field.icon}" style="width: 36px;height: 36px;"/>
+                    <img src="{$field.icon}" style="width: 36px;height: 36px;border-radius: 50%;"/>
 
                     <p class="man">
                         <span>{$field.nickname}</span> {$field.pubtime}说：

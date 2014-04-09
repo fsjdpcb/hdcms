@@ -51,7 +51,11 @@
                 <tr>
                     <th>栏&nbsp;&nbsp;&nbsp;&nbsp;目</th>
                     <td>
-                        {$category.catname}
+                        <select name="cid">
+                      <list from="$category" name="c">
+                          <option value="{$c.cid}">{$c._name}</option>
+                      </list>
+                        </select>
                     </td>
                 </tr>
                 <tr>

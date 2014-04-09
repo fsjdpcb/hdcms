@@ -1,10 +1,14 @@
 <?php
-import("Index.Control.PublicControl");
-import("Index.Control.IndexControl");
-import("Index.Control.CategoryControl");
-import("Index.Control.ContentControl");
-import("Content.Model.ContentModel");
-import("Content.Model.ContentViewModel");
+import("PublicControl","hd.Hdcms.Index.Control");
+import("IndexControl","hd.Hdcms.Index.Control");
+import("CategoryControl","hd.Hdcms.Index.Control");
+import("ArticleControl","hd.Hdcms.Index.Control");
+
+import("ContentModel","hd.Hdcms.Index.Model");
+import("ContentViewModel","hd.Hdcms.Index.Model");
+
+import('Template', 'hd.Hdcms.Index.Lib');
+import('Url', 'hd.Hdcms.Index.Lib');
 
 /**
  * 静态处理模块
@@ -115,17 +119,17 @@ class HtmlControl extends AuthControl
             $mid = Q("post.mid", 0, "intval");
             //一键生成时的情况，更新所有栏目
             if (isset($_SESSION['make_all']['category'])) {
-                $category = $db->field("cid,mid,catname,catdir,cat_html_url")->all();
+                $category = $db->field("cid,mid,catname,catdir,cat_html_url")->where('cattype<>3')->all();
             } else if (count($_POST['cid']) == 1 and $_POST['cid'][0] == 0) { //没有选择栏目
                 //不限模型时
                 if ($mid === 0) {
-                    $category = $db->field("cid,mid,catname,catdir,cat_html_url")->all();
+                    $category = $db->field("cid,mid,catname,catdir,cat_html_url")->where('cattype<>3')->all();
                 } else { //指定模型的所有栏目
                     $category = $db->field("cid,mid,catname,catdir,cat_html_url")->where("mid=$mid")->all();
                 }
             } else {
                 //指定具体栏目
-                $category = $db->field("cid,mid,catname,catdir,cat_html_url")->in($_POST['cid'])->all();
+                $category = $db->field("cid,mid,catname,catdir,cat_html_url")->in($_POST['cid'])->where('cattype<>3')->all();
             }
             //不存在配置文件时生成栏目首页
             if (is_null($category)) {
@@ -345,7 +349,7 @@ class HtmlControl extends AuthControl
                     //生成静态IndexControl中的content方法需要这2个变量
                     $_REQUEST['cid'] = $cat['cid'];
                     $_REQUEST['aid'] = $con['aid'];
-                    Html::make("ArticleControl", "content", $field);
+                    Html::make("ArticleControl", "show", $field);
                 }
                 //本次$cat['row']页生成完毕，执行下一轮静态生成
                 $this->message("{$cat['catname']}共有{$cat['total_row']}条记录-

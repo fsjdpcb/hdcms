@@ -67,9 +67,11 @@ class ArticleModel extends ViewModel
      */
     public function get_one()
     {
-        $field = $this->join('category,user,model,'.$this->_stable)->where($this->tableFull . '.aid=' . $this->_aid)->find();
-        //获得tag
-        $field['tag'] = $this->get_tag($this->_aid);
+        $field = $this->join('category,user,model,' . $this->_stable)->where($this->tableFull . '.aid=' . $this->_aid)->find();
+        if ($field) {
+            //获得tag
+            $field['tag'] = $this->get_tag($this->_aid);
+        }
         return $field;
     }
 

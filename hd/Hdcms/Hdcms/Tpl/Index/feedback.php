@@ -13,7 +13,7 @@
     <table class="table2">
         <tr>
             <td style="color:red">
-                HDCMS系统为Beta版本，不提供升级服务。请关注正式版本发布！
+                HDCMS是国内唯一真正的百分百免费开源产品，您不用担心任何版权问题。
             </td>
         </tr>
     </table>
@@ -31,11 +31,11 @@
     <div class="title-header">HDCMS动态</div>
     <table class="table2">
         <tr>
-            <td><a href="#">[2014-5-22] DISCUZ论坛整合</a></td>
+            <td>
+               <a href="http://www.hdphp.com">>>查看所有动态</a>
+            </td>
         </tr>
     </table>
-    &nbsp;&nbsp;&nbsp;<a href="http://www.hdphp.com">>>查看所有动态</a>
-
     <div style="height:10px;overflow: hidden">&nbsp;</div>
     <div class="title-header">系统信息</div>
     <table class="table2">
@@ -87,9 +87,9 @@
             </td>
         </tr>
         <tr>
-            <td>项目负责人</td>
+            <td>作者</td>
             <td>
-                向军
+                后盾网向军
             </td>
         </tr>
         <tr>

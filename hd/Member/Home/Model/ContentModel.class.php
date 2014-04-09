@@ -8,7 +8,6 @@ import('ContentTag', 'hd.Hdcms.Index.Lib');
 import('TagModel', 'hd.Hdcms.Tag.Model');
 import('FieldModel', 'hd.Hdcms.Field.Model');
 import('UploadControl', 'hd.Hdcms.Upload.Control');
-
 /**
  * 管理员文章内容管理
  * Class ContentModel
@@ -367,12 +366,16 @@ class ContentModel extends RelationModel
         $this->_update_tag($aid);
         //获得文章的静态html地址
         $html = Url::get_content_html(M($this->table)->find($aid));
+
         if ($html) {
             $_GET = $this->find($aid);
             //生成静态
             ob_start();
-            $obj = new ArticleControl($this->_cid, $aid);
-            $obj->content();
+            $_REQUEST['mid']=$this->_mid;
+            $_REQUEST['cid']=$this->_cid;
+            $_REQUEST['aid']=$aid;
+            $obj = new ArticleControl();
+            $obj->show();
             $con = ob_get_clean();
             $dir = dirname($html);
             is_dir($dir) or dir_create($dir, 0755);
@@ -410,7 +413,7 @@ class ContentModel extends RelationModel
         M('user')->where('uid=' . session('uid'))->save(array('credits', $credits + $add_reward));
         //更新会员session
         session('credits', $credits + $add_reward);
-        //------------------------------------修改会员金币数
+
         if ($data)
             $this->_after_action($data);
     }

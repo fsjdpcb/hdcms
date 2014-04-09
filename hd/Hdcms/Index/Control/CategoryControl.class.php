@@ -1,5 +1,5 @@
 <?php
-
+import('CategoryModel','hd.Hdcms.Index.Model');
 /**
  * 栏目列表
  * Class IndexControl

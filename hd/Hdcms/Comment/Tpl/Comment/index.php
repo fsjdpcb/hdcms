@@ -1,6 +1,16 @@
 <link rel="stylesheet/less" href="__CONTROL_TPL__/css/comment.less?ver=1.0 "/>
 <less/>
 <js file="__CONTROL_TPL__/js/comment.js"/>
+<script>
+    $(function(){
+        var comment_id = '{$hd.get.comment_id|default:0}';
+        if(comment_id){
+            var id = 'c'+comment_id;
+            var _top = $("#"+id).offset().top;
+            $(window).scrollTop(_top);
+        }
+    })
+</script>
 <!--发表评论-->
 <div class="hd-comment">
     <!--评论标题-->
@@ -22,9 +32,9 @@
     <div class="hd-comment-list">
         <ol class="comment-list">
             <list from="$data" name="a">
-                <li>
+                <li id="c{$a.comment_id}">
                     <div class="hd-comment-face">
-                        <img src="{$a.icon50}"/>
+                        <img src="__ROOT__/{$a.icon50}"/>
                     </div>
                     <div class="hd-comment-content">
                         {$a.content}
@@ -39,7 +49,7 @@
                     <!--回复-->
                     <div class="hd-comment-reply">
                         <div class="hd-comment-face">
-                            <img src="{$a.icon50}"/>
+                            <img src="__ROOT__/{$a.icon50}"/>
                         </div>
                         <div class="hd-reply-content">
                             <form method="post" onsubmit="return add_comment(this,'reply')">
@@ -57,9 +67,9 @@
                     <!--子评论-->
                     <ul class="children">
                         <list from="$a._data" name="b">
-                            <li>
+                            <li id="c{$b.comment_id}">
                                 <div class="hd-comment-face">
-                                    <img src="{$b.icon50}"/>
+                                    <img src="__ROOT__/{$b.icon50}"/>
                                 </div>
                                 <div class="hd-comment-content">
                                     {$b.content}
@@ -74,7 +84,7 @@
                                 <!--回复-->
                                 <div class="hd-comment-reply">
                                     <div class="hd-comment-face">
-                                        <img src="{$b.icon50}"/>
+                                        <img src="__ROOT__/{$b.icon50}"/>
                                     </div>
                                     <div class="hd-reply-content">
                                         <form method="post" onsubmit="return add_comment(this,'reply')">
@@ -91,9 +101,9 @@
                                 </div>
                                 <ul class="children">
                                     <list from="$b._data" name="c">
-                                        <li class="bg-white">
+                                        <li class="bg-white" id="c{$c.comment_id}">
                                             <div class="hd-comment-face">
-                                                <img src="{$c.icon50}"/>
+                                                <img src="__ROOT__/{$c.icon50}"/>
                                             </div>
                                             <div class="hd-comment-content">
                                                 {$c.content}
@@ -108,7 +118,7 @@
                                             <!--回复-->
                                             <div class="hd-comment-reply">
                                                 <div class="hd-comment-face">
-                                                    <img src="{$c.icon50}"/>
+                                                    <img src="__ROOT__/{$c.icon50}"/>
                                                 </div>
                                                 <div class="hd-reply-content">
                                                     <form method="post" onsubmit="return add_comment(this,'reply')">
@@ -126,9 +136,9 @@
                                             </div>
                                             <ul class="children">
                                                 <list from="$c._data" name="d">
-                                                    <li>
+                                                    <li id="c{$d.comment_id}">
                                                         <div class="hd-comment-face">
-                                                            <img src="{$d.icon50}"/>
+                                                            <img src="__ROOT__/{$d.icon50}"/>
                                                         </div>
                                                         <div class="hd-comment-content">
                                                             {$d.content}

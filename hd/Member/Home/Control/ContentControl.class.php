@@ -59,12 +59,16 @@ class ContentControl extends MemberAuthControl
     /**
      * 选择发表文章栏目
      */
-    public function select_category()
+    public function get_category()
     {
-        header("Content-type:text/html;charset=utf-8");
         $rid = session('rid');
+        $cat = F("category");
         //分配栏目
-        $category = Data::tree(F("category"), 'catname');
+        $category = Data::tree($cat, 'catname');
+        if ($this->_cid) {
+            $category = Data::channelList($category, $this->_cid);
+            array_unshift($category, $cat[$this->_cid]);
+        }
         $data = array();
         /**
          * 只选择有权限的栏目，过滤掉没有发表权限的栏目
@@ -77,8 +81,7 @@ class ContentControl extends MemberAuthControl
                 $data[$n] = $v;
             }
         }
-        $this->data = $data;
-        $this->display();
+        return $data;
     }
 
     /**
@@ -91,22 +94,19 @@ class ContentControl extends MemberAuthControl
             if ($this->_db->add_content()) {
                 $credits = $this->_category[$this->_cid]['add_reward'];
                 $this->_ajax(1, "发表成功！增加{$credits}个金币");
+                exit;
             } else {
                 $this->_ajax(0, $this->_db->error);
             }
         } else {
-            $cid = Q('cid', null, 'intval');
-            if (!$cid) {
-                _404('请求非法');
-            }
             //分配栏目
-            $this->category = $this->_category[$cid];
+            $this->category = $this->get_category();
             //模型type为1时即标准模型，显示编辑器、关键字等字段
             $this->model = $this->_model[$this->_mid];
             //自定义字段
             import('FieldModel', 'hd/Hdcms/Field/Model');
             //FieldModel模型使用mid参数
-            $_REQUEST['mid'] = $this->_category[$cid]['mid'];
+            $_REQUEST['mid'] =$this->_mid;
             $fieldModel = new FieldModel();
             $this->custom_field = $fieldModel->field_view();
             $this->display();

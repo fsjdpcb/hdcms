@@ -476,8 +476,11 @@ class ContentModel extends RelationModel
             $_GET = $this->find($aid);
             //生成静态
             ob_start();
+            $_REQUEST['mid']=$this->_mid;
+            $_REQUEST['cid']=$this->_cid;
+            $_REQUEST['aid']=$aid;
             $obj = new ArticleControl($this->_cid, $aid);
-            $obj->content();
+            $obj->show();
             $con = ob_get_clean();
             $dir = dirname($html);
             is_dir($dir) or dir_create($dir, 0755);

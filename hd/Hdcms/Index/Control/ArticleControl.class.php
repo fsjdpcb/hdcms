@@ -1,5 +1,5 @@
 <?php
-
+import('ArticleModel','hd.Hdcms.Index.Model');
 /**
  * 内容页
  * Class ContentControl
@@ -53,6 +53,7 @@ class ArticleControl extends PublicControl
                 $tpl = Template::get_content_tpl($this->_aid, $this->_cid);
                 $field['time'] = date("Y/m/d", $field['addtime']);
                 $field['date_before'] = date_before($field['addtime']);
+                $field['commentnum']=M("comment")->where("cid=".$this->_cid." AND aid=".$this->_aid)->count();
                 $this->hdcms = $field;
                 $this->display($tpl, C('cache_article'));
             }
