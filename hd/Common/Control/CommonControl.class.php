@@ -19,7 +19,7 @@ class CommonControl extends Control
     {
         //判断浏览器
         if (!$this->check_browser()) {
-            $this->display('hd/Common/template/check_browser.html');
+            $this->display('hd/Common/Template/check_browser.html');
             exit;
         }
         parent::__construct();
