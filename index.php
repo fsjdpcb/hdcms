@@ -10,4 +10,4 @@ define("TEMP_PATH", 'temp/');
 
 // require "hd/hdphp/hdphp/hdphp.php";
 
-require "../hdphp/hdphp/hdphp.php";
+require "hd/HDPHP/hdphp/hdphp.php";

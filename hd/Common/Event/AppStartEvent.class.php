@@ -17,9 +17,9 @@ class AppStartEvent extends Event
     private function set_const()
     {
         //表字段缓存
-        define("FIELD_CACHE_PATH", 'data/cache/field/');
+        define("FIELD_CACHE_PATH", 'data/Cache/Field/');
         //JS文件缓存目录
-        define("JS_CACHE_PATH", 'data/cache/js/');
+        define("JS_CACHE_PATH", 'data/Cache/Js/');
         //视图缓存目录(模板显示数据)
         define("CONTENT_CACHE_PATH", 'data/Cache/Content/');
     }
