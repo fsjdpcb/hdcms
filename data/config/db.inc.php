@@ -9,6 +9,6 @@ return array (
   'DB_PREFIX' => 'hd_',
   'WEB_MASTER' => 'admin',
   'INSERT_TEST_DATA' => '1',
-  'VERSION' => 'HDCMS 简体中文 UTF8 版 2014.1 Beta1',
+  'VERSION' => 'HDCMS 简体中文 UTF8 版 2014.04',
 );
 ?>

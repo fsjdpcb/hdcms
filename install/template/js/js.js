@@ -19,9 +19,16 @@ function validation_input() {
             span.addClass("error").html(error).show();
         }
     })
+    //验证邮箱
+    var email = $.trim($("[name='EMAIL']").val());
+    if(!/^([a-zA-Z0-9_\-\.])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/i.test(email)){
+        $("[name='EMAIL']").next("span").addClass("error").show().html("邮箱格式错误");
+        return false;
+    }
     //验证密码
     var password = $.trim($("[name='PASSWORD']").val());
     var c_password = $.trim($("[name='C_PASSWORD']").val());
+
     if (password != c_password) {
         $("[name='C_PASSWORD']").next("span").addClass("error").show().html("两次密码不一致");
         return false;

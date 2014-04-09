@@ -72,19 +72,25 @@
                     </span></td>
                 </tr>
                 <tr>
-                    <td>GD 支持</td>
+                    <td>GD 库</td>
                     <td><?php echo $gd; ?></td>
                     <td> <span class="desc">
                         (不支持将导致与图片相关的大多数功能无法使用或引发警告)
                     </span></td>
                 </tr>
                 <tr>
-                    <td>MySQL 支持</td>
+                    <td>MySQL</td>
                     <td><?php echo $mysql; ?></td>
                     <td> <span class="desc">
                         (不支持无法使用本系统)
                     </span></td>
                 </tr>
+                <tr>
+                    <td>mb_substr</td>
+                    <td><?php echo $mb_substr; ?></td>
+                    <td> <span class="desc">
+                        (不支持无法使用本系统)
+                    </span></td>
                 </tr>
             </table>
         </div>

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50535
 File Encoding         : 65001
 
-Date: 2014-04-10 00:18:29
+Date: 2014-04-10 01:29:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -119,11 +119,16 @@ CREATE TABLE `hd_category` (
   `allow_user_set_credits` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否允许会员投稿设置积分 1 允许 0 不允许',
   `member_send_state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '会员投稿状态 1 审核 2 未审核',
   PRIMARY KEY (`cid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='栏目表';
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='栏目表';
 
 -- ----------------------------
 -- Records of hd_category
 -- ----------------------------
+INSERT INTO `hd_category` VALUES ('1', '0', '问答', 'help', '', '', 'article_index.html', 'article_list.html', 'article_default.html', null, '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '2', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '0');
+INSERT INTO `hd_category` VALUES ('2', '1', 'HDPHP', 'hdask', '', '', 'article_index.html', 'article_list.html', 'article_default.html', null, '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '0');
+INSERT INTO `hd_category` VALUES ('3', '1', 'HDCMS', 'cmsask', '', '', 'article_index.html', 'article_list.html', 'article_default.html', null, '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '0');
+INSERT INTO `hd_category` VALUES ('4', '0', '资讯', 'news', '', '', 'article_index.html', 'article_list.html', 'article_default.html', null, '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '0');
+INSERT INTO `hd_category` VALUES ('5', '0', '实训', 'houdunwang', '', '', 'article_index.html', 'article_list.html', 'article_default.html', null, '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '3', '2', '2', 'http://www.houdunwang.com', '100', '1', '', '', '1', '0', '1', '1', '0');
 
 -- ----------------------------
 -- Table structure for hd_category_access
@@ -543,7 +548,7 @@ INSERT INTO `hd_node` VALUES ('2', '内容管理', 'Hdcms', '', '', '', '', '', 
 INSERT INTO `hd_node` VALUES ('16', '系统', 'Hdcms', '', '', '', '', '', '1', '1', '0', '10', '0', '0');
 INSERT INTO `hd_node` VALUES ('21', '后台菜单管理', 'Hdcms', 'Node', 'Node', 'index', '', '', '1', '1', '19', '100', '0', '0');
 INSERT INTO `hd_node` VALUES ('3', '附件管理', 'Hdcms', 'Upload', 'Index', 'index', '', '', '1', '1', '10', '100', '0', '0');
-INSERT INTO `hd_node` VALUES ('12', '数据备份', 'Hdcms', 'Backup', 'Backup', 'index', '', '', '1', '1', '79', '100', '0', '0');
+INSERT INTO `hd_node` VALUES ('12', '数据备份', 'Hdcms', 'Backup', 'Backup', 'index', '', '', '1', '1', '79', '100', '0', '1');
 INSERT INTO `hd_node` VALUES ('10', '内容相关管理', 'Hdcms', '', '', '', '', '', '1', '1', '1', '12', '0', '0');
 INSERT INTO `hd_node` VALUES ('13', '栏目管理', 'Hdcms', 'Category', 'Category', 'index', '', '', '1', '1', '2', '11', '0', '1');
 INSERT INTO `hd_node` VALUES ('14', '模型管理', 'Hdcms', 'Model', 'Model', 'index', '', '', '1', '1', '10', '100', '0', '0');
@@ -555,17 +560,17 @@ INSERT INTO `hd_node` VALUES ('17', '管理员管理', 'Hdcms', 'Role', 'Admin',
 INSERT INTO `hd_node` VALUES ('18', '角色管理', 'Hdcms', 'Role', 'Role', 'index', '', '', '1', '1', '11', '100', '0', '0');
 INSERT INTO `hd_node` VALUES ('20', '网站配置', 'Hdcms', 'Config', 'Config', 'edit', '', '', '1', '1', '19', '90', '0', '0');
 INSERT INTO `hd_node` VALUES ('5', '生成静态', 'Hdcms', '', '', '', '', '', '1', '1', '1', '11', '0', '0');
-INSERT INTO `hd_node` VALUES ('6', '批量更新栏目页', 'Hdcms', 'Html', 'Html', 'create_category', '&', '', '1', '1', '5', '100', '0', '1');
-INSERT INTO `hd_node` VALUES ('8', '生成首页', 'Hdcms', 'Html', 'Html', 'create_index', '&', '', '1', '1', '5', '100', '0', '1');
-INSERT INTO `hd_node` VALUES ('9', '批量更新内容页', 'Hdcms', 'Html', 'Html', 'create_content', '&', '', '1', '1', '5', '100', '0', '1');
+INSERT INTO `hd_node` VALUES ('6', '批量更新栏目页', 'Hdcms', 'Html', 'Html', 'create_category', '&', '', '1', '1', '5', '100', '0', '0');
+INSERT INTO `hd_node` VALUES ('8', '生成首页', 'Hdcms', 'Html', 'Html', 'create_index', '&', '', '1', '1', '5', '100', '0', '0');
+INSERT INTO `hd_node` VALUES ('9', '批量更新内容页', 'Hdcms', 'Html', 'Html', 'create_content', '&', '', '1', '1', '5', '100', '0', '0');
 INSERT INTO `hd_node` VALUES ('28', '修改密码', 'Hdcms', 'Role', 'Personal', 'edit_password', '&', '', '1', '1', '29', '100', '0', '0');
-INSERT INTO `hd_node` VALUES ('27', '修改个人信息', 'Hdcms', 'Role', 'Personal', 'edit_info', '', '', '1', '1', '29', '100', '0', '1');
+INSERT INTO `hd_node` VALUES ('27', '修改个人信息', 'Hdcms', 'Role', 'Personal', 'edit_info', '', '', '1', '1', '29', '100', '0', '0');
 INSERT INTO `hd_node` VALUES ('26', '我的面板', 'Hdcms', '', '', '', '', '', '1', '1', '0', '100', '0', '0');
 INSERT INTO `hd_node` VALUES ('29', '个人信息', 'Hdcms', '', '', '', '', '', '1', '1', '26', '100', '0', '0');
 INSERT INTO `hd_node` VALUES ('61', '一键更新', 'Hdcms', 'Html', 'Html', 'create_all', '', '一键更新全站', '1', '1', '5', '100', '0', '1');
 INSERT INTO `hd_node` VALUES ('30', '会员', 'Hdcms', '', '', '', '', '', '1', '1', '0', '100', '0', '0');
 INSERT INTO `hd_node` VALUES ('31', '会员管理', 'Hdcms', '', '', '', '', '', '1', '1', '30', '100', '0', '0');
-INSERT INTO `hd_node` VALUES ('32', '会员管理', 'Hdcms', 'Group', 'User', 'index', '', '', '1', '1', '31', '100', '0', '1');
+INSERT INTO `hd_node` VALUES ('32', '会员管理', 'Hdcms', 'Group', 'User', 'index', '', '', '1', '1', '31', '100', '0', '0');
 INSERT INTO `hd_node` VALUES ('33', '审核会员', 'Hdcms', 'Group', 'User', 'index', 'state=0', '', '1', '1', '31', '100', '0', '1');
 INSERT INTO `hd_node` VALUES ('34', '会员组管理', 'Hdcms', '', '', '', '', '', '1', '1', '30', '100', '0', '0');
 INSERT INTO `hd_node` VALUES ('35', '管理会员组', 'Hdcms', 'Group', 'Group', 'index', '', '', '1', '1', '34', '100', '0', '0');
@@ -763,7 +768,7 @@ CREATE TABLE `hd_user` (
 -- ----------------------------
 -- Records of hd_user
 -- ----------------------------
-INSERT INTO `hd_user` VALUES ('1', '后盾网向军', 'admin', '054e1e1672569f5810335722c6a1994f', 'a120882783', 'houdunwangxj@gmail.com', '0', '1397057146', '', '0.0.0.0', '1', '', '1', '', '10008', '1', '1', '后盾网 人人做后盾', 'xiangjun');
+INSERT INTO `hd_user` VALUES ('1', '后盾网向军', 'admin', '054e1e1672569f5810335722c6a1994f', 'a120882783', 'houdunwangxj@gmail.com', '0', '1397063717', '', '0.0.0.0', '1', '', '1', '', '10008', '1', '1', '后盾网 人人做后盾', 'xiangjun');
 
 -- ----------------------------
 -- Table structure for hd_user_guest

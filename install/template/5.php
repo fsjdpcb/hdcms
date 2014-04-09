@@ -53,7 +53,7 @@
                     <tr>
                         <td>数据库名称</td>
                         <td><input type="text" class="input" name="DB_DATABASE" mast_required="1" error="数据库名称不能为空"
-                                   value=""/>
+                                   value="hdcms"/>
                             <span class="message"></span></td>
                     </tr>
                 </table>
@@ -89,7 +89,7 @@
                     </tr>
                     <tr>
                         <td>站长邮箱</td>
-                        <td><input type="text" class="input" name="EMAIL" value="" error="站长邮箱不能为空"/>
+                        <td><input type="text" class="input" name="EMAIL" mast_required="1" error="站长邮箱不能为空" value=""/>
                             <span class="message"></span></td>
                     </tr>
                 </table>

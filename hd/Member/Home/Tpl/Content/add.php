@@ -53,7 +53,7 @@
                     <td>
                         <select name="cid">
                       <list from="$category" name="c">
-                          <option value="{$c.cid}">{$c._name}</option>
+                          <option value="{$c.cid}" {$c.disabled}>{$c._name}</option>
                       </list>
                         </select>
                     </td>

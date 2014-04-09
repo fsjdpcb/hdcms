@@ -1,7 +1,8 @@
 <?php
+session_start();
 $version = array(
     "NAME" => "HDCMS 简体中文 UTF8 版",
-    "VERSION" => "2014.1 Beta1",
+    "VERSION" => "2014.04",
     "TIME" => "2013年12月24日"
 );
 //网站根目录
@@ -50,10 +51,11 @@ switch ($s) {
         $server = $_SERVER["SERVER_SOFTWARE"];
         $php_version = PHP_VERSION;
         $allow_url_fopen = (ini_get('allow_url_fopen') ? '<span class="dir_success">On</span>' : '<span class="dir_success">Off</span>');
-        $safe = (ini_get('safe_mode') ? '<span class="dir_error">On</span>' : '<span class="dir_success">Off</span>');
+        $safe = (ini_get('safe_mode') ? '<span class="dir_error">Off</span>' : '<span class="dir_success">On</span>');
         $gd_info = gd_info();
         $gd = !empty($gd_info) ? '<span class="dir_success">On</span>' : '<span class="dir_error">Off</span>';
-        $mysql = function_exists("mysql_connect") ? '<span class="dir_success">Off</span>' : '<span class="dir_success">Off</span>';
+        $mysql = function_exists("mysql_connect") ? '<span class="dir_success">On</span>' : '<span class="dir_success">Off</span>';
+        $mb_substr= function_exists("mb_substr") ? '<span class="dir_success">On</span>' : '<span class="dir_success">Off</span>';
         //检测目录
         $dirctory = array(
             "/", //网站根目录
@@ -61,7 +63,6 @@ switch ($s) {
             "data/config", //配置文件
             "data/config/config.inc.php", //网站配置文件
             "data/config/db.inc.php", //数据库配置文件
-            "data/config/tag.inc.php", //标签库配置文件
             "data/backup", //备份目录
             "data/cache/data", //栏目缓存
             "data/cache/field", //字段缓存目录
@@ -77,7 +78,9 @@ switch ($s) {
         break;
     case 7: //安装完成
         //创建锁文件
-        touch("lock.php");
+        session_unset();
+        session_destroy();
+        // touch("lock.php");
         require "./template/7.php";
         break;
     case "check_connect":
@@ -122,7 +125,6 @@ switch ($s) {
         $db->exe("UPDATE {$db_prefix}config SET value='{$config['WEB_NAME']}' WHERE name='webname'");
         $db->exe("UPDATE {$db_prefix}config SET value='{$config['EMAIL']}' WHERE name='email'");
         $db->exe("REPLACE {$db_prefix}user SET username='{$config['ADMIN']}',email='{$config['EMAIL']}',password='" . md5($config['PASSWORD'])."'");
-        echo "REPLACE {$db_prefix}user SET username='{$config['ADMIN']}',email='{$config['EMAIL']}',password='" . md5($config['PASSWORD'])."',rid=1";
         unset($config['WEB_NAME']);
         unset($config['EMAIL']);
         unset($config['ADMIN']);

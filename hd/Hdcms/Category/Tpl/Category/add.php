@@ -199,8 +199,8 @@
                             投稿默认状态
                         </th>
                         <td>
-                            <label><input type="radio" name="member_send_state" value="1" checked=""/> 审核 </label>
-                            <label><input type="radio" name="member_send_state" value="0"/> 未审核 </label>
+                            <label><input type="radio" name="member_send_state" value="1"/> 审核 </label>
+                            <label><input type="radio" name="member_send_state" value="0" checked=""/> 未审核 </label>
                         </td>
                     </tr>
                 </table>
