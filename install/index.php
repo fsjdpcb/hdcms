@@ -8,7 +8,7 @@ $version = array(
 //网站根目录
 define("WEB_PATH", dirname(dirname(str_replace('\\', '/', __FILE__))) . '/');
 //框架目录
-define("HDPHP_PATH", WEB_PATH . "/hd/hdphp/hdphp/");
+define("HDPHP_PATH", WEB_PATH . "/hd/HDPHP/hdphp/");
 //版本号
 define("VERSION", $version['NAME'] . " " . $version['VERSION']);
 
@@ -63,9 +63,9 @@ switch ($s) {
             "data/config", //配置文件
             "data/config/config.inc.php", //网站配置文件
             "data/config/db.inc.php", //数据库配置文件
-            "data/cache/Data", //栏目缓存
-            "data/cache/Field", //字段缓存目录
-            "data/cache/Js", //js缓存
+            "data/Cache/Data", //栏目缓存
+            "data/Cache/Field", //字段缓存目录
+            "data/Cache/Js", //js缓存
         );
         require "./template/4.php";
         break;
@@ -79,7 +79,7 @@ switch ($s) {
         //创建锁文件
         session_unset();
         session_destroy();
-        // touch("lock.php");
+        touch("lock.php");
         require "./template/7.php";
         break;
     case "check_connect":
@@ -121,9 +121,11 @@ switch ($s) {
                 return_msg("{$table} 表数据插入完毕...");
             }
         }
+        //密码加密key
+        $code = substr(md5(mt_rand() . time()), 0, 10);
         $db->exe("UPDATE {$db_prefix}config SET value='{$config['WEB_NAME']}' WHERE name='webname'");
         $db->exe("UPDATE {$db_prefix}config SET value='{$config['EMAIL']}' WHERE name='email'");
-        $db->exe("REPLACE {$db_prefix}user SET username='{$config['ADMIN']}',email='{$config['EMAIL']}',password='" . md5($config['PASSWORD'])."'");
+        $db->exe("REPLACE {$db_prefix}user SET uid=1,rid=1,username='{$config['ADMIN']}',nickname='{$config['ADMIN']}',email='{$config['EMAIL']}',code='{$code}',password='" . md5($config['PASSWORD'].$code)."'");
         unset($config['WEB_NAME']);
         unset($config['EMAIL']);
         unset($config['ADMIN']);

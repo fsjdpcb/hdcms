@@ -31,7 +31,7 @@
     <div class="form">
         <div class="user">
             <div class="face">
-                <img src="{$hd.session.icon50}"/>
+                <img src="__ROOT__/{$hd.session.icon50}"/>
             </div>
             <div class="username">
                 <p>{$hd.session.nickname}</p>

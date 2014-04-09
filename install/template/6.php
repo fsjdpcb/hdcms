@@ -23,7 +23,7 @@
     </div>
     <div class="install">
         <div class="create_data" id="create_data">
-            <iframe src="?step=install" id="insert_data"></iframe>
+            <iframe src="index.php?step=install" id="insert_data"></iframe>
         </div>
     </div>
 </div>

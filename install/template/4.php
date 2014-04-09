@@ -89,7 +89,7 @@
                     <td>mb_substr</td>
                     <td><?php echo $mb_substr; ?></td>
                     <td> <span class="desc">
-                        (不支持无法使用本系统)
+                        (必须存在mbstring扩展库)
                     </span></td>
                 </tr>
             </table>

@@ -53,8 +53,8 @@ $(function () {
                                 if (window.opener) {
                                     window.opener.location.reload();
                                 }
-//                                hd_close_window();
-//                                window.close();
+                                hd_close_window();
+                                window.close();
                             }
                         });
                     } else {
