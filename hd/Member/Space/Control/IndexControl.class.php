@@ -59,6 +59,5 @@ class IndexControl extends Control
                 JOIN {$pre}user_guest AS ug ON u.uid=ug.guest_uid
                 JOIN {$pre}user_icon AS ui ON ug.guest_uid = ui.user_uid LIMIT 20";
         $this->guest = $db->query($sql);
-        p($db->query($sql));exit;
     }
 }
