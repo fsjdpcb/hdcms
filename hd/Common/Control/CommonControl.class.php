@@ -7,40 +7,13 @@
  */
 class CommonControl extends Control
 {
-    //表前缀
-    protected $_db_prefix;
-    //用户uid
-    protected $_uid;
-    //用户名
-    protected $_username;
 
     //构造函数
     public function __construct()
     {
-        //判断浏览器
-        if (!$this->check_browser()) {
-            $this->display('hd/Common/Template/check_browser.html');
-            exit;
-        }
         parent::__construct();
-        $this->_db_prefix = C("DB_PREFIX");
-        $this->_uid = session("uid");
-        $this->_username = session('username');
     }
-    /**
-     * 浏览器检测
-     * @return bool
-     */
-    public function check_browser()
-    {
-        $browser = browser_info();
-        if (strstr($browser, 'msie')) {
-            if (intval(substr($browser, 4)) < 9) {
-                return false;
-            }
-        }
-        return true;
-    }
+
     /**
      * Ajax异步
      * @param $state
@@ -77,21 +50,5 @@ class CommonControl extends Control
     {
         import('UploadControl', 'hd.Hdcms.Upload.Control');
         O('UploadControl', __FUNCTION__);
-    }
-
-    /**
-     * 会员通过弹窗Ajax登录
-     */
-    public function ajax_login()
-    {
-        if (IS_POST) {
-            if ($this->_db->user_login()) {
-                $this->ajax('success');
-            } else {
-                $this->ajax($this->_db->error);
-            }
-        } else {
-            $this->display();
-        }
     }
 }

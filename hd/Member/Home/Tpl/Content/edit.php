@@ -22,7 +22,7 @@
     <div class="nav center-block">
         <a href="__ROOT__">首页</a>
         <a href="__ROOT__/index.php?a=Home&c=Content&m=index&g=Member">我的文章</a>
-        <a href="__ROOT__/index.php?<?php echo $_SESSION['domain']?$_SESSION['domain']:$_SESSION['uid'];?>" target="_blank">个人主页</a>
+        <a href="__ROOT__?{$hd.session.domain}" target="_blank">个人空间</a>
     </div>
 </nav>
 <div class="main center-block">

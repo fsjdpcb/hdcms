@@ -21,7 +21,7 @@ class CommentModel extends ViewModel
     //根据配置文件设置评论状态
     public function _get_comment_state()
     {
-        return C('comment_state');
+        return $_SESSION['comment_state'];
     }
 
     //获得完成用户uid

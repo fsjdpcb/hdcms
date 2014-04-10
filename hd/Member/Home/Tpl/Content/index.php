@@ -19,14 +19,14 @@
     <div class="nav center-block">
         <a href="__ROOT__">首页</a>
         <a href="__ROOT__/index.php?a=Home&c=Content&m=index&g=Member">我的文章</a>
-        <a href="__ROOT__/index.php?<?php echo $_SESSION['domain']?$_SESSION['domain']:$_SESSION['uid'];?>" target="_blank">个人主页</a>
+        <a href="__ROOT__?{$hd.session.domain}" target="_blank">个人空间</a>
         <a href="__ROOT__/index.php?a=Login&c=Login&m=quit&g=Member" class="pull-right">退出</a>
     </div>
 </nav>
 <article class="center-block main">
     <section class="menu">
         <div class="center-block user">
-            <a href="__ROOT__/index.php?<?php echo $_SESSION['domain']?$_SESSION['domain']:$_SESSION['uid'];?>" target="_blank">
+            <a href="__ROOT__?{$hd.session.domain}" target="_blank">
                 <img src="{$hd.session.icon150}" title="个人空间"/>
             </a>
 
@@ -38,7 +38,10 @@
 
             </p>
             <p>
-                金币：{$hd.session.credits} <br/>
+                金&nbsp;&nbsp;&nbsp; 币：{$hd.session.credits} <br/>
+            </p>
+            <p>
+                会员组：{$hd.session.rname} <br/>
             </p>
             <!--修改昵称 start--->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

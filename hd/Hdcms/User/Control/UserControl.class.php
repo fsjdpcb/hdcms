@@ -65,6 +65,8 @@ class UserControl extends AuthControl
         }
     }
 
+
+
     /**
      * 添加|修改用户时，验证帐号是否已经使用
      */
@@ -72,7 +74,7 @@ class UserControl extends AuthControl
     {
         $username = Q('username');
         //编辑时，去除当前会员组
-        $db= M("user");
+        $db = M("user");
         if ($uid = Q("uid")) {
             $db->where("uid<>$uid");
         }
@@ -85,7 +87,7 @@ class UserControl extends AuthControl
      */
     public function check_email()
     {
-        $db =M('user');
+        $db = M('user');
         $email = Q('email');
         if (empty($email)) {
             $this->ajax(1);

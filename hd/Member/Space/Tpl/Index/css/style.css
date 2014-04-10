@@ -66,6 +66,7 @@ body {
   position: absolute;
   right: 0px;
   top: 10px;
+  font-size: 14px;
 }
 #head_out .head .page {
   line-height: 30px;

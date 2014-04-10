@@ -1,6 +1,4 @@
 <?php
-import("User.Model.UserModel");
-
 /**
  * 登录处理模块
  * Class LoginControl

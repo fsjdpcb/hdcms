@@ -36,6 +36,14 @@
             </td>
         </tr>
     </table>
+    <div class="title-header">BUG反馈</div>
+    <table class="table2">
+        <tr>
+            <td style="color:red">
+                <a href="http://www.hdphp.com/index.php?list_2.html">提交反馈</a>
+            </td>
+        </tr>
+    </table>
     <div style="height:10px;overflow: hidden">&nbsp;</div>
     <div class="title-header">系统信息</div>
     <table class="table2">

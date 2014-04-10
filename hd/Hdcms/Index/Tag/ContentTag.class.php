@@ -458,8 +458,9 @@ str;
         <?php
             \$db=M('user');
             \$pre=C('DB_PREFIX');
-            \$sql = "SELECT uid,nickname,domain,ifnull(icon50,'data/images/user/50.png') AS icon FROM ".\$pre."user AS u
-                JOIN ".\$pre."user_icon AS ui ON u.uid=ui.user_uid ORDER BY credits DESC limit $row";
+            \$sql = "SELECT uid,nickname,domain,icon50 AS icon FROM ".\$pre."user AS u
+                 JOIN ".\$pre."user_icon AS ui ON u.uid=ui.user_uid
+                 WHERE state=1 ORDER BY credits DESC limit $row";
             \$data = \$db->query(\$sql);
             foreach(\$data as \$field):
                 \$_tmp = empty(\$field['domain']) ? \$field['uid'] : \$field['domain'];
@@ -472,7 +473,7 @@ str;
         return $php;
 
     }
-    //获得评论
+    //获得最新评论
     public function _comment($attr, $content)
     {
         $row = isset($attr['row']) ? $attr['row'] : 20;
@@ -481,9 +482,11 @@ str;
         <?php
             \$db=M('comment');
             \$pre=C('DB_PREFIX');
-            \$sql = "SELECT u.uid,comment_id,mid,cid,aid,nickname,pubtime,content,domain,ifnull(icon50,'data/images/user/50.png') AS icon FROM ".\$pre."user AS u
+            \$sql = "SELECT u.uid,comment_id,mid,cid,aid,nickname,pubtime,content,domain,icon50 AS icon
+                FROM ".\$pre."user AS u
                 JOIN ".\$pre."user_icon AS ui ON u.uid=ui.user_uid
-                JOIN ".\$pre."comment AS c ORDER BY comment_id DESC limit $row";
+                JOIN ".\$pre."comment AS c
+                WHERE comment_state=1 ORDER BY comment_id DESC limit $row";
             \$data = \$db->query(\$sql);
             foreach(\$data as \$field):
                 \$_tmp = empty(\$field['domain']) ? \$field['uid'] : \$field['domain'];

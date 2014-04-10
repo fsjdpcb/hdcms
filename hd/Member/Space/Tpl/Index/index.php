@@ -5,25 +5,27 @@
 		<title>{$user.nickname} - 个人主页</title>
 		<link rel="stylesheet" type="text/css" href="__CONTROL_TPL__/css/style.css"/>
 	</head>
-
 	<body>
 		<!--头部-->
 		<div id="head_out">
 			<div class="head">
-				<img src="{$user.icon}" alt="" class="face" />
+				<img src="__ROOT__/{$user.icon150}" alt="" class="face" />
+
 				<p class="name">
 					{$user.nickname}
-                    <!--
-					<input type="button" value="关注" class="attention" />
-					-->
+
+					<a href="__ROOT__/index.php?a=User&c=Lock&m=lock&uid={$user.uid}" class="attention" target="_blank">禁止</a>
+
 				</p>
 				<p class="page">
 					个人主页：
-					<a href="">
-						__ROOT__?u={$user.uid}
+					<a href="__ROOT__?{$user.domain}">
+						__ROOT__?{$user.domain}
 					</a>
                     <br/>
-                    积分: {$user.credits}
+                    积分: {$user.credits}&nbsp;&nbsp;&nbsp;&nbsp;
+                    访问：{$user.spec_num}次<br/>
+                    会员组: {$user.rname}
                     <br/>
                     <span>
                         {$user.description}
@@ -79,7 +81,6 @@
 					</script>
 					<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
 					<!-- JiaThis Button END -->
-
 				</div>
 
 				<p class="title">
@@ -88,10 +89,10 @@
 				<ul class="visitor_list">
                     <list from="$guest" name="g">
 					<li>
-						<a href="{$g.url}" class="face">
+						<a href="__ROOT__/index.php?{$d.domain}" class="face">
 							<img src="{$g.icon}" alt="" />
 						</a>
-						<a href="{$g.url}" class="name">
+						<a href="__ROOT__/index.php?{$d.domain}" class="name">
 							{$g.nickname}
 						</a>
 					</li>

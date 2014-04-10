@@ -22,12 +22,6 @@ class UserModel extends Model
         unset($user['password']);
         unset($user['code']);
         unset($user['user_uid']);
-        //------------------头像
-        if (empty($user['p50'])) {
-            $user['icon50'] = __ROOT__ . "/data/image/user/50.png";
-            $user['icon100'] = __ROOT__ . "/data/image/user/100.png";
-            $user['icon150'] = __ROOT__ . "/data/image/user/150.png";
-        }
         //是否为超级管理员
         $_SESSION['WEB_MASTER'] = strtolower(C("WEB_MASTER")) == strtolower($user['username']);
         $_SESSION = array_merge($_SESSION, $user);

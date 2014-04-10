@@ -33,8 +33,7 @@
             <tr>
                 <th class="w100">用户权限</th>
                 <td>
-                    <label><input type="checkbox" name="allowpost" value="1" checked="checked"/> 允许投稿</label>&nbsp&nbsp&nbsp&nbsp;
-                    <label><input type="checkbox" name="allowpostverify"  value="1" checked="checked"/> 投稿不需要审核</label>&nbsp&nbsp&nbsp&nbsp;
+                    <label><input type="checkbox" name="comment_state"  value="1" checked="checked"/> 评论不需要审核</label>&nbsp&nbsp&nbsp&nbsp;
                     <label><input type="checkbox" name="allowsendmessage" value="1"  checked="checked"/> 允许发短消息</label>
                 </td>
             </tr>

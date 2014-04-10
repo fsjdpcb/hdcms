@@ -35,14 +35,9 @@
                 <th class="w100">用户权限</th>
                 <td>
                     <label>
-                        <input type="checkbox" name="allowpost" value="1"
-                        <if value="$field.allowpost">checked="checked"</if>
-                        /> 允许投稿
-                    </label>&nbsp&nbsp&nbsp&nbsp;
-                    <label>
-                        <input type="checkbox" name="allowpostverify" value="1"
-                        <if value="$field.allowpostverify">checked="checked"</if>
-                        /> 投稿不需要审核
+                        <input type="checkbox" name="comment_state" value="1"
+                        <if value="$field.comment_state">checked="checked"</if>
+                        /> 评论不需要审核
                     </label>&nbsp&nbsp&nbsp&nbsp;
                     <label>
                         <input type="checkbox" name="allowsendmessage" value="1"

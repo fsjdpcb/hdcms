@@ -11,17 +11,22 @@ class IndexControl extends Control
     public function index()
     {
         $u = Q("u");
-        $user = M("user")->where("uid='$u' OR domain='$u'")->find();
+        $pre = C('DB_PREFIX');
+        $sql = "SELECT uid,nickname,rname,r.rid,spec_num,credits,regtime,logintime,domain,icon150 FROM {$pre}user AS u
+                INNER JOIN {$pre}role AS r ON u.rid=r.rid
+                LEFT JOIN {$pre}user_icon AS ui ON u.uid=ui.user_uid
+                WHERE u.uid='{$u}' OR domain='{$u}'";
+        $user =M()->query($sql);
         //---------------------------检测用户
         if (!$user) {
             $this->error('用户不存在');
         }
-        //---------------------------获得昵称
-        $icon = M('user_icon')->where("user_uid={$user['uid']}")->getField('icon150');
-        if (!$icon) {
-            $icon = 'data/image/user/150.png';
+        $user=$user[0];
+        //--------------------------增加空间访问次数
+        if(!isset($_SESSION['uid']) or ($_SESSION['uid']!=$user['uid'])){
+            $sql = "UPDATE {$pre}user SET spec_num=spec_num+1";
+            M()->exe($sql);
         }
-        $user['icon'] = __ROOT__ . '/' . $icon;
         //---------------------------获得文章列表
         $where = 'uid=' . $user['uid'] . ' AND state=1 ';
         $db = M('content');
@@ -45,24 +50,15 @@ class IndexControl extends Control
         $db = M('user_guest');
         //记录访客数据
         if (isset($_SESSION['uid']) && $uid != $_SESSION['uid']) {
-            $db->where('guest_uid=' . $_SESSION['uid'])->del();
+            $db->where("guest_uid={$_SESSION['uid']} AND uid={$uid}" )->del();
             $db->add(array('guest_uid' => $_SESSION['uid'], 'uid' => $uid));
         }
         //获得访客数据
         $pre = C('DB_PREFIX');
         $sql = "SELECT guest_uid,nickname,icon50 FROM {$pre}user AS u
                 JOIN {$pre}user_guest AS ug ON u.uid=ug.guest_uid
-                LEFT JOIN {$pre}user_icon AS ui ON ug.guest_uid = ui.user_uid LIMIT 20";
-        $guest = $db->query($sql);
-        if ($guest) {
-            foreach ($guest as $n => $d) {
-                $d['icon'] = empty($d['icon50']) ? __ROOT__ . '/data/image/user/150.png' : $d['icon50'];
-                $u = empty($d['domain']) ? $d['guest_uid'] : $d['domain'];
-                $d['url'] = __ROOT__ . '/index.php?' . $u;
-                unset($d['icon50']);
-                $guest[$n] = $d;
-            }
-        }
-        $this->guest = $guest;
+                JOIN {$pre}user_icon AS ui ON ug.guest_uid = ui.user_uid LIMIT 20";
+        $this->guest = $db->query($sql);
+        p($db->query($sql));exit;
     }
 }

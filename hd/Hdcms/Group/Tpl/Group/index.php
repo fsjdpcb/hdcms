@@ -20,8 +20,7 @@
             <td>会员组名</td>
             <td class="w150">系统组</td>
             <td class="w150">积分小于</td>
-            <td class="w150">允许投稿</td>
-            <td class="w150">投稿不需要审核</td>
+            <td class="w150">评论不需要审核</td>
             <td class="w150">允许发短消息</td>
             <td class="w100">操作</td>
         </tr>
@@ -40,15 +39,9 @@
                     </if>
                 </td>
                 <td>{$d.creditslower}</td>
+
                 <td>
-                    <if value="$d.allowpost">
-                        <font color="red">√</font>
-                        <else/>
-                        ×
-                    </if>
-                </td>
-                <td>
-                    <if value="$d.allowpostverify">
+                    <if value="$d.comment_state">
                         <font color="red">√</font>
                         <else/>
                         ×

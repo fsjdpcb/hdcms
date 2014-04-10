@@ -56,15 +56,24 @@ class UserModel extends Model
             }
             $code = $this->get_user_code();
             $this->data['code'] = $code;
-            $this->data['password'] = $this->get_user_password($_POST['password'], $code);
+            $this->data['password'] = md5($_POST['password'] . $code);
             $this->data['nickname'] = Q('nickname', $_POST['username']);
-            $this->data['rid'] = $this->get_default_rid();
+            $this->data['rid'] = C('default_member_group');
             $this->data['regtime'] = time();
             $this->data['logintime'] = time();
             $this->data['regip'] = ip_get_client();
             $this->data['lastip'] = ip_get_client();
             $this->data['credits'] = C('init_credits'); //初始积分
+            $this->data['domain'] = $_POST['username']; //个性域名
             if ($uid = $this->add()) {
+                //设置用户头像
+                $icon = array(
+                    'user_uid' => $uid,
+                    'icon50' =>"data/image/user/50.png",
+                    'icon100' =>"data/image/user/100.png",
+                    'icon150' => "data/image/user/150.png"
+                );
+                M('user_icon')->add($icon);
                 return $this->record_user($uid);
             } else {
                 $this->error = '帐号注册失败';
@@ -90,6 +99,26 @@ class UserModel extends Model
             //-----------------------密码验证------------------------
             $this->error = "密码输入错误";
         } else {
+            //是否锁定（限制时间）
+            if (time() < $user['lock_end_time']) {
+                $_SESSION['lock'] = true;
+            }
+            //验证IP是否锁定
+            if (M('user_deny_ip')->where("ip='{$user['lastip']}'")->find()) {
+                $_SESSION['lock'] = true;
+            }
+
+            $pre = C("DB_PREFIX");
+            //前台会员根据积分修改角色
+            if (empty($user['admin'])) {
+                $sql = "SELECT rid FROM {$pre}role WHERE admin=0 AND creditslower<=" . $user['credits'] . " ORDER BY creditslower DESC LIMIT 1";
+                $role = $this->query($sql);
+                $role = $role[0];
+                if ($role['rid'] != $user['rid']) {
+                    $this->save(array('uid' => $user['uid'], 'rid' => $role['rid']));
+
+                }
+            }
             return $this->record_user($user['uid']);
         }
     }
@@ -101,6 +130,7 @@ class UserModel extends Model
     public function record_user($uid)
     {
         $db = M("user");
+
         $sql = "SELECT * FROM " . C("DB_PREFIX") . "user_icon AS c RIGHT JOIN " . C("DB_PREFIX") . "user AS u
                 ON u.uid=c.user_uid
                 JOIN " . C('DB_PREFIX') . "role AS r ON u.rid = r.rid WHERE u.uid=$uid";
@@ -108,12 +138,6 @@ class UserModel extends Model
         unset($user['password']);
         unset($user['code']);
         unset($user['user_uid']);
-        //------------------头像
-        if (empty($user['p50'])) {
-            $user['icon50'] = __ROOT__ . "/data/image/user/50.png";
-            $user['icon100'] = __ROOT__ . "/data/image/user/100.png";
-            $user['icon150'] = __ROOT__ . "/data/image/user/150.png";
-        }
         //是否为超级管理员
         $_SESSION['WEB_MASTER'] = strtolower(C("WEB_MASTER")) == strtolower($user['username']);
         $_SESSION = array_merge($_SESSION, $user);
@@ -132,24 +156,5 @@ class UserModel extends Model
     public function get_user_code()
     {
         return substr(md5(C("AUTH_KEY") . mt_rand() . time() . C('AUTH_KEY')), 0, 10);
-    }
-
-    /**
-     * 获得用户密码
-     * @param $password 密码
-     * @param $code 加密key
-     * @return string 储存到数据库中的密码
-     */
-    public function get_user_password($password, $code)
-    {
-        return md5($password . $code);
-    }
-
-    /**
-     * 获得用户初始组rid
-     */
-    public function get_default_rid()
-    {
-        return M('role')->where('admin=0 and system=1')->order('creditslower ASC')->getField('rid');
     }
 }

@@ -33,14 +33,25 @@ class UserControl extends MemberAuthControl
      */
     public function edit_message()
     {
-        //验证个性域名
-        $domain = Q('post.domain');
-        if ($domain && $this->_db->where("uid<>" . session('uid') . " AND domain='$domain'")->find()) {
-            $this->_ajax(0, '个性域名已经注册，请更换');
-        }
         //修改资料
         if ($this->_db->where("uid=" . session('uid'))->save()) {
+            $_SESSION['domain'] = $_POST['domain'];
+            $_SESSION['description'] = $_POST['description'];
             $this->_ajax(1, '修改成功!');
+        }
+    }
+
+    /**
+     * 验证个性域名
+     */
+    public function check_domain()
+    {
+        $domain = $_POST['domain'];
+        $user = $this->_db->where("uid<>{$_SESSION['uid']} AND domain='{$domain}'")->find();
+        if (!$user) {
+            $this->ajax(1);
+        } else {
+            $this->ajax(0);
         }
     }
 
@@ -63,16 +74,20 @@ class UserControl extends MemberAuthControl
      */
     public function edit_password()
     {
-        $code = $this->_db->get_user_code();
-        $data = array(
-            'uid' => $_SESSION['uid'],
-            'password' => md5($_POST['password'] . $code),
-            'code' => $code
-        );
-        if ($this->_db->save($data)) {
-            $this->_ajax(1, '修改密码成功');
+        if (empty($_POST['password'])) {
+            $this->_ajax(0, '密码不能为空');
         } else {
-            $this->_ajax(0, '修改失败');
+            $code = $this->_db->get_user_code();
+            $data = array(
+                'uid' => $_SESSION['uid'],
+                'password' => md5($_POST['password'] . $code),
+                'code' => $code
+            );
+            if ($this->_db->save($data)) {
+                $this->_ajax(1, '修改密码成功');
+            } else {
+                $this->_ajax(0, '修改失败');
+            }
         }
     }
 
@@ -82,7 +97,7 @@ class UserControl extends MemberAuthControl
     public function set_face()
     {
         //关闭水印
-        C('WATER_ON',false);
+        C('WATER_ON', false);
         //头像文件
         $file = $_POST['img_face'];
         $dst = imagecreatetruecolor(150, 150);
@@ -113,15 +128,16 @@ class UserControl extends MemberAuthControl
             $img->thumb($file, $f, $size, $size, 6);
         }
         $db = M("user_icon");
-
         unlink($file);
-        if ($file = $db->where('user_uid=' . $_SESSION['uid'])->find()) {
+        //如果原头不是系统头像删除他
+        $file = $db->where('user_uid=' . $_SESSION['uid'])->find();
+        if (substr($file['icon50'], 0, 4) !== 'data') {
             is_file($file['icon50']) and unlink($file['icon50']);
             is_file($file['icon100']) and unlink($file['icon100']);
             is_file($file['icon150']) and unlink($file['icon150']);
         }
         $data = array(
-            'user_uid'=>$_SESSION['uid'],
+            'user_uid' => $_SESSION['uid'],
             'icon50' => $info['dirname'] . '/' . $_SESSION['uid'] . '_50.' . $info['extension'],
             'icon100' => $info['dirname'] . '/' . $_SESSION['uid'] . '_100.' . $info['extension'],
             'icon150' => $info['dirname'] . '/' . $_SESSION['uid'] . '_150.' . $info['extension'],
@@ -138,7 +154,7 @@ class UserControl extends MemberAuthControl
     public function upload_face()
     {
         //关闭水印
-        C('WATER_ON',false);
+        C('WATER_ON', false);
         $upload = new Upload('upload/user/' . date("Y/m/d"));
         $file = $upload->upload();
         if (empty($file)) {
@@ -148,7 +164,7 @@ class UserControl extends MemberAuthControl
             $img = new Image();
             $img->thumb($file, $file, 250, 250, 6);
             //存入表
-            M('upload')->add(array('path' => $file, 'state' => 0,'uid'=>$_SESSION['uid']));
+            M('upload')->add(array('path' => $file, 'state' => 0, 'uid' => $_SESSION['uid']));
             $this->_ajax(1, array('url' => __ROOT__ . '/' . $file, 'path' => $file));
         }
     }

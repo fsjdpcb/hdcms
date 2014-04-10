@@ -25,7 +25,7 @@
             <td class="w150">最近登录IP</td>
             <td class="w150">锁定</td>
             <td class="w150">积分</td>
-            <td class="w100">操作</td>
+            <td class="w150">操作</td>
         </tr>
         </thead>
         <list from="$data" name="d">
@@ -47,6 +47,8 @@
                 <td>{$d.credits}</td>
                 <td>
                     <a href="{|U:'edit',array('uid'=>$d['uid'])}">修改</a>
+                    <span class="line">|</span>
+                    <a href="{|U:'Lock/lock',array('uid'=>$d['uid'])}">锁定会员</a>
                     <span class="line">|</span>
                     <a href="javascript:hd_confirm('确定删除吗？',function(){hd_ajax('{|U:'del'}',{uid:{$d.uid}})})">删除</a>
                 </td>

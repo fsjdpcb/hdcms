@@ -28,6 +28,7 @@ class GroupControl extends AuthControl
     public function edit()
     {
         if (IS_POST) {
+            $_POST['comment_state']=Q('comment_state',0,'intval');
             $this->_db->save();
             $this->_ajax(1, '修改成功');
         } else {

@@ -25,14 +25,14 @@
     <div class="nav center-block">
         <a href="__ROOT__">首页</a>
         <a href="__ROOT__/index.php?a=Home&c=Content&m=index&g=Member">我的文章</a>
-        <a href="__ROOT__/index.php?<?php echo $_SESSION['domain']?$_SESSION['domain']:$_SESSION['uid'];?>" target="_blank">个人主页</a>
+        <a href="__ROOT__?{$hd.session.domain}" target="_blank">个人空间</a>
         <a href="__ROOT__/index.php?a=Login&c=Login&m=quit&g=Member" class="pull-right">退出</a>
     </div>
 </nav>
 <article class="center-block main">
 <section class="menu">
     <div class="center-block user">
-        <a href="__ROOT__/index.php?<?php echo $_SESSION['domain']?$_SESSION['domain']:$_SESSION['uid'];?>" target="_blank">
+        <a href="__ROOT__?{$hd.session.domain}" target="_blank">
             <img src="{$hd.session.icon150}" title="个人空间"/>
         </a>
         <p class="nickname">
@@ -43,7 +43,10 @@
         </p>
 
         <p>
-            金币：{$hd.session.credits} <br/>
+            金&nbsp;&nbsp;&nbsp; 币：{$hd.session.credits} <br/>
+        </p>
+        <p>
+            会员组：{$hd.session.rname} <br/>
         </p>
         <!--修改昵称 start--->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -114,8 +117,8 @@
         <!-- Tab panes -->
         <div class="tab-content">
             <div class="tab-pane active" id="edit-base">
-                <form action="{|U:'edit_message',array('g'=>'Member')}" method="post"
-                      onsubmit="return hd_submit(this)">
+                <form id="form_message" action="{|U:'edit_message',array('g'=>'Member')}" method="post"
+                      onsubmit="return hd_submit(this,'{|U:'edit',array('g'=>'Member')}')">
                     <table>
                         <tr>
                             <th>
@@ -128,7 +131,7 @@
                         <tr>
                             <th>个性域名</th>
                             <td class="field">
-                                www.hdphp.com/
+                                __ROOT__?
                                 <input type="text" name="domain" value="{$field.domain}"/>
                             </td>
                             <td>
@@ -148,7 +151,7 @@
                 </form>
             </div>
             <div class="tab-pane" id="edit-face">
-                <form action="{|U:'set_face',array('g'=>'Member')}" method="post" onsubmit="return hd_submit(this,'{|U:'edit',array('g'=>'Member')}')">
+
                     <div class="source-face">
                         <div style="position:relative;border:solid 1px #999;width: 250px;height: 250px;overflow: hidden;margin-bottom:10px;">
                             <!--上传头像按钮 Start-->
@@ -198,8 +201,17 @@
                             <img src="__CONTROL_TPL__/images/select_face.png" id="target" style="display: none"/>
                         </div>
                         <div id="buttons" style="display: none">
-                        <button class="btn btn-primary">保存</button>
-                        <button class="btn btn-default" onclick="reset_upload();" type="button">重新上传</button>
+                            <form action="{|U:'set_face',array('g'=>'Member')}" method="post" onsubmit="return hd_submit(this,'{|U:'edit',array('g'=>'Member')}')">
+                            <button class="btn btn-primary" type="submit">保存</button>
+                            <button class="btn btn-default" onclick="reset_upload();" type="button">重新上传</button>
+                                <input type="hidden" name="img_face" value=""/>
+                                <input type="hidden" size="4" id="x1" name="x1" value="0"/>
+                                <input type="hidden" size="4" id="y1" name="y1" value="0"/>
+                                <input type="hidden" size="4" id="x2" name="x2" value="249"/>
+                                <input type="hidden" size="4" id="y2" name="y2" value="249"/>
+                                <input type="hidden" size="4" id="w" name="w" value="250"/>
+                                <input type="hidden" size="4" id="h" name="h" value="250"/>
+                            </form>
                         </div>
                     </div>
                     <div class="face-preview">
@@ -234,18 +246,10 @@
                             </p>
                         </div>
                     </div>
-                    <input type="hidden" name="img_face" value=""/>
-                    <input type="hidden" size="4" id="x1" name="x1" value="0"/>
-                    <input type="hidden" size="4" id="y1" name="y1" value="0"/>
-                    <input type="hidden" size="4" id="x2" name="x2" value="249"/>
-                    <input type="hidden" size="4" id="y2" name="y2" value="249"/>
-                    <input type="hidden" size="4" id="w" name="w" value="250"/>
-                    <input type="hidden" size="4" id="h" name="h" value="250"/>
-                </form>
+
             </div>
             <div class="tab-pane" id="edit-password">
-                <form id="edit_password" action="{|U:'edit_password',array('g'=>'Member')}"
-                      onsubmit="return hd_submit(this)">
+                <form id="form_password" action="{|U:'edit_password',array('g'=>'Member')}" onsubmit="return hd_submit(this)">
                     <table>
                         <tr>
                             <th>当前密码</th>
@@ -286,33 +290,45 @@
                     </table>
                 </form>
                 <script>
-                    $("#edit_password").validate({
-                        password: {
+                    $("#form_message").validate({
+                        domain: {
                             rule: {
                                 required: true,
-                                ajax: CONTROL + '&m=check_password&g=Member'
+                                ajax: CONTROL + '&m=check_domain&g=Member'
                             },
                             error: {
                                 required: "不能为空",
+                                ajax: '个性域名已经使用'
+                            },
+                            success: '输入正确'
+                        }
+                    });
+                    $("#form_password").validate({
+                        password: {
+                            rule: {
+                                required:true,
+                                ajax: CONTROL + '&m=check_password&g=Member'
+                            },
+                            error: {
+                                required:'不能为空',
                                 ajax: '原密码错误'
                             },
                             success: '输入正确'
                         },
                         newpassword: {
                             rule: {
-                                required: true
+                                required:true,
                             },
                             error: {
-                                required: "不能为空"
-                            }
+                                required:'不能为空',
+                            },
+                            success: '输入正确'
                         },
                         passwordc: {
                             rule: {
-                                required: true,
-                                confirm: 'password'
+                                confirm: 'newpassword'
                             },
                             error: {
-                                required: "不能为空",
                                 confirm: '两次密码不一致'
                             }
                         }

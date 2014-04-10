@@ -48,13 +48,10 @@ class UserModel extends ViewModel
          */
         $uid = Q('uid', null, 'intval');
         if ($uid) {
-            //用户状态
-            Q('post.state', 1, 'intval');
             //修改密码
-            $password = Q("post.password");
-            if (!empty($password)) {
+            if (!empty($_POST['password'])) {
                 $_POST['code'] = $this->get_user_code();
-                $_POST['password'] = $this->get_user_password($password, $_POST['code']);
+                $_POST['password'] = md5($_POST['password'] . $_POST['code']);
             }
             return $this->where("uid=$uid")->save();
         }
@@ -68,7 +65,7 @@ class UserModel extends ViewModel
     {
         $code = $this->get_user_code();
         $_POST['code'] = $code;
-        $_POST['password'] = $this->get_user_password($_POST['password'], $code);
+        $_POST['password'] = md5($_POST['password'] . $_POST['code']);
         $_POST['nickname'] = $_POST['username'];
         $_POST['regtime'] = time();
         $_POST['logintime'] = time();
@@ -86,16 +83,5 @@ class UserModel extends ViewModel
     public function get_user_code()
     {
         return substr(md5(C("AUTH_KEY") . mt_rand() . time() . C('AUTH_KEY')), 0, 10);
-    }
-
-    /**
-     * 获得用户密码
-     * @param $password 密码
-     * @param $code 加密key
-     * @return string 储存到数据库中的密码
-     */
-    public function get_user_password($password, $code)
-    {
-        return md5($password . $code);
     }
 }
