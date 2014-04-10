@@ -86,13 +86,23 @@ class UserModel extends Model
      */
     public function login()
     {
+        $pre = C('DB_PREFIX');
         $username = Q("post.username", NULL, 'htmlspecialchars,strip_tags,addslashes');
-        //可以使用邮箱与帐号登录
-        $user = $this->where("username='$username'")->find();
         if (empty($username)) {
-            //-----------------------帐号与密码-----------------
+            //-----------------------帐号-----------------
             $this->error = '帐号不能为空';
-        } else if (!$user) {
+            return false;
+        }
+        //可以使用邮箱与帐号登录
+        $sql = "SELECT * FROM " . $pre . "user_icon AS c
+                JOIN " . $pre . "user AS u ON u.uid=c.user_uid
+                JOIN " . $pre . "role AS r ON u.rid = r.rid
+                WHERE username='$username' OR email='$username'";
+        $user = M()->query($sql);
+        if(!empty($user)){
+            $user=$user[0];
+        }
+        if (!$user) {
             //-----------------------帐号验证------------------------
             $this->error = "帐号不存在";
         } else if ($user['password'] != md5($_POST['password'] . $user['code'])) {
@@ -107,8 +117,6 @@ class UserModel extends Model
             if (M('user_deny_ip')->where("ip='{$user['lastip']}'")->find()) {
                 $_SESSION['lock'] = true;
             }
-
-            $pre = C("DB_PREFIX");
             //前台会员根据积分修改角色
             if (empty($user['admin'])) {
                 $sql = "SELECT rid FROM {$pre}role WHERE admin=0 AND creditslower<=" . $user['credits'] . " ORDER BY creditslower DESC LIMIT 1";
@@ -126,14 +134,16 @@ class UserModel extends Model
     /**
      * 记录用户登录信息
      * @param $uid 用户id
+     * @return boolean
      */
     public function record_user($uid)
     {
+        $pre = C('DB_PREFIX');
         $db = M("user");
-
-        $sql = "SELECT * FROM " . C("DB_PREFIX") . "user_icon AS c RIGHT JOIN " . C("DB_PREFIX") . "user AS u
-                ON u.uid=c.user_uid
-                JOIN " . C('DB_PREFIX') . "role AS r ON u.rid = r.rid WHERE u.uid=$uid";
+        $sql = "SELECT * FROM " . $pre . "user_icon AS c
+                JOIN " . $pre . "user AS u ON u.uid=c.user_uid
+                JOIN " . $pre . "role AS r ON u.rid = r.rid
+                WHERE u.uid=$uid";
         $user = current($db->query($sql));
         unset($user['password']);
         unset($user['code']);
