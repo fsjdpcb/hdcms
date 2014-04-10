@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 $version = array(
     "NAME" => "HDCMS 简体中文 UTF8 版",
     "VERSION" => "2014.04",
@@ -77,8 +77,6 @@ switch ($s) {
         break;
     case 7: //安装完成
         //创建锁文件
-        session_unset();
-        session_destroy();
         touch("lock.php");
         require "./template/7.php";
         break;
