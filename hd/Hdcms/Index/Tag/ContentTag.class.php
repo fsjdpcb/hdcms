@@ -463,8 +463,7 @@ str;
                  WHERE state=1 ORDER BY credits DESC limit $row";
             \$data = \$db->query(\$sql);
             foreach(\$data as \$field):
-                \$_tmp = empty(\$field['domain']) ? \$field['uid'] : \$field['domain'];
-                \$field['url'] = ' __ROOT__/index.php?' . \$_tmp;
+                \$field['url'] = ' __ROOT__/index.php?' . \$field['domain'];
                 \$field['icon']='__ROOT__/'.\$field['icon'];
             ?>
 str;
