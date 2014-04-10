@@ -294,13 +294,16 @@
                         domain: {
                             rule: {
                                 required: true,
+                                regexp:/[a-z0-9]/i,
                                 ajax: CONTROL + '&m=check_domain&g=Member'
                             },
                             error: {
                                 required: "不能为空",
+                                regexp:'请输入数字或字母',
                                 ajax: '个性域名已经使用'
                             },
-                            success: '输入正确'
+                            success: '输入正确',
+                            message:'只能为数字或字母'
                         }
                     });
                     $("#form_password").validate({
