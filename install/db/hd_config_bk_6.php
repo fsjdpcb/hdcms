@@ -32,7 +32,6 @@ $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('133','water_pos','9','水印设置','水印位置','数字','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('134','del_content_model','1','高级设置','删除文章先放入回收站','布尔(1/0)','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('136','down_remove_pic_size','500','高级设置','下载远程资源允许最大值','数字','')");
-$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('137','comment_state','0','会员设置','评论不需要审核，直接显示','布尔(1/0)','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('138','favicon_width','180','会员设置','会员头像宽度','数字','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('139','favicon_height','180','会员设置','会员头像高度','数字','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('142','down_remote_pic','0','内容相关','下载远程图片','布尔(1/0)','')");

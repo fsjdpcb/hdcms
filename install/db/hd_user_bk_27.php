@@ -1,2 +1,0 @@
-<?php if(!defined('HDPHP_PATH'))EXIT;
-$db->exe("REPLACE INTO ".$db_prefix."user (`uid`,`nickname`,`username`,`password`,`code`,`email`,`regtime`,`logintime`,`regip`,`lastip`,`state`,`qq`,`sex`,`favicon`,`credits`,`rid`,`allow_user_set_credits`,`description`,`domain`) VALUES('1','后盾网向军','admin','054e1e1672569f5810335722c6a1994f','a120882783','houdunwangxj@gmail.com','0','1397063717','','0.0.0.0','1','','1','','10008','1','1','后盾网 人人做后盾','xiangjun')");

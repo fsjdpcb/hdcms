@@ -47,7 +47,7 @@ $db->exe("CREATE TABLE `".$db_prefix."category` (
   `allow_user_set_credits` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否允许会员投稿设置积分 1 允许 0 不允许',
   `member_send_state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '会员投稿状态 1 审核 2 未审核',
   PRIMARY KEY (`cid`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='栏目表'");
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='栏目表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."category_access`");
 $db->exe("CREATE TABLE `".$db_prefix."category_access` (
   `rid` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '角色id',
@@ -295,8 +295,7 @@ $db->exe("CREATE TABLE `".$db_prefix."role` (
   `admin` tinyint(1) NOT NULL DEFAULT '0' COMMENT '管理组 1 是 0 不是',
   `system` tinyint(1) NOT NULL DEFAULT '0' COMMENT '系统角色',
   `creditslower` mediumint(9) NOT NULL DEFAULT '0' COMMENT '积分<=时为此会员组',
-  `allowpost` tinyint(1) NOT NULL DEFAULT '1' COMMENT '允许投稿  1 允许 2 不允许',
-  `allowpostverify` tinyint(1) NOT NULL DEFAULT '1' COMMENT '投稿不需要审核  1 不需要  2 需要',
+  `comment_state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '评论不需要审核  1 不需要  2 需要',
   `allowsendmessage` tinyint(1) NOT NULL DEFAULT '1' COMMENT '允许发短消息  1 允许  2 不允许',
   PRIMARY KEY (`rid`),
   KEY `gid` (`rid`)
@@ -318,6 +317,15 @@ $db->exe("CREATE TABLE `".$db_prefix."session` (
   `ip` char(15) NOT NULL DEFAULT '',
   PRIMARY KEY (`sessid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8");
+$db->exe("DROP TABLE IF EXISTS `".$db_prefix."system_message`");
+$db->exe("CREATE TABLE `".$db_prefix."system_message` (
+  `mid` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `uid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '收信人',
+  `message` varchar(200) NOT NULL DEFAULT '' COMMENT '消息内容',
+  `state` tinyint(4) unsigned NOT NULL DEFAULT '0' COMMENT '是否阅读  1 已经阅读 0 未阅读',
+  `sendtime` int(11) unsigned NOT NULL COMMENT '发送时间',
+  PRIMARY KEY (`mid`)
+) ENGINE=MyISAM DEFAULT CHARSET=gbk");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."tag`");
 $db->exe("CREATE TABLE `".$db_prefix."tag` (
   `tid` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -367,6 +375,7 @@ $db->exe("CREATE TABLE `".$db_prefix."user` (
   `regip` char(255) NOT NULL DEFAULT '' COMMENT '注册IP',
   `lastip` char(15) NOT NULL DEFAULT '' COMMENT '最后登录ip',
   `state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1  正常  2 锁定',
+  `lock_end_time` int(10) NOT NULL DEFAULT '0' COMMENT '锁定到期时间',
   `qq` char(20) NOT NULL DEFAULT '' COMMENT 'qq号码',
   `sex` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 男 2 女 3 保密',
   `favicon` varchar(255) NOT NULL DEFAULT '' COMMENT '头像',
@@ -375,11 +384,25 @@ $db->exe("CREATE TABLE `".$db_prefix."user` (
   `allow_user_set_credits` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '允许前台会员设置投稿积分',
   `description` varchar(255) NOT NULL DEFAULT '' COMMENT '个性签名',
   `domain` char(20) NOT NULL DEFAULT '' COMMENT '个性域名',
+  `spec_num` mediumint(9) unsigned NOT NULL DEFAULT '0' COMMENT '空间访问数',
   PRIMARY KEY (`uid`),
   UNIQUE KEY `username` (`username`) USING BTREE,
+  UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `nickname` (`nickname`),
+  UNIQUE KEY `domain` (`domain`),
   KEY `password` (`password`),
   KEY `credits` (`credits`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8");
+$db->exe("DROP TABLE IF EXISTS `".$db_prefix."user_deny_ip`");
+$db->exe("CREATE TABLE `".$db_prefix."user_deny_ip` (
+  `ip` char(15) NOT NULL DEFAULT '' COMMENT '拒绝访问ip',
+  UNIQUE KEY `ip` (`ip`)
+) ENGINE=MyISAM DEFAULT CHARSET=gbk COMMENT='拒绝访问ip'");
+$db->exe("DROP TABLE IF EXISTS `".$db_prefix."user_follow`");
+$db->exe("CREATE TABLE `".$db_prefix."user_follow` (
+  `uid` int(11) unsigned NOT NULL COMMENT '用户uid',
+  `fans_uid` int(11) unsigned DEFAULT NULL COMMENT '粉丝uid'
+) ENGINE=MyISAM DEFAULT CHARSET=gbk COMMENT='会员关注表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."user_guest`");
 $db->exe("CREATE TABLE `".$db_prefix."user_guest` (
   `gid` int(11) unsigned NOT NULL AUTO_INCREMENT,

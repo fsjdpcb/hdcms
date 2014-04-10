@@ -22,7 +22,7 @@ return array (
   ),
   'hd_category' => 
   array (
-    'row' => '5',
+    'row' => '3',
     'success' => true,
     'current_row' => 40,
     'size' => 200000,
@@ -52,7 +52,7 @@ return array (
   ),
   'hd_config' => 
   array (
-    'row' => '53',
+    'row' => '52',
     'success' => true,
     'current_row' => 80,
     'size' => 200000,
@@ -92,9 +92,9 @@ return array (
   ),
   'hd_content_tag' => 
   array (
-    'row' => '0',
+    'row' => '6',
     'success' => true,
-    'current_row' => 20,
+    'current_row' => 40,
     'size' => 200000,
     'url' => '',
     'step_time' => 200,
@@ -182,7 +182,7 @@ return array (
   ),
   'hd_node' => 
   array (
-    'row' => '49',
+    'row' => '46',
     'success' => true,
     'current_row' => 80,
     'size' => 200000,
@@ -221,6 +221,16 @@ return array (
     'database' => 'hdcms',
   ),
   'hd_session' => 
+  array (
+    'row' => '0',
+    'success' => true,
+    'current_row' => 20,
+    'size' => 200000,
+    'url' => '',
+    'step_time' => 200,
+    'database' => 'hdcms',
+  ),
+  'hd_system_message' => 
   array (
     'row' => '0',
     'success' => true,
@@ -270,6 +280,26 @@ return array (
     'step_time' => 200,
     'database' => 'hdcms',
   ),
+  'hd_user_deny_ip' => 
+  array (
+    'row' => '0',
+    'success' => true,
+    'current_row' => 20,
+    'size' => 200000,
+    'url' => '',
+    'step_time' => 200,
+    'database' => 'hdcms',
+  ),
+  'hd_user_follow' => 
+  array (
+    'row' => '0',
+    'success' => true,
+    'current_row' => 20,
+    'size' => 200000,
+    'url' => '',
+    'step_time' => 200,
+    'database' => 'hdcms',
+  ),
   'hd_user_guest' => 
   array (
     'row' => '0',
@@ -282,9 +312,9 @@ return array (
   ),
   'hd_user_icon' => 
   array (
-    'row' => '0',
+    'row' => '1',
     'success' => true,
-    'current_row' => 20,
+    'current_row' => 40,
     'size' => 200000,
     'url' => '',
     'step_time' => 200,
