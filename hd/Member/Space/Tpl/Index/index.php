@@ -13,8 +13,9 @@
 
 				<p class="name">
 					{$user.nickname}
-
+                    <if value="$hd.session.admin">
 					<a href="__ROOT__/index.php?a=User&c=Lock&m=lock&uid={$user.uid}" class="attention" target="_blank">禁止</a>
+                    </if>
 
 				</p>
 				<p class="page">
@@ -89,8 +90,8 @@
 				<ul class="visitor_list">
                     <list from="$guest" name="g">
 					<li>
-						<a href="__ROOT__/index.php?{$d.domain}" class="face">
-							<img src="{$g.icon}" alt="" />
+						<a href="__ROOT__/index.php?{$g.domain}" class="face">
+							<img src="__ROOT__/{$g.icon50}" alt="{$g.nickname}" />
 						</a>
 						<a href="__ROOT__/index.php?{$d.domain}" class="name">
 							{$g.nickname}

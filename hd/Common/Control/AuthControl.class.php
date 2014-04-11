@@ -20,10 +20,10 @@ class AuthControl extends CommonControl
     {
         //站长放行
         if (session("WEB_MASTER")) {
-            return TRUE;
+            return true;
         }
         //没有登录用户或非后台管理员跳转到登录入口
-        if (!isset($_SESSION['rid'])) {
+        if (!isset($_SESSION['admin'])) {
             echo "<script>top.location.href='?a=Hdcms&c=Login&m=login'</script>";
             exit;
         }

@@ -1,5 +1,6 @@
 <?php
-import('CategoryModel','hd.Hdcms.Index.Model');
+import('CategoryModel', 'hd.Hdcms.Index.Model');
+
 /**
  * 栏目列表
  * Class IndexControl
@@ -30,10 +31,11 @@ class CategoryControl extends PublicControl
         $this->_mid = Q('mid', null, 'intval');
         $this->_cid = Q("cid", null, "intval");
         $this->_db = K('Category');
-        if (!$this->_cid ||
-            !$this->_model[$this->_category[$this->_cid]['mid']]
-        ) {
-            _404('参数错误');
+        if (!$this->_cid) {
+            _404('缺少GET参数CID错误');
+        }
+        if (!isset($this->_category[$this->_cid])) {
+            _404('栏目不存在');
         }
 
     }
