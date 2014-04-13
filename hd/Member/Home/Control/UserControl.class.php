@@ -33,6 +33,7 @@ class UserControl extends MemberAuthControl
      */
     public function edit_message()
     {
+        $_POST['description'] = mb_substr($_POST['description'], 0, 20, 'utf-8');
         //修改资料
         if ($this->_db->where("uid=" . session('uid'))->save()) {
             $_SESSION['domain'] = $_POST['domain'];
@@ -99,8 +100,8 @@ class UserControl extends MemberAuthControl
         //关闭水印
         C('WATER_ON', false);
         //头像文件
-        $file = $_POST['img_face'];
-        $dst = imagecreatetruecolor(150, 150);
+        $dir= 'upload/user/' . max(ceil($_SESSION['uid'] / 500), 1).'/';
+        $file =$dir.$_SESSION['uid'].'_250.png';
         $d = getimagesize($file);
         switch ($d[2]) {
             case 1:
@@ -113,39 +114,29 @@ class UserControl extends MemberAuthControl
                 $func = 'imagecreatefrompng';
                 break;
         }
+        $dst = imagecreatetruecolor(250, 250);
         $res = $func($file);
-        imagecopyresized($dst, $res, 0, 0, $_POST['x1'], $_POST['y1'], 150, 150, $_POST['w'], $_POST['h']);
-        $func = str_replace('/', '', $d['mime']);
-        $func($dst, $file);
-        $info = pathinfo($file);
-        $face_file = array(
-            50 => $info['dirname'] . '/' . $_SESSION['uid'] . '_50.' . $info['extension'],
-            100 => $info['dirname'] . '/' . $_SESSION['uid'] . '_100.' . $info['extension'],
-            150 => $info['dirname'] . '/' . $_SESSION['uid'] . '_150.' . $info['extension'],
+        imagecopyresized($dst, $res, 0, 0, $_POST['x1'], $_POST['y1'], 250, 250, $_POST['w'], $_POST['h']);
+        imagepng($dst, $file);
+        $data = array(
+            50 => $dir . $_SESSION['uid'] . '_50.png',
+            100 => $dir . $_SESSION['uid'] . '_100.png' ,
+            150 => $dir . $_SESSION['uid'] . '_150.png',
         );
         $img = new Image();
-        foreach ($face_file as $size => $f) {
+        foreach ($data as $size => $f) {
             $img->thumb($file, $f, $size, $size, 6);
         }
-        $db = M("user_icon");
-        unlink($file);
-        //如果原头不是系统头像删除他
-        $file = $db->where('user_uid=' . $_SESSION['uid'])->find();
-        if (substr($file['icon50'], 0, 4) !== 'data') {
-            is_file($file['icon50']) and unlink($file['icon50']);
-            is_file($file['icon100']) and unlink($file['icon100']);
-            is_file($file['icon150']) and unlink($file['icon150']);
-        }
         $data = array(
-            'user_uid' => $_SESSION['uid'],
-            'icon50' => $info['dirname'] . '/' . $_SESSION['uid'] . '_50.' . $info['extension'],
-            'icon100' => $info['dirname'] . '/' . $_SESSION['uid'] . '_100.' . $info['extension'],
-            'icon150' => $info['dirname'] . '/' . $_SESSION['uid'] . '_150.' . $info['extension'],
+            'icon50' => $dir . $_SESSION['uid'] . '_50.png',
+            'icon100' => $dir . $_SESSION['uid'] . '_100.png' ,
+            'icon150' => $dir . $_SESSION['uid'] . '_150.png',
         );
-        if ($db->where('user_uid=' . $_SESSION['uid'])->replace($data)) {
+        $data['user_uid']=$_SESSION['uid'];
+        if (M("user_icon")->replace($data)) {
             $_SESSION = array_merge($_SESSION, $data);
             $this->_ajax(1, '修改成功');
-        }
+        }exit;
     }
 
     /**
@@ -155,17 +146,18 @@ class UserControl extends MemberAuthControl
     {
         //关闭水印
         C('WATER_ON', false);
-        $upload = new Upload('upload/user/' . date("Y/m/d"));
+        $dir = 'upload/user/' . max(ceil($_SESSION['uid'] / 500), 1).'/';
+        $upload = new Upload($dir);
         $file = $upload->upload();
         if (empty($file)) {
             $this->_ajax(0, '上传失败！文件不能超过2Mb');
         } else {
             $file = $file[0]['path'];
+            $newFile = $dir . $_SESSION['uid'] . '_250.png';
+            rename($file,$newFile);
             $img = new Image();
-            $img->thumb($file, $file, 250, 250, 6);
-            //存入表
-            M('upload')->add(array('path' => $file, 'state' => 0, 'uid' => $_SESSION['uid']));
-            $this->_ajax(1, array('url' => __ROOT__ . '/' . $file, 'path' => $file));
+            $img->thumb($newFile, $newFile, 250, 250, 6);
+            $this->_ajax(1, array('url' => __ROOT__ . '/' . $newFile, 'path' => $newFile));
         }
     }
 }

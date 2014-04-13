@@ -28,12 +28,6 @@
                 </td>
             </tr>
             <tr>
-                <th class="w100">昵称</th>
-                <td>
-                    <input type="text" name="nickname" value="{$field.nickname}" class="w200"/>
-                </td>
-            </tr>
-            <tr>
                 <th class="w100">所属角色</th>
                 <td>
                     <select name="rid">
@@ -59,6 +53,12 @@
                 <th class="w100">邮箱</th>
                 <td>
                     <input type="text" name="email" value="{$field.email}" class="w200"/>
+                </td>
+            </tr>
+            <tr>
+                <th class="w100">积分</th>
+                <td>
+                    <input type="text" name="credits" class="w200" value="{$field.credits}"/>
                 </td>
             </tr>
         </table>

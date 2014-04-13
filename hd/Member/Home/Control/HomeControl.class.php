@@ -18,6 +18,6 @@ class HomeControl extends MemberAuthControl
     public function index()
     {
         //跳转到文章管理
-        go(U('Content/index', array('g' => "Member")));
+        go(U('Dynamic/index', array('g' => "Member")));
     }
 }

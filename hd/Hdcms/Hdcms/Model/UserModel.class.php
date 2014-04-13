@@ -19,12 +19,14 @@ class UserModel extends Model
                 ON u.uid=c.user_uid
                 JOIN " . C('DB_PREFIX') . "role AS r ON u.rid = r.rid WHERE u.uid=$uid";
         $user = current($db->query($sql));
+        setcookie('login',$user['password'],0,'/');
         unset($user['password']);
         unset($user['code']);
         unset($user['user_uid']);
         //是否为超级管理员
         $_SESSION['WEB_MASTER'] = strtolower(C("WEB_MASTER")) == strtolower($user['username']);
         $_SESSION = array_merge($_SESSION, $user);
+
         //---------------------修改登录IP与时间
         return $db->save(array(
             "uid" => $_SESSION['uid'],

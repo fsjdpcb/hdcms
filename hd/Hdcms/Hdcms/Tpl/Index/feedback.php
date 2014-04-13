@@ -32,7 +32,7 @@
     <table class="table2">
         <tr>
             <td>
-               <a href="http://www.hdphp.com">>>查看所有动态</a>
+               <a href="http://www.hdphp.com" target="_blank">>>查看所有动态</a>
             </td>
         </tr>
     </table>
@@ -40,7 +40,7 @@
     <table class="table2">
         <tr>
             <td style="color:red">
-                <a href="http://www.hdphp.com/index.php?list_2.html">提交反馈</a>
+                <a href="http://www.hdphp.com/index.php?list_2.html" target="_blank">提交反馈</a>
             </td>
         </tr>
     </table>
@@ -62,7 +62,7 @@
         <tr>
             <td>PHP版本</td>
             <td>
-                <?php echo PHP_OS; ?>
+                <?php echo PHP_OS;?>
             </td>
         </tr>
         <tr>
@@ -91,7 +91,7 @@
             <td class="w80">版权所有</td>
             <td>
                 <a href="http://www.houdunwang.com" target="_blank">后盾网</a> &
-                <a href="http://www.hdphp.com/hdcms" target="_blank">HDCMS</a>
+                <a href="http://www.hdphp.com" target="_blank">HDCMS</a>
             </td>
         </tr>
         <tr>

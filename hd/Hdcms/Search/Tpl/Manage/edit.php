@@ -4,10 +4,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>搜索关键词</title>
-    <hdui bootstrap="true"/>
+    <hdjs/>
     <js file="__GROUP__/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/manage.js"/>
-    <css file="__CONTROL_TPL__/css/manage.css"/>
 </head>
 <body>
 <div class="wrap">
@@ -17,13 +16,13 @@
             <li><a href="javascript:;" class="action">修改关键词</a></li>
         </ul>
     </div>
-    <form action="{|U:'edit'}" method="post" onsubmit="return false" class="hd-form form-inline">
+    <form action="{|U:'edit'}" method="post" class="hd-form" onsubmit="return hd_submit(this,'{|U:index}');">
         <input type="hidden" name="sid" value="{$field.sid}"/>
         <table class="table1">
             <tr>
                 <th class="w100">搜索关键词</th>
                 <td>
-                    <input type="text" name="name" value="{$field.name}" class="w200"/>
+                    <input type="text" name="name" value="{$field.word}" class="w200"/>
                 </td>
             </tr>
             <tr>
@@ -33,8 +32,8 @@
                 </td>
             </tr>
         </table>
-        <div class="btn_wrap">
-            <input type="submit" class="btn" value="确定"/>
+        <div class="position-bottom">
+            <input type="submit" class="hd-success" value="确定"/>
         </div>
     </form>
 </div>

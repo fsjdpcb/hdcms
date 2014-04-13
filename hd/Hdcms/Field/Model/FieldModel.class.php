@@ -320,8 +320,17 @@ class FieldModel extends Model
         $h = "<tr><th>{$f['title']}</th><td>";
         $path = isset($value) ? $value : "";
         $src = !empty($value) ? __ROOT__ . '/' . $value : "";
+        $options = json_encode(array(
+            'id' => $id,
+            'type' => 'image',
+            'num' => 1,
+            'name' => $f['field_name'],
+            'filetype' =>'jpg,png,gif,jpeg',
+            'upload_img_max_width'=>$f['set']['upload_img_max_width'],
+            'upload_img_max_height'=>$f['set']['upload_img_max_height']
+        ));
         $h .= "<input id='$id' type='text' name='" . $f['field_name'] . "'  value='$path' src='$src' class='w300 images'/> ";
-        $h .= "<button class='hd-cancel-small' onclick='file_upload(\"$id\",\"image\",1,\"{$f['field_name']}\")' type='button'>上传图片</button>&nbsp;&nbsp;";
+        $h .= "<button class='hd-cancel-small' onclick='file_upload($options)' type='button'>上传图片</button>&nbsp;&nbsp;";
         $h .= "<button class='hd-cancel-small' onclick='remove_upload_one_img(this)' type='button'>移除</button>";
         $h .= " <span class='{$f['field_name']} validate-message'>" . $set['message'] . "</span>";
         $h .= "</td>";
@@ -359,7 +368,7 @@ class FieldModel extends Model
                 $h .= '<ul>';
                 foreach ($img as $i) {
                     if (!empty($i['path'])) {
-                        $h .= "<li><div class='img'><img src='" . __ROOT__ . "/" . $i['path'] . "' style='width:150px;height:150px;'/>";
+                        $h .= "<li><div class='img'><img src='" . __ROOT__ . "/" . $i['path'] . "' style='width:135px;height:135px;'/>";
                         $h .= "<a href='javascript:;' onclick='remove_upload(this,\"hd_up_{$id}\")'>X</a>";
                         $h .= "</div>";
                         $h .= "<input type='hidden' name='" . $f['field_name'] . "[path][]'  value='" . $i['path'] . "' src='" . __ROOT__ . '/' . $i['path'] . "' class='w400 images'/> ";

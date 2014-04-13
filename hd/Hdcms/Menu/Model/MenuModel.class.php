@@ -30,9 +30,11 @@ class MenuModel extends ViewModel
     {
         $menu = $this->get_all_menu();
         $data = array();
-        foreach ($menu as $m) {
-            if ($m['pid'] == 0) {
-                $data[] = $m;
+        if ($menu) {
+            foreach ($menu as $m) {
+                if ($m['pid'] == 0) {
+                    $data[] = $m;
+                }
             }
         }
         return $data;
@@ -43,9 +45,11 @@ class MenuModel extends ViewModel
     {
         $menu = $this->get_all_menu();
         $data = array();
-        foreach ($menu as $m) {
-            if ($m['favorite'] == 1) {
-                $data[] = $m;
+        if ($menu) {
+            foreach ($menu as $m) {
+                if ($m['favorite'] == 1) {
+                    $data[] = $m;
+                }
             }
         }
         return $data;
@@ -62,7 +66,7 @@ class MenuModel extends ViewModel
     private function get_all_menu()
     {
         //超级管理员获得所有菜单
-        if (session("WEB_MASTER")) {
+        if (session("WEB_MASTER") || session("rid")==1) {
             $data = $this->join(NULL)->where("state=1")->order(array("list_order" => "ASC", 'nid' => 'DESC'))->all();
         } else {
             //所有菜单数据

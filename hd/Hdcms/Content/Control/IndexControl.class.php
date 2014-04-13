@@ -44,7 +44,7 @@ class IndexControl extends AuthControl
                 $data['url'] = $url;
                 $data['target'] = 'content';
                 $data['open'] = true;
-                $data['name'] = $cat['catname'] . "({$cat['cid']})";
+                $data['name'] = $cat['catname'] ;
                 $category[] = $data;
             }
         }

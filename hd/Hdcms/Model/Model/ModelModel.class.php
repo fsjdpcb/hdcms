@@ -39,37 +39,36 @@ class ModelModel extends Model
                     -- -----------------------------------------------------
                     -- 主表
                     -- -----------------------------------------------------
-                    CREATE  TABLE IF NOT EXISTS `{$masterTable}` (
-                      `aid` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键' ,
-                      `cid` SMALLINT UNSIGNED NOT NULL default 0 COMMENT '栏目cid' ,
-                      `title` char(100) NOT NULL DEFAULT '' COMMENT '标题' ,
-                      `flag` set('热门','置顶','推荐','图片','精华','幻灯片','站长推荐') DEFAULT NULL COMMENT '文章属性',
-                      `new_window` TINYINT(1) NOT NULL DEFAULT 0  COMMENT '新窗口打开' ,
-                      `seo_title` char(100) NOT NULL DEFAULT '' COMMENT '标题' ,
-                      `thumb` CHAR(200) NOT NULL DEFAULT '' COMMENT '缩略图' ,
-                      `click` MEDIUMINT NOT NULL DEFAULT 0 COMMENT '点击次数' ,
-                      `source` CHAR(30) NOT NULL DEFAULT '' COMMENT '来源' ,
-                      `redirecturl` CHAR(100) NOT NULL DEFAULT '' COMMENT '转向链接' ,
-                      `html_path` VARCHAR(255) NOT NULL DEFAULT '' COMMENT '自定义生成的静态文件地址' ,
-                      `allowreply` TINYINT(1) NOT NULL DEFAULT 1 COMMENT '是否允许回复' ,
-                      `addtime` INT(10) NOT NULL default 0 COMMENT '添加时间' ,
-                      `updatetime` INT(10) NOT NULL default 0 COMMENT '发布时间 ' ,
-                      `color` CHAR(7) NOT NULL default '' COMMENT '标题颜色' ,
-                      `template` varchar(255) NOT NULL default '' COMMENT '模板' ,
-                      `url_type` TINYINT(1) NOT NULL DEFAULT 3 COMMENT '文章访问方式  1 静态访问  2 动态访问  3 继承栏目' ,
-                      `arc_sort` int(10) UNSIGNED NOT NULL DEFAULT 100  COMMENT '排序' ,
-                      `state` TINYINT(1) NOT NULL default 1 COMMENT '1 已审核 0 未审核',
-                      `keywords` CHAR(100) NOT NULL DEFAULT '' COMMENT '关键字' ,
-                      `description` VARCHAR(255) NOT NULL DEFAULT '' COMMENT '描述' ,
-                      `uid` INT UNSIGNED NOT NULL  COMMENT '用户uid' ,
-                      `favorites` mediumint UNSIGNED NOT NULL DEFAULT 0 COMMENT '收藏数' ,
-                      `comment_num` mediumint UNSIGNED NOT NULL DEFAULT 0  COMMENT '评论数' ,
-                      `read_credits` smallint UNSIGNED NOT NULL DEFAULT 0  COMMENT '阅读积分' ,
-                      PRIMARY KEY (`aid`) ,
-                      INDEX `cid` (`cid` ASC),
-                      INDEX `uid` (`uid` ASC)),
-                      INDEX `flag` (`flag` ASC))
-                    ENGINE = MyISAM;
+                    CREATE TABLE `{$masterTable}` (
+  `aid` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `cid` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '栏目cid',
+  `title` char(100) NOT NULL DEFAULT '' COMMENT '标题',
+  `flag` set('热门','置顶','推荐','图片','精华','幻灯片','站长推荐') DEFAULT NULL,
+  `new_window` tinyint(1) NOT NULL DEFAULT '0' COMMENT '新窗口打开',
+  `seo_title` char(100) NOT NULL DEFAULT '' COMMENT '标题',
+  `thumb` char(200) NOT NULL DEFAULT '' COMMENT '缩略图',
+  `click` mediumint(9) NOT NULL DEFAULT '0' COMMENT '点击次数',
+  `source` char(30) NOT NULL DEFAULT '' COMMENT '来源',
+  `redirecturl` char(100) NOT NULL DEFAULT '' COMMENT '转向链接',
+  `html_path` varchar(255) NOT NULL DEFAULT '' COMMENT '自定义生成的静态文件地址',
+  `allowreply` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否允许回复',
+  `addtime` int(10) NOT NULL DEFAULT '0' COMMENT '添加时间',
+  `updatetime` int(10) NOT NULL DEFAULT '0' COMMENT '发布时间 ',
+  `color` char(7) NOT NULL DEFAULT '' COMMENT '标题颜色',
+  `template` varchar(255) NOT NULL DEFAULT '' COMMENT '模板',
+  `url_type` tinyint(1) NOT NULL DEFAULT '3' COMMENT '文章访问方式  1 静态访问  2 动态访问  3 继承栏目',
+  `arc_sort` int(10) unsigned NOT NULL DEFAULT '100' COMMENT '排序',
+  `state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 已审核 0 未审核',
+  `keywords` char(100) NOT NULL DEFAULT '' COMMENT '关键字',
+  `description` varchar(255) NOT NULL DEFAULT '' COMMENT '描述',
+  `uid` int(10) unsigned NOT NULL COMMENT '用户uid',
+  `favorites` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '收藏数',
+  `comment_num` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '评论数',
+  `read_credits` smallint(6) unsigned NOT NULL DEFAULT '0' COMMENT '阅读金币',
+  PRIMARY KEY (`aid`),
+  KEY `cid` (`cid`),
+  KEY `uid` (`uid`)
+) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 str;
         //创建主表
         if(!$this->exe($masterSql)){
@@ -82,11 +81,11 @@ str;
                 -- -----------------------------------------------------
                 -- 从表
                 -- -----------------------------------------------------
-                CREATE  TABLE IF NOT EXISTS `{$slaveTable}`(
-                  `aid` INT UNSIGNED NOT NULL default 0 COMMENT '文章主表ID' ,
-                  `content` text NULL COMMENT '正文' ,
-                  INDEX `aid` (`aid` ASC) )
-                ENGINE = MyISAM;
+                CREATE TABLE `{$slaveTable}` (
+  `aid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '文章主表ID',
+  `content` text COMMENT '正文',
+  KEY `aid` (`aid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='内容表';
 str;
 
             $this->exe($slaveSql);
@@ -133,10 +132,7 @@ str;
             $table = C("DB_PREFIX") . $this->model[$this->_mid]['table_name'];
             //删除主表与表字段缓存
             if ($db->exe("DROP TABLE IF EXISTS $table")) {
-                //删除附表与表字段缓存
-                if ($model['type'] == 1) {
-                    $db->exe("DROP TABLE IF EXISTS {$table}_data");
-                }
+                $db->exe("DROP TABLE IF EXISTS {$table}_data");
                 //删除模型字段信息
                 $db->table("field")->where("mid={$this->_mid}")->del();
                 //删除表记录

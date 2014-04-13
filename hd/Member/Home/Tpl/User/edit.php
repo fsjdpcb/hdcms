@@ -87,6 +87,10 @@
         <!--修改昵称 end--->
     </div>
     <nav>
+        <a href="__ROOT__/index.php?a=Home&c=Dynamic&m=index&g=Member">
+            <span class="glyphicon glyphicon-share"></span>
+            好友动态
+        </a>
         <a href="__ROOT__/index.php?a=Home&c=User&m=edit&g=Member">
             <span class="glyphicon glyphicon-fire"></span>
             修改资料

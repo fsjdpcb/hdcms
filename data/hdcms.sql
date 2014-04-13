@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50535
 File Encoding         : 65001
 
-Date: 2014-04-11 03:43:24
+Date: 2014-04-13 22:12:54
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -119,7 +119,7 @@ CREATE TABLE `hd_category` (
   `allow_user_set_credits` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否允许会员投稿设置积分 1 允许 0 不允许',
   `member_send_state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '会员投稿状态 1 审核 2 未审核',
   PRIMARY KEY (`cid`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='栏目表';
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='栏目表';
 
 -- ----------------------------
 -- Records of hd_category
@@ -127,6 +127,8 @@ CREATE TABLE `hd_category` (
 INSERT INTO `hd_category` VALUES ('1', '0', '问答', 'ask', '', '', 'article_index.html', 'article_list.html', 'article_default.html', null, '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '0');
 INSERT INTO `hd_category` VALUES ('2', '1', 'HDPHP', 'HDPHP', '', '', 'article_index.html', 'article_list.html', 'article_default.html', null, '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '0');
 INSERT INTO `hd_category` VALUES ('3', '1', 'HDCMS', 'HDCMS', '', '', 'article_index.html', 'article_list.html', 'article_default.html', null, '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '0');
+INSERT INTO `hd_category` VALUES ('4', '0', '每日一文', 'news', '', '', 'article_index.html', 'article_list.html', 'article_default.html', null, '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '0');
+INSERT INTO `hd_category` VALUES ('7', '0', '学生', 'xuesheng', '', '', 'article_index.html', 'article_list.html', 'article_default.html', null, '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '4', '1', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '0');
 
 -- ----------------------------
 -- Table structure for hd_category_access
@@ -276,11 +278,12 @@ CREATE TABLE `hd_content` (
   PRIMARY KEY (`aid`),
   KEY `cid` (`cid`),
   KEY `uid` (`uid`)
-) ENGINE=MyISAM DEFAULT CHARSET=gbk;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=gbk;
 
 -- ----------------------------
 -- Records of hd_content
 -- ----------------------------
+INSERT INTO `hd_content` VALUES ('1', '3', 'sdfsdf', '', '0', '', '', '100', '', '', '', '1', '1397204760', '1397161444', '', '', '3', '100', '1', '大模大样', '大模大样地', '1', '0', '0', '0');
 
 -- ----------------------------
 -- Table structure for hd_content_data
@@ -289,12 +292,17 @@ DROP TABLE IF EXISTS `hd_content_data`;
 CREATE TABLE `hd_content_data` (
   `aid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '文章主表ID',
   `content` text COMMENT '正文',
+  `sdfsss` varchar(100) NOT NULL DEFAULT '',
+  `ss` varchar(255) NOT NULL DEFAULT '',
+  `aaaaaaaaa` mediumtext,
   KEY `aid` (`aid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='内容表';
 
 -- ----------------------------
 -- Records of hd_content_data
 -- ----------------------------
+INSERT INTO `hd_content_data` VALUES ('1', '<p>大模大样地</p>', '', '', null);
+INSERT INTO `hd_content_data` VALUES ('3', '<p>sdfsdfsdsdfdsfsfdds</p>', '', '', null);
 
 -- ----------------------------
 -- Table structure for hd_content_single
@@ -346,12 +354,13 @@ CREATE TABLE `hd_content_tag` (
 -- ----------------------------
 -- Records of hd_content_tag
 -- ----------------------------
-INSERT INTO `hd_content_tag` VALUES ('1', '6', '1', '1', '1');
-INSERT INTO `hd_content_tag` VALUES ('1', '6', '1', '2', '1');
-INSERT INTO `hd_content_tag` VALUES ('1', '6', '1', '3', '1');
-INSERT INTO `hd_content_tag` VALUES ('1', '6', '1', '4', '1');
-INSERT INTO `hd_content_tag` VALUES ('1', '6', '1', '5', '1');
-INSERT INTO `hd_content_tag` VALUES ('1', '6', '1', '6', '1');
+INSERT INTO `hd_content_tag` VALUES ('1', '2', '3', '4', '1');
+INSERT INTO `hd_content_tag` VALUES ('1', '2', '3', '3', '1');
+INSERT INTO `hd_content_tag` VALUES ('1', '2', '2', '2', '1');
+INSERT INTO `hd_content_tag` VALUES ('1', '2', '2', '1', '1');
+INSERT INTO `hd_content_tag` VALUES ('1', '3', '1', '2', '1');
+INSERT INTO `hd_content_tag` VALUES ('1', '3', '1', '1', '1');
+INSERT INTO `hd_content_tag` VALUES ('1', '2', '3', '5', '1');
 
 -- ----------------------------
 -- Table structure for hd_custom_js
@@ -407,11 +416,14 @@ CREATE TABLE `hd_field` (
   `set` text NOT NULL COMMENT '字段设置',
   PRIMARY KEY (`fid`),
   KEY `mid` (`mid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='模型字段';
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='模型字段';
 
 -- ----------------------------
 -- Records of hd_field
 -- ----------------------------
+INSERT INTO `hd_field` VALUES ('3', '1', 'image', 'content_data', 'sdfsss', '工工', '1', '0', '50', '1', 'a:9:{s:7:\"message\";s:0:\"\";s:5:\"width\";s:3:\"260\";s:6:\"height\";s:3:\"260\";s:5:\"error\";s:0:\"\";s:3:\"css\";s:0:\"\";s:10:\"validation\";s:5:\"false\";s:7:\"default\";s:0:\"\";s:8:\"required\";s:0:\"\";s:7:\"options\";s:0:\"\";}');
+INSERT INTO `hd_field` VALUES ('4', '1', 'input', 'content_data', 'ss', 'ss s', '1', '0', '50', '1', 'a:11:{s:7:\"message\";s:0:\"\";s:4:\"size\";s:3:\"300\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";s:3:\"css\";s:0:\"\";s:10:\"validation\";s:5:\"false\";s:8:\"required\";s:1:\"0\";s:5:\"error\";s:0:\"\";s:5:\"width\";s:0:\"\";s:6:\"height\";s:0:\"\";s:7:\"options\";s:0:\"\";}');
+INSERT INTO `hd_field` VALUES ('5', '1', 'images', 'content_data', 'aaaaaaaaa', '要要要', '1', '0', '50', '1', 'a:12:{s:7:\"message\";s:0:\"\";s:20:\"upload_img_max_width\";s:3:\"800\";s:21:\"upload_img_max_height\";s:3:\"800\";s:3:\"num\";s:2:\"10\";s:5:\"error\";s:0:\"\";s:3:\"css\";s:0:\"\";s:10:\"validation\";s:5:\"false\";s:5:\"width\";s:0:\"\";s:6:\"height\";s:0:\"\";s:7:\"default\";s:0:\"\";s:8:\"required\";s:0:\"\";s:7:\"options\";s:0:\"\";}');
 
 -- ----------------------------
 -- Table structure for hd_link
@@ -492,12 +504,13 @@ CREATE TABLE `hd_model` (
   `control` char(50) NOT NULL DEFAULT '' COMMENT '控制器',
   `method` char(50) NOT NULL DEFAULT '' COMMENT '方法',
   PRIMARY KEY (`mid`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='模型表';
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='模型表';
 
 -- ----------------------------
 -- Records of hd_model
 -- ----------------------------
 INSERT INTO `hd_model` VALUES ('1', '普通文章', 'content', '1', '', '1', '0', '0', '1', 'Hdcms', 'Content', 'Content', 'index');
+INSERT INTO `hd_model` VALUES ('4', '学生', 'stu', '1', '', '1', '0', '0', '0', 'Hdcms', 'Content', 'Content', 'index');
 
 -- ----------------------------
 -- Table structure for hd_navigation
@@ -532,13 +545,13 @@ CREATE TABLE `hd_node` (
   `param` char(100) NOT NULL DEFAULT '' COMMENT '参数',
   `comment` varchar(255) NOT NULL DEFAULT '' COMMENT '备注',
   `state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态 1 显示 0 不显示',
-  `type` tinyint(1) unsigned NOT NULL DEFAULT '2' COMMENT '类型 1 权限+菜单   2 普通菜单 ',
+  `type` tinyint(1) unsigned NOT NULL DEFAULT '2' COMMENT '类型 1 权限控制菜单   2 普通菜单 ',
   `pid` smallint(6) NOT NULL DEFAULT '0',
   `list_order` smallint(6) NOT NULL DEFAULT '100' COMMENT '排序',
   `is_system` tinyint(1) NOT NULL DEFAULT '0' COMMENT '系统菜单 1 是  0 不是',
   `favorite` tinyint(1) NOT NULL DEFAULT '0' COMMENT '后台常用菜单   1 是  0 不是',
   PRIMARY KEY (`nid`)
-) ENGINE=MyISAM AUTO_INCREMENT=180 DEFAULT CHARSET=utf8 COMMENT='节点表（后台菜单也使用）';
+) ENGINE=MyISAM AUTO_INCREMENT=184 DEFAULT CHARSET=utf8 COMMENT='节点表（后台菜单也使用）';
 
 -- ----------------------------
 -- Records of hd_node
@@ -554,7 +567,7 @@ INSERT INTO `hd_node` VALUES ('13', '栏目管理', 'Hdcms', 'Category', 'Catego
 INSERT INTO `hd_node` VALUES ('14', '模型管理', 'Hdcms', 'Model', 'Model', 'index', '', '', '1', '1', '10', '100', '1', '0');
 INSERT INTO `hd_node` VALUES ('15', '推荐位', 'Hdcms', 'Flag', 'Flag', 'index', '', '', '1', '1', '10', '100', '1', '0');
 INSERT INTO `hd_node` VALUES ('19', '系统设置', 'Hdcms', '', '', '', '', '', '1', '1', '16', '100', '1', '0');
-INSERT INTO `hd_node` VALUES ('4', '管理内容', 'Hdcms', 'Content', 'Index', 'index', '', '', '1', '1', '2', '10', '1', '1');
+INSERT INTO `hd_node` VALUES ('4', '管理内容', 'Hdcms', 'Content', 'Index', 'index', '', '', '1', '2', '2', '10', '1', '1');
 INSERT INTO `hd_node` VALUES ('11', '管理员设置', 'Hdcms', '', '', '', '', '', '1', '1', '16', '100', '1', '0');
 INSERT INTO `hd_node` VALUES ('17', '管理员管理', 'Hdcms', 'Role', 'Admin', 'index', '', '', '1', '1', '11', '100', '1', '0');
 INSERT INTO `hd_node` VALUES ('18', '角色管理', 'Hdcms', 'Role', 'Role', 'index', '', '', '1', '1', '11', '100', '1', '0');
@@ -586,6 +599,7 @@ INSERT INTO `hd_node` VALUES ('91', '插件', 'Hdcms', '', '', '', '', '', '1', 
 INSERT INTO `hd_node` VALUES ('92', '插件管理', 'Hdcms', '', '', '', '', '', '1', '1', '91', '99', '1', '0');
 INSERT INTO `hd_node` VALUES ('93', '插件管理', 'Hdcms', 'Plugin', 'Plugin', 'Plugin_list', '', '', '1', '1', '92', '100', '1', '0');
 INSERT INTO `hd_node` VALUES ('94', '正在使用', 'Hdcms', 'Plugin', '', '', '', '', '1', '1', '91', '100', '1', '0');
+INSERT INTO `hd_node` VALUES ('180', '审核内容', 'Hdcms', 'Content', 'Audit', 'content', '', '', '1', '1', '2', '100', '0', '1');
 INSERT INTO `hd_node` VALUES ('178', '友情链接', 'Plugin', 'Link', 'Manage', 'index', '', '', '1', '2', '94', '100', '1', '0');
 INSERT INTO `hd_node` VALUES ('156', 'BUG管理', 'Hdcms', 'Bug', 'Bug', 'showBug', '', '', '1', '1', '154', '100', '1', '0');
 INSERT INTO `hd_node` VALUES ('179', '评论管理', 'Hdcms', 'Comment', 'Manage', 'index', '', '', '1', '1', '10', '100', '1', '1');
@@ -627,7 +641,7 @@ CREATE TABLE `hd_role` (
   `allowsendmessage` tinyint(1) NOT NULL DEFAULT '1' COMMENT '允许发短消息  1 允许  2 不允许',
   PRIMARY KEY (`rid`),
   KEY `gid` (`rid`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hd_role
@@ -635,9 +649,13 @@ CREATE TABLE `hd_role` (
 INSERT INTO `hd_role` VALUES ('1', '超级管理员', '超级管理员', '1', '1', '10000', '1', '1');
 INSERT INTO `hd_role` VALUES ('2', '编辑', '内容编辑', '1', '1', '10000', '1', '1');
 INSERT INTO `hd_role` VALUES ('3', '发布人员', '发布人员', '1', '1', '10000', '1', '1');
-INSERT INTO `hd_role` VALUES ('4', '新手上路', '新手上路', '0', '1', '100', '0', '1');
-INSERT INTO `hd_role` VALUES ('5', '中级会员', '中级会员', '0', '1', '200', '1', '1');
-INSERT INTO `hd_role` VALUES ('6', '高级会员', '高级会员', '0', '1', '300', '1', '1');
+INSERT INTO `hd_role` VALUES ('4', '幼儿园', '新手上路', '0', '1', '100', '0', '1');
+INSERT INTO `hd_role` VALUES ('5', '小学生', '小学生', '0', '1', '250', '1', '1');
+INSERT INTO `hd_role` VALUES ('6', '中学生', '中学生', '0', '1', '450', '1', '1');
+INSERT INTO `hd_role` VALUES ('7', '高中生', '高中生', '0', '0', '700', '1', '1');
+INSERT INTO `hd_role` VALUES ('8', '大学生', '大学生', '0', '0', '1050', '1', '1');
+INSERT INTO `hd_role` VALUES ('9', '研究生', '研究生', '0', '0', '1450', '1', '1');
+INSERT INTO `hd_role` VALUES ('10', '博士', '博士', '0', '0', '2000', '1', '1');
 
 -- ----------------------------
 -- Table structure for hd_search
@@ -673,6 +691,61 @@ CREATE TABLE `hd_session` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for hd_stu
+-- ----------------------------
+DROP TABLE IF EXISTS `hd_stu`;
+CREATE TABLE `hd_stu` (
+  `aid` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `cid` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '栏目cid',
+  `title` char(100) NOT NULL DEFAULT '' COMMENT '标题',
+  `flag` set('热门','置顶','推荐','图片','精华','幻灯片','站长推荐') DEFAULT NULL,
+  `new_window` tinyint(1) NOT NULL DEFAULT '0' COMMENT '新窗口打开',
+  `seo_title` char(100) NOT NULL DEFAULT '' COMMENT '标题',
+  `thumb` char(200) NOT NULL DEFAULT '' COMMENT '缩略图',
+  `click` mediumint(9) NOT NULL DEFAULT '0' COMMENT '点击次数',
+  `source` char(30) NOT NULL DEFAULT '' COMMENT '来源',
+  `redirecturl` char(100) NOT NULL DEFAULT '' COMMENT '转向链接',
+  `html_path` varchar(255) NOT NULL DEFAULT '' COMMENT '自定义生成的静态文件地址',
+  `allowreply` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否允许回复',
+  `addtime` int(10) NOT NULL DEFAULT '0' COMMENT '添加时间',
+  `updatetime` int(10) NOT NULL DEFAULT '0' COMMENT '发布时间 ',
+  `color` char(7) NOT NULL DEFAULT '' COMMENT '标题颜色',
+  `template` varchar(255) NOT NULL DEFAULT '' COMMENT '模板',
+  `url_type` tinyint(1) NOT NULL DEFAULT '3' COMMENT '文章访问方式  1 静态访问  2 动态访问  3 继承栏目',
+  `arc_sort` int(10) unsigned NOT NULL DEFAULT '100' COMMENT '排序',
+  `state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 已审核 0 未审核',
+  `keywords` char(100) NOT NULL DEFAULT '' COMMENT '关键字',
+  `description` varchar(255) NOT NULL DEFAULT '' COMMENT '描述',
+  `uid` int(10) unsigned NOT NULL COMMENT '用户uid',
+  `favorites` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '收藏数',
+  `comment_num` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '评论数',
+  `read_credits` smallint(6) unsigned NOT NULL DEFAULT '0' COMMENT '阅读金币',
+  PRIMARY KEY (`aid`),
+  KEY `cid` (`cid`),
+  KEY `uid` (`uid`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=gbk;
+
+-- ----------------------------
+-- Records of hd_stu
+-- ----------------------------
+INSERT INTO `hd_stu` VALUES ('1', '7', '学生模型', '', '0', '', '', '100', '', '', '', '1', '1397320050', '1397363237', '', '', '3', '100', '1', '模型,学生', '学生模型', '1', '0', '0', '0');
+
+-- ----------------------------
+-- Table structure for hd_stu_data
+-- ----------------------------
+DROP TABLE IF EXISTS `hd_stu_data`;
+CREATE TABLE `hd_stu_data` (
+  `aid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '文章主表ID',
+  `content` text COMMENT '正文',
+  KEY `aid` (`aid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='内容表';
+
+-- ----------------------------
+-- Records of hd_stu_data
+-- ----------------------------
+INSERT INTO `hd_stu_data` VALUES ('1', '<p>学生模型</p>');
+
+-- ----------------------------
 -- Table structure for hd_system_message
 -- ----------------------------
 DROP TABLE IF EXISTS `hd_system_message`;
@@ -700,11 +773,16 @@ CREATE TABLE `hd_tag` (
   PRIMARY KEY (`tid`),
   UNIQUE KEY `name` (`tag`),
   KEY `total` (`total`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hd_tag
 -- ----------------------------
+INSERT INTO `hd_tag` VALUES ('1', 'php', '3');
+INSERT INTO `hd_tag` VALUES ('2', '中华人民共和国', '3');
+INSERT INTO `hd_tag` VALUES ('3', '北京', '1');
+INSERT INTO `hd_tag` VALUES ('4', '美国', '1');
+INSERT INTO `hd_tag` VALUES ('5', '日本', '1');
 
 -- ----------------------------
 -- Table structure for hd_template_tag
@@ -743,11 +821,15 @@ CREATE TABLE `hd_upload` (
   PRIMARY KEY (`id`),
   KEY `basename` (`basename`),
   KEY `id` (`id`) USING BTREE
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='上传文件';
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='上传文件';
 
 -- ----------------------------
 -- Records of hd_upload
 -- ----------------------------
+INSERT INTO `hd_upload` VALUES ('1', '', '', '', 'upload/user/2014/04/11/80461397161348.jpg', '', '1', '0', '0', '1', '1');
+INSERT INTO `hd_upload` VALUES ('2', '', '', '', 'upload/user/2014/04/11/48101397162209.png', '', '1', '0', '0', '0', '2');
+INSERT INTO `hd_upload` VALUES ('3', 'mini汽车', '40951397316955', '40951397316955.jpg', 'upload/content/2014/04/12/40951397316955.jpg', 'jpg', '1', '165538', '1397316955', '1', '1');
+INSERT INTO `hd_upload` VALUES ('4', 'crop 1', '97681397317354', '97681397317354.png', 'upload/content/2014/04/12/97681397317354.png', 'png', '1', '782690', '1397317354', '1', '1');
 
 -- ----------------------------
 -- Table structure for hd_user
@@ -782,12 +864,15 @@ CREATE TABLE `hd_user` (
   UNIQUE KEY `domain` (`domain`),
   KEY `password` (`password`),
   KEY `credits` (`credits`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hd_user
 -- ----------------------------
-INSERT INTO `hd_user` VALUES ('1', '后盾网向军', 'admin', '054e1e1672569f5810335722c6a1994f', 'a120882783', 'houdunwangxj@gmail.com', '0', '1397156825', '', '0.0.0.0', '1', '0', '', '1', '', '10008', '6', '1', '后盾网 人人做后盾', 'admin', '13');
+INSERT INTO `hd_user` VALUES ('1', '后盾网向军', 'admin', '054e1e1672569f5810335722c6a1994f', 'a120882783', 'houdunwangxj@gmail.com', '0', '1397397685', '', '0.0.0.0', '1', '0', '', '1', '', '10008', '1', '1', '后盾网 人人做后盾', 'admin', '40');
+INSERT INTO `hd_user` VALUES ('2', 'tlaxj', 'tlaxj', '44dba9853a37f3f49a9dd24d900cf0cc', 'abb64766f4', 'sd@fdf.com', '1397162190', '1397162190', '0.0.0.0', '0.0.0.0', '1', '0', '', '1', '', '100', '4', '1', '', 'tlaxj', '27');
+INSERT INTO `hd_user` VALUES ('3', '中国人', '中国人', '', 'c1fdc3b339', 'sdkds@fd.com', '1397207526', '1397207526', '0.0.0.0', '0.0.0.0', '1', '0', '', '1', '', '100', '4', '1', '', '中国人', '27');
+INSERT INTO `hd_user` VALUES ('7', 'admin888', 'admin888', '', 'a94d59be16', 'sdf@fd.com', '1397398205', '1397398205', '0.0.0.0', '0.0.0.0', '1', '0', '', '1', '', '100', '3', '1', '', 'admin888', '0');
 
 -- ----------------------------
 -- Table structure for hd_user_deny_ip
@@ -824,11 +909,13 @@ CREATE TABLE `hd_user_guest` (
   `guest_uid` int(11) unsigned NOT NULL COMMENT '访问id',
   `uid` int(11) unsigned NOT NULL COMMENT '被访问空间Uid',
   PRIMARY KEY (`gid`)
-) ENGINE=MyISAM DEFAULT CHARSET=gbk COMMENT='空间访客表';
+) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=gbk COMMENT='空间访客表';
 
 -- ----------------------------
 -- Records of hd_user_guest
 -- ----------------------------
+INSERT INTO `hd_user_guest` VALUES ('27', '1', '2');
+INSERT INTO `hd_user_guest` VALUES ('22', '1', '3');
 
 -- ----------------------------
 -- Table structure for hd_user_icon
@@ -845,7 +932,10 @@ CREATE TABLE `hd_user_icon` (
 -- ----------------------------
 -- Records of hd_user_icon
 -- ----------------------------
-INSERT INTO `hd_user_icon` VALUES ('1', 'data/image/user/50.png', 'data/image/user/100.png', 'data/image/user/150.png');
+INSERT INTO `hd_user_icon` VALUES ('1', 'upload/user/2014/04/11/1_50.jpg', 'upload/user/2014/04/11/1_100.jpg', 'upload/user/2014/04/11/1_150.jpg');
+INSERT INTO `hd_user_icon` VALUES ('2', 'upload/user/2014/04/11/2_50.png', 'upload/user/2014/04/11/2_100.png', 'upload/user/2014/04/11/2_150.png');
+INSERT INTO `hd_user_icon` VALUES ('3', 'data/image/user/50.png', 'data/image/user/100.png', 'data/image/user/150.png');
+INSERT INTO `hd_user_icon` VALUES ('7', 'data/image/user/50.png', 'data/image/user/100.png', 'data/image/user/150.png');
 
 -- ----------------------------
 -- Table structure for hd_user_message

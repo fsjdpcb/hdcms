@@ -81,6 +81,10 @@
             <!--修改昵称 end--->
         </div>
         <nav>
+            <a href="__ROOT__/index.php?a=Home&c=Dynamic&m=index&g=Member">
+                <span class="glyphicon glyphicon-share"></span>
+                好友动态
+            </a>
             <a href="__ROOT__/index.php?a=Home&c=User&m=edit&g=Member">
                 <span class="glyphicon glyphicon-fire"></span>
                 修改资料
@@ -91,7 +95,7 @@
             </a>
             <a href="__ROOT__/index.php?a=Home&c=Message&m=index&g=Member">
                 <span class="glyphicon glyphicon-comment"></span>
-                我的消息
+                查看私信
                 <span class="badge">{$message_count}</span>
             </a>
             <a href="__ROOT__/index.php?a=Home&c=Favorite&m=index&g=Member">

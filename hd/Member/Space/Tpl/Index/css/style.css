@@ -3,7 +3,7 @@
 * {
   padding: 0;
   margin: 0;
-  font-family: arial, 微软雅黑;
+  font-family: arial, '微软雅黑';
 }
 img,
 input {
@@ -31,6 +31,18 @@ body {
   margin: 0 auto;
   /*background: red;*/
   position: relative;
+}
+#head_out .head .menu{
+    padding-top:10px;
+}
+#head_out .head .menu a{
+    font-size:14px;
+    display: block;
+    float: left;
+    margin-right: 10px;
+}
+#head_out .head .menu a:hover{
+    text-decoration: underline;
 }
 #head_out .head .face {
   position: absolute;

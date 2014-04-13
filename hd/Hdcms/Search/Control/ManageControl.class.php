@@ -14,13 +14,13 @@ class ManageControl extends AuthControl
         parent::__init();
         $_REQUEST['cid'] = M("category")->where('mid=1')->getField('cid');
         import('Index.Model.SearchModel');
-        $this->_db = K("search");
+        $this->_db = K("Manage");
     }
 
     //显示关键词列表
     public function index()
     {
-        $page = new Page($this->_db->count(), C("ADMIN_LIST_ROW'"));
+        $page = new Page($this->_db->count(), 15);
         $this->data = $this->_db->limit($page->limit())->order("total DESC")->all();
         $this->page = $page->show();
         $this->display();
@@ -34,7 +34,7 @@ class ManageControl extends AuthControl
             foreach ($sid as $i) {
                 $this->_db->del(intval($i));
             }
-            $this->_ajax(1);
+            $this->_ajax(1, '操作成功');
         }
     }
 
@@ -43,7 +43,7 @@ class ManageControl extends AuthControl
     {
         if (IS_POST) {
             if ($this->_db->save()) {
-                $this->_ajax(1);
+                $this->_ajax(1, '操作成功');
             }
         } else {
             $sid = Q("get.sid", NULL, "intval");

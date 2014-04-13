@@ -91,7 +91,11 @@ class ContentControl extends MemberAuthControl
     {
 
         if (IS_POST) {
-            if ($this->_db->add_content()) {
+            if ($result = $this->_db->add_content()) {
+                //添加动态表记录
+                $content='发表了文章: <a href="'.__WEB__.'?a=Index&c=Article&m=show&mid='.$this->_mid
+                    .'&cid='.$this->_cid."&aid=".$result[$this->_db->table].'" target="_blank">'. mb_substr(Q('title'), 0, 30, 'utf-8')."</a>";
+                $this->add_dynamic($content);
                 $credits = $this->_category[$this->_cid]['add_reward'];
                 $this->_ajax(1, "发表成功！增加{$credits}个金币");
                 exit;
@@ -106,7 +110,7 @@ class ContentControl extends MemberAuthControl
             //自定义字段
             import('FieldModel', 'hd/Hdcms/Field/Model');
             //FieldModel模型使用mid参数
-            $_REQUEST['mid'] =$this->_mid;
+            $_REQUEST['mid'] = $this->_mid;
             $fieldModel = new FieldModel();
             $this->custom_field = $fieldModel->field_view();
             $this->display();

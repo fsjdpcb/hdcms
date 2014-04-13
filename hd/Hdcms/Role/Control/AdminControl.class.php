@@ -8,11 +8,11 @@ import("User.Model.UserModel");
  */
 class AdminControl extends AuthControl
 {
-    public $_db;
+    private $_db;
 
     public function __construct()
     {
-        $this->_db = K("User");
+        $this->_db = K("Admin");
     }
 
     //管理员列表
@@ -22,26 +22,26 @@ class AdminControl extends AuthControl
         if ($rid) {
             $this->_db->where("rid=$rid");
         }
-        $this->admin = $this->_db->join("role")->where("username<>'" . C("WEB_MASTER") . "'")->all();
+        $this->admin = $this->_db->where('admin=1')->where("username<>'" . C("WEB_MASTER") . "'")->all();
         $this->display();
     }
 
     //验证用户是否存在
-    public function check_admin()
+    public function check_username()
     {
         $username = Q("post.username");
         echo $this->_db->join()->find("username='$username'") ? 0 : 1;
         exit;
     }
 
-    //验证用户昵称
-    public function check_nickname()
+    //验证邮箱
+    public function check_email()
     {
-        $nickname = Q("post.nickname");
+        $email = Q("post.email");
         if ($uid = Q('uid')) {
             $this->_db->where("uid<>$uid");
         }
-        echo $this->_db->join()->find("nickname='$nickname'") ? 0 : 1;
+        echo $this->_db->join()->find("email='$email'") ? 0 : 1;
         exit;
     }
 
@@ -66,7 +66,7 @@ class AdminControl extends AuthControl
                 $this->_ajax(0, $this->_db->error);
             }
         } else {
-            $this->role = $this->_db->table("role")->where('admin=1')->all();
+            $this->role = $this->_db->table("role")->where('admin=1')->order("rid DESC")->all();
             $this->display();
         }
     }
@@ -87,7 +87,7 @@ class AdminControl extends AuthControl
             if ($uid) {
                 //会员信息
                 $this->field = $this->_db->find($uid);
-                $this->role = $this->_db->table("role")->where('admin=1')->all();
+                $this->role = $this->_db->table("role")->where('admin=1')->order("rid DESC")->all();
                 $this->display();
             }
         }

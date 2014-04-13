@@ -73,7 +73,7 @@ $(function () {
                 $(_img).each(function (i) {
                     var _alt = $(this).parent().find("[name*=alt]").val();
                     _ul += "<li>";
-                    _ul += "<div class='img'><img src='" + ROOT + "/" + $(_img[i]).attr("path") + "' style='width:150px;height:150px;'/>";
+                    _ul += "<div class='img'><img src='" + ROOT + "/" + $(_img[i]).attr("path") + "' style='width:135px;height:135px;'/>";
                     _ul += "<a href='javascript:;' onclick='remove_upload(this,\"" + id + "\")'>X</a>";
                     _ul += "</div>";
                     _ul += "<input type='hidden' name='" + name + "[path][]'  value='" + $(_img[i]).attr("path") + "' src='" + $(_img[i]).attr("src") + "' class='w400 images'/> ";

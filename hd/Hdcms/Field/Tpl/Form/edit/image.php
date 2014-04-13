@@ -5,15 +5,15 @@
         <td>
             <table class="table1">
                 <tr>
-                    <td class="w100">图片宽度</td>
+                    <td class="w100">图片最大宽度</td>
                     <td>
-                        <label>宽 <input type="text" class="w30 image_height" name="set[width]" value="<?php echo $field['set']['width'];?>"/> px</label>
+                        <label><input type="text" class="w100 image_height" name="set[upload_img_max_width]" value="<?php echo $field['set']['width'];?>"/> </label>
                     </td>
                 </tr>
                 <tr>
-                    <td class="w100">图片高度</td>
+                    <td class="w100">图片最大高度</td>
                     <td>
-                        <label>高 <input type="text" class="w30 image_width" name="set[height]" value="<?php echo $field['set']['height'];?>"/> px</label>
+                        <label><input type="text" class="w100 image_width" name="set[upload_img_max_height]" value="<?php echo $field['set']['height'];?>"/></label>
                     </td>
                 </tr>
             </table>

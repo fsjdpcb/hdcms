@@ -33,7 +33,7 @@ return array (
   'water_pos' => '9',
   'del_content_model' => '1',
   'down_remove_pic_size' => '500',
-  'comment_state' => '0',
+  'comment_len' => '80',
   'favicon_width' => '180',
   'favicon_height' => '180',
   'down_remote_pic' => '0',

@@ -34,13 +34,15 @@
             <list from="$data" name="a">
                 <li id="c{$a.comment_id}">
                     <div class="hd-comment-face">
-                        <img src="{$a.icon50}"/>
+                        <a href="__WEB__?{$a.domain}">
+                        <img src="{$a.icon50}"  onmouseover="user.show(this,{$a.uid})"/>
+                            </a>
                     </div>
                     <div class="hd-comment-content">
                         {$a.content}
                         <div class="hd-author-info">
                             <span class="hd-comment-author">
-                                <a href="__WEB__?{$a.uid}">{$a.nickname}</a>&nbsp;&nbsp;
+                                <a href="__WEB__?{$a.domain}">{$a.nickname}</a>&nbsp;&nbsp;
                             </span>
                             {$a.pubtime|date:"Y-m-d H:i",@@} ({$a.pubtime|date_before})
                             <a class="comment-reply-link" href="javascript:;">回复 </a>
@@ -69,13 +71,15 @@
                         <list from="$a._data" name="b">
                             <li id="c{$b.comment_id}">
                                 <div class="hd-comment-face">
-                                    <img src="{$b.icon50}"/>
+                                    <a href="__WEB__?{$b.domain}">
+                                    <img src="{$b.icon50}"  onmouseover="user.show(this,{$b.uid})"/>
+                                        </a>
                                 </div>
                                 <div class="hd-comment-content">
                                     {$b.content}
                                     <div class="hd-author-info">
                             <span class="hd-comment-author">
-                                <a href="__WEB__?{$b.uid}">{$b.nickname}</a>&nbsp;&nbsp;
+                                <a href="__WEB__?{$b.domain}">{$b.nickname}</a>&nbsp;&nbsp;
                             </span>
                                         {$b.pubtime|date:"Y-m-d H:i",@@} ({$b.pubtime|date_before})
                                         <a class="comment-reply-link" href="javascript:;">回复 </a>
@@ -103,13 +107,15 @@
                                     <list from="$b._data" name="c">
                                         <li class="bg-white" id="c{$c.comment_id}">
                                             <div class="hd-comment-face">
-                                                <img src="{$c.icon50}"/>
+                                                <a href="__WEB__?{$c.domain}">
+                                                <img src="{$c.icon50}"  onmouseover="user.show(this,{$c.uid})"/>
+                                                    </a>
                                             </div>
                                             <div class="hd-comment-content">
                                                 {$c.content}
                                                 <div class="hd-author-info">
                                                 <span class="hd-comment-author">
-                                                    <a href="__WEB__?{$c.uid}">{$c.nickname}</a>&nbsp;&nbsp;
+                                                    <a href="__WEB__?{$c.domain}">{$c.nickname}</a>&nbsp;&nbsp;
                                                 </span>
                                                     {$c.pubtime|date:"Y-m-d H:i",@@} ({$c.pubtime|date_before})
                                                     <a class="comment-reply-link" href="javascript:;">回复 </a>
@@ -138,13 +144,15 @@
                                                 <list from="$c._data" name="d">
                                                     <li id="c{$d.comment_id}">
                                                         <div class="hd-comment-face">
-                                                            <img src="{$d.icon50}"/>
+                                                            <a href="__WEB__?{$d.domain}">
+                                                            <img src="{$d.icon50}"  onmouseover="user.show(this,{$d.uid})"/>
+                                                                </a>
                                                         </div>
                                                         <div class="hd-comment-content">
                                                             {$d.content}
                                                             <div class="hd-author-info">
                                                             <span class="hd-comment-author">
-                                                                <a href="__WEB__?{$d.uid}">{$d.nickname}</a>&nbsp;&nbsp;
+                                                                <a href="__WEB__?{$d.domain}">{$d.nickname}</a>&nbsp;&nbsp;
                                                             </span>
                                                                 {$d.pubtime|date:"Y-m-d H:i",@@}
                                                                 ({$d.pubtime|date_before})

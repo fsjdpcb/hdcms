@@ -7,11 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <jquery/>
     <bootstrap/>
+    <script>
+        var ROOT = 'http://localhost/hdcms';
+    </script>
     <link rel="stylesheet" type="text/css" href="__TEMPLATE__/css/comment.css?ver=1.0 "/>
     <link rel="stylesheet/less" href="__TEMPLATE__/css/index.less?ver=1.0 "/>
     <!--[if lt IE 8]>
     <link rel="stylesheet/less" href="__TEMPLATE__/css/ie.less?ver=1.0 "/>
     <![endif]-->
+
+
+    <script type="text/javascript" src="__ROOT__/hd/static/js/hdcms.js"></script>
+    <link rel="stylesheet/less" href="__ROOT__/hd/static/css/hdcms.less?ver=1.0 "/>
     <less/>
 </head>
 <body>
@@ -30,7 +37,7 @@
                   action="__WEB__?g=Hdcms&a=Search&c=Search&m=search">
                 <div class="form-group">
                     <input type="hidden" name='type' class="form-control" value="tag">
-                    <input type="text" name='word' class="form-control" placeholder="输入关键字搜索">
+                    <input type="text" name='word' class="form-control" placeholder="输入关键字搜索" required>
                 </div>
                 <button type="submit" class="btn btn-primary">搜索</button>
             </form>
@@ -86,7 +93,7 @@
                             <a href="{$field.url}">{$field.title}</a>
                         </header>
                         <div class="author">
-                            <a href="{$field.member}">{$field.username}</a>
+                            <a href="{$field.member}" onmouseover="user.show(this,{$field.uid})">{$field.username}</a>
                             发表于 {$field.date_before} -
                             {$field.comment_num}条评论
                             Tag：{$field.tag}
@@ -126,7 +133,9 @@
                 <section>
                     <user row="14">
                         <a href="{$field.url}">
-                            <img src="{$field.icon}" title="{$field.nickname}" style="width: 50px;height: 50px;border-radius: 10%;"/>
+                            <img src="{$field.icon}" title="{$field.nickname}"
+                                 onmouseover="user.show(this,{$field.uid})"
+                                 style="width: 50px;height: 50px;border-radius: 10%;"/>
                         </a>
                     </user>
                 </section>
@@ -137,7 +146,7 @@
                 <comment row="6" contentlen="20">
                     <section>
                         <a href="{$field.url}">
-                            <img src="{$field.icon}" style="width: 36px;height: 36px;border-radius: 50%;"/>
+                            <img src="{$field.icon}" style="width: 36px;height: 36px;border-radius: 50%;" onmouseover="user.show(this,{$field.uid})"/>
 
                             <p class="man">
                                 <span>{$field.nickname}</span> {$field.pubtime}说：

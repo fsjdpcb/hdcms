@@ -5,6 +5,9 @@
     <link rel="shortcut icon" href="favicon.ico">
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        var ROOT = 'http://localhost/hdcms';
+    </script>
     <hdjs/>
     <jquery/>
     <bootstrap/>
@@ -59,9 +62,14 @@
             <h2>{$hdcms.title}</h2>
 
             <p>
-                <a href="#">{$hdcms.author}</a> 发表于 {$hdcms.date_before} ({$hdcms.time}) -
+                <a href="__WEB__?{$hdcms.domain}">
+                    <img src="{|get_user_icon:$hdcms['uid']}" onmouseover="user.show(this,{$hdcms.uid})"/>
+                </a>
+                <a href="__WEB__?{$hdcms.domain}">
+                    {$hdcms.nickname}
+                </a> 发表于 {$hdcms.date_before} ({$hdcms.time}) -
                 <a href="#">{$hdcms.commentnum}条评论</a> 所属分类：<a href="{$hdcms.caturl}">{$hdcms.catname}</a>
-                <a href="javascript:add_favorite({$hdcms.mid},{$hdcms.cid},{$hdcms.aid})">加入收藏</a>
+                <a href="javascript:content.add_favorite({$hdcms.mid},{$hdcms.cid},{$hdcms.aid})">加入收藏</a>
             </p>
         </div>
         <div class="content">

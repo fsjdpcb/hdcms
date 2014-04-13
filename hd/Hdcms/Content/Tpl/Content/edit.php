@@ -57,13 +57,30 @@
                 </tr>
                 <tr>
                     <td>
-                        <label><input type="radio" name="allowreply" value="1"
+                        <label>
+                            <input type="radio" name="allowreply" value="1"
                             <if value="$field.allowreply==1">checked="checked"</if>
                             />
-                            允许</label>
-                        <label><input type="radio" name="allowreply" value="0"
+                            允许
+                        </label>
+                        <label>
+                            <input type="radio" name="allowreply" value="0"
                             <if value="$field.allowreply==0">checked="checked"</if>
-                            /> 不允许</label>
+                            /> 不允许
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <th>已审核</th>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            <input type="radio" name="state" value="1" <if value="$field.state==1">checked="checked"</if> /> 是
+                        </label>
+                        <label>
+                            <input type="radio" name="state" value="0" <if value="$field.state==0">checked="checked"</if> /> 否
+                        </label>
                     </td>
                 </tr>
                 <tr>

@@ -14,6 +14,7 @@ class UserModel extends ViewModel
             "on" => "user.rid=role.rid"
         )
     );
+
     /**
      * 删除用户
      * @return mixed
@@ -23,15 +24,9 @@ class UserModel extends ViewModel
         $uid = Q('uid');
         if ($uid) {
             //删除头像数据
-            $icon = $this->table('user_icon')->where("user_uid=$uid")->find();
-            //删除头像
-            if ($icon) {
-                foreach ($icon as $pic) {
-                    is_file($pic) and @unlink($pic);
-                }
-            }
+            $icon = $this->table('user_icon')->where("user_uid=$uid")->del();
             //删除评论与回复
-            $this->table('comment')->where("uid=$uid or reply_id=$uid")->del();
+            $this->table('comment')->where("uid=$uid")->del();
             //删除用户表记录
             return $this->del($uid);
         }
@@ -67,12 +62,30 @@ class UserModel extends ViewModel
         $_POST['code'] = $code;
         $_POST['password'] = md5($_POST['password'] . $_POST['code']);
         $_POST['nickname'] = $_POST['username'];
+        $_POST['domain'] = $_POST['username'];
         $_POST['regtime'] = time();
         $_POST['logintime'] = time();
         $_POST['regip'] = ip_get_client();
         $_POST['lastip'] = ip_get_client();
         $_POST['credits'] = C('init_credits'); //初始积分
-        return $this->add();
+        //设置用户头像
+        if ($uid = $this->add()) {
+            //设置用户头像
+            $dir = 'upload/user/'.max(ceil($uid/500),1);
+            //复制默认头像
+            copy('data/image/user/50.png',$dir."/{$uid}_50.png");
+            copy('data/image/user/100.png',$dir."/{$uid}_100.png");
+            copy('data/image/user/150.png',$dir."/{$uid}_150.png");
+            $icon = array(
+                'user_uid' => $uid,
+                'icon50' =>"{$dir}/{$uid}_50.png",
+                'icon100' =>"{$dir}/{$uid}_100.png",
+                'icon150' => "{$dir}/{$uid}_150.png"
+            );
+            M('user_icon')->add($icon);
+        } else {
+            $this->error = '帐号注册失败';
+        }
     }
 
 

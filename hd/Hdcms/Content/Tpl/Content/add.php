@@ -61,6 +61,19 @@
                     </td>
                 </tr>
                 <tr>
+                    <th>已审核</th>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            <input type="radio" name="state" value="1" checked="checked"/> 是
+                        </label>
+                        <label>
+                            <input type="radio" name="state" value="0"/> 否
+                        </label>
+                    </td>
+                </tr>
+                <tr>
                     <th>点击</th>
                 </tr>
                 <tr>

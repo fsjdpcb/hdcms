@@ -67,11 +67,16 @@ class UserModel extends Model
             $this->data['domain'] = $_POST['username']; //个性域名
             if ($uid = $this->add()) {
                 //设置用户头像
+                $dir = 'upload/user/'.max(ceil($uid/500),1);
+                //复制默认头像
+                copy('data/image/user/50.png',$dir."/{$uid}_50.png");
+                copy('data/image/user/100.png',$dir."/{$uid}_100.png");
+                copy('data/image/user/150.png',$dir."/{$uid}_150.png");
                 $icon = array(
                     'user_uid' => $uid,
-                    'icon50' =>"data/image/user/50.png",
-                    'icon100' =>"data/image/user/100.png",
-                    'icon150' => "data/image/user/150.png"
+                    'icon50' =>"{$dir}/{$uid}_50.png",
+                    'icon100' =>"{$dir}/{$uid}_100.png",
+                    'icon150' => "{$dir}/{$uid}_150.png"
                 );
                 M('user_icon')->add($icon);
                 return $this->record_user($uid);
@@ -145,12 +150,14 @@ class UserModel extends Model
                 JOIN " . $pre . "role AS r ON u.rid = r.rid
                 WHERE u.uid=$uid";
         $user = current($db->query($sql));
+        setcookie('login',$user['password'],0,'/');
         unset($user['password']);
         unset($user['code']);
         unset($user['user_uid']);
         //是否为超级管理员
         $_SESSION['WEB_MASTER'] = strtolower(C("WEB_MASTER")) == strtolower($user['username']);
         $_SESSION = array_merge($_SESSION, $user);
+
         //---------------------修改登录IP与时间
         return $db->save(array(
             "uid" => $_SESSION['uid'],

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 登录处理模块
  * Class LoginControl
@@ -12,6 +13,7 @@ class LoginControl extends CommonControl
     //构造函数
     public function __init()
     {
+
         $this->_db = K("User");
     }
 
@@ -39,8 +41,11 @@ class LoginControl extends CommonControl
      */
     public function Login()
     {
+        if (session('admin')) {
+            go("Hdcms/Index/index");
+        }
         if (IS_POST) {
-            $error=null;
+            $error = null;
             $username = Q("post.username", NULL, 'htmlspecialchars,strip_tags,addslashes');
             $user = $this->_db->where("username='$username' || email='$username'")->find();
             //-----------------------验证码------------------------
@@ -74,7 +79,9 @@ class LoginControl extends CommonControl
     public function out()
     {
         //清空SESSION
-        session(NULL);
+        session_unset();
+        session_destroy();
+        setcookie('login', '', 1,'/');
         echo "<script>
             window.top.location.href='" . U("login") . "';
         </script>";

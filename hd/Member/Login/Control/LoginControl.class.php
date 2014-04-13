@@ -24,7 +24,7 @@ class LoginControl extends CommonControl
     {
         if (IS_POST) {
             if ($this->_db->login()) {
-                go(U('reg', array('g' => 'Member')));
+                go(U('login', array('g' => 'Member')));
             } else {
                 $this->error = $this->_db->error;
                 $this->display();
@@ -33,7 +33,17 @@ class LoginControl extends CommonControl
             $this->display();
         }
     }
-
+    //Ajax登录
+    public function ajax_login()
+    {
+        if (IS_AJAX) {
+            if ($this->_db->login()) {
+                $this->_ajax(1,'登录成功');
+            } else {
+                $this->_ajax(0,$this->_db->error);
+            }
+        }
+    }
     //注册
     public function reg()
     {
@@ -64,7 +74,10 @@ class LoginControl extends CommonControl
      */
     public function quit()
     {
-        session(NULL);
+        //清空SESSION
+        session_unset();
+        session_destroy();
+        setcookie('login', '', 1,'/');
         go(__ROOT__);
     }
 

@@ -43,8 +43,8 @@
                     </if>
                 </td>
                 <td>
-                    <if value="$n.menu_type==1">
-                        权限+菜单
+                    <if value="$n.type==1">
+                        权限菜单
                         <else>
                         普通菜单
                     </if>

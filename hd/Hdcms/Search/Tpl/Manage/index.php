@@ -33,7 +33,7 @@
                 <td><input type="checkbox" name="sid[]" value="{$d.sid}"/></td>
                 <td>{$d.sid}</td>
                 <td>
-                    <a href="{|U:edit,array('sid'=>$d['sid'])}">{$d.name}</a>
+                    <a href="{|U:edit,array('sid'=>$d['sid'])}">{$d.word}</a>
                 </td>
                 <td>
                     {$d.total}
@@ -52,7 +52,7 @@
 </div>
 
 <div class="position-bottom">
-    <input type="button" class="hd-cancel-small" value="全选"/>
+    <input type="button" class="hd-cancel-small s_all" value="全选"/>
     <input type="button" class="hd-cancel-small r_select" value="反选"/>
     <input type="button" class="hd-cancel-small" onclick="del()" value="批量删除"/>
 </div>

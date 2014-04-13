@@ -32,19 +32,19 @@ function del(sid) {
             url: CONTROL + "&m=del",
             cache: false,
             data: data,
-            success: function (stat) {
-                if (stat == 1) {
+            dataType:'json',
+            success: function (data) {
+                if (data.state == 1) {
                     $.dialog({
-                        msg: "删除搜索词成功",
+                        message: data.message,
                         type: "success",
-                        timeout: 3,
                         close_handler: function () {
                             window.location.reload();
                         }
                     });
                 } else {
                     $.dialog({
-                        msg: "删除搜索词失败",
+                        message: "删除失败",
                         type: "error"
                     });
                 }
@@ -52,32 +52,3 @@ function del(sid) {
         })
     }
 }
-//修改搜索词
-$(function () {
-    $("form").submit(function () {
-        var data = $("form").serialize();
-        $.ajax({
-            type: "POST",
-            url: METH,
-            cache: false,
-            data: data,
-            success: function (stat) {
-                if (stat == 1) {
-                    $.dialog({
-                        msg: "修改搜索词成功",
-                        type: "success",
-                        timeout: 3,
-                        close_handler: function () {
-                            location.href = CONTROL;
-                        }
-                    });
-                } else {
-                    $.dialog({
-                        msg: "修改搜索词失败",
-                        type: "error"
-                    });
-                }
-            }
-        })
-    })
-})

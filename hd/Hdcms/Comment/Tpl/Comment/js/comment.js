@@ -29,7 +29,6 @@ function add_comment(obj, type) {
             if (data.state == 'nologin') {
                 //没有登录时，弹出登录窗口
                 login.show();
-                $(obj).trigger('submit');
             } else {
                 //弹出信息
                 comment_alter(obj, data.message);

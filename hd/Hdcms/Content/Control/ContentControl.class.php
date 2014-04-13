@@ -149,7 +149,7 @@ class ContentControl extends AuthControl
     public function audit()
     {
         //1 审核  0 取消审核
-        $state = Q("status", 1, "intval");
+        $state = Q("state", 1, "intval");
         //文章id
         $aids = Q("post.aid");
         foreach ($aids as $aid) {

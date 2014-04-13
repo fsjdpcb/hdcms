@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <title>管理员管理</title>
+    <title>添加管理员</title>
     <hdjs/>
     <js file="__CONTROL_TPL__/js/add_validate.js"/>
     <css file="__CONTROL_TPL__/css/css.css"/>
@@ -24,12 +24,6 @@
                 <th class="w100">帐号</th>
                 <td>
                     <input type="text" name="username" class="w200"/>
-                </td>
-            </tr>
-            <tr>
-                <th class="w100">昵称</th>
-                <td>
-                    <input type="text" name="nickname" class="w200"/>
                 </td>
             </tr>
             <tr>
@@ -58,6 +52,12 @@
                 <th class="w100">邮箱</th>
                 <td>
                     <input type="text" name="email" class="w200"/>
+                </td>
+            </tr>
+            <tr>
+                <th class="w100">积分</th>
+                <td>
+                    <input type="text" name="credits" class="w200" value="{$hd.config.init_credits}"/>
                 </td>
             </tr>
         </table>

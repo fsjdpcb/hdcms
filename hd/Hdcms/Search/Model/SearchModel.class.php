@@ -9,14 +9,8 @@ class SearchModel extends ViewModel
 {
     //表
     public $table;
-    //副表
-    protected $_stable;
     //模型mid
     protected $_mid;
-    //栏目id
-    protected $_cid;
-    //文章id
-    protected $_aid;
     //模型缓存
     protected $_model;
     //栏目缓存
@@ -26,18 +20,14 @@ class SearchModel extends ViewModel
      * 构造函数
      * $options=array('mid'=>模型mid)
      */
-    public function __init($options)
+    public function __init()
     {
         //----------------缓存数据
         $this->_category = F("category");
         $this->_model = F("model");
-        $this->_mid = isset($options['mid']) ? intval($options['mid']) : Q('mid', 1, 'intval');
-        $this->_cid = Q('cid', null, 'intval');
-        $this->_aid = Q('aid', null, 'intval');
+        $this->_mid = Q('mid', 1, 'intval');
         //主表
         $this->table = $this->_model[$this->_mid]['table_name'];
-        //副表
-        $this->_stable = $this->table . '_data';
         //表关联
         $this->view = array(
             //栏目表
@@ -77,6 +67,7 @@ class SearchModel extends ViewModel
         //===========================查询条件====================================
         switch ($type) {
             case 'tag':
+            default:
                 $count = $this->where("tag='$word'")->group($this->tableFull . '.aid')->count();
                 $page = new Page($count, 10);
                 $data = $this->where("tag='$word'")->group($this->tableFull . '.aid')->all();
@@ -86,8 +77,20 @@ class SearchModel extends ViewModel
                         $data[$n] = $d;
                     }
                 }
-                return array('page' => $page->show(), 'data' => $data);
+                $data= array('page' => $page->show(), 'data' => $data);
                 break;
         }
+        //记录搜索关键词
+        $db = M('search');
+        $total = $db->where('mid=' . $this->_mid)->where("word='$word'")->getField('total');
+        $total = $total ? $total + 1 : 1;
+        $db->replace(
+            array(
+                'mid' => $this->_mid,
+                'word' => $word,
+                'total' => $total
+            )
+        );
+        return $data;
     }
 }

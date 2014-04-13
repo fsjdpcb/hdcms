@@ -5,22 +5,25 @@ $(function () {
         username: {
             rule: {
                 required: true,
-                ajax: {url: CONTROL + '&m=check_admin', field: ['uid']}
+                ajax: {url: CONTROL + '&m=check_username', field: ['uid']}
             },
             error: {
                 required: "管理员名不能为空",
                 ajax: '帐号已经存在'
             }
         },
-        nickname: {
+        email: {
             rule: {
                 required: true,
-                ajax: {url: CONTROL + '&m=check_nickname'}
+                email: true,
+                ajax: {url: CONTROL + '&m=check_email'}
             },
             error: {
-                required: "昵称不能为空",
-                ajax: '昵称已经存在'
+                required: '邮箱不能为空',
+                email: "邮箱输入错误",
+                ajax: '邮箱已经存在'
             }
+
         },
         password: {
             rule: {
@@ -42,16 +45,15 @@ $(function () {
                 confirm: "两次密码不一致"
             }
         },
-        email: {
+        credits: {
             rule: {
                 required: true,
-                email: true
+                regexp: /^\d+$/
             },
             error: {
-                required: '邮箱不能为空',
-                email: "邮箱输入错误"
+                required: "积分不能为空",
+                regexp: "必须为数字"
             }
-
         }
     })
 })

@@ -23,3 +23,15 @@ function get_son_category($cid)
     return $data;
 }
 
+/**
+ * 获得用户头像
+ * @param $uid
+ * @param $size 50|100|150 头像尺寸
+ * @return string
+ */
+function get_user_icon($uid, $size = 50)
+{
+    $dir = 'upload/user/' . max(ceil($uid / 500), 1);
+    return __ROOT__ . '/' . $dir . '/' . $uid . '_' . $size . '.png';
+}
+

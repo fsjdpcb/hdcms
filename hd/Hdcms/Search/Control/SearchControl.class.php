@@ -33,7 +33,7 @@ class SearchControl extends Control
     public function search()
     {
         if (!Q('word') || !Q('type')) {
-            $this->error("参数错误");
+            $this->error("搜索内容不能为空");
         } else {
             $data = $this->_db->search();
             $this->assign($data);

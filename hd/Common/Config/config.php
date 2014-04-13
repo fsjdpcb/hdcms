@@ -6,6 +6,7 @@ return array_merge(
     //数据库
     require "./data/config/db.inc.php",
     array(
+        'LOG_RECORD'                    => true,       //记录日志
         //标签
         'TPL_TAGS' => array(
             '@@.Hdcms.Index.Tag.ContentTag'
@@ -47,7 +48,7 @@ return array_merge(
             //栏目（有页码）
             '/^list_(\d+)_(\d+).html$/'=>'a=Index&c=Category&m=category&cid=#1&page=#2',
             //个人主页
-            '/^([a-z0-9]+)$/'=>'a=Space&c=Index&m=index&g=Member&u=#1',
+            '/^([^&\/=_]+)$/'=>'a=Space&c=Index&m=index&g=Member&u=#1',
         ),
     )
 );

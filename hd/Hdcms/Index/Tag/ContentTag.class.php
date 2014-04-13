@@ -152,6 +152,7 @@ str;
         <?php \$mid="$mid";\$cid ='$cid';\$fid='$fid';\$aid='$aid';\$type='$type';\$sub_channel=$sub_channel;
             //设置cid条件
             \$cid = \$cid?\$cid:Q('cid',null,'intval');
+            import('ArticleModel','hd.Hdcms.Index.Model');
             //导入模型类
             \$db = K('Article',array('mid'=>\$mid));
             //主表（有表前缀）
@@ -272,6 +273,7 @@ str;
         \$mid =$mid;\$cid='$cid';\$fid = '$fid';\$sub_channel=$sub_channel;\$order = '$order';
         \$cid = \$cid?\$cid:Q('cid',NULL,'intval');
         //导入模型类
+        import('ArticleModel','hd.Hdcms.Index.Model');
         \$db = K('Article',array('mid'=>\$mid));
         //---------------------------排序Order-------------------------------
             switch(\$order){
@@ -358,6 +360,7 @@ str;
         $php = <<<str
         <?php
         \$type='$type';\$titlelen = $titlelen;
+        import('ArticleModel','hd.Hdcms.Index.Model');
         \$db = K('Article');
         \$aid = Q('get.aid',NULL,'intval');
         //上一篇

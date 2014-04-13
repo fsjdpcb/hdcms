@@ -8,6 +8,8 @@ class CommentControl extends CommonControl
 {
     //模型
     private $_db;
+    //模型mid
+    private $_mid;
     //栏目cid
     private $_cid;
     //文章aid
@@ -17,6 +19,7 @@ class CommentControl extends CommonControl
     public function __init()
     {
         $this->_db = K("Comment");
+        $this->_mid = Q('mid', null, 'intval');
         $this->_cid = Q('cid', null, 'intval');
         $this->_aid = Q('aid', null, 'intval');
         //栏目与文章aid必须存在
@@ -58,29 +61,37 @@ class CommentControl extends CommonControl
             $this->_ajax('nologin', '没有登录');
         } else {
             //---------------------------------------验证评论发表间隔时间
-            $result = $this->_db->
-                where("cid={$this->_cid} && aid={$this->_aid} && " . C("DB_PREFIX") . "comment.uid=" . session('uid'))->order("comment_id DESC")
-                ->find();
-            if ($result) {
-                //间隔时间小于配置项
-                if (!($result['pubtime'] + C('comment_step_time') < time())) {
-                    $step = C('comment_step_time') / 60 > 1 ? intval(C('comment_step_time') / 60) . '分钟' : C('comment_step_time') . '秒';
-                    $this->_ajax(0, '请' . $step . '后发表');
-                }
-                //----------------------------------验证有内容是否重复
-                $content = Q('content', '');
-                $data = $this->_db->
-                    where("cid={$this->_cid} && aid={$this->_aid} && " . C("DB_PREFIX") . "comment.uid=" . session('uid'))
-                    ->where("content='$content'")
-                    ->order("comment_id DESC")->find();
-                if ($data) {
-                    $this->_ajax(0, '请不要发表重复内容');
-                }
+            Q('session.comment_send_time', 0, 'intval');
+            //间隔时间小于配置项
+            if (Q('session.comment_send_time') + C('comment_step_time') > time()) {
+                $_time = Q('session.comment_send_time') + C('comment_step_time') - time();
+                $step = $_time / 60 > 1 ? intval($_time / 60) . '分钟' : $_time . '秒';
+                $this->_ajax(0, '请' . $step . '后发表');
+            }
+            //----------------------------------验证内容重复
+            $content = Q('content', '');
+            if (!trim($content)) {
+                $this->_ajax(0, '评论内容不能为空');
+            }
+            //----------------------------------截取内容长度
+            $content = mb_substr($content, 0, C('comment_len'), 'utf-8');
+            $data = $this->_db->
+                where("cid={$this->_cid} && aid={$this->_aid} && " . C("DB_PREFIX") . "comment.uid=" . session('uid'))
+                ->where("content='$content'")
+                ->order("comment_id DESC")->find();
+            if ($data) {
+                $this->_ajax(0, '请不要发表重复内容');
             }
             //-----------------------------------------发表评论
+            $_POST['content'] = $content;
             if ($comment_id = $this->_db->add_comment()) {
                 $comment = $this->get_one($comment_id);
-                $msg = C('comment_state')==1?'评论发表成功！':'评论成功，审核后显示';
+                $msg = C('comment_state') == 1 ? '评论发表成功！' : '评论成功，审核后显示';
+                //记录发表时间
+                session('comment_send_time', time());
+                //------------------------------------添加动态
+                $content ="发表了评论: " .mb_substr($content, 0, 30, 'utf-8');
+                $this->add_dynamic($content);
                 $this->_ajax(1, $msg, $comment);
             } else {
                 $this->_ajax(0, '失败了哟');

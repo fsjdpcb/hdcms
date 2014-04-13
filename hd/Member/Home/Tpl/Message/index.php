@@ -81,6 +81,10 @@
             <!--修改昵称 end--->
         </div>
         <nav>
+            <a href="__ROOT__/index.php?a=Home&c=Dynamic&m=index&g=Member">
+                <span class="glyphicon glyphicon-share"></span>
+                好友动态
+            </a>
             <a href="__ROOT__/index.php?a=Home&c=User&m=edit&g=Member">
                 <span class="glyphicon glyphicon-fire"></span>
                 修改资料
@@ -91,7 +95,7 @@
             </a>
             <a href="__ROOT__/index.php?a=Home&c=Message&m=index&g=Member">
                 <span class="glyphicon glyphicon-comment"></span>
-                我的消息
+                查看私信
                 <span class="badge">{$message_count}</span>
             </a>
             <a href="__ROOT__/index.php?a=Home&c=Favorite&m=index&g=Member">
@@ -104,15 +108,14 @@
         <header>
             <h2>
                 我的消息
-                <span>({$count})</span>
             </h2>
         </header>
         <ul>
             <list from="$data" name="d">
                 <li>
                     <div class="article">
-                        <a href="__ROOT__/index.php?a=Home&c=Message&m=show&g=Member&mid={$d.mid}" class="title">
-                            {$d.nickname} : {$d.message|mb_substr:0,80,'utf-8'}
+                        <a href="__ROOT__/index.php?a=Home&c=Message&m=show&g=Member&from_uid={$d.from_uid}" class="title">
+                            {$d.nickname} : {$d.content|mb_substr:0,30,'utf-8'}
                         </a>
                     <span class="time">
                         {$d.sendtime|date:'Y-m-d H:i:s',@@}

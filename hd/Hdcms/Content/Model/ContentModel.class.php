@@ -54,8 +54,7 @@ class ContentModel extends RelationModel
     //投稿状态
     protected function _state($v)
     {
-        $category = F('category');
-        return session('admin') == 1 ? 1 : $category[Q('cid')]['member_send_state'];
+        return Q('state',1,'intval');
     }
 
     //添加内容时获得发布者id
@@ -133,8 +132,8 @@ class ContentModel extends RelationModel
      */
     public function get_one_content()
     {
-        if(!isset($_SESSION['admin'])){
-            $this->where('uid='.$_SESSION['uid']);
+        if (!isset($_SESSION['admin'])) {
+            $this->where('uid=' . $_SESSION['uid']);
         }
         $field = $this->find($this->_aid);
         if ($field) {
@@ -355,7 +354,7 @@ class ContentModel extends RelationModel
     {
 
         //没有缩略图时，去除属性中的图片属性
-        if(empty($data['thumb']) && isset($data['flag'])){
+        if (empty($data['thumb']) && isset($data['flag'])) {
             $data['flag'] = trim(str_replace(array('图片', ',,'), '', $data['flag']), ',');
         }
         //服务器是否允许远程下载
@@ -476,9 +475,9 @@ class ContentModel extends RelationModel
             $_GET = $this->find($aid);
             //生成静态
             ob_start();
-            $_REQUEST['mid']=$this->_mid;
-            $_REQUEST['cid']=$this->_cid;
-            $_REQUEST['aid']=$aid;
+            $_REQUEST['mid'] = $this->_mid;
+            $_REQUEST['cid'] = $this->_cid;
+            $_REQUEST['aid'] = $aid;
             $obj = new ArticleControl($this->_cid, $aid);
             $obj->show();
             $con = ob_get_clean();
