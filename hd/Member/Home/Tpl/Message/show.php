@@ -7,9 +7,7 @@
     <hdjs/>
     <bootstrap/>
     <link rel="stylesheet/less" href="__CONTROL_TPL__/css/message.less?ver=1.0 "/>
-    <script type="text/javascript" src="__ROOT__/hd/static/js/hdcms.js"></script>
-    <link rel="stylesheet/less" href="__ROOT__/hd/static/css/hdcms.less?ver=1.0 "/>
-    <less/>
+    <hdcms/>
 </head>
 <body>
 <header class="header center-block">

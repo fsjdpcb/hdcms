@@ -55,7 +55,7 @@ switch ($s) {
         $gd_info = gd_info();
         $gd = !empty($gd_info) ? '<span class="dir_success">On</span>' : '<span class="dir_error">Off</span>';
         $mysql = function_exists("mysql_connect") ? '<span class="dir_success">On</span>' : '<span class="dir_success">Off</span>';
-        $mb_substr= function_exists("mb_substr") ? '<span class="dir_success">On</span>' : '<span class="dir_success">Off</span>';
+        $mb_substr = function_exists("mb_substr") ? '<span class="dir_success">On</span>' : '<span class="dir_success">Off</span>';
         //检测目录
         $dirctory = array(
             "/", //网站根目录
@@ -123,8 +123,11 @@ switch ($s) {
         $code = substr(md5(mt_rand() . time()), 0, 10);
         $db->exe("UPDATE {$db_prefix}config SET value='{$config['WEB_NAME']}' WHERE name='webname'");
         $db->exe("UPDATE {$db_prefix}config SET value='{$config['EMAIL']}' WHERE name='email'");
+        $time = time();
+        $ip = ip_get_client();
         $db->exe("UPDATE {$db_prefix}user SET uid=1,rid=1,username='{$config['ADMIN']}',domain='{$config['ADMIN']}',
-                nickname='{$config['ADMIN']}',email='{$config['EMAIL']}',code='{$code}',password='" . md5($config['PASSWORD'].$code)."'");
+                nickname='{$config['ADMIN']}',email='{$config['EMAIL']}',regtime={$time},logintime={$time},regip='{$ip}',lastip='{$ip}'
+                code='{$code}',password='" . md5($config['PASSWORD'] . $code) . "'");
         unset($config['WEB_NAME']);
         unset($config['EMAIL']);
         unset($config['ADMIN']);

@@ -7,7 +7,7 @@
     <hdjs/>
     <bootstrap/>
     <link rel="stylesheet/less" href="__CONTROL_TPL__/css/article-list.less?ver=1.0 "/>
-    <less/>
+    <hdcms/>
 </head>
 <body>
 <header class="header center-block">

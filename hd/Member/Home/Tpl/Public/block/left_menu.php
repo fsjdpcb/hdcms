@@ -1,15 +1,12 @@
 <section class="menu">
     <div class="center-block user">
         <a href="__ROOT__?{$hd.session.domain}" target="_blank">
-            <img src="__ROOT__/{$hd.session.icon150}" title="个人空间"/>
+            <img src="__ROOT__/{$hd.session.icon150}" onmouseover="user.show(this,{$hd.session.uid})"/>
         </a>
-
         <p class="nickname">
             <span class="glyphicon glyphicon-user"></span> <b>{$hd.session.nickname}</b></p>
-
         <p class="edit-nickname" data-toggle="modal" data-target="#myModal">
             <span class="glyphicon glyphicon-cog"></span> 修改昵称
-
         </p>
         <p>
             金&nbsp;&nbsp;&nbsp; 币：{$hd.session.credits} <br/>

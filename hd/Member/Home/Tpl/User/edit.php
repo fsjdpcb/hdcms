@@ -8,11 +8,10 @@
     <jcrop/>
     <bootstrap/>
     <link rel="stylesheet/less" href="__CONTROL_TPL__/css/user.less?ver=1.0 "/>
-    <less/>
     <js file="__CONTROL_TPL__/js/cropFace.js"/>
     <script type="text/javascript" src="__CONTROL_TPL__/uploadify/jquery.uploadify.min.js"></script>
     <link rel="stylesheet" type="text/css" href="__CONTROL_TPL__/uploadify/uploadify.css"/>
-
+    <hdcms/>
 </head>
 <body>
 
