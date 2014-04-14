@@ -48,7 +48,7 @@ return array_merge(
             //栏目（有页码）
             '/^list_(\d+)_(\d+).html$/'=>'a=Index&c=Category&m=category&cid=#1&page=#2',
             //个人主页
-            '/^([^&\/=_]+)$/'=>'a=Space&c=Index&m=index&g=Member&u=#1',
+            '/^([^&=_]+)$/'=>'a=Space&c=Index&m=index&g=Member&u=#1',
         ),
     )
 );

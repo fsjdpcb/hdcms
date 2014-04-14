@@ -24,8 +24,6 @@ class ContentControl extends MemberAuthControl
     //构造函数
     public function __init()
     {
-        //父类构造函数
-        parent::__init();
         $this->_model = F("model", false);
         $this->_category = F("category", false);
         $this->_cid = Q("cid", NULL, "intval");
