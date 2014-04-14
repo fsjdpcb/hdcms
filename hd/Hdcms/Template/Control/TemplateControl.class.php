@@ -12,10 +12,10 @@ class TemplateControl extends AuthControl
     public function style_list()
     {
         $style = array();
-        foreach (scandir("./template") as $tpl) {
-            if (in_array($tpl, array('.', '..'))) continue;
+        $dirs = Dir::tree('template');
+        foreach ($dirs as $tpl) {
             //说明文档
-            $readme = "template/{$tpl}/readme.txt";
+            $readme = $tpl['path']."/readme.txt";
             if (is_file($readme) && is_readable($readme)) {
                 $tmp = preg_split('@\n@', file_get_contents($readme));
                 $config['name'] = mb_substr($tmp[0],0,8,'utf-8');
@@ -25,16 +25,16 @@ class TemplateControl extends AuthControl
                 $config = array("name"=>"HDCMS免费模板", "author"=>"后盾网", "email"=>"houdunwang.com");
             }
             //模板目录名
-            $config['dir_name'] = $tpl;
+            $config['dir_name'] = $tpl['name'];
             //模板缩略图
-            $template_img = "template/{$tpl}/template.jpg";
+            $template_img = $tpl['path']."/template.jpg";
             if (is_file($template_img)) {
                 $config['template_img'] = __ROOT__ . '/' . $template_img;
             } else {
                 $config['template_img'] = __CONTROL_TPL__ . '/img/default.jpg';
             }
             //正在使用的模板
-            if (strtolower(C("WEB_STYLE")) == strtolower($tpl)) {
+            if (strtolower(C("WEB_STYLE")) == strtolower($tpl['name'])) {
                 $config['current'] = true;
             }else{
                 $config['current'] = false;
