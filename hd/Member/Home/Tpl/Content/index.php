@@ -31,7 +31,6 @@
         <header>
             <h2>
                 我的文章
-                <span>(3)</span>
                 <a href="javascript:;" onclick="hd_open_window('{|U:'add',array('g'=>'Member')}')"
                    class="send">发表</a>
             </h2>

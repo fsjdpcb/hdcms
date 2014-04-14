@@ -126,7 +126,7 @@ switch ($s) {
         $time = time();
         $ip = ip_get_client();
         $db->exe("UPDATE {$db_prefix}user SET uid=1,rid=1,username='{$config['ADMIN']}',domain='{$config['ADMIN']}',
-                nickname='{$config['ADMIN']}',email='{$config['EMAIL']}',regtime={$time},logintime={$time},regip='{$ip}',lastip='{$ip}'
+                nickname='{$config['ADMIN']}',email='{$config['EMAIL']}',regtime={$time},logintime={$time},regip='{$ip}',lastip='{$ip}',
                 code='{$code}',password='" . md5($config['PASSWORD'] . $code) . "'");
         unset($config['WEB_NAME']);
         unset($config['EMAIL']);
