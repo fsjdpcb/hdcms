@@ -120,7 +120,7 @@
     <input type="button" class="hd-cancel" onclick="del({$hd.get.cid})" value="批量删除"/>
     <input type="button" class="hd-cancel" onclick="audit({$hd.get.mid},{$hd.get.cid},1)" value="审核"/>
     <input type="button" class="hd-cancel" onclick="audit({$hd.get.mid},{$hd.get.cid},0)" value="取消审核"/>
-    <input type="button" class="hd-cancel" onclick="move({$hd.get.cid})" value="批量移动"/>
+    <input type="button" class="hd-cancel" onclick="move({$hd.get.mid},{$hd.get.cid})" value="批量移动"/>
 </div>
 </body>
 </html>

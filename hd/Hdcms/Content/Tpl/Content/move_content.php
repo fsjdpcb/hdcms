@@ -15,6 +15,7 @@
     <div class="help"> 不能够跨模型移动文章</div>
     <div class="line"></div>
     <form action="__METH__" method="post" onsubmit="return false" class="form-inline hd-form">
+    	<input type="hidden" name="mid" value="{$hd.get.mid}"/>
         <input type="hidden" name="cid" value="{$hd.get.cid}"/>
         <table style="width:100%">
             <tr>

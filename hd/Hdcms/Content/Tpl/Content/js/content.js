@@ -109,9 +109,10 @@ function audit(mid,cid, state) {
 }
 /**
  * 移动文章
+ * @param mid 模型mid
  * @param cid 当前栏目
  */
-function move(cid) {
+function move(mid,cid) {
     var aid = '';
     $("input[name*=aid]:checked").each(function (i) {
         aid += $(this).val() + "|";
@@ -121,7 +122,7 @@ function move(cid) {
         $.modal({
             width: 600, height: 560,
             title: '移动文章',
-            content: '<iframe style="width: 100%;height: 100%;" src="' + CONTROL + '&m=move_content&cid=' + cid + '&aid=' + aid + '" frameborder="0"></iframe>'
+            content: '<iframe style="width: 100%;height: 100%;" src="' + CONTROL + '&m=move_content&mid='+mid+'&cid=' + cid + '&aid=' + aid + '" frameborder="0"></iframe>'
         })
     } else {
         alert("请选择移动的文章");
