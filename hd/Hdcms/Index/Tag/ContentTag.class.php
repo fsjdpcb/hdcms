@@ -485,7 +485,7 @@ str;
             \$sql = "SELECT u.uid,comment_id,mid,cid,aid,nickname,pubtime,content,domain,icon50 AS icon
                 FROM ".\$pre."user AS u
                 JOIN ".\$pre."user_icon AS ui ON u.uid=ui.user_uid
-                JOIN ".\$pre."comment AS c
+                JOIN ".\$pre."comment AS c ON u.uid = c.uid
                 WHERE comment_state=1 ORDER BY comment_id DESC limit $row";
             \$data = \$db->query(\$sql);
             foreach(\$data as \$field):

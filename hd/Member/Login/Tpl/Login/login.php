@@ -56,7 +56,7 @@
             </form>
         </div>
         <div class="field col-md-4">
-            > 还没有游戏葡萄 账号？ <a href="?a=Login&c=Login&m=reg&g=Member">立即注册</a>
+            > 还没有账号？ <a href="?a=Login&c=Login&m=reg&g=Member">立即注册</a>
         </div>
     </article>
 </div>

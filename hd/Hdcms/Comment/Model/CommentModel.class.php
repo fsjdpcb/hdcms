@@ -65,7 +65,7 @@ class CommentModel extends ViewModel
             $result = $this->where($where)->where("pid=0 ")->limit($page->limit())->order("comment_id desc")->getField('comment_id', true);
             $comment_id = implode(',', $result);
             $data = $this->where("comment_state=1 AND (comment_id IN ($comment_id) OR reply_comment_id IN ($comment_id))")
-                    ->order("comment_id desc")->all();
+                    ->order("comment_id ASC")->all();
             //设置头像(没有头像的用户使用默认头像)
             $data = $this->set_icon($data);
         }

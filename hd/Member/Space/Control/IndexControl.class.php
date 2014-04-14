@@ -16,14 +16,14 @@ class IndexControl extends Control
                 INNER JOIN {$pre}role AS r ON u.rid=r.rid
                 LEFT JOIN {$pre}user_icon AS ui ON u.uid=ui.user_uid
                 WHERE u.uid='{$u}' OR domain='{$u}'";
-        $user =M()->query($sql);
+        $user = M()->query($sql);
         //---------------------------检测用户
         if (!$user) {
             $this->error('用户不存在');
         }
-        $user=$user[0];
+        $user = $user[0];
         //--------------------------增加空间访问次数
-        if(!isset($_SESSION['uid']) or ($_SESSION['uid']!=$user['uid'])){
+        if (!isset($_SESSION['uid']) or ($_SESSION['uid'] != $user['uid'])) {
             $sql = "UPDATE {$pre}user SET spec_num=spec_num+1";
             M()->exe($sql);
         }
@@ -50,8 +50,12 @@ class IndexControl extends Control
         $db = M('user_guest');
         //记录访客数据
         if (isset($_SESSION['uid']) && $uid != $_SESSION['uid']) {
-            $db->where("guest_uid={$_SESSION['uid']} AND uid={$uid}" )->del();
-            $db->add(array('guest_uid' => $_SESSION['uid'], 'uid' => $uid));
+            //清空数据
+            $db->where("guest_uid={$_SESSION['uid']} AND uid={$uid}")->del();
+            //没有访问时添加数据
+            if (!$db->where("guest_uid={$_SESSION['uid']} AND uid={$uid}")->find()) {
+                $db->add(array('guest_uid' => $_SESSION['uid'], 'uid' => $uid));
+            }
         }
         //获得访客数据
         $pre = C('DB_PREFIX');

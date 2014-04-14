@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <jquery/>
     <bootstrap/>
-    <link rel="stylesheet" type="text/css" href="__TEMPLATE__/css/comment.css?ver=1.0 "/>
     <link rel="stylesheet/less" href="__TEMPLATE__/css/index.less?ver=1.0 "/>
     <!--[if lt IE 8]>
     <link rel="stylesheet/less" href="__TEMPLATE__/css/ie.less?ver=1.0 "/>
@@ -41,7 +40,7 @@
 <!--最新消息-->
 <div class="message container">
     <span>最新消息：</span>
-    <arclist cid="11" row="1" titlelen=20>
+    <arclist cid="5" row="1" titlelen=20>
         <a href='{$field.url}'>{$field.title}</a>
     </arclist>
 </div>
@@ -53,7 +52,7 @@
             <article class="top">
                 <header>置顶推荐</header>
                 <ul>
-                    <arclist row="2" fid="2,4" titlelen="15" infolen="50" type="rand">
+                    <arclist row="2" fid="2,4" cid="5" titlelen="15" infolen="50" type="rand">
                         <li class="col-md-6">
                             <a href="{$field.url}">
                                 <img src="{$field.thumb}" class="img-rounded sticky"/>
