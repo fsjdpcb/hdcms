@@ -30,13 +30,13 @@ class ContentTag
     public function _hdcms($attr, $content)
     {
         $php = "<script type='text/javascript'>
-                var ROOT='__ROOT__';var WEB='__WEB__';var CONTROL='__CONTROL__';
+                    var ROOT='__ROOT__';var WEB='__WEB__';var CONTROL='__CONTROL__';
                 </script>";
-        $php .= '<script type="text/javascript" src="__ROOT__/hd/static/js/hdcms.js"></script>
-                <link rel="stylesheet/less" href="__ROOT__/hd/static/css/hdcms.less?ver=1.0 "/>';
-        $php.=" <script src='http://localhost/hdphp/hdphp/Extend/Org/Less/es5-shim/es5-sham.min.js'></script>
-                <script src='http://localhost/hdphp/hdphp/Extend/Org/Less/es5-shim/es5-shim.min.js'></script>
-                <script src='http://localhost/hdphp/hdphp/Extend/Org/Less/less-1.5.0.min.js'></script>";
+        $php .= "<script type='text/javascript' src='__ROOT__/hd/static/js/hdcms.js'></script>\n
+                <link rel='stylesheet/less' href='__ROOT__/hd/static/css/hdcms.less?ver=1.0'/>\n";
+        $php.="<script src='__HDPHP_EXTEND__/Org/Less/es5-shim/es5-sham.min.js'></script>\n
+                <script src='__HDPHP_EXTEND__/Org/Less/es5-shim/es5-shim.min.js'></script>\n
+                <script src='__HDPHP_EXTEND__/Org/Less/less-1.5.0.min.js'></script>\n";
         return $php;
     }
 
