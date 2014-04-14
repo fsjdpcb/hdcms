@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <hdjs/>
     <bootstrap/>
-    <link rel="stylesheet/less" href="__CONTROL_TPL__/css/favorite.less?ver=1.0 "/>
-    <less/>
+    <link rel="stylesheet" type="text/css" href="__CONTROL_TPL__/css/favorite.css?ver=1.0"/>
 </head>
 <body>
 <header class="header center-block">

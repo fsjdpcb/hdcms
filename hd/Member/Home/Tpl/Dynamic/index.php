@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <hdjs/>
     <bootstrap/>
-    <link rel="stylesheet/less" href="__CONTROL_TPL__/css/dynamic.less?ver=1.0 "/>
+    <link rel="stylesheet" type="text/css" href="__CONTROL_TPL__/css/dynamic.css?ver=1.0"/>
     <hdcms/>
 </head>
 <body>

@@ -7,8 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <hdjs/>
     <bootstrap/>
-    <link rel="stylesheet/less" href="__CONTROL_TPL__/css/content.less?ver=1.0 "/>
-    <less/>
+    <link rel="stylesheet" type="text/css" href="__CONTROL_TPL__/css/content.css?ver=1.0"/>
     <js file="__GROUP__/static/js/js.js"/>
     <js file="__CONTROL_TPL__/js/js.js"/>
 </head>

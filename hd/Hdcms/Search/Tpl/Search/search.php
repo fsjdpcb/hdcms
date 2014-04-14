@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <jquery/>
     <bootstrap/>
-    <link rel="stylesheet/less" href="__CONTROL_TPL__/css/style.less?ver=1.0"/>
+    <link rel="stylesheet" type="text/css" href="__CONTROL_TPL__/css/style.css?ver=1.0"/>
     <hdcms/>
 </head>
 <body>

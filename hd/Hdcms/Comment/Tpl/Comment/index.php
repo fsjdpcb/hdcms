@@ -1,4 +1,4 @@
-<link rel="stylesheet/less" href="__CONTROL_TPL__/css/comment.less?ver=1.0 "/>
+<link rel="stylesheet" type="text/css" href="__CONTROL_TPL__/css/comment.css?ver=1.0"/>
 <less/>
 <js file="__CONTROL_TPL__/js/comment.js"/>
 <script>
