@@ -123,7 +123,8 @@ switch ($s) {
         $code = substr(md5(mt_rand() . time()), 0, 10);
         $db->exe("UPDATE {$db_prefix}config SET value='{$config['WEB_NAME']}' WHERE name='webname'");
         $db->exe("UPDATE {$db_prefix}config SET value='{$config['EMAIL']}' WHERE name='email'");
-        $db->exe("REPLACE {$db_prefix}user SET uid=1,rid=1,username='{$config['ADMIN']}',domain='{$config['ADMIN']}',nickname='{$config['ADMIN']}',email='{$config['EMAIL']}',code='{$code}',password='" . md5($config['PASSWORD'].$code)."'");
+        $db->exe("UPDATE {$db_prefix}user SET uid=1,rid=1,username='{$config['ADMIN']}',domain='{$config['ADMIN']}',
+                nickname='{$config['ADMIN']}',email='{$config['EMAIL']}',code='{$code}',password='" . md5($config['PASSWORD'].$code)."'");
         unset($config['WEB_NAME']);
         unset($config['EMAIL']);
         unset($config['ADMIN']);
