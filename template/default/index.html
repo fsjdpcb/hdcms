@@ -74,7 +74,7 @@
                     <article>
                         <div class="pic">
                             <a href="{$field.url}">
-                                <img src="{$field.thumb}" style="width:220px;height: 150px;"/>
+                                <img src="{$field.thumb}"/>
                             </a>
                         </div>
                         <header>
@@ -87,7 +87,6 @@
                         <div class="author">
                             <a href="{$field.member}" onmouseover="user.show(this,{$field.uid})">{$field.username}</a>
                             发表于 {$field.date_before} -
-                            {$field.comment_num}条评论
                             Tag：{$field.tag}
                         </div>
                         <p> {$field.description} </p>
@@ -100,6 +99,19 @@
         </div>
         <!--右侧列表-->
         <div class="right-list col-md-4">
+            <!--产品下载-->
+            <article class="soft">
+                <header>
+                    产品下载
+                </header>
+                <div>
+                    <a href="http://www.hdphp.com/download/hdphp2014-04.zip">HDPHP框架
+                    <span>版本号: 2014-04</span></a>
+                    <a href="https://git.oschina.net/houdunwang/hdcms" class="hdcms" target="_blank">HDCMS系统<span>版本号: 2014-04</span></a>
+                </div>
+                <div class="notice">
+                    <span class="glyphicon glyphicon-comment"></span> 后盾网产品可以免费使用在任何网站，包括任何商业网站，不用支付任何费用，真正的100%开源，100%免费！</div>
+            </article>
             <!--热门标签-->
             <article class="tag">
                 <header>
@@ -125,7 +137,9 @@
                 <section>
                     <user row="14">
                         <a href="{$field.url}">
-                            <img src="{$field.icon}" title="{$field.nickname}" onmouseover="user.show(this,{$field.uid})" style="width: 50px;height: 50px;border-radius: 10%;"/>
+                            <img src="{$field.icon}" title="{$field.nickname}"
+                                 onmouseover="user.show(this,{$field.uid})"
+                                 style="width: 50px;height: 50px;border-radius: 10%;"/>
                         </a>
                     </user>
                 </section>
@@ -136,7 +150,8 @@
                 <comment row="6" contentlen="20">
                     <section>
                         <a href="{$field.url}">
-                            <img src="{$field.icon}" style="width: 36px;height: 36px;border-radius: 50%;" onmouseover="user.show(this,{$field.uid})"/>
+                            <img src="{$field.icon}" style="width: 36px;height: 36px;border-radius: 50%;"
+                                 onmouseover="user.show(this,{$field.uid})"/>
 
                             <p class="man">
                                 <span>{$field.nickname}</span> {$field.pubtime}说：

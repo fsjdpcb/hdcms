@@ -1,6 +1,6 @@
 <?php if (!defined('HDPHP_PATH')) exit; 
 return array (
-  'webname' => 'HDPHP社区--中国最强PHP培训机构  《后盾网》 ',
+  'webname' => 'HDPHP技术交流社区',
   'icp' => '京ICP备12048441号-3',
   'html_path' => 'html',
   'copyright' => 'Copyright © 2012-2013 HDCMS 后盾网 版权所有',

@@ -34,8 +34,10 @@ class TemplateControl extends AuthControl
                 $config['template_img'] = __CONTROL_TPL__ . '/img/default.jpg';
             }
             //正在使用的模板
-            if (C("WEB_STYLE") == $tpl) {
+            if (strtolower(C("WEB_STYLE")) == strtolower($tpl)) {
                 $config['current'] = true;
+            }else{
+                $config['current'] = false;
             }
             $style[] = $config;
         }

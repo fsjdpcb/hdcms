@@ -12,6 +12,8 @@ class CommonControl extends Control
     public function __construct()
     {
         parent::__construct();
+        //消息数
+        $this->message_count = M('user_message')->where('state=0 AND to_uid=' . $_SESSION['uid'])->count();
     }
 
     /**
