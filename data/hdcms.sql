@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50535
 File Encoding         : 65001
 
-Date: 2014-04-14 09:43:58
+Date: 2014-04-14 14:38:25
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,6 +27,47 @@ CREATE TABLE `hd_access` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='管理员权限分配表';
 
 -- ----------------------------
+-- Records of hd_access
+-- ----------------------------
+INSERT INTO `hd_access` VALUES ('2', '17');
+INSERT INTO `hd_access` VALUES ('2', '11');
+INSERT INTO `hd_access` VALUES ('2', '20');
+INSERT INTO `hd_access` VALUES ('2', '21');
+INSERT INTO `hd_access` VALUES ('2', '19');
+INSERT INTO `hd_access` VALUES ('2', '16');
+INSERT INTO `hd_access` VALUES ('2', '80');
+INSERT INTO `hd_access` VALUES ('2', '69');
+INSERT INTO `hd_access` VALUES ('2', '12');
+INSERT INTO `hd_access` VALUES ('2', '79');
+INSERT INTO `hd_access` VALUES ('2', '61');
+INSERT INTO `hd_access` VALUES ('2', '9');
+INSERT INTO `hd_access` VALUES ('2', '8');
+INSERT INTO `hd_access` VALUES ('2', '6');
+INSERT INTO `hd_access` VALUES ('2', '5');
+INSERT INTO `hd_access` VALUES ('2', '70');
+INSERT INTO `hd_access` VALUES ('2', '15');
+INSERT INTO `hd_access` VALUES ('2', '14');
+INSERT INTO `hd_access` VALUES ('2', '3');
+INSERT INTO `hd_access` VALUES ('2', '10');
+INSERT INTO `hd_access` VALUES ('2', '81');
+INSERT INTO `hd_access` VALUES ('2', '4');
+INSERT INTO `hd_access` VALUES ('2', '13');
+INSERT INTO `hd_access` VALUES ('2', '2');
+INSERT INTO `hd_access` VALUES ('2', '1');
+INSERT INTO `hd_access` VALUES ('3', '81');
+INSERT INTO `hd_access` VALUES ('3', '4');
+INSERT INTO `hd_access` VALUES ('3', '13');
+INSERT INTO `hd_access` VALUES ('3', '2');
+INSERT INTO `hd_access` VALUES ('3', '1');
+INSERT INTO `hd_access` VALUES ('2', '18');
+INSERT INTO `hd_access` VALUES ('2', '30');
+INSERT INTO `hd_access` VALUES ('2', '31');
+INSERT INTO `hd_access` VALUES ('2', '32');
+INSERT INTO `hd_access` VALUES ('2', '33');
+INSERT INTO `hd_access` VALUES ('2', '34');
+INSERT INTO `hd_access` VALUES ('2', '35');
+
+-- ----------------------------
 -- Table structure for hd_bug
 -- ----------------------------
 DROP TABLE IF EXISTS `hd_bug`;
@@ -41,6 +82,10 @@ CREATE TABLE `hd_bug` (
   `status` enum('未审核','处理中','已解决') NOT NULL DEFAULT '未审核' COMMENT '审核状态',
   PRIMARY KEY (`bid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of hd_bug
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for hd_category
@@ -74,7 +119,14 @@ CREATE TABLE `hd_category` (
   `allow_user_set_credits` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否允许会员投稿设置积分 1 允许 0 不允许',
   `member_send_state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '会员投稿状态 1 审核 2 未审核',
   PRIMARY KEY (`cid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='栏目表';
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='栏目表';
+
+-- ----------------------------
+-- Records of hd_category
+-- ----------------------------
+INSERT INTO `hd_category` VALUES ('1', '0', '问答', 'ask', '', '', 'article_index.html', 'article_list.html', 'article_default.html', null, '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '2', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '0');
+INSERT INTO `hd_category` VALUES ('2', '1', 'HDPHP', 'hdphp', '', '', 'article_index.html', 'article_list.html', 'article_default.html', null, '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '0');
+INSERT INTO `hd_category` VALUES ('3', '1', 'HDCMS', 'hdcms', '', '', 'article_index.html', 'article_list.html', 'article_default.html', null, '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '0');
 
 -- ----------------------------
 -- Table structure for hd_category_access
@@ -91,6 +143,10 @@ CREATE TABLE `hd_category_access` (
   `order` tinyint(1) NOT NULL DEFAULT '0' COMMENT '允许排序 1允许 0 不允许',
   `move` tinyint(1) NOT NULL DEFAULT '0' COMMENT '允许移动 1允许 0 不允许'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='栏目权限表';
+
+-- ----------------------------
+-- Records of hd_category_access
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for hd_comment
@@ -113,6 +169,10 @@ CREATE TABLE `hd_comment` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of hd_comment
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for hd_config
 -- ----------------------------
 DROP TABLE IF EXISTS `hd_config`;
@@ -126,6 +186,63 @@ CREATE TABLE `hd_config` (
   `message` varchar(255) DEFAULT NULL COMMENT '提示',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=166 DEFAULT CHARSET=utf8 COMMENT='系统配置';
+
+-- ----------------------------
+-- Records of hd_config
+-- ----------------------------
+INSERT INTO `hd_config` VALUES ('1', 'webname', 'HDPHP社区--中国最强PHP培训机构  《后盾网》 ', '站点配置', '网站名称', '文本', null);
+INSERT INTO `hd_config` VALUES ('2', 'icp', '京ICP备12048441号-3', '站点配置', 'ICP备案号', '文本', null);
+INSERT INTO `hd_config` VALUES ('3', 'html_path', 'html', '站点配置', '静态html目录', '文本', null);
+INSERT INTO `hd_config` VALUES ('4', 'copyright', 'Copyright © 2012-2013 HDCMS 后盾网 版权所有', '站点配置', '网站版权信息', '文本', null);
+INSERT INTO `hd_config` VALUES ('5', 'keywords', 'php培训,php实训,后盾网', '站点配置', '网站关键词', '文本', null);
+INSERT INTO `hd_config` VALUES ('6', 'description', '后盾网顶尖PHP培训 内容全面 全程实战!业内顶级讲师亲自授课,千余课时独家视频教程免费下载,超百G原创视频资源,实力不容造假!010-64825057', '站点配置', '网站描述', '多行文本', null);
+INSERT INTO `hd_config` VALUES ('152', 'email', 'houdunwangxj@gmail.com', '站点配置', '管理员邮箱', '文本', null);
+INSERT INTO `hd_config` VALUES ('9', 'backup_dir', 'backup', '高级设置', '数据备份目录', '文本', null);
+INSERT INTO `hd_config` VALUES ('10', 'web_open', '1', '站点配置', '网站开启', '布尔(1/0)', null);
+INSERT INTO `hd_config` VALUES ('15', 'auth_key', 'houdunwang.com', '安全设置', 'cookie加密KEY', '文本', null);
+INSERT INTO `hd_config` VALUES ('16', 'upload_path', 'upload', '上传配置', '上传目录', '文本', null);
+INSERT INTO `hd_config` VALUES ('17', 'upload_img_path', 'img', '上传配置', '上传图片目录', '文本', null);
+INSERT INTO `hd_config` VALUES ('18', 'allow_type', 'jpg,jpeg,png,bmp,gif', '上传配置', '允许上传文件类型', '文本', null);
+INSERT INTO `hd_config` VALUES ('19', 'allow_size', '2048000', '上传配置', '允许上传大小（字节）', '数字', null);
+INSERT INTO `hd_config` VALUES ('20', 'water_on', '0', '水印设置', '上传文件加水印', '布尔(1/0)', null);
+INSERT INTO `hd_config` VALUES ('115', 'member_verify', '0', '会员设置', '会员注册是否需要审核', '布尔(1/0)', null);
+INSERT INTO `hd_config` VALUES ('116', 'reg_show_code', '1', '会员设置', '会员注册是否显示验证码', '布尔(1/0)', null);
+INSERT INTO `hd_config` VALUES ('119', 'reg_email', '1', '会员设置', '注册成功是否发邮件', '布尔(1/0)', null);
+INSERT INTO `hd_config` VALUES ('120', 'reg_interval', '0', '会员设置', '2次注册间隔间间', '数字', null);
+INSERT INTO `hd_config` VALUES ('121', 'default_member_group', '4', '会员设置', '新注册会员初始组', '数字', null);
+INSERT INTO `hd_config` VALUES ('123', 'token_on', '0', '安全设置', '表单使用令牌验证', '布尔(1/0)', null);
+INSERT INTO `hd_config` VALUES ('124', 'log_key', 'houdunwang.com', '安全设置', '日志文件加密KEY', '文本', null);
+INSERT INTO `hd_config` VALUES ('125', 'session_name', 'hdsid', '安全设置', 'SESSION_NAME值', '文本', null);
+INSERT INTO `hd_config` VALUES ('126', 'super_admin_key', 'SUPER_ADMIN', '安全设置', '站长令牌名称', '文本', null);
+INSERT INTO `hd_config` VALUES ('127', 'tel', '010-64825057', '站点配置', '联系电话', '文本', null);
+INSERT INTO `hd_config` VALUES ('128', 'water_text', 'houdunwang.com', '水印设置', '水印文字', '文本', null);
+INSERT INTO `hd_config` VALUES ('129', 'water_text_size', '16', '水印设置', '文字大小', '数字', null);
+INSERT INTO `hd_config` VALUES ('130', 'water_img', 'data/water/water.png', '水印设置', '水印图像', '文本', null);
+INSERT INTO `hd_config` VALUES ('131', 'water_pct', '0', '水印设置', '水印图片透明度', '数字', null);
+INSERT INTO `hd_config` VALUES ('132', 'water_quality', '90', '水印设置', '图片压缩比', '数字', null);
+INSERT INTO `hd_config` VALUES ('133', 'water_pos', '9', '水印设置', '水印位置', '数字', null);
+INSERT INTO `hd_config` VALUES ('134', 'del_content_model', '1', '高级设置', '删除文章先放入回收站', '布尔(1/0)', null);
+INSERT INTO `hd_config` VALUES ('136', 'down_remove_pic_size', '500', '高级设置', '下载远程资源允许最大值', '数字', null);
+INSERT INTO `hd_config` VALUES ('165', 'comment_len', '80', '会员设置', '评论内容最大长度', '文本', '');
+INSERT INTO `hd_config` VALUES ('138', 'favicon_width', '180', '会员设置', '会员头像宽度', '数字', null);
+INSERT INTO `hd_config` VALUES ('139', 'favicon_height', '180', '会员设置', '会员头像高度', '数字', null);
+INSERT INTO `hd_config` VALUES ('142', 'down_remote_pic', '0', '内容相关', '下载远程图片', '布尔(1/0)', null);
+INSERT INTO `hd_config` VALUES ('143', 'auto_desc', '1', '内容相关', '截取内容为摘要', '布尔(1/0)', null);
+INSERT INTO `hd_config` VALUES ('144', 'auto_thumb', '0', '内容相关', '提取内容图片为缩略图', '布尔(1/0)', null);
+INSERT INTO `hd_config` VALUES ('145', 'upload_img_max_width', '600', '内容相关', '上传图片宽度超过此值，进行缩放', '数字', null);
+INSERT INTO `hd_config` VALUES ('146', 'upload_img_max_height', '600', '内容相关', '上传图片高度超过此值，进行缩放', '数字', null);
+INSERT INTO `hd_config` VALUES ('149', 'member_open', '1', '会员设置', '开启会员中心', '布尔(1/0)', null);
+INSERT INTO `hd_config` VALUES ('150', 'web_close_message', '网站暂时关闭，请稍候访问', '站点配置', '网站关闭提示信息', '文本', null);
+INSERT INTO `hd_config` VALUES ('151', 'web_style', 'default', '私有配置', '网站模板', '文本', null);
+INSERT INTO `hd_config` VALUES ('155', 'qq', '1455067020', '站点配置', 'QQ号', '文本', null);
+INSERT INTO `hd_config` VALUES ('154', 'weibo', 'houdunwangxj@gmail.com', '站点配置', '新浪微博', '文本', null);
+INSERT INTO `hd_config` VALUES ('156', 'tweibo', 'houdunwang@gmail.com', '站点配置', '腾讯微博', '文本', null);
+INSERT INTO `hd_config` VALUES ('157', 'email', 'houdunwangxj@gmail.com', '站点配置', '企业邮箱', '文本', null);
+INSERT INTO `hd_config` VALUES ('158', 'init_credits', '100', '会员设置', '初始积分', '文本', null);
+INSERT INTO `hd_config` VALUES ('161', 'cache_index', '-1', '性能优化', '首页缓存时间', '文本', '（单位：秒，-1不缓存 0永久缓存)');
+INSERT INTO `hd_config` VALUES ('162', 'cache_category', '-1', '性能优化', '栏目缓存时间', '文本', '（单位：秒，-1不缓存 0永久缓存)');
+INSERT INTO `hd_config` VALUES ('163', 'cache_content', '-1', '性能优化', '文章缓存时间', '文本', '（单位：秒，-1不缓存 0永久缓存)');
+INSERT INTO `hd_config` VALUES ('164', 'comment_step_time', '10', '会员设置', '评论间隔时间', '文本', '必须大于1（单位秒)');
 
 -- ----------------------------
 -- Table structure for hd_content
@@ -163,6 +280,10 @@ CREATE TABLE `hd_content` (
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
 -- ----------------------------
+-- Records of hd_content
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for hd_content_data
 -- ----------------------------
 DROP TABLE IF EXISTS `hd_content_data`;
@@ -171,6 +292,10 @@ CREATE TABLE `hd_content_data` (
   `content` text COMMENT '正文',
   KEY `aid` (`aid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='内容表';
+
+-- ----------------------------
+-- Records of hd_content_data
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for hd_content_single
@@ -204,6 +329,10 @@ CREATE TABLE `hd_content_single` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of hd_content_single
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for hd_content_tag
 -- ----------------------------
 DROP TABLE IF EXISTS `hd_content_tag`;
@@ -214,6 +343,10 @@ CREATE TABLE `hd_content_tag` (
   `tid` int(11) NOT NULL DEFAULT '0' COMMENT '标签id',
   `uid` int(11) NOT NULL DEFAULT '0' COMMENT '用户uid'
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
+
+-- ----------------------------
+-- Records of hd_content_tag
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for hd_custom_js
@@ -231,6 +364,10 @@ CREATE TABLE `hd_custom_js` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='自定义js';
 
 -- ----------------------------
+-- Records of hd_custom_js
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for hd_favorite
 -- ----------------------------
 DROP TABLE IF EXISTS `hd_favorite`;
@@ -242,6 +379,10 @@ CREATE TABLE `hd_favorite` (
   `uid` int(10) unsigned NOT NULL,
   PRIMARY KEY (`fid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk COMMENT='收藏夹';
+
+-- ----------------------------
+-- Records of hd_favorite
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for hd_field
@@ -264,6 +405,10 @@ CREATE TABLE `hd_field` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='模型字段';
 
 -- ----------------------------
+-- Records of hd_field
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for hd_link
 -- ----------------------------
 DROP TABLE IF EXISTS `hd_link`;
@@ -279,6 +424,10 @@ CREATE TABLE `hd_link` (
   `state` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态 ',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='友情链接';
+
+-- ----------------------------
+-- Records of hd_link
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for hd_link_config
@@ -298,6 +447,11 @@ CREATE TABLE `hd_link_config` (
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='本网站友情链接信息';
 
 -- ----------------------------
+-- Records of hd_link_config
+-- ----------------------------
+INSERT INTO `hd_link_config` VALUES ('1', 'hdphp开源社区', 'http://www.hdphp.com', 'hd/Plugin/Link/Data/logo.png', 'houdunwang@gmail.com', '1、请先在贵站做好后盾网的友情链接\r\n2、将右侧‘文字链接’或‘图片链接’代码复制到贵站\r\n3、凡开通我站友情链接且内容健康的网站，经管理员审核后，将显示在此友情链接页面\r\n4、首页友情连接，要求pr>=2、alexa < 10000；其他页面连接根据具体页面而定（请具体咨询）\r\n5、贵网站要在百度google都有记录收录，且网站访问速度不能太慢', '1', '1', '2300071698');
+
+-- ----------------------------
 -- Table structure for hd_link_type
 -- ----------------------------
 DROP TABLE IF EXISTS `hd_link_type`;
@@ -307,6 +461,12 @@ CREATE TABLE `hd_link_type` (
   `system` tinyint(1) NOT NULL DEFAULT '0' COMMENT '系统类型',
   PRIMARY KEY (`tid`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='友情链接分类';
+
+-- ----------------------------
+-- Records of hd_link_type
+-- ----------------------------
+INSERT INTO `hd_link_type` VALUES ('1', '友情链接', '1');
+INSERT INTO `hd_link_type` VALUES ('2', '合作伙伴', '1');
 
 -- ----------------------------
 -- Table structure for hd_model
@@ -330,6 +490,11 @@ CREATE TABLE `hd_model` (
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='模型表';
 
 -- ----------------------------
+-- Records of hd_model
+-- ----------------------------
+INSERT INTO `hd_model` VALUES ('1', '普通文章', 'content', '1', '', '1', '0', '0', '1', 'Hdcms', 'Content', 'Content', 'index');
+
+-- ----------------------------
 -- Table structure for hd_navigation
 -- ----------------------------
 DROP TABLE IF EXISTS `hd_navigation`;
@@ -343,6 +508,10 @@ CREATE TABLE `hd_navigation` (
   `url` varchar(255) NOT NULL DEFAULT '' COMMENT '链接地址',
   PRIMARY KEY (`nid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='网站前台导航';
+
+-- ----------------------------
+-- Records of hd_navigation
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for hd_node
@@ -367,6 +536,57 @@ CREATE TABLE `hd_node` (
 ) ENGINE=MyISAM AUTO_INCREMENT=184 DEFAULT CHARSET=utf8 COMMENT='节点表（后台菜单也使用）';
 
 -- ----------------------------
+-- Records of hd_node
+-- ----------------------------
+INSERT INTO `hd_node` VALUES ('1', '内容', 'Hdcms', '', '', '', '', '', '1', '1', '0', '8', '1', '0');
+INSERT INTO `hd_node` VALUES ('2', '内容管理', 'Hdcms', '', '', '', '', '', '1', '1', '1', '10', '1', '0');
+INSERT INTO `hd_node` VALUES ('16', '系统', 'Hdcms', '', '', '', '', '', '1', '1', '0', '10', '1', '0');
+INSERT INTO `hd_node` VALUES ('21', '后台菜单管理', 'Hdcms', 'Node', 'Node', 'index', '', '', '1', '1', '19', '100', '1', '0');
+INSERT INTO `hd_node` VALUES ('3', '附件管理', 'Hdcms', 'Upload', 'Index', 'index', '', '', '1', '1', '10', '100', '1', '0');
+INSERT INTO `hd_node` VALUES ('12', '数据备份', 'Hdcms', 'Backup', 'Backup', 'index', '', '', '1', '1', '79', '100', '1', '1');
+INSERT INTO `hd_node` VALUES ('10', '内容相关管理', 'Hdcms', '', '', '', '', '', '1', '1', '1', '12', '1', '0');
+INSERT INTO `hd_node` VALUES ('13', '栏目管理', 'Hdcms', 'Category', 'Category', 'index', '', '', '1', '1', '2', '11', '1', '1');
+INSERT INTO `hd_node` VALUES ('14', '模型管理', 'Hdcms', 'Model', 'Model', 'index', '', '', '1', '1', '10', '100', '1', '0');
+INSERT INTO `hd_node` VALUES ('15', '推荐位', 'Hdcms', 'Flag', 'Flag', 'index', '', '', '1', '1', '10', '100', '1', '0');
+INSERT INTO `hd_node` VALUES ('19', '系统设置', 'Hdcms', '', '', '', '', '', '1', '1', '16', '100', '1', '0');
+INSERT INTO `hd_node` VALUES ('4', '管理内容', 'Hdcms', 'Content', 'Index', 'index', '', '', '1', '2', '2', '10', '1', '1');
+INSERT INTO `hd_node` VALUES ('11', '管理员设置', 'Hdcms', '', '', '', '', '', '1', '1', '16', '100', '1', '0');
+INSERT INTO `hd_node` VALUES ('17', '管理员管理', 'Hdcms', 'Role', 'Admin', 'index', '', '', '1', '1', '11', '100', '1', '0');
+INSERT INTO `hd_node` VALUES ('18', '角色管理', 'Hdcms', 'Role', 'Role', 'index', '', '', '1', '1', '11', '100', '1', '0');
+INSERT INTO `hd_node` VALUES ('20', '网站配置', 'Hdcms', 'Config', 'Config', 'edit', '', '', '1', '1', '19', '90', '1', '0');
+INSERT INTO `hd_node` VALUES ('5', '生成静态', 'Hdcms', '', '', '', '', '', '1', '1', '1', '11', '1', '0');
+INSERT INTO `hd_node` VALUES ('6', '批量更新栏目页', 'Hdcms', 'Html', 'Html', 'create_category', '', '', '1', '1', '5', '102', '1', '0');
+INSERT INTO `hd_node` VALUES ('8', '生成首页', 'Hdcms', 'Html', 'Html', 'create_index', '', '', '1', '1', '5', '101', '1', '0');
+INSERT INTO `hd_node` VALUES ('9', '批量更新内容页', 'Hdcms', 'Html', 'Html', 'create_content', '', '', '1', '1', '5', '103', '1', '0');
+INSERT INTO `hd_node` VALUES ('28', '修改密码', 'Hdcms', 'Role', 'Personal', 'edit_password', '', '', '1', '1', '29', '100', '1', '0');
+INSERT INTO `hd_node` VALUES ('27', '修改个人信息', 'Hdcms', 'Role', 'Personal', 'edit_info', '', '', '1', '1', '29', '100', '1', '0');
+INSERT INTO `hd_node` VALUES ('26', '我的面板', 'Hdcms', '', '', '', '', '', '1', '1', '0', '100', '1', '0');
+INSERT INTO `hd_node` VALUES ('29', '个人信息', 'Hdcms', '', '', '', '', '', '1', '1', '26', '100', '1', '0');
+INSERT INTO `hd_node` VALUES ('61', '一键更新', 'Hdcms', 'Html', 'Html', 'create_all', '', '一键更新全站', '1', '1', '5', '100', '1', '1');
+INSERT INTO `hd_node` VALUES ('30', '会员', 'Hdcms', '', '', '', '', '', '1', '1', '0', '100', '1', '0');
+INSERT INTO `hd_node` VALUES ('31', '会员管理', 'Hdcms', '', '', '', '', '', '1', '1', '30', '100', '1', '0');
+INSERT INTO `hd_node` VALUES ('32', '会员管理', 'Hdcms', 'User', 'User', 'index', '', '', '1', '1', '31', '100', '1', '1');
+INSERT INTO `hd_node` VALUES ('33', '审核会员', 'Hdcms', 'User', 'User', 'index', 'state=0', '', '1', '1', '31', '100', '1', '0');
+INSERT INTO `hd_node` VALUES ('34', '会员组管理', 'Hdcms', '', '', '', '', '', '1', '1', '30', '100', '1', '0');
+INSERT INTO `hd_node` VALUES ('35', '管理会员组', 'Hdcms', 'Group', 'Group', 'index', '', '', '1', '1', '34', '100', '1', '0');
+INSERT INTO `hd_node` VALUES ('36', '模板', 'Hdcms', '', '', '', '', '', '1', '1', '0', '100', '1', '0');
+INSERT INTO `hd_node` VALUES ('37', '模板管理', 'Hdcms', '', '', '', '', '', '1', '1', '36', '100', '1', '0');
+INSERT INTO `hd_node` VALUES ('38', '模板风格', 'Hdcms', 'Template', 'Template', 'style_list', '', '', '1', '1', '37', '90', '1', '0');
+INSERT INTO `hd_node` VALUES ('39', '模板文件', 'Hdcms', 'Template', 'Template', 'show_dir', '', '', '1', '1', '37', '100', '1', '0');
+INSERT INTO `hd_node` VALUES ('70', '标签云', 'Hdcms', 'Tag', 'Tag', 'index', '', '', '1', '1', '10', '100', '1', '0');
+INSERT INTO `hd_node` VALUES ('69', '搜索关键词', 'Hdcms', 'Search', 'Manage', 'index', '', '', '1', '1', '79', '100', '1', '0');
+INSERT INTO `hd_node` VALUES ('79', '其他操作', 'Hdcms', '', '', '', '', '', '1', '1', '1', '100', '1', '0');
+INSERT INTO `hd_node` VALUES ('80', '导航菜单', 'Hdcms', 'Navigation', 'Navigation', 'index', '', '', '1', '1', '79', '100', '1', '0');
+INSERT INTO `hd_node` VALUES ('91', '插件', 'Hdcms', '', '', '', '', '', '1', '1', '0', '1000', '1', '0');
+INSERT INTO `hd_node` VALUES ('92', '插件管理', 'Hdcms', '', '', '', '', '', '1', '1', '91', '99', '1', '0');
+INSERT INTO `hd_node` VALUES ('93', '插件管理', 'Hdcms', 'Plugin', 'Plugin', 'Plugin_list', '', '', '1', '1', '92', '100', '1', '0');
+INSERT INTO `hd_node` VALUES ('94', '正在使用', 'Hdcms', 'Plugin', '', '', '', '', '1', '1', '91', '100', '1', '0');
+INSERT INTO `hd_node` VALUES ('180', '审核内容', 'Hdcms', 'Content', 'Audit', 'content', '', '', '1', '1', '2', '100', '0', '1');
+INSERT INTO `hd_node` VALUES ('178', '友情链接', 'Plugin', 'Link', 'Manage', 'index', '', '', '1', '2', '94', '100', '1', '0');
+INSERT INTO `hd_node` VALUES ('156', 'BUG管理', 'Hdcms', 'Bug', 'Bug', 'showBug', '', '', '1', '1', '154', '100', '1', '0');
+INSERT INTO `hd_node` VALUES ('179', '评论管理', 'Hdcms', 'Comment', 'Manage', 'index', '', '', '1', '1', '10', '100', '1', '1');
+
+-- ----------------------------
 -- Table structure for hd_plugin
 -- ----------------------------
 DROP TABLE IF EXISTS `hd_plugin`;
@@ -382,6 +602,11 @@ CREATE TABLE `hd_plugin` (
   `pubdate` date DEFAULT NULL COMMENT '发布时间',
   PRIMARY KEY (`pid`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='插件列表';
+
+-- ----------------------------
+-- Records of hd_plugin
+-- ----------------------------
+INSERT INTO `hd_plugin` VALUES ('1', '友情链接', '2014-04-01', '1.0', '后盾网', 'Link', 'houdunwang@gmail.com', 'www.houdunwang.com', '2014-02-09');
 
 -- ----------------------------
 -- Table structure for hd_role
@@ -401,6 +626,20 @@ CREATE TABLE `hd_role` (
 ) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of hd_role
+-- ----------------------------
+INSERT INTO `hd_role` VALUES ('1', '超级管理员', '超级管理员', '1', '1', '10000', '1', '1');
+INSERT INTO `hd_role` VALUES ('2', '编辑', '内容编辑', '1', '1', '10000', '1', '1');
+INSERT INTO `hd_role` VALUES ('3', '发布人员', '发布人员', '1', '1', '10000', '1', '1');
+INSERT INTO `hd_role` VALUES ('4', '幼儿园', '新手上路', '0', '1', '100', '0', '1');
+INSERT INTO `hd_role` VALUES ('5', '小学生', '小学生', '0', '1', '250', '1', '1');
+INSERT INTO `hd_role` VALUES ('6', '中学生', '中学生', '0', '1', '450', '1', '1');
+INSERT INTO `hd_role` VALUES ('7', '高中生', '高中生', '0', '0', '700', '1', '1');
+INSERT INTO `hd_role` VALUES ('8', '大学生', '大学生', '0', '0', '1050', '1', '1');
+INSERT INTO `hd_role` VALUES ('9', '研究生', '研究生', '0', '0', '1450', '1', '1');
+INSERT INTO `hd_role` VALUES ('10', '博士', '博士', '0', '0', '2000', '1', '1');
+
+-- ----------------------------
 -- Table structure for hd_search
 -- ----------------------------
 DROP TABLE IF EXISTS `hd_search`;
@@ -412,7 +651,12 @@ CREATE TABLE `hd_search` (
   PRIMARY KEY (`sid`),
   UNIQUE KEY `name` (`word`) USING BTREE,
   KEY `total` (`total`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of hd_search
+-- ----------------------------
+INSERT INTO `hd_search` VALUES ('1', '1', 'a', '1');
 
 -- ----------------------------
 -- Table structure for hd_session
@@ -425,6 +669,10 @@ CREATE TABLE `hd_session` (
   `ip` char(15) NOT NULL DEFAULT '',
   PRIMARY KEY (`sessid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of hd_session
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for hd_system_message
@@ -440,6 +688,10 @@ CREATE TABLE `hd_system_message` (
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
 -- ----------------------------
+-- Records of hd_system_message
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for hd_tag
 -- ----------------------------
 DROP TABLE IF EXISTS `hd_tag`;
@@ -451,6 +703,10 @@ CREATE TABLE `hd_tag` (
   UNIQUE KEY `name` (`tag`),
   KEY `total` (`total`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of hd_tag
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for hd_template_tag
@@ -465,6 +721,10 @@ CREATE TABLE `hd_template_tag` (
   `addtime` int(10) DEFAULT NULL COMMENT '添加时间',
   PRIMARY KEY (`tid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='后台管理员自定义模板标签';
+
+-- ----------------------------
+-- Records of hd_template_tag
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for hd_upload
@@ -486,6 +746,10 @@ CREATE TABLE `hd_upload` (
   KEY `basename` (`basename`),
   KEY `id` (`id`) USING BTREE
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='上传文件';
+
+-- ----------------------------
+-- Records of hd_upload
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for hd_user
@@ -523,6 +787,11 @@ CREATE TABLE `hd_user` (
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of hd_user
+-- ----------------------------
+INSERT INTO `hd_user` VALUES ('1', '后盾网向军', 'admin', '054e1e1672569f5810335722c6a1994f', 'a120882783', 'houdunwangxj@gmail.com', '1397162190', '1397413413', '', '0.0.0.0', '1', '0', '', '1', '', '10008', '1', '1', '后盾网  人人做后盾', 'admin', '69');
+
+-- ----------------------------
 -- Table structure for hd_user_deny_ip
 -- ----------------------------
 DROP TABLE IF EXISTS `hd_user_deny_ip`;
@@ -530,6 +799,10 @@ CREATE TABLE `hd_user_deny_ip` (
   `ip` char(15) NOT NULL DEFAULT '' COMMENT '拒绝访问ip',
   UNIQUE KEY `ip` (`ip`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk COMMENT='拒绝访问ip';
+
+-- ----------------------------
+-- Records of hd_user_deny_ip
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for hd_user_dynamic
@@ -544,6 +817,10 @@ CREATE TABLE `hd_user_dynamic` (
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk COMMENT='会员动态';
 
 -- ----------------------------
+-- Records of hd_user_dynamic
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for hd_user_follow
 -- ----------------------------
 DROP TABLE IF EXISTS `hd_user_follow`;
@@ -551,6 +828,10 @@ CREATE TABLE `hd_user_follow` (
   `uid` int(11) unsigned NOT NULL COMMENT '用户uid',
   `fans_uid` int(11) unsigned DEFAULT NULL COMMENT '粉丝uid'
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk COMMENT='会员关注表';
+
+-- ----------------------------
+-- Records of hd_user_follow
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for hd_user_guest
@@ -562,6 +843,10 @@ CREATE TABLE `hd_user_guest` (
   `uid` int(11) unsigned NOT NULL COMMENT '被访问空间Uid',
   PRIMARY KEY (`gid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk COMMENT='空间访客表';
+
+-- ----------------------------
+-- Records of hd_user_guest
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for hd_user_icon
@@ -576,6 +861,11 @@ CREATE TABLE `hd_user_icon` (
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk COMMENT='用户头像';
 
 -- ----------------------------
+-- Records of hd_user_icon
+-- ----------------------------
+INSERT INTO `hd_user_icon` VALUES ('1', 'upload/user/1/1_50.png', 'upload/user/1/1_100.png', 'upload/user/1/1_150.png');
+
+-- ----------------------------
 -- Table structure for hd_user_message
 -- ----------------------------
 DROP TABLE IF EXISTS `hd_user_message`;
@@ -588,3 +878,7 @@ CREATE TABLE `hd_user_message` (
   `sendtime` int(10) NOT NULL COMMENT '发送时间',
   PRIMARY KEY (`mid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk COMMENT='短消息';
+
+-- ----------------------------
+-- Records of hd_user_message
+-- ----------------------------

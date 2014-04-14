@@ -1,5 +1,5 @@
 <?php
-// define('DEBUG',true);
+//define('DEBUG',true);
 date_default_timezone_set('PRC');
 //应用组目录
 define("GROUP_PATH", 'hd/');

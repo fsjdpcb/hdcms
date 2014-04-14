@@ -50,8 +50,6 @@ class IndexControl extends Control
         $db = M('user_guest');
         //记录访客数据
         if (isset($_SESSION['uid']) && $uid != $_SESSION['uid']) {
-            //清空数据
-            $db->where("guest_uid={$_SESSION['uid']} AND uid={$uid}")->del();
             //没有访问时添加数据
             if (!$db->where("guest_uid={$_SESSION['uid']} AND uid={$uid}")->find()) {
                 $db->add(array('guest_uid' => $_SESSION['uid'], 'uid' => $uid));
@@ -61,7 +59,7 @@ class IndexControl extends Control
         $pre = C('DB_PREFIX');
         $sql = "SELECT guest_uid,nickname,icon50 FROM {$pre}user AS u
                 JOIN {$pre}user_guest AS ug ON u.uid=ug.guest_uid
-                JOIN {$pre}user_icon AS ui ON ug.guest_uid = ui.user_uid LIMIT 20";
+                JOIN {$pre}user_icon AS ui ON ug.guest_uid = ui.user_uid WHERE ug.uid={$uid} LIMIT 20";
         $this->guest = $db->query($sql);
     }
 }
