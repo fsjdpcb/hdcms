@@ -5,6 +5,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>{$user.nickname} - 个人主页</title>
     <link rel="stylesheet" type="text/css" href="__CONTROL_TPL__/css/style.css"/>
+    <jquery/>
+    <hdcms/>
 </head>
 <body>
 <!--头部-->
@@ -14,7 +16,7 @@
             <a href="__WEB__" style="color:#fff;">首页</a>
             <a href="__ROOT__/index.php?g=Member&a=Home&c=Index&m=index" style="color:#fff;">会员中心</a>
         </div>
-        <img src="__ROOT__/{$user.icon150}" alt="" class="face"/>
+        <img src="__ROOT__/{$user.icon150}" class="face" onmouseover="user.show(this,{$user.uid})"/>
 
         <p class="name">
             {$user.nickname}
@@ -48,7 +50,7 @@
     <!--左侧-->
     <div class="left">
         <p class="title">
-            {$user.nickname}的文章
+           我的文章
         </p>
         <ul class="arc_list">
             <list from="$data" name="$d">
@@ -69,28 +71,7 @@
     <!--右侧-->
     <div class="right">
 
-        <div class="share">
-            <!-- JiaThis Button BEGIN -->
-            <div class="jiathis_style_32x32">
-                <a class="jiathis_button_qzone"></a>
-                <a class="jiathis_button_tsina"></a>
-                <a class="jiathis_button_tqq"></a>
-                <a class="jiathis_button_weixin"></a>
-                <a class="jiathis_button_renren"></a>
-                <a class="jiathis_button_fav"></a>
-                <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis"
-                   target="_blank"></a>
-            </div>
-            <script type="text/javascript">
-                var jiathis_config = {
-                    summary: "",
-                    shortUrl: false,
-                    hideMore: false
-                }
-            </script>
-            <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
-            <!-- JiaThis Button END -->
-        </div>
+
 
         <p class="title">
             最近访客

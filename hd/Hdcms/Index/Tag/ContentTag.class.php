@@ -10,6 +10,7 @@ import('Url', 'hd.Hdcms.Index.Lib');
 class ContentTag
 {
     public $tag = array(
+        'hdcms' => array('block' => 0),
         'treeview' => array('block' => 0),
         'channel' => array('block' => 1, 'level' => 4),
         'arclist' => array('block' => 1, 'level' => 4),
@@ -24,6 +25,20 @@ class ContentTag
         'user' => array('block' => 1),
         'comment' => array('block' => 1),
     );
+
+    //基本js与css加载(必须使用的)
+    public function _hdcms($attr, $content)
+    {
+        $php = "<script type='text/javascript'>
+                var ROOT='__ROOT__';var WEB='__WEB__';var CONTROL='__CONTROL__';
+                </script>";
+        $php .= '<script type="text/javascript" src="__ROOT__/hd/static/js/hdcms.js"></script>
+                <link rel="stylesheet/less" href="__ROOT__/hd/static/css/hdcms.less?ver=1.0 "/>';
+        $php.=" <script src='http://localhost/hdphp/hdphp/Extend/Org/Less/es5-shim/es5-sham.min.js'></script>
+                <script src='http://localhost/hdphp/hdphp/Extend/Org/Less/es5-shim/es5-shim.min.js'></script>
+                <script src='http://localhost/hdphp/hdphp/Extend/Org/Less/less-1.5.0.min.js'></script>";
+        return $php;
+    }
 
     //加载模板标签
     public function _include($attr, $content)
@@ -55,7 +70,7 @@ class ContentTag
                 break;
         }
         foreach(\$result as \$field):
-            \$field['url']=U('Search/Search/search',array('g'=>'Hdcms','word'=>\$field['tag'],'type'=>'tag'));
+            \$field['url']=U('Search/Search/search',array('g'=>'Hdcms','type'=>'tag','word'=>\$field['tag']));
         ?>
 str;
         $php .= $content;
@@ -63,24 +78,6 @@ str;
         return $php;
     }
 
-    //评论显示标签
-    public function _cofdmment($attr, $content)
-    {
-        $row = isset($attr['row']) ? $attr['row'] : 10;
-        $php = <<<str
-            <?php \$db = K("comment");
-        \$result = \$db->limit($row)->field("user.uid,username,realname,comment_id,comment,aid,cid")->where("c_status=1")->order("comment_id DESC")->all();
-        foreach (\$result as \$field):
-        \$field['url'] = '__WEB__?a=Content&c=Index&m=content&cid='.\$field['cid'].'&aid='.\$field['aid'].'#'.\$field['comment_id'];?>
-str;
-        $php .= $content;
-        $php .= <<<str
-        <?php
-        endforeach;
-        ?>
-str;
-        return $php;
-    }
 
     //栏目标签
     public function _channel($attr, $content)
@@ -457,7 +454,7 @@ str;
     public function _user($attr, $content)
     {
         $row = isset($attr['row']) ? $attr['row'] : 20;
-        $php=<<<str
+        $php = <<<str
         <?php
             \$db=M('user');
             \$pre=C('DB_PREFIX');
@@ -470,17 +467,18 @@ str;
                 \$field['icon']='__ROOT__/'.\$field['icon'];
             ?>
 str;
-        $php.=$content;
-        $php.="<?php endforeach;?>";
+        $php .= $content;
+        $php .= "<?php endforeach;?>";
         return $php;
 
     }
+
     //获得最新评论
     public function _comment($attr, $content)
     {
         $row = isset($attr['row']) ? $attr['row'] : 20;
         $len = isset($attr['contentlen']) ? $attr['contentlen'] : 20;
-        $php=<<<str
+        $php = <<<str
         <?php
             \$db=M('comment');
             \$pre=C('DB_PREFIX');
@@ -499,8 +497,8 @@ str;
                 \$field['icon']='__ROOT__/'.\$field['icon'];
             ?>
 str;
-        $php.=$content;
-        $php.="<?php endforeach;?>";
+        $php .= $content;
+        $php .= "<?php endforeach;?>";
         return $php;
 
     }

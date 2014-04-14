@@ -1,4 +1,4 @@
-<div class="hd_user_alert" id="user_{$field.uid}">
+<div class="hd_user_alert">
     <div class="hd_user_icon">
         <div class="ico_img">
             <img src="{$field.icon100}" alt="admin"/>

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{$hd.config.webname}</title>
+    <title>搜索</title>
     <link rel="shortcut icon" href="favicon.ico">
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <jquery/>
     <bootstrap/>
     <link rel="stylesheet/less" href="__CONTROL_TPL__/css/style.less?ver=1.0"/>
-    <less/>
+    <hdcms/>
 </head>
 <body>
 <article class="header container">
@@ -26,7 +26,7 @@
             <form class="navbar-form navbar-left" role="search" method="post" action="__WEB__?g=Hdcms&a=Search&c=Search&m=search">
                 <div class="form-group">
                     <input type="hidden" name='type' class="form-control" value="tag">
-                    <input type="text" name='word' class="form-control" placeholder="输入关键字搜索">
+                    <input type="text" name='word' class="form-control" placeholder="输入关键字搜索" required="">
                 </div>
                 <button type="submit" class="btn btn-primary">搜索</button>
             </form>
@@ -139,77 +139,34 @@
             <article class="reader">
                 <header>精英</header>
                 <section>
-                    <a href="#">
-                        <img src="__CONTROL_TPL__/images/face.png"/>
-                    </a>
-                    <a href="#">
-                        <img src="__CONTROL_TPL__/images/face.png"/>
-                    </a>
-                    <a href="#">
-                        <img src="__CONTROL_TPL__/images/face.png"/>
-                    </a>
-                    <a href="#">
-                        <img src="__CONTROL_TPL__/images/face.png"/>
-                    </a>
-                    <a href="#">
-                        <img src="__CONTROL_TPL__/images/face.png"/>
-                    </a>
-                    <a href="#">
-                        <img src="__CONTROL_TPL__/images/face.png"/>
-                    </a>
-                    <a href="#">
-                        <img src="__CONTROL_TPL__/images/face.png"/>
-                    </a>
-                    <a href="#">
-                        <img src="__CONTROL_TPL__/images/face.png"/>
-                    </a>
-                    <a href="#">
-                        <img src="__CONTROL_TPL__/images/face.png"/>
-                    </a>
+                    <user row="14">
+                        <a href="{$field.url}">
+                            <img src="{$field.icon}" title="{$field.nickname}"
+                                 onmouseover="user.show(this,{$field.uid})"
+                                 style="width: 50px;height: 50px;border-radius: 10%;"/>
+                        </a>
+                    </user>
                 </section>
             </article>
             <!--最新评论-->
             <article class="comment">
                 <header>最新评论</header>
-                <section>
-                    <a href="#">
-                        <img src="__CONTROL_TPL__/images/face.png"/>
+                <comment row="6" contentlen="20">
+                    <section>
+                        <a href="{$field.url}">
+                            <img src="{$field.icon}" style="width: 36px;height: 36px;border-radius: 50%;" onmouseover="user.show(this,{$field.uid})"/>
 
-                        <p class="man">
-                            <span>C-Drea</span> 3小时前说：
-                        </p>
+                            <p class="man">
+                                <span>{$field.nickname}</span> {$field.pubtime}说：
+                            </p>
 
-                        <p class="content">
-                            请问浩哥怎样才能让首页不显示文章摘要，只
-                        </p>
-                    </a>
-                </section>
-                <section>
-                    <a href="#">
-                        <img src="__CONTROL_TPL__/images/face.png"/>
+                            <p class="content">
+                                {$field.content}
+                            </p>
+                        </a>
+                    </section>
+                </comment>
 
-                        <p class="man">
-                            <span>C-Drea</span> 3小时前说：
-                        </p>
-
-                        <p class="content">
-                            请问浩哥怎样才能让首页不显示文章摘要，只
-                        </p>
-                    </a>
-                </section>
-                <section>
-                    <a href="#">
-                        <img src="__CONTROL_TPL__/images/face.png"/>
-
-                        <p class="man">
-                            <span>C-Drea</span> 3小时前说：
-                        </p>
-
-                        <p class="content">
-                            请问浩哥怎样才能让首页不显示文章摘要，只
-                        </p>
-                    </a>
-                </section>
             </article>
             <!--猜你喜欢-->
             <article class="news">
@@ -218,7 +175,7 @@
                 </header>
                 <arclist type="rand" row="5" titlelen="22">
                     <section>
-                        <a href="{$field.url}" >
+                        <a href="{$field.url}">
                             <h3>{$field.title}</h3>
 
                             <p>

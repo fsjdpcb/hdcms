@@ -11,7 +11,7 @@
     <!--[if lt IE 8]>
     <link rel="stylesheet/less" href="__TEMPLATE__/css/ie.less?ver=1.0 "/>
     <![endif]-->
-    <less/>
+    <hdcms/>
 </head>
 <body>
 <article class="header container">
@@ -29,7 +29,7 @@
             <form class="navbar-form navbar-left" role="search" method="post" action="__WEB__?g=Hdcms&a=Search&c=Search&m=search">
                 <div class="form-group">
                     <input type="hidden" name='type' class="form-control" value="tag">
-                    <input type="text" name='word' class="form-control" placeholder="输入关键字搜索">
+                    <input type="text" name='word' class="form-control" placeholder="输入关键字搜索" required>
                 </div>
                 <button type="submit" class="btn btn-primary">搜索</button>
             </form>
@@ -80,7 +80,7 @@
                             <a href="{$field.url}">{$field.title|mb_substr:0,32,'utf-8'}</a>
                         </h3>
                         <div class="author">
-                            <a href="{$field.member}">{$field.username}</a>
+                            <a href="{$field.member}" onmouseover="user.show(this,{$field.uid})">{$field.username}</a>
                             发表于 {$field.addtime|date_before}
                         </div>
                         <p> {$field.description} </p>
@@ -121,7 +121,7 @@
                 <section>
                     <user row="14">
                         <a href="{$field.url}">
-                            <img src="{$field.icon}" title="{$field.nickname}" style="width: 50px;height: 50px;border-radius: 10%;"/>
+                            <img src="{$field.icon}" title="{$field.nickname}" onmouseover="user.show(this,{$field.uid})" style="width: 50px;height: 50px;border-radius: 10%;"/>
                         </a>
                     </user>
                 </section>
@@ -132,7 +132,7 @@
                 <comment row="6" contentlen="20">
                     <section>
                         <a href="{$field.url}">
-                            <img src="{$field.icon}" style="width: 36px;height: 36px;border-radius: 50%;"/>
+                            <img src="{$field.icon}" style="width: 36px;height: 36px;border-radius: 50%;" onmouseover="user.show(this,{$field.uid})"/>
 
                             <p class="man">
                                 <span>{$field.nickname}</span> {$field.pubtime}说：
@@ -144,6 +144,7 @@
                         </a>
                     </section>
                 </comment>
+
             </article>
             <!--猜你喜欢-->
             <article class="news">

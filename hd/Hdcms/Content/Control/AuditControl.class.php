@@ -38,7 +38,7 @@ class AuditControl extends AuthControl
         $count = $this->_db->where($this->_db->tableFull.'.state=0')->count();
         $page = new Page($count, 15);
         $this->page = $page->show();
-        $this->data = $this->_db->where($this->_db->tableFull.'.state=0')->limit($page->limit())->all();
+        $this->data = $this->_db->where($this->_db->tableFull.'.state=0')->limit($page->limit())->order('aid DESC')->all();
         $this->mid =$this->_mid;
         $this->model = $this->_model;
         $this->display();

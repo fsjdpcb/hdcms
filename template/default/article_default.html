@@ -5,19 +5,13 @@
     <link rel="shortcut icon" href="favicon.ico">
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script>
-        var ROOT = 'http://localhost/hdcms';
-    </script>
-    <hdjs/>
     <jquery/>
     <bootstrap/>
     <link rel="stylesheet/less" href="__TEMPLATE__/css/article.less?ver=1.0 "/>
-    <script type="text/javascript" src="__ROOT__/hd/static/js/hdcms.js"></script>
-    <link rel="stylesheet/less" href="__ROOT__/hd/static/css/hdcms.less?ver=1.0 "/>
     <!--[if lt IE 8]>
     <link rel="stylesheet/less" href="__TEMPLATE__/css/ie.less?ver=1.0 "/>
     <![endif]-->
-    <less/>
+    <hdcms/>
 </head>
 <body>
 <article class="header container">
@@ -36,7 +30,7 @@
                   action="__WEB__?g=Hdcms&a=Search&c=Search&m=search">
                 <div class="form-group">
                     <input type="hidden" name='type' class="form-control" value="tag">
-                    <input type="text" name='word' class="form-control" placeholder="输入关键字搜索">
+                    <input type="text" name='word' class="form-control" placeholder="输入关键字搜索" required="">
                 </div>
                 <button type="submit" class="btn btn-primary">搜索</button>
             </form>
@@ -62,9 +56,11 @@
             <h2>{$hdcms.title}</h2>
 
             <p>
+                <div class="icon">
                 <a href="__WEB__?{$hdcms.domain}">
                     <img src="{|get_user_icon:$hdcms['uid']}" onmouseover="user.show(this,{$hdcms.uid})"/>
                 </a>
+        </div>
                 <a href="__WEB__?{$hdcms.domain}">
                     {$hdcms.nickname}
                 </a> 发表于 {$hdcms.date_before} ({$hdcms.time}) -
@@ -137,7 +133,7 @@
         <section>
             <user row="14">
                 <a href="{$field.url}">
-                    <img src="{$field.icon}" title="{$field.nickname}" style="width: 50px;height: 50px;border-radius: 10%;"/>
+                    <img src="{$field.icon}" title="{$field.nickname}" onmouseover="user.show(this,{$field.uid})" style="width: 50px;height: 50px;border-radius: 10%;"/>
                 </a>
             </user>
         </section>
@@ -148,7 +144,7 @@
         <comment row="6" contentlen="20">
             <section>
                 <a href="{$field.url}">
-                    <img src="{$field.icon}" style="width: 36px;height: 36px;border-radius: 50%;"/>
+                    <img src="{$field.icon}" style="width: 36px;height: 36px;border-radius: 50%;" onmouseover="user.show(this,{$field.uid})"/>
 
                     <p class="man">
                         <span>{$field.nickname}</span> {$field.pubtime}说：
@@ -160,6 +156,7 @@
                 </a>
             </section>
         </comment>
+
     </article>
     <!--猜你喜欢-->
     <article class="news">

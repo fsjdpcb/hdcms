@@ -174,6 +174,7 @@ var user = {
      * @param uid 用户uid
      */
     show: function (obj, uid) {
+        $('div.hd_user').hide();
         //位置
         var offset = $(obj).offset();
         var _w = $(obj).width();
@@ -183,29 +184,28 @@ var user = {
         var id = 'user_' + uid;
         //验证缓存
         if (user.cache[id]) {
-            $('div.hd_user_alert').hide();
             $("div#" + id).css({left: _left, top: _top});
             user.cache[id].show();
         } else {
+            $('body').append('<div class="hd_user" id="'+id+'" style="position:absolute;width:330px;height:188px;"></div>');
+            $("div#" + id).css({left: _left, top: _top});
             //缓存不存时，请求用户数据
             var url = ROOT + '/index.php?g=Member&a=User&c=User&m=user&uid=' + uid;
             $.post(url, function (data) {
                 if (data.state == 1) {
-                    $('div.hd_user_alert').hide();
-                    $('body').append(data.message);
-                    $("div#" + id).css({left: _left, top: _top});
+                    $("div#" + id).append(data.message);
                     user.cache[id] = $("div#" + id);
                 }
             }, 'json');
         }
         //添加移除事件
         $(obj).mouseleave(function (e) {
-            if ($(e.relatedTarget).attr('id') != id) {
+            if ($(e.relatedTarget).attr('class') != 'hd_user_alert') {
                 $("div#" + id).hide();
             }
         })
-        $("div.hd_user_alert").live('mouseleave', function () {
-            $('div.hd_user_alert').hide();
+        $("div.hd_user").live('mouseleave', function () {
+            $('div.hd_user').hide();
         })
     },
     //用户关注处理类
@@ -217,7 +217,7 @@ var user = {
             var url = ROOT + '/index.php?g=Member&a=User&m=Follow&c=follow&uid=' + uid;
             $.post(url, function (data) {
                 if (data.state == 1) {
-                    hdcms_alert(data.message.message);
+//                    hdcms_alert(data.message.message);
                     //关注 已关注
                     $(obj).html(data.message.follow);
                 } else {

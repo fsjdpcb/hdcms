@@ -44,7 +44,7 @@ return array_merge(
             //普通文章
             '/^(\d+)_(\d+)_(\d+).html$/'=>'a=Index&c=Article&m=show&mid=#1&cid=#2&aid=#3',
             //搜索
-            '/^search_(.+)_([a-z]+).html$/'=>'a=Search&c=Search&m=search&g=Hdcms&word=#1&type=#2',
+            '/^([a-z]+)_(.+).html$/'=>'a=Search&c=Search&m=search&g=Hdcms&type=#1&word=#2',
             //栏目（有页码）
             '/^list_(\d+)_(\d+).html$/'=>'a=Index&c=Category&m=category&cid=#1&page=#2',
             //个人主页

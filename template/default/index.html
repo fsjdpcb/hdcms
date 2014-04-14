@@ -7,19 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <jquery/>
     <bootstrap/>
-    <script>
-        var ROOT = 'http://localhost/hdcms';
-    </script>
     <link rel="stylesheet" type="text/css" href="__TEMPLATE__/css/comment.css?ver=1.0 "/>
     <link rel="stylesheet/less" href="__TEMPLATE__/css/index.less?ver=1.0 "/>
     <!--[if lt IE 8]>
     <link rel="stylesheet/less" href="__TEMPLATE__/css/ie.less?ver=1.0 "/>
     <![endif]-->
-
-
-    <script type="text/javascript" src="__ROOT__/hd/static/js/hdcms.js"></script>
-    <link rel="stylesheet/less" href="__ROOT__/hd/static/css/hdcms.less?ver=1.0 "/>
-    <less/>
+    <hdcms/>
 </head>
 <body>
 <article class="header container">
@@ -133,8 +126,7 @@
                 <section>
                     <user row="14">
                         <a href="{$field.url}">
-                            <img src="{$field.icon}" title="{$field.nickname}"
-                                 onmouseover="user.show(this,{$field.uid})"
+                            <img src="{$field.icon}" title="{$field.nickname}" onmouseover="user.show(this,{$field.uid})"
                                  style="width: 50px;height: 50px;border-radius: 10%;"/>
                         </a>
                     </user>

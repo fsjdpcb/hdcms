@@ -63,7 +63,7 @@ class CommentControl extends CommonControl
             //---------------------------------------验证评论发表间隔时间
             Q('session.comment_send_time', 0, 'intval');
             //间隔时间小于配置项
-            if (Q('session.comment_send_time') + C('comment_step_time') > time()) {
+            if ($_SESSION['admin']==0 && Q('session.comment_send_time') + C('comment_step_time') > time()) {
                 $_time = Q('session.comment_send_time') + C('comment_step_time') - time();
                 $step = $_time / 60 > 1 ? intval($_time / 60) . '分钟' : $_time . '秒';
                 $this->_ajax(0, '请' . $step . '后发表');
@@ -86,7 +86,7 @@ class CommentControl extends CommonControl
             $_POST['content'] = $content;
             if ($comment_id = $this->_db->add_comment()) {
                 $comment = $this->get_one($comment_id);
-                $msg = C('comment_state') == 1 ? '评论发表成功！' : '评论成功，审核后显示';
+                $msg = C('comment_state') == 1 || session('admin')==1 ? '评论发表成功！' : '评论成功，审核后显示';
                 //记录发表时间
                 session('comment_send_time', time());
                 //------------------------------------添加动态

@@ -18,7 +18,11 @@ class FollowControl extends CommonControl
                 $this->_ajax(1, array('message' => '取消关注成功', 'follow' => '关注'));
             } else {
                 if ($db->add(array( 'uid' => $uid, 'fans_uid' => $_SESSION['uid'] ))) {
-                    $this->_ajax(1, array('message' => '关注成功', 'follow' => '已关注'));
+                    if($db->where("uid={$_SESSION['uid']} AND fans_uid={$uid}")->find()){
+                        $this->_ajax(1, array('message' => '关注成功', 'follow' => '互相关注'));
+                    }else{
+                        $this->_ajax(1, array('message' => '关注成功', 'follow' => '已关注'));
+                    }
                 } else {
                     $this->_ajax(0, '操作失败');
                 }

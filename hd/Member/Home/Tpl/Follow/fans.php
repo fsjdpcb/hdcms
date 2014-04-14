@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>我的文章</title>
+    <title>我的粉丝</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <hdjs/>
     <bootstrap/>
-    <link rel="stylesheet/less" href="__CONTROL_TPL__/css/dynamic.less?ver=1.0 "/>
+    <link rel="stylesheet/less" href="__CONTROL_TPL__/css/follow.less?ver=1.0 "/>
     <script type="text/javascript" src="__ROOT__/hd/static/js/hdcms.js"></script>
     <link rel="stylesheet/less" href="__ROOT__/hd/static/css/hdcms.less?ver=1.0 "/>
     <less/>
@@ -31,22 +31,27 @@
     <!--左侧导航end-->
     <section class="article">
         <header>
-            <h2 class="disab">
-                <a href="{|U:'index',array('g'=>'Member')}">会员动态</a>
-            </h2>
             <h2>
-                好友动态
+                我的粉丝
             </h2>
         </header>
         <ul>
             <list from="$data" name="d">
                 <li>
-                    <div class="article">
-                       {$d.content}
-
+                    <div class="icon">
+                       <img src="{|get_user_icon:$d['fans_uid'],100}" onmouseover="user.show(this,{$d.uid})"/>
                     </div>
-                    <div class="right-action">
-                        <span class="time"> {$d.addtime|date_before}</span>
+                    <div class="info">
+                        <p class="nickname">{$d.nickname}</p>
+                        <p>关系：<a href="javascript:;" onclick="user.follow(this,{$d.uid})" >{$d.follow}</a></p>
+                        <p>最后登录：{$field.logintime|date:"Y-m-d",@@}</p>
+                        <p>
+                          <if value="$field.description">
+                                {$field.description|substr:0,20,'utf-8'}
+                                <else/>
+                                这家伙有点懒，还没有写个性签名
+                            </if>
+                        </p>
                     </div>
                 </li>
             </list>

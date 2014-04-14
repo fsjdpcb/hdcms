@@ -1,10 +1,10 @@
 <ul class="nav navbar-nav navbar-right">
     <if value="$hd.session.uid">
         <li class="dropdown">
-
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 12px;padding-bottom: 0px;">
                     <img src="{$hd.session.icon50}" style="width:30px;height:30px;border-radius: 50%;vertical-align: middle"/>
                     {$hd.session.nickname}
+                    <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
                         <li><a href="__WEB__?a=Home&c=User&m=edit&g=Member">修改资料</a></li>
