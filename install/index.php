@@ -208,3 +208,28 @@ function return_msg($msg)
     ob_flush();
     flush();
 }
+function ip_get_client($type = 0)
+{
+    $type = intval($type);
+    $ip = ''; //保存客户端IP地址
+    if (isset($_SERVER)) {
+        if (isset($_SERVER["HTTP_X_FORWARDED_FOR"])) {
+            $ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+        } else if (isset($_SERVER["HTTP_CLIENT_IP"])) {
+            $ip = $_SERVER["HTTP_CLIENT_IP"];
+        } else {
+            $ip = $_SERVER["REMOTE_ADDR"];
+        }
+    } else {
+        if (getenv("HTTP_X_FORWARDED_FOR")) {
+            $ip = getenv("HTTP_X_FORWARDED_FOR");
+        } else if (getenv("HTTP_CLIENT_IP")) {
+            $ip = getenv("HTTP_CLIENT_IP");
+        } else {
+            $ip = getenv("REMOTE_ADDR");
+        }
+    }
+    $long = ip2long($ip);
+    $clientIp = $long ? array($ip, $long) : array("0.0.0.0", 0);
+    return $clientIp[$type];
+}
