@@ -68,9 +68,10 @@ class SearchModel extends ViewModel
         switch ($type) {
             case 'tag':
             default:
-                $count = $this->where("tag='$word'")->group($this->tableFull . '.aid')->count();
+                $where = $this->tableFull.".state=1 AND tag='{$word}'";
+                $count = $this->where($where)->group($this->tableFull . '.aid')->count();
                 $page = new Page($count, 10);
-                $data = $this->where("tag='$word'")->group($this->tableFull . '.aid')->all();
+                $data = $this->where($where)->group($this->tableFull . '.aid')->all();
                 if (!empty($data)) {
                     foreach ($data as $n => $d) {
                         $d['url'] = Url::get_content_url($d);
