@@ -1,7 +1,7 @@
 <div class="hd_user_alert">
     <div class="hd_user_icon">
         <div class="ico_img">
-            <img src="{$field.icon100}" alt="admin"/>
+            <a href="__WEB__?{$field.domain}"><img src="{$field.icon100}" alt="admin"/></a>
         </div>
     </div>
     <div class="hd_user_info">

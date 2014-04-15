@@ -63,15 +63,6 @@
                         <textarea name="description">{$field.description}</textarea>
                     </td>
                 </tr>
-                <tr>
-                    <th>标&nbsp;&nbsp;&nbsp;&nbsp;签</th>
-                    <td>
-                        <input type="text" name="keywords" value="{$field.keywords}"/>
-                    </td>
-                    <td>
-                        <span>用空格分隔</span>
-                    </td>
-                </tr>
                     <tr>
                         <th>内&nbsp;&nbsp;&nbsp;&nbsp;容</th>
                         <td>
@@ -106,7 +97,7 @@
                 附件需要被打包成ZIP或RAR压缩文件后才能上传
             </li>
             <li>
-                标签是可选项，多个标签使用空格分隔
+                 标签必选项，多个标签使用逗号分隔
             </li>
         </ul>
     </div>

@@ -59,11 +59,12 @@ class ContentTag
         <?php \$type= '$type';\$row =$row;
         \$db=M('tag');
         switch(\$type){
-            case 'hot':
-                \$result = \$db->order('total DESC')->limit(\$row)->all();
-                break;
             case 'new':
                 \$result = \$db->order('tid DESC')->limit(\$row)->all();
+                break;
+			case 'hot':
+			default:
+                \$result = \$db->order('total DESC')->limit(\$row)->all();
                 break;
         }
         foreach(\$result as \$field):
@@ -311,7 +312,8 @@ str;
         //关联表
         \$join = "content_flag,category,user";
         \$count = \$db->join(\$join)->order("arc_sort ASC")->where(\$where)->where(\$db->tableFull.'.state=1')->count(\$db->tableFull.'.aid');
-        \$page= new Page(\$count,$row,'','','','?list_'.\$_GET['cid'].'_{page}.html','{page}');
+        \$url = preg_match('@list_\d@i','__URL__')?preg_replace('@list_(\d+)(_)?(\d+)?\.html?$@','list_$1','__URL__').'_':'__WEB__?';
+        \$page= new Page(\$count,$row,'','','',\$url.'{page}.html','{page}');
         \$result= \$db->join(\$join)->order("arc_sort ASC")->where(\$where)->where(\$db->tableFull.'.state=1')->order(\$order)->limit(\$page->limit())->all();
         if(\$result):
             //有结果集时处理

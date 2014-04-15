@@ -447,7 +447,7 @@ class ContentModel extends RelationModel
             $tags = array_unique($tags);
             $tag_db = K("Tag");
             foreach ($tags as $tag) {
-                $tag = mb_substr($tag,0,10,'utf-8');
+                $tag = mb_substr($tag,0,20,'utf-8');
                 $tid = $tag_db->add_tag($tag);
                 //添加新tag数据
                 $content_tag->add(array('tid' => $tid, 'aid' => $aid, 'mid' => $this->_mid, 'cid' => $this->_cid, 'uid' => session('uid')));

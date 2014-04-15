@@ -57,7 +57,7 @@
 									</a>
 								</p>
 								<p>
-									最后登录：{$field.logintime|date:"Y-m-d",@@}
+									最后登录：{$d.logintime|date:"Y-m-d",@@}
 								</p>
 								<p>
 									<a href="javascript:;" onclick="message.show({$d.uid},'{$d.nickname}')">

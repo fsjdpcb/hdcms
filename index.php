@@ -8,3 +8,4 @@ define('CACHE_PATH', 'data/cache/data/');
 //Temp目录
 define("TEMP_PATH", 'temp/');
 require "hd/HDPHP/hdphp/hdphp.php";
+//require '../hdphp/hdphp/hdphp.php';

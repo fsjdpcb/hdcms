@@ -42,7 +42,7 @@
                     <div class="info">
                         <p class="nickname">{$d.nickname}</p>
                         <p>关系：<a href="javascript:;" onclick="user.follow(this,{$d.uid})" >{$d.follow}</a></p>
-                        <p>最后登录：{$field.logintime|date:"Y-m-d",@@}</p>
+                        <p>最后登录：{$d.logintime|date:"Y-m-d",@@}</p>
                         <p>
                           <if value="$field.description">
                                 {$field.description|substr:0,20,'utf-8'}

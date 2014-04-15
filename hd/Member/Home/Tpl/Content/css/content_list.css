@@ -1,8 +1,7 @@
 body {
-  background: #ffffff;
+  background: #fcfcfc;
 }
 header {
-  background: #ffffff;
   padding-bottom: 10px;
 }
 header h1 {
@@ -13,7 +12,7 @@ header h1 {
   text-indent: -9999em;
 }
 nav.top-menu {
-  background: #37A508;
+  background: #357EBD;
   height: 40px;
 }
 nav.top-menu div.nav {
@@ -31,7 +30,7 @@ nav.top-menu div.nav a {
   text-decoration: none;
 }
 nav.top-menu div.nav a:hover {
-  background: #279005;
+  background: #488FCF;
 }
 article.main {
   margin-top: 20px;

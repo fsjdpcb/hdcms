@@ -73,8 +73,6 @@ class CommentControl extends CommonControl
             if (!trim($content)) {
                 $this->_ajax(0, '评论内容不能为空');
             }
-            //----------------------------------截取内容长度
-            $content = mb_substr($content, 0, C('comment_len'), 'utf-8');
             $data = $this->_db->
                 where("cid={$this->_cid} && aid={$this->_aid} && " . C("DB_PREFIX") . "comment.uid=" . session('uid'))
                 ->where("content='$content'")

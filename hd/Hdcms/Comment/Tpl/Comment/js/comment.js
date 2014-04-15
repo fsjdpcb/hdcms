@@ -21,14 +21,16 @@ $(function () {
  */
 function add_comment(obj, type) {
     //验证评论内容
-    if ($.trim($(obj).find('[name=content]').val()) == '') {
+    if (!is_login()) {
+        login.show(obj);
+    } else if ($.trim($(obj).find('[name=content]').val()) == '') {
         comment_alter(obj, '内容不能为空');
     } else {
         var post_data = $(obj).serialize();
         $.post('?g=Hdcms&a=Comment&c=Comment&m=add_comment', post_data, function (data) {
             if (data.state == 'nologin') {
                 //没有登录时，弹出登录窗口
-                login.show();
+                hdcms_alert('请登录后操作');
             } else {
                 //弹出信息
                 comment_alter(obj, data.message);

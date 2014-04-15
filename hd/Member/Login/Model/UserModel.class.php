@@ -129,7 +129,6 @@ class UserModel extends Model
                 $role = $role[0];
                 if ($role['rid'] != $user['rid']) {
                     $this->save(array('uid' => $user['uid'], 'rid' => $role['rid']));
-
                 }
             }
             return $this->record_user($user['uid']);
@@ -157,7 +156,6 @@ class UserModel extends Model
         //是否为超级管理员
         $_SESSION['WEB_MASTER'] = strtolower(C("WEB_MASTER")) == strtolower($user['username']);
         $_SESSION = array_merge($_SESSION, $user);
-
         //---------------------修改登录IP与时间
         return $db->save(array(
             "uid" => $_SESSION['uid'],
