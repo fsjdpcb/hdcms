@@ -47,20 +47,7 @@ class ContentViewModel extends ViewModel
             "user" => array(
                 'type' => INNER_JOIN,
                 'on' => $this->table . '.uid=user.uid'
-            ),
-            'content_tag' => array(
-                'type' => LEFT_JOIN,
-                'on' => 'content.aid=content_tag.aid'
-            ),
-            'tag' => array(
-                'type' => LEFT_JOIN,
-                "on" => "content_tag.tid=tag.tid"
             )
-        );
-        //副表关联
-        $this->view [$this->_stable] = array(
-            'type' => INNER_JOIN,
-            'on' => $this->table . ".aid={$this->table}_data.aid"
         );
     }
 
@@ -117,8 +104,9 @@ class ContentViewModel extends ViewModel
         $page = new Page($count, 15);
         $page_list = $page->show();
         //获得文章列表
-        $field = "title,username,aid,arc_sort,catname,updatetime,flag,".$this->tableFull.".state";
-        $data = $this->field($field)->join('category,user')->where($where)->order('aid DESC')->all();
+        $field = "title,username,aid,arc_sort,catname,updatetime,flag,".$this->tableFull.".state,".
+                    $this->tableFull.".cid,".C("DB_PREFIX").'category.mid';
+        $data = $this->field($field)->where($where)->order('aid DESC')->all();
         return array('page' => $page_list, 'data' => $data);
     }
 }

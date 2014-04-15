@@ -36,11 +36,11 @@ class ContentModel extends RelationModel
         //更新时间
         array('updatetime', 'get_update_time', 'method', 2, 3),
         //发布者id
-        array('uid', '_auto_uid', 'method', 2, 3),
+        array('uid', '_auto_uid', 'method', 2, 1),
         //属性flag字段
         array('flag', '_auto_flag', 'method', 2, 3),
         //投稿状态
-        array('state', '_state', 'method', 2, 3),
+        array('state', '_state', 'method', 2, 1),
         //关键字
         array('keywords', '_keywords', 'method', 2, 3)
     );
