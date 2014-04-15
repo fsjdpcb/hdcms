@@ -174,12 +174,18 @@ var user = {
      * @param uid 用户uid
      */
     show: function (obj, uid) {
-        $('div.hd_user').hide();
+//        $('div.hd_user').hide();
         //位置
-        var offset = $(obj).offset();
+        var _win_w = $(document).width();
         var _w = $(obj).width();
-        var _left = offset.left + _w;
+        var offset = $(obj).offset();
         var _top = offset.top - 20;
+        var _left = offset.left;
+        if (_left + _w + 330 > _win_w) {
+            _left = _left - 330;
+        } else {
+            _left = _left + _w;
+        }
         //提示信息div的id值
         var id = 'user_' + uid;
         //验证缓存
@@ -187,7 +193,7 @@ var user = {
             $("div#" + id).css({left: _left, top: _top});
             user.cache[id].show();
         } else {
-            $('body').append('<div class="hd_user" id="'+id+'" style="position:absolute;width:330px;height:188px;"></div>');
+            $('body').append('<div class="hd_user" id="' + id + '" style="position:absolute;width:330px;height:188px;"></div>');
             $("div#" + id).css({left: _left, top: _top});
             //缓存不存时，请求用户数据
             var url = ROOT + '/index.php?g=Member&a=User&c=User&m=user&uid=' + uid;
@@ -199,10 +205,12 @@ var user = {
             }, 'json');
         }
         //添加移除事件
-        $(obj).mouseleave(function (e) {
-            if ($(e.relatedTarget).attr('class') != 'hd_user_alert') {
-                $("div#" + id).hide();
-            }
+        $(obj).mouseleave(function () {
+            $('div.hd_user').hide();
+        })
+        $("div.hd_user").live('mouseenter', function () {
+            $('div.hd_user').hide();
+            $("div#" + id).show();
         })
         $("div.hd_user").live('mouseleave', function () {
             $('div.hd_user').hide();
