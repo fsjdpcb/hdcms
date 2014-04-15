@@ -75,6 +75,7 @@ $(function () {
                 dataType: "JSON",
                 cache: false,
                 data: _post,
+                timeout:10000,
                 success: function (data) {
                     //关闭提示框
                     dialog_message(false);
@@ -109,6 +110,15 @@ $(function () {
                             }
                         });
                     }
+                },
+                error:function(){
+                    $.dialog({
+                        message: "请求超时，请稍候再试",
+                        type: "error",
+                        close_handler: function () {
+                            location.href = URL;
+                        }
+                    });
                 }
             })
         }
