@@ -1,6 +1,6 @@
 <?php if (!defined('HDPHP_PATH')) exit; 
 return array (
-  'webname' => 'HDPHP技术交流社区',
+  'webname' => 'HDPHP社区--中国最强PHP培训机构  《后盾网》',
   'icp' => '京ICP备12048441号-3',
   'html_path' => 'html',
   'copyright' => 'Copyright © 2012-2013 HDCMS 后盾网 版权所有',
@@ -31,11 +31,8 @@ return array (
   'water_pct' => '0',
   'water_quality' => '90',
   'water_pos' => '9',
-  'del_content_model' => '1',
+  'del_content_model' => '0',
   'down_remove_pic_size' => '500',
-  'comment_len' => '80',
-  'favicon_width' => '180',
-  'favicon_height' => '180',
   'down_remote_pic' => '0',
   'auto_desc' => '1',
   'auto_thumb' => '0',
@@ -43,7 +40,7 @@ return array (
   'upload_img_max_height' => '600',
   'member_open' => '1',
   'web_close_message' => '网站暂时关闭，请稍候访问',
-  'web_style' => 'default',
+  'web_style' => 'abc',
   'qq' => '1455067020',
   'weibo' => 'houdunwangxj@gmail.com',
   'tweibo' => 'houdunwang@gmail.com',
@@ -52,5 +49,7 @@ return array (
   'cache_category' => '-1',
   'cache_content' => '-1',
   'comment_step_time' => '10',
+  'pathinfo_type' => '0',
+  'open_rewrite' => '0',
 );
 ?>

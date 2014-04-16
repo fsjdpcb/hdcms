@@ -193,17 +193,7 @@
                 </table>
             </div>
             <div id="access">
-                <table class="table1">
-                    <tr>
-                        <th class="w100">
-                            投稿不需要审核
-                        </th>
-                        <td>
-                            <label><input type="radio" name="member_send_state" value="1"/> 是 </label>
-                            <label><input type="radio" name="member_send_state" value="0" checked=""/> 否 </label>
-                        </td>
-                    </tr>
-                </table>
+                
                 <table class="table1">
                     <tr>
                         <th class="w100">
@@ -252,23 +242,27 @@
                                     <td class="w250">组名</td>
                                     <td>允许访问</td>
                                     <td>允许投稿</td>
+                                    <td>投稿不需要审核</td>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <list from="$role_user" name="r">
-                                <tr>
-                                    <td>
-                                        <a href="javascript:" onclick="select_access_checkbox(this)">{$r.rname}</a>
-                                        <input type="hidden" name="access[{$r.rid}][rid]" value="{$r.rid}"/>
-                                    </td>
-                                    <td>
-                                        <input type="checkbox" name="access[{$r.rid}][show]" value="1"/>
-                                    </td>
-                                    <td>
-                                        <input type="checkbox" name="access[{$r.rid}][add]" value="1"/>
-                                    </td>
-                                </tr>
-                                    </list>
+	                                <tr>
+	                                    <td>
+	                                        <a href="javascript:" onclick="select_access_checkbox(this)">{$r.rname}</a>
+	                                        <input type="hidden" name="access[{$r.rid}][rid]" value="{$r.rid}"/>
+	                                    </td>
+	                                    <td>
+	                                        <input type="checkbox" name="access[{$r.rid}][show]" value="1"/>
+	                                    </td>
+	                                    <td>
+	                                        <input type="checkbox" name="access[{$r.rid}][add]" value="1"/>
+	                                    </td>
+	                                    <td>
+	                                    	<input type="checkbox" name="access[{$r.rid}][submit_state]" value="1"/>
+	                                    </td>                                    
+                                	</tr>
+                               </list>
                                 </tbody>
                             </table>
                         </td>

@@ -312,8 +312,7 @@ str;
         //关联表
         \$join = "content_flag,category,user";
         \$count = \$db->join(\$join)->order("arc_sort ASC")->where(\$where)->where(\$db->tableFull.'.state=1')->count(\$db->tableFull.'.aid');
-        \$url = preg_match('@list_\d@i','__URL__')?preg_replace('@list_(\d+)(_)?(\d+)?\.html?$@','list_$1','__URL__').'_':'__WEB__?';
-        \$page= new Page(\$count,$row,'','','',\$url.'{page}.html','{page}');
+        \$page= new Page(\$count,$row);
         \$result= \$db->join(\$join)->order("arc_sort ASC")->where(\$where)->where(\$db->tableFull.'.state=1')->order(\$order)->limit(\$page->limit())->all();
         if(\$result):
             //有结果集时处理
@@ -462,7 +461,7 @@ str;
                  WHERE state=1 ORDER BY credits DESC limit $row";
             \$data = \$db->query(\$sql);
             foreach(\$data as \$field):
-                \$field['url'] = ' __ROOT__/index.php?' . \$field['domain'];
+                \$field['url'] = U('Space/Index/index',array('g'=>'Member','u'=>\$field['domain']));
                 \$field['icon']='__ROOT__/'.\$field['icon'];
             ?>
 str;

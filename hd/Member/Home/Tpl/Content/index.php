@@ -51,8 +51,8 @@
 
                     </div>
                     <div class="right-action">
-                        <a href="javascript:;" onclick="hd_open_window('{|U:'edit',array('g'=>'Member','aid'=>$d['aid'],'cid'=>$d['cid'])}')" class="btn btn-default btn-sm">修改</a>
-                        <a href="javascript:confirm('确定删除吗？')?hd_ajax('{|U:'del',array('g'=>'Member','aid'=>$d['aid'],'cid'=>$d['cid'])}'):false;" class="btn btn-default btn-sm">删除</a>
+                        <a href="javascript:;" onclick="hd_open_window('{|U:'edit',array('g'=>'Member','mid'=>$d['mid'],'cid'=>$d['cid'],'aid'=>$d['aid'])}')" class="btn btn-default btn-sm">修改</a>
+                        <a href="javascript:confirm('确定删除吗？')?hd_ajax('{|U:'del',array('g'=>'Member','mid'=>$d['mid'],'cid'=>$d['cid'],'aid'=>$d['aid'])}'):false;" class="btn btn-default btn-sm">删除</a>
                     </div>
                 </li>
             </list>

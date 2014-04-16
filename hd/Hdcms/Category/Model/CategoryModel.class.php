@@ -157,7 +157,7 @@ class CategoryModel extends Model
         //表前缀
         $pre = C("DB_PREFIX");
         $db = M("category_access");
-        $field = 'a.cid,r.rid,r.rname,r.admin,a.add,a.del,a.edit,a.show,a.move,a.order';
+        $field = 'a.cid,r.rid,r.rname,r.admin,a.add,a.del,a.edit,a.show,a.move,a.order,a.submit_state';
         //如果有栏目cid只获取取指定栏目的权限，否则获得所有栏目权限
         if ($cid)
             $cat_where = " WHERE cid=$cid";

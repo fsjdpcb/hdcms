@@ -2,6 +2,7 @@ body {
   background: #fcfcfc;
 }
 header {
+  background: #fcfcfc;
   padding-bottom: 10px;
 }
 header h1 {
@@ -260,8 +261,8 @@ article.main section.article ul li div.article a {
   font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 article.main section.article ul li div.article a.title {
-  color: #4f8e48;
-  font-weight: bold;
+  color: #357EBD;
+  font-weight: 200;
   margin-bottom: 5px;
   font-size: 14px;
 }

@@ -25,9 +25,6 @@ class CommonControl extends Control
     protected function add_dynamic($content)
     {
         $addtime = time();
-        $content = "<a href='" . __ROOT__ . "?" . $_SESSION['domain'] . "'><img src='" . __ROOT__ . "/" . session('icon50') . "'
-                            onmouseover='user.show(this," . session('uid') . ")'/></a> " .
-            "<a href='" . __ROOT__ . "?" . $_SESSION['domain'] . "'>" . session('nickname') . "</a> " . $content;
         M('user_dynamic')->add(array('uid' => $_SESSION['uid'], 'content' => $content, 'addtime' => $addtime));
     }
 

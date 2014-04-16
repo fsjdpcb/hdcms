@@ -23,13 +23,12 @@ class ContentControl extends AuthControl
     //构造函数
     public function __init()
     {
-        //父类构造函数
-        parent::__init();
         $this->_model = F("model", false);
         $this->_category = F("category", false);
+        $this->_mid = Q('mid', null, 'intval');
         $this->_cid = Q("cid", NULL, "intval");
         $this->_aid = Q("aid", NULL, "intval");
-        $this->_mid = Q('mid', null, 'intval');
+        
         if (!isset($this->_model[$this->_mid])) {
             $this->error("模型不存在！");
         }

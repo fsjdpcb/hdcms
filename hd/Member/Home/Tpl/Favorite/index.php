@@ -7,6 +7,7 @@
     <hdjs/>
     <bootstrap/>
     <link rel="stylesheet" type="text/css" href="__CONTROL_TPL__/css/favorite.css?ver=1.0"/>
+    <hdcms/>
 </head>
 <body>
 <header class="header center-block">

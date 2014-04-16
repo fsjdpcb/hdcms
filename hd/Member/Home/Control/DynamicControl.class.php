@@ -11,8 +11,14 @@ class DynamicControl extends MemberAuthControl
      */
     public function index()
     {
-        $db = M('user_dynamic');
-        $count = $db->count();
+        $db = V('user_dynamic');
+        $db->view=array(
+	        	'user'=>array(
+	        		'type'=>INNER_JOIN,
+	        		'on'=>'user_dynamic.uid=user.uid'
+	        	)
+        	);
+        $count = $db->join(null)->count();
         $page = new Page($count, 9);
         $this->page = $page->show();
         $this->data = $db->limit($page->limit())->order("did DESC")->all();
@@ -26,6 +32,10 @@ class DynamicControl extends MemberAuthControl
     {
         $db = V('user_dynamic');
         $db->view=array(
+        	'user'=>array(
+        		'type'=>INNER_JOIN,
+        		'on'=>'user_dynamic.uid=user.uid'
+        	),
            'user_follow'=>array(
                'type'=>INNER_JOIN,
                'on'=>'user_follow.uid=user_dynamic.uid'

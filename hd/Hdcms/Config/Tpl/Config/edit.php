@@ -20,6 +20,7 @@
         <div class="tab">
             <ul class="tab_menu">
                 <li lab="web"><a href="#">站点配置</a></li>
+                <li><li lab="rewrite"><a href="#">伪静态</a></li></li>
                 <li lab="upload"><a href="#">上传设置</a></li>
                 <li lab="member"><a href="#">会员设置</a></li>
                 <li lab="content"><a href="#">内容相关</a></li>
@@ -32,6 +33,13 @@
                 <div id="web">
                     <table class="table1">
                         <list from="$config.web" name="c">
+                            {$c.html}
+                        </list>
+                    </table>
+                </div>
+                <div id="rewrite">
+                    <table class="table1">
+                        <list from="$config.rewrite" name="c">
                             {$c.html}
                         </list>
                     </table>

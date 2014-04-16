@@ -39,6 +39,8 @@ class ConfigControl extends AuthControl
             $config = array();
             //站点配置
             $config['web'] = $this->_db->all("type=1");
+            //伪静态
+            $config['rewrite'] = $this->_db->all("type='伪静态'");
             //高级设置
             $config['grand'] = $this->_db->all("type=2");
             //上传配置
@@ -134,7 +136,7 @@ str;
                                         <label><input type="radio" name="{$c['id']}" value="0" $_no/> 否</label>
                                     </td>
                                     <td>
-                                        {$c['name']}
+                                        变量名：{$c['name']} <span style='color:#357EBD;font-weight: bold;padding-left:20px;'>说明</span>: {$c['message']}
                                     </td>
                                 </tr>
 str;

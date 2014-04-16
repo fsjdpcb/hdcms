@@ -40,8 +40,13 @@
             <list from="$data" name="d">
                 <li>
                     <div class="article">
-                       {$d.content}
-
+                    	<a href="__WEB__?{$d.domain}">
+                      		<img src='{|get_user_icon:$d['uid']}' onmouseover="user.show(this,{$d.uid})"/>
+                      	</a>
+                      	<a href="__WEB__?{$d.domain}">
+                      		{$d.username}
+                      	</a>
+                      {$d.content}
                     </div>
                     <div class="right-action">
                         <span class="time"> {$d.addtime|date_before}</span>

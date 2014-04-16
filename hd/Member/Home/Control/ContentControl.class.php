@@ -26,19 +26,26 @@ class ContentControl extends MemberAuthControl
     {
         $this->_model = F("model", false);
         $this->_category = F("category", false);
+        $this->_mid = Q('mid', null, 'intval');
         $this->_cid = Q("cid", NULL, "intval");
         $this->_aid = Q("aid", NULL, "intval");
-        if ($this->_cid) {
-            if (!isset($this->_category[$this->_cid])) {
-                $this->error("栏目不存在！");
-            }
-            $this->_mid = $this->_category[$this->_cid]['mid'];
-        } else {
-            $this->_mid = 1;
+        
+        if (!isset($this->_model[$this->_mid])) {
+            $this->error("模型不存在！");
+        }
+        if ($this->_cid && !isset($this->_category[$this->_cid])) {
+            $this->error("栏目不存在！");
         }
         $this->_db = K("Content");
+        //验证权限
+        $this->check_auth();
     }
-
+    /**
+     * 验证权限
+     */
+	public function check_auth(){
+		
+	}
     /**
      * 文章列表
      */

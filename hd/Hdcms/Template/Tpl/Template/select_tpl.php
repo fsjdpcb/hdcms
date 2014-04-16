@@ -9,9 +9,9 @@
     <js file="__CONTROL_TPL__/js/select_tpl.js"/>
 </head>
 <body>
-<div id="select_tpl">
-    <if value="$hd.get.dir_name">
-        <a href="javascript:window.history.back()" class="back">返回</a>
+<div id="select_tpl" style="overflow-y: auto;height:315px;">
+    <if value="$hd.get.path">
+        <a href="javascript:window.history.back()" class="back hd-cancel" style="padding:5px 15px;margin:5px;">返回</a>
     </if>
     <table class="table2">
         <thead>

@@ -111,7 +111,7 @@ class TemplateControl extends AuthControl
     {
         //模板目录
         $stylePath = ROOT_PATH . 'template/' . C("WEB_STYLE").'/';
-        $path = Q("get.path", $stylePath);
+        $path = Q("request.path", $stylePath);
         $file = Dir::tree($path, "html");
         foreach ($file as $n => $v) {
             if ($v['type'] == 'dir') {

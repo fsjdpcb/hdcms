@@ -37,7 +37,7 @@ class IndexControl extends AuthControl
                 if ($cat['cattype'] == 4) {
                     $url = U('Single/Content/edit', array('cid' => $cat['cid']));
                 } else {
-                    $url = U('Content/content', array('cid' => $cat['cid'], 'mid' => $cat['mid'], 'state' => 1));
+                    $url = U('Content/content', array('mid' => $cat['mid'],'cid' => $cat['cid'],'state' => 1));
                 }
                 $data['id'] = $cat['cid'];
                 $data['pId'] = $cat['pid'];

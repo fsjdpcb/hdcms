@@ -1,6 +1,6 @@
 <section class="menu">
     <div class="center-block user">
-        <a href="__ROOT__?{$hd.session.domain}" target="_blank">
+        <a href="__WEB__?{$hd.session.domain}" target="_blank">
             <img src="__ROOT__/{$hd.session.icon150}" onmouseover="user.show(this,{$hd.session.uid})"/>
         </a>
         <p class="nickname">
@@ -60,7 +60,7 @@
             <span class="glyphicon glyphicon-fire"></span>
             修改资料
         </a>
-        <a href="__ROOT__/index.php?a=Home&c=Content&m=index&g=Member">
+        <a href="__ROOT__/index.php?a=Home&c=Content&m=index&g=Member&mid=1">
             <span class="glyphicon glyphicon-book"></span>
             我的文章
         </a>
