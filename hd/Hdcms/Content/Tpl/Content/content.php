@@ -116,8 +116,8 @@
 <div class="position-bottom">
     <input type="button" class="hd-cancel" value="全选" onclick="select_all('.table2')"/>
     <input type="button" class="hd-cancel" value="反选" onclick="reverse_select('.table2')"/>
-    <input type="button" class="hd-cancel" onclick="update_order({$hd.get.cid})" value="更改排序"/>
-    <input type="button" class="hd-cancel" onclick="del({$hd.get.cid})" value="批量删除"/>
+    <input type="button" class="hd-cancel" onclick="update_order({$hd.get.mid},{$hd.get.cid})" value="更改排序"/>
+    <input type="button" class="hd-cancel" onclick="del({$hd.get.mid},{$hd.get.cid})" value="批量删除"/>
     <input type="button" class="hd-cancel" onclick="audit({$hd.get.mid},{$hd.get.cid},1)" value="审核"/>
     <input type="button" class="hd-cancel" onclick="audit({$hd.get.mid},{$hd.get.cid},0)" value="取消审核"/>
     <input type="button" class="hd-cancel" onclick="move({$hd.get.mid},{$hd.get.cid})" value="批量移动"/>

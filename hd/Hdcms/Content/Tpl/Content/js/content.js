@@ -16,13 +16,13 @@ function reverse_select() {
     });
 }
 //更新排序
-function update_order(cid) {
+function update_order(mid,cid) {
     if ($("input[type='text']").length == 0) {
         alert('没有文章用来排序！');
         return false;
     }
     var data = $("input[type='text']").serialize();
-    hd_ajax(CONTROL + "&m=update_order&cid=" + cid, data);
+    hd_ajax(CONTROL + "&m=update_order&mid="+mid+"&cid=" + cid, data);
 }
 /**
  * 删除文章
