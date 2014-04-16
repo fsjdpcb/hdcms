@@ -64,7 +64,7 @@ return array (
     'show_credits' => '0',
     'repeat_charge_day' => '1',
     'allow_user_set_credits' => '1',
-    'member_send_state' => '0',
+    'member_send_state' => '1',
     '_level' => 2,
     '_html' => '',
     '_first' => true,

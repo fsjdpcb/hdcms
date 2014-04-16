@@ -35,7 +35,7 @@ class ContentModel extends RelationModel
         //更新时间
         array('updatetime', 'get_update_time', 'method', 2, 3),
         //发布者id
-        array('uid', '_auto_uid', 'method', 2, 3),
+        array('uid', '_auto_uid', 'method', 2, 1),
         //属性flag字段
         array('flag', '_auto_flag', 'method', 2, 3),
         //投稿状态
@@ -54,7 +54,7 @@ class ContentModel extends RelationModel
     protected function _state($v)
     {
         $category = F('category');
-        return $category[Q('cid')]['member_send_state'];
+        return session('admin')==1 || $category[Q('cid')]['member_send_state'];
     }
 
     //添加内容时获得发布者id
