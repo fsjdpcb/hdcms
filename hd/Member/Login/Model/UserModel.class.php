@@ -64,7 +64,7 @@ class UserModel extends Model
             $this->data['regip'] = ip_get_client();
             $this->data['lastip'] = ip_get_client();
             $this->data['credits'] = C('init_credits'); //初始积分
-            $this->data['domain'] = $_POST['username']; //个性域名
+            $this->data['domain'] = date('ymdhis').mt_rand(1,10000); //个性域名
             if ($uid = $this->add()) {
                 //设置用户头像
                 $dir = 'upload/user/'.max(ceil($uid/500),1);
