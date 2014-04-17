@@ -111,42 +111,42 @@ var message = {
 	 * @param nickname
 	 */
 	show : function(to_uid, nickname) {
+		
 		//未登录用户，弹出登录窗口
-		if (!getCookie('login')) {
+		if (!is_login('login')) {
 			login.show();
 			return false;
 		}
 		if ($("#hd_send_message").length == 0) {
-            var html = '<div id="login_window">\
-                <span id="close_login_window" onclick="login.close()">x</span>\
-                <div class="error-pop"></div>\
-                <div class="login_title">\
-                    <a href="?a=Login&c=Login&m=reg&g=Member">注册帐号</a>\
-                    <span>登录</span>\
-                    </div>\
-                        <div class="login_form">\
-                            <form id="formLogin" method="post">\
-                                <div>\
-                                    <input type="text" name="username" id="username" class="input-text"\
-                                    style="width: 100%; padding-left: 10px;"\
-                                    placeholder="用户名/邮箱"/>\
-                                </div>\
-                                <div>\
-                                    <input type="password" name="password" class="input-text" id="password"\
-                                    style="width: 100%; padding-left: 10px;" placeholder="密码"/>\
-                                </div>\
-                                <input type="submit" class="my-btn-submit" value="登录"/>\
-                            </form>\
-                        </div>\
-                    </div>\
-                <div id="login_window_bg">\
-                </div>';
-			//添加窗口
-			$("body").append(html);
-		}
-		$("input[name='to_uid']").val(to_uid);
-		$("#nickname").html(nickname);
-		$("#hd_send_message").show();
+            var html = '<div id="hd_send_message">\
+            <form method="post" onsubmit="return message.send()">\
+            <input type="hidden" name="to_uid" value=""/>\
+            <div class="message_title">私信</div>\
+            <div class="message_content">\
+            <table>\
+                <tr>\
+                    <td style="width:80px;">收信人：</td>\
+                    <td><span id="nickname"></span></td>\
+                </tr>\
+                <tr>\
+                    <td colspan="2">\
+                        <textarea name="content" id="message_content"></textarea>\
+                    </td>\
+                </tr>\
+            </table>\
+            </div>\
+            <div class="message_btn">\
+                <input type="submit" class="message_submit" value="发送"/>\
+                <button type="button" class="message_cancel" onclick="message.close()">关闭</button>\
+            </div>\
+        </form>\
+        </div>';
+            //添加窗口
+            $("body").append(html);
+        }
+        $("input[name='to_uid']").val(to_uid);
+        $("#nickname").html(nickname);
+        $("#hd_send_message").show();
 
 	},
 	send : function() {
@@ -249,7 +249,7 @@ var user = {
 //HDCMS提示信息
 function hdcms_alert(message) {
 	if ($("#hdcms_alert").length == 0) {
-		var html =  ' < div id="hdcms_alert">\
+		var html =  ' <div id="hdcms_alert">\
 		<div class="hdcms_alert_title">提示信息</div><div class="hdcms_alert_content">操作成功</div>\
 		</div>';
 		$('body').append(html);
@@ -261,21 +261,7 @@ function hdcms_alert(message) {
 	}, 2000);
 }
 
-//获得cookie
-//function getCookie(c_name) {
-//	if (document.cookie.length > 0) {
-//		c_start = document.cookie.indexOf(c_name + "=");
-//		if (c_start != -1) {
-//			c_start = c_start + c_name.length + 1;
-//			c_end = document.cookie.indexOf(";", c_start);
-//			if (c_end == -1) {
-//				c_end = document.cookie.length;
-//			}
-//			return unescape(document.cookie.substring(c_start, c_end));
-//		}
-//	}
-//	return null
-//}
+
 
 //是否登录
 function is_login() {
