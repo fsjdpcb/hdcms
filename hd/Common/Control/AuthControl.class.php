@@ -12,7 +12,11 @@ class AuthControl extends CommonControl
         header("Cache-Control: no-cache, must-revalidate");
         header("Cache-control: private");
         if (!$this->checkAdminAccess()) {
-            $this->error("你没有访问权限");
+        	if(IS_AJAX){
+        		$this->_ajax(0,"没有操作权限");
+        	}else{
+            	$this->error("没有操作权限");
+           	}
         }
     }
 

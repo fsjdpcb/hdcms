@@ -23,8 +23,8 @@ class ContentControl extends AuthControl
     //构造函数
     public function __init()
     {
-        $this->_model = F("model", false);
-        $this->_category = F("category", false);
+        $this->_model = cache("model", false);
+        $this->_category = cache("category", false);
         $this->_mid = Q('mid', null, 'intval');
         $this->_cid = Q("cid", NULL, "intval");
         $this->_aid = Q("aid", NULL, "intval");
@@ -37,7 +37,13 @@ class ContentControl extends AuthControl
         }
         $this->_db = K("Content");
         //验证权限
-        $this->check_auth();
+        if(!$this->check_auth()){
+        	if(IS_AJAX){
+        		$this->_ajax(0,'没有操作权限');
+        	}else{
+        		$this->error('没有操作权限');
+        	}
+        }
     }
 
     /**
@@ -45,19 +51,7 @@ class ContentControl extends AuthControl
      */
     private function check_auth()
     {
-        switch (strtolower(METHOD)) {
-            //查看
-            case 'content':
-                break;
-            case 'add':
-                break;
-            case 'edit':
-                break;
-            case 'del':
-                break;
-            case 'audit':
-                break;
-        }
+    	return check_category_access($this->_cid,strtolower(METHOD));
     }
 
     //已审核文章内容页列表
@@ -65,12 +59,12 @@ class ContentControl extends AuthControl
     {
         $this->assign(K("ContentView")->get_article());
         //分配属性flag
-        $this->flag = F('flag');
+        $this->flag = cache('flag');
         $this->display();
     }
 
     //更新排序
-    public function update_order()
+    public function order()
     {
         $arc_order = Q("post.arc_order");
         if (!empty($arc_order)) {
@@ -95,7 +89,7 @@ class ContentControl extends AuthControl
             }
         } else {
             //分配属性
-            $this->flag = F('flag');
+            $this->flag = cache('flag');
             //分配栏目
             $this->category = $this->_category[$this->_cid];
             //分配自定义字段界面
@@ -119,7 +113,7 @@ class ContentControl extends AuthControl
                 //文章字段数据
                 $this->field = $this->_db->get_one_content($aid);
                 //FLAG属性
-                $this->flag = F('flag');
+                $this->flag = cache('flag');
                 //自定义字段处理
                 $this->custom_field = $this->_db->get_current_field_view($aid);
                 $this->display();
@@ -160,7 +154,7 @@ class ContentControl extends AuthControl
     /**
      * 移动文章
      */
-    public function move_content()
+    public function move()
     {
         if (IS_POST) {
             //移动方式  1 从指定ID  2 从指定栏目

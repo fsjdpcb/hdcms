@@ -11,12 +11,6 @@ import('Navigation.Model.NavigationModel');
 class CacheControl extends AuthControl
 {
 
-    //构造函数
-    public function __init()
-    {
-        parent::__init();
-
-    }
 
     /**
      * 更新全站所有缓存
@@ -28,8 +22,6 @@ class CacheControl extends AuthControl
         $this->_category();
         $this->_flag();
         $this->_navigation();
-        //删除编译文件
-        Dir::del(TEMP_PATH);
         $this->_ajax(1, '全站缓存更新成功');
     }
 
@@ -47,7 +39,7 @@ class CacheControl extends AuthControl
      */
     private function _field()
     {
-        $model = F('model');
+        $model = cache('model');
         foreach ($model as $mid => $m) {
             $_REQUEST['mid'] = $mid;
             $db = K('Field');

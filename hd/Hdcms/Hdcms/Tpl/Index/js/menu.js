@@ -31,7 +31,7 @@ function flush_left_menu(nid) {
     $("div.left_menu div.nid_" + nid).remove();
     $.ajax({
         type: "GET",
-        url: ROOT + "/index.php?a=Menu&c=Menu&m=get_child_menu",
+        url: APP+'&c=Menu&m=get_child_menu',
         data: {nid: nid},
         cache: false,
         success: function (html) {

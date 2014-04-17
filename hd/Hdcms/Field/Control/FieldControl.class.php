@@ -27,7 +27,7 @@ class FieldControl extends AuthControl
             $this->error("模型不存在！");
         }
         //模型缓存
-        $this->_model = F("model");
+        $this->_model = cache("model");
         //字段缓存
         $this->_field = F($this->_mid, false, FIELD_CACHE_PATH);
         //字段fid

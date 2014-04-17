@@ -51,7 +51,7 @@ class ContentModel extends RelationModel
     //投稿状态
     protected function _state($v)
     {
-        $category = F('category');
+        $category = cache('category');
         return session('admin')==1 || $category[Q('cid')]['member_send_state'];
     }
 
@@ -76,8 +76,8 @@ class ContentModel extends RelationModel
     //获得内容
     public function __init()
     {
-        $this->_model = F("model");
-        $this->_category = F("category");
+        $this->_model = cache("model");
+        $this->_category = cache("category");
         $this->_cid = Q("cid", null, "intval");
         $this->_aid = Q('aid', NULL, 'intval');
         $this->_mid = $this->_cid ? $this->_category[$this->_cid]['mid'] : 1;

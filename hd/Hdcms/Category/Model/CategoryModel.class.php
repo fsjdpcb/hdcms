@@ -23,8 +23,8 @@ class CategoryModel extends Model
     //构造函数
     public function __init()
     {
-        $this->_category = F("category", false);
-        $this->_model = F("model", false);
+        $this->_category = cache("category", false);
+        $this->_model = cache("model", false);
     }
 
     /**
@@ -38,11 +38,11 @@ class CategoryModel extends Model
     }
 
     /**
-     * 设置栏目权限
+     * 设置栏目权限(添加与修改栏目后动态执行)
      * @param $cid 栏目cid
      * @return bool
      */
-    public function set_category_access($cid)
+    public function __set_category_access($cid)
     {
         $db = M("category_access");
         //获得栏目mid
@@ -50,19 +50,14 @@ class CategoryModel extends Model
         //删除原有权限配置
         $db->where("cid=$cid")->del();
         //设置管理员权限
-        $access = $_POST["access"];
-        if (empty($access)) {
-            return true;
-        } else {
-            foreach ($access as $a) {
-                //没有选择权限，只有rid的数据，不进行操作
-                if (count($a) <= 1) continue;
-                //添加cid,mid等数据字段
-                $a['cid'] = $cid;
-                $a['mid'] = $mid;
-                $db->add($a);
-            }
-        }
+    	foreach ($_POST["access"] as $a) {
+    		if(count($a)==2)continue;
+  			//没有选择权限，只有rid的数据，不进行操作
+    		//添加cid,mid等数据字段
+  			$a['cid'] = $cid;
+     		$a['mid'] = $mid;
+     		$db->add($a);
+      	}   
     }
 
     /**
@@ -95,7 +90,13 @@ class CategoryModel extends Model
     //更新栏目缓存
     public function update_cache()
     {
-        $db = M('category');
+        $db = V('category');
+        $db->view=array(
+        	'model'=>array(
+        		'type'=>INNER_JOIN,
+        		'on'=>'category.mid=model.mid'
+        	)
+        );
         $category = $db->order("catorder ASC,cid ASC")->all();
         if (!empty($category)) {
             foreach ($category as $n => $v) {
@@ -109,72 +110,59 @@ class CategoryModel extends Model
         foreach ($category as $n => $v) {
             $v['_type_name'] = $type[$v['cattype']];
             $data[$v['cid']] = $v;
-            $data[$v['cid']]['model_name'] = $db->table('model')->where("mid={$v['mid']}")->getField('model_name');
-            //权限
-            $tmp = $db->table('category_access')->where("cid={$v['cid']}")->all();
-            $access = array();
-            if (!is_null($tmp)) {
-                foreach ($tmp as $i => $a) {
-                    $access[$a['rid']] = $a;
+            //权限记录
+            $result= $db->table('category_access')->where("cid={$v['cid']}")->all();
+            $access = array('admin'=>array(),'user'=>array());
+            if (!is_null($result)) { 
+                foreach ($result as $i => $a) {
+                	if($a['admin']==1){
+                    	$access['admin'][$a['rid']] = $a;
+                 	}else{
+                 		$access['user'][$a['rid']]=$a;
+                 	}
                 }
             }
+            //普通用户权限
             $data[$v['cid']]['access'] = $access;
         }
         //获得栏目权限信息
 
-        return F("category", $data);
+        return cache("category", $data);
     }
 
     //删除栏目
     public function del_category()
     {
         $cid = Q("cid", NULL, 'intval');
+        //删除单文章
+        M('content_single')->where("cid=$cid")->del();
+        //删除普通文章
         import('Content.Model.ContentModel');
-        $db = K("Content");
-        //删除栏目文章
-        if ($db->where("cid=$cid")->del()) {
-            //删除栏目
-            if ($this->del($cid)) {
-                //删除栏目权限
-                M("category_access")->where("cid=$cid")->del();
-                //如果是单文章栏目，删除单文章
-                M('content_single')->where("cid=$cid")->del();
-                return true;
-            }
-        }
-        return false;
+        K("Content")->where("cid=$cid")->del();
+        //删除栏目权限
+        M("category_access")->where("cid=$cid")->del();
+        //删除栏目
+        return $this->del($cid);
     }
 
     /**
-     * 修改与添加栏目时获得管理员或会员的权限列表(后台操作）
+     * 修改栏目时获得管理员与会员的权限信息(后台操作）
      * 用于获得管理员或前台会员权限
      * @param null $cid 栏目cid
-     * @param null $admin 管理员权限
+     * @param null $roleType 角色类型  1 管理员  0 前台用户
      * @param null $rid 角色id($admin有值才有效)
      */
-    public function get_access_list($cid = null, $admin = null, $rid = null)
+    public function get_access_list($cid, $roleType)
     {
         //表前缀
         $pre = C("DB_PREFIX");
         $db = M("category_access");
-        $field = 'a.cid,r.rid,r.rname,r.admin,a.add,a.del,a.edit,a.show,a.move,a.order,a.submit_state';
-        //如果有栏目cid只获取取指定栏目的权限，否则获得所有栏目权限
-        if ($cid)
-            $cat_where = " WHERE cid=$cid";
-        //根据$admin获得前台或后台角色权限
-        if ($rid) {
-            //获得指定角色id的栏目权限
-            $where = " WHERE rid=$rid";
-        } else {
-            $role = M('role')->where("admin=$admin")->all();
-            $rid = array();
-            foreach ($role as $r) {
-                $rid[] = $r['rid'];
-            }
-            $where = " WHERE r.rid IN (" . implode(",", $rid) . ")";
-        }
-        $sql = "SELECT $field FROM  {$pre}role AS r  LEFT JOIN (SELECT * FROM {$pre}category_access $cat_where) AS a
-                    ON r.rid = a.rid  $where";
+        $field = 'a.cid,r.rid,r.rname,r.admin,a.add,a.del,a.edit,a.show,a.move,a.audit,a.order';
+		//获得后台或前台角色rid
+        $rids = M('role')->where("admin=$roleType")->getField('rid',true);
+        $sql = "SELECT $field FROM  {$pre}role AS r  LEFT JOIN (SELECT * FROM {$pre}category_access  WHERE cid=$cid) AS a
+                ON r.rid = a.rid
+                WHERE r.rid IN (" . implode(",", $rids) . ") AND r.rid<>1";
         return $db->query($sql);
     }
 
@@ -185,13 +173,13 @@ class CategoryModel extends Model
 
     public function __after_insert($data)
     {
+        $this->__set_category_access($data);
         $this->update_cache();
-        $this->set_category_access($data);
     }
 
     public function __after_update($data)
     {
+        $this->__set_category_access(Q('cid'));
         $this->update_cache();
-        $this->set_category_access(Q('cid'));
     }
 }

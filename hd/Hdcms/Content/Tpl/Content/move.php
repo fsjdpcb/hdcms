@@ -6,18 +6,18 @@
     <title>批量移动文章</title>
     <hdjs/>
     <js file="__GROUP__/static/js/js.js"/>
-    <js file="__CONTROL_TPL__/js/move_content.js"/>
-    <css file="__CONTROL_TPL__/css/move_content.css"/>
+    <js file="__CONTROL_TPL__/js/move.js"/>
+    <css file="__CONTROL_TPL__/css/move.css"/>
 </head>
 <body>
 <div class="wrap">
     <div class="title-header">温馨提示</div>
-    <div class="help"> 不能够跨模型移动文章</div>
+    <div class="help" style="margin-bottom:0px;"> 不能够跨模型移动文章</div>
     <div class="line"></div>
-    <form action="__METH__" method="post" onsubmit="return false" class="form-inline hd-form">
+    <form action="__METH__" method="post" onsubmit="return false" class="hd-form">
     	<input type="hidden" name="mid" value="{$hd.get.mid}"/>
         <input type="hidden" name="cid" value="{$hd.get.cid}"/>
-        <table style="width:100%">
+        <table style="table1">
             <tr>
                 <td>
                     指定来源
@@ -30,10 +30,10 @@
                 <td>
                     <ul class="fromtype">
                         <li>
-                            <label><input type="radio" name="from_type" value="1" checked="checked"/> 从指定aid</label>
+                            <label><input type="radio" name="from_type" value="1" checked="checked"/> 从指定aid </label>
                         </li>
                         <li>
-                            <label><input type="radio" name="from_type" value="2" /> 从指定栏目</label>
+                            <label> <input type="radio" name="from_type" value="2" /> 从指定栏目</label>
                         </li>
                     </ul>
                     <div id="t_aid">
@@ -44,7 +44,7 @@
                                 name="from_cid[]">
                             <list from="$category" name="c">
                                 <option value="{$c.cid}" {$c.disabled}>
-                                {$c.catname}
+                                {$c._name}
                                 </option>
                             </list>
                         </select>
@@ -55,14 +55,14 @@
                             name="to_cid">
                         <list from="$category" name="c">
                             <option value="{$c.cid}" {$c.disabled} {$c.selected}>
-                            {$c.catname}
+                            {$c._name}
                             </option>
                         </list>
                     </select>
                 </td>
             </tr>
         </table>
-        <div class="btn_wrap">
+        <div class="position-bottom">
             <input type="submit" class="hd-success" value="确定"/>
             <input type="button" class="hd-cancel" id="close_window" value="关闭"/>
         </div>

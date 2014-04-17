@@ -47,7 +47,7 @@ $db->exe("CREATE TABLE `".$db_prefix."category` (
   `allow_user_set_credits` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否允许会员投稿设置积分 1 允许 0 不允许',
   `member_send_state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '会员投稿状态 1 审核 2 未审核',
   PRIMARY KEY (`cid`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='栏目表'");
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='栏目表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."category_access`");
 $db->exe("CREATE TABLE `".$db_prefix."category_access` (
   `rid` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '角色id',
@@ -58,7 +58,9 @@ $db->exe("CREATE TABLE `".$db_prefix."category_access` (
   `edit` tinyint(1) NOT NULL DEFAULT '0' COMMENT '允许更新 1允许 0 不允许',
   `del` tinyint(1) NOT NULL DEFAULT '0' COMMENT '允许删除 1允许 0 不允许',
   `order` tinyint(1) NOT NULL DEFAULT '0' COMMENT '允许排序 1允许 0 不允许',
-  `move` tinyint(1) NOT NULL DEFAULT '0' COMMENT '允许移动 1允许 0 不允许'
+  `move` tinyint(1) NOT NULL DEFAULT '0' COMMENT '允许移动 1允许 0 不允许',
+  `audit` tinyint(1) NOT NULL DEFAULT '0' COMMENT '允许审核栏目文章 1 允许 0 不允许',
+  `admin` tinyint(1) NOT NULL COMMENT '是否为管理员权限 1 管理员 2 前台用户'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='栏目权限表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."comment`");
 $db->exe("CREATE TABLE `".$db_prefix."comment` (
@@ -81,12 +83,12 @@ $db->exe("CREATE TABLE `".$db_prefix."config` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL DEFAULT '' COMMENT '配置名称\n',
   `value` text NOT NULL COMMENT '配置值',
-  `type` enum('站点配置','高级设置','上传配置','会员设置','邮箱配置','安全设置','水印设置','内容相关','性能优化','私有配置') NOT NULL DEFAULT '站点配置' COMMENT '配置类型\n1 站点配置\n2 性能设置\n3 上传配置\n4 交互设置\n5 会员设置',
+  `type` enum('站点配置','高级设置','上传配置','会员设置','邮箱配置','安全设置','水印设置','内容相关','性能优化','伪静态','私有配置') NOT NULL DEFAULT '站点配置' COMMENT '配置类型\n1 站点配置\n2 性能设置\n3 上传配置\n4 交互设置\n5 会员设置',
   `title` char(30) NOT NULL DEFAULT '',
   `show_type` enum('文本','数字','布尔(1/0)','多行文本') DEFAULT '文本',
   `message` varchar(255) DEFAULT NULL COMMENT '提示',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=166 DEFAULT CHARSET=utf8 COMMENT='系统配置'");
+) ENGINE=MyISAM AUTO_INCREMENT=168 DEFAULT CHARSET=utf8 COMMENT='系统配置'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."content`");
 $db->exe("CREATE TABLE `".$db_prefix."content` (
   `aid` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -273,7 +275,7 @@ $db->exe("CREATE TABLE `".$db_prefix."node` (
   `is_system` tinyint(1) NOT NULL DEFAULT '0' COMMENT '系统菜单 1 是  0 不是',
   `favorite` tinyint(1) NOT NULL DEFAULT '0' COMMENT '后台常用菜单   1 是  0 不是',
   PRIMARY KEY (`nid`)
-) ENGINE=MyISAM AUTO_INCREMENT=184 DEFAULT CHARSET=utf8 COMMENT='节点表（后台菜单也使用）'");
+) ENGINE=MyISAM AUTO_INCREMENT=187 DEFAULT CHARSET=utf8 COMMENT='节点表（后台菜单也使用）'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."plugin`");
 $db->exe("CREATE TABLE `".$db_prefix."plugin` (
   `pid` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',

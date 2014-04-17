@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50535
 File Encoding         : 65001
 
-Date: 2014-04-14 14:38:25
+Date: 2014-04-18 04:40:55
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -29,43 +29,6 @@ CREATE TABLE `hd_access` (
 -- ----------------------------
 -- Records of hd_access
 -- ----------------------------
-INSERT INTO `hd_access` VALUES ('2', '17');
-INSERT INTO `hd_access` VALUES ('2', '11');
-INSERT INTO `hd_access` VALUES ('2', '20');
-INSERT INTO `hd_access` VALUES ('2', '21');
-INSERT INTO `hd_access` VALUES ('2', '19');
-INSERT INTO `hd_access` VALUES ('2', '16');
-INSERT INTO `hd_access` VALUES ('2', '80');
-INSERT INTO `hd_access` VALUES ('2', '69');
-INSERT INTO `hd_access` VALUES ('2', '12');
-INSERT INTO `hd_access` VALUES ('2', '79');
-INSERT INTO `hd_access` VALUES ('2', '61');
-INSERT INTO `hd_access` VALUES ('2', '9');
-INSERT INTO `hd_access` VALUES ('2', '8');
-INSERT INTO `hd_access` VALUES ('2', '6');
-INSERT INTO `hd_access` VALUES ('2', '5');
-INSERT INTO `hd_access` VALUES ('2', '70');
-INSERT INTO `hd_access` VALUES ('2', '15');
-INSERT INTO `hd_access` VALUES ('2', '14');
-INSERT INTO `hd_access` VALUES ('2', '3');
-INSERT INTO `hd_access` VALUES ('2', '10');
-INSERT INTO `hd_access` VALUES ('2', '81');
-INSERT INTO `hd_access` VALUES ('2', '4');
-INSERT INTO `hd_access` VALUES ('2', '13');
-INSERT INTO `hd_access` VALUES ('2', '2');
-INSERT INTO `hd_access` VALUES ('2', '1');
-INSERT INTO `hd_access` VALUES ('3', '81');
-INSERT INTO `hd_access` VALUES ('3', '4');
-INSERT INTO `hd_access` VALUES ('3', '13');
-INSERT INTO `hd_access` VALUES ('3', '2');
-INSERT INTO `hd_access` VALUES ('3', '1');
-INSERT INTO `hd_access` VALUES ('2', '18');
-INSERT INTO `hd_access` VALUES ('2', '30');
-INSERT INTO `hd_access` VALUES ('2', '31');
-INSERT INTO `hd_access` VALUES ('2', '32');
-INSERT INTO `hd_access` VALUES ('2', '33');
-INSERT INTO `hd_access` VALUES ('2', '34');
-INSERT INTO `hd_access` VALUES ('2', '35');
 
 -- ----------------------------
 -- Table structure for hd_bug
@@ -119,14 +82,22 @@ CREATE TABLE `hd_category` (
   `allow_user_set_credits` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否允许会员投稿设置积分 1 允许 0 不允许',
   `member_send_state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '会员投稿状态 1 审核 2 未审核',
   PRIMARY KEY (`cid`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='栏目表';
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='栏目表';
 
 -- ----------------------------
 -- Records of hd_category
 -- ----------------------------
-INSERT INTO `hd_category` VALUES ('1', '0', '问答', 'ask', '', '', 'article_index.html', 'article_list.html', 'article_default.html', null, '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '2', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '0');
-INSERT INTO `hd_category` VALUES ('2', '1', 'HDPHP', 'hdphp', '', '', 'article_index.html', 'article_list.html', 'article_default.html', null, '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '0');
-INSERT INTO `hd_category` VALUES ('3', '1', 'HDCMS', 'hdcms', '', '', 'article_index.html', 'article_list.html', 'article_default.html', null, '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '0');
+INSERT INTO `hd_category` VALUES ('1', '0', 'HDPHP', 'hdphp', '', '', 'article_index.html', 'article_list.html', 'article_default.html', '', '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '2', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '0');
+INSERT INTO `hd_category` VALUES ('3', '0', 'HDCMS', 'hdcms', '', '', 'article_index.html', 'article_list.html', 'article_default.html', '', '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '2', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '1');
+INSERT INTO `hd_category` VALUES ('10', '1', '安装使用', 'help', '', '', 'article_index.html', 'article_list.html', 'article_default.html', null, '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '1');
+INSERT INTO `hd_category` VALUES ('12', '3', '安装使用', 'help', '', '', 'article_index.html', 'article_list.html', 'article_default.html', null, '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '0');
+INSERT INTO `hd_category` VALUES ('5', '0', '站内公告', 'news', '', '', 'article_index.html', 'article_list.html', 'article_default.html', null, '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '1000', '0', '', '', '1', '0', '1', '1', '0');
+INSERT INTO `hd_category` VALUES ('6', '0', '分享', 'it', '', '', 'article_index.html', 'article_list.html', 'article_default.html', null, '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '2', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '0');
+INSERT INTO `hd_category` VALUES ('7', '6', 'PHP', 'php', '', '', 'article_index.html', 'article_list.html', 'article_default.html', null, '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '0');
+INSERT INTO `hd_category` VALUES ('8', '6', '前端', 'html', '', '', 'article_index.html', 'article_list.html', 'article_default.html', null, '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '0');
+INSERT INTO `hd_category` VALUES ('9', '6', '服务器', 'inux', '', '', 'article_index.html', 'article_list.html', 'article_default.html', null, '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '0');
+INSERT INTO `hd_category` VALUES ('11', '1', 'BUG反馈', 'bug', '', '', 'article_index.html', 'article_list.html', 'article_default.html', null, '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '0');
+INSERT INTO `hd_category` VALUES ('13', '3', 'Bug反馈', 'bug', '', '', 'article_index.html', 'article_list.html', 'article_default.html', null, '{catdir}/list_{cid}_{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '0');
 
 -- ----------------------------
 -- Table structure for hd_category_access
@@ -141,7 +112,9 @@ CREATE TABLE `hd_category_access` (
   `edit` tinyint(1) NOT NULL DEFAULT '0' COMMENT '允许更新 1允许 0 不允许',
   `del` tinyint(1) NOT NULL DEFAULT '0' COMMENT '允许删除 1允许 0 不允许',
   `order` tinyint(1) NOT NULL DEFAULT '0' COMMENT '允许排序 1允许 0 不允许',
-  `move` tinyint(1) NOT NULL DEFAULT '0' COMMENT '允许移动 1允许 0 不允许'
+  `move` tinyint(1) NOT NULL DEFAULT '0' COMMENT '允许移动 1允许 0 不允许',
+  `audit` tinyint(1) NOT NULL DEFAULT '0' COMMENT '允许审核栏目文章 1 允许 0 不允许',
+  `admin` tinyint(1) NOT NULL COMMENT '是否为管理员权限 1 管理员 2 前台用户'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='栏目权限表';
 
 -- ----------------------------
@@ -180,69 +153,68 @@ CREATE TABLE `hd_config` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL DEFAULT '' COMMENT '配置名称\n',
   `value` text NOT NULL COMMENT '配置值',
-  `type` enum('站点配置','高级设置','上传配置','会员设置','邮箱配置','安全设置','水印设置','内容相关','性能优化','私有配置') NOT NULL DEFAULT '站点配置' COMMENT '配置类型\n1 站点配置\n2 性能设置\n3 上传配置\n4 交互设置\n5 会员设置',
+  `type` enum('站点配置','高级设置','上传配置','会员设置','邮箱配置','安全设置','水印设置','内容相关','性能优化','伪静态','私有配置') NOT NULL DEFAULT '站点配置' COMMENT '配置类型\n1 站点配置\n2 性能设置\n3 上传配置\n4 交互设置\n5 会员设置',
   `title` char(30) NOT NULL DEFAULT '',
   `show_type` enum('文本','数字','布尔(1/0)','多行文本') DEFAULT '文本',
   `message` varchar(255) DEFAULT NULL COMMENT '提示',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=166 DEFAULT CHARSET=utf8 COMMENT='系统配置';
+) ENGINE=MyISAM AUTO_INCREMENT=168 DEFAULT CHARSET=utf8 COMMENT='系统配置';
 
 -- ----------------------------
 -- Records of hd_config
 -- ----------------------------
-INSERT INTO `hd_config` VALUES ('1', 'webname', 'HDPHP社区--中国最强PHP培训机构  《后盾网》 ', '站点配置', '网站名称', '文本', null);
-INSERT INTO `hd_config` VALUES ('2', 'icp', '京ICP备12048441号-3', '站点配置', 'ICP备案号', '文本', null);
-INSERT INTO `hd_config` VALUES ('3', 'html_path', 'html', '站点配置', '静态html目录', '文本', null);
-INSERT INTO `hd_config` VALUES ('4', 'copyright', 'Copyright © 2012-2013 HDCMS 后盾网 版权所有', '站点配置', '网站版权信息', '文本', null);
-INSERT INTO `hd_config` VALUES ('5', 'keywords', 'php培训,php实训,后盾网', '站点配置', '网站关键词', '文本', null);
-INSERT INTO `hd_config` VALUES ('6', 'description', '后盾网顶尖PHP培训 内容全面 全程实战!业内顶级讲师亲自授课,千余课时独家视频教程免费下载,超百G原创视频资源,实力不容造假!010-64825057', '站点配置', '网站描述', '多行文本', null);
-INSERT INTO `hd_config` VALUES ('152', 'email', 'houdunwangxj@gmail.com', '站点配置', '管理员邮箱', '文本', null);
-INSERT INTO `hd_config` VALUES ('9', 'backup_dir', 'backup', '高级设置', '数据备份目录', '文本', null);
-INSERT INTO `hd_config` VALUES ('10', 'web_open', '1', '站点配置', '网站开启', '布尔(1/0)', null);
-INSERT INTO `hd_config` VALUES ('15', 'auth_key', 'houdunwang.com', '安全设置', 'cookie加密KEY', '文本', null);
-INSERT INTO `hd_config` VALUES ('16', 'upload_path', 'upload', '上传配置', '上传目录', '文本', null);
-INSERT INTO `hd_config` VALUES ('17', 'upload_img_path', 'img', '上传配置', '上传图片目录', '文本', null);
-INSERT INTO `hd_config` VALUES ('18', 'allow_type', 'jpg,jpeg,png,bmp,gif', '上传配置', '允许上传文件类型', '文本', null);
-INSERT INTO `hd_config` VALUES ('19', 'allow_size', '2048000', '上传配置', '允许上传大小（字节）', '数字', null);
-INSERT INTO `hd_config` VALUES ('20', 'water_on', '0', '水印设置', '上传文件加水印', '布尔(1/0)', null);
-INSERT INTO `hd_config` VALUES ('115', 'member_verify', '0', '会员设置', '会员注册是否需要审核', '布尔(1/0)', null);
-INSERT INTO `hd_config` VALUES ('116', 'reg_show_code', '1', '会员设置', '会员注册是否显示验证码', '布尔(1/0)', null);
-INSERT INTO `hd_config` VALUES ('119', 'reg_email', '1', '会员设置', '注册成功是否发邮件', '布尔(1/0)', null);
-INSERT INTO `hd_config` VALUES ('120', 'reg_interval', '0', '会员设置', '2次注册间隔间间', '数字', null);
-INSERT INTO `hd_config` VALUES ('121', 'default_member_group', '4', '会员设置', '新注册会员初始组', '数字', null);
-INSERT INTO `hd_config` VALUES ('123', 'token_on', '0', '安全设置', '表单使用令牌验证', '布尔(1/0)', null);
-INSERT INTO `hd_config` VALUES ('124', 'log_key', 'houdunwang.com', '安全设置', '日志文件加密KEY', '文本', null);
-INSERT INTO `hd_config` VALUES ('125', 'session_name', 'hdsid', '安全设置', 'SESSION_NAME值', '文本', null);
-INSERT INTO `hd_config` VALUES ('126', 'super_admin_key', 'SUPER_ADMIN', '安全设置', '站长令牌名称', '文本', null);
-INSERT INTO `hd_config` VALUES ('127', 'tel', '010-64825057', '站点配置', '联系电话', '文本', null);
-INSERT INTO `hd_config` VALUES ('128', 'water_text', 'houdunwang.com', '水印设置', '水印文字', '文本', null);
-INSERT INTO `hd_config` VALUES ('129', 'water_text_size', '16', '水印设置', '文字大小', '数字', null);
-INSERT INTO `hd_config` VALUES ('130', 'water_img', 'data/water/water.png', '水印设置', '水印图像', '文本', null);
-INSERT INTO `hd_config` VALUES ('131', 'water_pct', '0', '水印设置', '水印图片透明度', '数字', null);
-INSERT INTO `hd_config` VALUES ('132', 'water_quality', '90', '水印设置', '图片压缩比', '数字', null);
-INSERT INTO `hd_config` VALUES ('133', 'water_pos', '9', '水印设置', '水印位置', '数字', null);
-INSERT INTO `hd_config` VALUES ('134', 'del_content_model', '1', '高级设置', '删除文章先放入回收站', '布尔(1/0)', null);
-INSERT INTO `hd_config` VALUES ('136', 'down_remove_pic_size', '500', '高级设置', '下载远程资源允许最大值', '数字', null);
-INSERT INTO `hd_config` VALUES ('165', 'comment_len', '80', '会员设置', '评论内容最大长度', '文本', '');
-INSERT INTO `hd_config` VALUES ('138', 'favicon_width', '180', '会员设置', '会员头像宽度', '数字', null);
-INSERT INTO `hd_config` VALUES ('139', 'favicon_height', '180', '会员设置', '会员头像高度', '数字', null);
-INSERT INTO `hd_config` VALUES ('142', 'down_remote_pic', '0', '内容相关', '下载远程图片', '布尔(1/0)', null);
-INSERT INTO `hd_config` VALUES ('143', 'auto_desc', '1', '内容相关', '截取内容为摘要', '布尔(1/0)', null);
-INSERT INTO `hd_config` VALUES ('144', 'auto_thumb', '0', '内容相关', '提取内容图片为缩略图', '布尔(1/0)', null);
-INSERT INTO `hd_config` VALUES ('145', 'upload_img_max_width', '600', '内容相关', '上传图片宽度超过此值，进行缩放', '数字', null);
-INSERT INTO `hd_config` VALUES ('146', 'upload_img_max_height', '600', '内容相关', '上传图片高度超过此值，进行缩放', '数字', null);
-INSERT INTO `hd_config` VALUES ('149', 'member_open', '1', '会员设置', '开启会员中心', '布尔(1/0)', null);
-INSERT INTO `hd_config` VALUES ('150', 'web_close_message', '网站暂时关闭，请稍候访问', '站点配置', '网站关闭提示信息', '文本', null);
-INSERT INTO `hd_config` VALUES ('151', 'web_style', 'default', '私有配置', '网站模板', '文本', null);
-INSERT INTO `hd_config` VALUES ('155', 'qq', '1455067020', '站点配置', 'QQ号', '文本', null);
-INSERT INTO `hd_config` VALUES ('154', 'weibo', 'houdunwangxj@gmail.com', '站点配置', '新浪微博', '文本', null);
-INSERT INTO `hd_config` VALUES ('156', 'tweibo', 'houdunwang@gmail.com', '站点配置', '腾讯微博', '文本', null);
-INSERT INTO `hd_config` VALUES ('157', 'email', 'houdunwangxj@gmail.com', '站点配置', '企业邮箱', '文本', null);
-INSERT INTO `hd_config` VALUES ('158', 'init_credits', '100', '会员设置', '初始积分', '文本', null);
+INSERT INTO `hd_config` VALUES ('1', 'webname', 'HDPHP社区--中国最强PHP培训机构  《后盾网》', '站点配置', '网站名称', '文本', '');
+INSERT INTO `hd_config` VALUES ('2', 'icp', '京ICP备12048441号-3', '站点配置', 'ICP备案号', '文本', '');
+INSERT INTO `hd_config` VALUES ('3', 'html_path', 'html', '站点配置', '静态html目录', '文本', '');
+INSERT INTO `hd_config` VALUES ('4', 'copyright', 'Copyright © 2012-2013 HDCMS 后盾网 版权所有', '站点配置', '网站版权信息', '文本', '');
+INSERT INTO `hd_config` VALUES ('5', 'keywords', 'php培训,php实训,后盾网', '站点配置', '网站关键词', '文本', '');
+INSERT INTO `hd_config` VALUES ('6', 'description', '后盾网顶尖PHP培训 内容全面 全程实战!业内顶级讲师亲自授课,千余课时独家视频教程免费下载,超百G原创视频资源,实力不容造假!010-64825057', '站点配置', '网站描述', '多行文本', '');
+INSERT INTO `hd_config` VALUES ('152', 'email', 'houdunwangxj@gmail.com', '站点配置', '管理员邮箱', '文本', '');
+INSERT INTO `hd_config` VALUES ('9', 'backup_dir', 'backup', '高级设置', '数据备份目录', '文本', '');
+INSERT INTO `hd_config` VALUES ('10', 'web_open', '1', '站点配置', '网站开启', '布尔(1/0)', '');
+INSERT INTO `hd_config` VALUES ('15', 'auth_key', 'houdunwang.com', '安全设置', 'cookie加密KEY', '文本', '');
+INSERT INTO `hd_config` VALUES ('16', 'upload_path', 'upload', '上传配置', '上传目录', '文本', '');
+INSERT INTO `hd_config` VALUES ('17', 'upload_img_path', 'img', '上传配置', '上传图片目录', '文本', '');
+INSERT INTO `hd_config` VALUES ('18', 'allow_type', 'jpg,jpeg,png,bmp,gif', '上传配置', '允许上传文件类型', '文本', '');
+INSERT INTO `hd_config` VALUES ('19', 'allow_size', '2048000', '上传配置', '允许上传大小（字节）', '数字', '');
+INSERT INTO `hd_config` VALUES ('20', 'water_on', '0', '水印设置', '上传文件加水印', '布尔(1/0)', '');
+INSERT INTO `hd_config` VALUES ('115', 'member_verify', '0', '会员设置', '会员注册是否需要审核', '布尔(1/0)', '');
+INSERT INTO `hd_config` VALUES ('116', 'reg_show_code', '1', '会员设置', '会员注册是否显示验证码', '布尔(1/0)', '');
+INSERT INTO `hd_config` VALUES ('119', 'reg_email', '1', '会员设置', '注册成功是否发邮件', '布尔(1/0)', '');
+INSERT INTO `hd_config` VALUES ('120', 'reg_interval', '0', '会员设置', '2次注册间隔间间', '数字', '');
+INSERT INTO `hd_config` VALUES ('121', 'default_member_group', '4', '会员设置', '新注册会员初始组', '数字', '');
+INSERT INTO `hd_config` VALUES ('123', 'token_on', '0', '安全设置', '表单使用令牌验证', '布尔(1/0)', '');
+INSERT INTO `hd_config` VALUES ('124', 'log_key', 'houdunwang.com', '安全设置', '日志文件加密KEY', '文本', '');
+INSERT INTO `hd_config` VALUES ('125', 'session_name', 'hdsid', '安全设置', 'SESSION_NAME值', '文本', '');
+INSERT INTO `hd_config` VALUES ('126', 'super_admin_key', 'SUPER_ADMIN', '安全设置', '站长令牌名称', '文本', '');
+INSERT INTO `hd_config` VALUES ('127', 'tel', '010-64825057', '站点配置', '联系电话', '文本', '');
+INSERT INTO `hd_config` VALUES ('128', 'water_text', 'houdunwang.com', '水印设置', '水印文字', '文本', '');
+INSERT INTO `hd_config` VALUES ('129', 'water_text_size', '16', '水印设置', '文字大小', '数字', '');
+INSERT INTO `hd_config` VALUES ('130', 'water_img', 'data/water/water.png', '水印设置', '水印图像', '文本', '');
+INSERT INTO `hd_config` VALUES ('131', 'water_pct', '0', '水印设置', '水印图片透明度', '数字', '');
+INSERT INTO `hd_config` VALUES ('132', 'water_quality', '90', '水印设置', '图片压缩比', '数字', '');
+INSERT INTO `hd_config` VALUES ('133', 'water_pos', '9', '水印设置', '水印位置', '数字', '');
+INSERT INTO `hd_config` VALUES ('134', 'del_content_model', '0', '高级设置', '删除文章先放入回收站', '布尔(1/0)', '');
+INSERT INTO `hd_config` VALUES ('136', 'down_remove_pic_size', '500', '高级设置', '下载远程资源允许最大值', '数字', '');
+INSERT INTO `hd_config` VALUES ('142', 'down_remote_pic', '0', '内容相关', '下载远程图片', '布尔(1/0)', '');
+INSERT INTO `hd_config` VALUES ('143', 'auto_desc', '1', '内容相关', '截取内容为摘要', '布尔(1/0)', '');
+INSERT INTO `hd_config` VALUES ('144', 'auto_thumb', '0', '内容相关', '提取内容图片为缩略图', '布尔(1/0)', '');
+INSERT INTO `hd_config` VALUES ('145', 'upload_img_max_width', '600', '内容相关', '上传图片宽度超过此值，进行缩放', '数字', '');
+INSERT INTO `hd_config` VALUES ('146', 'upload_img_max_height', '600', '内容相关', '上传图片高度超过此值，进行缩放', '数字', '');
+INSERT INTO `hd_config` VALUES ('149', 'member_open', '1', '会员设置', '开启会员中心', '布尔(1/0)', '');
+INSERT INTO `hd_config` VALUES ('150', 'web_close_message', '网站维护中，请稍候访问', '站点配置', '网站关闭提示信息', '文本', '');
+INSERT INTO `hd_config` VALUES ('151', 'web_style', 'default', '私有配置', '网站模板', '文本', '');
+INSERT INTO `hd_config` VALUES ('155', 'qq', '1455067020', '站点配置', 'QQ号', '文本', '');
+INSERT INTO `hd_config` VALUES ('154', 'weibo', 'houdunwangxj@gmail.com', '站点配置', '新浪微博', '文本', '');
+INSERT INTO `hd_config` VALUES ('156', 'tweibo', 'houdunwang@gmail.com', '站点配置', '腾讯微博', '文本', '');
+INSERT INTO `hd_config` VALUES ('157', 'email', 'houdunwangxj@gmail.com', '站点配置', '企业邮箱', '文本', '');
+INSERT INTO `hd_config` VALUES ('158', 'init_credits', '100', '会员设置', '初始积分', '文本', '');
 INSERT INTO `hd_config` VALUES ('161', 'cache_index', '-1', '性能优化', '首页缓存时间', '文本', '（单位：秒，-1不缓存 0永久缓存)');
 INSERT INTO `hd_config` VALUES ('162', 'cache_category', '-1', '性能优化', '栏目缓存时间', '文本', '（单位：秒，-1不缓存 0永久缓存)');
 INSERT INTO `hd_config` VALUES ('163', 'cache_content', '-1', '性能优化', '文章缓存时间', '文本', '（单位：秒，-1不缓存 0永久缓存)');
 INSERT INTO `hd_config` VALUES ('164', 'comment_step_time', '10', '会员设置', '评论间隔时间', '文本', '必须大于1（单位秒)');
+INSERT INTO `hd_config` VALUES ('166', 'pathinfo_type', '1', '伪静态', '开启PATHINFO访问', '布尔(1/0)', '需要环境支持');
+INSERT INTO `hd_config` VALUES ('167', 'open_rewrite', '0', '伪静态', '开启伪静态', '布尔(1/0)', '1 服务器需要支持Rewrtie 2 将HDCMS根目录中的htaccess.txt改名为.htaccess');
 
 -- ----------------------------
 -- Table structure for hd_content
@@ -449,7 +421,7 @@ CREATE TABLE `hd_link_config` (
 -- ----------------------------
 -- Records of hd_link_config
 -- ----------------------------
-INSERT INTO `hd_link_config` VALUES ('1', 'hdphp开源社区', 'http://www.hdphp.com', 'hd/Plugin/Link/Data/logo.png', 'houdunwang@gmail.com', '1、请先在贵站做好后盾网的友情链接\r\n2、将右侧‘文字链接’或‘图片链接’代码复制到贵站\r\n3、凡开通我站友情链接且内容健康的网站，经管理员审核后，将显示在此友情链接页面\r\n4、首页友情连接，要求pr>=2、alexa < 10000；其他页面连接根据具体页面而定（请具体咨询）\r\n5、贵网站要在百度google都有记录收录，且网站访问速度不能太慢', '1', '1', '2300071698');
+INSERT INTO `hd_link_config` VALUES ('1', 'hdphp开源社区', 'http://www.hdphp.com', 'hd/Plugin/Link/Data/logo.png', 'houdunwang@gmail.com', '1、请先在贵站做好后盾网的友情链接\n2、将右侧‘文字链接’或‘图片链接’代码复制到贵站\n3、凡开通我站友情链接且内容健康的网站，经管理员审核后，将显示在此友情链接页面\n4、首页友情连接，要求pr>=2、alexa < 10000；其他页面连接根据具体页面而定（请具体咨询）\n5、贵网站要在百度google都有记录收录，且网站访问速度不能太慢', '1', '1', '2300071698');
 
 -- ----------------------------
 -- Table structure for hd_link_type
@@ -533,7 +505,7 @@ CREATE TABLE `hd_node` (
   `is_system` tinyint(1) NOT NULL DEFAULT '0' COMMENT '系统菜单 1 是  0 不是',
   `favorite` tinyint(1) NOT NULL DEFAULT '0' COMMENT '后台常用菜单   1 是  0 不是',
   PRIMARY KEY (`nid`)
-) ENGINE=MyISAM AUTO_INCREMENT=184 DEFAULT CHARSET=utf8 COMMENT='节点表（后台菜单也使用）';
+) ENGINE=MyISAM AUTO_INCREMENT=187 DEFAULT CHARSET=utf8 COMMENT='节点表（后台菜单也使用）';
 
 -- ----------------------------
 -- Records of hd_node
@@ -549,14 +521,14 @@ INSERT INTO `hd_node` VALUES ('13', '栏目管理', 'Hdcms', 'Category', 'Catego
 INSERT INTO `hd_node` VALUES ('14', '模型管理', 'Hdcms', 'Model', 'Model', 'index', '', '', '1', '1', '10', '100', '1', '0');
 INSERT INTO `hd_node` VALUES ('15', '推荐位', 'Hdcms', 'Flag', 'Flag', 'index', '', '', '1', '1', '10', '100', '1', '0');
 INSERT INTO `hd_node` VALUES ('19', '系统设置', 'Hdcms', '', '', '', '', '', '1', '1', '16', '100', '1', '0');
-INSERT INTO `hd_node` VALUES ('4', '管理内容', 'Hdcms', 'Content', 'Index', 'index', '', '', '1', '2', '2', '10', '1', '1');
+INSERT INTO `hd_node` VALUES ('4', '管理内容', 'Hdcms', 'Content', 'Index', 'index', '', '', '1', '1', '2', '10', '1', '1');
 INSERT INTO `hd_node` VALUES ('11', '管理员设置', 'Hdcms', '', '', '', '', '', '1', '1', '16', '100', '1', '0');
 INSERT INTO `hd_node` VALUES ('17', '管理员管理', 'Hdcms', 'Role', 'Admin', 'index', '', '', '1', '1', '11', '100', '1', '0');
 INSERT INTO `hd_node` VALUES ('18', '角色管理', 'Hdcms', 'Role', 'Role', 'index', '', '', '1', '1', '11', '100', '1', '0');
 INSERT INTO `hd_node` VALUES ('20', '网站配置', 'Hdcms', 'Config', 'Config', 'edit', '', '', '1', '1', '19', '90', '1', '0');
 INSERT INTO `hd_node` VALUES ('5', '生成静态', 'Hdcms', '', '', '', '', '', '1', '1', '1', '11', '1', '0');
 INSERT INTO `hd_node` VALUES ('6', '批量更新栏目页', 'Hdcms', 'Html', 'Html', 'create_category', '', '', '1', '1', '5', '102', '1', '0');
-INSERT INTO `hd_node` VALUES ('8', '生成首页', 'Hdcms', 'Html', 'Html', 'create_index', '', '', '1', '1', '5', '101', '1', '0');
+INSERT INTO `hd_node` VALUES ('8', '生成首页', 'Hdcms', 'Html', 'Html', 'create_index', '', '', '1', '1', '5', '101', '1', '1');
 INSERT INTO `hd_node` VALUES ('9', '批量更新内容页', 'Hdcms', 'Html', 'Html', 'create_content', '', '', '1', '1', '5', '103', '1', '0');
 INSERT INTO `hd_node` VALUES ('28', '修改密码', 'Hdcms', 'Role', 'Personal', 'edit_password', '', '', '1', '1', '29', '100', '1', '0');
 INSERT INTO `hd_node` VALUES ('27', '修改个人信息', 'Hdcms', 'Role', 'Personal', 'edit_info', '', '', '1', '1', '29', '100', '1', '0');
@@ -565,7 +537,7 @@ INSERT INTO `hd_node` VALUES ('29', '个人信息', 'Hdcms', '', '', '', '', '',
 INSERT INTO `hd_node` VALUES ('61', '一键更新', 'Hdcms', 'Html', 'Html', 'create_all', '', '一键更新全站', '1', '1', '5', '100', '1', '1');
 INSERT INTO `hd_node` VALUES ('30', '会员', 'Hdcms', '', '', '', '', '', '1', '1', '0', '100', '1', '0');
 INSERT INTO `hd_node` VALUES ('31', '会员管理', 'Hdcms', '', '', '', '', '', '1', '1', '30', '100', '1', '0');
-INSERT INTO `hd_node` VALUES ('32', '会员管理', 'Hdcms', 'User', 'User', 'index', '', '', '1', '1', '31', '100', '1', '1');
+INSERT INTO `hd_node` VALUES ('32', '会员管理', 'Hdcms', 'User', 'User', 'index', '', '', '1', '1', '31', '100', '1', '0');
 INSERT INTO `hd_node` VALUES ('33', '审核会员', 'Hdcms', 'User', 'User', 'index', 'state=0', '', '1', '1', '31', '100', '1', '0');
 INSERT INTO `hd_node` VALUES ('34', '会员组管理', 'Hdcms', '', '', '', '', '', '1', '1', '30', '100', '1', '0');
 INSERT INTO `hd_node` VALUES ('35', '管理会员组', 'Hdcms', 'Group', 'Group', 'index', '', '', '1', '1', '34', '100', '1', '0');
@@ -581,10 +553,13 @@ INSERT INTO `hd_node` VALUES ('91', '插件', 'Hdcms', '', '', '', '', '', '1', 
 INSERT INTO `hd_node` VALUES ('92', '插件管理', 'Hdcms', '', '', '', '', '', '1', '1', '91', '99', '1', '0');
 INSERT INTO `hd_node` VALUES ('93', '插件管理', 'Hdcms', 'Plugin', 'Plugin', 'Plugin_list', '', '', '1', '1', '92', '100', '1', '0');
 INSERT INTO `hd_node` VALUES ('94', '正在使用', 'Hdcms', 'Plugin', '', '', '', '', '1', '1', '91', '100', '1', '0');
-INSERT INTO `hd_node` VALUES ('180', '审核内容', 'Hdcms', 'Content', 'Audit', 'content', '', '', '1', '1', '2', '100', '0', '1');
+INSERT INTO `hd_node` VALUES ('180', '审核内容', 'Hdcms', 'Content', 'Audit', 'content', '', '', '1', '1', '2', '100', '1', '1');
 INSERT INTO `hd_node` VALUES ('178', '友情链接', 'Plugin', 'Link', 'Manage', 'index', '', '', '1', '2', '94', '100', '1', '0');
 INSERT INTO `hd_node` VALUES ('156', 'BUG管理', 'Hdcms', 'Bug', 'Bug', 'showBug', '', '', '1', '1', '154', '100', '1', '0');
-INSERT INTO `hd_node` VALUES ('179', '评论管理', 'Hdcms', 'Comment', 'Manage', 'index', '', '', '1', '1', '10', '100', '1', '1');
+INSERT INTO `hd_node` VALUES ('179', '评论管理', 'Hdcms', 'Comment', 'Manage', 'index', '', '', '1', '1', '10', '100', '1', '0');
+INSERT INTO `hd_node` VALUES ('184', '添加栏目', 'Hdcms', 'Category', 'Category', 'add', '', '', '0', '1', '2', '100', '1', '0');
+INSERT INTO `hd_node` VALUES ('185', '删除栏目', 'Hdcms', 'Category', 'Category', 'del', '', '', '0', '1', '2', '100', '1', '0');
+INSERT INTO `hd_node` VALUES ('186', '修改栏目', 'Hdcms', 'Category', 'Category', 'edit', '', '', '0', '1', '2', '100', '1', '0');
 
 -- ----------------------------
 -- Table structure for hd_plugin
@@ -631,7 +606,7 @@ CREATE TABLE `hd_role` (
 INSERT INTO `hd_role` VALUES ('1', '超级管理员', '超级管理员', '1', '1', '10000', '1', '1');
 INSERT INTO `hd_role` VALUES ('2', '编辑', '内容编辑', '1', '1', '10000', '1', '1');
 INSERT INTO `hd_role` VALUES ('3', '发布人员', '发布人员', '1', '1', '10000', '1', '1');
-INSERT INTO `hd_role` VALUES ('4', '幼儿园', '新手上路', '0', '1', '100', '0', '1');
+INSERT INTO `hd_role` VALUES ('4', '幼儿园', '新手上路', '0', '1', '100', '1', '1');
 INSERT INTO `hd_role` VALUES ('5', '小学生', '小学生', '0', '1', '250', '1', '1');
 INSERT INTO `hd_role` VALUES ('6', '中学生', '中学生', '0', '1', '450', '1', '1');
 INSERT INTO `hd_role` VALUES ('7', '高中生', '高中生', '0', '0', '700', '1', '1');
@@ -651,12 +626,11 @@ CREATE TABLE `hd_search` (
   PRIMARY KEY (`sid`),
   UNIQUE KEY `name` (`word`) USING BTREE,
   KEY `total` (`total`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hd_search
 -- ----------------------------
-INSERT INTO `hd_search` VALUES ('1', '1', 'a', '1');
 
 -- ----------------------------
 -- Table structure for hd_session
@@ -789,7 +763,7 @@ CREATE TABLE `hd_user` (
 -- ----------------------------
 -- Records of hd_user
 -- ----------------------------
-INSERT INTO `hd_user` VALUES ('1', '后盾网向军', 'admin', '054e1e1672569f5810335722c6a1994f', 'a120882783', 'houdunwangxj@gmail.com', '1397162190', '1397413413', '', '0.0.0.0', '1', '0', '', '1', '', '10008', '1', '1', '后盾网  人人做后盾', 'admin', '69');
+INSERT INTO `hd_user` VALUES ('1', 'admin', 'admin', '83ff46e5f629ef870fd4f59d954a425f', 'd0e412d21d', 'houdunwangxj@gmail.com', '1397452628', '1397750519', '101.38.68.62', '0.0.0.0', '1', '0', '', '1', '', '10008', '1', '1', '后盾网  人人做后盾', '1', '286');
 
 -- ----------------------------
 -- Table structure for hd_user_deny_ip

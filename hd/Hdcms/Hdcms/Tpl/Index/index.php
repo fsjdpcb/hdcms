@@ -49,14 +49,14 @@
         </div>
     </div>
     <div class="top_content">
-        <iframe src="{|U:'feedback'}" nid="0" scrolling="auto" frameborder="0"
+        <iframe src="{|U:'welcome'}" nid="0" scrolling="auto" frameborder="0"
                 style="height: 100%;width: 100%;"></iframe>
     </div>
     <!--内容显示区域-->
 </div>
 <div id="quick_menu">
     <div class="set">
-        <a url="?a=Menu&c=Menu&m=set_favorite" onclick="get_content(this,90001)" href="javascript:;" nid="90001">设置</a>
+        <a url="{|U:'Menu/set_favorite'}" onclick="get_content(this,90001)" href="javascript:;" nid="90001">设置</a>
     </div>
     <div
         style="float:left;width:1px;margin-right:5px;overflow: hidden;background: #999999;height:15px;margin-top:12px;"></div>
@@ -73,7 +73,7 @@
 <div id="show_quick_menu" onclick="show_quick_menu()">
     显示
 </div>
-<!--左侧导航-->
+<!--加载后触发第一个顶级菜单-->
 <script>
     $("a[nid=1]").trigger("click");
 </script>

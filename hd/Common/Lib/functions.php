@@ -1,7 +1,16 @@
 <?php
 if (!defined("HDPHP_PATH")) exit;
 
-
+/**
+ * HDCMS缓存函数
+ * @param String $name 缓存KEY
+ * @param bool $value 删除缓存
+ * @param string $path 缓存目录
+ * @return bool
+ */
+function cache($name, $value = false){
+	return F($name,$value,'data/Cache/Data');
+}
 /**
  * 获取指定栏目的所有子栏目（包含栏目本身）
  * @param $cid 栏目cid
@@ -13,7 +22,7 @@ function get_son_category($cid)
     $cid = explode(',', $cid);
     foreach ($cid as $id) {
         $data[] = $id;
-        $son_category = Data::channelList(F('category'), intval($id));
+        $son_category = Data::channelList(cache('category'), intval($id));
         if ($son_category) {
             foreach ($son_category as $c) {
                 $data[] = $c['cid'];

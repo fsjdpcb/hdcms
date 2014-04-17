@@ -17,7 +17,7 @@ class FlagModel extends Model
     //构造函数
     public function __init()
     {
-        $this->_flag = F('flag');
+        $this->_flag = cache('flag');
     }
 
     //删除属性
@@ -76,7 +76,7 @@ class FlagModel extends Model
                 break;
             }
         }
-        return F("flag", $flag);
+        return cache("flag", $flag);
     }
 
     public function __after_delete($data)

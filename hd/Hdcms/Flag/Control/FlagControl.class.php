@@ -16,7 +16,7 @@ class FlagControl extends AuthControl
     {
         parent::__init();
         $this->_db = K("Flag");
-        $this->_flag = F('flag');
+        $this->_flag = cache('flag');
     }
 
     //属性列表

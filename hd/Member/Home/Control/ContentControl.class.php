@@ -24,8 +24,8 @@ class ContentControl extends MemberAuthControl
     //构造函数
     public function __init()
     {
-        $this->_model = F("model", false);
-        $this->_category = F("category", false);
+        $this->_model = cache("model", false);
+        $this->_category = cache("category", false);
         $this->_mid = Q('mid', null, 'intval');
         $this->_cid = Q("cid", NULL, "intval");
         $this->_aid = Q("aid", NULL, "intval");
@@ -67,7 +67,7 @@ class ContentControl extends MemberAuthControl
     public function get_category()
     {
         $rid = session('rid');
-        $cat = F("category");
+        $cat = cache("category");
         //分配栏目
         $category = Data::tree($cat, 'catname');
         if ($this->_cid) {
@@ -80,9 +80,9 @@ class ContentControl extends MemberAuthControl
          */
         foreach ($category as $n => $v) {
             $v['disabled'] = $v['cattype'] == 1 ? '' : ' disabled="disabled" ';
-            if (empty($v['access'])) {
+            if (empty($v['access']['user'])) {
                 $data[$n] = $v;
-            } else if (isset($v['access'][$rid]) && $v['access'][$rid]['add'] == 1) {
+            } else if (isset($v['access']['user'][$rid]) && $v['access']['user'][$rid]['add'] == 1) {
                 $data[$n] = $v;
             }
         }
@@ -94,7 +94,6 @@ class ContentControl extends MemberAuthControl
      */
     public function add()
     {
-
         if (IS_POST) {
             if ($result = $this->_db->add_content()) {
                 //添加动态表记录
@@ -150,7 +149,7 @@ class ContentControl extends MemberAuthControl
                 //文章字段数据
                 $field = $this->_db->get_one_content($aid);
                 //FLAG属性
-                $this->flag = F('flag');
+                $this->flag = cache('flag');
                 //自定义字段处理
                 $this->custom_field = $this->_db->get_current_field_view($aid);
                 //分配缩略图数据

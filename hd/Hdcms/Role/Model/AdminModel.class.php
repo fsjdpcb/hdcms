@@ -70,10 +70,13 @@ class AdminModel extends ViewModel
          */
         $uid = Q('uid', null, 'intval');
         if ($uid) {
+        	$password = trim($_POST['password']);
             //修改密码
-            if (!empty($_POST['password'])) {
+            if (!empty($password)) {
                 $_POST['code'] = $this->get_user_code();
-                $_POST['password'] = md5($_POST['password'] . $_POST['code']);
+                $_POST['password'] = md5($password . $_POST['code']);
+            }else{
+            	unset($_POST['password']);
             }
             return $this->where("uid=$uid")->save();
         }

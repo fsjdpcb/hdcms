@@ -26,9 +26,9 @@ class HtmlControl extends AuthControl
     {
         parent::__init();
         //模型缓存
-        $this->_model = F("model");
+        $this->_model = cache("model");
         //栏目缓存
-        $this->_category = F("category");
+        $this->_category = cache("category");
     }
 
     //向客户端发送生成静态状态信息

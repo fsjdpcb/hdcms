@@ -18,7 +18,7 @@ class PublicControl extends CommonControl
         parent::__construct();
         //网站开启验证
         if (!$this->verification()) {
-            $this->display("./data/Template/web_close");
+            $this->display("./data/Template/web_close.html");
             exit;
         }
         //模板风格路径

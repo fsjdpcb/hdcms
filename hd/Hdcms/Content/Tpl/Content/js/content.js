@@ -16,13 +16,13 @@ function reverse_select() {
     });
 }
 //更新排序
-function update_order(mid,cid) {
+function order(mid,cid) {
     if ($("input[type='text']").length == 0) {
         alert('没有文章用来排序！');
         return false;
     }
     var data = $("input[type='text']").serialize();
-    hd_ajax(CONTROL + "&m=update_order&mid="+mid+"&cid=" + cid, data);
+    hd_ajax(CONTROL + "&m=order&mid="+mid+"&cid=" + cid, data);
 }
 /**
  * 删除文章
@@ -122,7 +122,7 @@ function move(mid,cid) {
         $.modal({
             width: 600, height: 560,
             title: '移动文章',
-            content: '<iframe style="width: 100%;height: 100%;" src="' + CONTROL + '&m=move_content&mid='+mid+'&cid=' + cid + '&aid=' + aid + '" frameborder="0"></iframe>'
+            content: '<iframe style="width: 100%;height: 100%;" src="' + CONTROL + '&m=move&mid='+mid+'&cid=' + cid + '&aid=' + aid + '" frameborder="0"></iframe>'
         })
     } else {
         alert("请选择移动的文章");

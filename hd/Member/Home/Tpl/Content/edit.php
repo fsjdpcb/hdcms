@@ -12,18 +12,7 @@
     <js file="__CONTROL_TPL__/js/js.js"/>
 </head>
 <body>
-<header class="header center-block">
-    <h1>
-        <a href="#">后盾网 人人做后盾</a>
-    </h1>
-</header>
-<nav class="top-menu">
-    <div class="nav center-block">
-        <a href="__ROOT__">首页</a>
-        <a href="__ROOT__/index.php?a=Home&c=Content&m=index&g=Member">我的文章</a>
-        <a href="__ROOT__?{$hd.session.domain}" target="_blank">个人空间</a>
-    </div>
-</nav>
+<load file="__TPL__/Public/block/top_menu.php"/>
 <div class="main center-block">
     <div class="form">
         <div class="user">

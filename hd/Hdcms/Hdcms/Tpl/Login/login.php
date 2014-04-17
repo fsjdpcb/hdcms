@@ -59,7 +59,7 @@
                     <div class="verifyimgArea">
                         <img src="{|U:'code'}" class="code" style="cursor: pointer;float:left;"
                              onclick="this.src='{|U:'code'}&'+Math.random()"/>
-                        <a href="javascript:void(0);">看不清，换一张</a>
+                        <a href="javascript:void(0);" onclick="$('.code').trigger('click')">看不清，换一张</a>
                     </div>
                     <div class="send">
                         <input type="submit" class="btn2" value="登录"/>

@@ -26,8 +26,8 @@ class CategoryControl extends PublicControl
     public function __init()
     {
         //----------------------设置变量----------------------
-        $this->_model = F("model");
-        $this->_category = F("category");
+        $this->_model = cache("model");
+        $this->_category = cache("category");
         $this->_mid = Q('mid', null, 'intval');
         $this->_cid = Q("cid", null, "intval");
         $this->_db = K('Category');
@@ -50,7 +50,7 @@ class CategoryControl extends PublicControl
             if ($category['cattype'] == 3) {
                 go($category['cat_redirecturl']);
             } else {
-                $field = M("category")->find($this->_cid);
+                $field =$this->_db->find($this->_cid);
                 $this->assign("hdcms", $field);
                 $tpl = Template::get_category_tpl($this->_cid);
                 $this->display($tpl, C('cache_category'));

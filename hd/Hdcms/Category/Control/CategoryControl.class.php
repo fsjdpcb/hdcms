@@ -17,13 +17,12 @@ class CategoryControl extends AuthControl
     private $_model;
 
     //构造函数
-    public function __construct()
+    public function __init()
     {
-        parent::__construct();
-        $this->_category = F("category", false);
-        $this->_model = F("model", false);
+        $this->_category = cache("category", false);
+        $this->_model = cache("model", false);
         $this->_db = K("Category");
-        $this->_cid = Q("request.cid", null, "intval");
+        $this->_cid = Q("cid", null, "intval");
         if ($this->_cid && !isset($this->_category[$this->_cid])) {
             $this->error("栏目不存在！");
         }
@@ -58,8 +57,8 @@ class CategoryControl extends AuthControl
         } else {
             $this->category = $this->_category;
             //获得角色
-            $this->role_admin = $this->_db->table('role')->join()->where('admin=1')->all();
-            $this->role_user = $this->_db->table('role')->join()->where('admin=0')->all();
+            $this->role_admin = M('role')->join()->where('admin=1 AND rid<>1')->all();
+            $this->role_user = M('role')->join()->where('admin=0')->all();
             $this->model = $this->_model;
             $this->display();
         }
@@ -114,7 +113,7 @@ class CategoryControl extends AuthControl
     }
 
     //删除栏目
-    public function del_category()
+    public function del()
     {
         //存在子栏目不允许删除
         if ($this->_db->find("pid=" . $this->_cid)) {

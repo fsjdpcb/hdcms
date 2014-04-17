@@ -85,7 +85,7 @@ class NavigationModel extends Model
     {
         $nav = $this->order('list_order ASC,nid ASC')->all();
         $data = Data::tree($nav, 'title', 'nid', 'pid');
-        return F('navigation', $data);
+        return cache('navigation', $data);
     }
 
     public function __after_insert($data)

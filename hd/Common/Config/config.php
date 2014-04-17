@@ -42,7 +42,7 @@ $config = array(
             //栏目（有页码）
             '/^list_(\d+)_(\d+).html$/'=>'Index/Category/category/cid/#1/page/#2',
             //个人主页
-            '/^([0-9a-z]+)$/'=>'Space/Index/index/g/Member/u/#1',
+            '/^([0-9a-z]+)$/'=>'a=Space&c=Index&m=index&g=Member&u=#1',
 		)
     );
 //Index应用时设置Rewrite规则

@@ -139,12 +139,14 @@ str;
         $titlelen = isset($attr['titlelen']) ? intval($attr['titlelen']) : 80;
         //属性
         $fid = isset($attr['fid']) ? trim($attr['fid']) : '';
+        //排序属性
+        $nofid = isset($attr['nofid']) ? trim($attr['nofid']) : '';
         //获取类型（排序）
         $type = isset($attr['type']) ? strtolower(trim($attr['type'])) : 'new';
         //子栏目处理
         $sub_channel = isset($attr['sub_channel']) ? intval($attr['sub_channel']) : 1;
         $php = <<<str
-        <?php \$mid="$mid";\$cid ='$cid';\$fid='$fid';\$aid='$aid';\$type='$type';\$sub_channel=$sub_channel;
+        <?php \$mid="$mid";\$cid ='$cid';\$fid='$fid';\$nofid='$nofid';\$aid='$aid';\$type='$type';\$sub_channel=$sub_channel;
             //设置cid条件
             \$cid = \$cid?\$cid:Q('cid',null,'intval');
             import('ArticleModel','hd.Hdcms.Index.Model');
@@ -205,15 +207,24 @@ str;
                         \$where[]=\$db->tableFull.".cid IN(\$cid)";
                     }
                 }
-                //根据fid获得数据
-                if(\$fid){
-                    \$flag =F('flag');
-                    \$fid = explode(',',\$fid);
-                    foreach(\$fid as \$f){
-                        \$f=\$flag[\$f-1];
-                        \$where[]="find_in_set('\$f',flag)";
-                    }
-                }
+                //指定筛选属性fid='1,2,3'时,获取指定属性的文章
+		        if(\$fid){
+		            \$flag =cache('flag');
+		            \$fid = explode(',',\$fid);
+		            foreach(\$fid as \$f){
+		                \$f=\$flag[\$f-1];
+		                \$where[]="find_in_set('\$f',flag)";
+		            }
+		        }
+		        //排除fid
+		        if(\$nofid){
+		            \$flag =cache('flag');
+		            \$nofid = explode(',',\$nofid);
+		            foreach(\$nofid as \$f){
+		                \$f=\$flag[\$f-1];
+		                \$where[]="!find_in_set('\$f',flag)";
+		            }
+		        }
                 //指定文章
                 if (\$aid) {
                     \$where[]=\$table.".aid IN(\$aid)";
@@ -300,7 +311,7 @@ str;
         }
         //指定筛选属性fid='1,2,3'时,获取指定属性的文章
         if(\$fid){
-            \$flag =F('flag');
+            \$flag =cache('flag');
             \$fid = explode(',',\$fid);
             foreach(\$fid as \$f){
                 \$f=\$flag[\$f-1];
@@ -393,7 +404,7 @@ str;
         <?php
         \$sep = "$sep";
         if(!empty(\$_GET['cid'])){
-            \$cat = F("category");
+            \$cat = cache("category");
             \$cat= array_reverse(Data::parentChannel(\$cat,\$_GET['cid']));
             \$str = "<a href='__ROOT__'>首页</a>{$sep}";
             foreach(\$cat as \$c){

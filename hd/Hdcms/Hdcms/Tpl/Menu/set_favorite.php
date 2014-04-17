@@ -5,9 +5,8 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>设置常用菜单</title>
     <hdjs/>
-    <js file="__CONTROL_TPL__/js/js.js"/>
-    <css file="__CONTROL_TPL__/css/css.css"/>
-    <js file="hd/Hdcms/Hdcms/Tpl/Index/js/menu.js"/>
+    <js file="__CONTROL_TPL__/js/set_favorite.js"/>
+    <css file="__CONTROL_TPL__/css/set_favorite.css"/>
 </head>
 <body>
 <form method="post" class="hd-form" onsubmit="return false">

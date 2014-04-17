@@ -3,13 +3,14 @@
 li {
     float: left;
     height: 30px;
+    margin-right:10px;
 }
 
 div {
     clear: both;
 }
 tr td{
-    padding: 10px;
+	padding: 5px;
     vertical-align: top;
 }
 select {

@@ -6,5 +6,11 @@
  */
 class CategoryModel extends ViewModel
 {
-
+	public $table='category';
+	public $view=array(
+		'model'=>array(
+			'type'=>INNER_JOIN,
+			'on'=>'category.mid=model.mid'
+		)
+	);
 }

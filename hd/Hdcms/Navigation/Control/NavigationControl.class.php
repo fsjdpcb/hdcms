@@ -14,7 +14,7 @@ class NavigationControl extends AuthControl
     public function __init()
     {
         $this->_db = K("Navigation");
-        $this->_navigation = F('navigation');
+        $this->_navigation = cache('navigation');
     }
 
     public function index()

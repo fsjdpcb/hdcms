@@ -43,7 +43,11 @@
                     <if value="$r.system eq 0">
                         <a href="javascript:confirm('确定删除吗?')?hd_ajax('{|U:del}',{rid:{$r.rid}}):false">删除</a> |
                     </if>
+                    <if value="$r.rid eq 1">
+                    	权限设置
+                    	<else>
                     <a href="{|U:'Access/edit',array('rid'=>$r['rid'])}">权限设置</a>
+                    </if>
                 </td>
             </tr>
         </list>

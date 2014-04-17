@@ -1,27 +1,13 @@
 <?php
-
-/**
- * 后台菜单管理模块
- * Class MenuControl
- * @author hdxj <houdunwangxj@gmail.com>
- */
-class MenuControl extends AuthControl
-{
-    //模型
-    protected $_db;
-    //菜单（节点）
-    private $_menu;
-
-    public function __init()
-    {
-        parent::__init();
-        //获得模型实例
-        $this->_db = K("Menu");
-        $this->_menu = F('node');
-    }
-
-    /**
-     * 更新菜单时获得所有子菜单id
+class MenuControl extends AuthControl{
+	//模型
+	private $_db;
+	//构造函数
+	public function __init(){
+		$this->_db = K('menu');
+	}
+	/**
+     * 更新菜单时获得所有子菜单id(JavaScript)
      * hd/Hdcms/Hdcms/js/menu.js update_menu()方法使用
      */
     public function get_child_menu_id()
@@ -38,8 +24,10 @@ class MenuControl extends AuthControl
         }
         $this->ajax($sid);
     }
-
-    //获得子菜单
+    
+	/**
+     * 获得子菜单
+     */
     public function get_child_menu()
     {
         $nid = Q("get.nid", NULL, "intval");
@@ -62,8 +50,9 @@ class MenuControl extends AuthControl
         $html .= "</div>";
         $this->ajax($html, 'text');
     }
-
-    //设置常用菜单
+    /**
+	 * 设置常用菜单
+	 */
     public function set_favorite()
     {
         if (IS_POST) {
@@ -71,14 +60,22 @@ class MenuControl extends AuthControl
                 $this->ajax(array('state' => 1, 'message' => '修改成功,请按F5刷新后台', 'timeout' => 3));
             }
         } else {
+        	$_menu = $this->_db->get_all_menu();
+        	$_menu = Data::tree($_menu, "title", "nid", "pid");
             //查找所有2级菜单
             $menu = array();
-            foreach ($this->_menu as $nid => $m) {
+            foreach ($_menu as $nid => $m) {
                 if ($m['_level'] == 2) {
                     //子菜单
-                    $s_menu = $this->_db->join(NULL)->where(array("pid" => $nid))->order("list_order ASC")->all();
+                    if(session('rid')==1){
+                    	$s_menu = $this->_db->join(null)->where("pid=$nid AND state=1")
+                    			->order("list_order ASC")->all();	
+                    }else{
+                    	$s_menu = $this->_db->where("pid=$nid AND ".C('DB_PREFIX') . "access.rid=" . session('rid') . " AND state=1")
+                    			->order("list_order ASC")->all();
+                    }
                     if ($s_menu) {
-                        //如果子菜单全选，二级菜单为选中状态
+                        //修改菜单选中状态
                         foreach ($s_menu as $k => $v) {
                             //常用菜单判断
                             $checked = $v['favorite'] == 1 ? ' checked="checked" ' : '';
@@ -93,4 +90,6 @@ class MenuControl extends AuthControl
             $this->display();
         }
     }
+    
 }
+?>

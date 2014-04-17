@@ -36,7 +36,7 @@ class FieldModel extends Model
         $this->_fid = Q('fid', NULL, 'intval');
         $this->_mid = Q("mid", NULL, "intval");
         //字段所在表模型信息
-        $this->_model = F("model", false);
+        $this->_model = cache("model", false);
         //字段缓存
         $this->_field = F($this->_mid, false, FIELD_CACHE_PATH);
     }

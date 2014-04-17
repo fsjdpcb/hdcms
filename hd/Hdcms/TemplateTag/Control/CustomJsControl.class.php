@@ -11,7 +11,7 @@ class CustomJsControl extends CommonControl
 
     public function __init()
     {
-        $this->_category = F("category");
+        $this->_category =cache("category");
         $this->_db = K("CustomJs");
     }
 

@@ -12,7 +12,7 @@ class IndexControl extends AuthControl
 
     public function __init()
     {
-        $this->_category = F('category');
+        $this->_category = cache('category');
     }
 
     /**
@@ -33,6 +33,7 @@ class IndexControl extends AuthControl
             $data = array();
             //过滤掉外部链接栏目
             if ($cat['cattype'] != 3) {
+            	
                 //单文章栏目
                 if ($cat['cattype'] == 4) {
                     $url = U('Single/Content/edit', array('cid' => $cat['cid']));
@@ -49,5 +50,10 @@ class IndexControl extends AuthControl
             }
         }
         $this->ajax($category);
+    }
+    //欢迎页
+    public function welcome()
+    {
+        $this->display();
     }
 }

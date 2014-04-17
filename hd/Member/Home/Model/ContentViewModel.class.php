@@ -23,8 +23,8 @@ class ContentViewModel extends ViewModel
     public function __init()
     {
         //----------------缓存数据
-        $this->_category = F("category");
-        $this->_model = F("model");
+        $this->_category = cache("category");
+        $this->_model = cache("model");
         $this->_mid = Q('mid', null, 'intval');
         //主表
         $this->table = $this->_model[$this->_mid]['table_name'];

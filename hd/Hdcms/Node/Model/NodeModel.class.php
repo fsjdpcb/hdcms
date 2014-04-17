@@ -20,7 +20,7 @@ class NodeModel extends ViewModel
 
     public function __init()
     {
-        $this->_node = F("node");
+        $this->_node = cache("node");
     }
 
     /**
@@ -63,7 +63,7 @@ class NodeModel extends ViewModel
     {
         $data = $this->join(NULL)->order(array("list_order" => "ASC",'nid'=>'ASC'))->all();
         $node = Data::tree($data, "title", "nid", "pid");
-        return F("node", $node);
+        return cache("node", $node);
     }
 
     function __after_insert($data)

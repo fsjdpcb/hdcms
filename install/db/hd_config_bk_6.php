@@ -1,5 +1,5 @@
 <?php if(!defined('HDPHP_PATH'))EXIT;
-$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('1','webname','HDPHP社区--中国最强PHP培训机构  《后盾网》 ','站点配置','网站名称','文本','')");
+$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('1','webname','HDPHP社区--中国最强PHP培训机构  《后盾网》','站点配置','网站名称','文本','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('2','icp','京ICP备12048441号-3','站点配置','ICP备案号','文本','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('3','html_path','html','站点配置','静态html目录','文本','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('4','copyright','Copyright © 2012-2013 HDCMS 后盾网 版权所有','站点配置','网站版权信息','文本','')");
@@ -30,18 +30,15 @@ $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('131','water_pct','0','水印设置','水印图片透明度','数字','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('132','water_quality','90','水印设置','图片压缩比','数字','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('133','water_pos','9','水印设置','水印位置','数字','')");
-$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('134','del_content_model','1','高级设置','删除文章先放入回收站','布尔(1/0)','')");
+$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('134','del_content_model','0','高级设置','删除文章先放入回收站','布尔(1/0)','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('136','down_remove_pic_size','500','高级设置','下载远程资源允许最大值','数字','')");
-$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('165','comment_len','80','会员设置','评论内容最大长度','文本','')");
-$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('138','favicon_width','180','会员设置','会员头像宽度','数字','')");
-$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('139','favicon_height','180','会员设置','会员头像高度','数字','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('142','down_remote_pic','0','内容相关','下载远程图片','布尔(1/0)','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('143','auto_desc','1','内容相关','截取内容为摘要','布尔(1/0)','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('144','auto_thumb','0','内容相关','提取内容图片为缩略图','布尔(1/0)','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('145','upload_img_max_width','600','内容相关','上传图片宽度超过此值，进行缩放','数字','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('146','upload_img_max_height','600','内容相关','上传图片高度超过此值，进行缩放','数字','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('149','member_open','1','会员设置','开启会员中心','布尔(1/0)','')");
-$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('150','web_close_message','网站暂时关闭，请稍候访问','站点配置','网站关闭提示信息','文本','')");
+$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('150','web_close_message','网站维护中，请稍候访问','站点配置','网站关闭提示信息','文本','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('151','web_style','default','私有配置','网站模板','文本','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('155','qq','1455067020','站点配置','QQ号','文本','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('154','weibo','houdunwangxj@gmail.com','站点配置','新浪微博','文本','')");
@@ -52,3 +49,5 @@ $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('162','cache_category','-1','性能优化','栏目缓存时间','文本','（单位：秒，-1不缓存 0永久缓存)')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('163','cache_content','-1','性能优化','文章缓存时间','文本','（单位：秒，-1不缓存 0永久缓存)')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('164','comment_step_time','10','会员设置','评论间隔时间','文本','必须大于1（单位秒)')");
+$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('166','pathinfo_type','0','伪静态','开启PATHINFO访问','布尔(1/0)','需要环境支持')");
+$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('167','open_rewrite','0','伪静态','开启伪静态','布尔(1/0)','1 服务器需要支持Rewrtie 2 将HDCMS根目录中的htaccess.txt改名为.htaccess')");

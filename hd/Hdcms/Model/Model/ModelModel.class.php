@@ -25,7 +25,7 @@ class ModelModel extends Model
     public function __init()
     {
         $this->_mid = Q('mid', NULL, 'intval');
-        $this->model = F('model');
+        $this->model = cache('model');
     }
 
     //创建模型表

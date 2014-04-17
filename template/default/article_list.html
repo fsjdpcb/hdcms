@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{$hd.config.webname}</title>
+    <title>{$hd.config.webname}-{$hdcms.catname}</title>
     <link rel="shortcut icon" href="favicon.ico">
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -93,7 +93,7 @@
         </div>
         <!--右侧列表-->
         <div class="right-list col-md-4">
-            <a href="__WEB__?a=Home&c=Content&m=add&g=Member&cid={$hd.get.cid}" class="publish">
+            <a href="__WEB__?a=Home&c=Content&m=add&g=Member&mid={$hdcms.mid}&cid={$hdcms.cid}" class="publish">
                 <strong>+</strong>发表文章
             </a>
             <!--热门标签-->

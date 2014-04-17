@@ -96,8 +96,8 @@ class ContentModel extends RelationModel
     //获得内容
     public function __init()
     {
-        $this->_model = F("model");
-        $this->_category = F("category");
+        $this->_model = cache("model");
+        $this->_category = cache("category");
         $this->_cid = Q("cid", null, "intval");
         $this->_aid = Q('aid', NULL, 'intval');
         $this->_mid = $this->_cid ? $this->_category[$this->_cid]['mid'] : 1;

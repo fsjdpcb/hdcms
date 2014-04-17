@@ -78,7 +78,7 @@ final class Url
      */
     static public function get_content_html($field)
     {
-        $_category = F("category");
+        $_category = cache("category");
         //有自定义静态url时，直接使用（不需要通过栏目规则运算）
         if (!empty($field['html_path']))
             return C("HTML_PATH") . '/' . $field['html_path'];

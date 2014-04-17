@@ -15,7 +15,7 @@ final class Template
      */
     static public function get_category_tpl($cid)
     {
-        $category = F("category");
+        $category = cache("category");
         switch ($category[$cid]['cattype']) {
             case 1:
                 //普通栏目

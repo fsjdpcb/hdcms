@@ -21,8 +21,8 @@ class AuditControl extends AuthControl
     {
         //父类构造函数
         parent::__init();
-        $this->_model = F("model", false);
-        $this->_category = F("category", false);
+        $this->_model = cache("model", false);
+        $this->_category = cache("category", false);
         $this->_mid = Q('mid', 1, 'intval');
         if (!isset($this->_model[$this->_mid])) {
             $this->error("模型不存在！");

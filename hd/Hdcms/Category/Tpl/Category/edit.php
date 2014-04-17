@@ -110,7 +110,7 @@
                                     <input type="radio" name="cat_show" value="1" <if value="$field.cat_show==1">checked="checked"</if>/> 是
                                 </label>
                                 <label>
-                                    <input type="radio" name="cat_show" value="2" <if value="$field.cat_show==0">checked="checked"</if>/> 否
+                                    <input type="radio" name="cat_show" value="0" <if value="$field.cat_show==0">checked="checked"</if>/> 否
                                 </label>
                                 <span class="validate-message">前台使用&lt;channel&gt;标签时是否显示</span>
                             </td>
@@ -213,6 +213,7 @@
                                         <td>删除</td>
                                         <td>排序</td>
                                         <td>移动</td>
+                                        <td>审核</td>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -221,6 +222,7 @@
                                             <td>
                                                 <a href="javascript:" onclick="select_access_checkbox(this)">{$r.rname}</a>
                                                 <input type="hidden" name="access[{$r.rid}][rid]" value="{$r.rid}"/>
+                                                <input type="hidden" name="access[{$r.rid}][admin]" value="1"/>
                                             </td>
                                             <td><input type="checkbox" name="access[{$r.rid}][show]" value="1" <if value="$r.show">checked=""</if>/></td>
                                             <td><input type="checkbox" name="access[{$r.rid}][add]" value="1" <if value="$r.add">checked=""</if>/></td>
@@ -228,6 +230,7 @@
                                             <td><input type="checkbox" name="access[{$r.rid}][del]" value="1" <if value="$r.del">checked=""</if>/></td>
                                             <td><input type="checkbox" name="access[{$r.rid}][order]" value="1" <if value="$r.order">checked=""</if>/></td>
                                             <td><input type="checkbox" name="access[{$r.rid}][move]" value="1" <if value="$r.move">checked=""</if>/></td>
+                                            <td><input type="checkbox" name="access[{$r.rid}][audit]" value="1" <if value="$r.audit">checked=""</if>/></td>
                                         </tr>
                                     </list>
                                     </tbody>
@@ -242,10 +245,11 @@
                                 <table class="table2">
                                     <thead>
                                     <tr>
-                                        <td class="w250">组名</td>
-                                        <td>允许访问</td>
-                                        <td>允许投稿</td>
-                                        <td>投稿不需要审核</td>
+	                                    <td class="w250">组名</td>
+	                                    <td>查看</td>
+	                                    <td>投稿</td>
+	                                    <td>修改</td>
+	                                    <td>删除</td>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -254,6 +258,7 @@
                                             <td>
                                                 <a href="javascript:" onclick="select_access_checkbox(this)">{$r.rname}</a>
                                                 <input type="hidden" name="access[{$r.rid}][rid]" value="{$r.rid}"/>
+                                                <input type="hidden" name="access[{$r.rid}][admin]" value="0"/>
                                             </td>
                                             <td>
                                                 <input type="checkbox" name="access[{$r.rid}][show]" value="1" <if value="$r.show">checked=""</if>/>
@@ -262,7 +267,10 @@
                                                 <input type="checkbox" name="access[{$r.rid}][add]" value="1" <if value="$r.add">checked=""</if>/>
                                             </td>
                                             <td>
-                                                <input type="checkbox" name="access[{$r.rid}][submit_state]" value="1" <if value="$r.submit_state">checked=""</if>/>
+                                                <input type="checkbox" name="access[{$r.rid}][edit]" value="1" <if value="$r.edit">checked=""</if>/>
+                                            </td>
+                                            <td>
+                                                <input type="checkbox" name="access[{$r.rid}][del]" value="1" <if value="$r.del">checked=""</if>/>
                                             </td>
                                         </tr>
                                     </list>

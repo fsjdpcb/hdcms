@@ -22,8 +22,8 @@ class AuditModel extends ViewModel
     public function __init($options)
     {
         //----------------缓存数据
-        $this->_category = F("category");
-        $this->_model = F("model");
+        $this->_category = cache("category");
+        $this->_model = cache("model");
         $this->_mid = isset($options['mid']) ? intval($options['mid']) : Q('mid', 1, 'intval');
         //主表
         $this->table = $this->_model[$this->_mid]['table_name'];
