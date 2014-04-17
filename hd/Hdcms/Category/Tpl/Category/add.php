@@ -193,7 +193,17 @@
                 </table>
             </div>
             <div id="access">
-                
+                <table class="table1">
+                    <tr>
+                        <th class="w100">
+                            投稿不需要审核
+                        </th>
+                        <td>
+                            <label><input type="radio" name="member_send_state" value="1"/> 是 </label>
+                            <label><input type="radio" name="member_send_state" value="0" checked=""/> 否 </label>
+                        </td>
+                    </tr>
+                </table>
                 <table class="table1">
                     <tr>
                         <th class="w100">
