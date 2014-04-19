@@ -110,8 +110,7 @@ var message = {
 	 * @param uid
 	 * @param nickname
 	 */
-	show : function(to_uid, nickname) {
-		
+	show : function(to_uid, nickname) {		
 		//未登录用户，弹出登录窗口
 		if (!is_login('login')) {
 			login.show();
@@ -207,7 +206,7 @@ var user = {
 				top : _top
 			});
 			//缓存不存时，请求用户数据
-			var url = ROOT + '/index.php?g=Member&a=User&c=User&m=user&uid=' + uid;
+			var url = ROOT + '/index.php?g=Member&a=User&c=Public&m=user&uid=' + uid;
 			$.post(url, function(data) {
 				if (data.state == 1) {
 					$("div#" + id).append(data.message);

@@ -37,7 +37,7 @@
             会员组: {$user.rname}
             <br/>
                     <span>
-                        {$user.description}
+                        {$user.signature}
                     </span>
         </p>
     </div>

@@ -99,7 +99,7 @@
                 <td>{$c.username}</td>
                 <td>{$c.updatetime|date:"Y-m-d",@@}</td>
                 <td>
-                    <a href="{|U:'Index/Article/show',array('mid'=>$_GET['mid'],'cid'=>$_GET['cid'],'aid'=>$c['aid'])}" target="_blank">访问</a><span
+                    <a href="<?php echo Url::get_content_url($c);?>" target="_blank">访问</a><span
                         class="line">|</span>
                     <?php if(check_category_access($c['cid'],'edit')):?>
                     <a href="javascript:;"

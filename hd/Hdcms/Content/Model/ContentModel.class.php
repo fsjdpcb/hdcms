@@ -1,6 +1,4 @@
 <?php
-import('Template', 'hd.Hdcms.Index.Lib');
-import('Url', 'hd.Hdcms.Index.Lib');
 import('PublicControl', 'hd.Hdcms.Index.Control');
 import('ArticleControl', 'hd.Hdcms.Index.Control');
 import('ArticleModel', 'hd.Hdcms.Index.Model');

@@ -104,9 +104,7 @@ class ContentViewModel extends ViewModel
         $page = new Page($count, 15);
         $page_list = $page->show();
         //获得文章列表
-        $field = "title,username,aid,arc_sort,catname,updatetime,flag,".$this->tableFull.".state,".
-                    $this->tableFull.".cid,".C("DB_PREFIX").'category.mid';
-        $data = $this->field($field)->where($where)->order('arc_sort ASC')->all();
+        $data = $this->where($where)->order('arc_sort ASC')->all();
         return array('page' => $page_list, 'data' => $data);
     }
 }

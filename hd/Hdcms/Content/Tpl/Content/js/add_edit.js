@@ -42,14 +42,6 @@ $(function () {
                 required: "点击数不能为空",
                 regexp: '必须为数字'
             }
-        },
-        redirecturl: {
-            rule: {
-                http: true
-            },
-            error: {
-                http: '网址格式错误'
-            }
         }
     })
 })

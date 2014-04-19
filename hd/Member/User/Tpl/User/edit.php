@@ -38,7 +38,7 @@
                                 <img src="{$hd.session.icon100}" class="face"/>
                             </th>
                             <td class="field" colspan="2">
-                                <textarea name="description" style="height: 100px;" placeholder="请输入个性签名">{$field.description}</textarea>
+                                <textarea name="signature" style="height: 100px;" placeholder="请输入个性签名">{$field.signature}</textarea>
                             </td>
                         </tr>
                         <tr>

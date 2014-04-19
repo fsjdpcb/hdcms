@@ -29,8 +29,8 @@
         </div>
     </div>
     <div class="description">
-        <if value="$field.description">
-       {$field.description}
+        <if value="$field.signature">
+       {$field.signature}
             <else/>
             这家伙有点懒，还没有写个性签名
             </if>

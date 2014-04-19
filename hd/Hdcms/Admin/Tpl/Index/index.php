@@ -25,7 +25,7 @@
         <a href="javascript:hd_ajax('{|U:'Cache/Cache/update_all'}');">更新全站缓存</a><span>|</span>
         <a href="__WEB__" target="_blank">前台首页</a>
         <span>|</span>
-        <a href="{|U:'Home/Home/index',array('g'=>'Member')}" target="_blank">会员中心</a></a>
+        <a href="{|U:'Index/Index/index',array('g'=>'Member')}" target="_blank">会员中心</a></a>
         <span>|</span>
         <a href="__ROOT__" target="_blank">后台地图</a>
     </div>
