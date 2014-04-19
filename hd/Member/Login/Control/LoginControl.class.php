@@ -13,7 +13,7 @@ class LoginControl extends CommonControl
     public function __init()
     {
         if (session("uid") && METHOD != 'quit') {
-            go(U("Home/Home/Index", array('g' => "Member")));
+            go(U("Index/Index/Index", array('g' => "Member")));
         }
         //实例模型对象
         $this->_db = K("User");

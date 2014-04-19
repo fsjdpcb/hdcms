@@ -14,7 +14,7 @@
     <div class="head">
         <div class="menu">
             <a href="__WEB__" style="color:#fff;">首页</a>
-            <a href="__ROOT__/index.php?g=Member&a=Home&c=Dynamic&m=index" style="color:#fff;">会员中心</a>
+            <a href="__WEB__?g=Member&a=Dynamic&c=Dynamic&m=index" style="color:#fff;">会员中心</a>
         </div>
         <img src="__ROOT__/{$user.icon150}" class="face" onmouseover="user.show(this,{$user.uid})"/>
 

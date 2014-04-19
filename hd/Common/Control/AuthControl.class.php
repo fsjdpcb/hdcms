@@ -29,7 +29,7 @@ class AuthControl extends CommonControl
         }
         //没有登录用户或非后台管理员跳转到登录入口
         if (!intval(session('admin'))) {
-            echo "<script>top.location.href='?a=Hdcms&c=Login&m=login'</script>";
+            echo "<script>top.location.href='?a=Login&c=Login&m=login'</script>";
             exit;
         }
         //检测后台权限
