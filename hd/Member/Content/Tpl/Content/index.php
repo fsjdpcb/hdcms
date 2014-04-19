@@ -17,17 +17,19 @@
     <!--左侧导航end-->
     <section class="article">
         <header>
-            <h2> 我的文章 </h2>
+            <h2> 我的文章
+                <a href="javascript:;" onclick="hd_open_window('{|U:'add',array('g'=>'Member','mid'=>$_GET['mid'])}')"
+                   class="send">发表</a>
+            </h2>
+
         </header>
         <ul>
             <list from="$data" name="d">
                 <li>
                     <div class="article">
                         <a href="{|U:'Index/Article/show',array(mid=>$d['mid'],cid=>$d['cid'],aid=>$d['aid'])}" target="_blank" class="title">
-                            {$d.title|mb_substr:0,35,'utf-8'} 
-                            
+                            {$d.title|mb_substr:0,35,'utf-8'}
                         </a>
-                        
                         <a href="{|U:'Index/Category/category',array(cid=>$d['cid'])}" target="_blank" class="category" style="display: inline-block;">
                             {$d.catname}
                             <span class="time">

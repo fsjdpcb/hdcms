@@ -60,6 +60,9 @@ class LoginControl extends CommonControl
             } else if ($user['password'] != md5($_POST['password'] . $user['code'])) {
                 //-----------------------密码验证------------------------
                 $error = "密码输入错误";
+            } else if ($user['admin'] == 0) {
+                //-----------------------密码验证------------------------
+                $error = "此帐号没有访问权限";
             }
             if ($error) {
                 $this->error = $error;
@@ -81,7 +84,7 @@ class LoginControl extends CommonControl
         //清空SESSION
         session_unset();
         session_destroy();
-        setcookie('login', '', 1,'/');
+        setcookie('login', '', 1, '/');
         echo "<script>
             window.top.location.href='" . U("login") . "';
         </script>";

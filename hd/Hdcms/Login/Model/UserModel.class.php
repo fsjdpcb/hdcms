@@ -4,9 +4,15 @@
  * 后台管理员登录处理模型
  * Class UserModel
  */
-class UserModel extends Model
+class UserModel extends ViewModel
 {
     public $table = "user";
+    public $view = array(
+        'role' => array(
+            'type' => INNER_JOIN,
+            'on' => 'user.rid=role.rid'
+        )
+    );
 
     /**
      * 记录用户登录信息
@@ -19,7 +25,7 @@ class UserModel extends Model
                 ON u.uid=c.user_uid
                 JOIN " . C('DB_PREFIX') . "role AS r ON u.rid = r.rid WHERE u.uid=$uid";
         $user = current($db->query($sql));
-        setcookie('login',$user['password'],0,'/');
+        setcookie('login', $user['password'], 0, '/');
         unset($user['password']);
         unset($user['code']);
         unset($user['user_uid']);

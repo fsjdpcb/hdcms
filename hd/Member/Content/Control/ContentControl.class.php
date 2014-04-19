@@ -1,6 +1,4 @@
 <?php
-//导入栏目操作模型
-import('CategoryModel', 'hd.Hdcms.Category.Model');
 
 /**
  * 文章管理
@@ -29,7 +27,7 @@ class ContentControl extends MemberAuthControl
         $this->_mid = Q('mid', null, 'intval');
         $this->_cid = Q("cid", NULL, "intval");
         $this->_aid = Q("aid", NULL, "intval");
-        
+
         if (!isset($this->_model[$this->_mid])) {
             $this->error("模型不存在！");
         }
@@ -38,14 +36,27 @@ class ContentControl extends MemberAuthControl
         }
         $this->_db = K("Content");
         //验证权限
-        $this->check_auth();
+        if (!$this->check_auth()) {
+            if (IS_AJAX) {
+                $this->_ajax(0, '没有操作权限');
+            } else {
+                $this->error('没有操作权限');
+            }
+        }
     }
+
     /**
      * 验证权限
      */
-	public function check_auth(){
-		
-	}
+    public function check_auth()
+    {
+        if ($this->_cid) {
+            return check_category_access($this->_cid, METHOD);
+        } else {
+            return true;
+        }
+    }
+
     /**
      * 文章列表
      */
@@ -80,9 +91,7 @@ class ContentControl extends MemberAuthControl
          */
         foreach ($category as $n => $v) {
             $v['disabled'] = $v['cattype'] == 1 ? '' : ' disabled="disabled" ';
-            if (empty($v['access']['user'])) {
-                $data[$n] = $v;
-            } else if (isset($v['access']['user'][$rid]) && $v['access']['user'][$rid]['add'] == 1) {
+            if (check_category_access($v['cid'], 'add')) {
                 $data[$n] = $v;
             }
         }
@@ -97,8 +106,8 @@ class ContentControl extends MemberAuthControl
         if (IS_POST) {
             if ($result = $this->_db->add_content()) {
                 //添加动态表记录
-                $content='发表了文章: <a href="'.__WEB__.'?a=Index&c=Article&m=show&mid='.$this->_mid
-                    .'&cid='.$this->_cid."&aid=".$result[$this->_db->table].'" target="_blank">'. mb_substr(Q('title'), 0, 30, 'utf-8')."</a>";
+                $content = '发表了文章: <a href="' . __WEB__ . '?a=Index&c=Article&m=show&mid=' . $this->_mid
+                    . '&cid=' . $this->_cid . "&aid=" . $result[$this->_db->table] . '" target="_blank">' . mb_substr(Q('title'), 0, 30, 'utf-8') . "</a>";
                 $this->add_dynamic($content);
                 $credits = $this->_category[$this->_cid]['add_reward'];
                 $this->_ajax(1, "发表成功！增加{$credits}个金币");

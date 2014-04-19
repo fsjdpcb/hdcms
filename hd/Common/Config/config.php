@@ -26,8 +26,8 @@ $config = array(
         'UPLOAD_IMG_RESIZE_ON' => true,
         //编辑器上传文件储存位置
         'EDITOR_SAVE_PATH' => ROOT_PATH . 'upload/editor/' . date('Y/m/d/'), //文件储存目录
-        'TPL_ERROR' => './hd/Common/Template/error.html', //错误页面
-        'TPL_SUCCESS' => './hd/Common/Template/success.html', //正确页面
+        'TPL_ERROR' => 'hd/Common/Template/error.html', //错误页面
+        'TPL_SUCCESS' => 'hd/Common/Template/success.html', //正确页面
         'ROUTE'=>array(
             //首页分页
             '/^(\d+).html$/'=>'Index/Index/index/page/#1',

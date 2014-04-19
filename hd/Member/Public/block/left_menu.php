@@ -60,10 +60,15 @@
             <span class="glyphicon glyphicon-fire"></span>
             修改资料
         </a>
-        <a href="__ROOT__/index.php?a=Content&c=Content&m=index&g=Member&mid=1">
+        <?php
+            $model = cache('model');
+            foreach($model as $m):
+        ?>
+        <a href="__ROOT__/index.php?a=Content&c=Content&m=index&g=Member&mid=<?php echo $m['mid'];?>">
             <span class="glyphicon glyphicon-book"></span>
-            我的文章
+            <?php echo $m['model_name'];?>
         </a>
+        <?php endforeach;?>
         <a href="__ROOT__/index.php?a=Message&c=Message&m=index&g=Member">
             <span class="glyphicon glyphicon-comment"></span>
             我的消息

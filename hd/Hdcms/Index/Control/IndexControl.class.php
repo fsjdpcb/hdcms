@@ -11,6 +11,6 @@ class IndexControl extends PublicControl
     //网站首页
     public function index()
     {
-        $this->display('index.html',  C('cache_index'));
+        $this->display('template/' . C('WEB_STYLE') . '/index.html',  C('cache_index'));
     }
 }

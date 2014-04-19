@@ -11,7 +11,7 @@
                     <li><a href="__WEB__?a=Favorite&c=Favorite&m=index&g=Member"> <span class="glyphicon glyphicon-star-empty"></span> 我的收藏</a></li>
                     <li><a href="__WEB__?a=Follow&c=Follow&m=fans&g=Member"> <span class="glyphicon glyphicon-heart"></span> 我的粉丝</a></li>
                     <li><a href="__WEB__?a=Follow&c=Follow&m=follow&g=Member"> 我的关注</a></li>
-                    <li><a href="__WEB__?a=Content&c=Content&m=index&g=Member">我的文章</a></li>
+                    <li><a href="__WEB__?a=Content&c=Content&m=index&g=Member&mid=1">我的文章</a></li>
                     <li><a href="__WEB__?{$hd.session.domain}">个人主页</a></li>
                     <li><a href="__WEB__?a=User&c=User&m=edit&g=Member">修改资料</a></li>
                     <li><a href="__WEB__?a=Login&c=login&m=quit&g=Member">退出</a></li>

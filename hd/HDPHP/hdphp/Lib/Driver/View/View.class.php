@@ -33,7 +33,6 @@ abstract class View
         //添加模板后缀
         if (!preg_match('@\.[a-z]+$@', $file))
             $file .= C('TPL_FIX');
-        //将目录全部转为小写
         if (is_file($file)) {
             return $file;
         } else {
