@@ -104,6 +104,20 @@ return array (
     array (
       'admin' => 
       array (
+        2 => 
+        array (
+          'rid' => '2',
+          'cid' => '10',
+          'mid' => '1',
+          'show' => '1',
+          'add' => '1',
+          'edit' => '1',
+          'del' => '1',
+          'order' => '1',
+          'move' => '1',
+          'audit' => '1',
+          'admin' => '1',
+        ),
       ),
       'user' => 
       array (

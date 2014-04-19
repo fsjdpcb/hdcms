@@ -6,7 +6,7 @@
  */
 function check_category_access($cid,$action){
 		//当前栏目缓存数据
-		$category = F('category');
+		$category = cache('category');
     	$cat = $category[$cid];
     	$action = strtolower($action);
     	//管理员,站长或栏目没有设置权限控制时验证通过

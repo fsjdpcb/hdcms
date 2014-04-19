@@ -16,11 +16,9 @@
         <input type="hidden" name="a" value="Content"/>
         <input type="hidden" name="c" value="Content"/>
         <input type="hidden" name="m" value="content"/>
-
         <input type="hidden" name="mid" value="{$hd.get.mid}"/>
         <input type="hidden" name="cid" value="{$hd.get.cid}"/>
         <input type="hidden" name="state" value="{$hd.get.state}"/>
-
         <div class="search">
             添加时间：<input id="begin_time" readonly="readonly" class="w80" type="text" value="{$hd.get.search_begin_time}" name="search_begin_time">
             <script>
@@ -44,7 +42,7 @@
                 <option value="3" <if value="$hd.get.search_type eq 3">selected=''</if>>用户名</option>
                 <option value="4" <if value="$hd.get.search_type eq 4">selected=''</if>>用户uid</option>
             </select>&nbsp;&nbsp;&nbsp;
-            关键字：
+            	关键字：
             <input class="w200" type="text" placeholder="请输入关键字..." value="{$hd.get.search_keyword}" name="search_keyword">
             <button class="hd-cancel" type="submit">搜索</button>
         </div>

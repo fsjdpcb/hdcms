@@ -51,7 +51,7 @@ class ContentControl extends AuthControl
      */
     private function check_auth()
     {
-    	return check_category_access($this->_cid,strtolower(METHOD));
+    	return check_category_access($this->_cid,METHOD);
     }
 
     //已审核文章内容页列表
