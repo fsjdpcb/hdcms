@@ -388,7 +388,7 @@ $db->exe("CREATE TABLE `".$db_prefix."user` (
   UNIQUE KEY `domain` (`domain`),
   KEY `password` (`password`),
   KEY `credits` (`credits`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='会员表'");
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='会员表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."user_deny_ip`");
 $db->exe("CREATE TABLE `".$db_prefix."user_deny_ip` (
   `ip` char(15) NOT NULL DEFAULT '' COMMENT '拒绝访问ip',
