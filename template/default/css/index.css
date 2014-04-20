@@ -1,5 +1,5 @@
 body {
-  background: #EEEEEE;
+  background: #F7F7F7;
 }
 article.header {
   height: auto;
@@ -56,9 +56,13 @@ div.content ul {
   overflow: hidden;
 }
 div.content header {
-  background: #F7F7F7;
-  padding: 6px 20px;
+  background: #ffffff;
+  font-size: 18px;
+  line-height: 46px;
+  padding: 0px 20px;
+  color: #626770;
   border-bottom: solid 1px #eaeaea;
+  border-top: 5px solid #EEEEEE;
 }
 div.content article.top {
   background: #ffffff;
@@ -117,6 +121,7 @@ div.content div.article-list article header {
   font-size: 20px;
   line-height: 25px;
   background: none;
+  border: none;
 }
 div.content div.article-list article header span {
   font-size: 12px;
@@ -151,7 +156,7 @@ div.content div.article-list div.page strong,
 div.content div.article-list div.page span.close {
   display: block;
   float: left;
-  padding: 3px 15px;
+  padding: 0px 10px;
   line-height: 2em;
   text-align: center;
   margin-right: 8px;
@@ -165,7 +170,7 @@ div.content div.article-list div.page a {
 }
 div.content div.article-list div.page a:hover,
 div.content div.article-list div.page strong {
-  background: #7AC143;
+  background: #5F9DD6;
   color: #fff;
   border: solid 1px #EEEEEE;
 }

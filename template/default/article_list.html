@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{$hd.config.webname}-{$hdcms.catname}</title>
+    <title>{$hd.config.webname}</title>
     <link rel="shortcut icon" href="favicon.ico">
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,59 +33,46 @@
                 </div>
                 <button type="submit" class="btn btn-primary">搜索</button>
             </form>
-            <script type="text/javascript" src="__WEB__?a=Index&c=User&m=user&g=Member"></script>
+            <member/>
         </div>
     </nav>
 </article>
-<!--最新消息-->
-<div class="message container">
-    <span>最新消息：</span>
-    <arclist cid="5" row="1" titlelen=20>
-        <a href='{$field.url}'>{$field.title}</a>
-    </arclist>
+
+<div class="location">
+	<div class="nums">
+		主题数：{$hdcms.article_num} &nbsp;&nbsp;&nbsp;回复数：{$hdcms.comment_num}
+		 <a href="__WEB__?a=Home&c=Content&m=add&g=Member&mid={$hdcms.mid}&cid={$hdcms.cid}" class="publish">
+                <strong>+</strong>发表文章
+            </a>
+	</div>
+	<h3><location sep="&nbsp;/&nbsp;"/></h3>
+	<p class="description">
+		{$hdcms.cat_seo_description}
+	</p>
 </div>
 <!--内容主体-->
 <div class="content container">
     <div class="row">
         <div class="col-md-8">
-            <!--置顶推荐-->
-            <article class="top">
-                <header>置顶推荐</header>
-                <ul>
-                    <arclist row="2" fid="2,4" cid="5" titlelen="15" infolen="50" type="rand">
-                        <li class="col-md-6">
-                            <a href="{$field.url}">
-                                <img src="{$field.thumb}" class="img-rounded sticky"/>
-
-                                <h3 class="title">{$field.title}</h3>
-
-                                <p>
-                                    {$field.description}
-                                </p>
-                            </a>
-                        </li>
-                    </arclist>
-                </ul>
-            </article>
             <!--内容列表-->
             <div class="article-list">
-                <header>文章</header>
-                <pagelist infolen="30" titlelen="20" row="10">
-                    <div class="article">
-                        <h3>
-                        <span>
-                            {$field.catname}
-                            <i class="glyphicon glyphicon-play"></i>
-                        </span>
-                            <a href="{$field.url}" target="_blank">{$field.title}</a>
-                        </h3>
-                        <div class="author">
-                            <a href="{$field.member}" onmouseover="user.show(this,{$field.uid})">{$field.username}</a>
-                            	发表于 {$field.addtime|date_before}
-                        </div>
-                        <p> {$field.description} </p>
-                    </div>
-                </pagelist>
+	                <pagelist infolen="30" titlelen="20" row="10">
+	                    <div class="article">
+	                    	<div class="icon">
+	                    		<img src="{|get_user_icon:$field['uid']}" alt="{$field.username}" onmouseover="user.show(this,{$field.uid})"/>
+	                    	</div>
+	                    	<div class="title">
+	                          	<a href="{$field.url}" target="_blank">{$field.title}</a>
+							</div>
+							<div class="info">
+								<span class="ot-list-time pull-right">{$field.time}</span>
+								<a href="/cate/site.html">{$field.catname}</a>|
+								<a class="ot-list-author" href="/u/3.html">{$field.nickname}</a>
+								<span>浏览：{$field.click} 回复：{$field.comment_num}</span>
+								
+							</div>
+	                    </div>
+	                </pagelist>
                 <div class="page">
                     <pageshow/>
                 </div>
@@ -93,14 +80,23 @@
         </div>
         <!--右侧列表-->
         <div class="right-list col-md-4">
-            <a href="__WEB__?a=Home&c=Content&m=add&g=Member&mid={$hdcms.mid}&cid={$hdcms.cid}" class="publish">
-                <strong>+</strong>发表文章
-            </a>
+           
+            <article class="channel">
+            	<header>讨论区</header>
+            	<div class="channel">
+            		<ul>
+	            		<channel type='self'>
+	            			<li>
+	            				<span class="list-circle-prefix"></span>
+	                    		<a href='{$field.url}'>{$field.catname}</a>
+	                    	</li>
+	                	</channel>
+                	</ul>
+            	</div>
+            </article>
             <!--热门标签-->
             <article class="tag">
-                <header>
-                    标签云
-                </header>
+                <header>热门标签 </header>
                 <div>
                     <tag row="30" type="hot">
                         <a href="{$field.url}">{$field.tag}</a>
@@ -115,9 +111,9 @@
                     })
                 </script>
             </article>
-            <!--精英-->
+            <!--活跃用户-->
             <article class="reader">
-                <header>精英</header>
+                <header>活跃用户</header>
                 <section>
                     <user row="14">
                         <a href="{$field.url}">

@@ -51,6 +51,11 @@ class CategoryControl extends PublicControl
                 go($category['cat_redirecturl']);
             } else {
                 $field =$this->_db->find($this->_cid);
+				$field['son_category']=Data::channelList($this->_category,$this->_cid);
+				$db = K('Article');
+				$where = C('DB_PREFIX').'category.cid='.$this->_cid." OR pid=".$this->_cid;
+				$field['article_num']=$db->join('category')->where($where)->count();
+				$field['comment_num']=$db->join('category')->where($where)->sum('comment_num');
                 $this->assign("hdcms", $field);
                 $tpl = Template::get_category_tpl($this->_cid);
                 $this->display($tpl, C('cache_category'));

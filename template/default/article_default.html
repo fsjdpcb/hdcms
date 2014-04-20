@@ -34,7 +34,7 @@
                 </div>
                 <button type="submit" class="btn btn-primary">搜索</button>
             </form>
-            <script type="text/javascript" src="__WEB__?a=Index&c=User&m=user&g=Member"></script>
+            <member/>
         </div>
     </nav>
 </article>
@@ -110,56 +110,21 @@
     <a href="__WEB__?a=Home&c=Content&m=add&g=Member&mid={$hdcms.mid}&cid={$hdcms.cid}" class="publish">
         <strong>+</strong>发表文章
     </a>
-    <!--热门标签-->
-    <article class="tag">
-        <header>
-            标签云
-        </header>
-        <div>
-            <tag row="30" type="hot">
-                <a href="{$field.url}">{$field.tag}</a>
-            </tag>
-            <!--Tag随机变色-->
-            <script>
-                $(".tag div a ").each(function (i) {
-                    var color = ['red', '#428BCA', '#5CB85C', '#D9534F', '#567E95', '#FF8433', '#4A4A4A', '#5CB85C', '#B433FF', '#33BBBA', '#C28F5B'];
-                    var t = Math.floor(Math.random() * color.length);
-                    $(this).css({'background-color': color[t]});
-                })
-            </script>
-        </div>
+    <!--讨论区-->
+    <article class="channel">
+            	<header>讨论区</header>
+            	<div class="channel">
+            		<ul>
+	            		<channel type='self'>
+	            			<li>
+	            				<span class="list-circle-prefix"></span>
+	                    		<a href='{$field.url}'>{$field.catname}</a>
+	                    	</li>
+	                	</channel>
+                	</ul>
+            	</div>
     </article>
-    <!--精英-->
-    <article class="reader">
-        <header>精英</header>
-        <section>
-            <user row="14">
-                <a href="{$field.url}">
-                    <img src="{$field.icon}" title="{$field.nickname}" onmouseover="user.show(this,{$field.uid})" style="width: 50px;height: 50px;border-radius: 10%;"/>
-                </a>
-            </user>
-        </section>
-    </article>
-    <!--最新评论-->
-    <article class="comment">
-        <header>最新评论</header>
-        <comment row="6" contentlen="20">
-            <section>
-                <a href="{$field.url}">
-                    <img src="{$field.icon}" style="width: 36px;height: 36px;border-radius: 50%;" onmouseover="user.show(this,{$field.uid})"/>
-
-                    <p class="man">
-                        <span>{$field.nickname}</span> {$field.pubtime}说：
-                    </p>
-
-                    <p class="content">
-                        {$field.content}
-                    </p>
-                </a>
-            </section>
-        </comment>
-
-    </article>
+    
     <!--猜你喜欢-->
     <article class="news">
         <header>

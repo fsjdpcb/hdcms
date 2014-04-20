@@ -18,11 +18,16 @@ class ContentTag
         'pagenext' => array('block' => 0),
         'include' => array('block' => 0),
         'navigate' => array('block' => 0),
+        'member' => array('block' => 0),
         'plugin' => array('block' => 1),
         'tag' => array('block' => 1),
         'user' => array('block' => 1),
         'comment' => array('block' => 1),
     );
+	//会员登录窗口
+	public function _member($attr,$content){
+		return '<script type="text/javascript" src="__WEB__?a=Index&c=Member&m=Member&g=Member"></script>';	
+	}
 	//插件调用
 	public function _plugin($attr,$content){
 		$plugin= $attr['plugin'];
