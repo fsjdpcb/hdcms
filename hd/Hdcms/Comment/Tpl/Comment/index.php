@@ -14,7 +14,7 @@
 <div class="hd-comment">
     <!--评论标题-->
     <div class="title">
-        <img src="__ROOT__/{$hd.session.icon50|default:'__ROOT__/data/image/user/50-gray.png'}"/> 发表我的评论
+        <img src="__ROOT__/{$hd.session.icon50|default:'data/image/user/50-gray.png'}"/> 发表我的评论
     </div>
     <!--发表评论-->
     <div class="publish">
