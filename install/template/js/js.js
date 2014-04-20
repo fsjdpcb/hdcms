@@ -1,7 +1,7 @@
 //点击下一步时检测
 function check_dir() {
     if ($(".dir_error").length > 0) {
-        alert("请修改目录权限，否则无法安装");
+        alert("请修改安装环境");
         return false;
     }
     return true;
