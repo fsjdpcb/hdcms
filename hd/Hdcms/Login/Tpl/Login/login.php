@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>HDCMS后台登录</title>
     <hdjs/>
-    <css file="__CONTROL_TPL__/Css/css.css"/>
+    <css file="__CONTROL_TPL__/css/css.css"/>
     <script>
         $(function () {
             var error = '{$error}';

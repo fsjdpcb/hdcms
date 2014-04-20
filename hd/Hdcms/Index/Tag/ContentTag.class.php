@@ -141,7 +141,7 @@ str;
     {
         $cid = isset($attr['cid']) ? trim($attr['cid']) : '';
         $aid = isset($attr['aid']) ? trim($attr['aid']) : '';
-        $mid = isset($attr['mid']) ? $attr['mid'] : 1;
+        $mid = isset($attr['mid']) ? $attr['mid'] : '';
         $row = isset($attr['row']) ? intval($attr['row']) : 10;
         //简单长度
         $infolen = isset($attr['infolen']) ? intval($attr['infolen']) : 80;
@@ -158,10 +158,11 @@ str;
         $php = <<<str
         <?php \$mid="$mid";\$cid ='$cid';\$fid='$fid';\$nofid='$nofid';\$aid='$aid';\$type='$type';\$sub_channel=$sub_channel;
             //设置cid条件
+            \$mid = \$mid?\$mid:Q('mid',1,'intval');
             \$cid = \$cid?\$cid:Q('cid',null,'intval');
             import('ArticleModel','hd.Hdcms.Index.Model');
             //导入模型类
-            \$db = K('Article',array('mid'=>\$mid));
+            \$db = K('Article');
             //主表（有表前缀）
             \$table=\$db->tableFull;
             //没有设置栏目属性时取get值
@@ -284,14 +285,15 @@ str;
         $order = isset($attr['order']) ? strtolower(trim($attr['order'])) : 'new';
         $fid = isset($attr['fid']) ? $attr['fid'] : '';
         //模型mid
-        $mid = isset($attr['mid']) ? intval($attr['mid']) : 1;
+        $mid = isset($attr['mid']) ? intval($attr['mid']) : '';
         //栏目cid
         $cid = isset($attr['cid']) ? trim($attr['cid']) : '';
         //子栏目处理
         $sub_channel = isset($attr['sub_channel']) ? intval($attr['sub_channel']) : 1;
         $php = <<<str
         <?php
-        \$mid =$mid;\$cid='$cid';\$fid = '$fid';\$sub_channel=$sub_channel;\$order = '$order';
+        \$mid ='$mid';\$cid='$cid';\$fid = '$fid';\$sub_channel=$sub_channel;\$order = '$order';
+        \$mid = \$mid?\$mid:Q('mid',1,'intval');
         \$cid = \$cid?\$cid:Q('cid',NULL,'intval');
         //导入模型类
         import('ArticleModel','hd.Hdcms.Index.Model');

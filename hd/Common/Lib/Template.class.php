@@ -25,11 +25,11 @@ final class Template
                 //封面栏目
                 $tpl = $category[$cid]['index_tpl'];
                 break;
-            case 3:
+            case 4:
                 //单页面栏目
                 $result = M('content_single')->where("cid=$cid")->find();
                 //单页面文章指定模板时使用指定的否则使用栏目单页面模板
-                $tpl = $result['template'] ? $result['template'] : $category[$cid]['single_tpl'];
+                $tpl = $result && !empty($result['template']) ? $result['template'] : $category[$cid]['arc_tpl'];
                 break;
         }
         return 'template/' . C('WEB_STYLE') . '/' . $tpl;

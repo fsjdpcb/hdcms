@@ -25,7 +25,7 @@ final class Url
                     //栏目生成静态
                     return __ROOT__ . '/' . C("HTML_PATH") . '/' . $category['catdir'];
                 } else {
-                    return U('Index/Single/show', array('cid' => $category['cid']));
+                    return U('Index/Single/show', array('mid' => $category['mid'],'cid' => $category['cid']));
                 }
             case 2:
             case 1:
@@ -34,7 +34,7 @@ final class Url
                     //栏目生成静态
                     return __ROOT__ . '/' . C("HTML_PATH") . '/' . $category['catdir'];
                 } else {
-                    return U('Index/Category/category', array('cid' => $category['cid']));
+                    return U('Index/Category/category', array('mid' => $category['mid'],'cid' => $category['cid']));
                 }
         }
     }

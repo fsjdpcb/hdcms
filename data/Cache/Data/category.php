@@ -615,7 +615,7 @@ return array (
     'cid' => '15',
     'pid' => '0',
     'catname' => '每日一文',
-    'catdir' => 'news',
+    'catdir' => 'blog',
     'cat_keyworks' => '',
     'cat_description' => '',
     'index_tpl' => 'article_index.html',

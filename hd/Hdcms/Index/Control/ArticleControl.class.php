@@ -10,7 +10,6 @@ class ArticleControl extends PublicControl
 {
     //模型
     protected $_db;
-
     //模型mid
     protected $_mid;
     //栏目id

@@ -22,12 +22,12 @@ class ArticleModel extends ViewModel
      * 构造函数
      * $options=array('mid'=>模型mid)
      */
-    public function __init($options)
+    public function __init()
     {
         //----------------缓存数据
         $this->_category = cache("category");
         $this->_model = cache("model");
-        $this->_mid = isset($options['mid']) ? intval($options['mid']) : Q('mid', 1, 'intval');
+        $this->_mid = Q('mid', null, 'intval');
         $this->_cid = Q('cid', null, 'intval');
         $this->_aid = Q('aid', null, 'intval');
         //主表

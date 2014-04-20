@@ -30,7 +30,7 @@ return array (
     'app_group' => 'Hdcms',
     'app' => 'Single',
     'control' => 'Content',
-    'method' => 'index',
+    'method' => 'edit',
   ),
 );
 ?>

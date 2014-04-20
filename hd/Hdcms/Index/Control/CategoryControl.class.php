@@ -31,8 +31,11 @@ class CategoryControl extends PublicControl
         $this->_mid = Q('mid', null, 'intval');
         $this->_cid = Q("cid", null, "intval");
         $this->_db = K('Category');
+		if (!$this->_mid) {
+            _404('缺少GET参数mid');
+        }
         if (!$this->_cid) {
-            _404('缺少GET参数CID错误');
+            _404('缺少GET参数cid');
         }
         if (!isset($this->_category[$this->_cid])) {
             _404('栏目不存在');

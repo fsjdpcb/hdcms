@@ -7,9 +7,6 @@ import("ArticleControl","hd.Hdcms.Index.Control");
 import("ContentModel","hd.Hdcms.Index.Model");
 import("ContentViewModel","hd.Hdcms.Index.Model");
 
-import('Template', 'hd.Hdcms.Index.Lib');
-import('Url', 'hd.Hdcms.Index.Lib');
-
 /**
  * 静态处理模块
  * Class HtmlControl
@@ -113,7 +110,7 @@ class HtmlControl extends AuthControl
     {
         //栏目生成静态配置
         $config = session("category_html_config");
-        //首次操作：1 创建session配置  2 生栏目所有栏目首页
+        //首次操作：1 创建session配置  2 生成所有栏目首页
         if (is_null($config)) {
             $db = M("category");
             $mid = Q("post.mid", 0, "intval");
@@ -146,11 +143,10 @@ class HtmlControl extends AuthControl
                 $config = array();
                 //生成所有栏目首页
                 foreach ($category as $cat) {
-                    //栏目cid IndexControl必须存在这个值
-                    $_GET['cid'] = $cat['cid'];
                     $cat['_html'] = C("HTML_PATH") . '/' . $cat['catdir'] . '/index.html';
                     //为Index/Index/IndexControl提交参数
-                    $_REQUEST['cid'] = $cat['cid'];
+                    $_REQUEST['mid'] = $cat['mid'];
+					$_REQUEST['cid'] = $cat['cid'];
                     Page::$staticUrl = __ROOT__ . '/' . C("HTML_PATH") . '/' . str_replace(
                             array('{catdir}', '{cid}'),
                             array($cat['catdir'], $cat['cid']),
@@ -165,7 +161,7 @@ class HtmlControl extends AuthControl
                     $cat['row'] = Q("post.step_row", 10, "intval");
                     $config[$cat['cid']] = $cat;
                 }
-                //如果所有栏目没有文章则结束静态创建
+                //如果所有栏目生成完毕结束静态创建
                 if (empty($config)) {
                     if (isset($_SESSION['make_all']['category'])) {
                         $url = U("make_all");
@@ -199,7 +195,8 @@ class HtmlControl extends AuthControl
                     //即将更新的页数，用于计算完成百分比
                     $config[$n]['self_page']++;
                     //为Index/Index/IndexControl提交参数
-                    $_REQUEST['cid'] = $cat['cid'];
+                    $_REQUEST['mid'] = $cat['mid'];
+					$_REQUEST['cid'] = $cat['cid'];
                     $cat['_html'] = C("HTML_PATH") . '/' . str_replace(
                             array('{catdir}', '{cid}', '{page}'),
                             array($cat['catdir'], $cat['cid'], $_GET['page']),
@@ -347,6 +344,7 @@ class HtmlControl extends AuthControl
                     $field['html_path'] = $con['html_path'];
                     $field['_html'] = Url::get_content_html($field);
                     //生成静态IndexControl中的content方法需要这2个变量
+                    $_REQUEST['mid'] = $cat['mid'];
                     $_REQUEST['cid'] = $cat['cid'];
                     $_REQUEST['aid'] = $con['aid'];
                     Html::make("ArticleControl", "show", $field);
