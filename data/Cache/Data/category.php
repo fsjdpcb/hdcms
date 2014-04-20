@@ -684,7 +684,7 @@ return array (
     'cat_url_type' => '2',
     'cat_redirecturl' => '',
     'catorder' => '100',
-    'cat_show' => '1',
+    'cat_show' => '0',
     'cat_seo_title' => '',
     'cat_seo_description' => '',
     'add_reward' => '1',

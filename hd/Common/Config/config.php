@@ -37,6 +37,8 @@ $config = array(
             '/^list_(\d+)_(\d+).html$/'=>'Index/Category/category/cid/#1/page/#2',
             //普通文章
             '/^(\d+)_(\d+)_(\d+).html$/'=>'Index/Article/show/mid/#1/cid/#2/aid/#3',
+            //单文章
+            '/^single_(\d+).html$/'=>'Index/Single/show/cid/#1',
             //搜索
             '/^([a-z]+)_(.+).html$/'=>'Search/Search/search/Hdcms/type/#1/word/#2',
             //栏目（有页码）
