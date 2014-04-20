@@ -133,8 +133,8 @@ div.content div.article-list article header span {
 }
 div.content div.article-list article header span i {
   color: #D9534F;
-  top: 3px;
-  right: -8px;
+  top: 5px;
+  right: -6px;
   font-size: 7px;
   position: absolute;
 }

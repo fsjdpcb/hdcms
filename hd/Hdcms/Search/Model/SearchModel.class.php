@@ -65,10 +65,15 @@ class SearchModel extends ViewModel
         if (empty($word))
             return false;
         //===========================查询条件====================================
+        
         switch ($type) {
             case 'tag':
             default:
-                $where = $this->tableFull.".state=1 AND tag='{$word}'";
+                $where = $this->tableFull.".state=1 OR title LIKE ('%{$word}%')";
+                $words = String::splitWord($word);
+				foreach($words as $w=>$_c){
+					$where.=" OR tag='{$w}'";
+				}
                 $count = $this->where($where)->group($this->tableFull . '.aid')->count();
                 $page = new Page($count, 10);
                 $data = $this->where($where)->group($this->tableFull . '.aid')->all();

@@ -51,8 +51,7 @@ class ArticleModel extends ViewModel
             ),
             "content_tag" => array(
                 'type' => LEFT_JOIN,
-                'on' => $this->table . '.aid=content_tag.aid',
-                'as'
+                'on' => $this->table . '.aid=content_tag.aid'
             ),
         );
         //副表关联

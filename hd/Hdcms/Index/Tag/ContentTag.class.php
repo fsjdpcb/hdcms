@@ -141,7 +141,7 @@ str;
     {
         $cid = isset($attr['cid']) ? trim($attr['cid']) : '';
         $aid = isset($attr['aid']) ? trim($attr['aid']) : '';
-        $mid = isset($attr['mid']) ? $attr['mid'] : '';
+        $mid = isset($attr['mid']) ? intval($attr['mid']) : '';
         $row = isset($attr['row']) ? intval($attr['row']) : 10;
         //简单长度
         $infolen = isset($attr['infolen']) ? intval($attr['infolen']) : 80;
