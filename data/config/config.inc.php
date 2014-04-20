@@ -49,7 +49,7 @@ return array (
   'cache_category' => '-1',
   'cache_content' => '-1',
   'comment_step_time' => '10',
-  'pathinfo_type' => '1',
+  'pathinfo_type' => '0',
   'open_rewrite' => '0',
 );
 ?>
