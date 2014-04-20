@@ -17,7 +17,6 @@ $db->exe("CREATE TABLE `".$db_prefix."category` (
   `index_tpl` varchar(200) NOT NULL DEFAULT '' COMMENT '封面模板',
   `list_tpl` varchar(200) NOT NULL DEFAULT '' COMMENT '列表页模板',
   `arc_tpl` varchar(200) NOT NULL DEFAULT '' COMMENT '内容页模板',
-  `single_tpl` varchar(200) DEFAULT NULL,
   `cat_html_url` varchar(200) NOT NULL DEFAULT '' COMMENT '栏目页URL规则\n\n',
   `arc_html_url` varchar(200) NOT NULL DEFAULT '' COMMENT '内容页URL规则',
   `mid` smallint(6) NOT NULL DEFAULT '0' COMMENT '模型ID',

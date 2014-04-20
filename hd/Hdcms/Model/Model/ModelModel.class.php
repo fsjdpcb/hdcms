@@ -31,8 +31,6 @@ class ModelModel extends Model
     //创建模型表
     public function create_model_table()
     {
-        //类型  基本模型|独立模型（只有主表）
-        $type = Q('type', 1, 'intval');
         //主表
         $masterTable = C("DB_PREFIX") . strtolower($_POST['table_name']);
         $masterSql = <<<str
@@ -75,7 +73,6 @@ str;
             $this->error='创建主表失败';
         }
         //基本模型-->创建附表
-        if ($type == 1) {
             $slaveTable = $masterTable . '_data';
             $slaveSql = <<<str
                 -- -----------------------------------------------------
@@ -89,7 +86,6 @@ str;
 str;
 
             $this->exe($slaveSql);
-        }
         return true;
     }
 
