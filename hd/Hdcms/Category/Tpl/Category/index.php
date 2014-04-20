@@ -40,7 +40,7 @@
                 <td>{$c._type_name}</td>
                 <td>{$c.model_name}</td>
                 <td>
-                    <a href="{|U:'Index/Category/category',array('cid'=>$c['cid'])}" target="_blank">访问</a>
+                    <a href="<?php echo Url::get_category_url($c);?>" target="_blank">访问</a>
                 </td>
                 <td>
                     <a href="{|U:'add',array('pid'=>$c['cid'],'mid'=>$c['mid'])}">添加子栏目</a>

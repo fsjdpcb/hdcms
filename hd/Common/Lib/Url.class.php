@@ -19,6 +19,14 @@ final class Url
             case 3:
                 //外部链接
                 return $category['cat_redirecturl'];
+			case 4:
+				//单文章
+                if ($category['cat_url_type'] == 1) {
+                    //栏目生成静态
+                    return __ROOT__ . '/' . C("HTML_PATH") . '/' . $category['catdir'];
+                } else {
+                    return U('Index/Single/show', array('cid' => $category['cid']));
+                }
             case 2:
             case 1:
                 //普通栏目

@@ -6,22 +6,24 @@
  */
 class SingleControl extends PublicControl
 {
+	private $_category;
     //构造函数
     public function __init()
     {
-        parent::__init();
+    	$this->_category = cache('category');
     }
 
     //单文章显示内容
-    public function single()
+    public function show()
     {
-        $aid = Q('aid', NULL, 'intval');
-        if ($aid) {
-            $field = M('content_single')->find($aid);
-            $tpl = str_replace('{style}', './template/' . C("WEB_STYLE"), $field['template']);
+        $cid = Q('cid', NULL, 'intval');
+        if ($cid) {
+            $field = M('content_single')->where("cid=$cid")->find();
+			$field['time']=date("Y-m-d",$field['updatetime']);
+            $tpl = 'template/' . C("WEB_STYLE").'/'.($field['template']?$field['template']:$this->_category[$cid]['arc_tpl']);
             if (is_file($tpl)) {
                 $this->hdcms = $field;
-                $this->display('template/' . C('WEB_STYLE') . '/' .$tpl);
+                $this->display($tpl);
             }
         }
 

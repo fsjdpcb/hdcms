@@ -151,7 +151,7 @@ str;
         foreach ($model as $d) {
             $data[$d['mid']] = $d;
         }
-        return F("model", $data);
+        return cache("model", $data);
     }
 
 

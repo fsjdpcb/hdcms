@@ -376,7 +376,7 @@ str;
 str;
 
     }
-
+	//上一篇与下一篇
     public function _pagenext($attr, $content)
     {
         $type = isset($attr['type']) ? $attr['type'] : 'pre,next';

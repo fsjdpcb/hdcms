@@ -2,7 +2,6 @@
 //导入Index应用SingleControl单页显示控制器
 import('PublicControl','hd.Hdcms.Index.Control');
 import('SingleControl','hd.Hdcms.Index.Control');
-import('ContentModel','hd.Hdcms.Content.Model');
 class SingleModel extends Model
 {
     //表
