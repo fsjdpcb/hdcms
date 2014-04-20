@@ -8,6 +8,5 @@ return array(
     'TEAM'          =>'后盾网',                                 //开发团队
     'WEB'           =>'www.houdunwang.com',                    //插件网站
     'EMAIL'         =>'houdunwang@gmail.com',                   //联系邮箱
-    'TPL_TAGS'      =>array('@@.Plugin.Link.Tag.F_linkTag'),    //标签
 );
 ?>

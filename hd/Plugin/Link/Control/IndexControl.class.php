@@ -30,7 +30,6 @@ class IndexControl extends CommonControl
     public function index()
     {
         $field = $this->_db->table('link_config')->find();
-        $field['comment'] = preg_replace('@\r\n@', '<br/>', $field['comment']);
         $this->hdcms = $field;
         //友链分类
         $this->type = $this->_db->table('link_type')->all();

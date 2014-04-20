@@ -77,11 +77,11 @@
                             {$field.catname}
                             <i class="glyphicon glyphicon-play"></i>
                         </span>
-                            <a href="{$field.url}">{$field.title|mb_substr:0,32,'utf-8'}</a>
+                            <a href="{$field.url}" target="_blank">{$field.title}</a>
                         </h3>
                         <div class="author">
                             <a href="{$field.member}" onmouseover="user.show(this,{$field.uid})">{$field.username}</a>
-                            发表于 {$field.addtime|date_before}
+                            	发表于 {$field.addtime|date_before}
                         </div>
                         <p> {$field.description} </p>
                     </div>
@@ -167,8 +167,15 @@
     </div>
 </div>
 <!--copyright-->
-<footer class="container">
-    后盾网PHP培训是国内唯一拥有开源框架与开源CMS系统的培训机构！ © 2014 <a href="http://www.houdunwang.com">后盾网</a>
-</footer>
+		<footer class="container">
+			后盾网PHP培训是国内唯一拥有开源框架与开源CMS系统的培训机构！ © 2014
+			<a href="http://www.houdunwang.com">
+				后盾网
+			</a>
+			<div class="link">
+				<strong>友情链接 | <a href="__WEB__?g=Plugin&a=Link" target="_blank">申请链接</a>:</strong>
+				<plugin plugin='Link' tag='link' type="all" tid="1">{$field.link}</plugin>
+			</div>
+		</footer>
 </body>
 </html>

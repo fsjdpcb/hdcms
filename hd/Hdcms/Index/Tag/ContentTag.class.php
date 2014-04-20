@@ -1,7 +1,4 @@
 <?php
-import('Template', 'hd.Hdcms.Index.Lib');
-import('Url', 'hd.Hdcms.Index.Lib');
-
 /**
  * HDCMS标签库
  * Class ContentTag
@@ -21,11 +18,19 @@ class ContentTag
         'pagenext' => array('block' => 0),
         'include' => array('block' => 0),
         'navigate' => array('block' => 0),
+        'plugin' => array('block' => 1),
         'tag' => array('block' => 1),
         'user' => array('block' => 1),
         'comment' => array('block' => 1),
     );
-
+	//插件调用
+	public function _plugin($attr,$content){
+		$plugin= $attr['plugin'];
+		$class = 'hd.Plugin.'.$plugin.'.Tag.'.$plugin.'Tag';
+		$tag = '_'.$attr['tag'];
+		$attr=array('attr'=>$attr,'content'=>$content);
+		return O($class,$tag,$attr);
+	}
     //基本js与css加载(必须使用的)
     public function _hdcms($attr, $content)
     {
@@ -241,15 +246,20 @@ str;
                 if(\$result):
                     foreach(\$result as \$index=>\$field):
                         \$field['index']=\$index+1;
-                        \$field['caturl']=U('category',array('cid'=>\$field['cid']));
-                        \$field['url']=Url::get_content_url(\$field);
+                        \$field['title']=mb_substr(\$field['title'],0,$titlelen,'utf8');
+                        \$field['title']=\$field['color']?"<span style='color:".\$field['color']."'>".\$field['title']."</span>":\$field['title'];
+                        \$field['description']=mb_substr(\$field['description'],0,$infolen,'utf-8');
                         \$field['time']=date("Y-m-d",\$field['updatetime']);
                         \$field['date_before']=date_before(\$field['addtime']);
                         \$field['tag']=\$db->get_tag(\$field['aid']);
                         \$field['thumb']='__ROOT__'.'/'.\$field['thumb'];
-                        \$field['title']=mb_substr(\$field['title'],0,$titlelen,'utf8');
-                        \$field['title']=\$field['color']?"<span style='color:".\$field['color']."'>".\$field['title']."</span>":\$field['title'];
-                        \$field['description']=mb_substr(\$field['description'],0,$infolen,'utf-8');
+                        \$field['caturl']=U('category',array('cid'=>\$field['cid']));
+                        \$field['url']=Url::get_content_url(\$field);
+                         if(\$field['new_window'] || \$field['redirecturl']){
+                        	\$field['link']='<a href="'.\$field['url'].'" target="_blank">'.\$field['title'].'</a>';
+						}else{
+							\$field['link']='<a href="'.\$field['url'].'">'.\$field['title'].'</a>';	
+						}
                 ?>
 str;
         $php .= $content;
@@ -328,16 +338,21 @@ str;
         if(\$result):
             //有结果集时处理
             foreach(\$result as \$field):
-                    \$field['caturl']=U('category',array('cid'=>\$field['cid']));
-                    \$field['url']=Url::get_content_url(\$field);
-                    \$field['thumb']='__ROOT__'.'/'.\$field['thumb'];
-                    \$field['member']='__WEB__'.'?'.\$field['username'];//会员中心
-                    \$field['date_before']=date_before(\$field['addtime']);
-                    \$field['tag']=\$db->get_tag(\$field['aid']);
-                    \$_title=mb_substr(\$field['title'],0,$titlelen,'utf8');
-                    \$field['title']=\$field['color']?"<span style='color:".\$field['color']."'>".\$_title."</span>":\$_title;
-                    \$field['time']=date("Y-m-d",\$field['addtime']);
-                    \$field['description']=mb_substr(\$field['description'],0,$infolen,'utf-8');
+                    \$field['index']=\$index+1;
+                        \$field['title']=mb_substr(\$field['title'],0,$titlelen,'utf8');
+                        \$field['title']=\$field['color']?"<span style='color:".\$field['color']."'>".\$field['title']."</span>":\$field['title'];
+                        \$field['description']=mb_substr(\$field['description'],0,$infolen,'utf-8');
+                        \$field['time']=date("Y-m-d",\$field['updatetime']);
+                        \$field['date_before']=date_before(\$field['addtime']);
+                        \$field['tag']=\$db->get_tag(\$field['aid']);
+                        \$field['thumb']='__ROOT__'.'/'.\$field['thumb'];
+                        \$field['caturl']=U('category',array('cid'=>\$field['cid']));
+                        \$field['url']=Url::get_content_url(\$field);
+                        if(\$field['new_window'] || \$field['redirecturl']){
+                        	\$field['link']='<a href="'.\$field['url'].'" target="_blank">'.\$field['title'].'</a>';
+						}else{
+							\$field['link']='<a href="'.\$field['url'].'">'.\$field['title'].'</a>';	
+						}
             ?>
 str;
         $php .= $content;

@@ -68,7 +68,7 @@ class ModelModel extends Model
   PRIMARY KEY (`aid`),
   KEY `cid` (`cid`),
   KEY `uid` (`uid`)
-) ENGINE=MyISAM DEFAULT CHARSET=gbk;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='文章表';;
 str;
         //创建主表
         if(!$this->exe($masterSql)){
@@ -85,7 +85,7 @@ str;
   `aid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '文章主表ID',
   `content` text COMMENT '正文',
   KEY `aid` (`aid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='内容表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='文章正文表';
 str;
 
             $this->exe($slaveSql);

@@ -343,13 +343,24 @@ div.content {
   }
 }
 
-//底部版权
+//底部版权 
 footer {
   background: @bgcolor-gray;
   color: #aaa;
-  padding: 20px 10px;
+  padding: 10px;
   font-size: 12px;
   border-left: solid 8px @blue;
   margin-top: 20px;
+    div.link{
+        margin-top:10px;
+        strong{margin-right:10px;}
+       a{
+            color:#aaa;padding-right:5px;
+            text-decoration: none;
+            &:hover{
+                color:#DDDDDD;
+            }
+       }
+    }
 }
 

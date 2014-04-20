@@ -11,12 +11,6 @@ class LinkModel extends ViewModel
             'on' => 'link.tid=link_type.tid'
         )
     );
-
-    //构造函数
-    protected function __init()
-    {
-    }
-
     /**
      * 添加链接
      * @return mixed

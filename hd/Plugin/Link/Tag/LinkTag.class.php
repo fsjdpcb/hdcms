@@ -1,18 +1,14 @@
 <?php
 
-class F_linkTag
+class LinkTag
 {
-    public $tag = array(
-        'flink' => array('block' => 1, 'level' => 4)
-    );
-
     /**
      * 友情链接显示
      * @param $attr 属性
      * @param $content 内容
      * @return int
      */
-    public function _flink($attr, $content)
+    public function _link($attr, $content)
     {
         //友链类型 image 图片  text 非图片链接 all 所有链接
         $type = isset($attr['type']) ? $attr['type'] : 'all';
@@ -22,7 +18,7 @@ class F_linkTag
         <?php
         \$type='$type';\$tid='$tid';
         //导入模型
-        require_cache("hd/Plugin/Link/Model/LinkModel.class.php");
+        import('LinkModel','hd/Plugin/Link/Model');
         \$db = K('Link');
         switch(\$type){
             case 'image':
