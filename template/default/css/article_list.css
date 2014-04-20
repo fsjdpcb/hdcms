@@ -47,12 +47,12 @@ div.location div.nums {
   padding-right: 10x;
 }
 div.location div.nums a.publish {
-  width: 160px;
   background: #5BC8C7;
   margin-left: 15px;
+  line-height: 2em;
   font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
-  padding: 3px 10px;
+  padding: 0px 15px;
   border-radius: 10px;
   text-align: center;
   display: inline-block;
@@ -62,7 +62,7 @@ div.location div.nums a.publish {
   font-weight: bold;
 }
 div.location div.nums a.publish:hover {
-  background: #5BC8C0;
+  background: #5BCaa0;
 }
 div.location div.nums a.publish strong {
   font-size: 25px;

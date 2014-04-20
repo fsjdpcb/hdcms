@@ -55,7 +55,8 @@ class CategoryControl extends PublicControl
 				$db = K('Article');
 				$where = C('DB_PREFIX').'category.cid='.$this->_cid." OR pid=".$this->_cid;
 				$field['article_num']=$db->join('category')->where($where)->count();
-				$field['comment_num']=$db->join('category')->where($where)->sum('comment_num');
+				$comment_num = $db->join('category')->where($where)->sum('comment_num');
+				$field['comment_num']=$comment_num?$comment_num:0;
                 $this->assign("hdcms", $field);
                 $tpl = Template::get_category_tpl($this->_cid);
                 $this->display($tpl, C('cache_category'));

@@ -306,6 +306,7 @@ div.content div.right-list article.news section a p {
 }
 div#main header {
   font-size: 12px;
+  border-top: none;
 }
 div#main div.title {
   background: #FBFBFB;
