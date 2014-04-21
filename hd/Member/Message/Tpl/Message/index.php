@@ -25,7 +25,7 @@
             <list from="$data" name="d">
                 <li>
                     <div class="article">
-                        <a href="__ROOT__/index.php?a=Home&c=Message&m=show&g=Member&from_uid={$d.from_uid}" class="title">
+                        <a href="__ROOT__/index.php?a=Message&c=Message&m=show&g=Member&from_uid={$d.from_uid}" class="title">
                             {$d.nickname} : {$d.content|mb_substr:0,30,'utf-8'}
                         </a>
                     <span class="time">
@@ -46,7 +46,7 @@
         <a href="#">HDPHP框架</a>
         <a href="#">论坛</a>
     </nav>
-    Copyright © 2014 so.com All Rights Reserved <a href="#">京公安网备11000000000006</a>
+    Copyright © 2014 so.com All Rights Reserved <a href="#">{$hd.config.icp}</a>
 </footer>
 </body>
 </html>
