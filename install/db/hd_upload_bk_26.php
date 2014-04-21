@@ -1,3 +1,0 @@
-<?php if(!defined('HDPHP_PATH'))EXIT;
-$db->exe("REPLACE INTO ".$db_prefix."upload (`id`,`name`,`filename`,`basename`,`path`,`ext`,`image`,`size`,`uptime`,`state`,`uid`) VALUES('1','231643jccfzv3izucfk2am','95241397989338','95241397989338.jpg','upload/editor/2014/04/20/95241397989338.jpg','jpg','1','196976','1397989338','1','1')");
-$db->exe("REPLACE INTO ".$db_prefix."upload (`id`,`name`,`filename`,`basename`,`path`,`ext`,`image`,`size`,`uptime`,`state`,`uid`) VALUES('2','231643jccfzv3izucfk2am','95341398002248','95341398002248.jpg','upload/content/2014/04/20/95341398002248.jpg','jpg','1','196974','1398002248','1','1')");

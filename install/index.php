@@ -54,7 +54,7 @@ switch ($s) {
         $safe = (ini_get('safe_mode') ? '<span class="dir_error">Off</span>' : '<span class="dir_success">On</span>');
         $gd_info = gd_info();
         $gd = !empty($gd_info) ? '<span class="dir_success">On</span>' : '<span class="dir_error">Off</span>';
-        $mysql = function_exists("mysql_connect") ? '<span class="dir_success">On</span>' : '<span class="dir_error">Off</span>';
+        $mysqli = function_exists("mysqli_connect") ? '<span class="dir_success">On</span>' : '<span class="dir_error">Off</span>';
         $mb_substr = function_exists("mb_substr") ? '<span class="dir_success">On</span>' : '<span class="dir_error">Off</span>';
         //检测目录
         $dirctory = array(

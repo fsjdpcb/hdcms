@@ -79,8 +79,8 @@
                     </span></td>
                 </tr>
                 <tr>
-                    <td>MySQL</td>
-                    <td><?php echo $mysql; ?></td>
+                    <td>MySQLI扩展</td>
+                    <td><?php echo $mysqli; ?></td>
                     <td> <span class="desc">
                         (不支持无法使用本系统)
                     </span></td>
