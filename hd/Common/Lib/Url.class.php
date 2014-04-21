@@ -15,6 +15,8 @@ final class Url
      */
     static function get_category_url($category)
     {
+    	//静态根目录
+    	$html_path =  C("HTML_PATH")? C("HTML_PATH") . '/':'';
         switch ($category['cattype']) {
             case 3:
                 //外部链接
@@ -22,8 +24,9 @@ final class Url
 			case 4:
 				//单文章
                 if ($category['cat_url_type'] == 1) {
+                	
                     //栏目生成静态
-                    return __ROOT__ . '/' . C("HTML_PATH") . '/' . $category['catdir'];
+                    return __ROOT__ . '/' . $html_path. $category['catdir'];
                 } else {
                     return U('Index/Single/show', array('mid' => $category['mid'],'cid' => $category['cid']));
                 }
@@ -32,7 +35,7 @@ final class Url
                 //普通栏目
                 if ($category['cat_url_type'] == 1) {
                     //栏目生成静态
-                    return __ROOT__ . '/' . C("HTML_PATH") . '/' . $category['catdir'];
+                    return __ROOT__ . '/' .$html_path . $category['catdir'];
                 } else {
                     return U('Index/Category/category', array('mid' => $category['mid'],'cid' => $category['cid']));
                 }

@@ -2,7 +2,7 @@
 return array (
   'webname' => 'HDPHP社区--中国最强PHP培训机构  《后盾网》',
   'icp' => '京ICP备12048441号-3',
-  'html_path' => 'html',
+  'html_path' => '',
   'copyright' => 'Copyright © 2012-2013 HDCMS 后盾网 版权所有',
   'keywords' => 'php培训,php实训,后盾网',
   'description' => '后盾网顶尖PHP培训 内容全面 全程实战!业内顶级讲师亲自授课,千余课时独家视频教程免费下载,超百G原创视频资源,实力不容造假!010-64825057',

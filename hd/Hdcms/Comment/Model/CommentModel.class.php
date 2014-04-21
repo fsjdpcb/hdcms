@@ -7,6 +7,7 @@
 class CommentModel extends ViewModel
 {
     public $table = 'comment';
+	public $_mid;
     public $_cid;
     public $_aid;
     public $auto = array(
@@ -33,6 +34,7 @@ class CommentModel extends ViewModel
     //构造函数
     public function __init()
     {
+        $this->_mid = Q('mid', null, 'intval');
         $this->_cid = Q('cid', null, 'intval');
         $this->_aid = Q('aid', null, 'intval');
     }
@@ -95,7 +97,12 @@ class CommentModel extends ViewModel
     public function add_comment()
     {
         if ($this->create()) {
-            return $this->add();
+            if($this->add()){
+            	//修改文章评论数
+            	$model = cache('model');
+				M($model[$this->_mid]['table_name'])->inc('comment_num','aid='.$this->_aid);
+				return true;
+            }
         }
     }
 
