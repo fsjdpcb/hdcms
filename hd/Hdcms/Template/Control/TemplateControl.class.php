@@ -29,6 +29,7 @@ class TemplateControl extends AuthControl
             //模板缩略图
             $template_img = $tpl['path']."/template.jpg";
             if (is_file($template_img)) {
+            	$template_img=str_replace(ROOT_PATH, '',$template_img);
                 $config['template_img'] = __ROOT__ . '/' . $template_img;
             } else {
                 $config['template_img'] = __CONTROL_TPL__ . '/img/default.jpg';

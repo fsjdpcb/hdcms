@@ -74,15 +74,10 @@ class PublicControl extends CommonControl
     protected function display($tplFile = null, $cacheTime = null, $cachePath = null, $stat = false, $contentType = "text/html", $charset = "", $show = true)
     {
         //验证模板文件
-        if (is_file($tplFile)) {
+        if (is_file($tplFile) && is_readable($tplFile)) {
             //设置缓存目录
             $cachePath = $this->get_cache_path();
             parent::display($tplFile, $cacheTime, $cachePath);
-        } else {
-            $this->tpl_file = $tplFile;
-            parent::display('./hd/Common/Template/template_error.html');
-            exit;
         }
-
     }
 }
