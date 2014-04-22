@@ -52,7 +52,7 @@ if(!isset($_GET['a']) || $_GET['a']=='Index'){
 	//url重写模式
     $config['URL_REWRITE']=intval($globalConfig['open_rewrite']);
     //类型1 pathinfo  2 普通GET方式
-	$config['URL_TYPE']=intval($globalConfig['pathinfo_type']);
+	$config['URL_TYPE']=intval($globalConfig['pathinfo_type'])?1:2;
 }
 return array_merge(
 	//网站配置
