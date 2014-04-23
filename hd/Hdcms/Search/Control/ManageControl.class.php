@@ -11,7 +11,6 @@ class ManageControl extends AuthControl
 
     public function __init()
     {
-        parent::__init();
         $_REQUEST['cid'] = M("category")->where('mid=1')->getField('cid');
         import('Index.Model.SearchModel');
         $this->_db = K("Manage");

@@ -10,7 +10,7 @@ class AdminControl extends AuthControl
 {
     private $_db;
 
-    public function __construct()
+    public function __init()
     {
         $this->_db = K("Admin");
     }

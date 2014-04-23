@@ -14,7 +14,6 @@ class NodeControl extends AuthControl
 
     public function __init()
     {
-        parent::__init();
         //获得模型实例
         $this->_db = K("Node");
         $this->_node = cache("node");

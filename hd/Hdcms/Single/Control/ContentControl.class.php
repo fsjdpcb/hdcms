@@ -14,7 +14,6 @@ class ContentControl extends AuthControl
     //构造函数
     public function __init()
     {
-        parent::__init();
         $this->_db = K('Single');
         $this->_cid = Q('cid', NULL, 'intval');
     }

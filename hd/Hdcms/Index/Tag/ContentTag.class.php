@@ -259,7 +259,7 @@ str;
                         \$field['date_before']=date_before(\$field['addtime']);
                         \$field['tag']=\$db->get_tag(\$field['aid']);
                         \$field['thumb']='__ROOT__'.'/'.\$field['thumb'];
-                        \$field['caturl']=U('category',array('cid'=>\$field['cid']));
+                        \$field['caturl']=U('Index/Index/category',array('cid'=>\$field['cid']));
                         \$field['url']=Url::get_content_url(\$field);
                          if(\$field['new_window'] || \$field['redirecturl']){
                         	\$field['link']='<a href="'.\$field['url'].'" target="_blank">'.\$field['title'].'</a>';
@@ -285,9 +285,9 @@ str;
         $order = isset($attr['order']) ? strtolower(trim($attr['order'])) : 'new';
         $fid = isset($attr['fid']) ? $attr['fid'] : '';
         //模型mid
-        $mid = isset($attr['mid']) ? intval($attr['mid']) : '';
+        $mid = isset($attr['mid']) && intval($attr['mid']) ? intval($attr['mid']) : '';
         //栏目cid
-        $cid = isset($attr['cid']) ? trim($attr['cid']) : '';
+        $cid = isset($attr['cid']) && intval($attr['cid']) ? trim($attr['cid']) : '';
         //子栏目处理
         $sub_channel = isset($attr['sub_channel']) ? intval($attr['sub_channel']) : 1;
         $php = <<<str
@@ -340,6 +340,9 @@ str;
         //关联表
         \$join = "content_flag,category,user";
         \$count = \$db->join(\$join)->order("arc_sort ASC")->where(\$where)->where(\$db->tableFull.'.state=1')->count(\$db->tableFull.'.aid');
+  		if(C('URL_TYPE')==1 && APP=='Index' && CONTROL=='Category' &&m=='category'){
+  			Page::\$staticUrl='__WEB__/list_'.Q('mid').'_'.Q('cid').'_{page}.html';	
+  		}
         \$page= new Page(\$count,$row);
         \$result= \$db->join(\$join)->order("arc_sort ASC")->where(\$where)->where(\$db->tableFull.'.state=1')->order(\$order)->limit(\$page->limit())->all();
         if(\$result):
@@ -372,8 +375,10 @@ str;
         $style = isset($attr['style']) ? $attr['style'] : 2;
         $row = isset($attr['row']) ? $attr['row'] : 10;
         return <<<str
-        <?php if(is_object(\$page))
+        <?php if(is_object(\$page)){
+        	
             echo \$page->show($style,$row);
+            }
         ?>
 str;
 

@@ -18,14 +18,17 @@ class HtmlControl extends AuthControl
     private $_model;
     //栏目缓存
     private $_category;
+	//HTML存放根目录
+	private $_html_path;
 
     public function __init()
     {
-        parent::__init();
         //模型缓存
         $this->_model = cache("model");
         //栏目缓存
         $this->_category = cache("category");
+		//HTML存放根目录
+		$this->_html_path = C("HTML_PATH")?C("HTML_PATH").'/':'';
     }
 
     //向客户端发送生成静态状态信息
@@ -72,7 +75,9 @@ class HtmlControl extends AuthControl
         $this->make_all();
     }
 
-    //一键生成配置页
+    /**
+	 * 一键生成配置页
+	 */
     public function create_all()
     {
         $this->display();
@@ -82,6 +87,8 @@ class HtmlControl extends AuthControl
     public function create_index()
     {
         if (IS_POST or isset($_SESSION['make_all']['index'])) {
+        	//首页使用pagelist标签时
+        	Page::$staticUrl = __WEB__.'?a=Index&c=Index&m=index&page={page}';
             if (Html::make("IndexControl", "index", array("_html" => "index.html"))) {
                 //设置一键生成跳转地址
                 if (isset($_SESSION['make_all']['index'])) {
@@ -143,11 +150,12 @@ class HtmlControl extends AuthControl
                 $config = array();
                 //生成所有栏目首页
                 foreach ($category as $cat) {
-                    $cat['_html'] = C("HTML_PATH") . '/' . $cat['catdir'] . '/index.html';
+                    $cat['_html'] = $this->_html_path . $cat['catdir'] . '/index.html';
                     //为Index/Index/IndexControl提交参数
                     $_REQUEST['mid'] = $cat['mid'];
 					$_REQUEST['cid'] = $cat['cid'];
-                    Page::$staticUrl = __ROOT__ . '/' . C("HTML_PATH") . '/' . str_replace(
+					//html文件存放根目录
+                    Page::$staticUrl = __ROOT__ . '/' . $this->_html_path . str_replace(
                             array('{catdir}', '{cid}'),
                             array($cat['catdir'], $cat['cid']),
                             $cat['cat_html_url']);
@@ -197,12 +205,12 @@ class HtmlControl extends AuthControl
                     //为Index/Index/IndexControl提交参数
                     $_REQUEST['mid'] = $cat['mid'];
 					$_REQUEST['cid'] = $cat['cid'];
-                    $cat['_html'] = C("HTML_PATH") . '/' . str_replace(
+                    $cat['_html'] = $this->_html_path . str_replace(
                             array('{catdir}', '{cid}', '{page}'),
                             array($cat['catdir'], $cat['cid'], $_GET['page']),
                             $cat['cat_html_url']);
                     //设置分页静态变量
-                    Page::$staticUrl = __ROOT__ . '/' . C("HTML_PATH") . '/' . str_replace(
+                    Page::$staticUrl = __ROOT__ . '/' . $this->_html_path . str_replace(
                             array('{catdir}', '{cid}'),
                             array($cat['catdir'], $cat['cid']),
                             $cat['cat_html_url']);

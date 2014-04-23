@@ -11,7 +11,6 @@ class TagControl extends AuthControl
 
     public function __init()
     {
-        parent::__init();
         $this->_db = K("tag");
     }
 

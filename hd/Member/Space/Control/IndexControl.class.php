@@ -19,7 +19,7 @@ class IndexControl extends Control
         $user = M()->query($sql);
         //---------------------------检测用户
         if (!$user) {
-            $this->error('用户不存在');
+            $this->error('页面不存在');
         }
         $user = $user[0];
         //--------------------------增加空间访问次数

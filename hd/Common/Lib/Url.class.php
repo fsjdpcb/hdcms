@@ -90,9 +90,11 @@ final class Url
     static public function get_content_html($field)
     {
         $_category = cache("category");
+		//HTML存放根目录
+		$html_path = C("HTML_PATH")?C("HTML_PATH").'/':'';
         //有自定义静态url时，直接使用（不需要通过栏目规则运算）
         if (!empty($field['html_path']))
-            return C("HTML_PATH") . '/' . $field['html_path'];
+            return $html_path . $field['html_path'];
         //当前文章栏目信息
         $category = $_category[$field['cid']];
         //栏目定义的内容页生成静态规则
@@ -109,7 +111,7 @@ final class Url
             $time['mday'],
             $field['aid']
         );
-        return C("HTML_PATH") . '/' . str_replace($_s, $_r, $arc_html_url);
+        return $html_path . str_replace($_s, $_r, $arc_html_url);
     }
 
 

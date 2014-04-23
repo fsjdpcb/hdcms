@@ -5,7 +5,6 @@ class TemplateControl extends AuthControl
 {
     public function __init()
     {
-        parent::__init();
     }
 
     //模板风格列表

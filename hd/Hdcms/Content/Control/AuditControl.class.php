@@ -19,8 +19,6 @@ class AuditControl extends AuthControl
     //构造函数
     public function __init()
     {
-        //父类构造函数
-        parent::__init();
         $this->_model = cache("model", false);
         $this->_category = cache("category", false);
         $this->_mid = Q('mid', 1, 'intval');

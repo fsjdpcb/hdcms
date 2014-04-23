@@ -19,7 +19,6 @@ class ModelControl extends AuthControl
      */
     public function __init()
     {
-        parent::__init();
         $this->_db = K("Model");
         $this->_mid = Q("request.mid");
         $this->_model = cache("model", false);

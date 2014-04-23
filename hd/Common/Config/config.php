@@ -28,31 +28,28 @@ $config = array(
         'EDITOR_SAVE_PATH' => ROOT_PATH . 'upload/editor/' . date('Y/m/d/'), //文件储存目录
         'TPL_ERROR' => 'hd/Common/Template/error.html', //错误页面
         'TPL_SUCCESS' => 'hd/Common/Template/success.html', //正确页面
-        'ROUTE'=>array(
-            //首页分页
-            '/^(\d+).html$/'=>'Index/Index/index/page/#1',
-            //栏目
-            '/^list_(\d+).html$/'=>'Index/Category/category/cid/#1',
-            //栏目分页
-            '/^list_(\d+)_(\d+).html$/'=>'Index/Category/category/cid/#1/page/#2',
-            //普通文章
-            '/^(\d+)_(\d+)_(\d+).html$/'=>'Index/Article/show/mid/#1/cid/#2/aid/#3',
-            //单文章
-            '/^single_(\d+).html$/'=>'Index/Single/show/cid/#1',
-            //搜索
-            '/^([a-z]+)_(.+).html$/'=>'Search/Search/search/Hdcms/type/#1/word/#2',
-            //栏目（有页码）
-            '/^list_(\d+)_(\d+).html$/'=>'Index/Category/category/cid/#1/page/#2',
-            //个人主页
-            '/^([0-9a-z]+)$/'=>'a=Space&c=Index&m=index&g=Member&u=#1',
-		)
+        
     );
-//Index应用时设置Rewrite规则
+//首页或Index应用时设置Rewrite规则
 if(!isset($_GET['a']) || $_GET['a']=='Index'){
 	//url重写模式
     $config['URL_REWRITE']=intval($globalConfig['open_rewrite']);
     //类型1 pathinfo  2 普通GET方式
 	$config['URL_TYPE']=intval($globalConfig['pathinfo_type'])?1:2;
+	$config['ROUTE']=array(
+            //首页分页
+            '/^(\d+).html$/'=>'Index/Index/index/page/#1',
+            //栏目
+            '/^list_(\d+)_(\d+).html$/'=>'Index/Category/category/mid/#1/cid/#2',
+            //栏目分页
+            '/^list_(\d+)_(\d+)_(\d+).html$/'=>'Index/Category/category/mid/#1/cid/#2/page/#3',
+            //普通文章
+            '/^(\d+)_(\d+)_(\d+).html$/'=>'Index/Article/show/mid/#1/cid/#2/aid/#3',
+            //单文章
+            '/^single_(\d+).html$/'=>'Index/Single/show/cid/#1',
+            //个人主页
+            '/^([0-9a-z]+)$/'=>'a=Space&c=Index&m=index&g=Member&u=#1',
+		);
 }
 return array_merge(
 	//网站配置
