@@ -10,7 +10,6 @@ class CategoryControl extends PublicControl
 {
     //模型
     protected $_db;
-
     //模型mid
     protected $_mid;
     //栏目id
@@ -40,9 +39,7 @@ class CategoryControl extends PublicControl
         if (!isset($this->_category[$this->_cid])) {
             _404('栏目不存在');
         }
-
     }
-
     //显示栏目列表
     public function category()
     {
