@@ -1,4 +1,7 @@
 <?php
+/**
+ * 后台菜单处理
+ */
 class MenuControl extends AuthControl{
 	//模型
 	private $_db;

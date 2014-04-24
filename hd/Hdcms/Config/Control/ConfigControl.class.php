@@ -136,7 +136,7 @@ str;
                                         <label><input type="radio" name="{$c['id']}" value="0" $_no/> 否</label>
                                     </td>
                                     <td>
-                                        变量名：{$c['name']} <span style='color:#357EBD;font-weight: bold;padding-left:20px;'>说明</span>: {$c['message']}
+                                        变量名：{$c['name']} <span class='validate-message'>{$c['message']}</span>
                                     </td>
                                 </tr>
 str;

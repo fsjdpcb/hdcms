@@ -33,6 +33,7 @@ return array (
   'water_pos' => '9',
   'del_content_model' => '0',
   'down_remove_pic_size' => '500',
+  'reply_credits' => '1',
   'down_remote_pic' => '0',
   'auto_desc' => '1',
   'auto_thumb' => '0',

@@ -32,7 +32,7 @@ class AccessControl extends AuthControl
         } else {
             $rid = Q("rid");
             $sql = "SELECT n.nid,n.title,n.pid,n.type,a.rid as access_rid FROM hd_node AS n LEFT JOIN (SELECT * FROM (SELECT * FROM hd_access WHERE rid=$rid) AS aa)AS a
-                ON n.nid = a.nid";
+                ON n.nid = a.nid ORDER BY list_order ASC";
             $result = $this->_db->query($sql);
             foreach ($result as $n => $r) {
                 $checked = $r['access_rid'] ||$r['type']==2? " checked=''" : '';

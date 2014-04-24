@@ -10,7 +10,7 @@ class MenuModel extends ViewModel
     //关联权限表
     public $view = array(
         'access' => array(
-            'type' => INNER_JOIN,
+            'type' => LEFT_JOIN,
             "on" => "node.nid=access.nid",
         )
     );
@@ -63,7 +63,7 @@ class MenuModel extends ViewModel
             $data = $this->join(NULL)->where("state=1")->order(array("list_order" => "ASC", 'nid' => 'DESC'))->all();
         } else {
             //获得当前角色权限
-            $data = $this
+            $data = $this->field("*,".$this->tableFull.'.nid')
                 ->where("(".C('DB_PREFIX') . "access.rid=" . session('rid') . " OR type=2) AND state=1")
                 ->order(array("list_order" => "ASC"))->all();
         }

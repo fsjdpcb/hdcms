@@ -19,11 +19,13 @@
 								栏目列表
 							</a>
 						</li>
+						<?php if(checkAdminAccess('Category','Category','add')):?>
 						<li>
 							<a href="{|U:'add'}">
 								添加顶级栏目
 							</a>
 						</li>
+						<?php endif;?>
 						<li>
 							<a href="javascript:hd_ajax('{|U:update_cache}')">
 								更新栏目缓存
@@ -42,7 +44,6 @@
 							<td>栏目名称</td>
 							<td class="w100">类型</td>
 							<td class="w100">模型</td>
-							<td class="w50">访问</td>
 							<td class="w180">操作</td>
 						</tr>
 					</thead>
@@ -61,17 +62,25 @@
 							<td>
 							<a href="<?php echo Url::get_category_url($c); ?>" target="_blank">
 								访问
-							</a></td>
-							<td>
+							</a>
+							<?php if(checkAdminAccess('Category','Category','add')):?>	
+								<span class="line">|</span>
 							<a href="{|U:'add',array('pid'=>$c['cid'],'mid'=>$c['mid'])}">
 								添加子栏目
-							</a><span class="line">|</span>
+							</a>
+							<?php endif;?>
+							<?php if(checkAdminAccess('Category','Category','edit')):?>
+								<span class="line">|</span>
 							<a href="{|U:'edit',array('cid'=>$c['cid'])}">
 								修改
-							</a><span class="line">|</span>
+							</a>
+							<?php endif;?>
+							<?php if(checkAdminAccess('Category','Category','del')):?>
+								<span class="line">|</span>
 							<a href="javascript:hd_confirm('确证删除吗？',function(){hd_ajax(CONTROL + '&m=del', {cid: {$c.cid},mid: {$c.mid}})})">
 								删除
 							</a></td>
+							<?php endif;?>
 						</tr>
 					</list>
 				</table>
@@ -81,7 +90,9 @@
 				<input type="button" class="hd-cancel" onclick="select_all(1)" value='全选'/>
 				<input type="button" class="hd-cancel" onclick="select_all(0)" value='反选'/>
 				<input type="button" class="hd-cancel" onclick="update_order()" value="更改排序"/>
+				<?php if(checkAdminAccess('Category','BatchEdit','show')):?>
 				<input type="button" class="hd-cancel" onclick="edit_mul()" value="批量编辑"/>
+				<?php endif;?>
 				
 			</div>
 		</form>

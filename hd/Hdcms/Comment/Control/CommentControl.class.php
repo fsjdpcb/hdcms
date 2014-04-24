@@ -80,11 +80,20 @@ class CommentControl extends CommonControl
             if ($data) {
                 $this->_ajax(0, '请不要发表重复内容');
             }
+			//----------------------------------------添加积分
+			$reply_credits = intval(C('reply_credits'));
+			$credits_msg = '';
+			if($reply_credits){
+				$sql = "UPDATE ".C('DB_PREFIX').'user AS u SET credits=credits+'.$reply_credits;
+				M()->exe($sql);
+				$_SESSION['credits']+=$reply_credits;
+				$credits_msg='奖励'.$reply_credits.'个积分';
+			}
             //-----------------------------------------发表评论
             $_POST['content'] = $content;
             if ($comment_id = $this->_db->add_comment()) {
                 $comment = $this->get_one($comment_id);
-                $msg = C('comment_state') == 1 || session('admin')==1 ? '评论发表成功！' : '评论成功，审核后显示';
+                $msg = C('comment_state') == 1 || session('admin')==1 ? '评论成功！'.$credits_msg : '评论成功，审核后显示';
                 //记录发表时间
                 session('comment_send_time', time());
                 //------------------------------------添加动态

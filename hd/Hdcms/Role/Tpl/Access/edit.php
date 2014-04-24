@@ -9,7 +9,7 @@
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
 <body>
-<form action="{|U:'edit'}" method="post" class="hd-form" onsubmit="return hd_submit(this)">
+<form action="{|U:'edit'}" method="post" class="hd-form" onsubmit="return hd_submit(this,'{|U:'Role/index'}')">
     <input type="hidden" name="rid" value="{$rid}"/>
 
     <div class="wrap">

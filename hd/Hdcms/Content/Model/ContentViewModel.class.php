@@ -100,11 +100,11 @@ class ContentViewModel extends ViewModel
         $where[]=C('DB_PREFIX').'category.cid IN ('.implode(',',$_cid).')';
         //-----------------------------------搜索条件----------------------
         //总记录数
-        $count = $this->join('category,user')->where($where)->count();
+        $count = $this->where($where)->count();
         $page = new Page($count, 15);
         $page_list = $page->show();
         //获得文章列表
-        $data = $this->where($where)->order('arc_sort ASC')->all();
+        $data = $this->where($where)->order('arc_sort ASC')->limit($page->limit())->all();
         return array('page' => $page_list, 'data' => $data);
     }
 }
