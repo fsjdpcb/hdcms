@@ -32,6 +32,7 @@ $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('133','water_pos','9','水印设置','水印位置','数字','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('134','del_content_model','0','高级设置','删除文章先放入回收站','布尔(1/0)','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('136','down_remove_pic_size','500','高级设置','下载远程资源允许最大值','数字','')");
+$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('168','reply_credits','1','会员设置','回复奖励积分','文本','会员提交回复奖励积分')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('142','down_remote_pic','0','内容相关','下载远程图片','布尔(1/0)','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('143','auto_desc','1','内容相关','截取内容为摘要','布尔(1/0)','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('144','auto_thumb','0','内容相关','提取内容图片为缩略图','布尔(1/0)','')");

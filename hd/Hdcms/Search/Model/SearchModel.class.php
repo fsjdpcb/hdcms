@@ -35,7 +35,7 @@ class SearchModel extends ViewModel {
 	//关键词搜索
 	public function search() {
 		//搜索内容
-		$word = Q("word", NULL, 'htmlspecialchars,trim,strip_tags');
+		$word = Q("word", NULL, 'urldecode,htmlspecialchars,trim,strip_tags');
 		//搜索类型
 		$type = Q("type", 'tag', 'htmlspecialchars,trim,strip_tags,strtolower');
 		//===========================查询条件====================================

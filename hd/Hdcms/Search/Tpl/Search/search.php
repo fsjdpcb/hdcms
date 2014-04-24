@@ -24,39 +24,14 @@
                 </channel>
             </ul>
             <form class="navbar-form navbar-left" role="search" method="post" action="__WEB__?g=Hdcms&a=Search&c=Search&m=search">
-                <div class="form-group">
-                    <input type="hidden" name='type' class="form-control" value="tag">
-                    <input type="text" name='word' class="form-control" placeholder="输入关键字搜索" required="">
-                </div>
-                <button type="submit" class="btn btn-primary">搜索</button>
-            </form>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <span class="glyphicon glyphicon-user"></span>
-                        <span class="glyphicon glyphicon-cloud-download"></span>
-                    </a>
-                    <if value="$hd.session.uid">
-                        <ul class="dropdown-menu">
-                            <li><a href="__WEB__?g=Member&a=Home&c=Home&m=index">我的文章</a></li>
-                        </ul>
-                        <else>
-                            <ul class="dropdown-menu">
-                                <li><a href="?login">登录</a></li>
-                                <li><a href="?reg">注册</a></li>
-                            </ul>
-                    </if>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">后盾网 <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="http://www.hdphp.com">HDPHP框架</a></li>
-                        <li><a href="http://www.hdphp.com">HDCMS系统</a></li>
-                        <li><a href="http://www.kuaixuewang.com">快学网</a></li>
-                        <li><a href="http://bbs.houdunwang.com">论坛</a></li>
-                    </ul>
-                </li>
-            </ul>
+						<div class="form-group">
+							<input type="text" name='word' class="form-control" placeholder="输入关键字搜索" required>
+						</div>
+						<button type="submit" class="btn btn-primary">
+							搜索
+						</button>
+			</form>
+            <member/>
         </div>
     </nav>
 </article>
