@@ -59,6 +59,7 @@ class ArticleControl extends PublicControl {
 				$field['time'] = date("Y/m/d", $field['addtime']);
 				$field['date_before'] = date_before($field['addtime']);
 				$field['commentnum'] = M("comment") -> where("cid=" . $this -> _cid . " AND aid=" . $this -> _aid) -> count();
+				$field['thumb'] = empty($field['thumb'])?'':__ROOT__.'/'.$field['thumb'];
 				$this -> hdcms = $field;
 				$this -> display($tpl, C('cache_article'));
 			}

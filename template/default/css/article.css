@@ -345,7 +345,11 @@ div#main div.content {
   color: #666;
   background: #ffffff;
   line-height: 2em;
-  padding: 10px;
+  padding: 15px;
+}
+div#main div.content img {
+  max-width: 600px;
+  max-height: 500px;
 }
 div#main div.tag {
   margin-top: 1px;
