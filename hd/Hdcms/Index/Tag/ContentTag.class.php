@@ -10,6 +10,7 @@ class ContentTag
         'hdcms' => array('block' => 0),
         'treeview' => array('block' => 0),
         'channel' => array('block' => 1, 'level' => 4),
+        'schannel' => array('block' => 1, 'level' => 4),
         'arclist' => array('block' => 1, 'level' => 4),
         'comment' => array('block' => 1, 'level' => 4),
         'pagelist' => array('block' => 1, 'level' => 4),
@@ -135,7 +136,34 @@ str;
         $php .= '<?php endforeach;}?>';
         return $php;
     }
-
+	
+	 //获得子栏目标签
+    public function _schannel($attr, $content)
+    {
+        //显示条数
+        $row = isset($attr['row']) ? $attr['row'] : 10;
+        //当前栏目的class样式
+        $class = isset($attr['class']) ? $attr['class'] : "";
+        $php = <<<str
+        <?php
+        \$where = '';\$cid=\$field['cid'];
+        \$db = M("category");
+        \$where = " pid IN(".\$cid.") ";
+        \$result = \$db->where(\$where)->where("cat_show=1")->order()->order("catorder ASC")->limit($row)->all();
+        //无结果
+        if(\$result){
+            //当前栏目,用于改变样式
+            \$_self_cid = isset(\$_GET['cid'])?\$_GET['cid']:0;
+            foreach (\$result as \$sfield):
+                //当前栏目样式
+                \$sfield['class']=\$_self_cid==\$sfield['cid']?"$class":"";
+                \$sfield['url'] = Url::get_category_url(\$sfield);?>
+str;
+        $php .= $content;
+        $php .= '<?php endforeach;}?>';
+        return $php;
+    }
+		
     //文章列表
     public function _arclist($attr, $content)
     {
@@ -257,7 +285,6 @@ str;
                         \$field['description']=mb_substr(\$field['description'],0,$infolen,'utf-8');
                         \$field['time']=date("Y-m-d",\$field['updatetime']);
                         \$field['date_before']=date_before(\$field['addtime']);
-                        \$field['tag']=\$db->get_tag(\$field['aid']);
                         \$field['thumb']='__ROOT__'.'/'.\$field['thumb'];
                         \$field['caturl']=U('Index/Index/category',array('cid'=>\$field['cid']));
                         \$field['url']=Url::get_content_url(\$field);
@@ -354,7 +381,6 @@ str;
                         \$field['description']=mb_substr(\$field['description'],0,$infolen,'utf-8');
                         \$field['time']=date("Y-m-d",\$field['updatetime']);
                         \$field['date_before']=date_before(\$field['addtime']);
-                        \$field['tag']=\$db->get_tag(\$field['aid']);
                         \$field['thumb']='__ROOT__'.'/'.\$field['thumb'];
                         \$field['caturl']=U('category',array('cid'=>\$field['cid']));
                         \$field['url']=Url::get_content_url(\$field);
@@ -447,7 +473,7 @@ str;
     //搜索关键词
     public function _searchkey($attr, $content)
     {
-        $row = isset($attr['row']) ? $attr['row'] : 10;
+        $row = isset($attr['row']) ? $attr['row'] : 10; 
         //显示搜索词数量
         $php = <<<str
                 <?php
@@ -455,7 +481,7 @@ str;
                 \$result = \$db->limit($row)->all();
                 if(!empty(\$result)):
                 foreach(\$result as \$field):
-                \$field['url']='__ROOT__/index.php?a=Search&c=Search&m=search&search='.\$field['name'];
+                \$field['url']='__ROOT__/index.php?a=Search&c=Search&m=search&word='.urlencode(\$field['word']);
                 ?>
 str;
         $php .= $content;

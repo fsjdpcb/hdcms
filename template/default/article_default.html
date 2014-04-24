@@ -52,6 +52,7 @@
     <!--内容主体-->
     <div id="main">
         <header>你的位置：
+
             <location sep="&nbsp;&gt;&nbsp;"/>
         </header>
         <div class="title">
@@ -66,7 +67,10 @@
                 <a href="__WEB__?{$hdcms.domain}">
                     {$hdcms.nickname}
                 </a> 发表于 {$hdcms.date_before} ({$hdcms.time}) -
-                <a href="#">{$hdcms.commentnum}条评论</a> 所属分类：<a href="{$hdcms.caturl}">{$hdcms.catname}</a>
+                {$hdcms.comment_num}
+                	条评论
+                 {$hdcms.click}次点击
+                	所属分类：<a href="{$hdcms.caturl}">{$hdcms.catname}</a>
                 <a href="javascript:content.add_favorite({$hdcms.mid},{$hdcms.cid},{$hdcms.aid})">加入收藏</a>
             </p>
         </div>

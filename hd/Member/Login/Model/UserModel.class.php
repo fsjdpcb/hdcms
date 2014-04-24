@@ -149,7 +149,7 @@ class UserModel extends Model
                 JOIN " . $pre . "role AS r ON u.rid = r.rid
                 WHERE u.uid=$uid";
         $user = current($db->query($sql));
-        setcookie('login',$user['password'],0,'/');
+        setcookie('login',1,0,'/');
         unset($user['password']);
         unset($user['code']);
         unset($user['user_uid']);

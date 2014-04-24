@@ -124,4 +124,41 @@ class CategoryControl extends AuthControl
             $this->_ajax(1, '删除栏目成功');
         }
     }
+	/**
+	 * 批量编辑
+	 */
+	public function edit_mul(){
+		
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

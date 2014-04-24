@@ -80,4 +80,5 @@ class PublicControl extends CommonControl
             parent::display($tplFile, $cacheTime, $cachePath);
         }
     }
+	
 }

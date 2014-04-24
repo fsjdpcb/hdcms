@@ -97,11 +97,11 @@ class CommentModel extends ViewModel
     public function add_comment()
     {
         if ($this->create()) {
-            if($this->add()){
+            if($comment_id = $this->add()){
             	//修改文章评论数
             	$model = cache('model');
 				M($model[$this->_mid]['table_name'])->inc('comment_num','aid='.$this->_aid);
-				return true;
+				return $comment_id;
             }
         }
     }
@@ -115,7 +115,7 @@ class CommentModel extends ViewModel
     {
         $field = $this->find($comment_id);
         //设置头像
-        $field['icon50'] = $field['icon50'] ? $field['icon50'] : __ROOT__ . "/data/image/user/50-gray.png";
+        $field['icon50'] = $field['icon50'] ? __ROOT__.'/'.$field['icon50'] : __ROOT__ . "/data/image/user/50-gray.png";
         return $field;
     }
 }

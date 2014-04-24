@@ -138,6 +138,7 @@ class CommentControl extends CommonControl
 str;
         return $comment;
     }
+
 }
 
 

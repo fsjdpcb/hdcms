@@ -32,7 +32,7 @@ class SearchControl extends Control
     //搜索内容
     public function search()
     {
-        if (!Q('word') || !Q('type')) {
+        if (!Q('word')) {
             $this->error("搜索内容不能为空");
         } else {
             $data = $this->_db->search();
@@ -53,8 +53,8 @@ class SearchControl extends Control
         $str = "";
         if (!empty($result)) {
             foreach ($result as $field) {
-                $field['url'] = __ROOT__ . '/index.php?a=Search&c=Search&m=search&search=' . $field['name'];
-                $str .= " <a href='{$field['url']}'>{$field['name']}</a>";
+                $field['url'] = __ROOT__ . '/index.php?a=Search&c=Search&m=search&word=' . $field['word'];
+                $str .= " <a href='{$field['url']}'>{$field['word']}</a>";
             }
         }
         echo "document.write('" . addslashes($str) . "')";

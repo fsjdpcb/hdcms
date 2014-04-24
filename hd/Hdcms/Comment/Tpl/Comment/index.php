@@ -34,7 +34,7 @@
                 <li id="c{$a.comment_id}">
                     <div class="hd-comment-face">
                         <a href="__WEB__?{$a.domain}">
-                        <img src="{$a.icon50}"  onmouseover="user.show(this,{$a.uid})"/>
+                        <img src="__ROOT__/{$a.icon50}"  onmouseover="user.show(this,{$a.uid})"/>
                             </a>
                     </div>
                     <div class="hd-comment-content">
@@ -50,7 +50,7 @@
                     <!--回复-->
                     <div class="hd-comment-reply">
                         <div class="hd-comment-face">
-                            <img src="{$a.icon50}"/>
+                            <img src="__ROOT__/{$a.icon50}"/>
                         </div>
                         <div class="hd-reply-content">
                             <form method="post" onsubmit="return add_comment(this,'reply')">
@@ -71,7 +71,7 @@
                             <li id="c{$b.comment_id}">
                                 <div class="hd-comment-face">
                                     <a href="__WEB__?{$b.domain}">
-                                    <img src="{$b.icon50}"  onmouseover="user.show(this,{$b.uid})"/>
+                                    <img src="__ROOT__/{$b.icon50}"  onmouseover="user.show(this,{$b.uid})"/>
                                         </a>
                                 </div>
                                 <div class="hd-comment-content">
@@ -87,7 +87,7 @@
                                 <!--回复-->
                                 <div class="hd-comment-reply">
                                     <div class="hd-comment-face">
-                                        <img src="{$b.icon50}"/>
+                                        <img src="__ROOT__/{$b.icon50}"/>
                                     </div>
                                     <div class="hd-reply-content">
                                         <form method="post" onsubmit="return add_comment(this,'reply')">
@@ -107,7 +107,7 @@
                                         <li class="bg-white" id="c{$c.comment_id}">
                                             <div class="hd-comment-face">
                                                 <a href="__WEB__?{$c.domain}">
-                                                <img src="{$c.icon50}"  onmouseover="user.show(this,{$c.uid})"/>
+                                                <img src="__ROOT__/{$c.icon50}"  onmouseover="user.show(this,{$c.uid})"/>
                                                     </a>
                                             </div>
                                             <div class="hd-comment-content">
@@ -123,7 +123,7 @@
                                             <!--回复-->
                                             <div class="hd-comment-reply">
                                                 <div class="hd-comment-face">
-                                                    <img src="{$c.icon50}"/>
+                                                    <img src="__ROOT__/{$c.icon50}"/>
                                                 </div>
                                                 <div class="hd-reply-content">
                                                     <form method="post" onsubmit="return add_comment(this,'reply')">
@@ -144,7 +144,7 @@
                                                     <li id="c{$d.comment_id}">
                                                         <div class="hd-comment-face">
                                                             <a href="__WEB__?{$d.domain}">
-                                                            <img src="{$d.icon50}"  onmouseover="user.show(this,{$d.uid})"/>
+                                                            <img src="__ROOT__/{$d.icon50}"  onmouseover="user.show(this,{$d.uid})"/>
                                                                 </a>
                                                         </div>
                                                         <div class="hd-comment-content">

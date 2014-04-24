@@ -89,7 +89,7 @@ class ArticleModel extends ViewModel
         if (!empty($tag_result)) {
             foreach ($tag_result as $t) {
                 $url = U('Search/Search/search', array('g' => 'Hdcms', 'word' => $t['tag'], 'type' => 'tag'));
-                $tag .= " <a href='$url'>{$t['tag']}</a> ";
+                $tag .= " <a href=\"$url\">{$t['tag']}</a>";
             }
         }
         return $tag;
