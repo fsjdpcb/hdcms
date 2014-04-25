@@ -11,7 +11,7 @@ class PersonalControl extends AuthControl
     private $_db;
 
     //构造函数
-    public function __construct()
+    public function __init()
     {
         $this->_db = K('Personal');
     }
