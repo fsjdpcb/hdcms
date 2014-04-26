@@ -188,16 +188,21 @@ class ContentControl extends AuthControl
             }
             $this->_ajax(1, '移动成功！');
         } else {
-            $category = $this->_category;
-            foreach ($category as $n => $v) {
-                $category[$n]['selected'] = '';
+            $category = array();
+            foreach ($this->_category as $n => $v) {
+            	//排除非本模型或外部链接类型栏目或单文章栏目
+            	if($v['mid']!=$this->_mid || $v['cattype']==3 || $v['cattype']==4){
+            		continue;
+            	}
+                $selected = '';
                 if ($this->_cid == $v['cid']) {
-                    $category[$n]['selected'] = "selected";
+                    $v['selected'] = "selected";
                 }
                 //非本栏目模型关闭
-                if ($this->_mid != $v['mid']) {
-                    $category[$n]['disabled'] = 'disabled';
+                if ($v['cattype']!=1) {
+                    $v['disabled'] = 'disabled';
                 }
+				$category[$n]=$v;
             }
             $this->category = $category;
             $this->display();

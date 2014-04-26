@@ -19,7 +19,7 @@ $(function () {
     $("form").submit(function () {
         $.ajax({
             type: "POST",
-            url: CONTROL + "&m=move_content",
+            url: CONTROL + "&m=move",
             dataType: "JSON",
             cache: false,
             data: $(this).serialize(),
