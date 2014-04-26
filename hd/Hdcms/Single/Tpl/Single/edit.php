@@ -3,11 +3,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <title>修改文章</title>
+    <title>单文章修改</title>
     <hdjs/>
     <js file="__GROUP__/static/js/js.js"/>
-    <js file="__TPL__/Content/js/js.js"/>
-    <css file="__TPL__/Content/css/css.css"/>
+    <js file="__CONTROL_TPL__/js/js.js"/>
+    <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
 <body>
 <form action="{|U:edit}" method="post" id="edit" class="hd-form" onsubmit="return false">

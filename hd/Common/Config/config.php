@@ -31,7 +31,7 @@ $config = array(
         
     );
 //首页或Index应用时设置Rewrite规则
-if(!isset($_GET['a']) || (!isset($_GET['g']) || $_GET['a']=='Index' || $_GET['a']='Html')){
+if(!isset($_GET['a']) || (!isset($_GET['g']) || $_GET['a']=='Index')){
 	//url重写模式
     $config['URL_REWRITE']=intval($globalConfig['open_rewrite']);
     //类型1 pathinfo  2 普通GET方式

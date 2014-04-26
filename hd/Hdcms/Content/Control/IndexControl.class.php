@@ -36,7 +36,7 @@ class IndexControl extends AuthControl
             	
                 //单文章栏目
                 if ($cat['cattype'] == 4) {
-                    $url = U('Single/Content/edit', array('cid' => $cat['cid']));
+                    $url = U('Single/Single/edit', array('cid' => $cat['cid']));
                 } else {
                     $url = U('Content/content', array('mid' => $cat['mid'],'cid' => $cat['cid'],'state' => 1));
                 }

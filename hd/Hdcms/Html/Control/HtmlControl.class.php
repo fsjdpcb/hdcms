@@ -1,6 +1,7 @@
 <?php
 import("PublicControl","hd.Hdcms.Index.Control");
 import("IndexControl","hd.Hdcms.Index.Control");
+import("SingleControl","hd.Hdcms.Index.Control");
 import("CategoryControl","hd.Hdcms.Index.Control");
 import("ArticleControl","hd.Hdcms.Index.Control");
 
@@ -123,19 +124,19 @@ class HtmlControl extends AuthControl
             $mid = Q("post.mid", 0, "intval");
             //一键生成时的情况，更新所有栏目
             if (isset($_SESSION['make_all']['category'])) {
-                $category = $db->field("cid,mid,catname,catdir,cat_html_url")->where('cattype<>3')->all();
+                $category = $db->field("cid,mid,catname,cattype,catdir,cat_html_url")->where('cattype<>3')->all();
             } else if (count($_POST['cid']) == 1 and $_POST['cid'][0] == 0) { //没有选择栏目
                 //不限模型时
                 if ($mid === 0) {
-                    $category = $db->field("cid,mid,catname,catdir,cat_html_url")->where('cattype<>3')->all();
+                    $category = $db->field("cid,mid,catname,cattype,catdir,cat_html_url")->where('cattype<>3')->all();
                 } else { //指定模型的所有栏目
-                    $category = $db->field("cid,mid,catname,catdir,cat_html_url")->where("mid=$mid")->all();
+                    $category = $db->field("cid,mid,catname,cattype,catdir,cat_html_url")->where("mid=$mid AND cattype<>3")->all();
                 }
             } else {
                 //指定具体栏目
-                $category = $db->field("cid,mid,catname,catdir,cat_html_url")->in($_POST['cid'])->where('cattype<>3')->all();
+                $category = $db->field("cid,mid,catname,cattype,catdir,cat_html_url")->in($_POST['cid'])->where('cattype<>3')->all();
             }
-            //不存在配置文件时生成栏目首页
+            //不存在生成的栏目时
             if (is_null($category)) {
                 //一键生成时的跳转地址
                 if (isset($_SESSION['make_all']['category'])) {
@@ -154,20 +155,25 @@ class HtmlControl extends AuthControl
                     //为Index/Index/IndexControl提交参数
                     $_REQUEST['mid'] = $cat['mid'];
 					$_REQUEST['cid'] = $cat['cid'];
-					//html文件存放根目录
-                    Page::$staticUrl = __ROOT__ . '/' . $this->_html_path . str_replace(
-                            array('{catdir}', '{cid}'),
-                            array($cat['catdir'], $cat['cid']),
-                            $cat['cat_html_url']);
-                    Html::make("CategoryControl", "category", $cat);
-                    //去掉页数为0时栏目
-                    if (!Page::$staticTotalPage) continue;
-                    $cat['total_page'] = Page::$staticTotalPage;
-                    //即将更新的页数，用于计算完成百分比
-                    $cat['self_page'] = 1;
-                    //每次生成几页
-                    $cat['row'] = Q("post.step_row", 10, "intval");
-                    $config[$cat['cid']] = $cat;
+					//生成单文章
+					if($cat['cattype']==4){
+						Html::make("SingleControl", "show", $cat);
+					}else{
+						//html文件存放根目录
+	                    Page::$staticUrl = __ROOT__ . '/' . $this->_html_path . str_replace(
+	                            array('{catdir}', '{cid}'),
+	                            array($cat['catdir'], $cat['cid']),
+	                            $cat['cat_html_url']);
+	                    Html::make("CategoryControl", "category", $cat);
+	                    //去掉页数为0时栏目
+	                    if (!Page::$staticTotalPage) continue;
+	                    $cat['total_page'] = Page::$staticTotalPage;
+	                    //即将更新的页数，用于计算完成百分比
+	                    $cat['self_page'] = 1;
+	                    //每次生成几页
+	                    $cat['row'] = Q("post.step_row", 10, "intval");
+	                    $config[$cat['cid']] = $cat;
+					}
                 }
                 //如果所有栏目生成完毕结束静态创建
                 if (empty($config)) {

@@ -4,7 +4,7 @@
  * 单页面处理
  * Class SingleControl
  */
-class ContentControl extends AuthControl
+class SingleControl extends AuthControl
 {
     //模型
     protected $_db;
