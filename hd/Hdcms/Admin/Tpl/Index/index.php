@@ -21,13 +21,13 @@
     <!--头部左侧导航-->
     <!--头部右侧导航-->
     <div class="r_menu">
-        {$hd.session.rname} : {$hd.session.username} <a href="{|U:'Login/Login/out'}" target="_self">[退出]</a>
+        {$hd.session.rname} : {$hd.session.username} <a href="{|U:'Login/out'}" target="_self">[退出]</a>
         <span>|</span>
         <a href="javascript:hd_ajax('{|U:'Cache/Cache/update_all'}');">更新全站缓存</a>
         <span>|</span>
         <a href="__WEB__" target="_blank">前台首页</a>
         <span>|</span>
-        <a href="{|U:'Index/Index/index',array('g'=>'Member')}" target="_blank">会员中心</a>
+        <a href="{|U:'Member/Index/index'}" target="_blank">会员中心</a>
     </div>
     <!--头部右侧导航-->
 </div>
@@ -56,7 +56,7 @@
 </div>
 <div id="quick_menu">
     <div class="set">
-        <a url="{|U:'Menu/set_favorite'}" onclick="get_content(this,90001)" href="javascript:;" nid="90001">设置</a>
+        <a url="{|U:'setFavorite'}" onclick="get_content(this,90001)" href="javascript:;" nid="90001">设置</a>
     </div>
     <div
         style="float:left;width:1px;margin-right:5px;overflow: hidden;background: #999999;height:15px;margin-top:12px;"></div>

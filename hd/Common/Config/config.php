@@ -2,13 +2,17 @@
 if (!defined('HDPHP_PATH')) exit('No direct script access allowed');
 $globalConfig = require './data/config/config.inc.php';
 $config = array(
+ 		//数据库驱动
+		'DB_DRIVER'                     => 'mysql',   
+		 //数据库持久链接
+		'DB_PCONNECT'                     => true,  
         //标签
         'TPL_TAGS' => array(
-            '@@.Hdcms.Index.Tag.ContentTag'
+            '@@.Common.Lib.ContentTag'
         ),
         //自动加载文件
         'AUTO_LOAD_FILE' => array(
-            'functions.php'
+            './Hd/Common/Functions/functions.php'
         ),
         //404跳转url
         '404_URL' => '',
@@ -48,7 +52,7 @@ if(!isset($_GET['a']) || (!isset($_GET['g']) || $_GET['a']=='Index')){
             //单文章
             '/^single_(\d+).html$/'=>'Index/Single/show/cid/#1',
             //个人主页
-            '/^([0-9a-z]+)$/'=>'a=Space&c=Index&m=index&g=Member&u=#1',
+            '/^([0-9a-z]+)$/'=>'a=Member&c=Space&m=index&u=#1',
 		);
 }
 return array_merge(

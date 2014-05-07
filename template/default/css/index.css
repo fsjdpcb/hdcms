@@ -123,7 +123,7 @@ div.content div.article-list article header {
   background: none;
   border: none;
 }
-div.content div.article-list article header span {
+div.content div.article-list article header span.cat {
   font-size: 12px;
   background: #D9534F;
   position: relative;
@@ -131,7 +131,7 @@ div.content div.article-list article header span {
   color: #ffffff;
   padding: 1px 3px;
 }
-div.content div.article-list article header span i {
+div.content div.article-list article header span.cat i {
   color: #D9534F;
   top: 5px;
   right: -6px;

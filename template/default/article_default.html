@@ -61,7 +61,7 @@
             <p>
                 <div class="icon">
                 <a href="__WEB__?{$hdcms.domain}">
-                    <img src="{|get_user_icon:$hdcms['uid']}" onmouseover="user.show(this,{$hdcms.uid})"/>
+                    <img src="{$hdcms.icon}" onmouseover="user.show(this,{$hdcms.uid})"/>
                 </a>
         </div>
                 <a href="__WEB__?{$hdcms.domain}">
@@ -75,7 +75,9 @@
             </p>
         </div>
         <div class="content">
-        	<img src="{$hdcms.thumb}"/><br/>
+        	<if value="$hdcms.thumb !='__ROOT__/'">
+        		<img src="{$hdcms.thumb}"/><br/>
+        	</if>
             {$hdcms.content}
         </div>
         <div class="tag">
@@ -86,12 +88,12 @@
         <!--下一篇与下一篇-->
         <div class="next-article row">
             <p class="col-md-6">
-                上一篇
+                上一篇：
                 <pagenext pre="" type="pre" titlelen="18"/>
             </p>
 
             <p class="col-md-6">
-                下一篇
+                下一篇：
                 <pagenext next="" type="next" titlelen="18"/>
             </p>
         </div>
@@ -108,7 +110,7 @@
         </div>
     </div>
     <!--发表评论-->
-    <script type="text/javascript" id="comment" src="__WEB__?a=Comment&c=Comment&m=show&mid={$hdcms.mid}&cid={$hdcms.cid}&aid={$hdcms.aid}&comment_id={$hd.get.comment_id}"></script>
+    <script type="text/javascript" id="comment" src="__WEB__?a=Index&c=Comment&m=show&mid={$hdcms.mid}&cid={$hdcms.cid}&aid={$hdcms.aid}&comment_id={$hd.get.comment_id}"></script>
 </div>
 <!--右侧列表-->
 <div class="right-list col-md-4">
@@ -129,7 +131,6 @@
                 	</ul>
             	</div>
     </article>
-    
     <!--猜你喜欢-->
     <article class="news">
         <header>
@@ -139,7 +140,6 @@
             <section>
                 <a href="{$field.url}">
                     <h3>{$field.title}</h3>
-
                     <p>
                         {$field.time}
                     </p>
