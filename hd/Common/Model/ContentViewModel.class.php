@@ -17,6 +17,8 @@ class ContentViewModel extends ViewModel {
 			$modelCache = cache('model');
 			$table = $modelCache[$mid]['table_name'];
 			$model = new self($table);
+			//副表
+			$model -> view[$table.'_data'] = array('type' => INNER_JOIN, 'on' => $table.".aid={$table}_data.aid");
 			//栏目表
 			$model -> view['category'] = array('type' => INNER_JOIN, 'on' => "category.cid=$table.cid");
 			//会员表

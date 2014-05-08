@@ -15,7 +15,7 @@ class Content {
 	//获取单篇文章
 	public function find($aid) {
 		$ContentModel = ContentViewModel::getInstance($this -> _mid);
-		$data = $ContentModel -> find($aid);
+		$data = $ContentModel -> where($ContentModel->tableFull.'.aid='.$aid)->find();
 		if (!$data) {
 			$this -> error = '文章不存在';
 			return false;
