@@ -210,7 +210,7 @@ class ModelFieldModel extends Model {
 			return false;
 		}
 		//查找当模型所有字段信息
-		$ModelField = M("Field");
+		$ModelField = M("field");
 		$fieldData = $ModelField -> where("mid=$mid") -> order('fieldsort ASC') -> all();
 		$cacheData = array();
 		if (!empty($fieldData)) {

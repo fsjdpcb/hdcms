@@ -2,8 +2,8 @@
 
 $version = array(
     "NAME" => "HDCMS 简体中文 UTF8 版",
-    "VERSION" => "2014.04",
-    "TIME" => "2013年12月24日"
+    "VERSION" => "2014.05.08",
+    "TIME" => "2014年05月08日"
 );
 //网站根目录
 define("WEB_PATH", dirname(dirname(str_replace('\\', '/', __FILE__))) . '/');
