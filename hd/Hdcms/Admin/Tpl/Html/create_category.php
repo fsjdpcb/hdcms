@@ -13,7 +13,7 @@
     <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
 <body>
-<form method="post" action="__CONTROL__&m=make_category" class="hd-form" target="_iframe" onsubmit="return $.modalShow();">
+<form method="post" action="__CONTROL__&m=make_category" class="hd-form">
     <div class="wrap">
         <div class="title-header">温馨提示</div>
         <div class="help">
@@ -61,14 +61,6 @@
             </tr>
         </table>
     </div>
-    <script>
-        $.modal({title: '生成列表页', button_cancel: '关闭', width: 450, height: 200, show: false,
-            content: "<iframe name='_iframe' scrolling='no' frameborder='0' style='height:110px;'></iframe>",
-            cancel: function () {
-                window.location.reload(true);
-            }
-        })
-    </script>
 </form>
 </body>
 </html>

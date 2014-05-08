@@ -59,7 +59,7 @@ class NodeModel extends ViewModel
     }
 
     //更新缓存
-    function update_cache()
+    function updateCache()
     {
         $data = $this->join(NULL)->order(array("list_order" => "ASC",'nid'=>'ASC'))->all();
         $node = Data::tree($data, "title", "nid", "pid");
@@ -68,17 +68,17 @@ class NodeModel extends ViewModel
 
     function __after_insert($data)
     {
-        $this->update_cache($data);
+        $this->updateCache($data);
     }
 
     function __after_update($data)
     {
-        $this->update_cache($data);
+        $this->updateCache($data);
     }
 
     function __after_delete($data)
     {
-        $this->update_cache($data);
+        $this->updateCache($data);
     }
 
 }

@@ -23,7 +23,7 @@
     <div class="r_menu">
         {$hd.session.rname} : {$hd.session.username} <a href="{|U:'Login/out'}" target="_self">[退出]</a>
         <span>|</span>
-        <a href="javascript:hd_ajax('{|U:'Cache/Cache/update_all'}');">更新全站缓存</a>
+        <a href="javascript:hd_ajax('{|U:'updateAllCache'}');">更新全站缓存</a>
         <span>|</span>
         <a href="__WEB__" target="_blank">前台首页</a>
         <span>|</span>

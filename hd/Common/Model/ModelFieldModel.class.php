@@ -34,8 +34,9 @@ class ModelFieldModel extends Model {
 	/**
 	 * 构造函数
 	 */
-	public function __init() {
-		$this -> _mid = Q("mid", NULL, "intval");
+	public function __construct($mid) {
+		parent::__construct();
+		$this -> _mid = $mid;
 		//字段所在表模型信息
 		$this -> _model = cache("model", false);
 		//字段缓存

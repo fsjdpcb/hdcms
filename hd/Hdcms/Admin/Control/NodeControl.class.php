@@ -86,7 +86,7 @@ class NodeControl extends AuthControl
     //更新缓存
     public function update_cache()
     {
-        if ($this->_db->update_cache()) {
+        if ($this->_db->updateCache()) {
             $this->_ajax( 1,  '更新缓存成功');
         }
     }

@@ -37,7 +37,7 @@ class FieldControl extends AuthControl {
 	public function updateSort() {
 		$orders = Q("fieldsort");
 		if ($orders) {
-			$model = K('ModelField');
+			$model =new ModelFieldModel($this->_mid);
 			foreach ($orders as $k => $v) {
 				$model -> join(null) -> save(array("fid" => $k, "fieldsort" => $v));
 			}
@@ -55,7 +55,7 @@ class FieldControl extends AuthControl {
 			if (empty($post)) {
 				$this -> error('参数错误');
 			}
-			$fieldModel = K("ModelField");
+			$fieldModel = new ModelFieldModel($this->_mid);
 			if ($fieldModel -> addField($post)) {
 				$this -> success('添加字段成功');
 			}
@@ -71,7 +71,7 @@ class FieldControl extends AuthControl {
 	 * 修改字段
 	 */
 	public function edit() {
-		$fieldModel = K('ModelField');
+		$fieldModel =new ModelFieldModel($this->_mid);
 		$mid = Q('mid', 0, 'intval');
 		$fid = Q('fid', 0, 'intval');
 		if (!$fid) {
@@ -125,7 +125,7 @@ class FieldControl extends AuthControl {
 	public function del() {
 		$fid = Q('fid');
 		if ($fid) {
-			$fieldModel = K('ModelField');
+			$fieldModel = new ModelFieldModel($this->_mid);
 			if ($fieldModel -> delField())
 				$this -> _ajax(1, '字段删除成功');
 		} else {
@@ -139,7 +139,7 @@ class FieldControl extends AuthControl {
 		if (!$mid) {
 			$this -> _ajax(0, '参数错误');
 		}
-		$fieldModel = K('ModelField');
+		$fieldModel = new ModelFieldModel($this->_mid);
 		if ($fieldModel -> updateCache($mid)) {
 			$this -> _ajax(1, '更新成功');
 		} else {

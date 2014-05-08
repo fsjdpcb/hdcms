@@ -14,7 +14,7 @@
 
 </head>
 <body>
-<form method="post" action="__CONTROL__&m=make_content" class="hd-form" target="_iframe" onsubmit="return $.modalShow();">
+<form method="post" action="__CONTROL__&m=make_content" class="hd-form">
     <div class="wrap">
         <div class="title-header">温馨提示</div>
         <div class="help">
@@ -86,13 +86,5 @@
         </table>
     </div>
 </form>
-<script>
-    $.modal({title: '生成文章', button_cancel: '关闭', width: 450, height: 200, show: false,
-        content: "<iframe name='_iframe' scrolling='no' frameborder='0' style='height:110px;'></iframe>",
-        cancel: function () {
-            window.location.reload(true);
-        }
-    })
-</script>
 </body>
 </html>

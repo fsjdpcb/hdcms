@@ -595,7 +595,7 @@ return array (
     'isunique' => '0',
     'isbase' => '1',
     'issearch' => '0',
-    'isadd' => '1',
+    'isadd' => '0',
   ),
 );
 ?>

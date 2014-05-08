@@ -116,4 +116,22 @@ class IndexControl extends AuthControl {
 		}
 	}
 
+	//更新全站缓存
+	public function updateAllCache() {
+		$modelModel = K("Model");
+		$modelModel->updateCache();
+		$modelModel = K("Category");
+		$modelModel->updateCache();
+		$modelModel = K("Role");
+		$modelModel->updateCache();
+		$modelModel = K("Node");
+		$modelModel->updateCache();
+		$modelCache=cache('model');
+		foreach($modelCache as $model){
+			$fieldModel = new ModelFieldModel($model['mid']);
+			$fieldModel->updateCache();
+		}
+		$this->success('缓存更新成功');
+	}
+
 }
