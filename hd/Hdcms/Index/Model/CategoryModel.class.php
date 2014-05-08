@@ -13,4 +13,5 @@ class CategoryModel extends ViewModel
 			'on'=>'category.mid=model.mid'
 		)
 	);
+	
 }

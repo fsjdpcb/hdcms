@@ -132,7 +132,7 @@ class CategoryControl extends AuthControl {
 		if (!$cid) {
 			$this -> error('参数错误');
 		}
-		$categoryModel = K('category');
+		$categoryModel = K('Category');
 		if ($categoryModel -> delCategory($cid)) {
 			$this -> success('删除栏目成功');
 		} else {

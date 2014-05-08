@@ -148,15 +148,14 @@ class CategoryModel extends Model {
 
 	//删除栏目
 	public function delCategory($cid) {
-		//删除单文章
-		M('content_single') -> where("cid=$cid") -> del();
-		//删除普通文章
-		import('Content.Model.ContentModel');
-		K("Content") -> where("cid=$cid") -> del();
+		$ContentModel = ContentModel::getInstance($this -> _category[$cid]['mid']);
+		$ContentModel->where(array('cid'=>$cid))->del();
 		//删除栏目权限
 		M("category_access") -> where("cid=$cid") -> del();
 		//删除栏目
-		return $this -> del($cid);
+		$state =  $this -> del($cid);
+		$this->updateCache();
+		return $state;
 	}
 
 	//获得栏目前后台角色权限
