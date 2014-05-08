@@ -1,44 +1,4 @@
 <?php if(!defined('HDPHP_PATH'))EXIT;
-$db->exe("DROP TABLE IF EXISTS `".$db_prefix."aaaaa`");
-$db->exe("CREATE TABLE `".$db_prefix."aaaaa` (
-  `aid` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `cid` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '栏目cid',
-  `title` char(100) NOT NULL DEFAULT '' COMMENT '标题',
-  `flag` set('热门','置顶','推荐','图片','精华','幻灯片','站长推荐') DEFAULT NULL,
-  `new_window` tinyint(1) NOT NULL DEFAULT '0' COMMENT '新窗口打开',
-  `seo_title` char(100) NOT NULL DEFAULT '' COMMENT 'SEO标题',
-  `thumb` varchar(255) NOT NULL DEFAULT '' COMMENT '缩略图',
-  `click` int(6) NOT NULL DEFAULT '0' COMMENT '点击数',
-  `source` char(60) NOT NULL DEFAULT '' COMMENT '来源',
-  `redirecturl` varchar(255) NOT NULL DEFAULT '' COMMENT '转向链接',
-  `html_path` varchar(255) NOT NULL DEFAULT '' COMMENT '自定义生成的静态文件地址',
-  `allowreply` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否允许回复',
-  `addtime` int(10) NOT NULL DEFAULT '0' COMMENT '添加时间',
-  `updatetime` int(10) NOT NULL DEFAULT '0' COMMENT '更新时间',
-  `color` char(7) NOT NULL DEFAULT '' COMMENT '标题颜色',
-  `template` varchar(255) NOT NULL DEFAULT '' COMMENT '模板',
-  `url_type` tinyint(80) NOT NULL DEFAULT '3' COMMENT '文章访问方式  1 静态访问  2 动态访问  3 继承栏目',
-  `arc_sort` mediumint(6) NOT NULL DEFAULT '0' COMMENT '排序',
-  `content_state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '文章状态  1 已审核 0 未审核',
-  `keywords` varchar(100) NOT NULL DEFAULT '' COMMENT '关键字',
-  `description` varchar(255) DEFAULT NULL COMMENT '描述',
-  `uid` int(10) unsigned NOT NULL COMMENT '用户uid',
-  `favorites` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '收藏数',
-  `comment_num` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '评论数',
-  `tag` varchar(255) NOT NULL DEFAULT '' COMMENT '占位，不用的字段',
-  `read_credits` smallint(6) NOT NULL DEFAULT '0' COMMENT '阅读金币',
-  PRIMARY KEY (`aid`),
-  KEY `uid` (`uid`),
-  KEY `cid` (`cid`),
-  KEY `flag` (`flag`)
-) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='文章表'");
-$db->exe("DROP TABLE IF EXISTS `".$db_prefix."aaaaa_data`");
-$db->exe("CREATE TABLE `".$db_prefix."aaaaa_data` (
-  `aid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '文章主表ID',
-  `content` text COMMENT '内容',
-  `ccc` mediumtext,
-  KEY `aid` (`aid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='文章正文表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."access`");
 $db->exe("CREATE TABLE `".$db_prefix."access` (
   `rid` smallint(5) unsigned NOT NULL,
@@ -74,7 +34,7 @@ $db->exe("CREATE TABLE `".$db_prefix."category` (
   `allow_user_set_credits` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否允许会员投稿设置积分 1 允许 0 不允许',
   `member_send_state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '会员投稿状态 1 审核 2 未审核',
   PRIMARY KEY (`cid`)
-) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='栏目表'");
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='栏目表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."category_access`");
 $db->exe("CREATE TABLE `".$db_prefix."category_access` (
   `rid` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '角色id',
@@ -89,45 +49,6 @@ $db->exe("CREATE TABLE `".$db_prefix."category_access` (
   `audit` tinyint(1) NOT NULL DEFAULT '0' COMMENT '允许审核栏目文章 1 允许 0 不允许',
   `admin` tinyint(1) NOT NULL COMMENT '是否为管理员权限 1 管理员 2 前台用户'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='栏目权限表'");
-$db->exe("DROP TABLE IF EXISTS `".$db_prefix."cccc`");
-$db->exe("CREATE TABLE `".$db_prefix."cccc` (
-  `aid` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `cid` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '栏目cid',
-  `title` char(100) NOT NULL DEFAULT '' COMMENT '标题',
-  `flag` set('热门','置顶','推荐','图片','精华','幻灯片','站长推荐') DEFAULT NULL,
-  `new_window` tinyint(1) NOT NULL DEFAULT '0' COMMENT '新窗口打开',
-  `seo_title` char(100) NOT NULL DEFAULT '' COMMENT 'SEO标题',
-  `thumb` varchar(255) NOT NULL DEFAULT '' COMMENT '缩略图',
-  `click` int(6) NOT NULL DEFAULT '0' COMMENT '点击数',
-  `source` char(60) NOT NULL DEFAULT '' COMMENT '来源',
-  `redirecturl` varchar(255) NOT NULL DEFAULT '' COMMENT '转向链接',
-  `html_path` varchar(255) NOT NULL DEFAULT '' COMMENT '自定义生成的静态文件地址',
-  `allowreply` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否允许回复',
-  `addtime` int(10) NOT NULL DEFAULT '0' COMMENT '添加时间',
-  `updatetime` int(10) NOT NULL DEFAULT '0' COMMENT '更新时间',
-  `color` char(7) NOT NULL DEFAULT '' COMMENT '标题颜色',
-  `template` varchar(255) NOT NULL DEFAULT '' COMMENT '模板',
-  `url_type` tinyint(80) NOT NULL DEFAULT '3' COMMENT '文章访问方式  1 静态访问  2 动态访问  3 继承栏目',
-  `arc_sort` mediumint(6) NOT NULL DEFAULT '0' COMMENT '排序',
-  `content_state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '文章状态  1 已审核 0 未审核',
-  `keywords` varchar(100) NOT NULL DEFAULT '' COMMENT '关键字',
-  `description` varchar(255) DEFAULT NULL COMMENT '描述',
-  `uid` int(10) unsigned NOT NULL COMMENT '用户uid',
-  `favorites` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '收藏数',
-  `comment_num` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '评论数',
-  `tag` varchar(255) NOT NULL DEFAULT '' COMMENT '占位，不用的字段',
-  `read_credits` smallint(6) NOT NULL DEFAULT '0' COMMENT '阅读金币',
-  PRIMARY KEY (`aid`),
-  KEY `uid` (`uid`),
-  KEY `cid` (`cid`),
-  KEY `flag` (`flag`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COMMENT='文章表'");
-$db->exe("DROP TABLE IF EXISTS `".$db_prefix."cccc_data`");
-$db->exe("CREATE TABLE `".$db_prefix."cccc_data` (
-  `aid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '文章主表ID',
-  `content` text COMMENT '内容',
-  KEY `aid` (`aid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='文章正文表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."comment`");
 $db->exe("CREATE TABLE `".$db_prefix."comment` (
   `comment_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '评论mid',
@@ -143,7 +64,7 @@ $db->exe("CREATE TABLE `".$db_prefix."comment` (
   PRIMARY KEY (`comment_id`),
   KEY `reply_comment_id` (`reply_comment_id`),
   KEY `cid_aid_state` (`aid`,`cid`,`comment_state`)
-) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COMMENT='评论表'");
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='评论表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."config`");
 $db->exe("CREATE TABLE `".$db_prefix."config` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -187,45 +108,13 @@ $db->exe("CREATE TABLE `".$db_prefix."content` (
   KEY `uid` (`uid`),
   KEY `cid` (`cid`),
   KEY `flag` (`flag`)
-) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COMMENT='文章表'");
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='文章表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."content_data`");
 $db->exe("CREATE TABLE `".$db_prefix."content_data` (
   `aid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '文章主表ID',
   `content` text COMMENT '内容',
   KEY `aid` (`aid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='文章正文表'");
-$db->exe("DROP TABLE IF EXISTS `".$db_prefix."content_single`");
-$db->exe("CREATE TABLE `".$db_prefix."content_single` (
-  `aid` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `cid` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '栏目cid',
-  `title` char(100) NOT NULL DEFAULT '' COMMENT '标题',
-  `flag` set('热门','置顶','推荐','图片','精华','幻灯片','站长推荐') DEFAULT NULL,
-  `new_window` tinyint(1) NOT NULL DEFAULT '0' COMMENT '新窗口打开',
-  `seo_title` char(100) NOT NULL DEFAULT '' COMMENT '标题',
-  `thumb` char(200) NOT NULL DEFAULT '' COMMENT '缩略图',
-  `click` mediumint(9) NOT NULL DEFAULT '0' COMMENT '点击次数',
-  `source` char(30) NOT NULL DEFAULT '' COMMENT '来源',
-  `redirecturl` char(100) NOT NULL DEFAULT '' COMMENT '转向链接',
-  `html_path` varchar(255) NOT NULL DEFAULT '' COMMENT '自定义生成的静态文件地址',
-  `allowreply` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否允许回复',
-  `addtime` int(10) NOT NULL DEFAULT '0' COMMENT '添加时间',
-  `updatetime` int(10) NOT NULL DEFAULT '0' COMMENT '发布时间 ',
-  `color` char(7) NOT NULL DEFAULT '' COMMENT '标题颜色',
-  `template` varchar(255) NOT NULL DEFAULT '' COMMENT '模板',
-  `url_type` tinyint(1) NOT NULL DEFAULT '3' COMMENT '文章访问方式  1 静态访问  2 动态访问  3 继承栏目',
-  `arc_sort` int(10) unsigned NOT NULL DEFAULT '100' COMMENT '排序',
-  `state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 已审核 0 未审核',
-  `keywords` char(100) NOT NULL DEFAULT '' COMMENT '关键字',
-  `description` varchar(255) NOT NULL DEFAULT '' COMMENT '描述',
-  `uid` int(10) unsigned NOT NULL COMMENT '用户uid',
-  `favorites` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '收藏数',
-  `comment_num` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '评论数',
-  `read_credits` smallint(6) unsigned NOT NULL DEFAULT '0' COMMENT '阅读金币',
-  `content` text COMMENT '正文',
-  PRIMARY KEY (`aid`),
-  KEY `cid` (`cid`),
-  KEY `uid` (`uid`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=gbk COMMENT='单文章'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."content_tag`");
 $db->exe("CREATE TABLE `".$db_prefix."content_tag` (
   `mid` smallint(6) NOT NULL DEFAULT '0' COMMENT '模型cid',
@@ -281,7 +170,7 @@ $db->exe("CREATE TABLE `".$db_prefix."field` (
   `isadd` tinyint(1) NOT NULL DEFAULT '1' COMMENT '在前台投稿中显示',
   PRIMARY KEY (`fid`),
   KEY `mid` (`mid`)
-) ENGINE=MyISAM AUTO_INCREMENT=79 DEFAULT CHARSET=utf8 COMMENT='模型字段'");
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='模型字段'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."link`");
 $db->exe("CREATE TABLE `".$db_prefix."link` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -435,7 +324,7 @@ $db->exe("CREATE TABLE `".$db_prefix."search` (
   PRIMARY KEY (`sid`),
   UNIQUE KEY `name` (`word`) USING BTREE,
   KEY `total` (`total`)
-) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COMMENT='搜索结果表'");
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='搜索结果表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."session`");
 $db->exe("CREATE TABLE `".$db_prefix."session` (
   `sessid` char(32) NOT NULL DEFAULT '',
@@ -461,7 +350,7 @@ $db->exe("CREATE TABLE `".$db_prefix."tag` (
   PRIMARY KEY (`tid`),
   UNIQUE KEY `name` (`tag`),
   KEY `total` (`total`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='Tag标签表'");
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Tag标签表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."template_tag`");
 $db->exe("CREATE TABLE `".$db_prefix."template_tag` (
   `tid` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -489,7 +378,7 @@ $db->exe("CREATE TABLE `".$db_prefix."upload` (
   PRIMARY KEY (`id`),
   KEY `basename` (`basename`),
   KEY `id` (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=68 DEFAULT CHARSET=utf8 COMMENT='上传文件'");
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='上传文件'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."user`");
 $db->exe("CREATE TABLE `".$db_prefix."user` (
   `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -521,7 +410,7 @@ $db->exe("CREATE TABLE `".$db_prefix."user` (
   UNIQUE KEY `domain` (`domain`),
   KEY `password` (`password`),
   KEY `credits` (`credits`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='会员表'");
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='会员表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."user_deny_ip`");
 $db->exe("CREATE TABLE `".$db_prefix."user_deny_ip` (
   `ip` char(15) NOT NULL DEFAULT '' COMMENT '拒绝访问ip',
@@ -534,7 +423,7 @@ $db->exe("CREATE TABLE `".$db_prefix."user_dynamic` (
   `content` text NOT NULL COMMENT '内容',
   `addtime` int(11) NOT NULL DEFAULT '0' COMMENT '时间',
   PRIMARY KEY (`did`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=gbk COMMENT='会员动态'");
+) ENGINE=MyISAM DEFAULT CHARSET=gbk COMMENT='会员动态'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."user_follow`");
 $db->exe("CREATE TABLE `".$db_prefix."user_follow` (
   `uid` int(11) unsigned NOT NULL COMMENT '用户uid',
@@ -546,7 +435,7 @@ $db->exe("CREATE TABLE `".$db_prefix."user_guest` (
   `guest_uid` int(11) unsigned NOT NULL COMMENT '访问id',
   `uid` int(11) unsigned NOT NULL COMMENT '被访问空间Uid',
   PRIMARY KEY (`gid`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=gbk COMMENT='空间访客表'");
+) ENGINE=MyISAM DEFAULT CHARSET=gbk COMMENT='空间访客表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."user_message`");
 $db->exe("CREATE TABLE `".$db_prefix."user_message` (
   `mid` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -556,4 +445,4 @@ $db->exe("CREATE TABLE `".$db_prefix."user_message` (
   `user_message_state` tinyint(1) NOT NULL COMMENT '是否查阅  1 已阅读  2 未读',
   `sendtime` int(10) NOT NULL COMMENT '发送时间',
   PRIMARY KEY (`mid`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=gbk COMMENT='短消息'");
+) ENGINE=MyISAM DEFAULT CHARSET=gbk COMMENT='短消息'");

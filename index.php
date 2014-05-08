@@ -1,5 +1,4 @@
 <?php
-    
 define('DEBUG',true);
 date_default_timezone_set('PRC');
 //应用组目录
