@@ -27,46 +27,50 @@ class LoginControl extends Control {
 			exit ;
 		}
 		if (IS_POST) {
-			$code = Q('code', '', 'strtoupper');
-			if ($code != $_SESSION['code']) {
-				$this -> assign('error', '验证码错误');
+			$Model = K("User");
+			$code = Q('post.code', null, 'strtoupper');
+			$username = Q('username');
+			$password = Q('post.password', null, '');
+			if (empty($code) || $code != $_SESSION['code']) {
+				$this -> error = '验证码错误';
 				$this -> display();
 				exit ;
 			}
-			$userModel = M("user");
-			$username = Q("post.username", NULL, 'htmlspecialchars,strip_tags,addslashes');
-			$userInfo = $userModel -> where("username='$username' || email='$username'") -> find();
-			if (empty($userInfo)) {
-				$this -> assign('error', '帐号不存在');
+			if (empty($username)) {
+				$this -> error = '帐号不能为空';
 				$this -> display();
 				exit ;
 			}
-			$password = md5($_POST['password'] . $userInfo['code']);
-			if ($userInfo['password'] != $password) {
-				$this -> assign('error', '密码错误');
+			if (empty($password)) {
+				$this -> error = '密码不能为空';
 				$this -> display();
 				exit ;
 			}
-			//记录用户登录信息
-			$sql = "SELECT * FROM " . C("DB_PREFIX") . "user AS u
-                JOIN " . C('DB_PREFIX') . "role AS r ON u.rid = r.rid WHERE u.uid=" . $userInfo['uid'];
-			$userData = $userModel -> query($sql);
-			if (empty($userData)) {
-				$this -> error = '登录失败';
+			$user = $Model -> where(array('username' => $username)) -> find();
+			if (!$user) {
+				$this -> error = "帐号不存在";
 				$this -> display();
 				exit ;
-			} else {
-				$user = $userData[0];
-				setcookie('login', 1, 0, '/');
-				unset($user['password']);
-				unset($user['code']);
-				//是否为超级管理员
-				$_SESSION['WEB_MASTER'] = strtolower(C("WEB_MASTER")) == strtolower($user['username']);
-				$_SESSION = array_merge($_SESSION, $user);
-				//---------------------修改登录IP与时间
-				$userModel -> save(array("uid" => $_SESSION['uid'], "logintime" => time(), "lastip" => ip_get_client()));
-				go(__URL__);
 			}
+			if ($user['password'] !== md5($password . $user['code'])) {
+				$this -> error('密码输入错误');
+				$this -> display();
+			}
+			setcookie('login', 1, 0, '/');
+			unset($user['password']);
+			unset($user['code']);
+			//是否为超级管理员
+			$_SESSION['WEB_MASTER'] = strtolower(C("WEB_MASTER")) == strtolower($user['username']);
+			$_SESSION = array_merge($_SESSION, $user);
+			if (empty($user['icon'])) {
+				$_SESSION['icon'] = __ROOT__ . '/data/image/user/250.png';
+			}
+			$_SESSION['icon250'] = $_SESSION['icon'];
+			$_SESSION['icon150'] = str_replace(250, 150, $_SESSION['icon']);
+			$_SESSION['icon100'] = str_replace(250, 100, $_SESSION['icon']);
+			$_SESSION['icon50'] = str_replace(250, 50, $_SESSION['icon']);
+			$Model -> save(array('uid' => $user['uid'], 'logintime' => time(), 'lastip' => ip_get_client()));
+			go(__APP__);
 		} else {
 			$this -> display();
 		}

@@ -43,6 +43,10 @@ class LoginControl extends CommonControl {
 				$this -> display();
 				exit ;
 			}
+			if ($user['password'] !== md5($password . $user['code'])) {
+				$this -> error('密码输入错误');
+				$this->display();
+			}
 			setcookie('login', 1, 0, '/');
 			unset($user['password']);
 			unset($user['code']);
@@ -56,6 +60,7 @@ class LoginControl extends CommonControl {
 			$_SESSION['icon150'] =str_replace(250, 150, $_SESSION['icon']);
 			$_SESSION['icon100'] = str_replace(250, 100, $_SESSION['icon']);
 			$_SESSION['icon50'] = str_replace(250, 50, $_SESSION['icon']);
+			$Model -> save(array('uid' => $user['uid'], 'logintime' => time(), 'lastip' => ip_get_client()));
 			go(U('Member/Index/index'));
 		} else {
 			$this -> display();
