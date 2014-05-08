@@ -23,7 +23,7 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="__ROOT__">首页</a></li>
                 <channel type="top">
-                    <li><a href='{$field.url}'>{$field.catname}</a></li>
+                    <li><a href='{$field.caturl}'>{$field.catname}</a></li>
                 </channel>
             </ul>
             <form class="navbar-form navbar-left" role="search" method="post" action="__WEB__?g=Hdcms&a=Search&c=Search&m=search">
@@ -69,8 +69,7 @@
 								<span class="ot-list-time pull-right">{$field.addtime|date:"Y-m-d H:i",@@}</span>
 								<a href="/cate/site.html">{$field.catname}</a>|
 								<a class="ot-list-author" href="/u/3.html">{$field.nickname}</a>
-								<span>浏览：{$field.click} 回复：{$field.comment_num}</span>
-								
+								<span>浏览：{$field.click} 回复：{$field.comment_num}</span>	
 							</div>
 	                    </div>
 	                </pagelist>
@@ -86,12 +85,13 @@
             	<header>讨论区</header>
             	<div class="channel">
             		<ul>
-	            		<list from="$hdcms.son_category" name="c">
-	            			<li>
-	            				<span class="list-circle-prefix"></span>
-	                    		<a href='<?php echo Url::get_category_url($c);?>'>{$c.catname}</a>
-	                    	</li>
-	                	</list>
+            		<channel type="son">
+            			<li>
+            				<span class="list-circle-prefix"></span>
+            				<a href='{$field.caturl}'>{$field.catname}</a>
+            			</li>
+            		</channel>
+
                 	</ul>
             	</div>
             </article>

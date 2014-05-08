@@ -124,7 +124,8 @@ str;
             foreach (\$result as \$field):
                 //当前栏目样式
                 \$field['class']=\$_self_cid==\$field['cid']?"$class":"";
-                \$field['url'] = Url::getCategoryUrl(\$field);?>
+                \$field['caturl'] = Url::getCategoryUrl(\$field);
+            ?>
 str;
 		$php .= $content;
 		$php .= '<?php endforeach;}?>';
@@ -274,6 +275,7 @@ str;
                         \$field['title']=\$field['color']?"<span style='color:".\$field['color']."'>".\$field['title']."</span>":\$field['title'];
                         \$field['description']=mb_substr(\$field['description'],0,$infolen,'utf-8');
                         \$field['time']=date("Y-m-d",\$field['updatetime']);
+						\$field['icon']=empty(\$field['icon'])?"__ROOT__/data/images/user/icon100.png":'__ROOT__/'.\$field['icon'];
                         \$field['date_before']=date_before(\$field['addtime']);
                         \$field['thumb']='__ROOT__'.'/'.\$field['thumb'];
                         \$field['caturl']=Url::getCategoryUrl(\$field);

@@ -29,6 +29,7 @@ final class Url {
 				}
 			case 2 :
 			case 1 :
+			default:
 				//普通栏目
 				if ($category['cat_url_type'] == 1) {
 					//栏目生成静态

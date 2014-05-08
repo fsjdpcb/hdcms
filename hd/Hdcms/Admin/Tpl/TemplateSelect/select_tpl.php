@@ -1,11 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE html>
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>选择模板</title>
     <hdjs/>
-    <css file="__CONTROL_TPL__/css/select_tpl.css"/>
     <js file="__CONTROL_TPL__/js/select_tpl.js"/>
 </head>
 <body>

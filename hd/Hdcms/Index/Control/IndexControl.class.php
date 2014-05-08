@@ -22,8 +22,8 @@ class IndexControl extends PublicControl {
 		}
 		$ContentModel = new Content($mid);
 		$field = $ContentModel -> find($aid);
-		if(!$field){
-			$this->error('文章不存在');
+		if (!$field) {
+			$this -> error('文章不存在');
 		}
 		$field['time'] = date("Y/m/d", $field['addtime']);
 		$field['date_before'] = date_before($field['addtime']);
@@ -49,13 +49,18 @@ class IndexControl extends PublicControl {
 			if ($category['cattype'] == 3) {
 				go($category['cat_redirecturl']);
 			} else {
-				$category['son_category'] = Data::channelList($categoryCache, $cid);
 				$Model = ContentViewModel::getInstance($mid);
 				$where = C('DB_PREFIX') . 'category.cid=' . $cid . " OR pid=" . $cid;
 				$category['content_num'] = $Model -> join('category') -> where($where) -> count();
-				$cats['cid'] = $category['son_category'];
-				$cats['cid'][] = $cid;
-				$category['comment_num'] = intval( M('comment') -> where($cats) -> sum());
+				$childCategory = Data::channelList($categoryCache, $cid);
+				$catWhere = array('cid' => array());
+				if (!empty($childCategory)) {
+					foreach ($childCategory as $cat) {
+						$catWhere['cid'][] = $cat['cid'];
+					}
+				}
+				$catWhere['cid'][] = $cid;
+				$category['comment_num'] = intval( M('comment') -> where($catWhere) -> sum());
 				//栏目模板
 				switch ($category['cattype']) {
 					case 1 :
@@ -67,7 +72,7 @@ class IndexControl extends PublicControl {
 						$tpl = $category['index_tpl'];
 						break;
 				}
-				$tpl = 'template/'.C("WEB_STYLE").'/'.$tpl;
+				$tpl = 'template/' . C("WEB_STYLE") . '/' . $tpl;
 				$this -> assign("hdcms", $category);
 				$this -> display($tpl);
 			}
