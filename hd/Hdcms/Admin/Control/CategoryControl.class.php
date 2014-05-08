@@ -33,7 +33,12 @@ class CategoryControl extends AuthControl {
 	//验证静态目录
 	public function check_category_dir() {
 		//验证静态目录
-		$state = M('category') -> find(array('catdir' => Q('catdir')));
+		$cid=Q('cid',0,'intval');
+		$db = M('category');
+		if($cid){
+			$db->where="cid<>$cid";
+		}
+		$state = $db-> find(array('catdir' => Q('catdir')));
 		echo $state ? 0 : 1;
 		exit ;
 	}

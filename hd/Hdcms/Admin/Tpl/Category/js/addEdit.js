@@ -7,8 +7,7 @@ $(function () {
             },
             error: {
                 required: "请选择模型"
-            },
-            message:'栏目所属的模型'
+            }
         },
         catname: {
             rule: {
@@ -22,7 +21,7 @@ $(function () {
         catdir: {
             rule: {
                 required: true,
-                ajax:{url:CONTROL+'&m=check_category_dir'}
+                ajax:{url:CONTROL+'&m=check_category_dir',field:[cid]}
             },
             error: {
                 required: "静态目录不能为空",
