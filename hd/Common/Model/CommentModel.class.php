@@ -89,9 +89,9 @@ class CommentModel extends ViewModel {
 		$field = $this -> find($comment_id);
 		//设置头像
 		if (empty($field['icon'])) {
-			$field['icon'] = __ROOT__ . "/data/image/user/50-gray.png";
+			$field['icon'] = __ROOT__ . "/data/image/user/50.png";
 		} else {
-			$field['icon'] = __ROOT__ . '/' . $d['icon'];
+			$field['icon'] = __ROOT__ . '/' . $field['icon'];
 		}
 		return $field;
 	}

@@ -120,7 +120,7 @@ class PluginControl extends AuthControl {
 				);
 				M('node') -> add($data);
 				$NodeModel = K('Node');
-				$NodeModel -> update_cache();
+				$NodeModel -> updateCache();
 				$this -> success('插件安装成功');
 			} else {
 				$this -> error('插件安装失败');
@@ -165,7 +165,7 @@ class PluginControl extends AuthControl {
 			//删除插件菜单信息
 			M('node') -> where(array('app_group' => 'Plugin', 'app' => $plugin)) -> del();
 			$NodeModel = K('Node');
-			$NodeModel -> update_cache();
+			$NodeModel -> updateCache();
 			//删除文件
 			if (Q('del_dir')) {
 				if (!dir::del('hd/Plugin/' . $plugin)) {
