@@ -566,36 +566,5 @@ return array (
     'issearch' => '0',
     'isadd' => '0',
   ),
-  'sdfsdf' => 
-  array (
-    'fid' => '20',
-    'mid' => '1',
-    'field_state' => '1',
-    'field_type' => 'images',
-    'table_type' => '2',
-    'table_name' => 'content_data',
-    'field_name' => 'sdfsdf',
-    'title' => 'sdfsdf',
-    'tips' => '',
-    'enable' => '1',
-    'is_system' => '0',
-    'fieldsort' => '100',
-    'set' => 
-    array (
-      'upload_img_max_width' => '800',
-      'upload_img_max_height' => '800',
-      'num' => '10',
-    ),
-    'css' => '',
-    'minlength' => '0',
-    'maxlength' => '',
-    'validate' => '',
-    'required' => '0',
-    'error' => '',
-    'isunique' => '0',
-    'isbase' => '1',
-    'issearch' => '0',
-    'isadd' => '0',
-  ),
 );
 ?>

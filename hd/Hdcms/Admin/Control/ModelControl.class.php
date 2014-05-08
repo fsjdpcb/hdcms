@@ -32,9 +32,9 @@ class ModelControl extends AuthControl {
 	public function updateCache() {
 		$Model = K("Model");
 		if ($Model -> updateCache()) {
-			$this -> _ajax(1, '更新缓存成功');
+			$this -> success( '更新缓存成功');
 		} else {
-			$this -> _ajax(0, $Model -> error);
+			$this -> error($Model -> error);
 		}
 	}
 
@@ -44,18 +44,18 @@ class ModelControl extends AuthControl {
 	public function del() {
 		$mid = Q('mid', 0, 'intval');
 		if (empty($mid)) {
-			$this -> _ajax(0, '参数错误');
+			$this -> error('参数错误');
 		}
 		//验证栏目
 		$categoryModel = M('category');
 		if ($categoryModel -> find(array('mid' => $mid))) {
-			$this -> _ajax(0, '先删除模型栏目');
+			$this -> error( '先删除模型栏目');
 		}
 		$ModelDb = K("Model");
 		if ($ModelDb -> delModel($mid)) {
-			$this -> _ajax(1, '删除模型成功');
+			$this -> success('删除模型成功');
 		} else {
-			$this -> _ajax(1, $ModelDb -> error);
+			$this -> error( $ModelDb -> error);
 		}
 	}
 
@@ -70,9 +70,9 @@ class ModelControl extends AuthControl {
 			}
 			$Model = K("Model");
 			if ($Model -> addModel()) {
-				$this -> _ajax(1, '添加模型成功');
+				$this -> success( '添加模型成功');
 			} else {
-				$this -> _ajax(0, $Model -> error);
+				$this -> error( $Model -> error);
 			}
 		} else {
 			$this -> display();
@@ -85,19 +85,19 @@ class ModelControl extends AuthControl {
 	public function edit() {
 		$mid = Q('mid', 0, 'intval');
 		if (!$mid) {
-			$this -> _ajax(0, '参数错误');
+			$this -> error( '参数错误');
 		}
 		if (IS_POST) {
 			$post = $_POST;
 			if (empty($post)) {
-				$this -> _ajax(0, '参数不能为空');
+				$this -> error( '参数不能为空');
 			}
 			$modelDb = K("Model");
 			//异步提交返回信息
 			if ($modelDb -> editModel($post)) {
-				$this -> _ajax(1, '修改模型成功');
+				$this -> success( '修改模型成功');
 			}else{
-				$this->_ajax(0,$modelDb->error);
+				$this->error($modelDb->error);
 			}
 		} else {
 			$ModelCache = cache('model');

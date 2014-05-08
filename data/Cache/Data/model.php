@@ -9,5 +9,14 @@ return array (
     'description' => '',
     'is_system' => '1',
   ),
+  4 => 
+  array (
+    'mid' => '4',
+    'model_name' => 'aaaaaa',
+    'table_name' => 'aaaaa',
+    'enable' => '1',
+    'description' => '',
+    'is_system' => '0',
+  ),
 );
 ?>

@@ -1,5 +1,5 @@
 <?php
-
+if(!defined("HDPHP_PATH"))exit;
 /**
  * 文章附件上传(Thumb,Image,Images)
  * Class IndexControl

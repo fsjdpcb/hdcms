@@ -20,35 +20,49 @@ class ModelModel extends Model {
 			$data = $this -> data;
 			//验证表是否存在
 			if ($this -> tableExists($data['table_name'])) {
-				$this -> error = '表已经存在';
+				$this -> error = '数据表已经存在';
 				return false;
 			}
 			if ($this -> createModelSql($data['table_name'])) {
 				//向模型表添加模型信息
-				$state = $this -> add();
-				if ($state) {
+				$mid = $this -> add();
+				if ($mid) {
+					//创建Field表信息
+					$db = M();
+					$db_prefix = C("DB_PREFIX");
+					$table = $data['table_name'];
+					require APP_PATH . '/Data/ModelSql/FieldInit.php';
 					if ($this -> updateCache()) {
-						return $state;
+						//更新字段缓存
+						$ModelField = new ModelFieldModel($mid);
+						$ModelField -> updateCache();
+						return $mid;
 					}
+				} else {
+					return false;
 				}
 			}
+		} else {
+			return false;
 		}
 	}
+
 	//修改模型
 	public function editModel($data) {
 		$this -> validate = array( array('model_name', 'nonull', '模型名称不能为空', 2, 2));
 		if ($this -> create($data)) {
-			if(!$this -> save($data)){
-				$this->error='更新模型失败';
-			}else{
-				if(!$this->updateCache()){
+			if (!$this -> save($data)) {
+				$this -> error = '更新模型失败';
+			} else {
+				if (!$this -> updateCache()) {
 					return false;
-				}else{
+				} else {
 					return true;
 				}
 			}
 		}
 	}
+
 	/**
 	 * 创建模型表
 	 */
@@ -70,8 +84,6 @@ class ModelModel extends Model {
 		}
 		return true;
 	}
-
-	
 
 	/**
 	 * 删除模型

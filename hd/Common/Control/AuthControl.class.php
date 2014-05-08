@@ -21,7 +21,7 @@ class AuthControl extends CommonControl {
 			return true;
 		}
 		//没有登录用户或非后台管理员跳转到登录入口
-		if (!intval(session('admin'))) {
+		if (!IN_ADMIN) {
 			echo "<script>top.location.href='?a=Admin&c=Login&m=login'</script>";
 			exit ;
 		}

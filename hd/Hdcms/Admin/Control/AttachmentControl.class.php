@@ -4,7 +4,7 @@
  * 上传附件管理
  * Class AttachmentControl
  */
-class AttachmentControl extends Control
+class AttachmentControl extends AuthControl
 {
     protected $db;
 

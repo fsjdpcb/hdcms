@@ -143,6 +143,26 @@ function select_access_checkbox(obj) {
     $(obj).parents('tr').eq(0).find('input').attr('checked', state);
 }
 
+/**
+ * 更换模板
+ * @param input_id
+ */
+function select_template(name) {
+	$.modal({
+		title : '选择模板文件',
+		button_cancel : '关闭',
+		width : 650,
+		height : 500,
+		content : '<iframe frameborder=0 scrolling="no" style="height:100%;border:none;" src="' + APP + '&c=TemplateSelect&m=select_tpl&name=' + name + '"></iframe>'
+	});
+}
+
+/**
+ * 关闭模板选择窗口
+ */
+function close_select_template() {
+	$.removeModal();
+}
 
 
 

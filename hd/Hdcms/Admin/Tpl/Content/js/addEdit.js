@@ -170,7 +170,7 @@ function file_upload(options) {
 }
 
 /**
- * 关闭模板选择窗口
+ * 关闭文件上传窗口
  */
 function close_file_upload() {
 	$.removeModal();
