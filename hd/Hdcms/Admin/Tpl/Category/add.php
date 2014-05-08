@@ -5,6 +5,7 @@
     <title>栏目管理</title>
     <hdjs/>
     <js file="__CONTROL_TPL__/js/add_edit.js"/>
+    <js file="__TPL__/Content/js/addEdit.js"/>
 </head>
 <body>
 <form action="{|U:add}" method="post" class="hd-form" onsubmit="return hd_submit(this,'{|U:index}');">

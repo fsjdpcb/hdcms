@@ -18,7 +18,6 @@ function del(comment_id) {
     } else {//多评论删除
         var comment_id = $("input:checked").serialize();
     }
-    alert(comment_id);
     if (comment_id) {
         if (confirm("确定要删除评论吗?")) {
             $.ajax({

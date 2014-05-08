@@ -27,7 +27,6 @@
                     <div>
                         <a href="javascript:;" class="{$f.type}" name="{$hd.get.name}" path="{$f.path}">
                             <span class="{$f.type}">{$f.name}</span>
-                            {$f.name}
                         </a>
                     </div>
                 </td>

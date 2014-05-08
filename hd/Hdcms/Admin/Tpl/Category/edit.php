@@ -4,7 +4,8 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>修改栏目</title>
     <hdjs/>
-    <js file="__CONTROL_TPL__/js/add_edit.js.js"/>
+    <js file="__CONTROL_TPL__/js/addEdit.js.js"/>
+     <js file="__TPL__/Content/js/addEdit.js"/>
 </head>
 <body>
 <form action="{|U:edit}" method="post" class="hd-form" onsubmit="return hd_submit(this,'{|U:index}')">
