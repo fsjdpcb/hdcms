@@ -21,7 +21,7 @@ $(function () {
         catdir: {
             rule: {
                 required: true,
-                ajax:{url:CONTROL+'&m=check_category_dir',field:[cid]}
+                ajax:{url:CONTROL+'&m=check_category_dir',field:['cid']}
             },
             error: {
                 required: "静态目录不能为空",
