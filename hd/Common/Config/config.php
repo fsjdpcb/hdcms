@@ -12,7 +12,7 @@ $config = array(
         ),
         //自动加载文件
         'AUTO_LOAD_FILE' => array(
-            './Hd/Common/Functions/functions.php'
+            'hd/Common/Functions/functions.php'
         ),
         //404跳转url
         '404_URL' => '',
