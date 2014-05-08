@@ -1,5 +1,5 @@
 <?php
-if (!defined("IN_ADMIN") || IN_ADMIN)
+if (!defined("IN_ADMIN") || !IN_ADMIN)
 	exit ;
 final class Html extends Control {
 	//HTML存放根目录
@@ -8,11 +8,12 @@ final class Html extends Control {
 	public function __construct() {
 		//HTML存放根目录
 		$this -> htmlDir = C("HTML_PATH") ? C("HTML_PATH") . '/' : '';
+		defined("__TEMPLATE__") or define("__TEMPLATE__", __ROOT__ . "/template/" . C("WEB_STYLE"));
 	}
 
 	//生成首页
-	public function createIndex() {echo 333;
-		$this -> display('template/' . C('WEB_STYLE') . '/index.html');
+	public function createIndex() {
+		$this -> fetch('template/' . C('WEB_STYLE') . '/index.html');
 	}
 
 }

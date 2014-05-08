@@ -21,11 +21,15 @@ class HtmlControl extends AuthControl {
 
 	//生成首页
 	public function create_index() {
-		$Html = new Html();
-		if ($Html->createIndex()) {
-			$this -> success('首页生成完毕');
+		if (IS_POST) {
+			$Html = new Html();
+			if ($Html -> createIndex()) {
+				$this -> success('首页生成完毕');
+			} else {
+				$this -> error($Html -> error);
+			}
 		} else {
-			$this -> error($Html->error);
+			$this -> display();
 		}
 	}
 
