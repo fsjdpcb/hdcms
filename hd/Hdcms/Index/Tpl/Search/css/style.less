@@ -19,7 +19,13 @@
 body {
   background: @bgcolor;
 }
-
+/*搜索框*/
+div.search {
+    border: 1px solid #FFBE7A;
+    background: none repeat scroll 0 0 #FFFCED;
+    line-height: 20px;
+    padding: 8px 10px;
+}
 //头部
 article.header {
   height: auto;
@@ -126,10 +132,11 @@ div.content {
   //文章列表
   div.article-list {
     div.article {
-      margin-bottom: 1px;
+      margin-bottom: 1px; 
       background: @white;
       padding: 10px;
-      height: 120px;
+      height:auto;
+      overflow: hidden;
       border-left: solid 4px @white;
       &:hover {
         background: @bgcolor-blue;

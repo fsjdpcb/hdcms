@@ -16,9 +16,15 @@ function cache($name, $value = false, $CachePath = 'data/Cache/Data') {
 	}
 }
 
-function getCategory($cid){
-	$categoryCache = F('category');
-	$cids = Data::channelList($cid);
-	$cids[]=$cid;
+function getCategory($cid) {
+	$categoryCache = cache('category');
+	$catData = Data::channelList($categoryCache, $cid);
+	$cids = array();
+	if (!empty($catData)) {
+		foreach ($catData as $cat) {
+			$cids[] = $cat['cid'];
+		}
+	}
+	$cids[] = $cid;
 	return $cids;
 }

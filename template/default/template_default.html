@@ -75,10 +75,57 @@
             </p>
         </div>
         <div class="content">
-        	<if value="$hdcms.thumb !='__ROOT__/'">
-        		<img src="{$hdcms.thumb}"/><br/>
-        	</if>
-            {$hdcms.content}
+        	<style type="text/css">
+        		h4{
+        			font-family: "微软雅黑";
+        			font-size:18px;
+        			color:#5F9DD6;
+        		}
+        		table{
+        			width:100%;
+        		}
+        		table,td{
+        			border:solid 1px #f3f3f3;padding:5px 10px;
+        		}
+        		div.tplPic{
+        			
+        			margin-bottom: 20px;
+        		}
+        		div.tplPic img{
+        			border:solid 1px #f3f3f3;padding:5px;
+        			max-width: 500px;
+        		}
+        	</style>
+        	<h4>作者信息：</h4>
+        	<table>
+        		<tr>
+        			<td style="width:100px;">QQ号：</td>
+        			<td>{$hdcms.qq|default:'保密'}</td>
+        		</tr>
+        		<tr>
+        			<td>邮箱：</td>
+        			<td>{$hdcms.email|default:'保密'}</td>
+        		</tr>
+        		<tr>
+        			<td>电话：</td>
+        			<td>{$hdcms.tel|default:'保密'}</td>
+        		</tr>
+        		<tr>
+        			<td>作者介绍：</td>
+        			<td>{$hdcms.about|default:'这家伙很懒，没有写介绍'}</td>
+        		</tr>
+        	</table>
+        	<hr />
+        	<h4>模板预览：</h4>
+        		<list from="$hdcms.pics.path" name="pic">
+        			<div class="tplPic">
+        			<img src="__ROOT__/{$pic}" />
+        			</div>
+        		</list>
+        	<h4>文件下载：</h4>
+        	<foreach from="$hdcms.tplfile.path" key="$key" value="$value">
+        		文件<?php echo $key+1;?>: <a href="__ROOT__/{$value}"><?php echo $hdcms['tplfile']['alt'][$key];?></a>
+        	</foreach>
         </div>
         <div class="tag">
             <if value="$hdcms.tag">

@@ -25,11 +25,10 @@
         	<input type="hidden" name="a" value="Member"/>
         	<input type="hidden" name="c" value="Content"/>
         	<input type="hidden" name="m" value="add"/>
-        	<input type="hidden" name="mid" value="{$hd.get.mid}"/>
         	<p style="margin-top:20px;">
-        	<select name="cid" size="10" style="width:250px;height:290px;" size="100">
+        	<select name="cid" size="10" style="width:300px;height:290px;" size="100">
         		<list from="$category" name="d">
-        		<option value="{$d.cid}">{$d.catname}</option>
+        		<option value="{$d.cid}" <if value="$d.cattype!=1">disabled=''</if>>{$d._name}</option>
         		</list>
         	</select>
         	</p>

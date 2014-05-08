@@ -14,7 +14,7 @@ class MemberAuthControl extends CommonControl
             $this->display("./data/Template/close_member");
             exit;
         } else if (!session('uid')) {
-            go(U("Login/Login/login", array('g' => 'Member')));
+            go(U("Member/Login/login"));
         } else if (!empty($_SESSION['lock'])) {
             //锁定用户无法操作（IP禁止，限制访问日期等)
             $this->error('您已被锁定，无法进行操作',__WEB__);

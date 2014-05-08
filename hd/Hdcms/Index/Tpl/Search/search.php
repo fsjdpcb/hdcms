@@ -5,7 +5,7 @@
     <link rel="shortcut icon" href="favicon.ico">
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <jquery/>
+    <hdjs/>
     <bootstrap/>
     <link rel="stylesheet" type="text/css" href="__CONTROL_TPL__/css/style.css?ver=1.0"/>
     <hdcms/>
@@ -36,7 +36,7 @@
     </nav>
 </article>
 <!--最新消息-->
-<div class="message container">
+<div class="message container" style="display: block;">
     <span>最新消息：</span>
     <arclist cid="2" row="1" titlelen=20>
         <a href='{$field.url}'>{$field.title}</a>
@@ -65,6 +65,46 @@
                     </arclist>
                 </ul>
             </article>
+            <form action="{|U:'content',array('mid'=>$_GET['mid'],'cid'=>$_GET['cid'])}" class="hd-form">
+				<input type="hidden" name="a" value="Index"/>
+				<input type="hidden" name="c" value="Search"/>
+				<input type="hidden" name="m" value="search"/>
+				<div class="search">
+					添加时间：
+					<input id="begin_time" placeholder="开始时间" readonly="readonly" class="w80" type="text" value="" name="search_begin_time">
+					<script>
+						$('#begin_time').calendar({
+							format : 'yyyy-MM-dd'
+						});
+					</script>
+					-
+					<input id="end_time" placeholder="结束时间" readonly="readonly" class="w80" type="text" value="" name="search_end_time">
+					<script>
+						$('#end_time').calendar({
+							format : 'yyyy-MM-dd'
+						});
+					</script>
+					&nbsp;&nbsp;&nbsp;
+					<select name="cid" class="w100 h30">
+						<option selected="" value="">全部</option>
+						<list from="$searchCategory" name="c">
+							<option value="{$c.cid}">{$c._name}</option>
+						</list>
+					</select>
+					&nbsp;&nbsp;&nbsp;
+					<select name="type" class="w100 h30">
+						<option value="title" >标题</option>
+						<option value="description">简介</option>
+						<option value="username">用户名</option>
+						<option value="tag">Tag</option>
+					</select>&nbsp;&nbsp;&nbsp;
+					关键字：
+					<input class="w120" type="text" placeholder="请输入关键字..." required="" name="word">
+					<button class="hd-cancel" type="submit">
+						搜索
+					</button>
+				</div>
+			</form>
             <!--内容列表-->
             <div class="article-list">
                 <header>搜索结果</header>
@@ -75,7 +115,7 @@
                             {$field.catname}
                             <i class="glyphicon glyphicon-play"></i>
                         </span>
-                            <a href="{$field.url}">{$field.title|mb_substr:0,32,'utf-8'}</a>
+                            <a href="__WEB__?a=Index&c=Index&m=content&mid={$field.mid}&cid={$field.cid}&aid={$field.aid}">{$field.title|mb_substr:0,32,'utf-8'}</a>
                         </h3>
                         <div class="author">
                             <a href="{$field.member}">{$field.username}</a>

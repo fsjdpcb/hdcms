@@ -15,7 +15,7 @@ class Content {
 	//获取单篇文章
 	public function find($aid) {
 		$ContentModel = ContentViewModel::getInstance($this -> _mid);
-		$data = $ContentModel -> where($ContentModel->tableFull.'.aid='.$aid)->find();
+		$data = $ContentModel -> where($ContentModel -> tableFull . '.aid=' . $aid) -> find();
 		if (!$data) {
 			$this -> error = '文章不存在';
 			return false;
@@ -33,7 +33,7 @@ class Content {
 	public function add($data) {
 		$ContentModel = ContentModel::getInstance($this -> _mid);
 		if (!isset($this -> _model[$this -> _mid])) {
-			$this -> error('模型不存在');
+			$this -> error='模型不存在';
 		}
 		$ContentInputModel = new ContentInputModel($this -> _mid);
 		$insertData = $ContentInputModel -> get($data);
@@ -68,7 +68,7 @@ class Content {
 		if ($ContentModel -> create($editData)) {
 			$result = $ContentModel -> save($editData);
 			$aid = $result[$ContentModel -> table];
-			$this -> editTagData($aid);
+			$this -> editTagData($data['aid']);
 			M('upload') -> where(array('uid' => $_SESSION['uid'])) -> save(array('state' => 1));
 			return $aid;
 		} else {
@@ -79,18 +79,18 @@ class Content {
 
 	//修改Tag
 	public function editTagData($aid) {
+		$tagModel = M('tag');
+		$contentTagModel = M("content_tag");
+		//删除文章旧的tag记录
+		$cid = Q('cid', 0, 'intval');
+		$mid = Q('mid', 0, 'intval');
+		$contentTagModel -> where(array('aid' => $aid, 'mid' => $mid)) -> del();
 		//修改tag
 		$tag = Q('tag');
 		if ($tag) {
 			$tag = String::toSemiangle($tag);
 			$tagData = explode(',', $tag);
 			if (!empty($tagData)) {
-				$tagModel = M('tag');
-				$contentTagModel = M("content_tag");
-				//删除文章旧的tag记录
-				$cid = Q('cid', 0, 'intval');
-				$mid = Q('mid', 0, 'intval');
-				$contentTagModel -> where(array('aid' => $aid, 'mid' => $mid)) -> del();
 				$tagData = array_unique($tagData);
 				foreach ($tagData as $tag) {
 					$tid = $tagModel -> where(array('tag' => $tag)) -> getField('tid');

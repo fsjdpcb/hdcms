@@ -103,7 +103,7 @@ class ModelFieldModel extends Model {
 		$data = $this -> $method($data, null);
 		if ($this -> create($data)) {
 			//修改表结构
-			$state = $this -> save($data);
+			$state = $this -> save();
 			if ($state) {
 				$this -> updateCache(Q('mid', 0, 'intval'));
 				return true;

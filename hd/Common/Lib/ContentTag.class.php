@@ -169,15 +169,15 @@ str;
 		//标题长度
 		$titlelen = isset($attr['titlelen']) ? intval($attr['titlelen']) : 80;
 		//属性
-		$fid = isset($attr['fid']) ? trim($attr['fid']) : '';
+		$flag = isset($attr['flag']) ? trim($attr['flag']) : '';
 		//排序属性
-		$nofid = isset($attr['nofid']) ? trim($attr['nofid']) : '';
+		$noflag = isset($attr['noflag']) ? trim($attr['noflag']) : '';
 		//获取类型（排序）
 		$type = isset($attr['type']) ? strtolower(trim($attr['type'])) : 'new';
 		//子栏目处理
 		$sub_channel = isset($attr['sub_channel']) ? intval($attr['sub_channel']) : 1;
 		$php = <<<str
-        <?php \$mid='$mid';\$cid ='$cid';\$fid='$fid';\$nofid='$nofid';\$aid='$aid';\$type='$type';\$sub_channel=$sub_channel;
+        <?php \$mid='$mid';\$cid ='$cid';\$flag='$flag';\$noflag='$noflag';\$aid='$aid';\$type='$type';\$sub_channel=$sub_channel;
             \$mid = \$mid?\$mid:Q('get.mid',1,'intval');
             \$cid = \$cid?\$cid:Q('cid',null,'intval');
             //导入模型类
@@ -237,21 +237,21 @@ str;
                         \$where[]=\$db->tableFull.".cid IN(\$cid)";
                     }
                 }
-                //指定筛选属性fid='1,2,3'时,获取指定属性的文章
-		        if(\$fid){
-		            \$flag =cache(\$mid,false,FLAG_CACHE_PATH);
-		            \$fid = explode(',',\$fid);
-		            foreach(\$fid as \$f){
-		                \$f=\$flag[\$f-1];
+                //指定筛选属性flag='1,2,3'时,获取指定属性的文章
+		        if(\$flag){
+		            \$flagCache =cache(\$mid,false,FLAG_CACHE_PATH);
+		            \$flag = explode(',',\$flag);
+		            foreach(\$flag as \$f){
+		                \$f=\$flagCache[\$f-1];
 		                \$where[]="find_in_set('\$f',flag)";
 		            }
 		        }
-		        //排除fid
-		        if(\$nofid){
-		            \$flag =cache(\$mid,false,FLAG_CACHE_PATH);
-		            \$nofid = explode(',',\$nofid);
-		            foreach(\$nofid as \$f){
-		                \$f=\$flag[\$f-1];
+		        //排除flag
+		        if(\$noflag){
+		            \$flagCache =cache(\$mid,false,FLAG_CACHE_PATH);
+		            \$noflag = explode(',',\$noflag);
+		            foreach(\$noflag as \$f){
+		                \$f=\$flagCache[\$f-1];
 		                \$where[]="!find_in_set('\$f',flag)";
 		            }
 		        }
@@ -301,7 +301,7 @@ str;
 		$infolen = isset($attr['infolen']) ? intval($attr['infolen']) : 500;
 		//获取类型（排序）
 		$order = isset($attr['order']) ? strtolower(trim($attr['order'])) : 'new';
-		$fid = isset($attr['fid']) ? $attr['fid'] : '';
+		$flag = isset($attr['flag']) ? $attr['flag'] : '';
 		//模型mid
 		$mid = isset($attr['mid']) && intval($attr['mid']) ? intval($attr['mid']) : '';
 		//栏目cid
@@ -310,7 +310,7 @@ str;
 		$sub_channel = isset($attr['sub_channel']) ? intval($attr['sub_channel']) : 1;
 		$php = <<<str
         <?php
-        \$mid ='$mid';\$cid='$cid';\$fid = '$fid';\$sub_channel=$sub_channel;\$order = '$order';
+        \$mid ='$mid';\$cid='$cid';\$flag = '$flag';\$sub_channel=$sub_channel;\$order = '$order';
         \$mid = \$mid?\$mid:Q('mid',1,'intval');
         \$cid = \$cid?\$cid:Q('cid',NULL,'intval');
         //导入模型类
@@ -345,12 +345,12 @@ str;
                 \$where[]=\$table.".cid IN(\$cid)";
             }
         }
-        //指定筛选属性fid='1,2,3'时,获取指定属性的文章
-        if(\$fid){
-            \$flag =cache(\$mid,false,FLAG_CACHE_PATH);
-            \$fid = explode(',',\$fid);
-            foreach(\$fid as \$f){
-                \$f=\$flag[\$f-1];
+        //指定筛选属性flag='1,2,3'时,获取指定属性的文章
+        if(\$flag){
+            \$flagCache =cache(\$mid,false,FLAG_CACHE_PATH);
+            \$flag = explode(',',\$flag);
+            foreach(\$flag as \$f){
+                \$f=\$flagCache[\$f-1];
                 \$where[]="find_in_set('\$f',flag)";
             }
         }

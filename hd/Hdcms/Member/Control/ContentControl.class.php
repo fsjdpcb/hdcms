@@ -19,10 +19,10 @@ class ContentControl extends MemberAuthControl {
 		$this -> _model = cache("model", false);
 		$this -> _category = cache("category", false);
 		$this -> _mid = Q('mid', null, 'intval');
-		$this -> _cid = Q("cid", NULL, "intval");
-		$this -> _aid = Q("aid", NULL, "intval");
+		$this -> _cid = Q("cid", null, "intval");
+		$this -> _aid = Q("aid", null, "intval");
 
-		if (!isset($this -> _model[$this -> _mid])) {
+		if ($this -> _mid && !isset($this -> _model[$this -> _mid])) {
 			$this -> error("模型不存在！");
 		}
 		if ($this -> _cid && !isset($this -> _category[$this -> _cid])) {
@@ -42,7 +42,14 @@ class ContentControl extends MemberAuthControl {
 
 	//发表文章前选择栏目
 	public function selectCategory() {
-		$this -> assign("category", cache('category'));
+		$categoryCache = cache('category');
+		$category = array();
+		foreach ($categoryCache as $cat) {
+			if ($cat['mid'] == $this -> _mid) {
+				$category[] = $cat;
+			}
+		}
+		$this -> assign("category", $category);
 		$this -> display();
 	}
 
@@ -51,13 +58,22 @@ class ContentControl extends MemberAuthControl {
 	 */
 	public function add() {
 		if (IS_POST) {
-			$ContentModel = new Content($this -> _mid);
+			$mid = $this->_category[$this->_cid]['mid'];
+			$ContentModel = new Content($mid);
 			if ($ContentModel -> add($_POST)) {
 				$this -> success('发表成功！');
 			} else {
 				$this -> error($ContentModel -> error);
 			}
 		} else {
+			if (!$this -> _cid) {
+				$this -> error('栏目不能为空');
+			}
+			$category = $this -> _category[$this -> _cid];
+			$_REQUEST['mid'] = $mid = $category['mid'];
+			if ($category['cattype'] != 1) {
+				$this -> error('本栏目不能发表文章');
+			}
 			//获取分配字段
 			$form = K('ContentForm');
 			$this -> form = $form -> get();
@@ -73,7 +89,8 @@ class ContentControl extends MemberAuthControl {
 		if (!$aid) {
 			$this -> error('文章不存在');
 		}
-		$ContentModel = new Content($this -> _mid);
+		$mid = $this->_category[$this->_cid]['mid'];
+		$ContentModel = new Content($mid);
 		$result = $ContentModel -> find($aid);
 		if ($result['uid'] != $_SESSION['uid']) {
 			$this -> error('没有修改权限');

@@ -42,7 +42,7 @@
 <div class="location">
 	<div class="nums">
 		主题数：{$hdcms.article_num} &nbsp;&nbsp;&nbsp;回复数：{$hdcms.comment_num}
-		<a href="__WEB__?a=Content&c=Content&m=add&g=Member&mid={$hdcms.mid}&cid={$hdcms.cid}" class="publish">
+		<a href="__WEB__?a=Member&c=Content&m=selectCategory&mid={$hdcms.mid}&cid={$hdcms.cid}" class="publish">
                 <strong>+</strong>发表文章
             </a>
 	</div>
@@ -60,7 +60,7 @@
 	                <pagelist infolen="30" titlelen="20" row="15">
 	                    <div class="article">
 	                    	<div class="icon">
-	                    		<img src="{|get_user_icon:$field['uid']}" alt="{$field.username}" onmouseover="user.show(this,{$field.uid})"/>
+	                    		<img src="{$field.icon}" alt="{$field.username}" onmouseover="user.show(this,{$field.uid})"/>
 	                    	</div>
 	                    	<div class="title">
 	                          	<a href="{$field.url}" target="_blank">{$field.title}</a>
@@ -91,7 +91,6 @@
             				<a href='{$field.caturl}'>{$field.catname}</a>
             			</li>
             		</channel>
-
                 	</ul>
             	</div>
             </article>
