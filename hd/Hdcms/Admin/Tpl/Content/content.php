@@ -61,7 +61,7 @@
 
 					<li>
 						<a href="{|U:'content',array('mid'=>$_GET['mid'],'cid'=>$_GET['cid'],'state'=>0)}"
-						<if value="$hd.get.state==0">class="action"</if> >
+						<if value="$hd.get.content_state==0">class="action"</if> >
 							未审核
 						</a>
 					</li>
