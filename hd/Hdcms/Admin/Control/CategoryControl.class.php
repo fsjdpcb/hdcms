@@ -111,13 +111,14 @@ class CategoryControl extends AuthControl {
 	}
 
 	//更新栏目排序
-	public function update_order() {
-		if ($this -> _db -> update_order())
+	public function updateOrder() {
+		$CategoryModel = K("Category");
+		if ($CategoryModel -> updateOrder())
 			$this -> success( '更改排序成功');
 	}
 
 	//更新栏目缓存
-	public function update_cache() {
+	public function updateCache() {
 		$categoryModel = K('Category');
 		if ($categoryModel -> updateCache()) {
 			$this -> success('更新缓存成功');

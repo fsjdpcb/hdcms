@@ -40,35 +40,6 @@ class PublicControl extends CommonControl
     }
 
     /**
-     * js调用
-     */
-    public function js()
-    {
-        $id = Q("get.id", NULL, "intval");
-        if ($id) {
-            $file = JS_CACHE_PATH . "{$id}.php";
-            ob_start();
-            require $file;
-            $con = ob_get_clean();
-            echo "document.write('" . addslashes(str_replace("\n", "", $con)) . "')";
-            exit;
-        }
-    }
-
-    /**
-     * 获得缓存目录
-     */
-    protected function get_cache_path()
-    {
-        if ($cid = Q('cid', '', 'intval')) {
-            $cachePath = CONTENT_CACHE_PATH . $cid . '/';
-        } else {
-            $cachePath = CONTENT_CACHE_PATH;
-        }
-        return $cachePath;
-    }
-
-    /**
      * 调用模板
      */
     protected function display($tplFile = null, $cacheTime = null, $cachePath = null, $stat = false, $contentType = "text/html", $charset = "", $show = true)

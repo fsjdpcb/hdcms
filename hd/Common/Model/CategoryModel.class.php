@@ -108,7 +108,7 @@ class CategoryModel extends Model {
 	/**
 	 * 更新栏目排序
 	 */
-	public function update_order() {
+	public function updateOrder() {
 		$list_order = Q("post.list_order");
 		$db = M('category');
 		foreach ($list_order as $cid => $order) {
@@ -118,7 +118,7 @@ class CategoryModel extends Model {
 			$db -> save($data);
 		}
 		//重建缓存
-		return $this -> update_cache();
+		return $this -> updateCache();
 	}
 
 	//更新栏目缓存

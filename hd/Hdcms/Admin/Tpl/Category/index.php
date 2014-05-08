@@ -22,7 +22,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="javascript:hd_ajax('{|U:update_cache}')">
+							<a href="javascript:hd_ajax('{|U:updateCache}')">
 								更新栏目缓存
 							</a>
 						</li>
@@ -78,20 +78,20 @@
 			<div class="position-bottom">
 				<input type="button" class="hd-cancel" onclick="select_all(1)" value='全选'/>
 				<input type="button" class="hd-cancel" onclick="select_all(0)" value='反选'/>
-				<input type="button" class="hd-cancel" onclick="update_order()" value="更改排序"/>
+				<input type="button" class="hd-cancel" onclick="updateOrder()" value="更改排序"/>
 				<input type="button" class="hd-cancel" onclick="BulkEdit()" value="批量编辑"/>				
 			</div>
 		</form>
 		<script>
 			//更新排序
-function update_order() {
+function updateOrder() {
     //栏目检测
     if ($("input[type='text']").length == 0) {
         alert('没有栏目用于排序');
         return false;
     }
     var post = $("input[type='text']").serialize();
-    hd_ajax(CONTROL + '&m=update_order', post);
+    hd_ajax(CONTROL + '&m=updateOrder', post);
 }
 //点击input表单实现 全选或反选
 $(function () {
