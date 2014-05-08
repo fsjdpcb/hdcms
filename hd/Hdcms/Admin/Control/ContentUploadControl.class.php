@@ -154,7 +154,7 @@ class ContentUploadControl extends CommonControl
         //只查找自己的图片
         $where = 'uid=' . $_SESSION['uid'] . " AND ext IN('$type') AND state=1";
         $count = $this->_db->where($where)->count();
-        $page = new Page($count, 10, 8, '', '', __WEB__ . '?a=Upload&c=Upload&m=site&filetype=' . Q('filetype'));
+        $page = new Page($count, 10, 8, '', '', __WEB__ . '?a=Admin&c=ContentUpload&m=site&filetype=' . Q('filetype'));
         $this->site_data = $this->_db->where($where)->limit($page->limit())->all();
         $this->site_page = $page->show();
         if (METHOD == 'site') {
@@ -173,7 +173,7 @@ class ContentUploadControl extends CommonControl
         //只查找自己的图片
         $where = 'uid=' . $_SESSION['uid'] . " AND ext IN('$type') AND state=0";
         $count = $this->_db->where($where)->count();
-        $page = new Page($count, 10, 8, '', '', __WEB__ . '?a=Upload&c=Upload&m=untreated&filetype=' . Q('filetype'));
+        $page = new Page($count, 10, 8, '', '', __WEB__ . '?a=Admin&c=ContentUpload&m=untreated&filetype=' . Q('filetype'));
         $this->untreated_data = $this->_db->where($where)->limit($page->limit())->all();
         $this->untreated_page = $page->show();
         if (METHOD == 'untreated') {
