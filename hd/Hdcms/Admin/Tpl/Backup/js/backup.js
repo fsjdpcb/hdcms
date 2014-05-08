@@ -7,11 +7,11 @@ $(function () {
 })
 //备份数据库
 function backup() {
-    if (check_select_table()) {
-        $.modalShow();
-        return true;
+     if ($("[name*='table']:checked").length == 0) {
+        alert("你还没有选择表");
+        return false;
     }
-    return false;
+    return true;
 }
 
 //检查有没有选择备份目录

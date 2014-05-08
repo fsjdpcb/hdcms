@@ -6,7 +6,6 @@
     <title>备份数据库</title>
     <hdjs/>
     <js file="__CONTROL_TPL__/js/backup.js"/>
-    <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
 <body>
 <div class="wrap">
@@ -16,7 +15,7 @@
             <li><a href="javascript:;" class="action">备份数据</a></li>
         </ul>
     </div>
-    <form action="{|U:'backup_db'}" method="post" target="_iframe" class="hd-form" onsubmit="return backup();">
+    <form action="{|U:'backup_db'}" method="post"  class="hd-form" onsubmit="return backup();">
         <table class="table2">
             <thead>
             <tr>
@@ -96,13 +95,5 @@
     <input type="button" class="hd-cancel" onclick="optimize()" value="批量优化"/>
     <input type="button" class="hd-cancel" onclick="repair()" value="批量修复"/>
 </div>
-<script>
-    $.modal({title:'数据库备份[请不要中断备份]',button_cancel:'关闭',width:450,height:200,show:false,
-        content:"<iframe name='_iframe'></iframe>",
-        cancel:function(){
-            window.location.reload(true);
-        }
-    })
-</script>
 </body>
 </html>

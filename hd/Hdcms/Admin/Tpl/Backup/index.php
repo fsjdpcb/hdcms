@@ -6,7 +6,6 @@
     <title>还原备份</title>
     <hdjs/>
     <js file="__CONTROL_TPL__/js/index.js"/>
-    <css file="__CONTROL_TPL__/css/css.css"/>
 </head>
 <body>
 <div class="wrap">
