@@ -2,16 +2,16 @@
 $(function () {
     $("#mid").change(function () {
         var mid = $(this).val();
-        var html = "<option value='0' selected='selected'>不限栏目</option>";
-        var attr = "";
+        var html = "<option selected='selected' value='0'>不限栏目</option>";
+        var attr='';
         for (var i in category) {
+        	if(category[i].cattype!=1 && category[i].cattype!=2){
+        		continue;
+        	}
             if (mid != 0 && category[i].mid != mid) {
                 continue;
             }
-            if (mid > 0) {
-                attr = category[i].cattype == 1 ? "" : "disabled='disabled' class='disabled'";
-            }
-            html += "<option value='" + category[i].cid + "' " + attr + ">" + category[i]._name + "</option>";
+            html += "<option value='" + category[i].cid + "' >" + category[i]._name + "</option>";
         }
         $("#cid").html(html);
         //开启或关闭详细选项选项

@@ -66,7 +66,7 @@ final class Url {
 					switch ($field['arc_url_type']) {
 						case 1 :
 							//静态
-							return __ROOT__ . '/' . Url::getContentHtml($field);
+							return Url::getContentHtml($field);
 						case 2 :
 							//动态
 							return U('Index/Index/content', array('mid' => $field['mid'], 'cid' => $field['cid'], 'aid' => $field['aid']));
@@ -99,7 +99,7 @@ final class Url {
 		//文章发表时间
 		$time = getdate($field['addtime']);
 		$_r = array($category['catdir'], $time['year'], $time['mon'], $time['mday'], $field['aid']);
-		return $html_path . str_replace($_s, $_r, $arc_html_url);
+		return __ROOT__.'/'.$html_path . str_replace($_s, $_r, $arc_html_url);
 	}
 
 }

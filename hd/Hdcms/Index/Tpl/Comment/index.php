@@ -1,6 +1,7 @@
 <link rel="stylesheet" type="text/css" href="__CONTROL_TPL__/css/comment.css?ver=1.0"/>
 <js file="__CONTROL_TPL__/js/comment.js"/>
 <script>
+ 	var WEB='__WEB__';
     $(function(){
     	//跳转到指定的评论
         var comment_id = '{$hd.get.comment_id|default:0}';

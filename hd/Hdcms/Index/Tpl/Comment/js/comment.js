@@ -27,7 +27,7 @@ function add_comment(obj, type) {
         comment_alter(obj, '内容不能为空');
     } else {
         var post_data = $(obj).serialize();
-        $.post('?g=Hdcms&a=Index&c=Comment&m=add_comment', post_data, function (data) {
+        $.post(WEB+'?a=Index&c=Comment&m=add_comment', post_data, function (data) {
             if (data.state == 'nologin') {
                 //没有登录时，弹出登录窗口
                 hdcms_alert('请登录后操作');

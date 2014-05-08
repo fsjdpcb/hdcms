@@ -63,12 +63,14 @@ class LoginControl extends Control {
 			$_SESSION['WEB_MASTER'] = strtolower(C("WEB_MASTER")) == strtolower($user['username']);
 			$_SESSION = array_merge($_SESSION, $user);
 			if (empty($user['icon'])) {
-				$_SESSION['icon'] = __ROOT__ . '/data/image/user/250.png';
+				$_SESSION['icon'] = __ROOT__.'/data/image/user/250.png';
+			}else{
+				$_SESSION['icon']=__ROOT__.'/'.$user['icon'];
 			}
 			$_SESSION['icon250'] = $_SESSION['icon'];
-			$_SESSION['icon150'] = str_replace(250, 150, $_SESSION['icon']);
-			$_SESSION['icon100'] = str_replace(250, 100, $_SESSION['icon']);
-			$_SESSION['icon50'] = str_replace(250, 50, $_SESSION['icon']);
+			$_SESSION['icon150'] = str_replace(250, 150, $_SESSION['icon250']);
+			$_SESSION['icon100'] = str_replace(250, 100, $_SESSION['icon250']);
+			$_SESSION['icon50'] = str_replace(250, 50, $_SESSION['icon250']);
 			$Model -> save(array('uid' => $user['uid'], 'logintime' => time(), 'lastip' => ip_get_client()));
 			go(__APP__);
 		} else {

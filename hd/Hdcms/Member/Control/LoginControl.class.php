@@ -45,7 +45,7 @@ class LoginControl extends CommonControl {
 			}
 			if ($user['password'] !== md5($password . $user['code'])) {
 				$this -> error('密码输入错误');
-				$this->display();
+				$this -> display();
 			}
 			setcookie('login', 1, 0, '/');
 			unset($user['password']);
@@ -55,11 +55,13 @@ class LoginControl extends CommonControl {
 			$_SESSION = array_merge($_SESSION, $user);
 			if (empty($user['icon'])) {
 				$_SESSION['icon'] = __ROOT__ . '/data/image/user/250.png';
+			} else {
+				$_SESSION['icon'] = __ROOT__ . '/' . $user['icon'];
 			}
-			$_SESSION['icon250'] =$_SESSION['icon'] ;
-			$_SESSION['icon150'] =str_replace(250, 150, $_SESSION['icon']);
-			$_SESSION['icon100'] = str_replace(250, 100, $_SESSION['icon']);
-			$_SESSION['icon50'] = str_replace(250, 50, $_SESSION['icon']);
+			$_SESSION['icon250'] = $_SESSION['icon'];
+			$_SESSION['icon150'] = str_replace(250, 150, $_SESSION['icon250']);
+			$_SESSION['icon100'] = str_replace(250, 100, $_SESSION['icon250']);
+			$_SESSION['icon50'] = str_replace(250, 50, $_SESSION['icon250']);
 			$Model -> save(array('uid' => $user['uid'], 'logintime' => time(), 'lastip' => ip_get_client()));
 			go(U('Member/Index/index'));
 		} else {
@@ -99,11 +101,13 @@ class LoginControl extends CommonControl {
 			$_SESSION = array_merge($_SESSION, $user);
 			if (empty($user['icon'])) {
 				$_SESSION['icon'] = __ROOT__ . '/data/image/user/250.png';
+			} else {
+				$_SESSION['icon'] = __ROOT__ . '/' . $user['icon'];
 			}
 			$_SESSION['icon250'] = $_SESSION['icon'];
-			$_SESSION['icon150'] = str_replace(250, 100, $_SESSION['icon']);
-			$_SESSION['icon100'] = str_replace(250, 100, $_SESSION['icon']);
-			$_SESSION['icon50'] = str_replace(250, 50, $_SESSION['icon']);
+			$_SESSION['icon150'] = str_replace(250, 100, $_SESSION['icon250']);
+			$_SESSION['icon100'] = str_replace(250, 100, $_SESSION['icon250']);
+			$_SESSION['icon50'] = str_replace(250, 50, $_SESSION['icon250']);
 			//---------------------修改登录IP与时间
 			$Model -> save(array("uid" => $_SESSION['uid'], "logintime" => time(), "lastip" => ip_get_client()));
 			$this -> modifyMemberRole();

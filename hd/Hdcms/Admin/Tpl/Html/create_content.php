@@ -14,12 +14,11 @@
 
 </head>
 <body>
-<form method="post" action="__CONTROL__&m=make_content" class="hd-form">
+<form method="post" action="__METH__" class="hd-form">
     <div class="wrap">
         <div class="title-header">温馨提示</div>
         <div class="help">
-            1 只有栏目选择生成静态页面时，右侧“栏目范围”才会出现对应栏目。<br/>
-            2 如果生成失败，请将每轮更新条数设置小些
+        	如果生成失败，请将每轮更新条数设置小些
         </div>
         <div class="title-header">规则设置</div>
         <table class="table2">

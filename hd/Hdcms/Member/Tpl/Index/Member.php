@@ -2,7 +2,7 @@
     <if value="$hd.session.uid">
         <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 12px;padding-bottom: 0px;padding-right:0px;">
-                    <img src="{$hd.session.icon}" style="width:30px;height:30px;border-radius: 50%;vertical-align: middle"/>
+                    <img src="{$hd.session.icon50}" style="width:30px;height:30px;border-radius: 50%;vertical-align: middle"/>
                     {$hd.session.nickname}
                     <b class="caret"></b>
                 </a>

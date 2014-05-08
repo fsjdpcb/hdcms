@@ -120,7 +120,7 @@ str;
         //无结果
         if(\$result){
             //当前栏目,用于改变样式
-            \$_self_cid = isset(\$_GET['cid'])?\$_GET['cid']:0;
+            \$_self_cid = isset(\$_REQUEST['cid'])?\$_REQUEST['cid']:0;
             foreach (\$result as \$field):
                 //当前栏目样式
                 \$field['class']=\$_self_cid==\$field['cid']?"$class":"";
@@ -146,7 +146,7 @@ str;
         //无结果
         if(\$result){
             //当前栏目,用于改变样式
-            \$_self_cid = isset(\$_GET['cid'])?\$_GET['cid']:0;
+            \$_self_cid = isset(\$_REQUEST['cid'])?\$_REQUEST['cid']:0;
             foreach (\$result as \$sfield):
                 //当前栏目样式
                 \$sfield['class']=\$_self_cid==\$sfield['cid']?"$class":"";
@@ -199,8 +199,8 @@ str;
                     break;
                 case 'relative':
                     //与本文相关的，按标签相关联的
-                    if(!empty(\$_GET['aid']) && is_numeric(\$_GET['aid'])){
-                        \$_aid = \$_GET['aid'];
+                    if(!empty(\$_REQUEST['aid']) && is_numeric(\$_REQUEST['aid'])){
+                        \$_aid = \$_REQUEST['aid'];
                         \$_tag = M('content_tag')->field('tid')->where("mid=\$mid AND aid=\$_aid")->limit(10)->all();
                         if(\$_tag){
                             \$_tid=array();
@@ -357,19 +357,24 @@ str;
         //关联表
         \$join = "content_flag,category,user";
         \$count = \$db->join(\$join)->order("arc_sort ASC")->where(\$where)->where(\$table.'.content_state=1')->count(\$db->tableFull.'.aid');
-  		if(C('URL_TYPE')==1 && APP=='Index' && CONTROL=='Category' &&m=='category'){
-  			Page::\$staticUrl='__WEB__/list_'.Q('mid').'_'.Q('cid').'_{page}.html';	
+		\$categoryCache=cache('category');
+		\$category=\$categoryCache[\$cid];
+  		if(\$category['cat_url_type']==1){
+  			\$htmlDir = C("HTML_PATH") ? C("HTML_PATH") . '/' : '';
+  			\$htmlFile = '__ROOT__/'.\$htmlDir.str_replace(array('{catdir}', '{cid}'), array(\$category['catdir'], \$category['cid']), \$category['cat_html_url']);
+  			Page::\$staticUrl=\$htmlFile;	
   		}
         \$page= new Page(\$count,$row);
         \$result= \$db->join(\$join)->order("arc_sort ASC")->where(\$where)->where(\$table.'.content_state=1')->order(\$order)->limit(\$page->limit())->all();
         if(\$result):
             //有结果集时处理
             foreach(\$result as \$field):
-                    \$field['index']=\$index+1;
+                    	\$field['index']=\$index+1;
                         \$field['title']=mb_substr(\$field['title'],0,$titlelen,'utf8');
                         \$field['title']=\$field['color']?"<span style='color:".\$field['color']."'>".\$field['title']."</span>":\$field['title'];
                         \$field['description']=mb_substr(\$field['description'],0,$infolen,'utf-8');
                         \$field['time']=date("Y-m-d",\$field['updatetime']);
+						\$field['icon']=empty(\$field['icon'])?"__ROOT__/data/images/user/icon100.png":'__ROOT__/'.\$field['icon'];
                         \$field['date_before']=date_before(\$field['addtime']);
                         \$field['thumb']='__ROOT__'.'/'.\$field['thumb'];
                         \$field['caturl']=Url::getCategoryUrl(\$field);
@@ -407,11 +412,12 @@ str;
 		$php = <<<str
         <?php
         \$type='$type';\$titlelen = $titlelen;
+        \$mid = Q('mid',0,'intval');
         //导入模型类
         \$db =ContentViewModel::getInstance(\$mid);
         //主表（有表前缀）
         \$table=\$db->tableFull;
-        \$aid = Q('get.aid',NULL,'intval');
+        \$aid = Q('aid',NULL,'intval');
         //上一篇
         if(strstr(\$type,'pre')){
             \$content = \$db->join('category')->where("aid<\$aid")->order("aid desc")->find();
@@ -446,9 +452,9 @@ str;
 		$php = <<<str
         <?php
         \$sep = "$sep";
-        if(!empty(\$_GET['cid'])){
+        if(!empty(\$_REQUEST['cid'])){
             \$cat = cache("category");
-            \$cat= array_reverse(Data::parentChannel(\$cat,\$_GET['cid']));
+            \$cat= array_reverse(Data::parentChannel(\$cat,\$_REQUEST['cid']));
             \$str = "<a href='__ROOT__'>首页</a>{$sep}";
             foreach(\$cat as \$c){
                 \$str.="<a href='".Url::getCategoryUrl(\$c)."'>".\$c['catname']."</a>".\$sep;
@@ -509,7 +515,7 @@ str;
             \$data = \$db->field("uid,nickname,domain,icon")->where(" user_state=1")->order("credits DESC")->limit(\$row)->all();
             foreach(\$data as \$field):
                 \$field['url'] = U('Member/Space/index',array('u'=>\$field['domain']));
-                \$field['icon']=\$field['icon']?\$field['icon']:'__ROOT__/data/image/user/100.png';
+                \$field['icon']=\$field['icon']?'__ROOT__/'.\$field['icon']:'__ROOT__/data/image/user/150.png';
             ?>
 str;
 		$php .= $content;
@@ -537,7 +543,7 @@ str;
                 \$field['url']='__WEB__?a=Index&c=Index&m=content&mid='.\$field['mid'].'&cid='.\$field['cid'].'&aid='.\$field['aid'].'&comment_id='.\$field['comment_id'];
                 \$field['content'] =mb_substr(\$field['content'],0,$len,'utf-8');
                 \$field['pubtime'] =date_before(\$field['pubtime']);
-                \$field['icon']=\$field['icon']?\$field['icon']:'__ROOT__/data/image/user/100.png';
+                \$field['icon']=\$field['icon']?'__ROOT__/'.\$field['icon']:'__ROOT__/data/image/user/100.png';
             ?>
 str;
 		$php .= $content;
