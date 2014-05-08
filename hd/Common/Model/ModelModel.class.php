@@ -141,7 +141,7 @@ class ModelModel extends Model {
 	public function updateCache() {
 		$modelDb = M('model');
 		$modelData = $modelDb -> order(array('mid' => "ASC")) -> all();
-		if ($modelData !== false) {
+		if ($modelData !=false) {
 			$CacheData = array();
 			foreach ($modelData as $model) {
 				$CacheData[$model['mid']] = $model;

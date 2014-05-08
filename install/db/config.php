@@ -152,7 +152,7 @@ return array (
   ),
   'hd_model' => 
   array (
-    'row' => '4',
+    'row' => '1',
     'success' => true,
     'current_row' => 40,
     'size' => 200000,

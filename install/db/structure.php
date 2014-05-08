@@ -220,7 +220,7 @@ $db->exe("CREATE TABLE `".$db_prefix."model` (
   `description` varchar(45) NOT NULL DEFAULT '' COMMENT '模型描述',
   `is_system` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '1 系统模型  2 普通模型',
   PRIMARY KEY (`mid`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='模型表'");
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='模型表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."navigation`");
 $db->exe("CREATE TABLE `".$db_prefix."navigation` (
   `nid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
