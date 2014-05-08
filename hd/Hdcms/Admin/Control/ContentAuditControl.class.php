@@ -36,7 +36,7 @@ class ContentAuditControl extends AuthControl
         $count = $this->_db->where($this->_db->tableFull.'.content_state=0')->count();
         $page = new Page($count, 15);
         $this->page = $page->show();
-        $this->data = $this->_db->where($this->_db->tableFull.'.content_state=0')->limit($page->limit())->order('aid DESC')->all();
+        $this->data = $this->_db->where($this->_db->tableFull.'.content_state=0')->limit($page->limit())->order('updatetime DESC')->all();
         $this->mid =$this->_mid;
         $this->model = $this->_model;
         $this->display();
