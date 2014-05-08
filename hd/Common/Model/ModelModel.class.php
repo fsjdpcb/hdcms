@@ -36,6 +36,9 @@ class ModelModel extends Model {
 						//更新字段缓存
 						$ModelField = new ModelFieldModel($mid);
 						$ModelField -> updateCache();
+						//更新文章属性缓存
+						$FlagModel = new FlagModel($mid);
+						$FlagModel -> updateCache();
 						return $mid;
 					}
 				} else {

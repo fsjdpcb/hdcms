@@ -18,5 +18,23 @@ return array (
     'description' => '',
     'is_system' => '0',
   ),
+  5 => 
+  array (
+    'mid' => '5',
+    'model_name' => 'sdf',
+    'table_name' => 'sdfsdf',
+    'enable' => '1',
+    'description' => '',
+    'is_system' => '0',
+  ),
+  6 => 
+  array (
+    'mid' => '6',
+    'model_name' => 'cccc',
+    'table_name' => 'cccc',
+    'enable' => '1',
+    'description' => '',
+    'is_system' => '0',
+  ),
 );
 ?>
