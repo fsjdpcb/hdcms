@@ -79,8 +79,9 @@ class ContentControl extends AuthControl {
 		$page = new Page($ContentModel -> join('user,category') -> where($where) -> count(), 15);
 		$data = $ContentModel -> join('user,category') -> where($where) -> limit($page -> limit()) -> order(array("arc_sort" => "ASC", 'aid' => "DESC")) -> all();
 		$this -> assign('data', $data);
-		$flagCache = cache($this->_mid,false,FLAG_CACHE_PATH);
+		$flagCache = cache($this -> _mid, false, FLAG_CACHE_PATH);
 		$this -> assign('flag', $flagCache);
+		$this -> assign('page', $page -> show());
 		$this -> display();
 	}
 

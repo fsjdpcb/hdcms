@@ -222,7 +222,7 @@ str;
                 case 'new':
                 default:
                     //最新排序
-                    \$db->order('updatetime DESC');
+                    \$db->order('arc_sort ASC,updatetime DESC');
                     break;
             }
             //---------------------------查询条件-------------------------------

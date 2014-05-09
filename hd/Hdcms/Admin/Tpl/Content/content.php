@@ -114,7 +114,7 @@
 						<td>{$c.username}</td>
 						<td>{$c.updatetime|date:"Y-m-d",@@}</td>
 						<td>
-						<a href="<?php echo Url::getContentUrl($c); ?>" target="_blank">
+						<a href="<?php echo Url::getContentUrl($c);?>" target="_blank">
 							访问
 						</a><span
 						class="line">|</span>

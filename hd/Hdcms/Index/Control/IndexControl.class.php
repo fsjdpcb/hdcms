@@ -6,7 +6,6 @@
  * @author 向军 <houdunwangxj@gmail.com>
  */
 class IndexControl extends PublicControl {
-
 	//网站首页
 	public function index() {
 		$this -> display('template/' . C('WEB_STYLE') . '/index.html');
@@ -22,15 +21,13 @@ class IndexControl extends PublicControl {
 		}
 		$ContentModel = new Content($mid);
 		$field = $ContentModel -> find($aid);
-		if (!$field) {
-			$this -> error('文章不存在');
-		}
-		$field['time'] = date("Y/m/d", $field['addtime']);
-		$field['date_before'] = date_before($field['addtime']);
-		$field['commentnum'] = M("comment") -> where("cid=" . $cid . " AND aid=" . $aid) -> count();
-//		p($field);exit;
-		$this -> assign('hdcms', $field);
-		$this -> display($field['template']);
+		if ($field) {
+			$field['time'] = date("Y/m/d", $field['addtime']);
+			$field['date_before'] = date_before($field['addtime']);
+			$field['commentnum'] = M("comment") -> where("cid=" . $cid . " AND aid=" . $aid) -> count();
+			$this -> assign('hdcms', $field);
+			$this -> display($field['template']);
+		}		
 	}
 
 	//栏目列表

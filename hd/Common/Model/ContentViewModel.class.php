@@ -1,6 +1,6 @@
 <?php
 /**
- * 主要用于文章查找
+ * 主要用于文章SELECT
  * Class ContentModel
  */
 class ContentViewModel extends ViewModel {
@@ -18,7 +18,7 @@ class ContentViewModel extends ViewModel {
 			$table = $modelCache[$mid]['table_name'];
 			$model = new self($table);
 			//副表
-			$model -> view[$table.'_data'] = array('type' => INNER_JOIN, 'on' => $table.".aid={$table}_data.aid");
+			$model -> view[$table.'_data'] = array('type' => LEFT_JOIN, 'on' => $table.".aid={$table}_data.aid");
 			//栏目表
 			$model -> view['category'] = array('type' => INNER_JOIN, 'on' => "category.cid=$table.cid");
 			//会员表

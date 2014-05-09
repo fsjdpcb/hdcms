@@ -1,9 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE html>
+<html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-		<title>栏目管理</title>
+		<title>栏目列表</title>
 		<hdjs/>
 	</head>
 	<body>
@@ -55,7 +54,7 @@
 							<td>{$c.cat_type_name}</td>
 							<td>{$c.model_name}</td>
 							<td>
-							<a href="{|U:'Index/Index/category',array('mid'=>$c['mid'],'cid'=>$c['cid'])}" target="_blank">
+							<a href="<?php echo Url::getCategoryUrl($c)?>" target="_blank">
 								访问
 							</a>
 								<span class="line">|</span>

@@ -17,7 +17,7 @@ class HtmlControl extends AuthControl {
 			}
 			$content = $this -> fetch($tpl);
 			if (file_put_contents('index.html', $content)) {
-				$this -> success('首页生成完毕',__METH__,0.2);
+				$this -> success('首页生成完毕',__METH__,0);
 			} else {
 				$this -> error('创建文件失败');
 			}
@@ -50,7 +50,7 @@ class HtmlControl extends AuthControl {
 				}
 			}
 			if (empty($HtmlCategory)) {
-				$this -> success("栏目生成完毕", '', 0.2);
+				$this -> success("栏目生成完毕", '', 0);
 			} else {
 				//最终生成的栏目
 				$createCategory = array();
@@ -69,7 +69,7 @@ class HtmlControl extends AuthControl {
 							$this -> error('创建目录失败');
 						}
 					}
-					if (!file_put_contents($htmlFile, $content)) {
+					if (file_put_contents($htmlFile, $content)===false) {
 						$this -> error("{$htmlFile}创建失败");
 					}
 					$pageTotal = Page::$staticTotalPage;
@@ -80,7 +80,7 @@ class HtmlControl extends AuthControl {
 					$createCategory[$cat['cid']] = $cat;
 				}
 				F('createCategoryFile', $createCategory);
-				$this -> success('初始化完成...', U('BatchCategory'), 0.2);
+				$this -> success('初始化完成...', U('BatchCategory'), 0);
 			}
 		} else {
 			F('createCategoryFile', null);
@@ -94,7 +94,8 @@ class HtmlControl extends AuthControl {
 	public function BatchCategory() {
 		$createCategory = F('createCategoryFile');
 		if (empty($createCategory)) {
-			$this -> success('生成完毕...', U('create_category'));
+			 F('createCategoryFile',null);
+			$this -> success('所有栏目生成完毕...', U('create_category'));
 		} else {
 			require 'hd/Hdcms/Index/Control/IndexControl.class.php';
 			$Control = new IndexControl;
@@ -114,21 +115,18 @@ class HtmlControl extends AuthControl {
 						$this -> error('创建目录失败');
 					}
 				}
-				if (!file_put_contents($htmlFile, $content)) {
+				if (file_put_contents($htmlFile, $content)===false) {
 					$this -> error("{$htmlFile}创建失败");
 				}
 				$category['currentPage']--;
 				if ($category['currentPage'] <= 0) {
 					unset($createCategory[$category['cid']]);
-					if (empty($createCategory)) {
-						F('createCategoryFile', null);
-						$this -> success('所有栏目生成完毕...', U('create_category'), 0.2);
-					} else {
-						F('createCategoryFile', $createCategory);
-						$this -> success("[{$category['catname']}]生成完毕...", '', 0.2);
-					}
+					F('createCategoryFile', $createCategory);
+					$this -> success("[{$category['catname']}]生成完毕...", __METH__, 0);
 				}
 			}
+			$createCategory[$category['cid']]=$category;
+			F('createCategoryFile', $createCategory);
 			$message = "生成栏目{$category['catname']}的下" . $category['step_row'] . "页,
                             共有{$category['pageTotal']}页
                             (<font color='red'>" . floor($category['currentPage'] / $category['pageTotal'] * 100) . "%</font>)";
@@ -178,7 +176,7 @@ class HtmlControl extends AuthControl {
 					$cat['options']['step_row'] = Q('step_row', 20, 'intval');
 					$cat['options']['currentNum'] = 0;
 					$cat['options']['where'] = $where;
-					$cat['options']['where'][] = 'cid=' . $cat['cid'];
+					$cat['options']['where'][] =C('DB_PREFIX').'category.cid=' . $cat['cid'];
 					//总条数
 					if (isset($total_row)) {
 						$cat['options']['total_row'] = $total_row;
@@ -189,7 +187,7 @@ class HtmlControl extends AuthControl {
 					$createCategory[$cat['cid']] = $cat;
 				}
 				F('createContentFile', $createCategory);
-				$this -> success('初始化完成...', U('BatchContent'), 0.2);
+				$this -> success('初始化完成...', U('BatchContent'), 0);
 			}
 		} else {
 			F('createContentFile', null);
@@ -204,7 +202,7 @@ class HtmlControl extends AuthControl {
 		$createCategory = F('createContentFile');
 
 		if (empty($createCategory)) {
-			$this -> success('所有文章生成完毕...', U('create_content'), 0.2);
+			$this -> success('所有文章生成完毕...', U('create_content'), 0);
 		}
 		$modelCache = cache('model');
 		$categorycache = cache('category');
@@ -216,11 +214,11 @@ class HtmlControl extends AuthControl {
 			$options = $category['options'];
 			$contentModel = ContentViewModel::getInstance($category['mid']);
 			$limit = $options['currentNum'] . ',' . $options['step_row'];
-			$contentData = $contentModel -> join(null) -> where($options['where']) -> limit($limit) -> all();
+			$contentData = $contentModel -> join('category') -> where($options['where']) -> limit($limit) -> all();
 			if (empty($contentData)) {
 				unset($createCategory[$id]);
 				F('createContentFile', $createCategory);
-				$this -> success("{$category['catname']}生成完毕...", __METH__, 0.2);
+				$this -> success("{$category['catname']}生成完毕...", __METH__, 0);
 			}
 			foreach ($contentData as $content) {
 				$_REQUEST['cid'] = $category['cid'];
@@ -236,7 +234,7 @@ class HtmlControl extends AuthControl {
 						$this -> error('创建目录失败');
 					}
 				}
-				if (!file_put_contents($htmlFile, $content)) {
+				if(file_put_contents($htmlFile, $content)===false){
 					$this -> error("{$htmlFile}创建失败");
 				}
 			}
@@ -244,13 +242,15 @@ class HtmlControl extends AuthControl {
 			if ($options['currentNum'] >= $options['total_row']) {
 				unset($createCategory[$id]);
 				F('createContentFile', $createCategory);
-				$this -> success("[{$category['catname']}] 生成完毕...", __METH__, 0.2);
+				$this -> success("[{$category['catname']}] 生成完毕...", __METH__, 0);
 			} else {
+				$createCategory[$id]['options']=$options;
+				F('createContentFile', $createCategory);
 				$createCategory[$id]['options'] = $options;
 				$message = "[{$category['catname']}]
                                 已经更新{$options['currentNum']}条
                                 (<font color='red'>" . floor($options['currentNum'] / $options['total_row'] * 100) . "%</font>)";
-				$this -> success($message, __METH__, 0.2);
+				$this -> success($message, __METH__, 0);
 			}
 		}
 
