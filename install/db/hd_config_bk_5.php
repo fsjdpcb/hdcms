@@ -12,7 +12,7 @@ $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('16','upload_path','upload','上传配置','上传目录','文本','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('17','upload_img_path','img','上传配置','上传图片目录','文本','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('18','allow_type','jpg,jpeg,png,bmp,gif','上传配置','允许上传文件类型','文本','')");
-$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('19','allow_size','2048000','上传配置','允许上传大小（字节）','数字','')");
+$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('19','allow_size','10480000','上传配置','允许上传大小（字节）','数字','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('20','water_on','0','水印设置','上传文件加水印','布尔(1/0)','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('115','member_verify','0','会员设置','会员注册是否需要审核','布尔(1/0)','')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`) VALUES('116','reg_show_code','1','会员设置','会员注册是否显示验证码','布尔(1/0)','')");

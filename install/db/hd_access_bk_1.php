@@ -8,5 +8,3 @@ $db->exe("REPLACE INTO ".$db_prefix."access (`rid`,`nid`) VALUES('2','180')");
 $db->exe("REPLACE INTO ".$db_prefix."access (`rid`,`nid`) VALUES('2','4')");
 $db->exe("REPLACE INTO ".$db_prefix."access (`rid`,`nid`) VALUES('2','2')");
 $db->exe("REPLACE INTO ".$db_prefix."access (`rid`,`nid`) VALUES('2','1')");
-$db->exe("REPLACE INTO ".$db_prefix."access (`rid`,`nid`) VALUES('3','184')");
-$db->exe("REPLACE INTO ".$db_prefix."access (`rid`,`nid`) VALUES('3','13')");
