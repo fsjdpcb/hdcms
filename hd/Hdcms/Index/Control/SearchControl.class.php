@@ -6,20 +6,11 @@
  * @author <houdunwangxj@gmail.com>
  */
 class SearchControl extends Control {
-	//栏目
-	private $_category;
-	//模型
-	private $_model;
-
-	public function __init() {
-		$this -> _category = cache("category");
-		$this -> _model = cache("model");
-	}
 
 	//高级搜索
 	public function index() {
-		$this -> category = $this -> _category;
-		$this -> model = $this -> _model;
+		$this -> category =cache("category");
+		$this -> model =cache("model");
 		$this -> display("./template/plug/search.html");
 	}
 

@@ -38,15 +38,15 @@ class Attachment {
 			$fileData = curl_exec($curl);
 			if ($fileData != false && curl_getinfo($curl, CURLINFO_HTTP_CODE) == 200) {
 				$state = $this -> saveFile($newfile, $fileData);
-				$isImage = preg_match('/jpeg|jpg|png|gif/i', $match);
-				$TableData = array('name' => $fileInfo['filename'], 'filename' => $newFileName, 'basename' => $newFileName . $fileInfo['extension'], 'path' => $fileSavePath . '/' . $newFileName . '.' . $fileInfo['extension'], 'ext' => $fileInfo['extension'], 'image' => $isImage, 'size' => filesize($newfile), 'uptime' => time(), 'state' => 0, 'uid' => $_SESSION['uid'], 'mid' => $mid);
-				$uploadModel -> add($TableData);
-				return str_replace($oldPath, $newPath, $value);
-			} else {
-				return $value;
+				if ($state) {
+					$isImage = preg_match('/jpeg|jpg|png|gif/i', $match);
+					$TableData = array('name' => $fileInfo['filename'], 'filename' => $newFileName, 'basename' => $newFileName . $fileInfo['extension'], 'path' => $fileSavePath . '/' . $newFileName . '.' . $fileInfo['extension'], 'ext' => $fileInfo['extension'], 'image' => $isImage, 'size' => filesize($newfile), 'uptime' => time(), 'state' => 0, 'uid' => $_SESSION['uid'], 'mid' => $mid);
+					$uploadModel -> add($TableData);
+					$value = str_replace($oldPath, $newPath, $value);
+				}
 			}
 		}
-
+		return $value;
 	}
 
 	//文件储存目录
@@ -60,11 +60,11 @@ class Attachment {
 
 	//储存文件
 	public function saveFile($file, $data) {
-		$res = fopen($file, 'w');
-		if (!$res) {
+		$res = @fopen($file, 'w');
+		if ($res==false) {
 			return false;
 		}
-		if (fwrite($res, $data)) {
+		if (fwrite($res, $data)==false) {
 			return false;
 		}
 		if (fclose($res) == false) {

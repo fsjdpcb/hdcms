@@ -136,22 +136,18 @@ str;
 	public function _schannel($attr, $content) {
 		//显示条数
 		$row = isset($attr['row']) ? $attr['row'] : 10;
-		//当前栏目的class样式
-		$class = isset($attr['class']) ? $attr['class'] : "";
 		$php = <<<str
         <?php
         \$where = '';\$cid=\$field['cid'];
-        \$db = M("category");
+        \$schannelDb = M("category");
         \$where = " pid IN(".\$cid.") ";
-        \$result = \$db->where(\$where)->where("cat_show=1")->order()->order("catorder ASC")->limit($row)->all();
+        \$schannelResult = \$schannelDb->where(\$where)->where("cat_show=1")->order("catorder ASC")->limit($row)->all();
         //无结果
         if(\$result){
             //当前栏目,用于改变样式
             \$_self_cid = isset(\$_REQUEST['cid'])?\$_REQUEST['cid']:0;
-            foreach (\$result as \$sfield):
-                //当前栏目样式
-                \$sfield['class']=\$_self_cid==\$sfield['cid']?"$class":"";
-                \$sfield['url'] = Url::getCategoryUrl(\$sfield);?>
+            foreach (\$schannelResult as \$sfield):
+                \$sfield['caturl'] = Url::getCategoryUrl(\$sfield);?>
 str;
 		$php .= $content;
 		$php .= '<?php endforeach;}?>';
