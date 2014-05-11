@@ -48,14 +48,15 @@
 					<tr>
 						<th> 类型 <span class="notice"></span></th>
 						<td>
-						<select id="field_type" name="field_type">
-							<option value="title">标题</option>
+							<!--<option value="title">标题</option>
 							<option value="thumb">缩略图</option>
 							<option value="template">模板选择</option>
 							<option value="cid">栏目cid</option>
 							<option value="content">文章正文</option>
 							<option value="flag">Flag文章属性</option>
-							<option value="tag">Tag关键字</option>
+							<option value="tag">Tag关键字</option>-->
+						<select id="field_type" name="field_type">
+							
 							<option value="input">单行文本</option>
 							<option value="textarea">多行文本</option>
 							<option value="number">数字</option>

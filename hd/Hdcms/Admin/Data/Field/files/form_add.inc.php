@@ -1,4 +1,4 @@
-<script type="text/javascript" src="__ROOT__/hd/Hdcms/Admin/Data/Field/{$field_type}/validate.js"></script>
+<script type="text/javascript" src="<?php echo __ROOT__;?>/hd/Hdcms/Admin/Data/Field/<?php echo $field_type;?>/validate.js"></script>
 <table class="table1">
     <tr class="input action">
         <th class="w400">参数</th>

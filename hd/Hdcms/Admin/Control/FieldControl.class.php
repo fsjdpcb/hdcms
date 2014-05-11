@@ -115,8 +115,11 @@ class FieldControl extends AuthControl {
 		$tpl_type = Q("post.tpl_type");
 		//字段类型如input textarea
 		$field_type = Q("post.field_type");
-		$this -> field_type = $field_type;
-		$this -> display(APP_PATH . "Data/Field/{$field_type}/form_{$tpl_type}.inc.php");
+		$this -> assign('field_type',$field_type) ;
+		ob_start();
+		require APP_PATH . "Data/Field/{$field_type}/form_{$tpl_type}.inc.php";
+		echo ob_get_clean();
+		exit;
 	}
 
 	/**

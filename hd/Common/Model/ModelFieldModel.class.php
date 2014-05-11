@@ -188,7 +188,7 @@ class ModelFieldModel extends Model {
 				//checkbox radio select
 				$_field = '`' . $field_name . '`' . " CHAR(80) NOT NULL DEFAULT ''";
 				break;
-			case "date" :
+			case "datetime" :
 				$_field = '`' . $field_name . '`' . " int(10) NOT NULL DEFAULT 0";
 				break;
 		}
