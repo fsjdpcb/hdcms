@@ -21,7 +21,8 @@ class IndexControl extends AuthControl {
 		} else {
 			$model = M();
 			$pre = C('DB_PREFIX');
-			$sql = "SELECT * FROM {$pre}node AS n JOIN {$pre}access AS a ON n.nid=a.nid WHERE n.pid=0 AND a.rid=" . $_SESSION['rid'];
+			$sql = "SELECT n.nid,n.title FROM {$pre}access AS a RIGHT JOIN {$pre}node AS n  ON n.nid=a.nid 
+			WHERE n.state=1 and n.pid=0 AND (n.type=2 OR a.rid=" . $_SESSION['rid'].')';
 			$topMenu = $model -> query($sql);
 		}
 		$favoriteMenu = cache($_SESSION['uid'], false, MENU_CACHE_PATH);
@@ -43,7 +44,8 @@ class IndexControl extends AuthControl {
 			$menuModel = V('node');
 			$menuModel -> view = array('access' => array('type' => LEFT_JOIN, "on" => "node.nid=access.nid", ));
 			//获得当前角色权限
-			$MenuData = $menuModel -> field("*," . $menuModel -> tableFull . '.nid') -> where("(" . C('DB_PREFIX') . "access.rid=" . session('rid') . " OR type=2) AND state=1") -> order(array("list_order" => "ASC")) -> all();
+			$MenuData = $menuModel -> field("*," . $menuModel -> tableFull . '.nid') -> where(C('DB_PREFIX') . "access.rid=" . session('rid') . " OR type=2") 
+			-> order(array("list_order" => "ASC")) -> all();
 		}
 		//去掉隐藏的菜单
 		$showMenuData = array();
@@ -133,5 +135,5 @@ class IndexControl extends AuthControl {
 		}
 		$this->success('缓存更新成功');
 	}
-
+	
 }

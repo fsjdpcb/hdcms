@@ -91,7 +91,7 @@ div#content {
         <span class="left"></span>
     </div>
     <div id="content">
-        <iframe src="{|U:'welcome'}" name="content" scrolling="auto" frameborder="0" style="height:100%;width: 100%;"></iframe>
+        <iframe src="{|U:'Index/welcome'}" name="content" scrolling="auto" frameborder="0" style="height:100%;width: 100%;"></iframe>
     </div>
 </div>
 <script type="text/javascript" charset="utf-8">

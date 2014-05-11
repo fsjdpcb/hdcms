@@ -5,19 +5,38 @@
  * @author 向军 <houdunwangxj@gmail.com>
  */
 class HtmlControl extends AuthControl {
-	public function __init(){
-		defined("__TEMPLATE__") or define("__TEMPLATE__", __ROOT__ . "/template/" . C("WEB_STYLE"));
+	//批量生成静态时的下一步动作
+	private $RedirectInfo;
+
+	//一键生成全站静态
+	public function create_all() {
+		if (IS_POST) {
+			F("RedirectInfo", array( array('url' => 'create_index', 'title' => '准备生成首页'), array('url' => 'create_category', 'title' => '准备生成栏目页...'), array('url' => 'create_content', 'title' => '准备生成内容页...'), array('url' => 'create_all', 'title' => '全部生成完毕...')));
+			//生成首页
+			$this -> create_index();
+		} else {
+			F("RedirectInfo", null);
+			$this -> display();
+		}
 	}
+
 	//生成首页
 	public function create_index() {
-		if (IS_POST) {
+		$this -> RedirectInfo =  F('RedirectInfo');
+		if (IS_POST || $this -> RedirectInfo) {
 			$tpl = 'template/' . C('WEB_STYLE') . '/index.html';
 			if (is_file($tpl)) {
 				$this -> error = '模板文件不存在';
 			}
 			$content = $this -> fetch($tpl);
 			if (file_put_contents('index.html', $content)) {
-				$this -> success('首页生成完毕',__METH__,0);
+				if ($this -> RedirectInfo) {
+					$redirect = array_shift($this -> RedirectInfo);
+					F('RedirectInfo', $this -> RedirectInfo);
+					$this -> success($redirect['title'], $redirect['url'], 0);
+				} else {
+					$this -> success('首页生成完毕', __METH__, 0);
+				}
 			} else {
 				$this -> error('创建文件失败');
 			}
@@ -28,13 +47,14 @@ class HtmlControl extends AuthControl {
 
 	//创建栏目
 	public function create_category() {
-		if (IS_POST) {
+		$this -> RedirectInfo =  F('RedirectInfo');
+		if (IS_POST || $this -> RedirectInfo) {
 			$categoryCache = cache("category");
 			$category = array();
 			//没有选择栏目
-			if (count($_POST['cid']) == 1 && $_POST['cid'][0] == 0) {
+			if (!isset($_POST['cid']) || count($_POST['cid']) == 1 && $_POST['cid'][0] == 0) {
 				//生成所有栏目
-				if ($_POST['mid'] == 0) {
+				if (empty($_POST['mid']) || $_POST['mid'] == 0) {
 					$HtmlCategory = $categoryCache;
 				} else {
 					$HtmlCategory = M('category') -> where(array('mid' => $_POST['mid'])) -> all();
@@ -50,7 +70,13 @@ class HtmlControl extends AuthControl {
 				}
 			}
 			if (empty($HtmlCategory)) {
-				$this -> success("栏目生成完毕", '', 0);
+				if ($this -> RedirectInfo) {
+					$redirect = array_shift($this -> RedirectInfo);
+					F('RedirectInfo', $this -> RedirectInfo);
+					$this -> success($redirect['title'], $redirect['url'], 111);
+				} else {
+					$this -> success('栏目生成完毕', __METH__, 0);
+				}
 			} else {
 				//最终生成的栏目
 				$createCategory = array();
@@ -69,7 +95,7 @@ class HtmlControl extends AuthControl {
 							$this -> error('创建目录失败');
 						}
 					}
-					if (file_put_contents($htmlFile, $content)===false) {
+					if (file_put_contents($htmlFile, $content) === false) {
 						$this -> error("{$htmlFile}创建失败");
 					}
 					$pageTotal = Page::$staticTotalPage;
@@ -80,7 +106,7 @@ class HtmlControl extends AuthControl {
 					$createCategory[$cat['cid']] = $cat;
 				}
 				F('createCategoryFile', $createCategory);
-				$this -> success('初始化完成...', U('BatchCategory'), 0);
+				$this -> success('生成栏目初始化完毕...', U('BatchCategory'), 0);
 			}
 		} else {
 			F('createCategoryFile', null);
@@ -92,10 +118,17 @@ class HtmlControl extends AuthControl {
 
 	//批量生成栏目
 	public function BatchCategory() {
+		$this -> RedirectInfo =  F('RedirectInfo');
 		$createCategory = F('createCategoryFile');
 		if (empty($createCategory)) {
-			 F('createCategoryFile',null);
-			$this -> success('所有栏目生成完毕...', U('create_category'));
+			F('createCategoryFile', null);
+			if ($this -> RedirectInfo) {
+				$redirect = array_shift($this -> RedirectInfo);
+				F('RedirectInfo', $this -> RedirectInfo);
+				$this -> success($redirect['title'], $redirect['url'], 0);
+			} else {
+				$this -> success('所有栏目生成完毕', U('create_category'), 0);
+			}
 		} else {
 			require 'hd/Hdcms/Index/Control/IndexControl.class.php';
 			$Control = new IndexControl;
@@ -115,17 +148,17 @@ class HtmlControl extends AuthControl {
 						$this -> error('创建目录失败');
 					}
 				}
-				if (file_put_contents($htmlFile, $content)===false) {
+				if (file_put_contents($htmlFile, $content) === false) {
 					$this -> error("{$htmlFile}创建失败");
 				}
 				$category['currentPage']--;
 				if ($category['currentPage'] <= 0) {
 					unset($createCategory[$category['cid']]);
 					F('createCategoryFile', $createCategory);
-					$this -> success("[{$category['catname']}]生成完毕...", __METH__, 0);
+					$this -> success("栏目[{$category['catname']}]生成完毕...", __METH__, 0);
 				}
 			}
-			$createCategory[$category['cid']]=$category;
+			$createCategory[$category['cid']] = $category;
 			F('createCategoryFile', $createCategory);
 			$message = "生成栏目{$category['catname']}的下" . $category['step_row'] . "页,
                             共有{$category['pageTotal']}页
@@ -136,12 +169,13 @@ class HtmlControl extends AuthControl {
 
 	//生成内容页
 	public function create_content() {
-		if (IS_POST) {
+		$this -> RedirectInfo =  F('RedirectInfo');
+		if (IS_POST || $this -> RedirectInfo) {
 			$categoryCache = cache('category');
 			//没有选择栏目
-			if (count($_POST['cid']) == 1 && $_POST['cid'][0] == 0) {
+			if (empty($_POST['cid']) || count($_POST['cid']) == 1 && $_POST['cid'][0] == 0) {
 				//生成所有栏目
-				if ($_POST['mid'] == 0) {
+				if (empty($_POST['mid']) || $_POST['mid'] == 0) {
 					$HtmlCategory = $categoryCache;
 				} else {
 					$HtmlCategory = M('category') -> where(array('mid' => $_POST['mid'])) -> all();
@@ -151,11 +185,17 @@ class HtmlControl extends AuthControl {
 			}
 			if (empty($HtmlCategory)) {
 				F('createContentFile', null);
-				$this -> success("栏目生成完毕");
+				if ($this -> RedirectInfo) {
+					$redirect = array_shift($this -> RedirectInfo);
+					F('RedirectInfo', $this -> RedirectInfo);
+					$this -> success($redirect['title'], $redirect['url'], 1110);
+				} else {
+					$this -> success('所有文章生成完毕', U('create_content'), 0);
+				}
 			} else {
 				//指定条件更新
 				$where = array();
-				if ($_POST['type'] != 'all') {
+				if (isset($_POST['type']) && $_POST['type'] != 'all') {
 					//更新最新发布N条
 					if (!empty($_POST['total_row'])) {
 						$total_row = $_POST['total_row'];
@@ -176,7 +216,7 @@ class HtmlControl extends AuthControl {
 					$cat['options']['step_row'] = Q('step_row', 20, 'intval');
 					$cat['options']['currentNum'] = 0;
 					$cat['options']['where'] = $where;
-					$cat['options']['where'][] =C('DB_PREFIX').'category.cid=' . $cat['cid'];
+					$cat['options']['where'][] = C('DB_PREFIX') . 'category.cid=' . $cat['cid'];
 					//总条数
 					if (isset($total_row)) {
 						$cat['options']['total_row'] = $total_row;
@@ -187,7 +227,7 @@ class HtmlControl extends AuthControl {
 					$createCategory[$cat['cid']] = $cat;
 				}
 				F('createContentFile', $createCategory);
-				$this -> success('初始化完成...', U('BatchContent'), 0);
+				$this -> success('生成内容页初始化完毕...', U('BatchContent'), 2);
 			}
 		} else {
 			F('createContentFile', null);
@@ -199,10 +239,16 @@ class HtmlControl extends AuthControl {
 
 	//指生成内容页
 	public function BatchContent() {
+		$this -> RedirectInfo =  F('RedirectInfo');
 		$createCategory = F('createContentFile');
-
 		if (empty($createCategory)) {
-			$this -> success('所有文章生成完毕...', U('create_content'), 0);
+			if ($this -> RedirectInfo) {
+				$redirect = array_shift($this -> RedirectInfo);
+				F('RedirectInfo', $this -> RedirectInfo);
+				$this -> success($redirect['title'], $redirect['url'], 0);
+			} else {
+				$this -> success('所有文章生成完毕...', U('create_content'), 0);
+			}
 		}
 		$modelCache = cache('model');
 		$categorycache = cache('category');
@@ -218,7 +264,7 @@ class HtmlControl extends AuthControl {
 			if (empty($contentData)) {
 				unset($createCategory[$id]);
 				F('createContentFile', $createCategory);
-				$this -> success("{$category['catname']}生成完毕...", __METH__, 0);
+				$this -> success("[{$category['catname']}]文章生成完毕...", __METH__, 0);
 			}
 			foreach ($contentData as $content) {
 				$_REQUEST['cid'] = $category['cid'];
@@ -234,7 +280,7 @@ class HtmlControl extends AuthControl {
 						$this -> error('创建目录失败');
 					}
 				}
-				if(file_put_contents($htmlFile, $content)===false){
+				if (file_put_contents($htmlFile, $content) === false) {
 					$this -> error("{$htmlFile}创建失败");
 				}
 			}
@@ -244,7 +290,7 @@ class HtmlControl extends AuthControl {
 				F('createContentFile', $createCategory);
 				$this -> success("[{$category['catname']}] 生成完毕...", __METH__, 0);
 			} else {
-				$createCategory[$id]['options']=$options;
+				$createCategory[$id]['options'] = $options;
 				F('createContentFile', $createCategory);
 				$createCategory[$id]['options'] = $options;
 				$message = "[{$category['catname']}]

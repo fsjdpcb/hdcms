@@ -25,11 +25,6 @@ class ContentControl extends AuthControl {
 		$this -> display();
 	}
 
-	//欢迎页
-	public function welcome() {
-		$this -> display();
-	}
-
 	//内容列表
 	public function content() {
 		if (empty($this -> _mid)) {

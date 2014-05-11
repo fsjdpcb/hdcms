@@ -1,6 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE html>
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>上传文件管理</title>
@@ -8,6 +7,7 @@
     <js file="__CONTROL_TPL__/js/js.js"/>
 </head>
 <body>
+		<form action='{|U:'BulkDel'}' method="post" onsubmit="return hd_submit(this,'{|U:'index'}');">
 <div class="wrap">
     <div class="menu_list">
         <ul>
@@ -17,6 +17,9 @@
     <table class="table2">
         <thead>
         <tr>
+        	<td class="w30">
+				<input type="checkbox" class="select_all"/>
+			</td>
             <td class="w50">ID</td>
             <td class="w100">预览</td>
             <td >文件名</td>
@@ -28,6 +31,9 @@
         </thead>
         <list from="$upload" name="u">
             <tr>
+            	<td>
+							<input type="checkbox" name="ids[]" value="{$u.id}"/>
+				</td>
                 <td>{$u.id}</td>
                 <td>
                 	<if value="$u.image">
@@ -51,7 +57,7 @@
                     {$u.username}
                 </td>
                 <td>
-                    <a href="javascript:;"  onclick="hd_confirm('确认删除吗？',function(){hd_ajax('{|U:del}',{id:{$u.id}}})">删除</a>
+                    <a href="javascript:;"  onclick="hd_confirm('确认删除吗？',function(){hd_ajax('{|U:'del'}',{id:{$u.id}})})">删除</a>
                 </td>
             </tr>
         </list>
@@ -59,6 +65,39 @@
     <div class="page1">
         {$page}
     </div>
+    <div class="position-bottom">
+				<input type="button" class="hd-cancel" onclick="select_all(1)" value='全选'/>
+				<input type="button" class="hd-cancel" onclick="select_all(0)" value='反选'/>
+				<input type="button" class="hd-cancel" onclick="BulkDel()" value="批量删除"/>				
+	</div>
+	
 </div>
+</form>
+<script type="text/javascript" charset="utf-8">
+	//点击input表单实现 全选或反选
+$(function () {
+    //全选
+    $("input.select_all").click(function () {
+        $("[type='checkbox']").attr("checked",$(this).attr('checked')=='checked');
+    })
+})
+//全选复选框
+function select_all(state){
+	if(state==1){
+		$("[type='checkbox']").attr("checked",state);
+	}else{
+		$("[type='checkbox']").attr("checked",function(){return !$(this).attr('checked')});
+	}
+}
+//指量删除
+function BulkDel() {
+    //栏目检测
+    if ($("input[type='checkbox']:checked").length == 0) {
+        alert('请选择文件');
+        return false;
+    }
+   	$("form").trigger('submit');
+}
+</script>
 </body>
 </html>

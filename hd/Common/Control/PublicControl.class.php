@@ -19,8 +19,7 @@ class PublicControl extends CommonControl
             $this->display("./data/Template/web_close.html");
             exit;
         }
-        //分配模板目录URL
-        defined("__TEMPLATE__") or define("__TEMPLATE__", __ROOT__ . "/template/" . C("WEB_STYLE"));
+       
     }
 
 

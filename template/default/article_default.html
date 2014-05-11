@@ -26,7 +26,10 @@
                     <li><a href='{$field.caturl}'>{$field.catname}</a></li>
                 </channel>
             </ul>
-            <form class="navbar-form navbar-left" role="search" method="post" action="__WEB__?g=Hdcms&a=Search&c=Search&m=search">
+            <form class="navbar-form navbar-left" role="search" method="get" action="__WEB__">
+						<input type="hidden" name="a" value="Index" />
+						<input type="hidden" name="c" value="Search" />
+						<input type="hidden" name="m" value="search" />
 						<div class="form-group">
 							<input type="text" name='word' class="form-control" placeholder="输入关键字搜索" required>
 						</div>
@@ -71,7 +74,7 @@
                 	条评论
                  {$hdcms.click}次点击
                 	所属分类：<a href="{$hdcms.caturl}">{$hdcms.catname}</a>
-                <a href="javascript:content.add_favorite({$hdcms.mid},{$hdcms.cid},{$hdcms.aid})">加入收藏</a>
+                <a href="javascript:content.addFavorite({$hdcms.mid},{$hdcms.cid},{$hdcms.aid})">加入收藏</a>
             </p>
         </div>
         <div class="content">

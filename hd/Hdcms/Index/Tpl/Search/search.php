@@ -23,14 +23,17 @@
                     <li><a href='{$field.url}'>{$field.catname}</a></li>
                 </channel>
             </ul>
-            <form class="navbar-form navbar-left" role="search" method="post" action="__WEB__?g=Hdcms&a=Search&c=Search&m=search">
+            <form class="navbar-form navbar-left" role="search" method="get" action="__WEB__">
+						<input type="hidden" name="a" value="Index" />
+						<input type="hidden" name="c" value="Search" />
+						<input type="hidden" name="m" value="search" />
 						<div class="form-group">
 							<input type="text" name='word' class="form-control" placeholder="输入关键字搜索" required>
 						</div>
 						<button type="submit" class="btn btn-primary">
 							搜索
 						</button>
-			</form>
+					</form>
             <member/>
         </div>
     </nav>

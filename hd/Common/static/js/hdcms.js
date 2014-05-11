@@ -86,16 +86,16 @@ var content = {
 	 * @param cid
 	 * @param aid
 	 */
-	add_favorite : function(mid, cid, aid) {
-		$.post('index.php?a=Index&c=Article&m=add_favorite', {
+	addFavorite : function(mid, cid, aid) {
+		$.post('index.php?a=Index&c=Index&m=addFavorite', {
 			mid : mid,
 			cid : cid,
 			aid : aid
 		}, function(data) {
 			if (data.state == 1) {
-				hdcms_alert('收藏成功!');
+				hdcms_alert(data.message);
 			} else {
-				hdcms_alert('收藏失败');
+				hdcms_alert(data.message);
 			}
 		}, 'json');
 	}

@@ -38,7 +38,7 @@
                 <td>{$d.regip}</td>
                 <td>{$d.lastip}</td>
                 <td>
-                    <if value="$d.state==0">
+                    <if value="$d.user_state==0">
                         <font color="red">√</font>
                         <else/>
                         ×
@@ -48,11 +48,11 @@
                 <td>
                     <a href="{|U:'edit',array('uid'=>$d['uid'])}">修改</a>
                     <span class="line">|</span>
-                    <if value="$d.state==1">
-                    	<a href="javascript:;" onclick="hd_ajax('{|U:'lock'}',{uid:{$d['uid']},state:0})">
+                    <if value="$d.user_state==1">
+                    	<a href="javascript:;" onclick="hd_ajax('{|U:'lock'}',{uid:{$d['uid']},user_state:0})">
                     	锁定</a>
                     <else>
-                    	<a href="javascript:;" onclick="hd_ajax('{|U:'lock'}',{uid:{$d['uid']},state:1})">
+                    	<a href="javascript:;" onclick="hd_ajax('{|U:'lock'}',{uid:{$d['uid']},user_state:1})">
                     		<font color="red">解定</font>	</a>
                     </if>
                     <span class="line">|</span>

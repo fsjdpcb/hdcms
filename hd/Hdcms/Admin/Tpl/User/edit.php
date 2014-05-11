@@ -28,10 +28,10 @@
             <tr>
                 <th class="w100">会员组</th>
                 <td>
-                    <select name="gid">
+                    <select name="rid">
                         <list from="$role" name="r">
                             <option value="{$r.rid}"
-                            <if value="$field.gid eq $r.rid">selected=""</if>
+                            <if value="$field.rid eq $r.rid">selected=""</if>
                             >{$r.rname}</option>
                         </list>
                     </select>

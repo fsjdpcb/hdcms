@@ -25,9 +25,10 @@ class IndexControl extends PublicControl {
 			$field['time'] = date("Y/m/d", $field['addtime']);
 			$field['date_before'] = date_before($field['addtime']);
 			$field['commentnum'] = M("comment") -> where("cid=" . $cid . " AND aid=" . $aid) -> count();
+			$field['caturl']=Url::getCategoryUrl($field);
 			$this -> assign('hdcms', $field);
 			$this -> display($field['template']);
-		}		
+		}
 	}
 
 	//栏目列表
@@ -73,6 +74,26 @@ class IndexControl extends PublicControl {
 				$tpl = 'template/' . C("WEB_STYLE") . '/' . $tpl;
 				$this -> assign("hdcms", $category);
 				$this -> display($tpl);
+			}
+		}
+	}
+
+	//加入收藏
+	public function addFavorite() {
+		if (!session("uid")) {
+			$this -> error('请登录后操作');
+		} else {
+			$db = M('favorite');
+			$data = array();
+			$data['uid'] = $_SESSION['uid'];
+			$data['mid'] = intval($_POST['mid']);
+			$data['cid'] = intval($_POST['cid']);
+			$data['aid'] = intval($_POST['aid']);
+			if ($db -> where($data) -> find()) {
+				$this -> error('已经收藏过');
+			} else {
+				$db -> add($data);
+				$this -> success( '收藏成功!');
 			}
 		}
 	}

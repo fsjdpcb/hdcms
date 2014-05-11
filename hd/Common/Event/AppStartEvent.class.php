@@ -16,6 +16,8 @@ class AppStartEvent extends Event {
 		define('MENU_CACHE_PATH', 'data/Cache/Menu/');
 		//文章缓存
 		define("CONTENT_CACHE_PATH", 'data/Cache/Content/');
+		//模板目录
+        defined("__TEMPLATE__") or define("__TEMPLATE__", __ROOT__ . "/template/" . C("WEB_STYLE"));
 	}
 
 	//验证安装

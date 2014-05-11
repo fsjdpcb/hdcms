@@ -14,7 +14,7 @@ class UserControl extends AuthControl {
 	 */
 	public function index() {
 		$WEBMASTER=C('WEB_MASTER');
-		$this -> data = $this -> _db -> order("uid ASC") -> where("admin=0 AND username<>'$WEBMASTER'") -> all();
+		$this -> data = $this -> _db -> order("uid ASC") -> where("username<>'$WEBMASTER'") -> all();
 		$this -> display();
 	}
 
@@ -56,7 +56,7 @@ class UserControl extends AuthControl {
 				$this -> error($this -> _db -> error);
 			}
 		} else {
-			$this -> role = M("role") -> where('admin=0') -> order("rid DESC") -> all();
+			$this -> role = M("role") -> order("rid DESC") -> all();
 			$this -> display();
 		}
 	}
@@ -81,7 +81,7 @@ class UserControl extends AuthControl {
 			if ($uid) {
 				//会员信息
 				$this -> field = $this -> _db -> find($uid);
-				$this -> role = $this -> _db -> table("role") -> where('admin=0') -> order("rid DESC") -> all();
+				$this -> role = $this -> _db -> table("role") -> order("rid DESC") -> all();
 				$this -> display();
 			}
 		}
@@ -89,9 +89,9 @@ class UserControl extends AuthControl {
 
 	//锁定与解锁
 	public function lock() {
-		$state = Q('state', 1, 'intval');
+		$user_state = Q('user_state', 1, 'intval');
 		$uid = Q('uid', 0, 'intval');
-		$this -> _db -> where(array('uid' => $uid)) -> save(array('state' => $state));
+		$this -> _db -> where(array('uid' => $uid)) -> save(array('user_state' => $user_state));
 		$this -> success('操作成功 ');
 	}
 
