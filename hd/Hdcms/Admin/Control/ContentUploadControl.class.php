@@ -80,7 +80,9 @@ class ContentUploadControl extends CommonControl
                     "dir" => $dir,
                     "width" => 88,
                     "height" => 78,
-                    "limit" => $limit,"waterbtn" => 0,
+                    "limit" => $limit,
+                    "waterbtn" => 0,
+                    "size"=>10
                 );
                 break;
         }
@@ -107,7 +109,8 @@ class ContentUploadControl extends CommonControl
         C('UPLOAD_IMG_RESIZE_ON', true);
         C('upload_img_max_width', $_POST['upload_img_max_width']);
         C('upload_img_max_height', $_POST['upload_img_max_height']);
-        $upload = new Upload(Q('post.upload_dir'), array(), array(), Q("water", null, "intval"));
+		$size=Q('size')?Q('size'):C('allow_size');
+        $upload = new Upload(Q('post.upload_dir'), array(), $size, Q("water", null, "intval"));
         $file = $upload->upload();
         if (!empty($file)) {
             $file = $file[0];

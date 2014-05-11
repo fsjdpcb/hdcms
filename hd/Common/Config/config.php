@@ -3,7 +3,7 @@ if (!defined('HDPHP_PATH')) exit('No direct script access allowed');
 $globalConfig = require './data/config/config.inc.php';
 $config = array(
 		"HDCMS_NAME"=>'HDCMS 简体中文 UTF8 版 ',
-		"HDCMS_VERSION"=>'2014.05.08',
+		"HDCMS_VERSION"=>'2014.05.11',
  		//数据库驱动
 		'DB_DRIVER'                     => 'mysql',   
 		 //数据库持久链接

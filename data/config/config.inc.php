@@ -13,7 +13,7 @@ return array (
   'upload_path' => 'upload',
   'upload_img_path' => 'img',
   'allow_type' => 'jpg,jpeg,png,bmp,gif',
-  'allow_size' => '2048000',
+  'allow_size' => '10480000',
   'water_on' => '0',
   'member_verify' => '0',
   'reg_show_code' => '1',
