@@ -32,9 +32,9 @@ class ContentControl extends AuthControl {
 		}
 		$ContentModel = ContentViewModel::getInstance($this -> _mid);
 		//文章状态
-		$state = Q('get.state', 1, 'intval');
+		$content_state = Q('get.content_state', 1, 'intval');
 		$where = array();
-		$where[] = $ContentModel -> tableFull . ".content_state=$state";
+		$where[] = $ContentModel -> tableFull . ".content_state=$content_state";
 		//按时间搜索
 		$search_begin_time = Q('post.search_begin_time', null, 'strtotime');
 		if ($search_begin_time) {
@@ -169,7 +169,7 @@ class ContentControl extends AuthControl {
 					$link = __WEB__ . "?a=Admin&c=Content&m=single&cid={$cat['cid']}&mid={$cat['mid']}";
 					$url = "javascript:hd_open_window(\"$link\")";
 				} else if ($cat['cattype'] == 1) {
-					$url = U('content', array('cid' => $cat['cid'], 'mid' => $cat['mid']));
+					$url = U('content', array('cid' => $cat['cid'], 'mid' => $cat['mid'],'content_state'=>1));
 				} else {
 					$url = 'javascript:;';
 				}

@@ -6,8 +6,6 @@
  * @author <houdunwangxj@gmail.com>
  */
 class SearchControl extends Control {
-	//数据模型
-	private $_db;
 	//栏目
 	private $_category;
 	//模型
@@ -16,7 +14,6 @@ class SearchControl extends Control {
 	public function __init() {
 		$this -> _category = cache("category");
 		$this -> _model = cache("model");
-		$this -> _db = K("Search");
 	}
 
 	//高级搜索
@@ -32,8 +29,12 @@ class SearchControl extends Control {
 		if (!$word) {
 			$this -> error("搜索内容不能为空");
 		} else {
-			$cid = Q('cid', 0, 'intval');
-			$mid = $cid ? $modelCache[$categoryCache[$cid]['mid']] : 1;
+			$cid = Q('cid', null, 'intval');
+			$mid =Q('mid',1,'intval');
+			$_REQUEST['mid']=$mid = $mid?$mid:1;
+			if($cid){
+				$_REQUEST['mid']=$mid = $this->_category[$cid]['mid'];
+			}
 			$pre = C('DB_PREFIX');
 			$seachType = Q('type', 'title');
 			$modelCache = cache('model');
@@ -78,7 +79,7 @@ class SearchControl extends Control {
 						break;
 				}
 			}
-
+			$this -> assign('searchModel', $modelCache);
 			$this -> assign('searchCategory', $categoryCache);
 			$this -> assign('page', $page);
 			$this -> assign('data', $data);

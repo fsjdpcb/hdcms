@@ -178,7 +178,7 @@ str;
 		$sub_channel = isset($attr['sub_channel']) ? intval($attr['sub_channel']) : 1;
 		$php = <<<str
         <?php \$mid='$mid';\$cid ='$cid';\$flag='$flag';\$noflag='$noflag';\$aid='$aid';\$type='$type';\$sub_channel=$sub_channel;
-            \$mid = \$mid?\$mid:Q('get.mid',1,'intval');
+            \$mid = \$mid?\$mid:Q('mid',1,'intval');
             \$cid = \$cid?\$cid:Q('cid',null,'intval');
             //导入模型类
             \$db =ContentViewModel::getInstance(\$mid);
@@ -275,7 +275,7 @@ str;
                         \$field['title']=\$field['color']?"<span style='color:".\$field['color']."'>".\$field['title']."</span>":\$field['title'];
                         \$field['description']=mb_substr(\$field['description'],0,$infolen,'utf-8');
                         \$field['time']=date("Y-m-d",\$field['updatetime']);
-						\$field['icon']=empty(\$field['icon'])?"__ROOT__/data/images/user/icon100.png":'__ROOT__/'.\$field['icon'];
+						\$field['icon']=empty(\$field['icon'])?"__ROOT__/data/image/user/150.png":'__ROOT__/'.\$field['icon'];
                         \$field['date_before']=date_before(\$field['addtime']);
                         \$field['thumb']='__ROOT__'.'/'.\$field['thumb'];
                         \$field['caturl']=Url::getCategoryUrl(\$field);
@@ -376,7 +376,7 @@ str;
                         \$field['title']=\$field['color']?"<span style='color:".\$field['color']."'>".\$field['title']."</span>":\$field['title'];
                         \$field['description']=mb_substr(\$field['description'],0,$infolen,'utf-8');
                         \$field['time']=date("Y-m-d",\$field['updatetime']);
-						\$field['icon']=empty(\$field['icon'])?"__ROOT__/data/images/user/icon100.png":'__ROOT__/'.\$field['icon'];
+						\$field['icon']=empty(\$field['icon'])?"__ROOT__/data/image/user/150.png":'__ROOT__/'.\$field['icon'];
                         \$field['date_before']=date_before(\$field['addtime']);
                         \$field['thumb']='__ROOT__'.'/'.\$field['thumb'];
                         \$field['caturl']=Url::getCategoryUrl(\$field);

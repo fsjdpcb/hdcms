@@ -53,14 +53,13 @@
 			<div class="menu_list">
 				<ul>
 					<li>
-						<a href="{|U:'content',array('mid'=>$_GET['mid'],'cid'=>$_GET['cid'],'state'=>1)}"
-						<if value="$hd.get.state==1">class="action"</if> >
+						<a href="{|U:'content',array('mid'=>$_GET['mid'],'cid'=>$_GET['cid'],'content_state'=>1)}"
+						<if value="$hd.get.content_state==1">class="action"</if> >
 							内容列表
 						</a>
 					</li>
-
 					<li>
-						<a href="{|U:'content',array('mid'=>$_GET['mid'],'cid'=>$_GET['cid'],'state'=>0)}"
+						<a href="{|U:'content',array('mid'=>$_GET['mid'],'cid'=>$_GET['cid'],'content_state'=>0)}"
 						<if value="$hd.get.content_state==0">class="action"</if> >
 							未审核
 						</a>

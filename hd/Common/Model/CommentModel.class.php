@@ -42,7 +42,7 @@ class CommentModel extends ViewModel {
 	/**
 	 * 获得评论列表
 	 */
-	public function get_comment() {
+	public function getComment() {
 		$where = "comment_state=1 AND cid=" . $this -> _cid . " AND aid=" . $this -> _aid;
 		$count = $this -> join() -> where($where) -> where("pid=0 ") -> count();
 		$page = new Page($count, 15);

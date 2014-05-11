@@ -49,25 +49,7 @@
 <div class="content container">
     <div class="row">
         <div class="col-md-8">
-            <!--置顶推荐-->
-            <article class="top">
-                <header>置顶推荐</header>
-                <ul>
-                    <arclist row="2" fid="2,4" titlelen="15" infolen="50" type="rand">
-                        <li class="col-md-6">
-                            <a href="{$field.url}">
-                                <img src="{$field.thumb}" class="img-rounded sticky"/>
-
-                                <h3 class="title">{$field.title}</h3>
-
-                                <p>
-                                    {$field.description}
-                                </p>
-                            </a>
-                        </li>
-                    </arclist>
-                </ul>
-            </article>
+          
             <form action="{|U:'content',array('mid'=>$_GET['mid'],'cid'=>$_GET['cid'])}" class="hd-form">
 				<input type="hidden" name="a" value="Index"/>
 				<input type="hidden" name="c" value="Search"/>
@@ -88,10 +70,16 @@
 						});
 					</script>
 					&nbsp;&nbsp;&nbsp;
+					<select name="mid" class="w100 h30">
+						<option selected="" value="">模型</option>
+						<list from="$searchModel" name="m">
+							<option value="{$m.mid}" <if value="$hd.get.mid eq $m.mid">selected=""</if>>{$m.model_name}</option>
+						</list>
+					</select>
 					<select name="cid" class="w100 h30">
-						<option selected="" value="">全部</option>
+						<option selected="" value="">栏目</option>
 						<list from="$searchCategory" name="c">
-							<option value="{$c.cid}">{$c._name}</option>
+							<option value="{$c.cid}" <if value="$hd.get.cid eq $c.cid">selected=""</if>>{$c._name}</option>
 						</list>
 					</select>
 					&nbsp;&nbsp;&nbsp;
@@ -100,9 +88,9 @@
 						<option value="description">简介</option>
 						<option value="username">用户名</option>
 						<option value="tag">Tag</option>
-					</select>&nbsp;&nbsp;&nbsp;
+					</select>&nbsp;&nbsp;&nbsp;<br/><br/>
 					关键字：
-					<input class="w120" type="text" placeholder="请输入关键字..." required="" name="word">
+					<input class="w300" type="text" placeholder="请输入关键字..." required="" name="word">
 					<button class="hd-cancel" type="submit">
 						搜索
 					</button>

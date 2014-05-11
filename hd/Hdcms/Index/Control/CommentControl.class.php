@@ -32,7 +32,7 @@ class CommentControl extends CommonControl
     public function index()
     {
         if (!$this->isCache()) { //缓存是否失效
-            $data = $this->_db->get_comment();
+            $data = $this->_db->getComment();
             $this->assign($data);
         }
         $this->display('index.php', 10);
@@ -41,7 +41,7 @@ class CommentControl extends CommonControl
     //显示文章评论
     public function show()
     {
-        $data = $this->_db->get_comment();
+        $data = $this->_db->getComment();
         $this->assign($data);
         $con = $this->fetch('index.php');
         if (Q('page')) {
