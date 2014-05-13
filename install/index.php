@@ -108,22 +108,32 @@ switch ($s) {
         $db_prefix = $config['DB_PREFIX'];
         $db = M();
         //创建结构
-        require "db/structure.php";
+        require "tables/structure.php";
         //插入表数据
-        foreach (glob("./db/*") as $f) {
+        foreach (glob("tables/*") as $f) {
             if (preg_match('@\d+.php@', $f)) {
                 require $f;
                 $table = preg_replace('@(hd_|_bk_\d+\.php)@', "", basename($f));
-                return_msg("{$table} 表数据插入完毕...");
+                return_msg("{$table} 创建完毕...");
+            }
+        }
+        //安装测试数据
+        if($config['INSERT_TEST_DATA'] && false){
+            foreach (glob("testData/*") as $f) {
+                if (preg_match('@\d+.php@', $f)) {
+                    require $f;
+                    $table = preg_replace('@(hd_|_bk_\d+\.php)@', "", basename($f));
+                    return_msg("{$table}数据插入完毕...");
+                }
             }
         }
         //密码加密key
         $code = substr(md5(mt_rand() . time()), 0, 10);
-        $db->exe("UPDATE {$db_prefix}config SET value='{$config['WEB_NAME']}' WHERE name='webname'");
-        $db->exe("UPDATE {$db_prefix}config SET value='{$config['EMAIL']}' WHERE name='email'");
+        $db->exe("UPDATE {$db_prefix}config SET value='{$config['WEB_NAME']}' WHERE name='WEBNAME'");
+        $db->exe("UPDATE {$db_prefix}config SET value='{$config['EMAIL']}' WHERE name='EMAIL'");
         $time = time();
         $ip = ip_get_client();
-        $db->exe("UPDATE {$db_prefix}user SET uid=1,rid=1,username='{$config['ADMIN']}',domain='{$config['ADMIN']}',
+        $db->exe("REPLACE INTO {$db_prefix}user SET uid=1,rid=1,username='{$config['ADMIN']}',domain='{$config['ADMIN']}',
                 nickname='{$config['ADMIN']}',email='{$config['EMAIL']}',regtime={$time},logintime={$time},regip='{$ip}',lastip='{$ip}',
                 code='{$code}',password='" . md5($config['PASSWORD'] . $code) . "'");
         unset($config['WEB_NAME']);
@@ -133,12 +143,13 @@ switch ($s) {
         unset($config['INSERT_TEST_DATA']);
         //修改配置文件
         file_put_contents("../data/config/db.inc.php", "<?php if (!defined('HDPHP_PATH'))exit('No direct script access allowed');\nreturn " . var_export($config, true) . ";\n?>");
-        return_msg("创建完毕!<script>setTimeout(function(){parent.location.href='?step=7'},0);</script>");
+         return_msg("创建完毕!<script>setTimeout(function(){parent.location.href='?step=7'},0);</script>");
         break;
 }
 function create_install_config()
 {
     $VERSION = VERSION;
+    $INSERT_TEST_DATA = isset($_POST['INSERT_TEST_DATA'])?1:0;
     $config = <<<str
 <?php
 if (!defined("HDPHP_PATH"))exit("No direct script access allowed");
@@ -151,7 +162,7 @@ return array(
     "DB_DATABASE"                   => "{$_POST['DB_DATABASE']}",//数据库名称
     "DB_PREFIX"                     => "{$_POST['DB_PREFIX']}",//表前缀
     "WEB_MASTER"                    => "{$_POST['ADMIN']}",//站长
-    "INSERT_TEST_DATA"              => "{$_POST['INSERT_TEST_DATA']}",//安装测试数据
+    "INSERT_TEST_DATA"              => $INSERT_TEST_DATA,//安装测试数据
     "VERSION"                       => "{$VERSION}",//HDCMS版本
     "ADMIN"                         => "{$_POST['ADMIN']}",//站长
     "PASSWORD"                      => "{$_POST['PASSWORD']}",//站长密码
