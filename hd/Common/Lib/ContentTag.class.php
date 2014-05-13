@@ -39,7 +39,7 @@ class ContentTag {
 	//基本js与css加载(必须使用的)
 	public function _hdcms($attr, $content) {
 		$php = "<script type='text/javascript'>
-                    	var ROOT='__ROOT__';var WEB='__WEB__';
+                    	var ROOT='<?php echo ROOT_URL;?>';var WEB='<?php echo WEB_URL;?>';var WEB='<?php echo CONTROL_URL;?>';
                 	</script>";
 		$php .= "<script type='text/javascript' src='__ROOT__/hd/Common/static/js/hdcms.js'></script>\n
                 <link rel='stylesheet' type='text/css' href='__ROOT__/hd/Common/static/css/hdcms.css?ver=1.0'/>\n";

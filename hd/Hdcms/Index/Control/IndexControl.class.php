@@ -6,6 +6,11 @@
  * @author 向军 <houdunwangxj@gmail.com>
  */
 class IndexControl extends PublicControl {
+	public function __init(){
+		define('ROOT_URL',__ROOT__);
+		define('WEB_URL',__WEB__);
+		define('CONTROL_URL',__CONTROL__);
+	}
 	//网站首页
 	public function index() {
 		$this -> display('template/' . C('WEB_STYLE') . '/index.html');
