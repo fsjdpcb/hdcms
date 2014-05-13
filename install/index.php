@@ -118,7 +118,7 @@ switch ($s) {
             }
         }
         //安装测试数据
-        if($config['INSERT_TEST_DATA'] && false){
+        if($config['INSERT_TEST_DATA']){
             foreach (glob("testData/*") as $f) {
                 if (preg_match('@\d+.php@', $f)) {
                     require $f;
