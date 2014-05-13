@@ -61,6 +61,6 @@ return array (
   'COOKIE_EXPIRE' => '',
   'COOKIE_DOMAIN' => '',
   'COOKIE_PATH' => '/',
-  'SESSION_DOMAIN' => '.hdphp.com',
+  'SESSION_DOMAIN' => '',
 );
 ?>

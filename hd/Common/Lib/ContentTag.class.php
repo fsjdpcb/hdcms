@@ -218,7 +218,7 @@ str;
                                 foreach(\$_result as \$d){
                                     \$_tag_aid[]=\$d['aid'];
                                 }
-                                \$db->where(\$db->tableFull."aid IN(".implode(',',\$_tag_aid).")");
+                                \$db->where(\$db->tableFull.".aid IN(".implode(',',\$_tag_aid).")");
                             }
                         }
                     }
