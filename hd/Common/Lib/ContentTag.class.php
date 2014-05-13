@@ -173,7 +173,7 @@ str;
 		//获取类型（排序）
 		$type = isset($attr['type']) ? strtolower(trim($attr['type'])) : 'new';
 		//获取副表字段
-		$subtable = isset($attr['subtable']) ? strtolower(trim($attr['subtable'])) : 'new';
+		$subtable = isset($attr['subtable']) ? strtolower(trim($attr['subtable'])) : '';
 		//子栏目处理
 		$sub_channel = isset($attr['sub_channel']) ? intval($attr['sub_channel']) : 1;
 		$php = <<<str
@@ -218,7 +218,7 @@ str;
                                 foreach(\$_result as \$d){
                                     \$_tag_aid[]=\$d['aid'];
                                 }
-                                \$db->where("aid IN(".implode(',',\$_tag_aid).")");
+                                \$db->where(\$db->tableFull."aid IN(".implode(',',\$_tag_aid).")");
                             }
                         }
                     }

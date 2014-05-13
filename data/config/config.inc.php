@@ -1,12 +1,12 @@
 <?php if (!defined('HDPHP_PATH')) exit; 
 return array (
-  'WEBNAME' => 'HDPHP社区--中国最强PHP培训机构  《后盾网》',
+  'WEBNAME' => 'HDCMS内容管理系统',
   'ICP' => '京ICP备12048441号-3',
   'HTML_PATH' => 'html',
   'COPYRIGHT' => 'Copyright © 2012-2014 HDCMS 后盾网',
   'KEYWORDS' => 'php培训,php实训,后盾网',
   'DESCRIPTION' => '后盾网顶尖PHP培训 内容全面 全程实战!业内顶级讲师亲自授课,千余课时独家视频教程免费下载,超百G原创视频资源,实力不容造假!010-64825057',
-  'EMAIL' => 'houdunwangxj@gmail.com',
+  'EMAIL' => 'dsf@fd.com',
   'BACKUP_DIR' => 'backup',
   'WEB_OPEN' => '1',
   'AUTH_KEY' => 'houdunwang.com',
@@ -41,7 +41,7 @@ return array (
   'UPLOAD_IMG_MAX_HEIGHT' => '600',
   'MEMBER_OPEN' => '1',
   'WEB_CLOSE_MESSAGE' => '网站维护中，请稍候访问',
-  'WEB_STYLE' => 'default',
+  'WEB_STYLE' => 'sdf',
   'QQ' => '1455067020',
   'WEIBO' => 'houdunwangxj@gmail.com',
   'TWEIBO' => 'houdunwang@gmail.com',

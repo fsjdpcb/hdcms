@@ -53,15 +53,15 @@ class TemplateStyleControl extends  AuthControl {
 		$dir_name = Q("dir_name");
 		if ($dir_name) {
 			import('Config.Model.ConfigModel');
-			$db = K("config");
-			K("config") -> join() -> where("name='WEB_STYLE'") -> save(array("value" => $dir_name));
+			$Model = K("Config");
+			$Model->where("name='WEB_STYLE'") -> save(array("value" => $dir_name));
 			//更新配置文件
-			$db -> update_config_file();
+			$Model -> updateCache();
 			//删除前台编译文件
 			is_dir("./temp/hdcms/Content/Compile") and Dir::del("./temp/hdcms/Content/Compile");
 			//删除编译文件
 			is_dir('temp/Hdcms/Index') and dir::del('temp/Hdcms/Index');
-			$this -> ajax(array('state' => 1, 'message' => '操作成功'));
+			$this -> success('操作成功');
 		}
 	}
 
