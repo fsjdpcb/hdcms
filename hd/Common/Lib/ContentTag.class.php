@@ -158,7 +158,7 @@ str;
 	public function _arclist($attr, $content) {
 		$cid = isset($attr['cid']) ? trim($attr['cid']) : '';
 		$aid = isset($attr['aid']) ? trim($attr['aid']) : '';
-		$mid = isset($attr['mid']) && is_numeric($mid) ? intval($attr['mid']) : '';
+		$mid = isset($attr['mid']) && is_numeric($attr['mid']) ? intval($attr['mid']) : '';
 		$row = isset($attr['row']) ? intval($attr['row']) : 10;
 		//简单长度
 		$infolen = isset($attr['infolen']) ? intval($attr['infolen']) : 80;
@@ -166,20 +166,28 @@ str;
 		$titlelen = isset($attr['titlelen']) ? intval($attr['titlelen']) : 80;
 		//属性
 		$flag = isset($attr['flag']) ? trim($attr['flag']) : '';
+		//排序
+		$order = isset($attr['order']) ? trim($attr['order']) : '';
 		//排序属性
 		$noflag = isset($attr['noflag']) ? trim($attr['noflag']) : '';
 		//获取类型（排序）
 		$type = isset($attr['type']) ? strtolower(trim($attr['type'])) : 'new';
+		//获取副表字段
+		$subtable = isset($attr['subtable']) ? strtolower(trim($attr['subtable'])) : 'new';
 		//子栏目处理
 		$sub_channel = isset($attr['sub_channel']) ? intval($attr['sub_channel']) : 1;
 		$php = <<<str
-        <?php \$mid='$mid';\$cid ='$cid';\$flag='$flag';\$noflag='$noflag';\$aid='$aid';\$type='$type';\$sub_channel=$sub_channel;
+        <?php \$mid='$mid';\$cid ='$cid';\$subtable ='$subtable';\$order ='$order';\$flag='$flag';\$noflag='$noflag';\$aid='$aid';\$type='$type';\$sub_channel=$sub_channel;
             \$mid = \$mid?\$mid:Q('mid',1,'intval');
             \$cid = \$cid?\$cid:Q('cid',null,'intval');
             //导入模型类
             \$db =ContentViewModel::getInstance(\$mid);
             //主表（有表前缀）
             \$table=\$db->tableFull;
+            //获取副表字段
+			if(empty(\$subtable)){
+				\$db->join('category,user');
+			}
             //没有设置栏目属性时取get值
             if(empty(\$cid)){
                 \$cid= Q('cid',NULL,'intval');
@@ -215,12 +223,15 @@ str;
                         }
                     }
                     break;
-                case 'new':
                 default:
-                    //最新排序
-                    \$db->order('arc_sort ASC,updatetime DESC');
+					if(!empty(\$order)){
+						\$order= str_replace('aid', \$db->tableFull.'.aid', \$order);
+						\$order= str_replace('cid', \$db->tableFull.'.cid', \$order);
+                    	\$db->order(\$order);
+					}
                     break;
             }
+            \$db->order('arc_sort ASC,updatetime DESC');
             //---------------------------查询条件-------------------------------
                 \$where=array();
                 //获取指定栏目的文章,子栏目处理
@@ -257,13 +268,13 @@ str;
                 }
                 //已经审核的文章
                 \$where[]=\$table.'.content_state=1';
-                \$where = implode(" AND ",\$where);
+				
                 //------------------关联content_flag表后有重复数据，去掉重复的文章---------------------
                 \$db->group=\$table.'.aid';
                 //---------------------------------指定显示条数--------------------------------------
                 \$db->limit($row);
                 //-----------------------------------获取数据----------------------------------------
-                \$result = \$db->join('category')->where(\$where)->all();
+                \$result = \$db->where(\$where)->all();
                 if(\$result):
                     foreach(\$result as \$index=>\$field):
                         \$field['index']=\$index+1;
@@ -357,11 +368,7 @@ str;
         \$count = \$db->join(\$join)->order("arc_sort ASC")->where(\$where)->where(\$table.'.content_state=1')->count(\$db->tableFull.'.aid');
 		\$categoryCache=cache('category');
 		\$category=\$categoryCache[\$cid];
-  		if(\$category['cat_url_type']==1){
-  			\$htmlDir = C("HTML_PATH") ? C("HTML_PATH") . '/' : '';
-  			\$htmlFile = '__ROOT__/'.\$htmlDir.str_replace(array('{catdir}', '{cid}'), array(\$category['catdir'], \$category['cid']), \$category['cat_html_url']);
-  			Page::\$staticUrl=\$htmlFile;	
-  		}
+  		Page::\$staticUrl=str_replace(array('{mid}','{cid}'),array(\$category['mid'],\$category['cid']),C('PAGE_URL'));	
         \$page= new Page(\$count,$row);
         \$result= \$db->join(\$join)->order("arc_sort ASC")->where(\$where)->where(\$table.'.content_state=1')->order(\$order)->limit(\$page->limit())->all();
         if(\$result):

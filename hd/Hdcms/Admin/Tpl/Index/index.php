@@ -29,6 +29,7 @@
 				</a>
 				<span>|</span>
 				<a href="javascript:hd_ajax('{|U:'updateAllCache'}');">
+				<a nid="999" href="javascript:;" onclick="get_content(this,999)" url="{|U:'Cache/index',array('begin'=>1)}">
 					更新全站缓存
 				</a>
 				<span>|</span>

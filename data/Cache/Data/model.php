@@ -9,14 +9,5 @@ return array (
     'description' => '',
     'is_system' => '1',
   ),
-  2 => 
-  array (
-    'mid' => '2',
-    'model_name' => '模板风格',
-    'table_name' => 'template',
-    'enable' => '1',
-    'description' => '',
-    'is_system' => '0',
-  ),
 );
 ?>

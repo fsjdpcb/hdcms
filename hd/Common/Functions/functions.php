@@ -8,7 +8,7 @@ if (!defined("HDPHP_PATH"))
  * @param bool $value 删除缓存
  * @return bool
  */
-function cache($name, $value = false, $CachePath = 'data/Cache/Data') {
+function cache($name, $value = false, $CachePath = 'data/cache/Data') {
 	if ($value === false) {
 		return F($name, false, $CachePath);
 	} else {

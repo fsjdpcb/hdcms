@@ -19,7 +19,7 @@
         </div>
     </form>
     <script>
-        $("[name='mid'").change(function(){
+        $("[name='mid']").change(function(){
         	var mid = $(this).val();
            location.href="{|U:'index'}&mid="+mid;
         })

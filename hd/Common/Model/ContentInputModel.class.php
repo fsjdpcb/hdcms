@@ -24,6 +24,8 @@ class ContentInputModel {
 	public function get(array $InsertData) {
 		//作者uid
 		$InsertData['uid'] = session('uid');
+		//添加时间
+		$InsertData['addtime'] = empty($InsertData['addtime'])?date("Y/m/d h:i:s"):$InsertData['addtime'];
 		//修改时间
 		$InsertData['updatetime'] = time();
 		//文章模型

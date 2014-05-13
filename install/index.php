@@ -1,17 +1,16 @@
 <?php
-
-$version = array(
-    "NAME" => "HDCMS 简体中文 UTF8 版",
-    "VERSION" => "2014.05.08",
-    "TIME" => "2014年05月08日"
-);
+$version=require '../data/config/version.inc.php';
+// $version = array(
+//     "NAME" => "HDCMS 简体中文 UTF8 版",
+//     "VERSION" => "2014.05.08",
+//     "TIME" => "2014年05月08日"
+// );
 //网站根目录
 define("WEB_PATH", dirname(dirname(str_replace('\\', '/', __FILE__))) . '/');
 //框架目录
 define("HDPHP_PATH", WEB_PATH . "/hd/HDPHP/hdphp/");
 //版本号
-define("VERSION", $version['NAME'] . " " . $version['VERSION']);
-
+define("VERSION", $version['HDCMS_NAME'] . " " . $version['HDCMS_VERSION']);
 header("Content-type:text/html;charset=utf-8");
 if (is_file("./lock.php")) {
     echo '
@@ -62,9 +61,9 @@ switch ($s) {
             "data/config", //配置文件
             "data/config/config.inc.php", //网站配置文件
             "data/config/db.inc.php", //数据库配置文件
-            "data/Cache/Data", //栏目缓存
-            "data/Cache/Field", //字段缓存目录
-            "data/Cache/Js", //js缓存
+            "data/cache/Data", //栏目缓存
+            "data/cache/Field", //字段缓存目录
+            "data/cache/Js", //js缓存
         );
         require "./template/4.php";
         break;
@@ -131,6 +130,7 @@ switch ($s) {
         unset($config['EMAIL']);
         unset($config['ADMIN']);
         unset($config['PASSWORD']);
+        unset($config['INSERT_TEST_DATA']);
         //修改配置文件
         file_put_contents("../data/config/db.inc.php", "<?php if (!defined('HDPHP_PATH'))exit('No direct script access allowed');\nreturn " . var_export($config, true) . ";\n?>");
         return_msg("创建完毕!<script>setTimeout(function(){parent.location.href='?step=7'},0);</script>");

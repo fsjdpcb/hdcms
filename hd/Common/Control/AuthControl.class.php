@@ -7,8 +7,7 @@
 class AuthControl extends CommonControl {
 	public function __construct() {
 		parent::__construct();
-		header("Cache-Control: no-cache, must-revalidate");
-		header("Cache-control: private");
+		header('Cache-control: private, must-revalidate');
 		if (!$this -> checkAdminAccess()) {
 			$this -> error("没有操作权限");
 		}

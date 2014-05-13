@@ -29,7 +29,7 @@
     <div class="step1 step" style="height: 550px;">
         <div class="info">
             <h1>
-                <?php echo $version['NAME'] . "({$version['VERSION']})"; ?>
+                <?php echo $version['HDCMS_NAME'] . "({$version['HDCMS_VERSION']})"; ?>
             </h1>
             <p>
                 若要安装HDCMS请点按“继续”

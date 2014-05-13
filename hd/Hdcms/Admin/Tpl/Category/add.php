@@ -13,7 +13,7 @@
         <ul>
             <li><a href="{|U:'index'}">栏目列表</a></li>
             <li><a href="javascript:;" class="action">添加栏目</a></li>
-            <li><a href="javascript:hd_ajax('{|U:update_cache}')">更新栏目缓存</a></li>
+             <li><a href="javascript:hd_ajax('{|U:updateCache}')">更新栏目缓存</a></li>
         </ul>
     </div>
     <div class="tab">

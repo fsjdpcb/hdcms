@@ -14,10 +14,9 @@
 			</div>
 			<table class="table2">
 				<tr>
-					<td style="color:red"> HDCMS是国内唯一真正的百分百免费开源产品，您不用担心任何版权问题。 </td>
+					<td style="color:red;font-weight: bold;"> HDCMS是国内唯一真正的百分百免费开源产品，您不用担心任何版权问题。 </td>
 				</tr>
 			</table>
-
 			<div class="title-header">
 				安全提示
 			</div>
@@ -63,7 +62,11 @@
 			<table class="table2">
 				<tr>
 					<td class="w80">HDCMS版本</td>
-					<td> {$hd.config.HDCMS_NAME} <font color="red">{$hd.config.HDCMS_VERSION}</font></td>
+					<td> {$hd.config.HDCMS_NAME} </td>
+				</tr>
+				<tr>
+					<td class="w80">版本号</td>
+					<td><font color="red">{$hd.config.HDCMS_VERSION}</font></td>
 				</tr>
 				<tr>
 					<td class="w80">核心框架</td>
@@ -123,18 +126,24 @@
 			</div>
 		</div>
 		<script type="text/javascript" charset="utf-8">
-				$.getJSON('http://www.hdphp.com/index.php?a=Admin&c=Version&m=checkVersion', {version : '{$hd.config.HDCMS_VERSION}'}, function(json) {
+			$.ajax({
+				url:'http://www.hdphp.com/index.php?a=Admin&c=Version&m=checkVersion',
+				dataType:"jsonp",
+				data:{version:'{$hd.config.HDCMS_VERSION}'},
+				crossDomain:true
+			});
+			function JsonpCallBack(json){
 				if (json.state == 1) {
-					$.modal({
-		            width: 420,
-		            height: 180,
-		            title: "温馨提示",
-		            message: json.message,
-		            button_cancel: "关闭",
-		            type:'success',//类型
-        		});
-				}
-			})
+							$.modal({
+				            width: 420,
+				            height: 180,
+				            title: "温馨提示",
+				            message: json.message,
+				            button_cancel: "关闭",
+				            type:'success',//类型
+        				});
+        			}
+			}
 		</script>
 	</body>
 </html>
