@@ -10,7 +10,6 @@ class IndexControl extends PublicControl {
 	public function index() {
 		$this -> display('template/' . C('WEB_STYLE') . '/index.html');
 	}
-
 	//内容页
 	public function content() {
 		$mid = Q('mid', 0, 'intval');

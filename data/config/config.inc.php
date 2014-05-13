@@ -41,7 +41,7 @@ return array (
   'UPLOAD_IMG_MAX_HEIGHT' => '600',
   'MEMBER_OPEN' => '1',
   'WEB_CLOSE_MESSAGE' => '网站维护中，请稍候访问',
-  'WEB_STYLE' => 'sdf',
+  'WEB_STYLE' => 'default',
   'QQ' => '1455067020',
   'WEIBO' => 'houdunwangxj@gmail.com',
   'TWEIBO' => 'houdunwang@gmail.com',
