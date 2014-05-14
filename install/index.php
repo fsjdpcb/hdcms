@@ -1,5 +1,5 @@
 <?php
-$version=require '../data/config/version.inc.php';
+$version=require '../hd/Common/Config/version.php';
 // $version = array(
 //     "NAME" => "HDCMS 简体中文 UTF8 版",
 //     "VERSION" => "2014.05.08",
