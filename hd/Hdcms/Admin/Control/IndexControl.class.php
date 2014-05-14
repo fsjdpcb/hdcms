@@ -77,7 +77,7 @@ class IndexControl extends AuthControl {
 	 */
 	public function welcome() {
 		//版本配置
-		C(require 'hd/Common/config/version.php');
+		C(require 'hd/Common/Config/version.php');
 		$this -> display();
 	}
 
