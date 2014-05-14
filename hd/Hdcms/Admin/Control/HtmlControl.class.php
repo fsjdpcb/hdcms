@@ -22,7 +22,7 @@ class HtmlControl extends AuthControl {
 
 	//生成首页
 	public function create_index() {
-		$this -> RedirectInfo =  F('RedirectInfo');
+		$this -> RedirectInfo = F('RedirectInfo');
 		if (IS_POST || $this -> RedirectInfo) {
 			$tpl = 'template/' . C('WEB_STYLE') . '/index.html';
 			if (is_file($tpl)) {
@@ -47,7 +47,7 @@ class HtmlControl extends AuthControl {
 
 	//创建栏目
 	public function create_category() {
-		$this -> RedirectInfo =  F('RedirectInfo');
+		$this -> RedirectInfo = F('RedirectInfo');
 		if (IS_POST || $this -> RedirectInfo) {
 			$categoryCache = cache("category");
 			$category = array();
@@ -63,17 +63,19 @@ class HtmlControl extends AuthControl {
 				$HtmlCategory = M('category') -> where(array('cid' => $_POST['cid'])) -> all();
 			}
 			//删除单文章栏目
-			$oldCategory = $HtmlCategory;
-			foreach ($oldCategory as $id => $category) {
-				if (!in_array($category['cattype'], array(1, 2))) {
-					unset($HtmlCategory[$id]);
+			if (!empty($HtmlCategory)) {
+				$oldCategory = $HtmlCategory;
+				foreach ($oldCategory as $id => $category) {
+					if (!in_array($category['cattype'], array(1, 2))) {
+						unset($HtmlCategory[$id]);
+					}
 				}
 			}
 			if (empty($HtmlCategory)) {
 				if ($this -> RedirectInfo) {
 					$redirect = array_shift($this -> RedirectInfo);
 					F('RedirectInfo', $this -> RedirectInfo);
-					$this -> success($redirect['title'], $redirect['url'], 111);
+					$this -> success($redirect['title'], $redirect['url'], 0);
 				} else {
 					$this -> success('栏目生成完毕', __METH__, 0);
 				}
@@ -84,8 +86,8 @@ class HtmlControl extends AuthControl {
 				$Control = new IndexControl;
 				$htmlDir = C("HTML_PATH") ? C("HTML_PATH") . '/' : '';
 				foreach ($HtmlCategory as $cat) {
-					$_REQUEST['cid'] = $cat['cid'];
 					$_REQUEST['mid'] = $cat['mid'];
+					$_REQUEST['cid'] = $cat['cid'];
 					ob_start();
 					$Control -> category();
 					$content = ob_get_clean();
@@ -118,7 +120,7 @@ class HtmlControl extends AuthControl {
 
 	//批量生成栏目
 	public function BatchCategory() {
-		$this -> RedirectInfo =  F('RedirectInfo');
+		$this -> RedirectInfo = F('RedirectInfo');
 		$createCategory = F('createCategoryFile');
 		if (empty($createCategory)) {
 			F('createCategoryFile', null);
@@ -135,8 +137,8 @@ class HtmlControl extends AuthControl {
 			$htmlDir = C("HTML_PATH") ? C("HTML_PATH") . '/' : '';
 			$category = current($createCategory);
 			for ($i = 0; $i <= $category['step_row']; $i++) {
-				$_REQUEST['cid'] = $category['cid'];
 				$_REQUEST['mid'] = $category['mid'];
+				$_REQUEST['cid'] = $category['cid'];
 				//从最后一页开始生成
 				$page = $_REQUEST['page'] = $_GET['page'] = $category['currentPage'];
 				$htmlFile = $htmlDir . str_replace(array('{catdir}', '{cid}', '{page}'), array($category['catdir'], $category['cid'], $page), $category['cat_html_url']);
@@ -163,13 +165,13 @@ class HtmlControl extends AuthControl {
 			$message = "生成栏目{$category['catname']}的下" . $category['step_row'] . "页,
                             共有{$category['pageTotal']}页
                             (<font color='red'>" . floor($category['currentPage'] / $category['pageTotal'] * 100) . "%</font>)";
-			$this -> success($message, __METH__);
+			$this -> success($message, __METH__, 0);
 		}
 	}
 
 	//生成内容页
 	public function create_content() {
-		$this -> RedirectInfo =  F('RedirectInfo');
+		$this -> RedirectInfo = F('RedirectInfo');
 		if (IS_POST || $this -> RedirectInfo) {
 			$categoryCache = cache('category');
 			//没有选择栏目
@@ -188,7 +190,7 @@ class HtmlControl extends AuthControl {
 				if ($this -> RedirectInfo) {
 					$redirect = array_shift($this -> RedirectInfo);
 					F('RedirectInfo', $this -> RedirectInfo);
-					$this -> success($redirect['title'], $redirect['url'], 1110);
+					$this -> success($redirect['title'], $redirect['url'], 0);
 				} else {
 					$this -> success('所有文章生成完毕', U('create_content'), 0);
 				}
@@ -227,7 +229,7 @@ class HtmlControl extends AuthControl {
 					$createCategory[$cat['cid']] = $cat;
 				}
 				F('createContentFile', $createCategory);
-				$this -> success('生成内容页初始化完毕...', U('BatchContent'), 2);
+				$this -> success('生成内容页初始化完毕...', U('BatchContent'), 0);
 			}
 		} else {
 			F('createContentFile', null);
@@ -239,7 +241,7 @@ class HtmlControl extends AuthControl {
 
 	//指生成内容页
 	public function BatchContent() {
-		$this -> RedirectInfo =  F('RedirectInfo');
+		$this -> RedirectInfo = F('RedirectInfo');
 		$createCategory = F('createContentFile');
 		if (empty($createCategory)) {
 			if ($this -> RedirectInfo) {

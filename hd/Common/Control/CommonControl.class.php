@@ -7,7 +7,10 @@
  */
 class CommonControl extends Control {
 	public function __construct() {
-		defined("IN_ADMIN") or define("IN_ADMIN", isset($_SESSION['uid']) && $_SESSION['admin'] == 1);
+		defined("IN_ADMIN") 			or define("IN_ADMIN", isset($_SESSION['uid']) && $_SESSION['admin'] == 1);
+		defined("ROOT_URL") 			or define('ROOT_URL',__ROOT__);
+		defined("WEB_URL") 				or define('WEB_URL',__WEB__);
+		defined("CONTROL_URL") 	or define('CONTROL_URL',__CONTROL__);
 		parent::__construct();
 	}
 

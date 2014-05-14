@@ -17,30 +17,28 @@ $config = array('DB_DRIVER' => 'mysql', //数据库驱动
 'TPL_SUCCESS' => 'hd/Common/Template/success.html', //正确页面
 );
 //SESSION设置
+if (!empty($globalConfig['SESSION_NAME'])){
+	$config['SESSION_OPTIONS']['name'] = $globalConfig['SESSION_NAME'];
+}
 if (!empty($globalConfig['SESSION_DOMAIN']))
 	$config['SESSION_OPTIONS']['domain'] = $globalConfig['SESSION_DOMAIN'];
-//分页URL
-if(intval($globalConfig['PATHINFO_TYPE'])){
-	$pageUrl = '?list_{mid}_{cid}_{page}.html';
-}else{
-	$pageUrl = '?a=Index&c=Index&m=category&mid={mid}&cid={cid}&page={page}';
-}
-C('PAGE_URL',$pageUrl);
+
 //首页或Index应用时设置Rewrite规则
 $config['URL_REWRITE'] = intval($globalConfig['OPEN_REWRITE']);
 //设置路由
+$config['ROUTE']=array(//个人主页
+	'/^([0-9a-z]+)$/' => 'a=Member&c=Space&m=index&u=#1');
 if (intval($globalConfig['PATHINFO_TYPE'])) {
 	$config['ROUTE'] = array(
 	//首页分页
-	'/^(\d+).html$/' => 'Index/Index/index/page/#1',
+//	'/^(\d+).html$/' => 'a=Index&c=Index&m=index&page=#1',
 	//栏目
 	'/^list_(\d+)_(\d+).html$/' => 'a=Index&c=Index&m=category&mid=#1&cid=#2',
 	//栏目分页
 	'/^list_(\d+)_(\d+)_(\d+).html$/' => 'a=Index&c=Index&m=category&mid=#1&cid=#2&page=#3',
 	//普通文章
 	'/^(\d+)_(\d+)_(\d+).html$/' => 'a=Index&c=Index&m=content&mid=#1&cid=#2&aid=#3',
-	//个人主页
-	'/^([0-9a-z]+)$/' => 'a=Member&c=Space&m=index&u=#1'
+	
 	);
 }
 return array_merge($globalConfig,

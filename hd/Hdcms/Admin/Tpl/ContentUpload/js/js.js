@@ -13,7 +13,7 @@ $(function () {
 //----------获得站内图片与未使用图片-----------------
 
 
-//选中图片占选操作
+//选中图片操作
 $("img").live("click", function () {
     if ($(this).attr("selected") == "selected") {
         //反选（原来选中的图片取沙选中)
@@ -114,6 +114,10 @@ $(function () {
         close_window();
     })
 })
+//uploadify上传完图片后自动选中
+function hd_upload(file, data, response){
+	$("li.upload_thumb:last").find('img').trigger('click');
+}
 //关闭
 function close_window() {
     $(parent.document).find("[class*=modal]").remove();

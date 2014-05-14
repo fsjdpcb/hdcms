@@ -20,7 +20,7 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="__ROOT__">首页</a></li>
                 <channel type="top">
-                    <li><a href='{$field.url}'>{$field.catname}</a></li>
+                    <li><a href='{$field.caturl}'>{$field.catname}</a></li>
                 </channel>
             </ul>
             <form class="navbar-form navbar-left" role="search" method="get" action="__WEB__">

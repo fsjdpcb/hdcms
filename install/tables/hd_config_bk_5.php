@@ -36,8 +36,8 @@ $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('48','DOWN_REMOTE_PIC','0','内容相关','下载远程图片','布尔(1/0)','','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('49','AUTO_DESC','1','内容相关','截取内容为摘要','布尔(1/0)','','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('50','AUTO_THUMB','0','内容相关','提取内容图片为缩略图','布尔(1/0)','','100')");
-$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('51','UPLOAD_IMG_MAX_WIDTH','600','内容相关','图片最大宽度','数字','上传图片宽度超过此值，进行缩放','100')");
-$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('52','UPLOAD_IMG_MAX_HEIGHT','600','内容相关','图片 最大高度','数字','上传图片高度超过此值，进行缩放','100')");
+$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('51','UPLOAD_IMG_MAX_WIDTH','2000','内容相关','图片最大宽度','数字','上传图片宽度超过此值，进行缩放','100')");
+$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('52','UPLOAD_IMG_MAX_HEIGHT','2000','内容相关','图片 最大高度','数字','上传图片高度超过此值，进行缩放','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('32','MEMBER_OPEN','1','会员配置','开启会员中心','布尔(1/0)','','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('11','WEB_CLOSE_MESSAGE','网站维护中，请稍候访问','站点配置','网站关闭提示信息','文本','','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('12','web_style','default','站点配置','网站模板','文本','','100')");

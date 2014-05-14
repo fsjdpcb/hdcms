@@ -102,27 +102,27 @@ class ProfileControl extends MemberAuthControl {
 		$_SESSION['icon50'] = str_replace(250, 50, $file);
 		$_SESSION['icon100'] = str_replace(250, 100, $file);
 		$_SESSION['icon150'] = str_replace(250, 150, $file);
-		$this -> _ajax(1, '修改成功');
+		$this -> success( '修改成功');
 	}
 
 	/**
-	 * 上传头像
+	 * 上传头像文件
 	 */
-	public function upload_face() {
+	public function uploadFace() {
 		//关闭水印
 		C('WATER_ON', false);
 		$dir = 'upload/user/' . date("Y/m/d/");
 		$upload = new Upload($dir);
 		$file = $upload -> upload();
 		if (empty($file)) {
-			$this -> _ajax(0, '上传失败！文件不能超过2Mb');
+			$this -> error( '上传失败！文件不能超过2Mb');
 		} else {
 			$file = $file[0];
 			$img = new Image();
 			$newFile = $file['dir'] . 'u' . $_SESSION['uid'] . '_250.' . $file['ext'];
 			$img -> thumb($file['path'], $newFile, 250, 250, 6);
 			@unlink($file['path']);
-			$this -> _ajax(1, array('url' => __ROOT__ . '/' . $newFile, 'path' => $newFile));
+			$this -> _ajax(1,array('url' => __ROOT__ . '/' . $newFile, 'path' => $newFile));
 		}
 	}
 

@@ -35,11 +35,10 @@ class ContentTag {
 		$attr = array('attr' => $attr, 'content' => $content);
 		return call_user_func_array(array($tagObj, $method), $attr);
 	}
-
 	//基本js与css加载(必须使用的)
 	public function _hdcms($attr, $content) {
 		$php = "<script type='text/javascript'>
-                    	var ROOT='<?php echo ROOT_URL;?>';var WEB='<?php echo WEB_URL;?>';var WEB='<?php echo CONTROL_URL;?>';
+                    	var ROOT='<?php echo ROOT_URL;?>';var WEB='<?php echo WEB_URL;?>';var CONTROL='<?php echo CONTROL_URL;?>';
                 	</script>";
 		$php .= "<script type='text/javascript' src='__ROOT__/hd/Common/static/js/hdcms.js'></script>\n
                 <link rel='stylesheet' type='text/css' href='__ROOT__/hd/Common/static/css/hdcms.css?ver=1.0'/>\n";
@@ -319,7 +318,7 @@ str;
         <?php
         \$mid ='$mid';\$cid='$cid';\$flag = '$flag';\$sub_channel=$sub_channel;\$order = '$order';
         \$mid = \$mid?\$mid:Q('mid',1,'intval');
-        \$cid = \$cid?\$cid:Q('cid',NULL,'intval');
+        \$cid = \$cid?\$cid:Q('cid',null,'intval');
         //导入模型类
         \$db =ContentViewModel::getInstance(\$mid);
         //主表（有表前缀）
@@ -367,8 +366,18 @@ str;
         \$join = "content_flag,category,user";
         \$count = \$db->join(\$join)->order("arc_sort ASC")->where(\$where)->where(\$table.'.content_state=1')->count(\$db->tableFull.'.aid');
 		\$categoryCache=cache('category');
-		\$category=\$categoryCache[\$cid];
-  		Page::\$staticUrl=str_replace(array('{mid}','{cid}'),array(\$category['mid'],\$category['cid']),C('PAGE_URL'));	
+		if(\$cid){
+			\$category=\$categoryCache[\$cid];
+			if(\$category['cat_url_type']==2){//动态
+				\$Url = "a=Index&c=Index&m=category&mid={mid}&cid={cid}&page={page}";
+  		 		Page::\$staticUrl=str_replace(array('{mid}','{cid}'),array(\$category['mid'],\$category['cid']),\$Url);
+			}else{//静态
+				\$html_path = C("HTML_PATH") ? C("HTML_PATH") . '/' : '';
+				Page::\$staticUrl=ROOT_URL.'/'.\$html_path.str_replace(array('{catdir}','{cid}'),array(\$category['catdir'],\$category['cid']),\$category['cat_html_url']);	
+			}	
+		}else{//首页
+			Page::\$staticUrl=U('Index/Index/index',array('page'=>'{page}'));
+		}
         \$page= new Page(\$count,$row);
         \$result= \$db->join(\$join)->order("arc_sort ASC")->where(\$where)->where(\$table.'.content_state=1')->order(\$order)->limit(\$page->limit())->all();
         if(\$result):

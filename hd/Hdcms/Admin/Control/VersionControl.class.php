@@ -2,6 +2,7 @@
 class VersionControl extends Control {
 	//JSONP 验证HDCMS版本状态
 	public function checkVersion() {
+		C(require 'hd/Common/Config/version.php');
 		$ServerVersion = str_replace('.', '', C('HDCMS_VERSION'));
 		$ClientVersion = str_replace('.', '', $_GET['version']);
 		if ($ServerVersion > $ClientVersion) {

@@ -4,7 +4,7 @@
  * 空间列表
  * Class IndexControl
  */
-class SpaceControl extends Control
+class SpaceControl extends CommonControl
 {
 
     //会员空间

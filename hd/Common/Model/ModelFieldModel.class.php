@@ -203,8 +203,8 @@ class ModelFieldModel extends Model {
 	}
 
 	//更新字段缓存
-	public function updateCache() {
-		$mid = intval($this -> _mid);
+	public function updateCache($mid=null) {
+		$mid = $mid?$mid:intval($this -> _mid);
 		if (!isset($this -> _model[$mid])) {
 			$this -> error = '模型不存在';
 			return false;

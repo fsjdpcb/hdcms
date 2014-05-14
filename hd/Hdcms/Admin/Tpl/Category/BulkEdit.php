@@ -6,6 +6,7 @@
 	<hdjs/>
 	<css file="__CONTROL_TPL__/css/css.css"/>
 	<js file="__CONTROL_TPL__/js/js.js"/>
+	<js file="__TPL__/Content/js/addEdit.js"/>
 	<style type="text/css">
 		div.wrap {
 		  	padding-right: 0px;

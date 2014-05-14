@@ -44,8 +44,7 @@
                         <tr>
                             <th>个性域名</th>
                             <td class="field">
-                                __ROOT__?
-                                <input type="text" name="domain" value="{$field.domain}"/>
+                                __ROOT__?<input type="text" name="domain" value="{$field.domain}"/>
                             </td>
                             <td>
                             </td>
@@ -63,7 +62,6 @@
                 </form>
             </div>
             <div class="tab-pane" id="edit-face">
-
                     <div class="source-face">
                         <div style="position:relative;border:solid 1px #999;width: 250px;height: 250px;overflow: hidden;margin-bottom:10px;">
                             <!--上传头像按钮 Start-->
@@ -71,12 +69,13 @@
                                 $(function () {
                                     $('#file_upload').uploadify({
                                         'swf': '__CONTROL_TPL__/uploadify/uploadify.swf',
-                                        'uploader': '__CONTROL__&m=upload_face',
+                                        'uploader': '__CONTROL__&m=uploadFace',
                                         'removeCompleted' : false,
                                         'buttonImage': '__CONTROL_TPL__/uploadify/select_face.png',
                                         'fileTypeExts' : '*.jpg; *.png',
                                         'multi'    : false,
                                         'fileSizeLimit' : '2MB',
+                                        'uploadLimit' : 1000,
                                         'width': 250,
                                         'height': 250,
                                         'removeCompleted':true,

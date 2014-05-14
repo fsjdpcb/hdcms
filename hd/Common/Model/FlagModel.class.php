@@ -69,7 +69,8 @@ class FlagModel extends Model {
 	/**
 	 * 更新缓存
 	 */
-	public function updateCache() {
+	public function updateCache($mid=null) {
+		$mid = $mid?$mid:$this->_mid;
 		$result = M() -> query('DESC ' . C('DB_PREFIX') . $this -> _contentTable);
 		$flag = array();
 		foreach ($result as $field) {
@@ -79,7 +80,7 @@ class FlagModel extends Model {
 				break;
 			}
 		}
-		return cache($this -> _mid, $flag, FLAG_CACHE_PATH);
+		return cache($mid, $flag, FLAG_CACHE_PATH);
 	}
 
 }

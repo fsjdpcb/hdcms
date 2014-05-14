@@ -34,7 +34,7 @@ $db->exe("CREATE TABLE `".$db_prefix."category` (
   `allow_user_set_credits` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否允许会员投稿设置积分 1 允许 0 不允许',
   `member_send_state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '会员投稿状态 1 审核 2 未审核',
   PRIMARY KEY (`cid`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='栏目表'");
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='栏目表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."category_access`");
 $db->exe("CREATE TABLE `".$db_prefix."category_access` (
   `rid` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '角色id',
@@ -106,8 +106,6 @@ $db->exe("CREATE TABLE `".$db_prefix."content` (
   `comment_num` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '评论数',
   `tag` varchar(255) NOT NULL DEFAULT '' COMMENT '占位，不用的字段',
   `read_credits` smallint(6) NOT NULL DEFAULT '0' COMMENT '阅读金币',
-  `aa` varchar(255) NOT NULL DEFAULT '',
-  `filesss` mediumtext,
   PRIMARY KEY (`aid`),
   KEY `uid` (`uid`),
   KEY `cid` (`cid`),
@@ -343,7 +341,7 @@ $db->exe("CREATE TABLE `".$db_prefix."upload` (
   PRIMARY KEY (`id`),
   KEY `basename` (`basename`),
   KEY `id` (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='上传文件'");
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='上传文件'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."user`");
 $db->exe("CREATE TABLE `".$db_prefix."user` (
   `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -400,7 +398,7 @@ $db->exe("CREATE TABLE `".$db_prefix."user_guest` (
   `guest_uid` int(11) unsigned NOT NULL COMMENT '访问id',
   `uid` int(11) unsigned NOT NULL COMMENT '被访问空间Uid',
   PRIMARY KEY (`gid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='空间访客表'");
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='空间访客表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."user_message`");
 $db->exe("CREATE TABLE `".$db_prefix."user_message` (
   `mid` int(10) unsigned NOT NULL AUTO_INCREMENT,

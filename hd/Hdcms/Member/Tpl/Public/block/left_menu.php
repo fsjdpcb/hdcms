@@ -41,7 +41,7 @@
                     return false;
                 }
                 $('#myModal').modal('hide');
-                $.post("{|U:'Home/User/edit_nickname',array('g'=>'Member')}",$(this).serialize(),function(data){
+                $.post("{|U:'Member/Profile/edit_nickname'}",$(this).serialize(),function(data){
                     if(data.state==1){
                         $('p.nickname b').html(nickname);
                         $('input[name=nickname]').val(nickname);

@@ -11,7 +11,6 @@ jQuery(function($){
         boundy=bounds[1];
         jcrop_api=this;
     });
-
     function updatePreview(c){
         if(parseInt(c.w)>0){
             var rx0=150/c.w;

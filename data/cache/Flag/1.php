@@ -1,6 +1,6 @@
 <?php if(!defined('HDPHP_PATH'))exit;
 return array (
-  0 => '热门11',
+  0 => '热门',
   1 => '置顶',
   2 => '推荐',
   3 => '图片',

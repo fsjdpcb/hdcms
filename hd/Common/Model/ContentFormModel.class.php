@@ -197,7 +197,7 @@ class ContentFormModel extends CommonModel {
 	//模板选择
 	protected function template($field, $value) {
 		$set = $field['set'];
-		return '<input style="width:300px;" type="text" name="' . $field['field_name'] . '" value="' . $value . '" onfocus="select_template(\'' . $field['field_name'] . '\');">
+		return '<input style="width:300px;" type="text" id="'.$field['field_name'].'" name="' . $field['field_name'] . '" value="' . $value . '" onfocus="select_template(\'' . $field['field_name'] . '\');">
                         <button class="hd-cancel-small" type="button" onclick="select_template(\'' . $field['field_name'] . '\');">选择模板</button>';
 	}
 

@@ -82,7 +82,7 @@ article.main section.menu div.user p.edit-nickname {
   cursor: pointer;
 }
 article.main section.menu div.user p.edit-nickname span {
-  background: url("../images/edit_nickname.png");
+  /*background: url("../images/edit_nickname.png");*/
   display: inline-block;
   width: 12px;
   height: 13px;
@@ -289,4 +289,3 @@ section.edit-user div.tab-content div.face-preview div.face p {
   margin-top: 5px;
   text-align: center;
 }
-/*# sourceMappingURL=user.css.map */
