@@ -1,11 +1,11 @@
 <?php if(!defined('HDPHP_PATH'))EXIT;
-$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('1','WEBNAME','HDPHP社区--中国最强PHP培训机构  《后盾网》','站点配置','网站名称','文本','','100')");
+$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('1','WEBNAME','HDCMS内容管理系统','站点配置','网站名称','文本','','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('2','ICP','京ICP备12048441号-3','站点配置','ICP备案号','文本','','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('3','HTML_PATH','html','站点配置','静态html目录','文本','','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('4','COPYRIGHT','Copyright © 2012-2014 HDCMS 后盾网','站点配置','网站版权信息','文本','','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('5','KEYWORDS','php培训,php实训,后盾网','站点配置','网站关键词','文本','','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('6','DESCRIPTION','后盾网顶尖PHP培训 内容全面 全程实战!业内顶级讲师亲自授课,千余课时独家视频教程免费下载,超百G原创视频资源,实力不容造假!010-64825057','站点配置','网站描述','多行文本','','100')");
-$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('7','EMAIL','houdunwangxj@gmail.com','站点配置','管理员邮箱','文本','','100')");
+$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('7','EMAIL','dsf@fd.com','站点配置','管理员邮箱','文本','','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('8','BACKUP_DIR','backup','内容相关','数据备份目录','文本','','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('9','WEB_OPEN','1','站点配置','网站开启','布尔(1/0)','','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('10','AUTH_KEY','houdunwang.com','安全配置','cookie加密KEY','文本','','100')");
@@ -60,4 +60,4 @@ $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('58','COOKIE_EXPIRE','','COOKIE配置','Coodie有效期','文本','单位秒','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('59','COOKIE_DOMAIN','','COOKIE配置','Cookie有效域名','文本','','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('60','COOKIE_PATH','/','COOKIE配置','Cookie路径','文本','有效路径','100')");
-$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('62','SESSION_DOMAIN','.hdphp.com','SESSION配置','SESSION域名','文本','如.hdphp.com 设置错误将导致无法登录后台','100')");
+$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('62','SESSION_DOMAIN','','SESSION配置','SESSION域名','文本','如.hdphp.com 设置错误将导致无法登录后台','100')");
