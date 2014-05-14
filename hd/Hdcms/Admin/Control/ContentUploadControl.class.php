@@ -110,7 +110,7 @@ class ContentUploadControl extends CommonControl
         C('upload_img_max_width', $_POST['upload_img_max_width']);
         C('upload_img_max_height', $_POST['upload_img_max_height']);
 		$size=Q('size')?Q('size'):C('allow_size');
-        $upload = new Upload(Q('post.upload_dir'), array(), $size, Q("water", null, "intval"));
+        $upload = new Upload(Q('post.upload_dir'), array(), $size, Q("water"));
         $file = $upload->upload();
         if (!empty($file)) {
             $file = $file[0];
