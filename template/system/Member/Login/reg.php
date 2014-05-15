@@ -59,6 +59,7 @@
                         <input type="password" name="passwordc" class="form-control" id="inputPassword3" placeholder="Password" required=""/>
                     </div>
                 </div>
+                <?php if(C('REG_SHOW_CODE')):?>
                 <div class="form-group">
                     <label for="inputPassword3" class="col-sm-3 control-label">验证码：</label>
                     <div class="col-sm-7">
@@ -66,6 +67,7 @@
                         <img src="__CONTROL__&m=code" style="cursor: pointer" onclick="this.src='__CONTROL__&m=code&_'+Math.random()"/>
                     </div>
                 </div>
+                <?php endif;?>
                 <div class="form-group">
                     <div class="col-sm-offset-3 col-sm-10">
                         <button type="submit" class="btn btn-primary btn-lg">会员登录</button>

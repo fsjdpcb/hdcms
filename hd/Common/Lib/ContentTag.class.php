@@ -369,8 +369,15 @@ str;
 		if(\$cid){
 			\$category=\$categoryCache[\$cid];
 			if(\$category['cat_url_type']==2){//动态
-				\$Url = "a=Index&c=Index&m=category&mid={mid}&cid={cid}&page={page}";
-  		 		Page::\$staticUrl=ROOT_URL.'?'.str_replace(array('{mid}','{cid}'),array(\$category['mid'],\$category['cid']),\$Url);
+				if(C('PATHINFO_TYPE')){
+					\$Url = "list_{mid}_{cid}_{page}.html";
+					\$pageUrl=str_replace(array('{mid}','{cid}'),array(\$category['mid'],\$category['cid']),\$Url);
+				}else{
+					\$Url = "a=Index&c=Index&m=category&mid={mid}&cid={cid}&page={page}";
+  		 			\$pageUrl=str_replace(array('{mid}','{cid}'),array(\$category['mid'],\$category['cid']),\$Url);
+				}
+				\$ROOT_URL = C('URL_REWRITE')?'':WEB_URL.'?';
+				Page::\$staticUrl=\$ROOT_URL.\$pageUrl;
 			}else{//静态
 				\$html_path = C("HTML_PATH") ? C("HTML_PATH") . '/' : '';
 				Page::\$staticUrl=ROOT_URL.'/'.\$html_path.str_replace(array('{catdir}','{cid}'),array(\$category['catdir'],\$category['cid']),\$category['cat_html_url']);	

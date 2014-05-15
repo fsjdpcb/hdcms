@@ -17,7 +17,7 @@ class ContentUploadControl extends CommonControl
         //上传类型
         $type = Q('type', null, 'strtolower');
         //上传目录
-        $dir = "upload/" . Q("get.dir", "content") . "/" .date("Y/m/d/");
+        $dir = C('UPLOAD_PATH')."/" . Q("get.dir", "content") . "/" .date("Y/m/d/");
         //上传数量
         $limit = Q("get.num", 1, "intval");
         //上传文件类型

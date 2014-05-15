@@ -9,6 +9,7 @@ class TemplateStyleControl extends  AuthControl {
 		$style = array();
 		$dirs = Dir::tree('template');
 		foreach ($dirs as $tpl) {
+			if($tpl['name']=='system')continue;
 			//说明文档
 			$readme = $tpl['path'] . "/readme.txt";
 			if (is_file($readme) && is_readable($readme)) {

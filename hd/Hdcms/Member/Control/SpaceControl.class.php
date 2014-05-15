@@ -10,15 +10,13 @@ class SpaceControl extends CommonControl
     //会员空间
     public function index()
     {
-        $u = Q("u");
+        $u = preg_replace('@[^\w]@','',Q('u'));
         $pre = C('DB_PREFIX');
-        $sql = "SELECT uid,nickname,rname,r.rid,spec_num,credits,regtime,logintime,domain,icon FROM {$pre}user AS u
+        $sql 	= "SELECT uid,nickname,rname,r.rid,spec_num,credits,regtime,logintime,domain,icon FROM {$pre}user AS u
                 INNER JOIN {$pre}role AS r ON u.rid=r.rid
                 WHERE u.uid='{$u}' OR domain='{$u}'";
-        $user = M()->query($sql);
-        //---------------------------检测用户
-        if (!$user) {
-            $this->error('页面不存在');
+        if (!$user = M()->query($sql)){
+            	_404('会员不存在');
         }
         $user = $user[0];
         //--------------------------增加空间访问次数

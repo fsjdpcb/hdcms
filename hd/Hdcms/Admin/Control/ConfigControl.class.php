@@ -10,7 +10,7 @@ class ConfigControl extends AuthControl {
 		$Model = K("config");
 		if (IS_POST) {
 			if ($Model -> saveConfig($_POST)) {
-				$this -> success("修改配置文件成功");
+				$this -> success("修改成功");
 			} else {
 				$this -> error($Model -> error);
 			}
@@ -24,12 +24,14 @@ class ConfigControl extends AuthControl {
 			unset($config['web_style']);
 			//======================================会员角色
 			$roleData = $Model -> table("role") -> where("admin=0") -> all();
-			$config['DEFAULT_MEMBER_GROUP']['html'] = '<select name="default_member_group">';
+			$config['DEFAULT_MEMBER_GROUP']['html'] = '<select name="DEFAULT_MEMBER_GROUP">';
 			foreach ($roleData as $role) {
 				$checked = $config['DEFAULT_MEMBER_GROUP']['value'] == $role['rid'] ? "selected='selected'" : "";
 				$config['DEFAULT_MEMBER_GROUP']['html'] .= "<option value='{$role['rid']}' {$checked}>{$role['rname']}</option>";
 			}
 			$config['DEFAULT_MEMBER_GROUP']['html'] .= '</select>';
+			//邮箱密码设置字段为PASSWORD
+			$config['EMAIL_PASSWORD']['html']="<input type='password' name='EMAIL_PASSWORD' value='{$config['EMAIL_PASSWORD']['value']}' class='w400'/>";
 			//========================================水印位置
 			ob_start();
 			require TPL_PATH . 'Config/water.php';
@@ -37,7 +39,7 @@ class ConfigControl extends AuthControl {
 			$config['WATER_POS']['html'] = $con;
 			//=======================================其他字段
 			foreach ($config as $name => $c) {
-				if (in_array($name, array('default_member_group', 'water_pos', 'water')))
+				if (in_array($name, array('DEFAULT_MEMBER_GROUP', 'WATER_POS','EMAIL_PASSWORD')))
 					continue;
 				switch ($c['show_type']) {
 					case '数字' :

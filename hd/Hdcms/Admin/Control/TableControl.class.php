@@ -13,11 +13,16 @@ class TableControl extends AuthControl {
 				$this -> error('替换失败...');
 			}
 		} else {
-			$Model = M();
-			$tableInfo = $Model -> getTableInfo();
-			$tables = $tableInfo['table'];
-			$this -> assign("tablesJson", json_encode($tables));
-			$this -> assign('tables', $tables);
+			$tableCache = cache('table');
+			if (!$tableCache) {
+				$Model = M();
+				$tableInfo = $Model -> getTableInfo();
+				$tables = $tableInfo['table'];
+				cache('table', $tables);
+				$tableCache = $tables;
+			}
+			$this -> assign("tablesJson", json_encode($tableCache));
+			$this -> assign('tables', $tableCache);
 			$this -> display();
 		}
 	}

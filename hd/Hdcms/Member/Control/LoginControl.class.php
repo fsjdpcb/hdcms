@@ -141,7 +141,7 @@ class LoginControl extends CommonControl {
 			$email = Q('email', null, '');
 			$password = Q('post.password', null, '');
 			$passwordc = Q('post.passwordc', null, '');
-			if (empty($code) || $code != $_SESSION['code']) {
+			if (C('REG_SHOW_CODE') && (empty($code) || $code != $_SESSION['code'])) {
 				$this -> error = '验证码错误';
 				$this -> display();
 				exit ;
@@ -178,6 +178,11 @@ class LoginControl extends CommonControl {
 				exit ;
 			}
 			$_POST['rid'] = C('default_member_group');
+			if(C('MEMBER_EMAIL_VALIDATE')){//开启邮箱验证
+				$_POST['user_state']=0;
+			}else{
+				$_POST['user_state']=C('MEMBER_VERIFY');//会员注册不需要审核
+			}
 			if ($Model -> addUser($_POST)) {
 				$user = $Model -> where(array('username' => $username)) -> find();
 				setcookie('login', 1, 0, '/');

@@ -38,12 +38,12 @@ class UserControl extends CommonControl
                 }
                 $this->follow = $follow;
                 $con = $this->fetch();
-                $this->success( $con);
+                $this->success($con);
             } else {
-                $this->error('用户不存在');
+                 _404('会员不存在');
             }
         } else {
-            $this->error('参数错误');
+           _404('会员不存在');
         }
 
     }

@@ -116,7 +116,7 @@ $(function () {
 })
 //uploadify上传完图片后自动选中
 function hd_upload(file, data, response){
-	$("li.upload_thumb:last").find('img').trigger('click');
+	$("#upload img:last").trigger('click');
 }
 //关闭
 function close_window() {

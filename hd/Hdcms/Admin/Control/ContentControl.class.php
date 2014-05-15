@@ -160,26 +160,28 @@ class ContentControl extends AuthControl {
 	 */
 	public function ajaxCategoryZtree() {
 		$category = array();
-		foreach ($this->_category as $n => $cat) {
-			$data = array();
-			//过滤掉外部链接栏目
-			if ($cat['cattype'] != 3) {
-				//单文章栏目
-				if ($cat['cattype'] == 4) {
-					$link = __WEB__ . "?a=Admin&c=Content&m=single&cid={$cat['cid']}&mid={$cat['mid']}";
-					$url = "javascript:hd_open_window(\"$link\")";
-				} else if ($cat['cattype'] == 1) {
-					$url = U('content', array('cid' => $cat['cid'], 'mid' => $cat['mid'],'content_state'=>1));
-				} else {
-					$url = 'javascript:;';
+		if (!empty($this -> _category)) {
+			foreach ($this->_category as $n => $cat) {
+				$data = array();
+				//过滤掉外部链接栏目
+				if ($cat['cattype'] != 3) {
+					//单文章栏目
+					if ($cat['cattype'] == 4) {
+						$link = __WEB__ . "?a=Admin&c=Content&m=single&cid={$cat['cid']}&mid={$cat['mid']}";
+						$url = "javascript:hd_open_window(\"$link\")";
+					} else if ($cat['cattype'] == 1) {
+						$url = U('content', array('cid' => $cat['cid'], 'mid' => $cat['mid'], 'content_state' => 1));
+					} else {
+						$url = 'javascript:;';
+					}
+					$data['id'] = $cat['cid'];
+					$data['pId'] = $cat['pid'];
+					$data['url'] = $url;
+					$data['target'] = 'content';
+					$data['open'] = true;
+					$data['name'] = $cat['catname'];
+					$category[] = $data;
 				}
-				$data['id'] = $cat['cid'];
-				$data['pId'] = $cat['pid'];
-				$data['url'] = $url;
-				$data['target'] = 'content';
-				$data['open'] = true;
-				$data['name'] = $cat['catname'];
-				$category[] = $data;
 			}
 		}
 		$this -> ajax($category);

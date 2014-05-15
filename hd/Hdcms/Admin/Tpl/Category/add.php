@@ -85,19 +85,15 @@
                     <tr>
                         <th>栏目访问</th>
                         <td>
-                            <label>
-                                <input type="radio" name="cat_url_type" value="1"/> 静态</label>
-                            <label>
-                                <input type="radio" name="cat_url_type" value="2" checked="checked"/> 动态</label>
+                            <label><input type="radio" name="cat_url_type" value="1"/> 静态</label>
+                            <label><input type="radio" name="cat_url_type" value="2" checked="checked"/> 动态</label>
                         </td>
                     </tr>
                     <tr>
                         <th>文章访问</th>
                         <td>
-                            <label>
-                                <input type="radio" name="arc_url_type" value="1"/> 静态</label>
-                            <label>
-                                <input type="radio" name="arc_url_type" value="2" checked="checked"/> 动态</label>
+                            <label><input type="radio" name="arc_url_type" value="1"/> 静态</label>
+                            <label><input type="radio" name="arc_url_type" value="2" checked="checked"/> 动态</label>
                         </td>
                     </tr>
                     <tr>
@@ -115,8 +111,7 @@
                     <tr>
                         <th class="w100">封面模板</th>
                         <td>
-                            <input type="text" name="index_tpl" required="" class="w200" id="index_tpl"
-                                   value="article_index.html" onclick="select_template('index_tpl');" readonly="" onfocus="select_template('index_tpl');"/>
+                            <input type="text" name="index_tpl" required="" class="w200" id="index_tpl" value="article_index.html" onclick="select_template('index_tpl');" readonly="" onfocus="select_template('index_tpl');"/>
                             <button type="button" onclick="select_template('index_tpl');" class="hd-cancel">选择封面模板</button>
                             <span id="hd_index_tpl"></span>
                         </td>
@@ -124,8 +119,7 @@
                     <tr>
                         <th>列表页模板</th>
                         <td>
-                            <input type="text" name="list_tpl" required="" id="list_tpl" class="w200"
-                                   value="article_list.html" onclick="select_template('list_tpl');" readonly="" onfocus="select_template('list_tpl');"/>
+                            <input type="text" name="list_tpl" required="" id="list_tpl" class="w200" value="article_list.html" onclick="select_template('list_tpl');" readonly="" onfocus="select_template('list_tpl');"/>
                             <button type="button" onclick="select_template('list_tpl');" class="hd-cancel">选择列表模板</button>
                             <span id="hd_list_tpl"></span>
                         </td>
@@ -133,8 +127,7 @@
                     <tr>
                         <th>内容页模板</th>
                         <td>
-                            <input type="text" name="arc_tpl" required="" id="arc_tpl" class="w200"
-                                   value="article_default.html" onclick="select_template('arc_tpl');" readonly="" onfocus="select_template('arc_tpl');"/>
+                            <input type="text" name="arc_tpl" required="" id="arc_tpl" class="w200" value="article_default.html" onclick="select_template('arc_tpl');" readonly="" onfocus="select_template('arc_tpl');"/>
                             <button type="button" onclick="select_template('arc_tpl');" class="hd-cancel">选择内容页模板</button>
                             <span id="hd_arc_tpl"></span>
                         </td>
@@ -143,20 +136,17 @@
             </div>
             <div id="html">
                 <table class="table1">
-
                     <tr>
                         <th class="w100">栏目页URL规则</th>
                         <td>
-                            <input type="text" name="cat_html_url" required="" class="w200"
-                                   value="{catdir}/list_{cid}_{page}.html"/>
+                            <input type="text" name="cat_html_url" required="" class="w200" value="{catdir}/{cid}{page}.html"/>
                             <span id="hd_cat_html_url"></span>
                         </td>
                     </tr>
                     <tr>
                         <th>内容页URL规则</th>
                         <td>
-                            <input type="text" name="arc_html_url" required="" class="w200"
-                                   value="{catdir}/{y}/{m}{d}/{aid}.html"/>
+                            <input type="text" name="arc_html_url" required="" class="w200" value="{catdir}/{y}/{m}{d}/{aid}.html"/>
                             <span id="hd_arc_html_url"></span>
                         </td>
                     </tr>
@@ -293,9 +283,7 @@
                         <td>
                             <label><input type="radio" name="allow_user_set_credits" value="1" checked="checked"/> 允许</label>
                             <label><input type="radio" name="allow_user_set_credits" value="0"/> 不允许</label>
-                                <span class="validate-message">
-                                    是否允许会员投稿时设置阅读金币 （只对前台投稿有效）
-                                </span>
+                                <span class="validate-message">是否允许会员投稿时设置阅读金币 （只对前台投稿有效）</span>
                         </td>
                     </tr>
                     <tr>
@@ -316,9 +304,7 @@
                         <th class="w100">重复收费设置</th>
                         <td>
                             <input type="text" name="repeat_charge_day" required="" class="w100" value="1"/> 天
-                                <span id='hd_repeat_charge_day'>
-
-                                </span>
+                                <span id='hd_repeat_charge_day'></span>
                         </td>
                     </tr>
                 </table>
@@ -331,6 +317,5 @@
     <input type="button" class="hd-cancel" value="取消" onclick="location.href='__CONTROL__'"/>
 </div>
 </form>
-
 </body>
 </html>

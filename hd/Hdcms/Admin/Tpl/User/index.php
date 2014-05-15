@@ -50,10 +50,10 @@
                     <span class="line">|</span>
                     <if value="$d.user_state==1">
                     	<a href="javascript:;" onclick="hd_ajax('{|U:'lock'}',{uid:{$d['uid']},user_state:0})">
-                    	锁定</a>
+                    	已审核</a>
                     <else>
                     	<a href="javascript:;" onclick="hd_ajax('{|U:'lock'}',{uid:{$d['uid']},user_state:1})">
-                    		<font color="red">解定</font>	</a>
+                    		<font color="red">审核</font>	</a>
                     </if>
                     <span class="line">|</span>
                     <a href="javascript:hd_confirm('确定删除吗？',function(){hd_ajax('{|U:'del'}',{uid:{$d.uid}})})">删除</a>

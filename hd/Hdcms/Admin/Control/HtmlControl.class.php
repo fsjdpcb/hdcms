@@ -7,7 +7,6 @@
 class HtmlControl extends AuthControl {
 	//批量生成静态时的下一步动作
 	private $RedirectInfo;
-
 	//一键生成全站静态
 	public function create_all() {
 		if (IS_POST) {
@@ -273,7 +272,13 @@ class HtmlControl extends AuthControl {
 				$_REQUEST['mid'] = $category['mid'];
 				$_REQUEST['aid'] = $content['aid'];
 				$time = getdate($content['addtime']);
-				$htmlFile = $htmlDir . str_replace(array('{catdir}', '{y}', '{m}', '{d}', '{aid}'), array($category['catdir'], $time['year'], $time['mon'], $time['mday'], $content['aid']), $category['arc_html_url']);
+				if (!empty($content['html_path'])) {
+					$htmlFile= $htmlDir . $content['html_path'];
+				} else {
+					$htmlFile = $htmlDir . str_replace(array('{catdir}', '{y}', '{m}', '{d}', '{aid}'), 
+																			array($content['catdir'], $time['year'], $time['mon'], $time['mday'], $content['aid']),
+																			$content['arc_html_url']);
+				}
 				ob_start();
 				$Control -> content();
 				$content = ob_get_clean();
@@ -303,5 +308,4 @@ class HtmlControl extends AuthControl {
 		}
 
 	}
-
 }

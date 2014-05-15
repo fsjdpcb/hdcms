@@ -19,6 +19,7 @@ final class Url {
 				//外部链接
 				return $category['cat_redirecturl'];
 			case 4 :
+				//单文章
 				$model = ContentViewModel::getInstance($category['mid']);
 				$content = $model -> join('category') -> where(C("DB_PREFIX") . 'category.cid=' . $category['cid']) -> find();
 				if ($category['cat_url_type'] == 1) {
@@ -29,7 +30,7 @@ final class Url {
 				}
 			case 2 :
 			case 1 :
-			default:
+			default :
 				//普通栏目
 				if ($category['cat_url_type'] == 1) {
 					//栏目生成静态
@@ -57,7 +58,7 @@ final class Url {
 			switch ($field['url_type']) {
 				case 1 :
 					//文章字段设置为静态访问
-					return __ROOT__ . '/' . Url::getContentHtml($field);
+					return Url::getContentHtml($field);
 				case 2 :
 					//文章字段设置为动态访问
 					return U('Index/Index/content', array('mid' => $field['mid'], 'cid' => $field['cid'], 'aid' => $field['aid']));
@@ -90,17 +91,19 @@ final class Url {
 		//HTML存放根目录
 		$html_path = C("HTML_PATH") ? C("HTML_PATH") . '/' : '';
 		//有自定义静态url时，直接使用（不需要通过栏目规则运算）
-		if (!empty($field['html_path']))
-			return $html_path . $field['html_path'];
-		//当前文章栏目信息
-		$category = $_category[$field['cid']];
-		//栏目定义的内容页生成静态规则
-		$arc_html_url = $category['arc_html_url'];
-		$_s = array('{catdir}', '{y}', '{m}', '{d}', '{aid}');
-		//文章发表时间
-		$time = getdate($field['addtime']);
-		$_r = array($category['catdir'], $time['year'], $time['mon'], $time['mday'], $field['aid']);
-		return __ROOT__.'/'.$html_path . str_replace($_s, $_r, $arc_html_url);
+		if (!empty($field['html_path'])) {
+			return __ROOT__ . '/' .$html_path . $field['html_path'];
+		} else {
+			//当前文章栏目信息
+			$category = $_category[$field['cid']];
+			//栏目定义的内容页生成静态规则
+			$arc_html_url = $category['arc_html_url'];
+			$_s = array('{catdir}', '{y}', '{m}', '{d}', '{aid}');
+			//文章发表时间
+			$time = getdate($field['addtime']);
+			$_r = array($category['catdir'], $time['year'], $time['mon'], $time['mday'], $field['aid']);
+			return __ROOT__ . '/' . $html_path . str_replace($_s, $_r, $arc_html_url);
+		}
 	}
 
 }
