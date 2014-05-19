@@ -13,6 +13,7 @@ class ContentControl extends MemberAuthControl {
 	private $_mid;
 	//栏目cid
 	private $_cid;
+	private $ContentAccess;
 
 	//构造函数
 	public function __init() {
@@ -28,6 +29,7 @@ class ContentControl extends MemberAuthControl {
 		if ($this -> _cid && !isset($this -> _category[$this -> _cid])) {
 			$this -> error("栏目不存在！");
 		}
+		$this->ContentAccess = K('ContentAccess');
 	}
 
 	//文章列表
@@ -53,14 +55,19 @@ class ContentControl extends MemberAuthControl {
 		$this -> display();
 	}
 
-	/**
-	 * 发表文章
-	 */
+	//发表文章
 	public function add() {
+		if(!$this->ContentAccess->isAdd($this->_cid)){
+			$this->error('没有操作权限<script>setTimeout(function(){window.close();},1000)</script>');
+		}
 		if (IS_POST) {
 			$mid = $this->_category[$this->_cid]['mid'];
 			$ContentModel = new Content($mid);
-			if ($ContentModel -> add($_POST)) {
+			if ($aid = $ContentModel -> add($_POST)) {
+				$Dcat = $this->_category[$this->_cid];
+				$Dlink ="<a target='_blank' href='".U('Index/Index/content',array('mid'=>$Dcat['mid'],'cid'=>$Dcat['cid'],'aid'=>$aid))."'>{$_POST['title']}</a>"; 
+				$Dmessage = "发表了文章：".$Dlink;
+				$this->saveDynamic($Dmessage);
 				$this -> success('发表成功！');
 			} else {
 				$this -> error($ContentModel -> error);
@@ -85,6 +92,9 @@ class ContentControl extends MemberAuthControl {
 
 	//修改文章
 	public function edit() {
+		if(!$this->ContentAccess->isEdit($this->_cid)){
+			$this->error('没有操作权限<script>setTimeout(function(){window.close();},1000)</script>');
+		}
 		$aid = Q('aid', 0, 'intval');
 		if (!$aid) {
 			$this -> error('文章不存在');
@@ -122,6 +132,9 @@ class ContentControl extends MemberAuthControl {
 	 * 删除文章
 	 */
 	public function del() {
+		if(!$this->ContentAccess->isDel($this->_cid)){
+			$this->error('没有操作权限');
+		}
 		$aid = Q('aid', 0, 'intval');
 		if (!$aid) {
 			$this -> error('文章不存在');

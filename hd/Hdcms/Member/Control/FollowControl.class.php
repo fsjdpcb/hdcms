@@ -11,8 +11,9 @@ class FollowControl extends MemberAuthControl
      */
     public function follow()
     {
-        $uid = Q('uid', null, 'intval');
+        $uid = Q('uid', 0, 'intval');
         if ($uid) {
+        	$username = M('user')->where('uid='.$uid)->getField('username');
             $db = M('user_follow');
             $result = $db->where("uid={$uid} AND fans_uid={$_SESSION['uid']}")->find();
             if ($result) {
@@ -21,6 +22,8 @@ class FollowControl extends MemberAuthControl
                 $this->_ajax(1, array('message' => '取消关注成功', 'follow' => '关注'));
             } else {
                 if ($db->add(array('uid' => $uid, 'fans_uid' => $_SESSION['uid']))) {
+                	$Dlink = "<a target='_blank' href='?a=Member&c=Space&m=index&u={$uid}'>$username</a>";
+                	$this->saveDynamic('关注了'.$Dlink);
                     if ($db->where("uid={$_SESSION['uid']} AND fans_uid={$uid}")->find()) {
                         $this->_ajax(1, array('message' => '关注成功', 'follow' => '互相关注'));
                     } else {

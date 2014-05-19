@@ -14,27 +14,30 @@ class IndexControl extends PublicControl {
 
 	//内容页
 	public function content() {
+		$mid = Q('mid', 0, 'intval');
+		$cid = Q('cid', 0, 'intval');
+		$aid = Q('aid', 0, 'intval');
+		if (!$mid || !$cid || !$aid) {
+			_404();
+		}
+		$ContentAccessModel = K('ContentAccess');
+		if (!$ContentAccessModel -> isShow($cid)) {
+			$this -> error('你没有阅读权限');
+		}
 		$CacheTime = C('CACHE_CONTENT') >= 1 ? C('CACHE_CONTENT') : null;
 		if (!$this -> isCache()) {
-			$mid = Q('mid', 0, 'intval');
-			$cid = Q('cid', 0, 'intval');
-			$aid = Q('aid', 0, 'intval');
-			if (!$mid || !$cid || !$aid) {
-				_404();
-			} else {
-				$ContentModel = new Content($mid);
-				$field = $ContentModel -> find($aid);
-				if ($field) {
-					$field['time'] = date("Y/m/d", $field['addtime']);
-					$field['date_before'] = date_before($field['addtime']);
-					$field['commentnum'] = M("comment") -> where("cid=" . $cid . " AND aid=" . $aid) -> count();
-					$field['caturl'] = Url::getCategoryUrl($field);
-					$this -> assign('hdcms', $field);
-					$this -> display($field['template'], $CacheTime);
-				}
+			$ContentModel = new Content($mid);
+			$field = $ContentModel -> find($aid);
+			if ($field) {
+				$field['time'] = date("Y/m/d", $field['addtime']);
+				$field['date_before'] = date_before($field['addtime']);
+				$field['commentnum'] = M("comment") -> where("cid=" . $cid . " AND aid=" . $aid) -> count();
+				$field['caturl'] = Url::getCategoryUrl($field);
+				$this -> assign('hdcms', $field);
+				$this -> display($field['template'], $CacheTime);
 			}
 		} else {
-			$this -> display(null,$CacheTime);
+			$this -> display(null, $CacheTime);
 		}
 	}
 
@@ -82,17 +85,19 @@ class IndexControl extends PublicControl {
 					}
 					$tpl = 'template/' . C("WEB_STYLE") . '/' . $tpl;
 					$this -> assign("hdcms", $category);
-					$this -> display($tpl,$cachetime);
+					$this -> display($tpl, $cachetime);
 				}
 			}
-		}else{
-			$this -> display(null,$cachetime);
+		} else {
+			$this -> display(null, $cachetime);
 		}
 	}
+
 	//404页面
-	public function _404(){
-		$this->display('template/system/404.html');
+	public function _404() {
+		$this -> display('template/system/404.html');
 	}
+
 	//加入收藏
 	public function addFavorite() {
 		if (!session("uid")) {
@@ -111,6 +116,18 @@ class IndexControl extends PublicControl {
 				$this -> success('收藏成功!');
 			}
 		}
+	}
+
+	//获得点击数
+	public function getClick() {
+		$mid = Q('mid', 0, 'intval');
+		$aid = Q('aid', 0, 'intval');
+		$modelCache = cache('model');
+		$Model = M($modelCache[$mid]['table_name']);
+		$result = $Model -> find($aid);
+		$Model -> save(array('aid' => $result['aid'], 'click' => $result['click'] + 1));
+		echo "document.write({$result['click']});";
+		exit ;
 	}
 
 }

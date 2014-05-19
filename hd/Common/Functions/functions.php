@@ -28,3 +28,7 @@ function getCategory($cid) {
 	$cids[] = $cid;
 	return $cids;
 }
+//获得栏目url（主要用于模型标签使用）
+function getCategoryUrl($field){
+	 return Url::getCategoryUrl($field);
+}

@@ -119,7 +119,7 @@
 						class="line">|</span>
 						<a href="javascript:hd_open_window('{|U:edit,array('cid'=>$_GET['cid'],'mid'=>$_GET['mid'],'aid'=>$c['aid'])}')">编辑
 						</a><span class="line">|</span>
-						<a href="javascript:" onclick="hd_confirm('确认删除吗？',function(){hd_ajax('{|U:'del'}',{aid:{$c['aid']},mid:{$c['mid']}})})">
+						<a href="javascript:" onclick="hd_confirm('确认删除吗？',function(){hd_ajax('{|U:'del'}',{aid:{$c['aid']},cid:{$c['cid']},mid:{$c['mid']}})})">
 							删除
 						</a>
 						</td>

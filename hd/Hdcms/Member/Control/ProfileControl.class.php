@@ -12,25 +12,26 @@ class ProfileControl extends MemberAuthControl {
 		$this -> _db = K("User");
 	}
 
-	/**
-	 * 修改昵称
-	 */
-	public function edit_nickname() {
-		$this -> _db -> edit_nickname();
-		$this -> _ajax(1, '修改昵称成功!');
+	//修改昵称
+	public function editNickname() {
+		$Model = M("user");
+		$state = $Model -> save(array('uid' => $_SESSION['uid'], 'nickname' => $_POST['nickname']));
+		if ($state) {
+			$_SESSION['nickname'] = $_POST['nickname'];
+			$this -> success('修改昵称成功!');
+		} else {
+			$this -> error('昵称修改失败');
+		}
+
 	}
 
-	/**
-	 * 修改用户资料
-	 */
+	//修改用户资料
 	public function edit() {
 		$this -> field = M('user') -> find(session("uid"));
 		$this -> display();
 	}
 
-	/**
-	 * 编辑基本信息（个性签名，个性域名）
-	 */
+	//编辑基本信息（个性签名，个性域名）
 	public function edit_message() {
 		$_POST['signature'] = mb_substr($_POST['signature'], 0, 50, 'utf-8');
 		//修改资料
@@ -41,9 +42,7 @@ class ProfileControl extends MemberAuthControl {
 		}
 	}
 
-	/**
-	 * 验证个性域名
-	 */
+	//验证个性域名
 	public function check_domain() {
 		$domain = $_POST['domain'];
 		$user = $this -> _db -> where("uid<>{$_SESSION['uid']} AND domain='{$domain}'") -> find();
@@ -54,22 +53,18 @@ class ProfileControl extends MemberAuthControl {
 		}
 	}
 
-	/**
-	 * 修改密码时，异步验证原密码
-	 */
+	//修改密码时，异步验证原密码
 	public function check_password() {
-		$password = $_POST['password'];
+		$oldpassword = $_POST['oldpassword'];
 		$user = $this -> _db -> find(session('uid'));
-		if (md5($password . $user['code']) == $user['password']) {
+		if (md5($oldpassword . $user['code']) == $user['password']) {
 			$this -> ajax(1);
 		} else {
 			$this -> ajax(0);
 		}
 	}
 
-	/**
-	 * 修改密码
-	 */
+	//修改密码
 	public function edit_password() {
 		$Model = K("User");
 		if (empty($_POST['password'])) {
@@ -84,9 +79,7 @@ class ProfileControl extends MemberAuthControl {
 		}
 	}
 
-	/**
-	 * 设置头像
-	 */
+	//设置头像
 	public function set_face() {
 		//关闭水印
 		C('WATER_ON', false);
@@ -102,7 +95,7 @@ class ProfileControl extends MemberAuthControl {
 		$_SESSION['icon50'] = str_replace(250, 50, $file);
 		$_SESSION['icon100'] = str_replace(250, 100, $file);
 		$_SESSION['icon150'] = str_replace(250, 150, $file);
-		$this -> success( '修改成功');
+		$this -> success('修改成功');
 	}
 
 	/**
@@ -115,14 +108,14 @@ class ProfileControl extends MemberAuthControl {
 		$upload = new Upload($dir);
 		$file = $upload -> upload();
 		if (empty($file)) {
-			$this -> error( '上传失败！文件不能超过2Mb');
+			$this -> error('上传失败！文件不能超过2Mb');
 		} else {
 			$file = $file[0];
 			$img = new Image();
 			$newFile = $file['dir'] . 'u' . $_SESSION['uid'] . '_250.' . $file['ext'];
 			$img -> thumb($file['path'], $newFile, 250, 250, 6);
 			@unlink($file['path']);
-			$this -> _ajax(1,array('url' => __ROOT__ . '/' . $newFile, 'path' => $newFile));
+			$this -> _ajax(1, array('url' => __ROOT__ . '/' . $newFile, 'path' => $newFile));
 		}
 	}
 

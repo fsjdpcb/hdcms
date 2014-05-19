@@ -9,7 +9,7 @@ class IndexControl extends AuthControl {
 	//后台首页
 	public function index() {
 		//获得顶级菜单
-		if ($_SESSION['WEB_MASTER'] || $_SESSION['rid'] == 1) {
+		if (WEB_MASTER||  $_SESSION['rid'] == 1) {
 			$nodeData = cache('node');
 			$topMenu = array();
 			foreach ($nodeData as $node) {
@@ -38,7 +38,7 @@ class IndexControl extends AuthControl {
 			$this -> ajax('菜单PID错误');
 		}
 		//超级管理员获得所有菜单
-		if (session("WEB_MASTER") || session("rid") == 1) {
+		if (WEB_MASTER || session("rid") == 1) {
 			$MenuData = cache('node');
 		} else {
 			$menuModel = V('node');

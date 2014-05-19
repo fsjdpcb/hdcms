@@ -72,15 +72,12 @@
                 </a> 发表于 {$hdcms.date_before} ({$hdcms.time}) -
                 {$hdcms.comment_num}
                 	条评论
-                 {$hdcms.click}次点击
+                 <script type="text/javascript" src="__WEB__?a=Index&c=Index&m=getClick&mid={$hdcms.mid}&cid={$hdcms.cid}&aid={$hdcms.aid}"></script>次点击
                 	所属分类：<a href="{$hdcms.caturl}">{$hdcms.catname}</a>
                 <a href="javascript:content.addFavorite({$hdcms.mid},{$hdcms.cid},{$hdcms.aid})">加入收藏</a>
             </p>
         </div>
         <div class="content">
-        	<if value="$hdcms.thumb !='__ROOT__/'">
-        		<img src="{$hdcms.thumb}"/><br/>
-        	</if>
             {$hdcms.content}
         </div>
         <div class="tag">

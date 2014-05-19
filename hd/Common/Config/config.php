@@ -1,5 +1,6 @@
 <?php
-$globalConfig 							= require './data/config/config.inc.php';
+$globalConfig 									= require './data/config/config.inc.php';
+$globalConfig['EMAIL_FORMMAIL']	=$globalConfig['EMAIL_USERNAME'];//邮箱发件人
 $config = array(
 	'DB_DRIVER' 							=> 'mysql', //数据库驱动
 	'DB_PCONNECT' 					=> true, //数据库持久链接

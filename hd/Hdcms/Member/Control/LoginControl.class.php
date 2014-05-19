@@ -4,14 +4,6 @@
  * Class UserControl
  */
 class LoginControl extends CommonControl {
-
-	//构造函数
-	public function __init() {
-		if (session("uid") && METHOD != 'quit') {
-			go(U("Index/Index/index"));
-		}
-	}
-
 	//登录
 	public function login() {
 		if (session('uid')) {
@@ -47,11 +39,9 @@ class LoginControl extends CommonControl {
 				$this -> error('密码输入错误');
 				$this -> display();
 			}
-			setcookie('login', 1, 0, '/');
+			setcookie('login', 1, 0, '/', C('SESSION_DOMAIN'));
 			unset($user['password']);
 			unset($user['code']);
-			//是否为超级管理员
-			$_SESSION['WEB_MASTER'] = strtolower(C("WEB_MASTER")) == strtolower($user['username']);
 			$_SESSION = array_merge($_SESSION, $user);
 			if (empty($user['icon'])) {
 				$_SESSION['icon'] = __ROOT__ . '/data/image/user/250.png';
@@ -93,11 +83,9 @@ class LoginControl extends CommonControl {
 			if ( M('user_deny_ip') -> where("ip='{$user['lastip']}'") -> find()) {
 				$_SESSION['lock'] = true;
 			}
-			setcookie('login', 1, 0, '/');
+			setcookie('login', 1, 0, '/', C('SESSION_DOMAIN'));
 			unset($user['password']);
 			unset($user['code']);
-			//是否为超级管理员
-			$_SESSION['WEB_MASTER'] = strtolower(C("WEB_MASTER")) == strtolower($user['username']);
 			$_SESSION = array_merge($_SESSION, $user);
 			if (empty($user['icon'])) {
 				$_SESSION['icon'] = __ROOT__ . '/data/image/user/250.png';
@@ -178,23 +166,24 @@ class LoginControl extends CommonControl {
 				exit ;
 			}
 			$_POST['rid'] = C('default_member_group');
-			if(C('MEMBER_EMAIL_VALIDATE')){//开启邮箱验证
-				$_POST['user_state']=0;
-			}else{
-				$_POST['user_state']=C('MEMBER_VERIFY');//会员注册不需要审核
-			}
+			//会员审核状态
+			$_POST['user_state']=C('MEMBER_VERIFY');
+			//邮件验证key
+			$_POST['validatecode'] = substr(md5(time() . mt_rand(1, 1000)), -8);
 			if ($Model -> addUser($_POST)) {
 				$user = $Model -> where(array('username' => $username)) -> find();
-				setcookie('login', 1, 0, '/');
+				setcookie('login', 1, 0, '/', C('SESSION_DOMAIN'));
 				unset($user['password']);
 				unset($user['code']);
-				//是否为超级管理员
-				$_SESSION['WEB_MASTER'] = strtolower(C("WEB_MASTER")) == strtolower($user['username']);
 				$_SESSION = array_merge($_SESSION, $user);
 				$_SESSION['icon'] = __ROOT__ . '/data/image/user/250.png';
 				$_SESSION['icon150'] = __ROOT__ . '/data/image/user/150.png';
 				$_SESSION['icon100'] = __ROOT__ . '/data/image/user/100.png';
 				$_SESSION['icon50'] = __ROOT__ . '/data/image/user/50.png';
+				//发送验证邮件
+				if (C('MEMBER_EMAIL_VALIDATE')) {
+					go("Email/sendMail");
+				}
 				go(U('Member/Index/index'));
 			} else {
 				$this -> error = $Model -> error;
@@ -205,9 +194,7 @@ class LoginControl extends CommonControl {
 		}
 	}
 
-	/**
-	 * 验证码
-	 */
+	//验证码
 	public function code() {
 		$code = new Code();
 		$code -> show();

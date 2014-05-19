@@ -17,14 +17,23 @@ class SearchControl extends Control {
 	//搜索内容
 	public function search() {
 		$word = Q('word');
+		$categoryCache = cache('category');
 		if (!$word) {
 			$this -> error("搜索内容不能为空");
 		} else {
 			$cid = Q('cid', null, 'intval');
 			$mid =Q('mid',1,'intval');
 			$_REQUEST['mid']=$mid = $mid?$mid:1;
-			if($cid){
-				$_REQUEST['mid']=$mid = $this->_category[$cid]['mid'];
+			//=====================记录搜索词
+			$SearchTotal = M('search')->where(array('word'=>$word))->getField('total');
+			if($SearchTotal){
+				M('search')->where(array('word'=>$word))->save(array('total'=>$SearchTotal+1));
+			}else{
+				M('search')->add(array('total'=>1,'word'=>$word,'mid'=>$_REQUEST['mid']));
+			}
+			
+			if($cid && isset($categoryCache[$cid])){
+				$_REQUEST['mid']=$mid =$categoryCache[$cid]['mid'];
 			}
 			$pre = C('DB_PREFIX');
 			$seachType = Q('type', 'title');

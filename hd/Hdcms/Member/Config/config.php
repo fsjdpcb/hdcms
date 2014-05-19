@@ -1,5 +1,5 @@
 <?php
 return array(
-'TPL_PATH'                      => 'template/system/member/',          //模板目录
+'TPL_PATH'                      => 'template/system/Member/',          //模板目录
 );
 ?>

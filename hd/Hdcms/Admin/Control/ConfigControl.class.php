@@ -67,7 +67,26 @@ class ConfigControl extends AuthControl {
 			$this -> display();
 		}
 	}
-
+	//验证EMAIL发送
+	public function checkEmail(){
+		 $Config  = array(
+			'EMAIL_USERNAME'=>$_POST['EMAIL_USERNAME'],
+			'EMAIL_PASSWORD'=>$_POST['EMAIL_PASSWORD'],
+			'EMAIL_HOST'=>$_POST['EMAIL_HOST'],
+			'EMAIL_PORT'=>$_POST['EMAIL_PORT'],
+			'EMAIL_SSL'=>false,
+			'EMAIL_CHARSET'=>'utf-8',
+			'EMAIL_FORMMAIL'=>$_POST['EMAIL_USERNAME'],
+			'EMAIL_FROMNAME'=>$_POST['EMAIL_FROMNAME'],
+		);
+		C($Config);
+		$state = Mail::send("houdunwangxj@gmail.com","houdunwangxj@gmail.com","HDCMS系统测试邮件","使用者网站:".__HOST__);
+		if($state){
+			$this->success('邮箱配置正确，发送正常!');
+		}else{
+			$this->error('邮箱配置错误...');
+		}
+	}
 	//更新缓存
 	public function updateCache() {
 		$Model = K('config');
@@ -76,7 +95,6 @@ class ConfigControl extends AuthControl {
 		} else {
 			$this -> error($Model -> error);
 		}
-
 	}
 
 }

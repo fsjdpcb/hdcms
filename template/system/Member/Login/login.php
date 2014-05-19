@@ -26,7 +26,7 @@
 </div>
 <div class="content container">
     <header>
-        <span>盾友注册</span>
+        <span>盾友登录</span>
 
         <p>拓展人脉关系，体验分享乐趣，让技术真正属于你，后盾网 人人做后盾！</p>
         <strong>客户服务邮箱 <a href="mailto:{$hd.config.email}">{$hd.config.email}</a></strong>
@@ -62,7 +62,8 @@
             </form>
         </div>
         <div class="field col-md-4">
-            > 还没有账号？ <a href="__WEB__?a=Member&c=Login&m=reg">立即注册</a>
+            > 还没有账号？ <a href="__WEB__?a=Member&c=Login&m=reg">立即注册</a><br/>
+            > 忘记密码？ <a href="__WEB__?a=Member&c=Password&m=findPassword">找回密码</a>
         </div>
     </article>
 </div>

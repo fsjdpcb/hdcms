@@ -52,6 +52,7 @@ class AdministratorControl extends AuthControl {
 	//添加管理员
 	public function add() {
 		if (IS_POST) {
+			$_POST['user_state']=1;
 			if ($this -> _db -> addUser($_POST)) {
 				$this -> success("添加管理员成功！");
 			} else {

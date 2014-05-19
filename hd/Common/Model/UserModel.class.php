@@ -29,6 +29,8 @@ class UserModel extends ViewModel {
 		if (!empty($data['password'])) {
 			$data['code'] = $this -> getUserCode();
 			$data['password'] = md5($data['password'] . $data['code']);
+		}else{
+			unset($data['password']);
 		}
 		$uid = intval($data['uid']);
 		return $this -> where("uid={$uid}") -> save($data);
@@ -50,7 +52,7 @@ class UserModel extends ViewModel {
 		$data['code'] = $code;
 		$data['password'] = md5($data['password'] . $data['code']);
 		$data['nickname'] = $data['username'];
-		$data['domain'] = $data['username'];
+		$data['domain'] = substr(md5(mt_rand(1,1000).time().$data['username']),0,8);
 		$data['regtime'] = time();
 		$data['logintime'] = time();
 		$data['regip'] = ip_get_client();

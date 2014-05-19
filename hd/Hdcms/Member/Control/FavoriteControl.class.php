@@ -20,7 +20,4 @@ class FavoriteControl extends MemberAuthControl {
 		$this -> count = $count;
 		$this -> display();
 	}
-
-	
-
 }

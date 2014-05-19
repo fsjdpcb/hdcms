@@ -209,6 +209,11 @@
                         		</tr>
                             </if>
                         </list>
+                        <tr>
+                        	<td colspan="4">
+                        		<button class="hd-cancel-small" id="checkEmail" type="button">发邮件测试</button>
+                        	</td>
+                        </tr>
                     </table>
                 </div>
                 <div id="cookie">
@@ -258,5 +263,16 @@
         <input type="submit" class="hd-success" value="确定"/>
     </div>
 </form>
+<script type="text/javascript" charset="utf-8">
+	$("#checkEmail").click(function(){
+		$.post("{|U:'checkEmail'}",$('form').serialize(),function(json){
+				if(json.state){
+					alert(json.message);
+				}else{
+					alert(json.message);
+				}
+			},'json');
+	})
+</script>
 </body>
 </html>

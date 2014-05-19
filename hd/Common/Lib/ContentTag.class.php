@@ -120,10 +120,12 @@ str;
         if(\$result){
             //当前栏目,用于改变样式
             \$_self_cid = isset(\$_REQUEST['cid'])?\$_REQUEST['cid']:0;
+			\$categoryCache =cache('category');
             foreach (\$result as \$field):
                 //当前栏目样式
                 \$field['class']=\$_self_cid==\$field['cid']?"$class":"";
                 \$field['caturl'] = Url::getCategoryUrl(\$field);
+				\$field['childcategory']=Data::channelList(\$categoryCache,\$field['cid']);
             ?>
 str;
 		$php .= $content;
@@ -156,6 +158,9 @@ str;
 	//文章列表
 	public function _arclist($attr, $content) {
 		$cid = isset($attr['cid']) ? trim($attr['cid']) : '';
+		if(!strstr($cid,'$')){
+			$cid="'$cid'";
+		}
 		$aid = isset($attr['aid']) ? trim($attr['aid']) : '';
 		$mid = isset($attr['mid']) && is_numeric($attr['mid']) ? intval($attr['mid']) : '';
 		$row = isset($attr['row']) ? intval($attr['row']) : 10;
@@ -176,9 +181,9 @@ str;
 		//子栏目处理
 		$sub_channel = isset($attr['sub_channel']) ? intval($attr['sub_channel']) : 1;
 		$php = <<<str
-        <?php \$mid='$mid';\$cid ='$cid';\$subtable ='$subtable';\$order ='$order';\$flag='$flag';\$noflag='$noflag';\$aid='$aid';\$type='$type';\$sub_channel=$sub_channel;
+        <?php \$mid='$mid';\$cid =$cid;\$subtable ='$subtable';\$order ='$order';\$flag='$flag';\$noflag='$noflag';\$aid='$aid';\$type='$type';\$sub_channel=$sub_channel;
             \$mid = \$mid?\$mid:Q('mid',1,'intval');
-            \$cid = \$cid?\$cid:Q('cid',null,'intval');
+            \$cid = !empty(\$cid)?\$cid:Q('cid',0,'intval');
             //导入模型类
             \$db =ContentViewModel::getInstance(\$mid);
             //主表（有表前缀）
@@ -187,10 +192,6 @@ str;
 			if(empty(\$subtable)){
 				\$db->join('category,user');
 			}
-            //没有设置栏目属性时取get值
-            if(empty(\$cid)){
-                \$cid= Q('cid',NULL,'intval');
-            }
             //---------------------------排序类型-------------------------------
             switch(\$type){
                 case 'hot':
@@ -520,6 +521,7 @@ str;
                 foreach(\$result as \$field):
                   \$field['url']=str_ireplace('[ROOT]','__ROOT__',\$field['url']);
                   \$field['link']='<a href="'.\$field['url'].'" target="'.\$field['target'].'">'.\$field['title'].'</a>';
+                  \$field['child']=\$db->where("pid=".\$field['nid'])->all();
                 ?>
 str;
 		$php .= $content;
@@ -536,7 +538,7 @@ str;
             \$data = \$db->field("uid,nickname,domain,icon")->where(" user_state=1")->order("credits DESC")->limit(\$row)->all();
             foreach(\$data as \$field):
                 \$field['url'] = U('Member/Space/index',array('u'=>\$field['domain']));
-                \$field['icon']=\$field['icon']?'__ROOT__/'.\$field['icon']:'__ROOT__/data/image/user/150.png';
+                \$field['icon']=\$field['icon']?'__ROOT__/'.\$field['icon']:'__ROOT__/data/image/user/50.png';
             ?>
 str;
 		$php .= $content;

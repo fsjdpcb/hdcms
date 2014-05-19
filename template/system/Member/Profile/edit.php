@@ -165,19 +165,19 @@
                         <tr>
                             <th>当前密码</th>
                             <td class="field">
-                                <input type="password" name="password"/>
+                                <input type="password" name="oldpassword"/>
                             </td>
                             <td class="w200">
-                                <span id="hd_password"></span>
+                                <span id="hd_oldpassword"></span>
                             </td>
                         </tr>
                         <tr>
                             <th>新密码</th>
                             <td class="field">
-                                <input type="password" name="newpassword"/>
+                                <input type="password" name="password"/>
                             </td>
                             <td>
-                                <span id="hd_newpassword"></span>
+                                <span id="hd_password"></span>
                             </td>
                         </tr>
                         <tr>
@@ -218,7 +218,7 @@
                         }
                     });
                     $("#form_password").validate({
-                        password: {
+                        oldpassword: {
                             rule: {
                                 required:true,
                                 ajax: CONTROL + '&m=check_password'
@@ -229,7 +229,7 @@
                             },
                             success: '输入正确'
                         },
-                        newpassword: {
+                        password: {
                             rule: {
                                 required:true,
                             },
@@ -240,7 +240,7 @@
                         },
                         passwordc: {
                             rule: {
-                                confirm: 'newpassword'
+                                confirm: 'password'
                             },
                             error: {
                                 confirm: '两次密码不一致'

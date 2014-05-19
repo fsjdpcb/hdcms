@@ -49,8 +49,7 @@
 <div class="content container">
     <div class="row">
         <div class="col-md-8">
-          
-            <form action="{|U:'content',array('mid'=>$_GET['mid'],'cid'=>$_GET['cid'])}" class="hd-form">
+            <form action="__WEB__" class="hd-form">
 				<input type="hidden" name="a" value="Index"/>
 				<input type="hidden" name="c" value="Search"/>
 				<input type="hidden" name="m" value="search"/>

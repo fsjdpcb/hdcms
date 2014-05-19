@@ -37,17 +37,15 @@ class CategoryModel extends Model {
 			$cid = $this -> add();
 			if ($cid) {
 				//设置权限
-				if (isset($_POST['access']) && !empty($_POST['access'])) {
-					$categoryAccess = $_POST['access'];
-					if (!empty($categoryAccess)) {
-						$categoryAccessModel = M('category_access');
-						$categoryAccessModel -> del(array('cid' => $cid));
-						foreach ($categoryAccess as $access) {
-							$access['cid'] = $cid;
-							$access['mid'] = $mid;
-							$categoryAccessModel -> add($access);
-						}
-					}
+				//设置权限
+				$categoryAccess = $InsertData['access'];
+				$categoryAccessModel = M('category_access');
+				$categoryAccessModel -> del(array('cid' => $cid));
+				foreach ($categoryAccess as $access) {
+					if(count($access)==2)continue;
+					$access['cid'] = $cid;
+					$access['mid'] = $mid;
+					$categoryAccessModel -> add($access);
 				}
 				if (!$this -> updateCache()) {
 					return false;
@@ -81,17 +79,14 @@ class CategoryModel extends Model {
 			$state = $this -> save();
 			if ($state) {
 				//设置权限
-				if (isset($UpdateData['access']) && !empty($UpdateData['access'])) {
-					$categoryAccess = $_POST['access'];
-					if (!empty($categoryAccess)) {
-						$categoryAccessModel = M('category_access');
-						$categoryAccessModel -> del(array('cid' => $cid));
-						foreach ($categoryAccess as $access) {
-							$access['cid'] = $cid;
-							$access['mid'] = $mid;
-							$categoryAccessModel -> add($access);
-						}
-					}
+				$categoryAccess = $UpdateData['access'];
+				$categoryAccessModel = M('category_access');
+				$categoryAccessModel -> del(array('cid' => $cid));
+				foreach ($categoryAccess as $access) {
+					if(count($access)==2)continue;
+					$access['cid'] = $cid;
+					$access['mid'] = $mid;
+					$categoryAccessModel -> add($access);
 				}
 				if (!$this -> updateCache()) {
 					return false;
@@ -149,12 +144,12 @@ class CategoryModel extends Model {
 	//删除栏目
 	public function delCategory($cid) {
 		$ContentModel = ContentModel::getInstance($this -> _category[$cid]['mid']);
-		$ContentModel->where(array('cid'=>$cid))->del();
+		$ContentModel -> where(array('cid' => $cid)) -> del();
 		//删除栏目权限
 		M("category_access") -> where("cid=$cid") -> del();
 		//删除栏目
-		$state =  $this -> del($cid);
-		$this->updateCache();
+		$state = $this -> del($cid);
+		$this -> updateCache();
 		return $state;
 	}
 

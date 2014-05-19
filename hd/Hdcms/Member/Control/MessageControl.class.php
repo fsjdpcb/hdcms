@@ -18,7 +18,7 @@ class MessageControl extends MemberAuthControl
     {
         $where = 'to_uid=' . $_SESSION['uid'];
         $sql = "SELECT count(distinct from_uid) AS c FROM " . C("DB_PREFIX") . "user_message AS um
-                WHERE to_uid=" . $_SESSION['uid'];
+                WHERE to_uid=" . $_SESSION['uid'] ." ORDER BY mid DESC";
         $count = $this->_db->query($sql);
         $page = new Page($count[0]['c'], 10);
         $this->data = $this->_db->where($where)->limit($page->limit())->order("mid DESC")->group('from_uid')->all();
@@ -27,11 +27,10 @@ class MessageControl extends MemberAuthControl
         $this->display();
     }
 
-    /**
-     * 查看私信
-     */
+    // 查看私信
     public function show()
     {
+    	$Model =  K('Message');
         $from_uid = Q('from_uid', null, 'intval');
         if ($from_uid) {
             $uid= $_SESSION['uid'];
@@ -41,16 +40,14 @@ class MessageControl extends MemberAuthControl
                 ";
             $this->data = $this->_db->query($sql);
             //更改私信状态为已读
-            $this->_db->where("from_uid={$from_uid} AND to_uid={$uid}")->save(array('state' => 1));
+            $Model->where("from_uid={$from_uid} AND to_uid={$uid}")->save(array('user_message_state' => 1));
             $this->display();
         } else {
             $this->error('参数错误');
         }
     }
 
-    /**
-     * 发送私信
-     */
+    //发送私信
     public function send()
     {
         $to_uid = Q('to_uid', null, 'intval');
@@ -75,9 +72,7 @@ class MessageControl extends MemberAuthControl
             }
         }
     }
-    /**
-     * 回复私信
-     */
+    //回复私信
     public function reply()
     {
         $_POST['from_uid'] = $_SESSION['uid'];

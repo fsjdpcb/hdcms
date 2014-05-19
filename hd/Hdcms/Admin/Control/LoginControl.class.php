@@ -5,8 +5,8 @@
  * Class LoginControl
  * @author 向军 <houdunwangxj@gmail.com>
  */
-class LoginControl extends Control {
-
+class LoginControl extends CommonControl {
+	
 	/**
 	 * 登录页面显示验证码
 	 * @access public
@@ -22,7 +22,7 @@ class LoginControl extends Control {
 	 * @access public
 	 */
 	public function Login() {
-		if (intval(Q('session.admin'))) {
+		if (IN_ADMIN || WEB_MASTER) {
 			go(__APP__);
 			exit ;
 		}
@@ -60,7 +60,7 @@ class LoginControl extends Control {
 			unset($user['password']);
 			unset($user['code']);
 			//是否为超级管理员
-			$_SESSION['WEB_MASTER'] = strtolower(C("WEB_MASTER")) == strtolower($user['username']);
+			
 			$_SESSION = array_merge($_SESSION, $user);
 			if (empty($user['icon'])) {
 				$_SESSION['icon'] = __ROOT__.'/data/image/user/250.png';

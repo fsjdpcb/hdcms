@@ -6,8 +6,11 @@
  * @author hdxj <houdunwangxj@gmail.com>
  */
 class CommonControl extends Control {
+	//构造函数
 	public function __construct() {
-		defined("IN_ADMIN") 			or define("IN_ADMIN", isset($_SESSION['uid']) && $_SESSION['admin'] == 1);
+		defined("IS_LOGIN")				or define("IS_LOGIN", isset($_SESSION['uid']));
+		defined("IN_ADMIN") 			or define("IN_ADMIN",IS_LOGIN && $_SESSION['admin'] == 1);
+		defined('WEB_MASTER'	)		or define('WEB_MASTER',isset($_SESSION['uid']) && strtolower(C("WEB_MASTER")) == strtolower($_SESSION['username']));
 		defined("ROOT_URL") 			or define('ROOT_URL',__ROOT__);
 		defined("WEB_URL") 				or define('WEB_URL',__WEB__);
 		defined("CONTROL_URL") 	or define('CONTROL_URL',__CONTROL__);

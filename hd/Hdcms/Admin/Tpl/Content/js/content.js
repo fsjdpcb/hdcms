@@ -48,16 +48,15 @@ function del(mid,cid,aid) {
                 success: function (data) {
                     if (data.state == 1) {
                         $.dialog({
-                            message: "删除文章成功",
+                            message: data.message,
                             type: "success",
-                            timeout: 3,
                             close_handler: function () {
                                 location.href = URL;
                             }
                         });
                     } else {
                         $.dialog({
-                            message: "删除文章失败",
+                            message: data.message,
                             type: "error",
                             close_handler: function () {
                                 location.href = URL;
@@ -85,16 +84,15 @@ function audit(mid,cid, state) {
             success: function (data) {
                 if (data.state == 1) {
                     $.dialog({
-                        message: "设置文章成功",
+                        message: data.message,
                         type: "success",
-                        timeout: 3,
                         close_handler: function () {
                             location.href = URL;
                         }
                     });
                 } else {
                     $.dialog({
-                        message: "设置文章失败",
+                        message: data.message,
                         type: "error",
                         close_handler: function () {
                             location.href = URL;

@@ -6,7 +6,7 @@ div.header {
   width: 960px;
   background: #ffffff;
   padding: 20px 0px 10px;
-  background: url("../../../../../../template/default/images/reg-logo.png") no-repeat;
+  background: url("../images/reg-logo.png") no-repeat;
 }
 div.header a {
   display: block;

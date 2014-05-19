@@ -7,13 +7,11 @@
  */
 class CategoryControl extends AuthControl {
 	private $_category, $_model;
-
 	//构造函数
 	public function __init() {
 		$this -> _category = cache("category");
 		$this -> _model = cache("model");
 	}
-
 	/**
 	 * 显示栏目列表
 	 */

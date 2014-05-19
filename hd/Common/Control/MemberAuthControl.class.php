@@ -8,27 +8,41 @@ class MemberAuthControl extends CommonControl {
 	//构造函数
 	public function __construct() {
 		parent::__construct();
-		//会员中心是否关闭
-		if (C("member_open") == 0 && !IN_ADMIN) {
-			$this -> display("template/system/Member/close.php");
-			exit ;
+		if (!$this -> checkAccess()) {
+			$this -> error("没有操作权限");
 		}
+		//消息数
+		$message_count = M("user_message") -> where(array('to_uid' => $_SESSION['uid'], 'user_message_state' => 0)) -> count();
+		$this -> assign('message_count', $message_count);
+	}
+
+	//验证
+	public function checkAccess() {
 		//未登录
-		if (!session('uid')) {
+		if (!IS_LOGIN) {
 			go(U("Member/Login/login"));
 		}
+		//管理员
+		if (WEB_MASTER || IN_ADMIN) {
+			return true;
+		}
+		//会员中心关闭
+		if (C("MEMBER_OPEN") == 0) {
+			$this -> display("template/system/member_close.php");
+			exit ;
+		}
 		//邮箱验证
-		if (session('uid') && C('MEMBER_EMAIL_VALIDATE') && session('user_state') == 0) {
-			$this -> emailValidate();
+		if (C('MEMBER_EMAIL_VALIDATE') && $_SESSION['user_state'] == 0) {
+			go(U('Member/Email/VaifyMail'));
 		}
-		//锁定用户
-		if (isset($_SESSION['lock']) && $_SESSION['lock']) {
-			$this -> error('您已被锁定，无法进行操作', __WEB__);
-		}
+		return true;
 	}
-	//验证邮箱
-	public function emailValidate(){
-		$this->display(TPL_PATH.'Login/email_validate.php');
-		exit;
+
+	//记录会员动态
+	public function saveDynamic($content) {
+		$Model = M('user_dynamic');
+		$data = array('uid' => $_SESSION['uid'], 'addtime' => time(), 'content' => $content);
+		$Model -> add($data);
 	}
+
 }
