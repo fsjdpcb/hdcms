@@ -144,7 +144,7 @@ $db->exe("CREATE TABLE `".$db_prefix."favorite` (
   `aid` int(10) unsigned NOT NULL,
   `uid` int(10) unsigned NOT NULL,
   PRIMARY KEY (`fid`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='收藏夹'");
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='收藏夹'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."field`");
 $db->exe("CREATE TABLE `".$db_prefix."field` (
   `fid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
@@ -233,7 +233,7 @@ $db->exe("CREATE TABLE `".$db_prefix."navigation` (
   `list_order` mediumint(100) NOT NULL DEFAULT '100' COMMENT '排序',
   `url` varchar(255) NOT NULL DEFAULT '' COMMENT '链接地址',
   PRIMARY KEY (`nid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='网站前台导航'");
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='网站前台导航'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."node`");
 $db->exe("CREATE TABLE `".$db_prefix."node` (
   `nid` smallint(6) NOT NULL AUTO_INCREMENT,
@@ -277,7 +277,7 @@ $db->exe("CREATE TABLE `".$db_prefix."role` (
   `allowsendmessage` tinyint(1) NOT NULL DEFAULT '1' COMMENT '允许发短消息  1 允许  2 不允许',
   PRIMARY KEY (`rid`),
   KEY `gid` (`rid`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='角色表'");
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='角色表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."search`");
 $db->exe("CREATE TABLE `".$db_prefix."search` (
   `sid` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -313,7 +313,7 @@ $db->exe("CREATE TABLE `".$db_prefix."tag` (
   PRIMARY KEY (`tid`),
   UNIQUE KEY `name` (`tag`),
   KEY `total` (`total`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='Tag标签表'");
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Tag标签表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."template_tag`");
 $db->exe("CREATE TABLE `".$db_prefix."template_tag` (
   `tid` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -341,20 +341,21 @@ $db->exe("CREATE TABLE `".$db_prefix."upload` (
   PRIMARY KEY (`id`),
   KEY `basename` (`basename`),
   KEY `id` (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COMMENT='上传文件'");
+) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COMMENT='上传文件'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."user`");
 $db->exe("CREATE TABLE `".$db_prefix."user` (
   `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `nickname` char(30) NOT NULL DEFAULT '' COMMENT '昵称',
   `username` char(30) NOT NULL DEFAULT '',
   `password` char(40) NOT NULL DEFAULT '',
-  `code` char(20) NOT NULL DEFAULT '' COMMENT '校验码',
+  `code` char(30) NOT NULL DEFAULT '' COMMENT '密码key',
   `email` char(30) NOT NULL DEFAULT '' COMMENT '邮箱',
+  `validatecode` char(50) NOT NULL DEFAULT '' COMMENT '邮箱验证key',
   `regtime` int(11) NOT NULL DEFAULT '0' COMMENT '注册时间',
   `logintime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '登录时间',
   `regip` char(255) NOT NULL DEFAULT '' COMMENT '注册IP',
   `lastip` char(15) NOT NULL DEFAULT '' COMMENT '最后登录ip',
-  `user_state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1  正常  2 锁定',
+  `user_state` tinyint(1) NOT NULL DEFAULT '0' COMMENT '1  正常  0 锁定',
   `lock_end_time` int(10) NOT NULL DEFAULT '0' COMMENT '锁定到期时间',
   `qq` char(20) NOT NULL DEFAULT '' COMMENT 'qq号码',
   `sex` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 男 2 女 3 保密',
@@ -366,7 +367,6 @@ $db->exe("CREATE TABLE `".$db_prefix."user` (
   `domain` char(20) NOT NULL DEFAULT '' COMMENT '个性域名',
   `spec_num` mediumint(9) unsigned NOT NULL DEFAULT '0' COMMENT '空间访问数',
   `icon` varchar(255) NOT NULL DEFAULT '' COMMENT '头像',
-  `lock` tinyint(1) NOT NULL DEFAULT '1' COMMENT '锁定',
   PRIMARY KEY (`uid`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`),
@@ -399,7 +399,7 @@ $db->exe("CREATE TABLE `".$db_prefix."user_guest` (
   `guest_uid` int(11) unsigned NOT NULL COMMENT '访问id',
   `uid` int(11) unsigned NOT NULL COMMENT '被访问空间Uid',
   PRIMARY KEY (`gid`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='空间访客表'");
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='空间访客表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."user_message`");
 $db->exe("CREATE TABLE `".$db_prefix."user_message` (
   `mid` int(10) unsigned NOT NULL AUTO_INCREMENT,

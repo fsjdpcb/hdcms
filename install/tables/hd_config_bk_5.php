@@ -5,7 +5,7 @@ $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('4','COPYRIGHT','Copyright © 2012-2014 HDCMS 后盾网','站点配置','网站版权信息','文本','','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('5','KEYWORDS','php培训,php实训,后盾网','站点配置','网站关键词','文本','','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('6','DESCRIPTION','后盾网顶尖PHP培训 内容全面 全程实战!业内顶级讲师亲自授课,千余课时独家视频教程免费下载,超百G原创视频资源,实力不容造假!010-64825057','站点配置','网站描述','多行文本','','100')");
-$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('7','EMAIL','dsf@fd.com','站点配置','管理员邮箱','文本','','100')");
+$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('7','EMAIL','houdunwangxj@gmail.com','站点配置','管理员邮箱','文本','','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('8','BACKUP_DIR','backup','内容相关','数据备份目录','文本','','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('9','WEB_OPEN','1','站点配置','网站开启','布尔(1/0)','','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('10','AUTH_KEY','houdunwang.com','安全配置','cookie加密KEY','文本','','100')");
@@ -14,7 +14,7 @@ $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('20','ALLOW_TYPE','jpg,jpeg,png,bmp,gif','上传配置','允许上传文件类型','文本','','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('21','ALLOW_SIZE','10480000','上传配置','允许上传大小（字节）','数字','','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('22','WATER_ON','1','上传配置','上传文件加水印','布尔(1/0)','','100')");
-$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('24','MEMBER_VERIFY','0','会员配置','会员注册不需要审核','布尔(1/0)','','1')");
+$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('24','MEMBER_VERIFY','1','会员配置','会员注册不需要审核','布尔(1/0)','','1')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('25','REG_SHOW_CODE','0','会员配置','会员注册显示验证码','布尔(1/0)','','2')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('27','REG_INTERVAL','0','会员配置','2次注册间隔间间','数字','单位秒，0为不限','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('28','DEFAULT_MEMBER_GROUP','4','会员配置','新注册会员初始组','数字','','100')");
@@ -30,8 +30,6 @@ $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('45','WATER_QUALITY','90','水印配置','图片压缩比','数字','','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('46','WATER_POS','9','水印配置','水印位置','数字','','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('47','DEL_CONTENT_MODEL','0','内容相关','删除文章先放入回收站','布尔(1/0)','','100')");
-$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('66','REGISTERVERIFYMESSAGE','欢迎您注册成为后盾网用户，您的账号需要邮箱认证，点击下面链接进行认证：{click}
-或者将网址复制到浏览器：{url}','会员配置','邮件认证内容','多行文本','可用变量：用户名 - {username} ，密码 - {password} ，Email - {email} ，点击认证地址 - {click} ，链接地址：{url}','4')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('31','REPLY_CREDITS','1','会员配置','评论奖励积分','文本','会员提交回复奖励积分','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('48','DOWN_REMOTE_PIC','0','内容相关','下载远程图片','布尔(1/0)','','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('49','AUTO_DESC','1','内容相关','截取内容为摘要','布尔(1/0)','','100')");
@@ -52,9 +50,9 @@ $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('34','COMMENT_STEP_TIME','10','会员配置','评论间隔时间','文本','必须大于1（单位秒)','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('56','PATHINFO_TYPE','0','伪静态','开启伪静态','布尔(1/0)','需要环境支持','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('57','OPEN_REWRITE','0','伪静态','开启Rewrite','布尔(1/0)','1:服务器需要支持Rewrtie 2:将HDCMS根目录中的htaccess.txt改名为.htaccess','100')");
-$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('35','EMAIL_USERNAME','2300071698@qq.com','邮箱配置','邮箱用户名','文本','使用126或qq邮箱','100')");
+$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('35','EMAIL_USERNAME','','邮箱配置','邮箱用户名','文本','使用126或qq邮箱','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('36','EMAIL_PASSWORD','','邮箱配置','邮箱密码','文本','邮箱的密码','100')");
-$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('37','EMAIL_HOST','smtp.qq.com','邮箱配置','smtp地址','文本','如smtp.gmail.com','100')");
+$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('37','EMAIL_HOST','smtp.exmail.qq.com','邮箱配置','smtp地址','文本','如smtp.gmail.com','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('38','EMAIL_PORT','25','邮箱配置','smtp端口','文本','qq,126为25，gmail为465','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('39','EMAIL_FROMNAME','后盾网','邮箱配置','发送人','文本','发件箱显示的用户名','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('58','COOKIE_EXPIRE','','COOKIE配置','Coodie有效期','文本','单位秒','100')");
