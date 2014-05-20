@@ -35,6 +35,8 @@ class IndexControl extends PublicControl {
 				$field['caturl'] = Url::getCategoryUrl($field);
 				$this -> assign('hdcms', $field);
 				$this -> display($field['template'], $CacheTime);
+			}else{
+				_404('页面不存在');
 			}
 		} else {
 			$this -> display(null, $CacheTime);

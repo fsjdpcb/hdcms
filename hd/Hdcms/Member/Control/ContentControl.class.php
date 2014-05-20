@@ -64,10 +64,6 @@ class ContentControl extends MemberAuthControl {
 			$mid = $this->_category[$this->_cid]['mid'];
 			$ContentModel = new Content($mid);
 			if ($aid = $ContentModel -> add($_POST)) {
-				$Dcat = $this->_category[$this->_cid];
-				$Dlink ="<a target='_blank' href='".U('Index/Index/content',array('mid'=>$Dcat['mid'],'cid'=>$Dcat['cid'],'aid'=>$aid))."'>{$_POST['title']}</a>"; 
-				$Dmessage = "发表了文章：".$Dlink;
-				$this->saveDynamic($Dmessage);
 				$this -> success('发表成功！');
 			} else {
 				$this -> error($ContentModel -> error);

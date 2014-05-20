@@ -14,6 +14,9 @@ class MemberAuthControl extends CommonControl {
 		//消息数
 		$message_count = M("user_message") -> where(array('to_uid' => $_SESSION['uid'], 'user_message_state' => 0)) -> count();
 		$this -> assign('message_count', $message_count);
+		//信息信息
+		$systemmessage_count=M("system_message") -> where(array('uid' => $_SESSION['uid'], 'state' => 0)) -> count();
+		$this -> assign('systemmessage_count', $systemmessage_count);
 	}
 
 	//验证
@@ -28,7 +31,7 @@ class MemberAuthControl extends CommonControl {
 		}
 		//会员中心关闭
 		if (C("MEMBER_OPEN") == 0) {
-			$this -> display("template/system/member_close.php");
+			$this -> display("template/system/member_close.html");
 			exit ;
 		}
 		//邮箱验证
@@ -36,13 +39,6 @@ class MemberAuthControl extends CommonControl {
 			go(U('Member/Email/VaifyMail'));
 		}
 		return true;
-	}
-
-	//记录会员动态
-	public function saveDynamic($content) {
-		$Model = M('user_dynamic');
-		$data = array('uid' => $_SESSION['uid'], 'addtime' => time(), 'content' => $content);
-		$Model -> add($data);
 	}
 
 }

@@ -54,7 +54,7 @@
     <nav>
         <a href="__WEB__?a=Member&c=Dynamic&m=index">
             <span class="glyphicon glyphicon-share"></span>
-            好友动态
+            会员动态
         </a>
         <a href="__WEB__?a=Member&c=Profile&m=edit">
             <span class="glyphicon glyphicon-fire"></span>
@@ -69,6 +69,11 @@
             <?php echo $m['model_name'];?>
         </a>
         <?php endforeach;?>
+        <a href="__WEB__?a=Member&c=SystemMessage&m=index">
+            <span class="glyphicon glyphicon-comment"></span>
+            系统信息
+            <span class="badge">{$systemmessage_count}</span>
+        </a>
         <a href="__WEB__?a=Member&c=Message&m=index">
             <span class="glyphicon glyphicon-comment"></span>
             我的消息

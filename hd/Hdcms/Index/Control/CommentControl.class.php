@@ -1,135 +1,124 @@
 <?php
-
 /**
+ * 评论
  * Class CommonControl
- * 发表评论
+ * @author hdxj<houdunwangxj@gmail.com>
  */
-class CommentControl extends CommonControl
-{
-    //模型
-    private $_db;
-    //模型mid
-    private $_mid;
-    //栏目cid
-    private $_cid;
-    //文章aid
-    private $_aid;
-
-    //构造函数
-    public function __init()
-    {
-        $this->_db = K("Comment");
-        $this->_mid = Q('mid', null, 'intval');
-        $this->_cid = Q('cid', null, 'intval');
-        $this->_aid = Q('aid', null, 'intval');
-        //栏目与文章aid必须存在
-        if (!$this->_cid || !$this->_aid) {
-            _404('参数错误');
-        }
-    }
-
-    //显示评论列表
-    public function index()
-    {
-        if (!$this->isCache()) { //缓存是否失效
-            $data = $this->_db->getComment();
-            $this->assign($data);
-        }
-        $this->display('index.php', 10);
-    }
-
-    //显示文章评论
-    public function show()
-    {
-        $data = $this->_db->getComment();
-        $this->assign($data);
-        $con = $this->fetch('index.php');
-        if (Q('page')) {
-            echo $con;
-        } else {
-            echo "document.write('<div id=\"hdcomment\">" . preg_replace('@\r|\n@mi', '', addslashes($con)) . "</div>')";
-        }
-        exit;
-    }
-
-    /**
-     * 添加评论
-     */
-    public function add_comment()
-    {
-        if (!session("uid")) {
-            $this->_ajax('nologin', '没有登录');
-        } else {
-            //---------------------------------------验证评论发表间隔时间
-            Q('session.comment_send_time', 0, 'intval');
-            //间隔时间小于配置项
-            if ($_SESSION['admin']==0 && Q('session.comment_send_time') + C('comment_step_time') > time()) {
-                $_time = Q('session.comment_send_time') + C('comment_step_time') - time();
-                $step = $_time / 60 > 1 ? intval($_time / 60) . '分钟' : $_time . '秒';
-                $this->_ajax(0, '请' . $step . '后发表');
-            }
-            //----------------------------------验证内容重复
-            $content = Q('content', '');
-            if (!trim($content)) {
-                $this->_ajax(0, '评论内容不能为空');
-            }
-            $data = $this->_db->
-                where("cid={$this->_cid} && aid={$this->_aid} && " . C("DB_PREFIX") . "comment.uid=" . session('uid'))
-                ->where("content='$content'")
-                ->order("comment_id DESC")->find();
-            if ($data) {
-                $this->_ajax(0, '请不要发表重复内容');
-            }
-			//----------------------------------------添加积分
-			$reply_credits = intval(C('reply_credits'));
-			$credits_msg = '';
-			if($reply_credits){
-				$sql = "UPDATE ".C('DB_PREFIX').'user AS u SET credits=credits+'.$reply_credits;
-				M()->exe($sql);
-				$_SESSION['credits']+=$reply_credits;
-				$credits_msg='奖励'.$reply_credits.'个积分';
+class CommentControl extends CommonControl {
+	//显示文章评论
+	public function show() {
+		$cid = Q('cid', 0, 'intval');
+		$aid = Q('aid', 0, 'intval');
+		$Model = K('Comment');
+		$where = "comment_state=1 AND cid={$cid} AND aid=$aid";
+		$count = $Model -> join() -> where($where) -> where("pid=0 ") -> count();
+		$page = new Page($count, 15);
+		$data = array();
+		if ($count) {
+			//获得1级回复的id
+			$result = $Model -> where($where) -> where("pid=0 ") -> limit($page -> limit()) -> order("comment_id desc") -> getField('comment_id', true);
+			$comment_id = implode(',', $result);
+			$data = $Model -> where("comment_state=1 AND (comment_id IN ($comment_id) OR reply_comment_id IN ($comment_id))") -> order("comment_id ASC") -> all();
+			//设置头像(没有头像的用户使用默认头像)
+			foreach ($data as $n => $d) {
+				if (empty($d['icon'])) {
+					$data[$n]['icon'] = __ROOT__ . "/data/image/user/50-gray.png";
+				} else {
+					$data[$n]['icon'] = __ROOT__ . '/' . $d['icon'];
+				}
 			}
-            //-----------------------------------------发表评论
-            $_POST['content'] = $content;
-            if ($comment_id = $this->_db->add_comment()) {
-                $comment = $this->get_one($comment_id);
-                $msg = C('comment_state') == 1 || session('admin')==1 ? '评论成功！'.$credits_msg : '评论成功，审核后显示';
-                //记录发表时间
-                session('comment_send_time', time());
-                //------------------------------------添加动态
-                $content ="发表了评论: " .mb_substr($content, 0, 30, 'utf-8');
-                $this->add_dynamic($content);
-                $this->_ajax(1, $msg, $comment);
-            } else {
-                $this->_ajax(0, '失败了哟');
-            }
-        }
-    }
+		}
+		//获得多层
+		$data = Data::channelLevel($data, 0, '', 'comment_id');
+		$this -> assign('page', $page -> show());
+		$this -> assign('data', $data);
+		$con = $this -> fetch('index.php');
+		if (Q('page')) {
+			echo $con;
+		} else {
+			echo "document.write('<div id=\"hdcomment\">" . preg_replace('@\r|\n@mi', '', addslashes($con)) . "</div>')";
+		}
+		exit ;
+	}
 
-    /**
-     * 验证评论发表间隔时间
-     */
-    public function check_comment_step()
-    {
-        $result = $this->_db->
-            where("cid={$this->_cid} && aid={$this->_aid} && " . C("DB_PREFIX") . "comment.uid=" . session('uid'))->order("comment_id DESC")
-            ->find();
-        if ($result) {
-            return $result['pubtime'] + C('comment_step_time') < time();
-        } else {
-            return false;
-        }
-    }
+	//添加评论
+	public function addComment() {
+		$Model = K('Comment');
+		$ModelCache= cache('model');
+		$mid = Q('mid',0,'intval');
+		$cid = Q('cid', 0, 'intval');
+		$aid = Q('aid', 0, 'intval');
+		if (!session("uid")) {
+			$this -> _ajax('nologin', '没有登录');
+		}
+		//-验证评论发表间隔时间
+		Q('session.comment_send_time', 0, 'intval');
+		//间隔时间小于配置项
+		if (!IN_ADMIN && Q('session.comment_send_time') + C('comment_step_time') > time()) {
+			$_time = Q('session.comment_send_time') + C('comment_step_time') - time();
+			$step = $_time / 60 > 1 ? intval($_time / 60) . '分钟' : $_time . '秒';
+			$this -> error('请' . $step . '后发表');
+		}
+		$content=Q('content');
+		if (!$content) {
+			$this -> error('评论内容不能为空');
+		}
+		$state = $Model -> where("cid={$cid} && aid={$aid} && " . C("DB_PREFIX") . "comment.uid=" . session('uid')) 
+						-> where("content='$content'") -> order("comment_id DESC") -> find();
+		if ($state) {
+			$this -> error('请不要发表重复内容');
+		}
+		//添加积分
+		$reply_credits = intval(C('reply_credits'));
+		$credits_msg = '';
+		if ($reply_credits) {
+			$sql = "UPDATE " . C('DB_PREFIX') . 'user AS u SET credits=credits+' . $reply_credits;
+			M() -> exe($sql);
+			$_SESSION['credits'] += $reply_credits;
+			$credits_msg = '奖励' . $reply_credits . '个积分';
+		}
+		//添加
+		if ($comment_id = $Model -> addComment()) {
+			//记录发表时间
+			session('comment_send_time', time());
+			//修改文章评论数
+			M($ModelCache[$mid]['table_name']) -> inc('comment_num', 'aid=' . $aid);
+			$comment_state = M('role')->where('rid='.$_SESSION['rid'])->getField('comment_state');
+			if($comment_state == 1 || IN_ADMIN){
+				$comment = $this -> getCommentHtml($comment_id);
+				$msg =  '评论成功！' . $credits_msg;
+			}else{
+				$comment='';
+				$msg =  '评论成功，审核后显示';
+			}
+			//添加动态
+			addDynamic($_SESSION['uid'],"发表了评论: " . mb_substr($content, 0, 30, 'utf-8'));
+			//向文章作者发送系统消息
+			$article = M($ModelCache[$mid]['table_name'])->where("aid=$aid")->find();
+			$articleUrl = __WEB__."?a=Index&c=Index&m=content&mid={$mid}&cid={$cid}&aid={$aid}";
+			$title = mb_substr($article['title'], 0,30,'utf-8');
+			addSystemMessage($_SESSION['uid']," <a target='_blank' href='".$articleUrl."'>{$title}</a> 有了新评论");
+			$this -> _ajax(1,$msg, $comment);
+		} else {
+			$this -> error('失败了哟');
+		}
+	}
 
-    /**
-     * 获得刚刚发表的评论用于显示
-     * @param $comment_id 评论comment_id
-     * @return string
-     */
-    public function get_one($comment_id)
-    {
-        $data = $this->_db->get_one($comment_id);
-        $comment = <<<str
+	/**
+	 * 获得刚刚发表的评论用于显示
+	 * @param $comment_id 评论comment_id
+	 * @return string
+	 */
+	public function getCommentHtml($comment_id) {
+		$Model = K('Comment');
+		$data = $Model-> find($comment_id);
+		//设置头像
+		if (empty($data['icon'])) {
+			$data['icon'] = __ROOT__ . "/data/image/user/50.png";
+		} else {
+			$data['icon'] = __ROOT__ . '/' . $field['icon'];
+		}
+		$comment = <<<str
 <li>
                     <div class="hd-comment-face">
                          <a href="?{$data['username']}"><img src="{$data['icon']}"/></a>
@@ -145,29 +134,6 @@ class CommentControl extends CommonControl
                     </div>
 </li>
 str;
-        return $comment;
-    }
-
+		return $comment;
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

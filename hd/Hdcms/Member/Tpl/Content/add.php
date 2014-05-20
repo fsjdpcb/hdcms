@@ -8,18 +8,15 @@
 		<hdjs/>
 		<bootstrap/>
 		<link rel="stylesheet" type="text/css" href="__CONTROL_TPL__/css/content.css?ver=1.0"/>
-		<js file="__GROUP__/Hdcms/Admin/Tpl/Content/js/addEdit.js"/>
+		<js file="__CONTROL_TPL__/js/addEdit.js"/>
 		<css file="__GROUP__/Hdcms/Admin/Tpl/Content/css/css.css"/>
-		<js file="__CONTROL_TPL__/js/js.js"/>
 	</head>
 	<body>
 		<load file="__TPL__/Public/block/top_menu.php"/>
 		<form method="post" onsubmit="return false;">
 			<input type="hidden" name="mid" value="{$hd.get.mid}"/>
 			<div class="main center-block">
-				
 				<div class="form">
-					
 					<div class="title-header">添加文章</div>
 					<table class="table1">
 						<?php foreach($form['base'] as $field):

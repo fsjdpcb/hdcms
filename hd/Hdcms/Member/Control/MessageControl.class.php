@@ -1,5 +1,4 @@
 <?php
-
 /**
  * 短消息管理
  * Class MessageControl

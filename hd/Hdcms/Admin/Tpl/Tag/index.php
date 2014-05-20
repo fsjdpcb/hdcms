@@ -1,20 +1,16 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE html>
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <title>搜索关键词</title>
+    <title>tag标签</title>
     <hdjs/>
-    <js file="__GROUP__/static/js/js.js"/>
-    <js file="__CONTROL_TPL__/js/tag.js"/>
-    <css file="__CONTROL_TPL__/css/tag.css"/>
 </head>
 <body>
 <div class="wrap">
     <div class="menu_list">
         <ul>
-            <li><a href="javascript:;" class="action">tag列表</a></li>
-            <li><a href="__CONTROL__&m=add">添加tag</a></li>
+            <li><a href="{|U:'index'}" class="action">tag列表</a></li>
+            <li><a href="{|U:'add'}">添加tag</a></li>
         </ul>
     </div>
     <table class="table2 hd-form">
@@ -51,11 +47,35 @@
         {$page}
     </div>
 </div>
-
 <div class="position-bottom">
     <input type="button" class="hd-cancel" value="全选" onclick="select_all('.table2')"/>
     <input type="button" class="hd-cancel" value="反选" onclick="reverse_select('.table2')"/>
     <input type="button" class="hd-cancel" onclick="del()" value="批量删除"/>
 </div>
+<script>
+	//全选 or  反选
+$(function () {
+    //全选
+    $("input#select_all").click(function () {
+        $("[type='checkbox']").attr("checked", $(this).attr("checked") == "checked");
+    })
+})
+
+//删除
+function del(tid) {
+    if (tid) {
+        var data = {'tid[]': tid};
+    } else {
+        var data = $("[name*='tid']:checked").serialize();
+    }
+    if (!data) {
+        alert("请选择删除的tag");
+        return;
+    }
+    if (confirm("确定要删除tag吗?")) {
+        hd_ajax(CONTROL + '&m=del', data);
+    }
+}
+</script>
 </body>
 </html>

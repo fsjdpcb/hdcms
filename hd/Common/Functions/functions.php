@@ -28,7 +28,18 @@ function getCategory($cid) {
 	$cids[] = $cid;
 	return $cids;
 }
+
 //获得栏目url（主要用于模型标签使用）
-function getCategoryUrl($field){
-	 return Url::getCategoryUrl($field);
+function getCategoryUrl($field) {
+	return Url::getCategoryUrl($field);
+}
+
+//添加会员动态
+function addDynamic($uid, $conent) {
+	K('UserDynamic') -> addDynamic($uid, $conent);
+}
+
+//发送系统信息
+function addSystemMessage($uid, $message) {
+	K('SystemMessage') -> addSystemMessage($uid, $message);
 }
