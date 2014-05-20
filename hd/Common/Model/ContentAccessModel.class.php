@@ -7,7 +7,7 @@ class ContentAccessModel extends  Model {
 	public $table='category_access';
 	private $CheckAction = array('');
 	private function HasAccess($cid){
-		if(WEB_MASTER || $_SESSION['rid']==1)return true;
+		if(WEB_MASTER || session('rid')==1)return true;
 		$AccessData = $this -> where("cid=$cid") -> all();
 		if (empty($AccessData))
 			return true;
