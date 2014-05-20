@@ -18,7 +18,7 @@ class PasswordControl extends Control {
 			$Model = M('user');
 			$user = $Model -> where(array('username' => $username, 'email' => $email)) -> find();
 			if (!$user) {
-				$this -> error('帐号或密码不正确');
+				$this -> error('用户不存在');
 			} else {
 				$data=array();
 				$data['uid']=$user['uid'];

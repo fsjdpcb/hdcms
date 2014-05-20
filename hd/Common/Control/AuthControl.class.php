@@ -15,8 +15,8 @@ class AuthControl extends CommonControl {
 
 	//后台权限验证
 	protected function checkAccess() {
-		//站长与超级管理员放行
-		if(!IS_LOGIN){
+		//没登录或普通用户
+		if(!IN_ADMIN){
 			go("Login/login");
 		}
 		if (WEB_MASTER || $_SESSION['rid']==1) {
@@ -25,7 +25,6 @@ class AuthControl extends CommonControl {
 		$nodeModel = M("node");
 		$nodeModel -> where = array("app" => APP, "control" => CONTROL, "method" => METHOD, 'type' => 1);
 		$node = $nodeModel -> field("nid") -> find();
-//		p($node);exit;
 		//node不存在的节点自动通过验证
 		if (is_null($node)) {
 			return true;
