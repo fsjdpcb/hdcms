@@ -105,7 +105,7 @@
 							<span style="color:#FF0000"> [{$c.flag}]</span>
 						</if></td>
 						<td>
-						<if value="$c.state eq 1">
+						<if value="$c.content_state eq 1">
 							已审核
 							<else>
 								未审核

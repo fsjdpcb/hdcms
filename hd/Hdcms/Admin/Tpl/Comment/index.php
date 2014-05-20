@@ -11,12 +11,12 @@
 <div class="wrap">
     <div class="menu_list">
         <ul>
-            <li><a href="{|U:'index',array('state'=>0)}"
-                <if value="$hd.get.state==0">class="action"</if>
-                >未审核</a></li>
-            <li><a href="{|U:'index',array('state'=>1)}"
-                <if value="$hd.get.state==1">class="action"</if>
+            <li><a href="{|U:'index',array('comment_state'=>1)}"
+                <if value="$hd.get.comment_state==1">class="action"</if>
                 >已审核</a></li>
+           <li><a href="{|U:'index',array('comment_state'=>0)}"
+                <if value="$hd.get.comment_state==0">class="action"</if>
+                >未审核</a></li>
         </ul>
     </div>
     <table class="table2 hd-form">
@@ -40,7 +40,7 @@
                     {$d.content}
                 </td>
                 <td>
-                    <if value="$d.state==1">已审核<else/>未审核</if>
+                    <if value="$d.comment_state==1">已审核<else/>未审核</if>
                 </td>
                 <td>
                     {$d.uid}

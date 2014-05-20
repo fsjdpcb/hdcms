@@ -185,7 +185,8 @@ class PluginControl extends AuthControl {
 
 	//使用帮助
 	public function help() {
-		$help_file = "hd/Plugin/" . $this -> _plugin . '/Data/help.php';
+		$plugin = Q('plugin');
+		$help_file = "hd/Plugin/" . $plugin . '/Data/help.php';
 		if (is_file($help_file)) {
 			$this -> help = file_get_contents($help_file);
 			$this -> display();

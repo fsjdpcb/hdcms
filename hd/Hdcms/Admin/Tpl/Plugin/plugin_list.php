@@ -11,7 +11,7 @@
     <div class="menu_list">
         <ul>
             <li>
-                <a class="action" href="__WEB__?a=Plugin&c=Plugin&m=plugin_list">插件列表</a>
+                <a class="action" href="{|U:'plugin_list'}">插件列表</a>
             </li>
         </ul>
     </div>
@@ -47,7 +47,7 @@
                 </td>
                 <td>{$p.app}</td>
                 <td>
-                    <a href="{|U:'Install/help',array('plugin'=>$p['app'])}">使用说明</a>
+                    <a href="{|U:'Plugin/help',array('plugin'=>$p['app'])}">使用说明</a>
                 </td>
             </tr>
         </list>

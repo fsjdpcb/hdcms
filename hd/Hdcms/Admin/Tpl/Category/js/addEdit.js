@@ -151,7 +151,7 @@ function select_template(name) {
 		title : '选择模板文件',
 		button_cancel : '关闭',
 		width : 650,
-		height : 450,
+		height : 400,
 		content : '<iframe frameborder=0 scrolling="no" style="height:99%;border:none;" src="' + APP + '&c=TemplateSelect&m=select_tpl&name=' + name + '"></iframe>'
 	});
 }

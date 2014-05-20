@@ -144,7 +144,7 @@ $db->exe("CREATE TABLE `".$db_prefix."favorite` (
   `aid` int(10) unsigned NOT NULL,
   `uid` int(10) unsigned NOT NULL,
   PRIMARY KEY (`fid`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='收藏夹'");
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='收藏夹'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."field`");
 $db->exe("CREATE TABLE `".$db_prefix."field` (
   `fid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
@@ -233,7 +233,7 @@ $db->exe("CREATE TABLE `".$db_prefix."navigation` (
   `list_order` mediumint(100) NOT NULL DEFAULT '100' COMMENT '排序',
   `url` varchar(255) NOT NULL DEFAULT '' COMMENT '链接地址',
   PRIMARY KEY (`nid`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='网站前台导航'");
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='网站前台导航'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."node`");
 $db->exe("CREATE TABLE `".$db_prefix."node` (
   `nid` smallint(6) NOT NULL AUTO_INCREMENT,
@@ -277,7 +277,7 @@ $db->exe("CREATE TABLE `".$db_prefix."role` (
   `allowsendmessage` tinyint(1) NOT NULL DEFAULT '1' COMMENT '允许发短消息  1 允许  2 不允许',
   PRIMARY KEY (`rid`),
   KEY `gid` (`rid`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='角色表'");
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='角色表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."search`");
 $db->exe("CREATE TABLE `".$db_prefix."search` (
   `sid` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -341,7 +341,7 @@ $db->exe("CREATE TABLE `".$db_prefix."upload` (
   PRIMARY KEY (`id`),
   KEY `basename` (`basename`),
   KEY `id` (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COMMENT='上传文件'");
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='上传文件'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."user`");
 $db->exe("CREATE TABLE `".$db_prefix."user` (
   `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,

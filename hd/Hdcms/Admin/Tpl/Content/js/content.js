@@ -118,7 +118,7 @@ function move(mid,cid) {
     aid = aid.slice(0, -1);
     if (aid) {
         $.modal({
-            width: 600, height: 560,
+            width: 600, height: 420,
             title: '移动文章',
             content: '<iframe style="width: 100%;height: 99%;" src="' + CONTROL + '&m=move&mid='+mid+'&cid=' + cid + '&aid=' + aid + '" frameborder="0"></iframe>'
         })

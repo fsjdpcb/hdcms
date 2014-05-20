@@ -29,8 +29,7 @@ function add_comment(obj, type) {
         var post_data = $(obj).serialize();
         $.post(WEB+'?a=Index&c=Comment&m=add_comment', post_data, function (data) {
             if (data.state == 'nologin') {
-                //没有登录时，弹出登录窗口
-                hdcms_alert('请登录后操作');
+                 login.show(obj);
             } else {
                 //弹出信息
                 comment_alter(obj, data.message);

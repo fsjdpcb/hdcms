@@ -35,10 +35,10 @@
                         </li>
                     </ul>
                     <div id="t_aid">
-                        <textarea name="aid" class="w250 h250">{$hd.get.aid}</textarea>
+                        <textarea name="aid" class="w250 h180">{$hd.get.aid}</textarea>
                     </div>
                     <div id="f_cat" style="display: none">
-                        <select id="fromid" style="width:250px;height:250px;" multiple="multiple" size="2"
+                        <select id="fromid" style="width:250px;height:180px;" multiple="multiple" size="2"
                                 name="from_cid[]">
                             <list from="$category" name="c">
                                 <option value="{$c.cid}" {$c.disabled}>
@@ -49,7 +49,7 @@
                     </div>
                 </td>
                 <td>
-                    <select id="fromid" style="width:250px;height:290px;"  size="100"
+                    <select id="fromid" style="width:250px;height:215px;"  size="100"
                             name="to_cid">
                         <list from="$category" name="c">
                             <option value="{$c.cid}" {$c.disabled} {$c.selected}>

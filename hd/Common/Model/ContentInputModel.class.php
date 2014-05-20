@@ -25,7 +25,7 @@ class ContentInputModel {
 		//作者uid
 		$InsertData['uid'] = session('uid');
 		//添加时间
-		$InsertData['addtime'] = empty($InsertData['addtime'])?date("Y/m/d h:i:s"):$InsertData['addtime'];
+		$InsertData['addtime'] = empty($InsertData['addtime'])?date("Y/m/d H:i:s"):$InsertData['addtime'];
 		//修改时间
 		$InsertData['updatetime'] = time();
 		//文章模型
@@ -242,12 +242,7 @@ class ContentInputModel {
 
 	//日期时间
 	private function datetime($fieldInfo, $value) {
-		if (empty($value)) {
-			$value = time();
-		} else {
-			$value = strtotime($value);
-		}
-		return $value;
+		return strtotime($value);
 	}
 
 	//文件上传

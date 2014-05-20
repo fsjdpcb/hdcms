@@ -12,7 +12,7 @@
     <div class="menu_list">
         <ul>
             <li>
-                <a href="__WEB__?a=Plugin&c=Plugin&m=plugin_list">插件列表</a>
+                <a href="{|U:'plugin_list'}">插件列表</a>
             </li>
             <li>
                 <a class="action" href="javascript:;">插件说明</a>

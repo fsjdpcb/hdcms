@@ -286,7 +286,7 @@ class ContentFormModel extends CommonModel {
 	protected function datetime($field, $value) {
 		$set = $field['set'];
 		$format = array("Y-m-d", "Y/m/d H:i:s", "H:i:s");
-		$value = empty($value) ? "" : date($format[$set['format']], $value);
+		$value = empty($value) ? date($format[$set['format']]): date($format[$set['format']], $value);
 		//默认值
 		$h = "<input type='text' id='{$field['field_name']}' name='{$field['field_name']}' value='$value' class='w150'/>";
 		$format = array("yyyy-MM-dd", "yyyy/MM/dd HH:mm:ss", "HH:mm:ss");

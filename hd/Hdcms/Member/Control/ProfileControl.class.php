@@ -85,6 +85,33 @@ class ProfileControl extends MemberAuthControl {
 		C('WATER_ON', false);
 		//头像文件
 		$file = $_POST['img_face'];
+		$dst_image=imagecreatetruecolor(250, 250);
+		$fileInfo = getimagesize($file);
+		switch($fileInfo[2]){
+			case 1://gif
+				$src_image=imagecreatefromgif($file);
+				break;
+			case 2://jpeg
+				$src_image=imagecreatefromjpeg($file);
+				break;
+			case 3://png
+				$src_image=imagecreatefrompng($file);
+				break;
+		}
+		//裁切图片
+		$dst_x=$dst_y=0;
+		$dst_w=$dst_h=250;
+		$src_x=$_POST['x1']*2;
+		$src_y=$_POST['y1']*2;
+		$src_w=$_POST['w']*2;
+		$src_h=$_POST['h']*2;
+		imagecopyresampled($dst_image, $src_image, $dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $src_w, $src_h);
+		$func = str_replace('/','',$fileInfo['mime']);
+		if($fileInfo[2]==2){
+			$func($dst_image,$file,100);
+		}else{
+			$func($dst_image,$file);
+		}
 		$data = array(50 => str_replace(250, 50, $file), 100 => str_replace(250, 100, $file), 150 => str_replace(250, 150, $file));
 		$img = new Image();
 		foreach ($data as $size => $f) {
@@ -98,9 +125,7 @@ class ProfileControl extends MemberAuthControl {
 		$this -> success('修改成功');
 	}
 
-	/**
-	 * 上传头像文件
-	 */
+	//上传头像文件
 	public function uploadFace() {
 		//关闭水印
 		C('WATER_ON', false);
@@ -113,7 +138,7 @@ class ProfileControl extends MemberAuthControl {
 			$file = $file[0];
 			$img = new Image();
 			$newFile = $file['dir'] . 'u' . $_SESSION['uid'] . '_250.' . $file['ext'];
-			$img -> thumb($file['path'], $newFile, 250, 250, 6);
+			$img -> thumb($file['path'], $newFile, 500, 500, 6);
 			@unlink($file['path']);
 			$this -> _ajax(1, array('url' => __ROOT__ . '/' . $newFile, 'path' => $newFile));
 		}

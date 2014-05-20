@@ -10,9 +10,11 @@ class HtmlControl extends AuthControl {
 	//一键生成全站静态
 	public function create_all() {
 		if (IS_POST) {
+			//删除html目录
+			Dir::del(C('HTML_PATH'));
 			F("RedirectInfo", array( array('url' => 'create_index', 'title' => '准备生成首页'), array('url' => 'create_category', 'title' => '准备生成栏目页...'), array('url' => 'create_content', 'title' => '准备生成内容页...'), array('url' => 'create_all', 'title' => '全部生成完毕...')));
 			//生成首页
-			$this -> create_index();
+			$this->success('初始化完成...','create_index');
 		} else {
 			F("RedirectInfo", null);
 			$this -> display();
