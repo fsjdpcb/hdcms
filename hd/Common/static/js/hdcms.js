@@ -51,7 +51,7 @@ var login = {
 			//隐藏信息提示div
 			$('div.error-pop').hide();
 			//验证用户名
-			var url = '?a=Member&c=Login&m=ajax_login';
+			var url = WEB+'?a=Member&c=Login&m=ajax_login';
 			$.post(url, $(this).serialize(), function(data) {
 				if (data.state == 1) {
 					login.close();
