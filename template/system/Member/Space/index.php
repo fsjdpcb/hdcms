@@ -79,10 +79,10 @@
         <ul class="visitor_list">
             <list from="$guest" name="g">
                 <li>
-                    <a href="__ROOT__/index.php?{$g.domain}" class="face">
-                        <img src="__ROOT__/{$g.icon50}" alt="{$g.nickname}"/>
+                    <a href="__WEB__?{$g.domain}" class="face">
+                        <img src="{$g.icon}" alt="{$g.nickname}" style='width:50px;'/>	
                     </a>
-                    <a href="__ROOT__/index.php?{$d.domain}" class="name">
+                    <a href="__WEB__?{$d.domain}" class="name">
                         {$g.nickname}
                     </a>
                 </li>
