@@ -33,7 +33,7 @@
                 <td>{$d.nickname}</td>
                 <td>{$d.username}</td>
                 <td>{$d.rname}</td>
-                <td>{$d.logintime}</td>
+                <td>{$d.logintime|date:'Y-m-d H:i:s',@@}</td>
                 <td>{$d.regip}</td>
                 <td>{$d.lastip}</td>
                 <td>{$d.credits}</td>

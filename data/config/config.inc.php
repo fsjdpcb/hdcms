@@ -1,11 +1,12 @@
 <?php if (!defined('HDPHP_PATH')) exit; 
 return array (
-  'MEMBER_VERIFY' => '1',
-  'REG_SHOW_CODE' => '0',
-  'MEMBER_EMAIL_VALIDATE' => '0',
   'WEBNAME' => 'HDCMS内容管理系统',
-  'ICP' => '京ICP备12048441号-3',
+  'MEMBER_VERIFY' => '1',
   'HTML_PATH' => 'html',
+  'REG_SHOW_CODE' => '0',
+  'CREATE_INDEX_HTML' => '0',
+  'MEMBER_EMAIL_VALIDATE' => '0',
+  'ICP' => '京ICP备12048441号-3',
   'COPYRIGHT' => 'Copyright © 2012-2014 HDCMS 后盾网',
   'KEYWORDS' => 'php培训,php实训,后盾网',
   'DESCRIPTION' => '后盾网顶尖PHP培训 内容全面 全程实战!业内顶级讲师亲自授课,千余课时独家视频教程免费下载,超百G原创视频资源,实力不容造假!010-64825057',

@@ -14,11 +14,13 @@ class CommentControl extends AuthControl
      */
     public function index()
     {
+    	$Model = M("comment");
         $comment_state = Q('get.comment_state', 1, 'intval');
-        $count = $this->_db->where("comment_state=$comment_state")->count();
+        $count = $Model->where("comment_state=$comment_state")->count();
         $page = new Page($count, 15);
-        $this->page = $page->show();
-        $this->data = $this->_db->where("comment_state=$comment_state")->all();
+        $data = $Model->where("comment_state=$comment_state")->limit($page->limit())->order('comment_id DESC')->all();
+		$this->assign('page',$page->show());
+		$this->assign('data',$data);
         $this->display();
     }
 
