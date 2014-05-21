@@ -4,56 +4,73 @@
  * @author hdxj <houdunwangxj@gmail.com>
  */
 class UserControl extends AuthControl {
-	private $_db;
-	public function __init() {
-		$this -> _db = K("User");
-	}
-
-	/**
-	 * 会员列表
-	 */
+	//会员列表
 	public function index() {
-		$WEBMASTER=C('WEB_MASTER');
-		$this -> data = $this -> _db -> order("uid ASC") -> where("username<>'$WEBMASTER'") -> all();
+		$Model = K('User');
+		$WEBMASTER = C('WEB_MASTER');
+		$this -> data = $Model-> order("uid ASC") -> where("username<>'$WEBMASTER'") -> all();
 		$this -> display();
 	}
 
-	//验证用户是否存在(添加管理员时验证)
+	//验证用户是否存在
 	public function check_username() {
+		$Model = M('user');
 		$username = Q("post.username");
-		echo $this -> _db -> join() -> find("username='$username'") ? 0 : 1;
+		echo  $Model-> find("username='$username'") ? 0 : 1;
 		exit ;
 	}
 
 	//验证邮箱
 	public function check_email() {
-		$email = Q("post.email");
+		$Model = M('user');
+		$email = Q("email");
+		$where='';
 		if ($uid = Q('uid')) {
-			$this -> _db -> where("uid<>$uid");
+			$where="uid<>$uid";
 		}
-		echo $this -> _db -> join() -> find("email='$email'") ? 0 : 1;
+		echo $Model->where($where)-> find("email='$email'") ? 0 : 1;
 		exit ;
 	}
 
-	//删除管理员
+	//删除
 	public function del() {
-		$uid = Q("POST.uid", null, "intval");
-		if ($uid) {
-			if ($this -> _db -> delUser($uid)) {
-				$this -> success('删除成功');
+		if (IS_POST) {
+			$uid = Q('uid', 0, 'intval');
+			//删除文章
+			if (Q('post.delcontent')) {
+				$ModelCache = cache('model');
+				foreach ($ModelCache as $model) {
+					$contentModel = ContentModel::getInstance($model['mid']);
+					$contentModel -> where(array('uid' => $uid)) -> del();
+				}
 			}
+			//删除评论
+			if (Q('post.delcomment')) {
+				M('comment') -> where(array('uid' => $uid)) -> del();
+			}
+			//删除附件
+			if (Q('post.delupload')) {
+				M('upload') -> where(array('uid' => $uid)) -> del();
+			}
+			//删除用户
+			M('user') -> del($uid);
+			$this -> success('删除成功...');
 		} else {
-			$this -> error('没有要删除的用户');
+			$uid = Q("uid", 0, "intval");
+			$field = M('user') -> find($uid);
+			$this -> assign('field', $field);
+			$this -> display();
 		}
 	}
 
-	//添加管理员
+	//添加
 	public function add() {
 		if (IS_POST) {
-			if ($this -> _db -> addUser($_POST)) {
+			$Model=K('User');
+			if ($Model-> addUser($_POST)) {
 				$this -> success("添加成功！");
 			} else {
-				$this -> error($this -> _db -> error);
+				$this -> error($Model-> error);
 			}
 		} else {
 			$this -> role = M("role") -> order("rid DESC") -> all();
@@ -61,27 +78,23 @@ class UserControl extends AuthControl {
 		}
 	}
 
-	/**
-	 * 修改管理员
-	 */
+	//修改
 	public function edit() {
+		$Model = K('User');
 		if (IS_POST) {
-			$uid = Q('uid', 0, 'intval');
-			if (!$uid) {
-				$this -> error('参数错误');
-			}
-			$_POST['uid']=$uid;
-			if ($this -> _db -> editUser($_POST)) {
+			$_POST['lock_end_time']=Q('lock_end_time',NOW,'strtotime');
+			if ($Model-> editUser($_POST)) {
 				$this -> success("修改成功！");
 			} else {
-				$this -> error($this -> _db -> error);
+				$this -> error($Model-> error);
 			}
 		} else {
-			$uid = Q("request.uid", null, "intval");
+			$uid = Q("uid",0, "intval");
 			if ($uid) {
-				//会员信息
-				$this -> field = $this -> _db -> find($uid);
-				$this -> role = $this -> _db -> table("role") -> order("rid DESC") -> all();
+				$field = $Model-> find($uid);
+				$role = M("role") -> order("rid DESC") -> all();
+				$this->assign('field',$field);
+				$this->assign('role',$role);
 				$this -> display();
 			}
 		}
@@ -89,10 +102,15 @@ class UserControl extends AuthControl {
 
 	//锁定与解锁
 	public function lock() {
-		$user_state = Q('user_state', 1, 'intval');
+		$lock = Q('lock', 1, 'intval');
+		if($lock){
+			$lock_end_time=time()+3600*24*365*10;	
+		}else{
+			$lock_end_time=0;
+		}
 		$uid = Q('uid', 0, 'intval');
-		$this -> _db -> where(array('uid' => $uid)) -> save(array('user_state' => $user_state));
+		
+		M('user') -> where(array('uid' => $uid)) -> save(array('lock_end_time' => $lock_end_time));
 		$this -> success('操作成功 ');
 	}
-
 }

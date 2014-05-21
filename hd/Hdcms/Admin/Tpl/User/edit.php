@@ -17,7 +17,7 @@
     </div>
     <div class="title-header">添加会员组</div>
     <form method="post" class="hd-form" onsubmit="return hd_submit(this,'{|U:index}')">
-        <input type="hidden" name="uid" class="w300" value="{$field.uid}"/>
+        <input type="hidden" name="uid" value="{$field.uid}"/>
         <table class="table1">
             <tr>
                 <th class="w100">用户名</th>
@@ -44,11 +44,14 @@
                 </td>
             </tr>
             <tr>
-                <th class="w100">状态</th>
+                <th class="w100">锁定到期时间</th>
                 <td>
-                    <label><input type="checkbox" name="state" value="0"
-                        <if value="$field.state eq 0">checked="checked"</if>
-                        /> 锁定</label>
+                    <label>
+                    	<input type="text"  name="lock_end_time" id="lock_end_time" value="{$field.lock_end_time|date:'Y/m/d',@@}"/>
+                    	<script>
+                    		$('#lock_end_time').calendar({format: 'yyyy/MM/dd'})
+                    	</script>
+                    	<span id="hd_lock_end_time" class="validate-message">超过这个时间自动解锁</span>
                 </td>
             </tr>
             <tr>

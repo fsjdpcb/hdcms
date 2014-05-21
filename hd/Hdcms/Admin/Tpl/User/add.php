@@ -14,7 +14,7 @@
             <li><a href="javascript:;" class="action">添加会员</a></li>
         </ul>
     </div>
-    <div class="title-header">添加会员组</div>
+    <div class="title-header">添加会员</div>
     <form method="post" class="hd-form" onsubmit="return hd_submit(this,'{|U:index}');">
         <table class="table1">
             <tr>

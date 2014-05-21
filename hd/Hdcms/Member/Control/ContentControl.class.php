@@ -47,6 +47,8 @@ class ContentControl extends MemberAuthControl {
 		$categoryCache = cache('category');
 		$category = array();
 		foreach ($categoryCache as $cat) {
+			//去除单文章
+			if($cat['cattype']==4)continue;
 			if ($cat['mid'] == $this -> _mid) {
 				$category[] = $cat;
 			}

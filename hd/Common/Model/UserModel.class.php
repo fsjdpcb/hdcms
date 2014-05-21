@@ -6,10 +6,7 @@
  */
 class UserModel extends ViewModel {
 	public $table = "user";
-	public $view = array(
-	//角色表
-	"role" => array("type" => INNER_JOIN, "on" => "user.rid=role.rid"));
-
+	public $view = array("role" => array("type" => INNER_JOIN, "on" => "user.rid=role.rid"));
 	/**
 	 * 删除用户
 	 * @return mixed
@@ -32,6 +29,7 @@ class UserModel extends ViewModel {
 		}else{
 			unset($data['password']);
 		}
+		
 		$uid = intval($data['uid']);
 		return $this -> where("uid={$uid}") -> save($data);
 	}

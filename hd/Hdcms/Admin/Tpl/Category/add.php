@@ -79,7 +79,6 @@
                         <th>跳转Url</th>
                         <td>
                             <input type="text" name="cat_redirecturl" class="w300"/>
-                            <span class="validate-message">栏目类型选择为“外部链接”才有效</span>
                         </td>
                     </tr>
                     <tr>
@@ -187,8 +186,8 @@
                             投稿不需要审核
                         </th>
                         <td>
-                            <label><input type="radio" name="member_send_state" value="1"/> 是 </label>
-                            <label><input type="radio" name="member_send_state" value="0" checked=""/> 否 </label>
+                            <label><input type="radio" name="member_send_state" value="1" checked=''/> 是 </label>
+                            <label><input type="radio" name="member_send_state" value="0" /> 否 </label>
                         </td>
                     </tr>
                 </table>
@@ -275,7 +274,6 @@
                     </tr>
                 </table>
             </div>
-
             <div id="charge">
                 <table class="table1">
                     <tr>

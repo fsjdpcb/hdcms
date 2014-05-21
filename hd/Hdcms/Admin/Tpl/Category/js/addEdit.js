@@ -21,10 +21,12 @@ $(function () {
         catdir: {
             rule: {
                 required: true,
+                regexp:/^\w+$/,
                 ajax:{url:CONTROL+'&m=check_category_dir',field:['cid']}
             },
             error: {
                 required: "静态目录不能为空",
+                regexp:'请输入字母或数字',
                 ajax:'目录已经使用'
             },
             message:'请输入静态目录'
@@ -64,6 +66,15 @@ $(function () {
                 required: "栏目页URL规则不能为空"
             },
             message:'{cid} 栏目ID, {catdir} 栏目目录, {page} 列表的页码'
+        },
+        cat_redirecturl: {
+            rule: {
+                regexp:/^http:\/\//
+            },
+            error: {
+                regexp: "网址输入错误"
+            },
+            message:'栏目类型选择为“外部链接”才有效'
         },
         arc_html_url: {
             rule: {

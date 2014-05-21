@@ -28,6 +28,11 @@ class ContentInputModel {
 		$InsertData['addtime'] = empty($InsertData['addtime'])?date("Y/m/d H:i:s"):$InsertData['addtime'];
 		//修改时间
 		$InsertData['updatetime'] = time();
+		//文章状态
+		if(!IN_ADMIN){
+			$categoryCache = cache('category');
+			$InsertData['content_state'] = $categoryCache[$InsertData['cid']]['member_send_state'];
+		}
 		//文章模型
 		$ContentModel = ContentModel::getInstance($this -> _mid);
 		//没有添加内容时初始设置

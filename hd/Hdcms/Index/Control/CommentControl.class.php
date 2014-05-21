@@ -116,7 +116,7 @@ class CommentControl extends CommonControl {
 		if (empty($data['icon'])) {
 			$data['icon'] = __ROOT__ . "/data/image/user/50.png";
 		} else {
-			$data['icon'] = __ROOT__ . '/' . $field['icon'];
+			$data['icon'] = __ROOT__ . '/' . $data['icon'];
 		}
 		$comment = <<<str
 <li>

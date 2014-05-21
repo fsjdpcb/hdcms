@@ -122,6 +122,12 @@ class LoginControl extends CommonControl {
 		if (session('uid')) {
 			go(U('Member/Index/index'));
 		}
+		//验证注册间隔时间
+		$REG_INTERVAL = Q('session.REG_INTERVAL',0,'intval');
+		if($REG_INTERVAL+C('REG_INTERVAL')>time()){
+			$outTime= $REG_INTERVAL+C('REG_INTERVAL')-time();
+			$this->error('请'.$outTime.'秒后注册');
+		}
 		if (IS_POST) {
 			$Model = K("User");
 			$code = Q('post.code', null, 'strtoupper');
@@ -171,6 +177,8 @@ class LoginControl extends CommonControl {
 			//邮件验证key
 			$_POST['validatecode'] = substr(md5(time() . mt_rand(1, 1000)), -8);
 			if ($Model -> addUser($_POST)) {
+				//记录注册时间
+				session('REG_INTERVAL',time());
 				$user = $Model -> where(array('username' => $username)) -> find();
 				setcookie('login', 1, 0, '/', C('SESSION_DOMAIN'));
 				unset($user['password']);
@@ -203,8 +211,10 @@ class LoginControl extends CommonControl {
 
 	//退出登录
 	public function quit() {
-		session_unset();
-		session_destroy();
+		//保留注册时间
+		$REG_INTERVAL =$_SESSION['REG_INTERVAL'];
+		$_SESSION=array();
+		$_SESSION['REG_INTERVAL']=$REG_INTERVAL;
 		setcookie('login', '', 1, '/');
 		go(__ROOT__);
 	}
