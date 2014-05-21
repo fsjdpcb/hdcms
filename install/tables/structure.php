@@ -77,7 +77,7 @@ $db->exe("CREATE TABLE `".$db_prefix."config` (
   `order_list` smallint(6) unsigned DEFAULT '100' COMMENT '排序',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM AUTO_INCREMENT=67 DEFAULT CHARSET=utf8 COMMENT='系统配置'");
+) ENGINE=MyISAM AUTO_INCREMENT=68 DEFAULT CHARSET=utf8 COMMENT='系统配置'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."content`");
 $db->exe("CREATE TABLE `".$db_prefix."content` (
   `aid` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
