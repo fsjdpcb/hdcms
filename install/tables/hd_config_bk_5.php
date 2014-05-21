@@ -50,8 +50,8 @@ $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('34','COMMENT_STEP_TIME','10','会员配置','评论间隔时间','文本','必须大于1（单位秒)','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('56','PATHINFO_TYPE','0','伪静态','开启伪静态','布尔(1/0)','需要环境支持','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('57','OPEN_REWRITE','0','伪静态','开启Rewrite','布尔(1/0)','1:服务器需要支持Rewrtie 2:将HDCMS根目录中的htaccess.txt改名为.htaccess','100')");
-$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('35','EMAIL_USERNAME','','邮箱配置','邮箱用户名','文本','使用126或qq邮箱','100')");
-$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('36','EMAIL_PASSWORD','','邮箱配置','邮箱密码','文本','邮箱的密码','100')");
+$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('35','EMAIL_USERNAME','admin','邮箱配置','邮箱用户名','文本','使用126或qq邮箱','100')");
+$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('36','EMAIL_PASSWORD','admin888','邮箱配置','邮箱密码','文本','邮箱的密码','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('37','EMAIL_HOST','smtp.exmail.qq.com','邮箱配置','smtp地址','文本','如smtp.gmail.com','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('38','EMAIL_PORT','25','邮箱配置','smtp端口','文本','qq,126为25，gmail为465','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('39','EMAIL_FROMNAME','后盾网','邮箱配置','发送人','文本','发件箱显示的用户名','100')");

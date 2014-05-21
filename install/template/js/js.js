@@ -67,7 +67,9 @@ $(function () {
                                 }
                             })
                         }
-                    } else {
+                    } else if(stat==3){
+                    	alert("替换配置文件../data/config/db.inc.php失败");
+                    }else {
                         alert("数据库服务器或登录密码无效，无法连接数据库，请重新设定");
                     }
                 },

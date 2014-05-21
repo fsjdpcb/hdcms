@@ -1,10 +1,5 @@
 <?php
 $version=require '../hd/Common/Config/version.php';
-// $version = array(
-//     "NAME" => "HDCMS 简体中文 UTF8 版",
-//     "VERSION" => "2014.05.08",
-//     "TIME" => "2014年05月08日"
-// );
 //网站根目录
 define("WEB_PATH", dirname(dirname(str_replace('\\', '/', __FILE__))) . '/');
 //框架目录
@@ -58,7 +53,7 @@ switch ($s) {
         $dirctory = array(
             "/", //网站根目录
             "data", //数据目录
-            "data/config", //配置文件
+            "data/config", //配置目录
             "data/config/config.inc.php", //网站配置文件
             "data/config/db.inc.php", //数据库配置文件
             "data/cache/Data", //栏目缓存
@@ -87,14 +82,18 @@ switch ($s) {
                 exit;
             } else {
                 mysql_query("CREATE DATABASE " . $_POST['DB_DATABASE'] . " CHARSET UTF8");
-                create_install_config();
+                if(!create_install_config()){
+                    echo 3;
+                    exit;
+                }
                 echo 1;
                 exit;
             }
         } else {
-            die(0);
-            break;
+            echo 0;
+            exit;
         }
+        break;
     case "create_database": //创建数据库
         create_install_config();
         echo 1;
@@ -170,7 +169,7 @@ return array(
     "EMAIL"                         => "{$_POST['EMAIL']}",//站长邮箱
 );
 str;
-    file_put_contents("../data/config/db.inc.php", $config);
+   return file_put_contents("../data/config/db.inc.php", $config);
 }
 
 class Db
@@ -210,8 +209,8 @@ function M()
 //向浏览器输出写数据信息
 function return_msg($msg)
 {
-    $len = ini_get("output_buffering");
-    echo str_repeat(" ", $len);
+//  $len = ini_get("output_buffering");
+    echo str_repeat(' ', 1024);
     $h = "<span style='color:#555;font-weight: normal;font-size:14px;'>{$msg}</span><br/>";
     $h .= "<script>window.scrollTo(0,9000)</script>";
     echo $h;
