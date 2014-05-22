@@ -44,8 +44,8 @@ class TemplateStyleControl extends  AuthControl {
 
 	//读取模板目录
 	public function show_dir() {
-		$dir_name =  (Q("get.dir_name") ? Q("get.dir_name",'',"urldecode") : C("WEB_STYLE"));
-		$this -> dirs = Dir::tree($dir_name, 'html');
+		$dirName =  (Q("get.dir_name") ? Q("get.dir_name",'',"urldecode") : 'template/'.C("WEB_STYLE"));
+		$this -> dirs = Dir::tree($dirName, 'html');
 		$this -> display();
 	}
 	//选择模板风格（使用模板）
