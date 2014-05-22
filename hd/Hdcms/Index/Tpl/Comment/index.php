@@ -52,7 +52,7 @@
                     <!--回复-->
                     <div class="hd-comment-reply">
                         <div class="hd-comment-face">
-                            <img src="{$a.icon}"/>
+                            <img src="{$hd.session.icon50}"/>
                         </div>
                         <div class="hd-reply-content">
                             <form method="post" onsubmit="return add_comment(this,'reply')">
@@ -63,7 +63,7 @@
                                 <input type="hidden" name="reply_comment_id" value="{$a.comment_id}"/>
                                 <textarea name="content" placeholder="写点什么..."></textarea>
                                 <input type="submit" value="发表评论" class="comment-submit"/>
-                                <input type="submit" value="取消评论" class="comment-cancel"/>
+                                <input type="button" value="取消评论" class="comment-cancel"/>
                             </form>
                         </div>
                     </div>
@@ -89,7 +89,7 @@
                                 <!--回复-->
                                 <div class="hd-comment-reply">
                                     <div class="hd-comment-face">
-                                        <img src="{$b.icon}"/>
+                                        <img src="{$hd.session.icon50}"/>
                                     </div>
                                     <div class="hd-reply-content">
                                         <form method="post" onsubmit="return add_comment(this,'reply')">
@@ -100,7 +100,7 @@
                                             <input type="hidden" name="reply_comment_id" value="{$a.comment_id}"/>
                                             <textarea name="content" placeholder="写点什么..."></textarea>
                                             <input type="submit" value="发表评论" class="comment-submit"/>
-                                            <input type="submit" value="取消评论" class="comment-cancel"/>
+                                            <input type="button" value="取消评论" class="comment-cancel"/>
                                         </form>
                                     </div>
                                 </div>
@@ -125,7 +125,7 @@
                                             <!--回复-->
                                             <div class="hd-comment-reply">
                                                 <div class="hd-comment-face">
-                                                    <img src="{$c.icon}"/>
+                                                    <img src="{$hd.session.icon50}"/>
                                                 </div>
                                                 <div class="hd-reply-content">
                                                     <form method="post" onsubmit="return add_comment(this,'reply')">
@@ -137,7 +137,7 @@
                                                                value="{$a.comment_id}"/>
                                                         <textarea name="content" placeholder="写点什么..."></textarea>
                                                         <input type="submit" value="发表评论" class="comment-submit"/>
-                                                        <input type="submit" value="取消评论" class="comment-cancel"/>
+                                                        <input type="button" value="取消评论" class="comment-cancel"/>
                                                     </form>
                                                 </div>
                                             </div>

@@ -72,9 +72,7 @@ class IndexControl extends AuthControl {
 		$this -> ajax($html, 'text');
 	}
 
-	/**
-	 * 欢迎页
-	 */
+	//欢迎页
 	public function welcome() {
 		//版本配置
 		C(require 'hd/Common/Config/version.php');

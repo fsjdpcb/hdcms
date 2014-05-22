@@ -13,7 +13,7 @@ class ContentViewModel extends ViewModel {
 
 	//实例化模型对象
 	static public function getInstance($mid) {
-		if (empty(self::$_instance) || !isset(self::$_instance[$mid])) {
+		if (!isset(self::$_instance[$mid])) {
 			$modelCache = cache('model');
 			$table = $modelCache[$mid]['table_name'];
 			$model = new self($table);

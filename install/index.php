@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 $version=require '../hd/Common/Config/version.php';
 //网站根目录
 define("WEB_PATH", dirname(dirname(str_replace('\\', '/', __FILE__))) . '/');
@@ -209,8 +210,8 @@ function M()
 //向浏览器输出写数据信息
 function return_msg($msg)
 {
-//  $len = ini_get("output_buffering");
-    echo str_repeat(' ', 1024);
+    $len = ini_get("output_buffering");
+    echo str_repeat(' ', $len);
     $h = "<span style='color:#555;font-weight: normal;font-size:14px;'>{$msg}</span><br/>";
     $h .= "<script>window.scrollTo(0,9000)</script>";
     echo $h;

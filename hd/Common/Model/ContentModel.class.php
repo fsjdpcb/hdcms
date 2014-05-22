@@ -27,7 +27,6 @@ class ContentModel extends RelationModel {
 			return self::$_instance[$mid];
 		}
 	}
-
 	//添加验证规则
 	public function addValidate($validate) {
 		$this -> validate[] = $validate;

@@ -92,7 +92,9 @@ class CommentControl extends CommonControl {
 				$msg =  '评论成功，审核后显示';
 			}
 			//添加动态
-			addDynamic($_SESSION['uid'],"发表了评论: " . mb_substr($content, 0, 30, 'utf-8'));
+			$Message= mb_substr($content, 0, 30, 'utf-8');
+			$DyMessge = "<a target='_blank' href='".__WEB__."?a=Index&c=Index&m=content&mid={$mid}&cid={$cid}&aid={$aid}'>".$Message."</a>";
+			addDynamic($_SESSION['uid'],"发表了评论: " . $DyMessge);
 			//向文章作者发送系统消息
 			$article = M($ModelCache[$mid]['table_name'])->where("aid=$aid")->find();
 			$articleUrl = __WEB__."?a=Index&c=Index&m=content&mid={$mid}&cid={$cid}&aid={$aid}";

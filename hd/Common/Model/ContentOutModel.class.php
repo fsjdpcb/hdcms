@@ -31,12 +31,6 @@ class ContentOutModel {
 				$data[$field] = $Value;
 			}
 		}
-		//用户头像数据
-		if(empty($data['icon'])){
-			$data['icon']=__ROOT__.'/data/image/user/250.png';
-		}else{
-			$data['icon']=__ROOT__.'/'.$data['icon'];
-		}
 		return $data;
 	}
 
@@ -47,17 +41,16 @@ class ContentOutModel {
 
 	//缩略图
 	private function thumb($fieldInfo, $value) {
-		return __ROOT__ . '/' . $value;
+		if(!empty($value)){
+			return __ROOT__ . '/' .$value ;
+		}else{
+			return '';
+		}
 	}
 
 	//模板
 	private function template($fieldInfo, $value) {
-		if (!empty($value)) {
-			$template = $value;
-		} else {
-			$template = $this -> _data['arc_tpl'];
-		}
-		return 'template/' . C('web_style') . '/' . $template;
+		return trim($value);
 	}
 
 	//栏目选择
@@ -92,17 +85,18 @@ class ContentOutModel {
 
 	//选项
 	private function box($fieldInfo, $value) {
-		$value = explode(',', $value);
-		$options = $fieldInfo['set']['options'];
-		$options = explode(',', $options);
-		$result = array();
-		foreach ($options as $option) {
-			$boxData = explode('|', $option);
-			if (key_exists($boxData[0], $value)) {
-				$result[] = $boxData[1];
-			}
-		}
-		return implode(',', $result);
+//		$value = explode(',', $value);
+//		$options = $fieldInfo['set']['options'];
+//		$options = explode(',', $options);
+//		$result = array();
+//		foreach ($options as $option) {
+//			$boxData = explode('|', $option);p($boxData);p($value);exit;
+//			if ($boxData[0]== $value) {
+//				$result[] = $boxData[1];
+//			}
+//		}
+//		return implode(',', $result);
+	return $value;
 	}
 
 	//编辑器

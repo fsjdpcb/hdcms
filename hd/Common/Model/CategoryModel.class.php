@@ -42,7 +42,8 @@ class CategoryModel extends Model {
 				$categoryAccessModel = M('category_access');
 				$categoryAccessModel -> del(array('cid' => $cid));
 				foreach ($categoryAccess as $access) {
-					if(count($access)==2)continue;
+					if (count($access) == 2)
+						continue;
 					$access['cid'] = $cid;
 					$access['mid'] = $mid;
 					$categoryAccessModel -> add($access);
@@ -50,6 +51,10 @@ class CategoryModel extends Model {
 				if (!$this -> updateCache()) {
 					return false;
 				} else {
+					//更新静态
+					$Html = new Html();
+					$Html -> category($cid);
+					$Html -> index();
 					return $cid;
 				}
 			} else {
@@ -83,7 +88,8 @@ class CategoryModel extends Model {
 				$categoryAccessModel = M('category_access');
 				$categoryAccessModel -> del(array('cid' => $cid));
 				foreach ($categoryAccess as $access) {
-					if(count($access)==2)continue;
+					if (count($access) == 2)
+						continue;
 					$access['cid'] = $cid;
 					$access['mid'] = $mid;
 					$categoryAccessModel -> add($access);
@@ -131,6 +137,15 @@ class CategoryModel extends Model {
 			//封面与链接栏目添加disabled属性
 			$cat["disabled"] = $cat["cattype"] != 1 ? 'disabled=""' : '';
 			$cat['cat_type_name'] = $this -> allowCategoryType[$cat['cattype']];
+			//栏目模板
+			switch ($cat['cattype']) {
+				case 1 ://普通栏目
+					$cat['template'] = 'template/' . C("WEB_STYLE") . '/' . $cat['list_tpl'];
+					break;
+				case 2 ://封面栏目
+					$cat['template'] = 'template/' . C("WEB_STYLE") . '/' . $cat['index_tpl'];
+					break;
+			}
 			$cacheData[$cat['cid']] = $cat;
 		}
 		if (cache("category", $cacheData)) {

@@ -83,7 +83,7 @@ $(function () {
             error: {
                 required: "内容页URL规则不能为空"
             },
-            message:'{y}、{m}、{d} 年月日,{timestamp}UNIX时间戳,{aid} 文章ID,{catdir} 栏目目录'
+            message:'{y}、{m}、{d} 年月日,{timestamp}UNIX时间戳 {catdir}栏目目录 {cid}栏目cid {aid}文章ID'
         },
         add_reward: {
             rule: {

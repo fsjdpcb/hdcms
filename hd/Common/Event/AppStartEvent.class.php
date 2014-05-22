@@ -9,13 +9,13 @@ class AppStartEvent extends Event {
 	public function run(&$options) {
 		$this -> check_install();
 		//表字段缓存
-		define("FIELD_CACHE_PATH", 'data/Cache/Field/');
+		define("FIELD_CACHE_PATH", 'data/cache/Field/');
 		//Flag模型属性缓存（推荐、置顶）
-		define("FLAG_CACHE_PATH", 'data/Cache/Flag/');
+		define("FLAG_CACHE_PATH", 'data/cache/Flag/');
 		//常用菜单缓存
-		define('MENU_CACHE_PATH', 'data/Cache/Menu/');
+		define('MENU_CACHE_PATH', 'data/cache/Menu/');
 		//文章缓存
-		define("CONTENT_CACHE_PATH", 'data/Cache/Content/');
+		define("CONTENT_CACHE_PATH", 'data/cache/Content/');
 		//模板目录
         defined("__TEMPLATE__") or define("__TEMPLATE__", __ROOT__ . "/template/" . C("WEB_STYLE"));
 	}

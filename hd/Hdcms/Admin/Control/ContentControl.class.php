@@ -109,13 +109,14 @@ class ContentControl extends AuthControl {
 		$this -> display();
 	}
 
-//	//单文章管理
+	//单文章管理
 	public function single() {
+		$cid = Q('cid',0,'intval');
 		$ContentModel = ContentModel::getInstance($this -> _mid);
-		$content = $ContentModel -> where(array('cid' => $this -> _cid)) -> find();
+		$content = $ContentModel -> where(array('cid' =>$cid)) -> find();
 		if ($content) {
 			$_REQUEST['aid'] = $content['aid'];
-			$this -> edit();
+			$this -> edit($_POST);
 		} else {
 			$this -> add();
 		}

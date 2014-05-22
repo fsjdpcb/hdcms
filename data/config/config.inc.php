@@ -2,8 +2,8 @@
 return array (
   'WEBNAME' => 'HDCMS内容管理系统',
   'MEMBER_VERIFY' => '1',
-  'HTML_PATH' => 'html',
-  'REG_SHOW_CODE' => '0',
+  'HTML_PATH' => 'h',
+  'REG_SHOW_CODE' => '1',
   'CREATE_INDEX_HTML' => '0',
   'MEMBER_EMAIL_VALIDATE' => '0',
   'ICP' => '京ICP备12048441号-3',
