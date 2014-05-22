@@ -40,8 +40,9 @@ class ContentInputModel {
 			$InsertData['content'] = '';
 		}
 		//自动提取文章描述
-		if (isset($InsertData['description']) && empty($InsertData['description'])) {
-			$InsertData['description'] = mb_substr(strip_tags($InsertData['content']), 0, 100, 'utf-8');
+		if (empty($InsertData['description'])) {
+			$len = isset($InsertData['auto_desc_length'])?$InsertData['auto_desc_length']:200;
+			$InsertData['description'] = mb_substr(strip_tags($InsertData['content']), 0, $len, 'utf-8');
 		}
 		//自动提取关键字
 		if (isset($InsertData['keywords']) && empty($InsertData['keywords'])) {

@@ -53,13 +53,13 @@
 </form>
 <script>
 	$("form").validate({
-		title:{
-			rule:{required:true},
-			error:{required:'不能为空'}
+		model_name:{
+			rule:{required:true,ajax:{url:"{|U:'checkModelName'}"}},
+			error:{required:'不能为空',ajax:'已经存在'}
 		},
 		table_name:{
-			rule:{required:true,regexp:/[a-z0-9]+/},
-			error:{required:'不能为空',regexp:'输入字母'}
+			rule:{required:true,regexp:/[a-z0-9]+/,ajax:{url:"{|U:'checkTableName'}"}},
+			error:{required:'不能为空',regexp:'输入字母',ajax:'表名已经存在'}
 		}
 	});
 </script>

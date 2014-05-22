@@ -206,21 +206,25 @@ class ContentFormModel extends CommonModel {
 		if (APP != 'Member') {
 			$category = cache('category');
 			$set = $field['set'];
+			//自动截取内容为摘要
+			$AUTO_DESC = C('AUTO_DESC')?'checked=""':'';
+			$DOWN_REMOTE_PIC=C('DOWN_REMOTE_PIC')?'checked=""':'';
+			$AUTO_THUMB=C('AUTO_THUMB')?'checked=""':'';
 			$html = tag('ueditor', array("name" => $field['field_name'], "content" => $value, "height" => 300));
 			$html .= '
 			<div class="editor_set control-group">
                                 <label class="checkbox inline">
-                                    <input type="checkbox" name="down_remote_pic" value="1"/>下载远程图片
+                                    <input type="checkbox" name="down_remote_pic" value="1" '.$DOWN_REMOTE_PIC.'/>下载远程图片
                                 </label>
                                 <label class="checkbox inline">
-                                    <input type="checkbox" name="auto_desc" value="1"/>截取内容
+                                    <input type="checkbox" name="auto_desc" value="1" '.$AUTO_DESC.'/>截取内容
                                 </label>
                                 <label class="checkbox inline">
                                     <input type="text" value="200" class="w80" name="auto_desc_length"> 字符至内容摘要
                                 </label>
                                 &nbsp;&nbsp;&nbsp;
                                 <label class="checkbox inline">
-                                    <input type="checkbox" name="auto_thumb" value="1"/>获取内容第
+                                    <input type="checkbox" name="auto_thumb" value="1" '.$AUTO_THUMB.'/>获取内容第
                                 </label>
                                 <label class="checkbox inline">
                                     <input type="text" class="w80" value="1" name="auto_thumb_num">

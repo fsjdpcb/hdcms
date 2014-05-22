@@ -10,7 +10,7 @@ class ModelControl extends AuthControl {
 	 * 模型列表
 	 */
 	public function index() {
-		$this -> model = cache("model");
+		$this -> assign('model',cache("model"));
 		$this -> display();
 	}
 
@@ -18,9 +18,9 @@ class ModelControl extends AuthControl {
 	 * 验证模型是否存在
 	 */
 	public function check_model() {
-		$_db = M("model");
+		$Model = M("model");
 		if (isset($_POST['tablename'])) {
-			if (!$_db -> find("tablename='{$_POST['tablename']}'")) {
+			if (!$Model -> find("tablename='{$_POST['tablename']}'")) {
 				$this -> ajax(1);
 			}
 		}
@@ -43,9 +43,6 @@ class ModelControl extends AuthControl {
 	 */
 	public function del() {
 		$mid = Q('mid', 0, 'intval');
-		if (empty($mid)) {
-			$this -> error('参数错误');
-		}
 		//验证栏目
 		$categoryModel = M('category');
 		if ($categoryModel -> find(array('mid' => $mid))) {
@@ -64,12 +61,8 @@ class ModelControl extends AuthControl {
 	 */
 	public function add() {
 		if (IS_POST) {
-			$post = $_POST;
-			if (empty($post)) {
-				$this -> _ajax(0, '参数不能为空');
-			}
 			$Model = K("Model");
-			if ($Model -> addModel()) {
+			if ($Model -> addModel($_POST)) {
 				$this -> success( '添加模型成功');
 			} else {
 				$this -> error( $Model -> error);
@@ -88,16 +81,12 @@ class ModelControl extends AuthControl {
 			$this -> error( '参数错误');
 		}
 		if (IS_POST) {
-			$post = $_POST;
-			if (empty($post)) {
-				$this -> error( '参数不能为空');
-			}
-			$modelDb = K("Model");
+			$Model = K("Model");
 			//异步提交返回信息
-			if ($modelDb -> editModel($post)) {
+			if ($Model -> editModel($_POST)) {
 				$this -> success( '修改模型成功');
 			}else{
-				$this->error($modelDb->error);
+				$this->error($Model->error);
 			}
 		} else {
 			$ModelCache = cache('model');
@@ -106,26 +95,28 @@ class ModelControl extends AuthControl {
 		}
 	}
 
-	//验证模型名是否存在
-	public function check_model_name() {
-		$model_name = Q("post.model_name");
-		if ($this -> _mid) {
+	//Ajax验证模型名是否存在
+	public function checkModelName() {
+		$mid = Q('mid',0,'intval');
+		$Model =M('model');
+		if ($mid) {
 			//编辑时验证模型名
-			if (!$this -> _db -> find(array("model_name" => $model_name, "mid" => array("neq" => $this -> _mid)))) {
+			if (!$Model -> find(array("model_name" => $_POST['model_name'], "mid" => array("neq" => $mid)))) {
 				$this -> ajax(1);
 			}
 		} else {
 			//添加时验证模型名
-			if (!$this -> _db -> find(array("model_name" => $model_name))) {
+			if (!$Model -> find(array("model_name" => $_POST['model_name']))) {
 				$this -> ajax(1);
 			}
 		}
 		$this -> ajax(0);
 	}
 
-	//验证模型表名是否已经存在
-	public function check_table_name() {
-		if (!$this -> _db -> isTable(Q('post.tablename'))) {
+	//Ajax验证模型表名是否已经存在
+	public function checkTableName() {
+		$Model =M('model');
+		if (!$Model -> tableExists($_POST['table_name'])) {
 			$this -> ajax(1);
 		}
 		$this -> ajax(0);

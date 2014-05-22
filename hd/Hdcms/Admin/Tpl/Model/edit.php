@@ -43,13 +43,9 @@
 </form>
 <script>
 	$("form").validate({
-		title:{
-			rule:{required:true},
-			error:{required:'不能为空'}
-		},
-		table_name:{
-			rule:{required:true,regexp:/[a-z0-9]+/},
-			error:{required:'不能为空',regexp:'输入字母'}
+		model_name:{
+			rule:{required:true,ajax:{url:"{|U:'checkModelName'}",field:['mid']}},
+			error:{required:'不能为空',ajax:'已经存在'}
 		}
 	});
 </script>

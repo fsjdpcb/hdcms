@@ -77,7 +77,7 @@ $db->exe("CREATE TABLE `".$db_prefix."config` (
   `order_list` smallint(6) unsigned DEFAULT '100' COMMENT '排序',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM AUTO_INCREMENT=68 DEFAULT CHARSET=utf8 COMMENT='系统配置'");
+) ENGINE=MyISAM AUTO_INCREMENT=69 DEFAULT CHARSET=utf8 COMMENT='系统配置'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."content`");
 $db->exe("CREATE TABLE `".$db_prefix."content` (
   `aid` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -150,20 +150,20 @@ $db->exe("CREATE TABLE `".$db_prefix."field` (
   `fid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
   `mid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '模型ID',
   `field_state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态 1 正常 0 禁用',
-  `field_type` varchar(45) NOT NULL DEFAULT '' COMMENT '字段类型 text|textarea|radio|checkbox|image|images|datetime|',
+  `field_type` varchar(255) NOT NULL DEFAULT '' COMMENT '字段类型 text|textarea|radio|checkbox|image|images|datetime|',
   `table_type` tinyint(1) NOT NULL DEFAULT '1' COMMENT '字段所在表 1 主表 2 副表',
-  `table_name` varchar(30) NOT NULL DEFAULT '' COMMENT '所在表名',
-  `field_name` varchar(45) NOT NULL DEFAULT '' COMMENT '字段name名称',
-  `title` varchar(45) NOT NULL DEFAULT '' COMMENT '字段标题 ',
+  `table_name` varchar(255) NOT NULL DEFAULT '' COMMENT '所在表名',
+  `field_name` varchar(255) NOT NULL DEFAULT '' COMMENT '字段name名称',
+  `title` varchar(255) NOT NULL DEFAULT '' COMMENT '字段标题 ',
   `tips` varchar(255) NOT NULL DEFAULT '' COMMENT '字段提示',
   `enable` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 开启 0 关闭',
   `is_system` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否为系统字段',
-  `fieldsort` smallint(6) NOT NULL DEFAULT '100' COMMENT '字段排序',
+  `fieldsort` mediumint(9) NOT NULL DEFAULT '100' COMMENT '字段排序',
   `set` text NOT NULL COMMENT '字段设置',
   `css` varchar(255) NOT NULL DEFAULT '' COMMENT 'CSS样式',
-  `minlength` char(30) NOT NULL DEFAULT '' COMMENT '最小字数',
-  `maxlength` char(30) NOT NULL DEFAULT '' COMMENT '最大字数',
-  `validate` char(100) NOT NULL DEFAULT '' COMMENT '正则验证',
+  `minlength` char(255) NOT NULL DEFAULT '' COMMENT '最小字数',
+  `maxlength` char(255) NOT NULL DEFAULT '' COMMENT '最大字数',
+  `validate` char(255) NOT NULL DEFAULT '' COMMENT '正则验证',
   `required` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否必须输入',
   `error` varchar(255) NOT NULL DEFAULT '' COMMENT '错误提示',
   `isunique` tinyint(1) NOT NULL DEFAULT '0' COMMENT '值唯一',
@@ -172,7 +172,7 @@ $db->exe("CREATE TABLE `".$db_prefix."field` (
   `isadd` tinyint(1) NOT NULL DEFAULT '1' COMMENT '在前台投稿中显示',
   PRIMARY KEY (`fid`),
   KEY `mid` (`mid`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COMMENT='模型字段'");
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='模型字段'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."link`");
 $db->exe("CREATE TABLE `".$db_prefix."link` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -216,13 +216,13 @@ $db->exe("CREATE TABLE `".$db_prefix."menu_favorite` (
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."model`");
 $db->exe("CREATE TABLE `".$db_prefix."model` (
   `mid` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `model_name` char(30) NOT NULL DEFAULT '' COMMENT '模型名称',
-  `table_name` char(20) NOT NULL DEFAULT '' COMMENT '主表名',
+  `model_name` char(255) NOT NULL DEFAULT '' COMMENT '模型名称',
+  `table_name` char(255) NOT NULL DEFAULT '' COMMENT '主表名',
   `enable` tinyint(1) NOT NULL DEFAULT '1' COMMENT '禁用 1 开启 0 关闭',
-  `description` varchar(45) NOT NULL DEFAULT '' COMMENT '模型描述',
+  `description` varchar(255) NOT NULL DEFAULT '' COMMENT '模型描述',
   `is_system` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '1 系统模型  2 普通模型',
   PRIMARY KEY (`mid`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='模型表'");
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='模型表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."navigation`");
 $db->exe("CREATE TABLE `".$db_prefix."navigation` (
   `nid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',

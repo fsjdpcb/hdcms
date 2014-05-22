@@ -11,7 +11,7 @@
 			<div class="menu_list">
 				<ul>
 					<li>
-						<a href="javascript:;" class="action">
+						<a href="{|U:'index'}" class="action">
 							模型列表
 						</a>
 					</li>

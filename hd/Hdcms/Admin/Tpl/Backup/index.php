@@ -11,7 +11,7 @@
 <div class="wrap">
     <div class="menu_list">
         <ul>
-            <li><a href="javascript:;" class="action">备份列表</a></li>
+            <li><a href="{|U:'index'}" class="action">备份列表</a></li>
             <li><a href="{|U:'backup'}">备份数据</a></li>
         </ul>
     </div>

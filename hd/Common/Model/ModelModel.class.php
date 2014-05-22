@@ -12,11 +12,11 @@ class ModelModel extends Model {
 	/**
 	 * 添加模型
 	 */
-	public function addModel() {
+	public function addModel($InsertData) {
 		$this -> validate = array( array('model_name', 'nonull', '模型名称不能为空', 2, 1), array('table_name', 'nonull', '表名不能为空', 2, 1));
 		$this -> auto = array( array('table_name', 'strtolower', 'function', 2, 1));
 		//创建模型表
-		if ($this -> create()) {
+		if ($this -> create($InsertData)) {
 			$data = $this -> data;
 			//验证表是否存在
 			if ($this -> tableExists($data['table_name'])) {
