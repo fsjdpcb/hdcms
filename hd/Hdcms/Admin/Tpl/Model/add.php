@@ -58,8 +58,8 @@
 			error:{required:'不能为空',ajax:'已经存在'}
 		},
 		table_name:{
-			rule:{required:true,regexp:/[a-z0-9]+/,ajax:{url:"{|U:'checkTableName'}"}},
-			error:{required:'不能为空',regexp:'输入字母',ajax:'表名已经存在'}
+			rule:{required:true,regexp:/^[a-z0-9]{1,10}$/,ajax:{url:"{|U:'checkTableName'}"}},
+			error:{required:'不能为空',regexp:'输入字母或数字并且不能超过10位',ajax:'表名已经存在'}
 		}
 	});
 </script>

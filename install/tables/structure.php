@@ -159,7 +159,7 @@ $db->exe("CREATE TABLE `".$db_prefix."field` (
   `enable` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 开启 0 关闭',
   `is_system` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否为系统字段',
   `fieldsort` mediumint(9) NOT NULL DEFAULT '100' COMMENT '字段排序',
-  `set` text NOT NULL COMMENT '字段设置',
+  `set` text COMMENT '字段设置',
   `css` varchar(255) NOT NULL DEFAULT '' COMMENT 'CSS样式',
   `minlength` char(255) NOT NULL DEFAULT '' COMMENT '最小字数',
   `maxlength` char(255) NOT NULL DEFAULT '' COMMENT '最大字数',
