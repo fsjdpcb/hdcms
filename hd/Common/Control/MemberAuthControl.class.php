@@ -25,6 +25,10 @@ class MemberAuthControl extends CommonControl {
 		if (!IS_LOGIN) {
 			go(U("Member/Login/login"));
 		}
+		//状态
+		if(!USER_STATE){
+			$this->error('帐号审核中...');
+		}
 		//锁定
 		if(IS_LOCK){
 			$this->error('帐号已锁定...');
