@@ -21,9 +21,9 @@ class SearchControl extends Control {
 		if (!$word) {
 			$this -> error("搜索内容不能为空");
 		} else {
-			$cid = Q('cid', null, 'intval');
-			$mid =Q('mid',1,'intval');
-			$_REQUEST['mid']=$mid = $mid?$mid:1;
+			$cid = empty($_REQUEST['cid'])?null:intval($_GET['cid']);
+			$mid =empty($_REQUEST['mid'])?1:intval($_GET['mid']);
+			$_REQUEST['mid']=$mid;
 			//=====================记录搜索词
 			$SearchTotal = M('search')->where(array('word'=>$word))->getField('total');
 			if($SearchTotal){
@@ -53,7 +53,8 @@ class SearchControl extends Control {
 			} else {
 				$where = array();
 				if ($cid) {
-					$where[] = $pre . "category.cid=" . $cid;
+					$cids = getCategory($cid);
+					$where[] = $pre . "category.cid IN(" . implode(',',$cids).")";
 				}
 				if (!empty($_GET['search_begin_time']) && !empty($_GET['search_end_time'])) {
 					$where[] = "addtime>=" . strtotime($_GET['search_begin_time']) . " AND addtime<=" . $_GET['search_end_time'];

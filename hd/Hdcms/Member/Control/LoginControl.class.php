@@ -173,7 +173,7 @@ class LoginControl extends CommonControl {
 			}
 			$_POST['rid'] = C('default_member_group');
 			//会员审核状态
-			$_POST['user_state']=C('MEMBER_VERIFY');
+			$_POST['user_state']=intval(C('MEMBER_VERIFY'));
 			//邮件验证key
 			$_POST['validatecode'] = substr(md5(time() . mt_rand(1, 1000)), -8);
 			if ($Model -> addUser($_POST)) {
