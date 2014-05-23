@@ -13,8 +13,6 @@ class ContentAuditControl extends AuthControl
     private $_model;
     //模型mid
     private $_mid;
-    //模型对象
-    private $_db;
 
     //构造函数
     public function __init()
@@ -25,20 +23,19 @@ class ContentAuditControl extends AuthControl
         if (!isset($this->_model[$this->_mid])) {
             $this->error("模型不存在！");
         }
-        $this->_db = ContentViewModel::getInstance($this->_mid);
     }
 
-    /**
-     * 文章列表
-     */
+    //文章列表
     public function content()
     {
-        $count = $this->_db->where($this->_db->tableFull.'.content_state=0')->count();
+    	$Model = ContentViewModel::getInstance($this->_mid);
+        $count = $Model->where('content_state=0')->count();
         $page = new Page($count, 15);
-        $this->page = $page->show();
-        $this->data = $this->_db->where($this->_db->tableFull.'.content_state=0')->limit($page->limit())->order('updatetime DESC')->all();
-        $this->mid =$this->_mid;
-        $this->model = $this->_model;
+        $data = $Model->where('content_state=0')->limit($page->limit())->order('updatetime DESC')->all();
+		$this->assign('data',$data);
+		$this->assign('mid',$this->_mid);
+		$this->assign('model',$this->_model);
+		$this->assign('page',$page->show());
         $this->display();
     }
 
@@ -52,15 +49,14 @@ class ContentAuditControl extends AuthControl
             if (!is_array($aids)) {
                 $aids = array($aids);
             }
+			$Model=new Content($this->_mid);
             foreach ($aids as $aid){
-                $this->_db->del($aid);
-                $this->_db->table($this->_db->tableFull.'_data',true)->where('aid='.$aid)->del();
+                $Model->del($aid);
             }
-            $this->_ajax(1, '删除成功');
+            $this->success( '删除成功');
         } else {
-            $this->_ajax(0, '参数错误');
+            $this->error('参数错误');
         }
-
     }
 
     /**
@@ -68,45 +64,16 @@ class ContentAuditControl extends AuthControl
      */
     public function audit()
     {
+    	$Model = ContentViewModel::getInstance($this->_mid);
         //1 审核  0 取消审核
-        $state = Q("state", 1, "intval");
+        $content_state = Q("content_state", 1, "intval");
         //文章id
         $aids = Q("post.aid");
         foreach ($aids as $aid) {
-            $this->_db->join()->save(array("aid" => $aid, "state" => $state));
+            $Model->save(array("aid" => $aid, "content_state" => $content_state));
         }
-        $this->_ajax(1, '操作成功！');
+        $this->success('操作成功！');
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

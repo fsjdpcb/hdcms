@@ -213,12 +213,12 @@ class ContentControl extends AuthControl {
 		if(!$this->ContentAccess->isAudit($this->_cid)){
 			$this->error('没有操作权限');
 		}
-		$state = Q('state', 0, 'intval');
+		$content_state = Q('content_state', 0, 'intval');
 		$aids = Q('aid');
 		if (!empty($aids) && is_array($aids)) {
 			$ContentModel = ContentModel::getInstance($this -> _mid);
 			foreach ($aids as $aid) {
-				$ContentModel -> save(array('aid' => $aid, 'state' => $state));
+				$ContentModel -> save(array('aid' => $aid, 'content_state' => $content_state));
 			}
 		}
 		$this -> success('操作成功');

@@ -21,12 +21,10 @@ $(function () {
         catdir: {
             rule: {
                 required: true,
-                regexp:/^\w+$/,
                 ajax:{url:CONTROL+'&m=check_category_dir',field:['cid']}
             },
             error: {
                 required: "静态目录不能为空",
-                regexp:'请输入字母或数字',
                 ajax:'目录已经使用'
             },
             message:'请输入静态目录'

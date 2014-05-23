@@ -29,7 +29,7 @@
     <div class="menu_list">
         <ul>
             <li>
-                <a href="javascript:;" class="action">文章列表</a>
+                <a href="{|U:'content'}" class="action">文章列表</a>
             </li>
         </ul>
     </div>
@@ -52,7 +52,7 @@
                 <td><input type="checkbox" name="aid[]" value="{$d.aid}"/></td>
                 <td>{$d.aid}</td>
                 <td>
-                    <a href="{|U:'Index/Article/show',array('mid'=>$mid,'cid'=>$d['cid'],'aid'=>$d['aid'])}" target="_blank">{$d.title}</a>
+                    <a href="{|U:'Index/Index/Content',array('mid'=>$mid,'cid'=>$d['cid'],'aid'=>$d['aid'])}" target="_blank">{$d.title}</a>
                 </td>
                 <td>
                     {$d.catname}

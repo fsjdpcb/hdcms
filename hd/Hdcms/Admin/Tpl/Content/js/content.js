@@ -77,7 +77,7 @@ function audit(mid,cid, state) {
     if (ids) {
         $.ajax({
             type: "POST",
-            url: CONTROL + "&m=audit" + "&state=" + state + "&mid="+mid+"&cid=" + cid,
+            url: CONTROL + "&m=audit" + "&content_state=" + state + "&mid="+mid+"&cid=" + cid,
             dataType: "JSON",
             cache: false,
             data: ids,

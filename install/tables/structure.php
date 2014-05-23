@@ -355,7 +355,7 @@ $db->exe("CREATE TABLE `".$db_prefix."user` (
   `logintime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '登录时间',
   `regip` char(255) NOT NULL DEFAULT '' COMMENT '注册IP',
   `lastip` char(15) NOT NULL DEFAULT '' COMMENT '最后登录ip',
-  `user_state` tinyint(1) NOT NULL DEFAULT '0' COMMENT '1  正常  0 锁定',
+  `user_state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1  正常  0 锁定',
   `lock_end_time` int(10) NOT NULL DEFAULT '0' COMMENT '锁定到期时间',
   `qq` char(20) NOT NULL DEFAULT '' COMMENT 'qq号码',
   `sex` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 男 2 女 3 保密',
