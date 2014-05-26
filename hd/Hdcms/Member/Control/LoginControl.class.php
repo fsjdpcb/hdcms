@@ -29,7 +29,7 @@ class LoginControl extends CommonControl {
 				$this -> display();
 				exit ;
 			}
-			$user = $Model -> where(array('username' => $username)) -> find();
+			$user = $Model -> where("username='$username' OR email = '$username'") -> find();
 			if (!$user) {
 				$this -> error = "帐号不存在";
 				$this -> display();

@@ -10,15 +10,14 @@ class PasswordControl extends Control {
 
 	//发送邮件
 	public function sendEmail() {
-		$username = Q('username');
 		$email = Q('email');
-		if (!$username || !$email) {
-			$this->error('参数错误');
+		if (!$email) {
+			$this->error('请输入邮箱');
 		} else {
 			$Model = M('user');
-			$user = $Model -> where(array('username' => $username, 'email' => $email)) -> find();
+			$user = $Model -> where(array('email' => $email)) -> find();
 			if (!$user) {
-				$this -> error('用户不存在');
+				$this -> error('帐号不存在');
 			} else {
 				$data=array();
 				$data['uid']=$user['uid'];

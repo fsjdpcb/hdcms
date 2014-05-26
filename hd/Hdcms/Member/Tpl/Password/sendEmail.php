@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <jquery/>
     <bootstrap/>
-    <link rel="stylesheet" type="text/css" href="template/system/Member/Login/css/reg.css?ver=1.0"/>
+    <link rel="stylesheet" type="text/css" href="__CONTROL_TPL__/css/reg.css?ver=1.0"/>
     <style type="text/css">
     	h1{
     		font-family: "微软雅黑";

@@ -18,7 +18,6 @@
 <div class="content container">
     <header>
         <span>找回密码</span>
-
         <p>拓展人脉关系，体验分享乐趣，让技术真正属于你，后盾网 人人做后盾！</p>
         <strong>客户服务邮箱 <a href="mailto:{$hd.config.email}">{$hd.config.email}</a></strong>
     </header>
@@ -26,16 +25,10 @@
         <div class="field col-md-8">
             <div id="error_tips" class="alert alert-warning " style="display: none"></div>
             <form class="form-horizontal" role="form" method="post" action="{|U:'sendEmail'}">
-            <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-3 control-label">帐　号：</label>
-                    <div class="col-sm-7">
-                        <input type="text" name="username" class="form-control" id="inputEmail3" placeholder="请输入帐号" title='字母与数字组成，不能小于5位' pattern=".{3,}" required=""/>
-                    </div>
-                </div>
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-3 control-label">邮　箱：</label>
                     <div class="col-sm-7">
-                        <input type="text" name="email" class="form-control" id="inputEmail3" placeholder="请输入帐号" title='字母与数字组成，不能小于5位' pattern=".{3,}" required=""/>
+                        <input type="email" name="email" class="form-control"  id="inputEmail3" placeholder="请输入邮箱" required=""/>
                     </div>
                 </div>
                 <div class="form-group">
