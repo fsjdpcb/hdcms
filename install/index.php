@@ -48,6 +48,7 @@ switch ($s) {
         $allow_url_fopen = (ini_get('allow_url_fopen') ? '<span class="dir_success">On</span>' : '<span class="dir_success">Off</span>');
         $safe = (ini_get('safe_mode') ? '<span class="dir_error">Off</span>' : '<span class="dir_success">On</span>');
         $gd = extension_loaded('GD')? '<span class="dir_success">On</span>' : '<span class="dir_error">Off</span>';
+		$curl = extension_loaded('CURL')? '<span class="dir_success">On</span>' : '<span class="dir_error">Off</span>';
         $mysqli = function_exists("mysqli_connect") ? '<span class="dir_success">On</span>' : '<span class="dir_error">Off</span>';
         $mb_substr = function_exists("mb_substr") ? '<span class="dir_success">On</span>' : '<span class="dir_error">Off</span>';
         //检测目录

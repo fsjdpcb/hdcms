@@ -34,7 +34,8 @@ class TemplateSelectControl extends AuthControl
             if ($v['type'] == 'dir') {
                 $file[$n]['url'] = __METH__.'&path='.urlencode($v['path']);
             } else {
-                $file[$n]['path'] = str_replace($stylePath, '', $v['path']);
+            	$startPos=strrpos($stylePath, C("WEB_STYLE"))+strlen(C("WEB_STYLE"))+1;
+                $file[$n]['path'] = substr($v['path'],$startPos);
             }
         }
 		$this->assign('history',$history);

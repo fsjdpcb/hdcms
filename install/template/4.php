@@ -79,6 +79,13 @@
                     </span></td>
                 </tr>
                 <tr>
+                    <td>CURL库</td>
+                    <td><?php echo $gd; ?></td>
+                    <td> <span class="desc">
+                        (不支持将导致无法进行采集与下载远程图片)
+                    </span></td>
+                </tr>
+                <tr>
                     <td>MySQLI扩展</td>
                     <td><?php echo $mysqli; ?></td>
                     <td> <span class="desc">
