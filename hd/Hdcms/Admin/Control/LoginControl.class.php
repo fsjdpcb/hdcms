@@ -66,6 +66,7 @@ class LoginControl extends CommonControl {
 			$_SESSION['icon100'] = str_replace(250, 100, $_SESSION['icon250']);
 			$_SESSION['icon50'] = str_replace(250, 50, $_SESSION['icon250']);
 			$Model -> save(array('uid' => $user['uid'], 'logintime' => time(), 'lastip' => ip_get_client()));
+			go("Index/index");
 		} else {
 			$this -> display();
 		}
