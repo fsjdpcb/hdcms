@@ -19,6 +19,7 @@ class AuthControl extends CommonControl {
 		if(!IN_ADMIN){
 			go("Login/login");
 		}
+		//站长与超级管理员放行
 		if (WEB_MASTER || $_SESSION['rid']==1) {
 			return true;
 		}

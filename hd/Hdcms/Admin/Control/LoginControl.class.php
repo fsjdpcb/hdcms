@@ -6,7 +6,7 @@
  * @author 向军 <houdunwangxj@gmail.com>
  */
 class LoginControl extends CommonControl {
-	
+
 	/**
 	 * 登录页面显示验证码
 	 * @access public
@@ -16,17 +16,11 @@ class LoginControl extends CommonControl {
 		$code = new Code();
 		$code -> show();
 	}
-
-	/**
-	 * 用户登录处理
-	 * @access public
-	 */
+	//用户登录处理
 	public function Login() {
-		if (IN_ADMIN || WEB_MASTER) {
-			go(__APP__);
-			exit ;
-		}
-		if (IS_POST) {
+		if (IN_ADMIN) {
+			go("Index/index");
+		} else if (IS_POST) {
 			$Model = K("User");
 			$code = Q('post.code', null, 'strtoupper');
 			$username = Q('username');
@@ -60,19 +54,18 @@ class LoginControl extends CommonControl {
 			unset($user['password']);
 			unset($user['code']);
 			//是否为超级管理员
-			
+
 			$_SESSION = array_merge($_SESSION, $user);
 			if (empty($user['icon'])) {
-				$_SESSION['icon'] = __ROOT__.'/data/image/user/250.png';
-			}else{
-				$_SESSION['icon']=__ROOT__.'/'.$user['icon'];
+				$_SESSION['icon'] = __ROOT__ . '/data/image/user/250.png';
+			} else {
+				$_SESSION['icon'] = __ROOT__ . '/' . $user['icon'];
 			}
 			$_SESSION['icon250'] = $_SESSION['icon'];
 			$_SESSION['icon150'] = str_replace(250, 150, $_SESSION['icon250']);
 			$_SESSION['icon100'] = str_replace(250, 100, $_SESSION['icon250']);
 			$_SESSION['icon50'] = str_replace(250, 50, $_SESSION['icon250']);
 			$Model -> save(array('uid' => $user['uid'], 'logintime' => time(), 'lastip' => ip_get_client()));
-			go(__APP__);
 		} else {
 			$this -> display();
 		}

@@ -5,7 +5,7 @@ return array (
   'REG_SHOW_CODE' => '1',
   'WEB_TITLE' => '后盾网PHP开源项目',
   'MEMBER_EMAIL_VALIDATE' => '0',
-  'WEB_DOMAIN' => '',
+  'WEB_HOST' => '',
   'HTML_PATH' => 'h',
   'CREATE_INDEX_HTML' => '0',
   'ICP' => '京ICP备12048441号-3',
