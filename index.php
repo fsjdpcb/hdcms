@@ -1,5 +1,5 @@
 <?php
-   define('DEBUG',true);
+// define('DEBUG',true);
 date_default_timezone_set('PRC');
 define("GROUP_PATH", 'hd/');
 define("TEMP_PATH", 'temp/');
