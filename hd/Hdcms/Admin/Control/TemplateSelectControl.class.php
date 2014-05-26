@@ -5,17 +5,7 @@ class TemplateSelectControl extends AuthControl
 {
     //选择模板文件（内容页与栏目管理页使用)
     public function select_tpl()
-    {
-//      $history = "";
-//      if ($dir = Q("get.path")) {
-//          if ($dir == $stylePath) {
-//              $history = "";
-//          } else {
-//              $history = __METH__ . '&path=' . dirname($dir);
-//          }
-//      }
-//      $this->assign("history", $history);
-//      $this->assign("file", $file);
+    { 
         $this->display();
     }
 	//获得模板列表
