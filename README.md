@@ -11,9 +11,9 @@
 > 
 >HDPHP官网： [http://www.hdphp.com ](http://www.hdphp.com "HDPHP官网")
 >
-![后盾网  人人做后盾](https://git.oschina.net/houdunwang/hdcms/data/image/houdunwang.jpg) 
+![后盾网  人人做后盾](https://git.oschina.net/houdunwang/hdcms/raw/master/data/image/houdunwang.jpg)  
 
->![后盾网  人人做后盾](https://git.oschina.net/houdunwang/hdcms/data/image/hdcms.jpg)
+>![后盾网  人人做后盾](https://git.oschina.net/houdunwang/hdcms/raw/master/data/image/hdcms.jpg)
 
 ## 优秀特性支持* HDCMS是完全免费的，你不用担心任何版权问题 * 你可以用在任意网站（包括商业网站）你不需要支付任何费用* 提供多项优化策略，速度非常快* 采用 MVC 设计模式* 生成干净的 URL
 * 灵活简单的html标签数据调用
