@@ -1,7 +1,7 @@
 <?php if(!defined('HDPHP_PATH'))EXIT;
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('1','WEBNAME','HDCMS内容管理系统','站点配置','网站名称','文本','','1')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('2','ICP','京ICP备12048441号-3','站点配置','ICP备案号','文本','','100')");
-$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('3','HTML_PATH','h','站点配置','静态html目录','文本','','3')");
+$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('3','HTML_PATH','h','站点配置','静态html目录','文本','','8')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('4','COPYRIGHT','Copyright © 2012-2014 HDCMS 后盾网','站点配置','网站版权信息','文本','','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('5','KEYWORDS','php培训,php实训,后盾网','站点配置','网站关键词','文本','','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('6','DESCRIPTION','后盾网顶尖PHP培训 内容全面 全程实战!业内顶级讲师亲自授课,千余课时独家视频教程免费下载,超百G原创视频资源,实力不容造假!010-64825057','站点配置','网站描述','多行文本','','100')");
@@ -31,7 +31,7 @@ $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('45','WATER_QUALITY','90','水印配置','图片压缩比','数字','','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('46','WATER_POS','9','水印配置','水印位置','数字','','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('47','DEL_CONTENT_MODEL','0','内容相关','删除文章标记为未审核','布尔(1/0)','','100')");
-$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('67','CREATE_INDEX_HTML','0','站点配置','首页生成静态','布尔(1/0)','','4')");
+$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('67','CREATE_INDEX_HTML','0','站点配置','首页生成静态','布尔(1/0)','','9')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('31','REPLY_CREDITS','1','会员配置','评论奖励积分','文本','会员提交回复奖励积分','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('48','DOWN_REMOTE_PIC','1','内容相关','下载远程图片','布尔(1/0)','','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('49','AUTO_DESC','1','内容相关','截取内容为摘要','布尔(1/0)','','100')");
@@ -40,7 +40,7 @@ $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('52','UPLOAD_IMG_MAX_HEIGHT','2000','内容相关','图片 最大高度','数字','上传图片高度超过此值，进行缩放','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('32','MEMBER_OPEN','1','会员配置','开启会员中心','布尔(1/0)','','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('11','WEB_CLOSE_MESSAGE','网站维护中，请稍候访问...','站点配置','网站关闭提示信息','文本','','100')");
-$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('12','web_style','default','站点配置','网站模板','文本','','100')");
+$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('12','WEB_STYLE','default','站点配置','网站模板','文本','','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('13','QQ','1455067020','站点配置','QQ号','文本','','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('14','WEIBO','houdunwangxj@gmail.com','站点配置','新浪微博','文本','','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('15','TWEIBO','houdunwang@gmail.com','站点配置','腾讯微博','文本','','100')");
@@ -62,3 +62,4 @@ $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('60','COOKIE_PATH','/','COOKIE配置','Cookie路径','文本','有效路径','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('62','SESSION_DOMAIN','','SESSION配置','SESSION域名','文本','如.hdphp.com 设置错误将导致无法登录后台','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('65','MEMBER_EMAIL_VALIDATE','0','会员配置','注册时验证邮件','布尔(1/0)','需填写邮箱配置，开启后会员注册审核功能无效','3')");
+$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('69','WEB_DOMAIN','','站点配置',' 网站域名','文本','','3')");

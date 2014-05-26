@@ -29,7 +29,7 @@ class TemplateSelectControl extends AuthControl
 			$history='';
 			$dir = $stylePath;
 		}
-        $file = Dir::tree($dir, "html");
+        $file = Dir::tree($dir, "htm");
         foreach ($file as $n => $v) {
             if ($v['type'] == 'dir') {
                 $file[$n]['url'] = __METH__.'&path='.urlencode($v['path']);

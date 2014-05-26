@@ -110,16 +110,5 @@ return array (
     'comment_state' => '1',
     'allowsendmessage' => '1',
   ),
-  10 => 
-  array (
-    'rid' => '12',
-    'rname' => '管理组',
-    'title' => '',
-    'admin' => '1',
-    'system' => '0',
-    'creditslower' => '0',
-    'comment_state' => '1',
-    'allowsendmessage' => '1',
-  ),
 );
 ?>

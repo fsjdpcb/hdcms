@@ -50,7 +50,6 @@ class UserModel extends ViewModel {
 		$data['code'] = $code;
 		$data['password'] = md5($data['password'] . $data['code']);
 		$data['nickname'] = $data['username'];
-		$data['domain'] = substr(md5(mt_rand(1,1000).time().$data['username']),0,8);
 		$data['regtime'] = time();
 		$data['logintime'] = time();
 		$data['regip'] = ip_get_client();
@@ -58,6 +57,7 @@ class UserModel extends ViewModel {
 		$data['credits'] = C('init_credits');
 		//设置用户头像
 		if ($uid = $this -> add($data)) {
+			M('user')->save(array('uid'=>$uid,'domain'=>"houdunwang{$uid}"));
 			return true;
 		} else {
 			$this -> error = '帐号注册失败';

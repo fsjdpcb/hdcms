@@ -9,4 +9,3 @@ $db->exe("REPLACE INTO ".$db_prefix."role (`rid`,`rname`,`title`,`admin`,`system
 $db->exe("REPLACE INTO ".$db_prefix."role (`rid`,`rname`,`title`,`admin`,`system`,`creditslower`,`comment_state`,`allowsendmessage`) VALUES('8','大学生','大学生','0','0','1050','1','1')");
 $db->exe("REPLACE INTO ".$db_prefix."role (`rid`,`rname`,`title`,`admin`,`system`,`creditslower`,`comment_state`,`allowsendmessage`) VALUES('9','研究生','研究生','0','0','1450','1','1')");
 $db->exe("REPLACE INTO ".$db_prefix."role (`rid`,`rname`,`title`,`admin`,`system`,`creditslower`,`comment_state`,`allowsendmessage`) VALUES('10','博士','博士','0','0','2000','1','1')");
-$db->exe("REPLACE INTO ".$db_prefix."role (`rid`,`rname`,`title`,`admin`,`system`,`creditslower`,`comment_state`,`allowsendmessage`) VALUES('12','管理组','','1','0','0','1','1')");

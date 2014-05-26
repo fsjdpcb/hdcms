@@ -6,6 +6,9 @@
 class Attachment {
 	//下载附件
 	public function download($value, $ext = array('jpg','gif','jpeg','png'), $mid = 0, $fileSavePath = null) {
+		if (!extension_exists('curl')) {
+			return $value;
+		}
 		$fileSavePath = $this -> setSavePath($fileSavePath);
 		$uploadModel = M('upload');
 		if (!function_exists('curl_init')) {
@@ -61,10 +64,10 @@ class Attachment {
 	//储存文件
 	public function saveFile($file, $data) {
 		$res = @fopen($file, 'w');
-		if ($res==false) {
+		if ($res == false) {
 			return false;
 		}
-		if (fwrite($res, $data)==false) {
+		if (fwrite($res, $data) == false) {
 			return false;
 		}
 		if (fclose($res) == false) {
