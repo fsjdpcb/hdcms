@@ -21,7 +21,7 @@ class ConfigControl extends AuthControl {
 				$config[$d['name']] = $d;
 			}
 			//删除模型风格配置
-			unset($config['web_style']);
+			unset($config['WEB_STYLE']);
 			//======================================会员角色
 			$roleData = $Model -> table("role") -> where("admin=0") -> all();
 			$config['DEFAULT_MEMBER_GROUP']['html'] = '<select name="DEFAULT_MEMBER_GROUP">';
