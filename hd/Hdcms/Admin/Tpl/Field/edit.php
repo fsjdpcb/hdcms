@@ -10,10 +10,11 @@
 </head>
 <body>
 <form action="{|U:'edit'}" method="post" class="hd-form" onsubmit="return hd_submit(this,'{|U:index,array('mid'=>$_GET['mid'])}');">
-    <input type="hidden" name="fid" value="{$hd.get.fid}"/>
-     <input type="hidden" name="mid" value="{$hd.get.mid}"/>
-     <input type="hidden" name="field_type" value="{$field.field_type}"/>
     <div class="wrap">
+    	<input type="hidden" name="fid" value="{$hd.get.fid}"/>
+     	<input type="hidden" name="mid" value="{$hd.get.mid}"/>
+     	<input type="hidden" name="field_type" value="{$field.field_type}"/>
+     	<input type="hidden" name="table_name" value="{$field.table_name}"/>	
         <div class="menu_list">
             <ul>
                 <li><a href="{|U:'Model/index'}">模型列表</a></li>

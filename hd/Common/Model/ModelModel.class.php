@@ -8,7 +8,6 @@ class ModelModel extends Model {
 	public $table = 'model';
 	//不允许删除的模型
 	public $forbidDelete = array('content');
-
 	/**
 	 * 添加模型
 	 */

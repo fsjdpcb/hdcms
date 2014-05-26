@@ -20,7 +20,7 @@ class ModelFieldModel extends Model {
 	//不允许禁用的字段
 	static public $NoAllowForbidden = array('title', 'cid');
 	//自动完成
-	public $auto = array( array("set", "serialize", "function", 1, 3), array("table_name", "_table_name", "method", 2, 3));
+	public $auto = array( array("set", "serialize", "function", 1, 3), array("table_name", "_table_name", "method", 2, 1));
 	public function _table_name($v) {
 		$table_type = Q('table_type', 1, 'intval');
 		if ($table_type == 1) {

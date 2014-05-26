@@ -24,6 +24,7 @@ class FieldControl extends AuthControl {
 
 	//字段列表
 	public function index() {
+		
 		//不允许删除字段
 		$this -> assign('noallowdelete', ModelFieldModel::$NoAllowDelete);
 		//不允许禁用字段
