@@ -8,7 +8,7 @@
 class IndexControl extends PublicControl {
 	//网站首页
 	public function index() {
-		$CacheTime = C('CACHE_INDEX') >= 1 ? C('CACHE_INDEX') : null;
+		$CacheTime = C('CACHE_INDEX') >= 1 ? C('CACHE_INDEX') : -1;
 		$this -> display('template/' . C('WEB_STYLE') . '/index.html', $CacheTime);
 	}
 	//内容页
@@ -23,13 +23,13 @@ class IndexControl extends PublicControl {
 		if (!$ContentAccessModel -> isShow($cid)) {
 			$this -> error('你没有阅读权限');
 		}
-		$CacheTime = C('CACHE_CONTENT') >= 1 ? C('CACHE_CONTENT') : null;
+		$CacheTime = C('CACHE_CONTENT') >= 1 ? C('CACHE_CONTENT') : -1;
 		if (!$this -> isCache()) {
 			$ContentModel = new Content($mid);
 			$field = $ContentModel -> find($aid);
 			if ($field) {
 				$this -> assign('hdcms', $field);
-				$this -> display($field['template'], $CacheTime);
+				$this -> display($field['template'], $CacheTime);EXIT;
 			}
 		} else {
 			$this -> display(null, $CacheTime);

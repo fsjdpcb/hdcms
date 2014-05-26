@@ -11,10 +11,10 @@ class PublicControl extends CommonControl {
 		parent::__construct();
 		//网站开启验证
 		if (!$this -> verification()) {
-			$this -> display("Template/system/site_close.html");
+			parent::display("Template/system/site_close.html");
 			exit ;
 		}
-		$this -> cacheDir = 'temp/Content/' . substr(md5(__URL__), 0, 3);
+		$this -> cacheDir = 'temp/Content/' . 	METHOD.'/'.substr(md5(__URL__), 0, 3);
 	}
 
 	// 网站是否开启
@@ -27,11 +27,8 @@ class PublicControl extends CommonControl {
 	}
 	// 界面显示
 	protected function display($tplFile = null, $cacheTime = null, $cachePath = null, $stat = false, $contentType = "text/html", $charset = "", $show = true) {
-		//验证模板文件
-//		if (is_file($tplFile) && is_readable($tplFile)) {
 			$cacheDir = $this->cacheDir;
 			parent::display($tplFile, $cacheTime, $cacheDir);
-//		}
 	}
 
 }
