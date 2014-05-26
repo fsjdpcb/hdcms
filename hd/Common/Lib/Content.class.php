@@ -68,7 +68,7 @@ class Content {
 			$this -> editTagData($aid);
 			M('upload') -> where(array('uid' => $_SESSION['uid'])) -> save(array('state' => 1));
 			//============记录动态
-			$DMessage = "发表了文章：<a target='_blank' href='" . U('Index/Index/content', array('mid' => $insertData['mid'], 'cid' => $insertData['cid'], 'aid' => $aid)) . "'>{$insertData['title']}</a>";
+			$DMessage = "发表了文章：<a target='_blank' href='" . U('Index/Index/content', array('mid' => $this->_mid, 'cid' => $insertData['cid'], 'aid' => $aid)) . "'>{$insertData['title']}</a>";
 			addDynamic($_SESSION['uid'], $DMessage);
 			//内容静态
 			$Html = new Html;

@@ -71,9 +71,9 @@
 					<tr>
 						<th> 表<span class="star">*</span><span class="notice">字段所在表</span></th>
 						<td><label>
-							<input type="radio" name="table_type" value="1"/>
+							<input type="radio" name="table_type" value="1" checked=""/>
 							主表</label><label>
-							<input type="radio" name="table_type" value="2" checked=""/>
+							<input type="radio" name="table_type" value="2"/>
 							副表</label></td>
 					</tr>
 					<tr>
