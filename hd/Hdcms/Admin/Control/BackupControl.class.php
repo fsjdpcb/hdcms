@@ -47,18 +47,17 @@ class BackupControl extends AuthControl {
 		$this -> display();
 	}
 
-//	/**
-//	 * 停止备份
-//	 */
-//	public function backup_stop() {
-//		Backup::cancel();
-//	}
-
 	/**
 	 * 还原数据
 	 */
 	public function recovery() {
-		Backup::recovery("data/backup/" . Q("dir"));
+		$dir = "data/backup/" . Q("dir");
+		$result=Backup::recovery(array('dir'=>$dir));
+		if ($result['state'] == 'success') {
+			$this -> success($result['message'], U('index'));
+		} else {
+			$this -> success($result['message'], $result['url'],0.2);
+		}
 	}
 
 	/**

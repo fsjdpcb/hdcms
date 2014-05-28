@@ -38,7 +38,7 @@
                     <td>{$d.filemtime|date:'Y-m-d h:i:s',@@}</td>
                     <td>{$d.size|get_size}</td>
                     <td>
-                        <a href="javascript:recovery('{$d.name}')">还原</a> |
+                        <a href="javascript:confirm('确定还原吗？')?location.href='{|U:'recovery',array('dir'=>$d['name'])}':false;">还原</a> |
                         <a href="javascript:confirm('确定删除吗？')?hd_ajax('{|U:del}',{dir:['{$d.name}']}):false;">删除</a>
                     </td>
                 </tr>
