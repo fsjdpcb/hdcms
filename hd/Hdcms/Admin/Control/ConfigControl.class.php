@@ -5,8 +5,31 @@
  * @author 向军 <houdunwangxj@gmail.com>
  */
 class ConfigControl extends AuthControl {
+	//删除配置
+	public function del(){
+		$id =Q('id',0,'intval');
+		$Model = K('config');
+		if($Model->del($id)){
+			$this->success('操作成功');
+		}else{
+			$this->error($Model->error);
+		}
+	}
+	//添加配置项
+	public function add(){
+		if(IS_POST){
+			$Model = K('config');
+			if($Model->addConfig()){
+				$this->success('添加成功!');
+			}else{
+				$this->error($Model->error);
+			}
+		}else{
+			$this->display();
+		}
+	}
 	//修改
-	function edit() {
+	public function edit() {
 		$Model = K("config");
 		if (IS_POST) {
 			if ($Model -> saveConfig($_POST)) {

@@ -4,6 +4,11 @@
 		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 		<title>栏目列表</title>
 		<hdjs/>
+		<style type="text/css">
+			img.explodeCategory{
+				cursor: pointer;
+			}
+		</style>
 	</head>
 	<body>
 		<form action='{|U:'BulkEdit'}' method="post">
@@ -41,36 +46,43 @@
 							<td class="w180">操作</td>
 						</tr>
 					</thead>
-					<list from="$category" name="c">
-						<tr>
-							<td>
-							<input type="checkbox" name="cid[]" value="{$c.cid}"/>
-							</td>
-							<td>{$c.cid}</td>
-							<td>
-							<input type="text" class="w30" value="{$c.catorder}" name="list_order[{$c.cid}]"/>
-							</td>
-							<td>{$c._name}</td>
-							<td>{$c.cat_type_name}</td>
-							<td>{$c.model_name}</td>
-							<td>
-							<a href="<?php echo Url::getCategoryUrl($c)?>" target="_blank">
-								访问
-							</a>
-								<span class="line">|</span>
-							<a href="{|U:'add',array('pid'=>$c['cid'],'mid'=>$c['mid'])}">
-								添加子栏目
-							</a>
-								<span class="line">|</span>
-							<a href="{|U:'edit',array('cid'=>$c['cid'])}">
-								修改
-							</a>
-								<span class="line">|</span>
-							<a href="javascript:hd_confirm('确证删除吗？',function(){hd_ajax(CONTROL + '&m=del', {cid: {$c.cid},mid: {$c.mid}})})">
-								删除
-							</a></td>
-						</tr>
-					</list>
+					<tbody>
+						<list from="$category" name="c">
+							<tr <if value="$c.pid eq 0">class="top"</if>>
+								<td>
+									<input type="checkbox" name="cid[]" value="{$c.cid}"/>
+								</td>
+								<td>{$c.cid}</td>
+								<td>
+									<input type="text" class="w30" value="{$c.catorder}" name="list_order[{$c.cid}]"/>
+								</td>
+								<td>
+									<if value="$c.pid eq 0">
+										<img src="__CONTROL_TPL__/img/contract.gif" action="2" class="explodeCategory"/>
+									</if>
+									{$c._name}
+								</td>
+								<td>{$c.cat_type_name}</td>
+								<td>{$c.model_name}</td>
+								<td>
+								<a href="<?php echo Url::getCategoryUrl($c)?>" target="_blank">
+									访问
+								</a>
+									<span class="line">|</span>
+								<a href="{|U:'add',array('pid'=>$c['cid'],'mid'=>$c['mid'])}">
+									添加子栏目
+								</a>
+									<span class="line">|</span>
+								<a href="{|U:'edit',array('cid'=>$c['cid'])}">
+									修改
+								</a>
+									<span class="line">|</span>
+								<a href="javascript:hd_confirm('确证删除吗？',function(){hd_ajax(CONTROL + '&m=del', {cid: {$c.cid},mid: {$c.mid}})})">
+									删除
+								</a></td>
+							</tr>
+						</list>
+					</tbody>
 				</table>
 				<div class="h60"></div>
 			</div>
@@ -82,7 +94,24 @@
 			</div>
 		</form>
 		<script>
-			//更新排序
+//展开栏目
+$(".explodeCategory").click(function(){
+	var action=parseInt($(this).attr("action"));
+	var tr= $(this).parents('tr').eq(0);
+	switch(action){
+		case 1://展示
+			$(tr).nextUntil('.top').show();
+			$(this).attr('action',2);
+			$(this).attr('src',"__CONTROL_TPL__/img/contract.gif");
+			break;
+		case 2://收缩
+			$(tr).nextUntil('.top').hide();
+			$(this).attr('action',1);
+			$(this).attr('src',"__CONTROL_TPL__/img/explode.gif");
+			break;
+	}
+})
+//更新排序
 function updateOrder() {
     //栏目检测
     if ($("input[type='text']").length == 0) {

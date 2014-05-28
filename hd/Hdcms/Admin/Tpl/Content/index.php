@@ -95,9 +95,10 @@ div#content {
     </div>
 </div>
 <script type="text/javascript" charset="utf-8">
-	//显示左侧栏目列表TREE
+//显示左侧栏目列表TREE
 function get_category_tree() {
     $.post(CONTROL + '&m=ajaxCategoryZtree', function (data) {
+    	$("#category_tree").hide();
         var setting = {
             data: {
                 simpleData: {
@@ -109,6 +110,7 @@ function get_category_tree() {
         $(document).ready(function () {
             $.fn.zTree.init($("#treeDemo"), setting, zNodes);
         });
+        $("#category_tree").slideDown(1000);
     }, 'json');
 }
 get_category_tree();

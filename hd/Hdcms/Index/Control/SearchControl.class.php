@@ -9,31 +9,26 @@ class SearchControl extends Control {
 
 	//高级搜索
 	public function index() {
-		$this -> category =cache("category");
-		$this -> model =cache("model");
+		$this -> category = cache("category");
+		$this -> model = cache("model");
 		$this -> display("./template/plug/search.html");
 	}
 
 	//搜索内容
 	public function search() {
-		$word = Q('word');
+		$word = Q('word', '', 'htmlspecialchars,addslashes,strip_tags');
 		$categoryCache = cache('category');
 		if (!$word) {
 			$this -> error("搜索内容不能为空");
 		} else {
-			$cid = empty($_REQUEST['cid'])?null:intval($_GET['cid']);
-			$mid =empty($_REQUEST['mid'])?1:intval($_GET['mid']);
-			$_REQUEST['mid']=$mid;
+			$cid = empty($_REQUEST['cid']) ? null : intval($_GET['cid']);
+			$mid = empty($_REQUEST['mid']) ? 1 : intval($_GET['mid']);
+			$_REQUEST['mid'] = $mid;
 			//=====================记录搜索词
-			$SearchTotal = M('search')->where(array('word'=>$word))->getField('total');
-			if($SearchTotal){
-				M('search')->where(array('word'=>$word))->save(array('total'=>$SearchTotal+1));
-			}else{
-				M('search')->add(array('total'=>1,'word'=>$word,'mid'=>$_REQUEST['mid']));
-			}
-			
-			if($cid && isset($categoryCache[$cid])){
-				$_REQUEST['mid']=$mid =$categoryCache[$cid]['mid'];
+			$SearchTotal = M('search') -> where(array('word' => $word)) -> getField('total');
+			M('search') -> replace(array('word' => $word, 'total' => $SearchTotal + 1));
+			if ($cid && isset($categoryCache[$cid])) {
+				$_REQUEST['mid'] = $mid = $categoryCache[$cid]['mid'];
 			}
 			$pre = C('DB_PREFIX');
 			$seachType = Q('type', 'title');
@@ -54,10 +49,13 @@ class SearchControl extends Control {
 				$where = array();
 				if ($cid) {
 					$cids = getCategory($cid);
-					$where[] = $pre . "category.cid IN(" . implode(',',$cids).")";
+					$where[] = $pre . "category.cid IN(" . implode(',', $cids) . ")";
 				}
-				if (!empty($_GET['search_begin_time']) && !empty($_GET['search_end_time'])) {
-					$where[] = "addtime>=" . strtotime($_GET['search_begin_time']) . " AND addtime<=" . $_GET['search_end_time'];
+				if (!empty($_GET['search_begin_time'])) {
+					$where[] = "addtime>=" . strtotime($_GET['search_begin_time']) ;
+				}
+				if (!empty($_GET['search_end_time'])) {
+					$where[] = "addtime<=" . strtotime($_GET['search_end_time']);
 				}
 				switch($seachType) {
 					case 'title' :

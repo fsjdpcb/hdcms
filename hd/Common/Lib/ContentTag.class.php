@@ -177,11 +177,11 @@ str;
 		//获取类型（排序）
 		$type = isset($attr['type']) ? strtolower(trim($attr['type'])) : 'new';
 		//获取副表字段
-		$subtable = isset($attr['subtable']) ? strtolower(trim($attr['subtable'])) : '';
+		$subtable = isset($attr['subtable']) ? intval($attr['subtable']) : 0;
 		//子栏目处理
 		$sub_channel = isset($attr['sub_channel']) ? intval($attr['sub_channel']) : 1;
 		$php = <<<str
-        <?php \$mid='$mid';\$cid =$cid;\$subtable ='$subtable';\$order ='$order';\$flag='$flag';\$noflag='$noflag';\$aid='$aid';\$type='$type';\$sub_channel=$sub_channel;
+        <?php \$mid='$mid';\$cid =$cid;\$subtable =$subtable;\$order ='$order';\$flag='$flag';\$noflag='$noflag';\$aid='$aid';\$type='$type';\$sub_channel=$sub_channel;
             \$mid = \$mid?\$mid:Q('mid',1,'intval');
             \$cid = !empty(\$cid)?\$cid:Q('cid',0,'intval');
             //导入模型类

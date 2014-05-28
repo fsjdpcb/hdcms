@@ -6,6 +6,22 @@
  */
 class ConfigModel extends Model {
 	public $table = "config";
+	//删除配置
+	public function delConfig($id){
+		$this->del($id);
+		return $this->updateCache();
+	}
+	//添加配置
+	public function addConfig() {
+		//验证变量名
+		if(M('config')->find(array('name'=>$_POST['name']))){
+			$this->error='变量名已经存在';
+			return false;
+		}
+		$this -> add();
+		return $this->updateCache();
+	}
+
 	//修改配置文件
 	public function saveConfig($configData) {
 		if (!is_array($configData)) {
@@ -13,35 +29,37 @@ class ConfigModel extends Model {
 			return false;
 		}
 		//SESSION域名验证
-		$sessionDomain = trim($configData['SESSION_DOMAIN'],'.');
-		if(!empty($sessionDomain) && !strpos(__ROOT__, $sessionDomain)){
-			$this->error='SESSION域名设置错误';
+		$sessionDomain = trim($configData['SESSION_DOMAIN'], '.');
+		if (!empty($sessionDomain) && !strpos(__ROOT__, $sessionDomain)) {
+			$this -> error = 'SESSION域名设置错误';
 			return false;
 		}
 		//Cookie有效域名
-		$cookieDomain = trim($configData['COOKIE_DOMAIN'],'.');
-		if(!empty($cookieDomain) && !strpos(__ROOT__, $cookieDomain)){
-			$this->error='COOKIE域名设置错误';
+		$cookieDomain = trim($configData['COOKIE_DOMAIN'], '.');
+		if (!empty($cookieDomain) && !strpos(__ROOT__, $cookieDomain)) {
+			$this -> error = 'COOKIE域名设置错误';
 			return false;
 		}
 		//上传文件大小
-		if(intval($configData['ALLOW_SIZE'])<100000){
-			$this->error='上传文件大小不能小于100KB';
+		if (intval($configData['ALLOW_SIZE']) < 100000) {
+			$this -> error = '上传文件大小不能小于100KB';
 			return false;
 		}
 		//允许上传类型
-		if(empty($configData['ALLOW_TYPE'])){
-			$this->error='允许上传类型不能为空';
+		if (empty($configData['ALLOW_TYPE'])) {
+			$this -> error = '允许上传类型不能为空';
 			return false;
 		}
 		//伪静态检测
-		if($configData['OPEN_REWRITE']==1 && !is_file('.htaccess')){
-			$this->error='.htaccess文件不存在，开启Rewrite失败';
+		if ($configData['OPEN_REWRITE'] == 1 && !is_file('.htaccess')) {
+			$this -> error = '.htaccess文件不存在，开启Rewrite失败';
 			return false;
 		}
+		$order_list = $configData['order_list'];
+		unset($configData['order_list']);
 		$configData = array_change_key_case_d($configData, 1);
 		foreach ($configData AS $name => $value) {
-			$this -> where(array('name' => $name)) -> save(array('name' => $name, 'value' => $value));
+			$this -> where(array('name' => $name)) -> save(array('name' => $name, 'value' => $value, 'order_list' => $order_list[$name]));
 		}
 		return $this -> updateCache();
 	}
