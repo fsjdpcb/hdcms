@@ -125,24 +125,17 @@
 			</div>
 		</div>
 		<script type="text/javascript" charset="utf-8">
-			$.ajax({
-				url:'http://www.hdphp.com/index.php?a=Admin&c=Version&m=checkVersion',
-				dataType:"jsonp",
-				data:{version:'{$hd.config.HDCMS_VERSION}'},
-				crossDomain:true
-			});
-			function JsonpCallBack(json){
-				if (json.state == 1) {
-							$.modal({
-				            width: 420,
-				            height: 180,
-				            title: "温馨提示",
-				            message: json.message,
-				            button_cancel: "关闭",
-				            type:'success',//类型
-        				});
-        			}
+			function checkVersion(message){
+					$.modal({
+					      width: 420,
+					      height: 180,
+					      title: "温馨提示",
+					      message: message,
+					      button_cancel: "关闭",
+					      type:'success',//类型
+	        		});
 			}
-		</script>
+	</script>
+	<script type="text/javascript" charset="utf-8" src="http://www.hdphp.com/index.php?g=Hdcms&a=Admin&c=Version&m=checkVersion&version=<?php echo C('HDCMS_VERSION')?>"></script>
 	</body>
 </html>

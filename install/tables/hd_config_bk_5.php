@@ -3,7 +3,7 @@ $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('2','ICP','京ICP备12048441号-3','站点配置','ICP备案号','文本','','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('3','HTML_PATH','h','站点配置','静态html目录','文本','','8')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('4','COPYRIGHT','Copyright © 2012-2014 HDCMS 后盾网','站点配置','网站版权信息','文本','','100')");
-$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('5','KEYWORDS','php培训,php实训,后盾网','站点配置','网站关键词','文本','','100')");
+$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('5','KEYWORDS','php培训,php实训,后盾网','站点配置','网站关键词','文本','','1')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('6','DESCRIPTION','后盾网顶尖PHP培训 内容全面 全程实战!业内顶级讲师亲自授课,千余课时独家视频教程免费下载,超百G原创视频资源,实力不容造假!010-64825057','站点配置','网站描述','多行文本','','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('7','EMAIL','houdunwangxj@gmail.com','站点配置','管理员邮箱','文本','','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('8','BACKUP_DIR','backup','内容相关','数据备份目录','文本','','100')");
@@ -46,14 +46,14 @@ $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('15','TWEIBO','houdunwang@gmail.com','站点配置','腾讯微博','文本','','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('16','ENTERPRISE_EMAIL','houdunwangxj@gmail.com','站点配置','企业邮箱','文本','','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('33','INIT_CREDITS','100','会员配置','初始积分','文本','','100')");
-$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('53','CACHE_INDEX','0','性能优化','首页缓存时间','文本','单位秒，0为不缓存','100')");
-$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('54','CACHE_CATEGORY','0','性能优化','栏目缓存时间','文本','单位秒，0为不缓存','100')");
-$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('55','CACHE_CONTENT','0','性能优化','文章缓存时间','文本','单位秒，0为不缓存','100')");
+$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('53','CACHE_INDEX','10','性能优化','首页缓存时间','文本','单位秒，0为不缓存','100')");
+$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('54','CACHE_CATEGORY','10','性能优化','栏目缓存时间','文本','单位秒，0为不缓存','100')");
+$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('55','CACHE_CONTENT','10','性能优化','文章缓存时间','文本','单位秒，0为不缓存','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('34','COMMENT_STEP_TIME','10','会员配置','评论间隔时间','文本','必须大于1（单位秒)','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('56','PATHINFO_TYPE','0','伪静态','开启伪静态','布尔(1/0)','需要环境支持','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('57','OPEN_REWRITE','0','伪静态','开启Rewrite','布尔(1/0)','1:服务器需要支持Rewrtie 2:将HDCMS根目录中的htaccess.txt改名为.htaccess','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('35','EMAIL_USERNAME','admin','邮箱配置','邮箱用户名','文本','使用126或qq邮箱','100')");
-$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('36','EMAIL_PASSWORD','admin888','邮箱配置','邮箱密码','文本','邮箱的密码','100')");
+$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('36','EMAIL_PASSWORD','admin888','邮箱配置','邮箱密码','文本','邮箱的密码','0')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('37','EMAIL_HOST','smtp.exmail.qq.com','邮箱配置','smtp地址','文本','如smtp.gmail.com','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('38','EMAIL_PORT','25','邮箱配置','smtp端口','文本','qq,126为25，gmail为465','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('39','EMAIL_FROMNAME','后盾网','邮箱配置','发送人','文本','发件箱显示的用户名','100')");
@@ -62,4 +62,3 @@ $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('60','COOKIE_PATH','/','COOKIE配置','Cookie路径','文本','有效路径','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('62','SESSION_DOMAIN','','SESSION配置','SESSION域名','文本','如.hdphp.com 设置错误将导致无法登录后台','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('65','MEMBER_EMAIL_VALIDATE','0','会员配置','注册时验证邮件','布尔(1/0)','需填写邮箱配置，开启后会员注册审核功能无效','3')");
-$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('69','WEB_DOMAIN','','站点配置',' 网站域名','文本','','3')");

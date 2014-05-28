@@ -1,6 +1,8 @@
 <?php if (!defined('HDPHP_PATH')) exit; 
 return array (
+  'EMAIL_PASSWORD' => 'admin888',
   'WEBNAME' => 'HDCMS内容管理系统',
+  'KEYWORDS' => 'php培训,php实训,后盾网',
   'MEMBER_VERIFY' => '1',
   'REG_SHOW_CODE' => '1',
   'WEB_TITLE' => '后盾网PHP开源项目',
@@ -9,7 +11,6 @@ return array (
   'CREATE_INDEX_HTML' => '0',
   'ICP' => '京ICP备12048441号-3',
   'COPYRIGHT' => 'Copyright © 2012-2014 HDCMS 后盾网',
-  'KEYWORDS' => 'php培训,php实训,后盾网',
   'DESCRIPTION' => '后盾网顶尖PHP培训 内容全面 全程实战!业内顶级讲师亲自授课,千余课时独家视频教程免费下载,超百G原创视频资源,实力不容造假!010-64825057',
   'EMAIL' => 'houdunwangxj@gmail.com',
   'BACKUP_DIR' => 'backup',
@@ -55,7 +56,6 @@ return array (
   'PATHINFO_TYPE' => '0',
   'OPEN_REWRITE' => '0',
   'EMAIL_USERNAME' => 'admin',
-  'EMAIL_PASSWORD' => 'admin888',
   'EMAIL_HOST' => 'smtp.exmail.qq.com',
   'EMAIL_PORT' => '25',
   'EMAIL_FROMNAME' => '后盾网',

@@ -9,14 +9,5 @@ return array (
     'description' => '',
     'is_system' => '1',
   ),
-  5 => 
-  array (
-    'mid' => '5',
-    'model_name' => '下载',
-    'table_name' => 'aaa',
-    'enable' => '1',
-    'description' => '',
-    'is_system' => '0',
-  ),
 );
 ?>
