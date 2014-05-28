@@ -158,6 +158,11 @@ class CategoryModel extends Model {
 
 	//删除栏目
 	public function delCategory($cid) {
+		//如果存在子栏目不进行删除
+		if(M('category')->where(array('pid'=>$cid))->find()){
+			$this->error='请先删除子栏目';
+			return false;
+		}
 		$ContentModel = ContentModel::getInstance($this -> _category[$cid]['mid']);
 		$ContentModel -> where(array('cid' => $cid)) -> del();
 		//删除栏目权限

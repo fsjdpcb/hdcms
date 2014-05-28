@@ -140,7 +140,7 @@ class CategoryControl extends AuthControl {
 		if ($categoryModel -> delCategory($cid)) {
 			$this -> success('删除栏目成功');
 		} else {
-			$this -> success($categoryModel -> error);
+			$this -> error($categoryModel -> error);
 		}
 	}
 
