@@ -281,7 +281,7 @@ return array (
     'css' => '',
     'minlength' => '0',
     'maxlength' => '',
-    'validate' => '/^http:\\/\\//',
+    'validate' => '/^http:///',
     'required' => '0',
     'error' => '',
     'isunique' => '0',

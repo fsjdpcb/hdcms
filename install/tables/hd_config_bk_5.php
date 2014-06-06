@@ -46,9 +46,9 @@ $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('15','TWEIBO','houdunwang@gmail.com','站点配置','腾讯微博','文本','','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('16','ENTERPRISE_EMAIL','houdunwangxj@gmail.com','站点配置','企业邮箱','文本','','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('33','INIT_CREDITS','100','会员配置','初始积分','文本','','100')");
-$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('53','CACHE_INDEX','10','性能优化','首页缓存时间','文本','单位秒，0为不缓存','100')");
-$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('54','CACHE_CATEGORY','10','性能优化','栏目缓存时间','文本','单位秒，0为不缓存','100')");
-$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('55','CACHE_CONTENT','10','性能优化','文章缓存时间','文本','单位秒，0为不缓存','100')");
+$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('53','CACHE_INDEX','0','性能优化','首页缓存时间','文本','单位秒，0为不缓存','100')");
+$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('54','CACHE_CATEGORY','0','性能优化','栏目缓存时间','文本','单位秒，0为不缓存','100')");
+$db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('55','CACHE_CONTENT','0','性能优化','文章缓存时间','文本','单位秒，0为不缓存','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('34','COMMENT_STEP_TIME','10','会员配置','评论间隔时间','文本','必须大于1（单位秒)','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('56','PATHINFO_TYPE','0','伪静态','开启伪静态','布尔(1/0)','需要环境支持','100')");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`) VALUES('57','OPEN_REWRITE','0','伪静态','开启Rewrite','布尔(1/0)','1:服务器需要支持Rewrtie 2:将HDCMS根目录中的htaccess.txt改名为.htaccess','100')");
