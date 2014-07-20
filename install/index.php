@@ -1,10 +1,10 @@
 <?php
-error_reporting(0);
-$version=require '../hd/Common/Config/version.php';
+// error_reporting(0);
+$version=require '../hdcms/Common/Config/version.php';
 //网站根目录
 define("WEB_PATH", dirname(dirname(str_replace('\\', '/', __FILE__))) . '/');
 //框架目录
-define("HDPHP_PATH", WEB_PATH . "/hd/HDPHP/hdphp/");
+define("HDPHP_PATH", WEB_PATH . "/hdcms/hdphp/");
 //版本号
 define("VERSION", $version['HDCMS_NAME'] . " " . $version['HDCMS_VERSION']);
 header("Content-type:text/html;charset=utf-8");

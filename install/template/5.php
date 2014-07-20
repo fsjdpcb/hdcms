@@ -30,8 +30,8 @@
                     <tr>
                         <td width="200">数据库主机</td>
                         <td><input type="text" class="input" mast_required="1" error="数据库主机地址不能为空" name="DB_HOST"
-                                   value="localhost"/>
-                            <span class="message">MAC系统请输入127.0.0.1</span></td>
+                                   value="127.0.0.1"/>
+                            <span class="message"></span></td>
                     </tr>
                     <tr>
                         <td>数据库用户</td>

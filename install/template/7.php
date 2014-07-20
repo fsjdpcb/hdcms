@@ -30,7 +30,7 @@
             </h2>
             <div class="link">
                 <a href="../index.php">访问首页</a>
-                <a href="../index.php?a=Admin">登录后台</a>
+                <a href="../index.php?m=Admin">登录后台</a>
             </div>
         </div>
     </div>
