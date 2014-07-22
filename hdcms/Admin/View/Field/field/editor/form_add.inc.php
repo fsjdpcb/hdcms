@@ -12,6 +12,13 @@
                     <td>默认值</td>
                     <td><textarea class="w300 h60" name="set[default]"></textarea></td>
                 </tr>
+                <tr>
+                    <td>样式</td>
+                    <td>
+                        <label><input type="radio" name="set[style]" value="1" checked=""/> 完整版</label>
+                        <label><input type="radio" name="set[style]" value="2" /> 精简版</label>
+                    </td>
+                </tr>
             </table>
         </td>
     </tr>

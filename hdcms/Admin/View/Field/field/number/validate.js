@@ -35,6 +35,14 @@ $(function () {
             error: {
                 regexp: "请输入正则"
             }
+        },
+        'set[default]': {//默认值
+            rule: {
+                regexp: /^[\d\.]+$/
+            },
+            error: {
+                regexp: "请输入数字"
+            }
         }
     })
 })

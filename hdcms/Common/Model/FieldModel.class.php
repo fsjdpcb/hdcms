@@ -24,11 +24,10 @@ class FieldModel extends Model
     public $validate = array(
         array('field_name', 'nonull', '字段名不能为空', 2, 1), //字段类型
         array('field_type', 'nonull', '字段类型不能为空', 2, 3), //字段类型
-        array('set', 'nonull', '字段参数错误', 2, 3), //字段参数
+        array('set', 'nonull', '字段set参数错误', 2, 3), //字段参数
     );
     //自动完成
     public $auto = array(
-        array("set", "serialize", "function", 1, 3), //字段参数
         array("table_name", "_table_name", "method", 2, 1), //表名
         array("field_name", "strtolower", "function", 2, 1), //字段名
     );
@@ -104,6 +103,7 @@ class FieldModel extends Model
             $this->$method();
             //修改表结构
             if ($this->alterTableField()) {
+                $this->data['set'] = serialize($this->data['set']);
                 if ($this->add()) {
                     $this->updateCache();
                     return true;
@@ -121,7 +121,7 @@ class FieldModel extends Model
         if ($this->create()) {
             $method = $this->data['field_type'];
             $this->$method();
-            //修改表结构
+            $this->data['set'] = serialize($this->data['set']);
             $state = $this->save();
             if ($state) {
                 $this->updateCache();

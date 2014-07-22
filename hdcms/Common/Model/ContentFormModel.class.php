@@ -221,8 +221,6 @@ class ContentFormModel extends CommonModel
     protected function content($field, $value)
     {
         if (MODULE != 'Member') {
-            $category = F('category', false, CACHE_DATA_PATH);
-            $set = $field['set'];
             //自动截取内容为摘要
             $AUTO_DESC = C('AUTO_DESC') ? 'checked=""' : '';
             $DOWN_REMOTE_PIC = C('DOWN_REMOTE_PIC') ? 'checked=""' : '';
@@ -255,8 +253,7 @@ class ContentFormModel extends CommonModel
     //编辑器
     protected function editor($field, $value)
     {
-        $html = tag('ueditor', array("name" => $field['field_name'], "content" => $value, "height" => 300));
-        return $html;
+        return tag('ueditor', array("name" => $field['field_name'], "content" => $value, "style"=>$field['set']['style'],"height" => $field['set']['height']));
     }
 
     //选项radio,select,checkbox
@@ -266,7 +263,7 @@ class ContentFormModel extends CommonModel
         //表单值
         $_v = explode(",", $set['options']);
         $options = array();
-        foreach ($_v as $n => $p) {
+        foreach ($_v as $p) {
             $p = explode("|", $p);
             $options[$p[0]] = $p[1];
         }
@@ -279,7 +276,7 @@ class ContentFormModel extends CommonModel
             switch ($set['form_type']) {
                 case "radio" :
                     $checked = $value == $v ? 'checked=""' : '';
-                    $h .= "<label><input type='radio' name=\"{$field['field_name']}\" value=\"{$v}\" {$checked}/>{$text}</label>&nbsp;&nbsp;";
+                    $h .= "<label><input type='radio' name=\"{$field['field_name']}\" value=\"{$v}\" {$checked}/> {$text}</label>&nbsp;&nbsp;";
                     break;
                 case "checkbox" :
                     $s = explode(",", $value);
