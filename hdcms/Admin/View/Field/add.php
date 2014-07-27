@@ -4,8 +4,9 @@
     <title>添加字段</title>
     <meta charset="UTF-8">
     <hdjs/>
-    <css file="__CONTROLLER_TPL__/css/addEdit.css"/>
     <js file="__CONTROLLER_TPL__/js/js.js"/>
+    <css file="__CONTROLLER_TPL__/css/addEdit.css"/>
+    <css file="__PUBLIC__/common.css"/>
     <script type="text/javascript">
         var mid = '{$hd.get.mid}';
         //获得字段模板类型
@@ -13,8 +14,8 @@
     </script>
 </head>
 <body>
+<form method="post" class="hd-form" onsubmit="return hd_submit(this,'{|U:index,array('mid'=>$_GET['mid'])}');">
 <div class="wrap">
-    <form method="post" class="hd-form" onsubmit="return hd_submit(this,'{|U:index,array('mid'=>$_GET['mid'])}');">
         <input type="hidden" name="mid" value="{$model.mid}"/>
         <div class="menu_list">
             <ul>
@@ -176,12 +177,11 @@
             </tr>
 
         </table>
-        <div class="position-bottom">
-            <input type="submit" value="确定" class="hd-success"/>
-        </div>
-    </form>
 </div>
-
+<div class="position-bottom">
+    <input type="submit" value="确定" class="hd-success"/>
+</div>
+</form>
 </body>
 </html>
 

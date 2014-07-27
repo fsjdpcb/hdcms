@@ -121,7 +121,7 @@ class ContentFormModel extends CommonModel
     }
 
     //Input字段
-    protected function input($field, $value)
+    private function input($field, $value)
     {
         $set = $field['set'];
         //表单类型
@@ -130,7 +130,7 @@ class ContentFormModel extends CommonModel
     }
 
     //tag字段
-    protected function tag($field, $value)
+    private function tag($field, $value)
     {
         $set = $field['set'];
         //表单类型
@@ -138,7 +138,7 @@ class ContentFormModel extends CommonModel
     }
 
     //Input字段
-    protected function number($field, $value)
+    private function number($field, $value)
     {
         $set = $field['set'];
         //表单类型
@@ -146,7 +146,7 @@ class ContentFormModel extends CommonModel
     }
 
     //Title标题字段
-    protected function title($field, $value)
+    private function title($field, $value)
     {
         $set = $field['set'];
         if (APP != 'Member') {
@@ -171,7 +171,7 @@ class ContentFormModel extends CommonModel
     }
 
     //文章Flag属性如推荐、置顶等
-    protected function flag($field, $value)
+    private function flag($field, $value)
     {
         $flag = F($this->mid, false, CACHE_FLAG_PATH);
         $set = $field['set'];
@@ -194,7 +194,7 @@ class ContentFormModel extends CommonModel
     }
 
     //栏目cid
-    protected function cid($field, $value)
+    private function cid($field, $value)
     {
         $category = F('category', false, CACHE_DATA_PATH);
         $set = $field['set'];
@@ -203,14 +203,14 @@ class ContentFormModel extends CommonModel
     }
 
     //栏目文本域
-    protected function textarea($field, $value)
+    private function textarea($field, $value)
     {
         $set = $field['set'];
         return "<textarea class=\"{$field['css']}\" name=\"{$field['field_name']}\" style=\"width:{$set['width']}px;height:{$set['height']}px\">{$value}</textarea>";
     }
 
     //模板选择
-    protected function template($field, $value)
+    private function template($field, $value)
     {
         $set = $field['set'];
         return '<input style="width:300px;" type="text" id="' . $field['field_name'] . '" name="' . $field['field_name'] . '" value="' . $value . '" onfocus="select_template(\'' . $field['field_name'] . '\');">
@@ -218,7 +218,7 @@ class ContentFormModel extends CommonModel
     }
 
     //文章正文
-    protected function content($field, $value)
+    private function content($field, $value)
     {
         if (MODULE != 'Member') {
             //自动截取内容为摘要
@@ -251,13 +251,13 @@ class ContentFormModel extends CommonModel
     }
 
     //编辑器
-    protected function editor($field, $value)
+    private function editor($field, $value)
     {
-        return tag('ueditor', array("name" => $field['field_name'], "content" => $value, "style"=>$field['set']['style'],"height" => $field['set']['height']));
+        return tag('ueditor', array("name" => $field['field_name'], "content" => $value, "style" => $field['set']['style'], "height" => $field['set']['height']));
     }
 
     //选项radio,select,checkbox
-    protected function box($field, $value)
+    private function box($field, $value)
     {
         $set = $field['set'];
         //表单值
@@ -280,11 +280,11 @@ class ContentFormModel extends CommonModel
                     break;
                 case "checkbox" :
                     $s = explode(",", $value);
-                    $checked = in_array($v, $s) ? "checked='checked'" : "";
+                    $checked = in_array($v, $s) ? 'checked=""' : '';
                     $h .= "<label><input type='checkbox' name=\"{$field['field_name']}[]\" value=\"{$v}\" {$checked}/> {$text}</label> ";
                     break;
                 case "select" :
-                    $selected = $value == $v ? "selected='selected'" : "";
+                    $selected = $value == $v ? 'selected=""' : "";
                     $h .= "<option name=\"{$field['field_name']}\" value=\"{$v}\" {$selected}> {$text}</option>";
                     break;
             }
@@ -295,20 +295,8 @@ class ContentFormModel extends CommonModel
         return $h;
     }
 
-    //缩略图
-    protected function thumb($field, $value)
-    {
-        $src = empty($value) ? __ROOT__ . '/hdcms/Common/static/img/upload-pic.png' : __ROOT__ . '/' . $value;
-        $fieldName = $field['field_name'];
-        return '  <img id="' . $fieldName . '" src="' . $src . '" style="cursor: pointer;width:145px;height:123px;margin-bottom:5px;" onclick="file_upload({id:\'' . $fieldName . '\',type:\'thumb\',num:1,name:\'' . $fieldName . '\'})">
-                        <input type="hidden" name="' . $fieldName . '" value="' . $value . '"/>
-                        <button type="button" class="hd-cancel-small" onclick="file_upload({id:\'' . $fieldName . '\',type:\'thumb\',num:1,name:\'' . $fieldName . '\'})">上传图片</button>
-                        &nbsp;&nbsp;
-                        <button type="button" class="hd-cancel-small" onclick="remove_thumb(this)">取消上传</button>';
-    }
-
     //日期Date
-    protected function datetime($field, $value)
+    private function datetime($field, $value)
     {
         $set = $field['set'];
         $format = array("Y-m-d", "Y/m/d H:i:s", "H:i:s");
@@ -320,8 +308,34 @@ class ContentFormModel extends CommonModel
         return $h;
     }
 
+    //缩略图
+    private function thumb($field, $value)
+    {
+        $src = empty($value) ? __ROOT__ . '/hdcms/Common/static/img/upload-pic.png' : __ROOT__ . '/' . $value;
+        $fieldName = $field['field_name'];
+        return '  <img id="' . $fieldName . '" src="' . $src . '" style="cursor: pointer;width:145px;height:123px;margin-bottom:5px;" onclick="file_upload({id:\'' . $fieldName . '\',type:\'thumb\',num:1,name:\'' . $fieldName . '\'})">
+                        <input type="hidden" name="' . $fieldName . '" value="' . $value . '"/>
+                        <button type="button" class="hd-cancel-small" onclick="file_upload({id:\'' . $fieldName . '\',type:\'thumb\',num:1,name:\'' . $fieldName . '\'})">上传图片</button>
+                        &nbsp;&nbsp;
+                        <button type="button" class="hd-cancel-small" onclick="remove_thumb(this)">取消上传</button>';
+    }
+
+    //单张图
+    private function image($field, $value)
+    {
+        $id = "img_" . $field['field_name'];
+        $path = isset($value) ? $value : "";
+        $src = !empty($value) ? __ROOT__ . '/' . $value : "";
+        $options = json_encode(array('id' => $id, 'type' => 'image', 'num' => 1, 'name' => $field['field_name'],'allow_size'=>$field['set']['allow_size']));
+        $h = "<input id='$id' type='text' name='" . $field['field_name'] . "'  value='$path' src='$src' class='w300 images' onmouseover='view_image(this)' readonly=''/> ";
+        $h .= "<button class='hd-cancel-small' onclick='file_upload($options)' type='button'>上传图片</button>&nbsp;&nbsp;";
+        $h .= "<button class='hd-cancel-small' onclick='remove_upload_one_img(this)' type='button'>移除</button>";
+        $h .= " <span id='hd_{$field['field_name']}' class='{$field['field_name']} validate-message'>" . $field['tips'] . "</span>";
+        return $h;
+    }
+
     //多图上传
-    protected function images($field, $value)
+    private function images($field, $value)
     {
         $set = $field['set'];
         $id = "img_" . $field['field_name'];
@@ -358,25 +372,10 @@ class ContentFormModel extends CommonModel
                 $h .= '</ul>';
             }
         }
-        $options = json_encode(array('id' => $id, 'type' => 'images', 'num' => $num, 'name' => $field['field_name'], 'filetype' => 'jpg,png,gif,jpeg', 'upload_img_max_width' => $set['upload_img_max_width'], 'upload_img_max_height' => $set['upload_img_max_height']));
+        $options = json_encode(array('id' => $id, 'type' => 'images', 'num' => $num, 'name' => $field['field_name'],'allow_size'=>$field['set']['allow_size']));
         $h .= "</div>
 </fieldset>
 <button class='hd-cancel-small' onclick='file_upload({$options})' type='button'>上传图片</button>";
-        $h .= " <span class='{$field['field_name']} validate-message'>" . $field['tips'] . "</span>";
-        return $h;
-    }
-
-    //单张图
-    private function image($field, $value)
-    {
-        $set = $field['set'];
-        $id = "img_" . $field['field_name'];
-        $path = isset($value) ? $value : "";
-        $src = !empty($value) ? __ROOT__ . '/' . $value : "";
-        $options = json_encode(array('id' => $id, 'type' => 'image', 'num' => 1, 'name' => $field['field_name'], 'filetype' => 'jpg,png,gif,jpeg', 'upload_img_max_width' => $set['upload_img_max_width'], 'upload_img_max_height' => $set['upload_img_max_height']));
-        $h = "<input id='$id' type='text' name='" . $field['field_name'] . "'  value='$path' src='$src' class='w300 images' onmouseover='view_image(this)'/> ";
-        $h .= "<button class='hd-cancel-small' onclick='file_upload($options)' type='button'>上传图片</button>&nbsp;&nbsp;";
-        $h .= "<button class='hd-cancel-small' onclick='remove_upload_one_img(this)' type='button'>移除</button>";
         $h .= " <span class='{$field['field_name']} validate-message'>" . $field['tips'] . "</span>";
         return $h;
     }
@@ -408,12 +407,12 @@ class ContentFormModel extends CommonModel
             if (!empty($file) && is_array($file)) {
                 $h .= '<ul>';
                 foreach ($file['path'] as $N => $path) {
-                    $h .= "<li style='width:45%'>";
+                    $h .= "<li style='width:98%'>";
                     $h .= "<img src='" . __HDPHP_EXTEND__ . "/Org/Uploadify/default.png' style='width:50px;height:50px;'/>";
                     $h .= "<input type='hidden' name='" . $field['field_name'] . "[path][]'  value='" . $path . "'/> ";
                     $h .= "描述：<input type='text' name='" . $field['field_name'] . "[alt][]' style='width:200px;' value='" . $file['alt'][$N] . "'/>";
                     $h .= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-                    $h .= "下载金币：<input type='text' name='" . $field['field_name'] . "[credits][]' style='width:200px;' value='" . $file['credits'][$N] . "'/>";
+                    $h .= "下载金币：<input type='text' name='" . $field['field_name'] . "[credits][]' style='width:200px;' value='" . $file['credits'][$N] . "' onblur='if(!/^\d+$/.test(this.value))this.value=0'/>";
                     $h .= "&nbsp;&nbsp;&nbsp;<a href='javascript:;' onclick='remove_upload(this,\"{$id}\")'>删除</a>";
                     $h .= "</li>";
                 }

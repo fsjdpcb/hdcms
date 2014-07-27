@@ -198,12 +198,9 @@ class ContentController extends AuthController
     //删除文章
     public function del()
     {
-        if (!$this->ContentAccess->isDel($this->_cid)) {
-            $this->error('没有操作权限');
-        }
         $aid = Q('aid', 0);
         if ($aid) {
-            $ContentModel = new Content($this->mid);
+            $ContentModel = new Content();
             if ($ContentModel->del($aid)) {
                 $this->success('删除成功');
             } else {

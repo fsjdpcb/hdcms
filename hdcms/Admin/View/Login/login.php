@@ -42,8 +42,7 @@
                 <form action="{|U:'login'}" method="post" class="hd-form">
                     <div class="input">
                         <div class="inputOuter">
-                            <input type="text" name="username" value="帐号" autofocus='true' placeholder="帐号"
-                                   required=""/>
+                            <input type="text" name="username" autofocus='true' placeholder="帐号" required=""/>
                         </div>
                     </div>
                     <div class="input">

@@ -20,80 +20,61 @@ class ContentUploadController extends Controller
     //显示文件列表
     public function index()
     {
-        //上传类型
-        $type = Q('type', null, 'strtolower');
-        //上传目录
-        $dir = C('UPLOAD_PATH') . "/" . Q("dir", "content") . "/" . date("Y/m/d/");
-        //上传数量
-        $limit = Q("get.num", 1, "intval");
-        //上传文件类型
-        $filetype = Q('filetype', 'jpg,png,gif,jpeg', 'strtolower');
-        //uploadify插件使用的上传类型
-        $uploadtype = '*.' . str_replace(',', ',*.', $filetype);
-        switch ($type) {
+        //允许上传大小
+        if ($allow_size = Q('allow_size', 0, 'intval')) {
+            $allow_size = intval($allow_size) . 'MB';
+        } else {
+            $allow_size = intval(C('UPLOAD_ALLOW_SIZE') / pow(1024, 2)) . 'MB';
+        }
+        switch ($_GET['type']) {
             case 'thumb':
-                //最大上传图片尺寸
-                $upload_img_max_width = C('upload_img_max_width');
-                $upload_img_max_height = C('upload_img_max_height');
                 $tag = array(
-                    "type" => $filetype,
-                    "name" => "hdcms",
-                    "dir" => $dir,
-                    "limit" => 1,
-                    "width" => 88,
-                    "height" => 78,
-                    "water" => 0,
-                    "waterbtn" => 1,
-                    "upload_img_max_width" => $upload_img_max_width,
-                    "upload_img_max_height" => $upload_img_max_height,
+                    'type' => '*.jpg,*.png,*.gif,*.jpeg',
+                    'name' => "hdcms",
+                    'limit' => 1,
+                    'width' => 88,
+                    'height' => 78,
+                    'waterbtn' => 1
                 );
                 break;
             case 'image':
-                //最大上传图片尺寸
-                $upload_img_max_width = C('upload_img_max_width');
-                $upload_img_max_height = C('upload_img_max_height');
                 $tag = array(
-                    "type" => $filetype,
-                    "name" => "hdcms",
-                    "dir" => $dir,
-                    "limit" => 1,
-                    "width" => 88,
-                    "height" => 78,
-                    "water" => 0,
-                    "waterbtn" => 1,
-                    "upload_img_max_width" => $upload_img_max_width,
-                    "upload_img_max_height" => $upload_img_max_height,
+                    'type' => '*.jpg,*.png,*.gif,*.jpeg',
+                    'size' => $allow_size,
+                    'name' => "hdcms",
+                    'limit' => 1,
+                    'width' => 88,
+                    'height' => 78,
+                    'alt' => 1,
+                    'waterbtn' => 1
                 );
                 break;
             case 'images';
-                //最大上传图片尺寸
-                $upload_img_max_width = Q('upload_img_max_width') ? Q('upload_img_max_width') : C('upload_img_max_width');
-                $upload_img_max_height = Q('upload_img_max_height') ? Q('upload_img_max_height') : C('upload_img_max_height');
                 $tag = array(
-                    "type" => $uploadtype,
-                    "name" => "hdcms",
-                    "dir" => $dir,
-                    "limit" => $limit,
-                    "width" => 88,
-                    "height" => 78,
-                    "water" => 0,
-                    "waterbtn" => 1,
-                    "upload_img_max_width" => $upload_img_max_width,
-                    "upload_img_max_height" => $upload_img_max_height,
+                    'type' => '*.jpg,*.png,*.gif,*.jpeg',
+                    'size' => $allow_size,
+                    'name' => "hdcms",
+                    'limit' => Q('num', 1),
+                    'width' => 88,
+                    'height' => 78,
+                    'alt' => 1,
+                    'waterbtn' => 1
                 );
                 break;
             case 'files':
                 $tag = array(
-                    "type" => $uploadtype,
+                    "type" => Q('filetype'),
+                    'size' => $allow_size,
                     "name" => "hdcms",
-                    "dir" => $dir,
                     "width" => 88,
                     "height" => 78,
-                    "limit" => $limit,
+                    'alt' => 1,
+                    "limit" => Q('num', 1),
                     "waterbtn" => 0,
-                    "size" => 10
                 );
                 break;
+            default:
+                $this->error('参数错误');
         }
         $upload = tag("upload", $tag);
         $get = '';
@@ -102,10 +83,8 @@ class ContentUploadController extends Controller
         }
         $this->assign('get', $get);
         $this->assign('upload', $upload);
-        //站内图片
-        $this->site($filetype);
-        //未使用图片
-        $this->untreated($filetype);
+        $this->site(); //站内图片
+        $this->untreated(); //未使用图片
         $this->display();
     }
 
@@ -115,29 +94,24 @@ class ContentUploadController extends Controller
     public function hd_uploadify()
     {
         $uploadModel = M('upload');
-        //开启裁切
-        C('UPLOAD_IMG_RESIZE_ON', true);
-        C('upload_img_max_width', $_POST['upload_img_max_width']);
-        C('upload_img_max_height', $_POST['upload_img_max_height']);
         $size = Q('size') ? Q('size') : C('allow_size');
-        $upload = new Upload(Q('post.upload_dir'), array(), $size, Q("water"));
+        $upload = new Upload(Q('post.upload_dir'), array(), $size);
         $file = $upload->upload();
         if (!empty($file)) {
             $file = $file[0];
             $file['uid'] = session('uid');
-            $data['stat'] = 1;
-            $data['url'] = __ROOT__ . '/' . $file['path'];
-            $data['path'] = $file['path'];
-            $data['filename'] = $file['filename'];
-            $data['name'] = $file['name'];
-            $data['basename'] = $file['basename'];
-            $data['thumb'] = array();
-            $data['isimage'] = $file['image'];
+            //图片加水印
+            if ($file['image'] && Q('water')) {
+                $img = new Image();
+                $img->water($file['path']);
+            }
             //写入upload表
             $uploadModel->add($file);
+            $data = $file;
+            $data['status'] = 1;
         } else {
-            $data['stat'] = 0;
-            $data['msg'] = $upload->error;
+            $data['status'] = 0;
+            $data['message'] = $upload->error;
         }
         echo json_encode($data);
         exit;
@@ -161,13 +135,12 @@ class ContentUploadController extends Controller
      */
     public function site()
     {
-        //上传文件类型
-        $type = explode(',', Q('filetype'));
-        $type = implode("','", $type);
+        //图片文件
+        $isimage = in_array(Q('type'), array('image', 'images', 'thumb')) ? 1 : 0;
         //只查找自己的图片
-        $where = 'uid=' . $_SESSION['uid'] . " AND ext IN('$type') AND status=1";
+        $where = 'uid=' . $_SESSION['uid'] . " AND image={$isimage} AND status=1";
         $count = $this->db->where($where)->count();
-        $page = new Page($count, 10, 8, '', '', __WEB__ . '?c=Admin&c=ContentUpload&a=site&filetype=' . Q('filetype'));
+        $page = new Page($count, 10, 8, '', '', __WEB__ . '?c=Admin&c=ContentUpload&a=site&type=' . Q('type'));
         $this->site_data = $this->db->where($where)->limit($page->limit())->all();
         $this->site_page = $page->show();
         if (ACTION == 'site') {
@@ -180,13 +153,12 @@ class ContentUploadController extends Controller
      */
     public function untreated()
     {
+        //图片文件
+        $isimage = in_array(Q('type'), array('image', 'images', 'thumb')) ? 1 : 0;
         //只查找自己的图片
-        $type = explode(',', Q('filetype'));
-        $type = implode("','", $type);
-        //只查找自己的图片
-        $where = 'uid=' . $_SESSION['uid'] . " AND ext IN('$type') AND status=0";
+        $where = 'uid=' . $_SESSION['uid'] . " AND image={$isimage} AND status=0";
         $count = $this->db->where($where)->count();
-        $page = new Page($count, 10, 8, '', '', __WEB__ . '?m=Admin&c=ContentUpload&a=untreated&filetype=' . Q('filetype'));
+        $page = new Page($count, 10, 8, '', '', __WEB__ . '?m=Admin&c=ContentUpload&a=untreated&type=' . Q('type'));
         $this->untreated_data = $this->db->where($where)->limit($page->limit())->all();
         $this->untreated_page = $page->show();
         if (ACTION == 'untreated') {

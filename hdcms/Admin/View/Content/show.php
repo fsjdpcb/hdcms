@@ -4,6 +4,7 @@
 		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 		<title>内容列表</title>
 		<hdjs/>
+        <css file="__PUBLIC__/common.css"/>
 	</head>
 	<body>
 		<div class="wrap">

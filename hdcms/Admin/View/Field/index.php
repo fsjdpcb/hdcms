@@ -5,6 +5,7 @@
     <title>模型字段管理</title>
     <hdjs/>
     <js file="__CONTROLLER_TPL__/js/js.js"/>
+    <css file="__PUBLIC__/common.css"/>
 </head>
 <body>
 <div class="wrap">

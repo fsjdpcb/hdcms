@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <hdjs/>
     <css file="__CONTROLLER_TPL__/css/addEdit.css"/>
+    <css file="__PUBLIC__/common.css"/>
     <js file="__CONTROLLER_TPL__/js/js.js"/>
 </head>
 <body>

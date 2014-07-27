@@ -6,6 +6,7 @@
     <hdjs/>
     <js file="__CONTROLLER_TPL__/js/addEdit.js"/>
     <css file="__CONTROLLER_TPL__/css/css.css"/>
+    <css file="__PUBLIC__/common.css"/>
 </head>
 <body>
 <form method="post" onsubmit="return false;" id="add" class="hd-form">

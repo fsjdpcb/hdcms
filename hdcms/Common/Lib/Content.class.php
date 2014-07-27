@@ -33,9 +33,10 @@ class Content
         if ($ContentModel->create($data)) {
             $result = $ContentModel->add($data);
             $aid = $result[$ContentModel->table];
+            //修改上传表Upload中本次上传文件状态
+            $this->alterUploadTable();
             //修改tag标签数据
             $this->alterTag($aid);
-            M('upload')->where(array('uid' => $_SESSION['uid']))->save(array('status' => 1));
             //内容静态
 //            $Html = new Html;
 //            $Html->content($this->find($aid));
@@ -47,6 +48,17 @@ class Content
         } else {
             $this->error = $ContentModel->error;
             return false;
+        }
+    }
+
+    //修改上传表Upload中本次上传文件状态
+    private function alterUploadTable()
+    {
+        if (isset($_SESSION['uploadFile']) && is_array($_SESSION['uploadFile'])) {
+            $uploadModel = M("upload");
+            foreach ($_SESSION['uploadFile'] as $path) {
+                $uploadModel->where(array('path' => $path))->save(array('status' => 1, 'mid' => $this->mid));
+            }
         }
     }
 
@@ -64,8 +76,8 @@ class Content
             $result = $ContentModel->save($data);
             $aid = $result[$ContentModel->table];
             $this->alterTag($data['aid']);
-            //修改上传文件信息
-            M('upload')->where(array('uid' => $_SESSION['uid']))->save(array('status' => 1));
+            //修改上传表Upload中本次上传文件状态
+            $this->alterUploadTable();
             return $aid;
         } else {
             $this->error = $ContentModel->error;

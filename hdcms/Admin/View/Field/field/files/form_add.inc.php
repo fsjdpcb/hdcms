@@ -5,7 +5,13 @@
         <td>
             <table class="table1">
                 <tr>
-                    <td class="w100">允许上传的个数</td>
+                    <td class="w100">上传大小</td>
+                    <td>
+                        <label><input type="text" class="w100" name="set[allow_size]" value="2"/> MB</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="w100">上传的个数</td>
                     <td>
                         <input type="text" class="w100" name="set[num]" value="10"/>
                     </td>

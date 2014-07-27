@@ -6,6 +6,7 @@
     <hdjs/>
     <link rel="stylesheet" href="__CONTROLLER_TPL__/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">
     <script type="text/javascript" src="__CONTROLLER_TPL__/ztree/js/jquery.ztree.all-3.5.min.js"></script>
+    <css file="__PUBLIC__/common.css"/>
     <base target="content"/>
     <style type="text/css">
     div#tree_title a{
@@ -14,7 +15,7 @@
     	/*左侧栏目*/
 div#category_tree {
     width: 190px;
-    position: absolute;
+    position: fixed;
     top: 0px;
     bottom: 0px;
     left: 0px;
@@ -26,7 +27,7 @@ div#category_tree {
 div#move {
     width: 5px;
     background: #EEEEEE;
-    position: absolute;
+    position: fixed;
     left: 191px;
     top: 0px;
     bottom: 0px;

@@ -6,6 +6,7 @@
     <hdjs/>
     <js file="__CONTROL_TPL__/js/move.js"/>
     <css file="__CONTROL_TPL__/css/move.css"/>
+    <css file="__PUBLIC__/common.css"/>
 </head>
 <body>
 <div class="wrap">

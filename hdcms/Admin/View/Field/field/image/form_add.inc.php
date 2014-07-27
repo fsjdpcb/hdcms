@@ -5,15 +5,9 @@
         <td>
             <table class="table1">
                 <tr>
-                    <td class="w100">图片最大宽度</td>
+                    <td class="w100">允许上传大小</td>
                     <td>
-                        <label><input type="text" class="w100 image_height" name="set[upload_img_max_width]" value="800"/> </label>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="w100">图片最大高度</td>
-                    <td>
-                        <label><input type="text"  class="w100 image_width" name="set[upload_img_max_height]" value="800"/> </label>
+                        <label><input type="text" class="w100" name="set[allow_size]" value="2"/> MB</label>
                     </td>
                 </tr>
             </table>

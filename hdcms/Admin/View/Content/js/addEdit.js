@@ -138,10 +138,10 @@ function file_upload(options) {
 	//多文件(图片与文件)上传时，判断是否已经超出了允许上传的图片数量
 	switch(options.type) {
 		case 'thumb':
-			var url =WEB + "?m=Admin&c=ContentUpload&a=index&id=" + options.id + "&type=" + options.type + "&num=" + options.num + "&name=" + options.name;
+			var url =WEB + "?m=Admin&c=ContentUpload&a=index&id=" + options.id + "&type=" + options.type + "&num=" + options.num + "&name=" + options.name+'&allow_size='+options.allow_size;
 			break;
 		case 'image':
-			var url = WEB + "?m=Admin&c=ContentUpload&a=index&id=" + options.id + "&type=" + options.type + "&num=" + options.num + "&name=" + options.name;
+			var url = WEB + "?m=Admin&c=ContentUpload&a=index&id=" + options.id + "&type=" + options.type + "&num=" + options.num + "&name=" + options.name+'&allow_size='+options.allow_size;
 			break;
 		case 'images':
 			//span储存的文件数量
@@ -150,7 +150,7 @@ function file_upload(options) {
 				alert('已经达到上传最大数!');
 				return false;
 			}
-			var url =WEB + "?m=Admin&c=ContentUpload&a=index&id=" + options.id + "&type=" + options.type + "&num=" + num + "&name=" + options.name + "&filetype=" + options.filetype + '&upload_img_max_width=' + options.upload_img_max_width + '&upload_img_max_height=' + options.upload_img_max_height;
+			var url =WEB + "?m=Admin&c=ContentUpload&a=index&id=" + options.id + "&type=" + options.type + "&num=" + num + "&name=" + options.name + "&filetype=" + options.filetype+'&allow_size='+options.allow_size;
 			break;
 		case 'files':
 			num = $('#hd_up_' + options.id).text() * 1;
@@ -158,14 +158,14 @@ function file_upload(options) {
 				alert('已经达到上传最大数!');
 				return false;
 			}
-			var url = WEB + "?m=Admin&c=ContentUpload&a=index&id=" + options.id + "&type=" + options.type + "&num=" + num + "&name=" + options.name + "&filetype=" + options.filetype;
+			var url = WEB + "?m=Admin&c=ContentUpload&a=index&id=" + options.id + "&type=" + options.type + "&num=" + num + "&name=" + options.name + "&filetype=" + options.filetype+'&allow_size='+options.allow_size;
 			break;
 	}
 	$.modal({
 		title : '文件上传',
 		width : 650,
-		height : 500,
-		content : '<iframe frameborder=0 scrolling="no" style="height:99%;border:none;" src="' + url + '"></iframe>'
+		height : 505,
+		content : '<iframe frameborder=0 scrolling="no" style="height:100%;border:none;" src="' + url + '"></iframe>'
 	});
 }
 
@@ -228,9 +228,9 @@ function view_image(obj) {
 	})
 	if (src) {
 		var offset = $(obj).offset();
-		var _left = 450+offset.left+"px";
-		var _top = offset.top-100+"px";
-		var html = '<img src="' + src + '" style="border:solid 5px #dcdcdc;position:absolute;z-index:1000;width:300px;height:200px;left:'+_left+';top:'+_top+';" id="view_'+id+'"/>';
+		var _left = 320+offset.left+"px";
+		var _top = offset.top-75+"px";
+		var html = '<img src="' + src + '" style="border:solid 5px #dcdcdc;position:absolute;z-index:1000;height:100px;left:'+_left+';top:'+_top+';" id="view_'+id+'"/>';
 		$('body').append(html);
 	}
 }

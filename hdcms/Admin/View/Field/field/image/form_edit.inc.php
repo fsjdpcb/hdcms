@@ -5,15 +5,9 @@
         <td>
             <table class="table1">
                 <tr>
-                    <td class="w100">图片最大宽度</td>
+                    <td class="w100">允许上传大小</td>
                     <td>
-                        <label><input type="text" class="w100 image_height" name="set[upload_img_max_width]" value="<?php echo $field['set']['upload_img_max_width'];?>"/> </label>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="w100">图片最大高度</td>
-                    <td>
-                        <label><input type="text" class="w100 image_width" name="set[upload_img_max_height]" value="<?php echo $field['set']['upload_img_max_height'];?>"/></label>
+                        <label><input type="text" class="w100" name="set[allow_size]" value="<?php echo $field['set']['allow_size'];?>"/> MB</label>
                     </td>
                 </tr>
             </table>

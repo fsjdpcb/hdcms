@@ -78,7 +78,8 @@ class ContentInputModel
             }
             //字段二次处理方法
             $METHOD = $fieldInfo['field_type'];
-            if (method_exists($this, $METHOD) && isset($data[$field])) {
+            $data[$field] = isset($data[$field]) ? $data[$field] : '';
+            if (method_exists($this, $METHOD)) {
                 if ($fieldInfo['table_type'] == 1) { //主表数据
                     $Value = $this->$METHOD($fieldInfo, $data[$field]);
                     $data[$field] = $Value;
@@ -125,14 +126,16 @@ class ContentInputModel
             }
         }
         //如果没有缩略图时，删除图片属性
-        if (empty($data['thumb'])) { //没有缩略图时，删除图片属性
-            if (false !== $k = array_search('图片', $data['flag'])) {
-                unset($data['flag'][$k]);
+        if (isset($data['flag'])) {
+            if (empty($data['thumb'])) { //没有缩略图时，删除图片属性
+                if (false !== $k = array_search('图片', $data['flag'])) {
+                    unset($data['flag'][$k]);
+                }
+            } else {
+                $data['flag'][] = '图片';
             }
-        } else {
-            $data['flag'][] = '图片';
+            $data['flag'] = implode(',', array_unique($data['flag']));
         }
-        $data['flag'] = implode(',', array_unique($data['flag']));
         return $data;
     }
 
@@ -153,13 +156,16 @@ class ContentInputModel
                     $Attachment = new Attachment();
                     $value = $Attachment->download($matchData[0][$num], array('jpg', 'gif', 'jpeg', 'png'), $this->mid);
                     if ($value) {
-                        return trim(str_replace(__ROOT__, '', preg_replace('/src=(\'|")|[\'"]|\s/i', '', $value)), '/');
+                        $value = preg_replace('/src=(\'|")|[\'"]|\s/i', '', $value);
                     }
                 }
             }
         }
-        //没有设置自动提取时的处理
-        return trim(str_replace(__ROOT__, '', $value), '/');
+        $value = trim(str_replace(__ROOT__, '', $value), '/');
+        //记录图片，用于更新UPLOAD表status状态
+        if ($value)
+            $_SESSION['uploadFile'][] = $value;
+        return $value;
     }
 
     //模板选择
@@ -235,7 +241,7 @@ class ContentInputModel
     {
         $set = $fieldInfo['set'];
         //checkbox连接成字符串，数据库中以字符串形式记录
-        if ($set['form_type'] == 'checkbox') {
+        if ($set['form_type'] == 'checkbox' && !empty($value)) {
             return implode(',', $value);
         } else { //radio等类型
             return $value;
@@ -251,13 +257,29 @@ class ContentInputModel
     //单图上传
     private function image($fieldInfo, $value)
     {
+        if ($value)
+            $_SESSION['uploadFile'][] = $value;
         return $value;
     }
 
     //多图上传
     private function images($fieldInfo, $value)
     {
-        return serialize($value);
+        if ($value && isset($value['path'])) {
+            foreach ($value['path'] as $path)
+                $_SESSION['uploadFile'][] = $path;
+        }
+        return empty($value) ? '' : serialize($value);
+    }
+
+    //文件上传
+    private function files($fieldInfo, $value)
+    {
+        if ($value && isset($value['path'])) {
+            foreach ($value['path'] as $path)
+                $_SESSION['uploadFile'][] = $path;
+        }
+        return empty($value) ? '' : serialize($value);
     }
 
     //日期时间
@@ -266,10 +288,5 @@ class ContentInputModel
         return strtotime($value);
     }
 
-    //文件上传
-    private function files($fieldInfo, $value)
-    {
-        return serialize($value);
-    }
 
 }
