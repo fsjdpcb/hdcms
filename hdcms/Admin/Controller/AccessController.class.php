@@ -5,38 +5,49 @@
  * Class AccessControl
  * @author 向军 <houdunwangxj@gmail.com>
  */
-class AccessControl extends AuthControl
+class AccessController extends AuthController
 {
+    //模型
+    private $db;
+    //角色id
+    private $rid;
+
+    //构造函数
+    public function __init()
+    {
+        $this->db = K('Access');
+        $this->rid = Q('rid', 0, 'intval');
+        if ($_SESSION['username'] != C('WEB_MASTER')) {
+            $this->error('没有操作权限');
+        }
+    }
 
     //设置权限
     public function edit()
     {
-    	$Model = K('Access');
         if (IS_POST) {
-            $rid = Q("post.rid");
-            $Model->where(array("rid" => $rid))->del();
+            $this->db->where(array("rid" => $this->rid))->del();
             if (!empty($_POST['nid'])) {
                 foreach ($_POST['nid'] as $v) {
-                    $Model->add(
-                        array("rid" => $rid, "nid" => $v)
-                    );
+                    $this->db->add(array("rid" => $this->rid, "nid" => $v));
                 }
             }
             $this->success('修改成功');
         } else {
-            $rid = Q("rid",0,'intval');
-            $sql = "SELECT n.nid,n.title,n.pid,n.type,a.rid as access_rid FROM hd_node AS n LEFT JOIN 
-            			(SELECT * FROM (SELECT * FROM hd_access WHERE rid=$rid) AS aa)AS a
+            $sql = "SELECT n.nid,n.title,n.pid,n.type,a.rid as access_rid FROM hd_node AS n LEFT JOIN
+            			(SELECT * FROM (SELECT * FROM hd_access WHERE rid={$this->rid}) AS t)AS a
                 		ON n.nid = a.nid ORDER BY list_order ASC";
-            $result = $Model->query($sql);
+            $result = $this->db->query($sql);
             foreach ($result as $n => $r) {
-            	//有权限或不需要验证的节点
-                $checked = $r['access_rid'] ||$r['type']==2? " checked=''" : '';
-                $disabled=$r['type']==2?'disabled=""':'';
+                //当前角色已经有权限或不需要验证的节点
+                $checked = $r['access_rid'] || $r['type'] == 2 ? " checked=''" : '';
+                //不需要验证的节点，关闭选择（因为所有管理员都有权限）
+                $disabled = $r['type'] == 2 ? 'disabled=""' : '';
+                //前台表单
                 $result[$n]['checkbox'] = "<label><input type='checkbox' name='nid[]' value='{$r['nid']}' $checked $disabled/> {$r['title']}</label>";
             }
-            $this->access = Data::channelLevel($result, 0, '-', 'nid');
-            $this->rid = $rid;
+            $this->assign('access', Data::channelLevel($result, 0, '-', 'nid'));
+            $this->assign('rid', $this->rid);
             $this->display();
         }
     }

@@ -40,21 +40,17 @@ class IndexController extends AuthController
     public function getChildMenu()
     {
         $pid = Q('pid', 0, 'intval');
-        if (empty($pid)) {
-            $this->ajax('菜单PID错误');
-        }
         //超级管理员获得所有菜单
         if (IS_SUPER_ADMIN) {
             $MenuData = F('node',false,CACHE_DATA_PATH);
         } else {
-            $menuModel = V('node');
-            $menuModel->view=array(
-                'node' => array('_type' => 'LEFT'),
-                'access' => array('_on' => '__node__.nid=__access__.nid'),
+            $nodeModel = V('node');
+            $nodeModel->view=array(
+                'access' => array('_type' => 'RIGHT'),
+                'node' => array('_on' => '__node__.nid=__access__.nid'),
             );
             //获得当前角色权限
-            $MenuData = $menuModel->field("*," . $menuModel->tableFull . '.nid')->where(C('DB_PREFIX') . "access.rid=" . session('rid') . " OR type=2")
-                ->order(array("list_order" => "ASC"))->all();
+            $MenuData = $nodeModel->where("access.rid={$_SESSION['rid']} OR type=2")->order(array("list_order" => "ASC"))->all();
         }
         //去掉隐藏的菜单
         $showMenuData = array();
@@ -63,7 +59,7 @@ class IndexController extends AuthController
                 $showMenuData[] = $menu;
             }
         }
-        $childMenuData = Data::channelLevel($showMenuData, $pid, "", "nid");
+        $childMenuData = Data::channelLevel($showMenuData, $pid, '', 'nid');
         $html = "<div class='nid_$pid'>";
         foreach ($childMenuData as $menu) {
             if (!empty($menu['_data'])) {

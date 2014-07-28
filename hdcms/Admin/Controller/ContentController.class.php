@@ -38,8 +38,10 @@ class ContentController extends AuthController
     //验证操作权限
     public function checkAccess()
     {
-        if (in_array(ACTION, $this->authAction)) {
-            return true;
+        if (!IS_SUPER_ADMIN && in_array(ACTION, $this->authAction)) {
+            $access = M('category_access')->where(array('admin' => 1, 'cid' => $this->cid))->getField('rid,`' . ACTION . '`');
+            //栏目没有设置管理员权限时，验证通过
+            return empty($access) || $access[$_SESSION['rid']][ACTION];
         }
         return true;
     }

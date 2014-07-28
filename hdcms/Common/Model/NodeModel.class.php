@@ -7,35 +7,32 @@
  */
 class NodeModel extends Model
 {
-    /**
-     * 添加节点
-     */
+    //添加节点
     public function add_node()
     {
         if ($this->create()) {
-            return $this->add();
+            $this->add();
+            return $this->updateCache();
         }
     }
 
-    /**
-     * 修改节点
-     */
+    //修改节点
     public function edit_node()
     {
         if ($this->create()) {
-            return $this->save();
+            $this->save();
+            return $this->updateCache();
         }
     }
 
-    /**
-     * 删除节点
-     */
+    //删除节点
     public function del_node()
     {
         $nid = Q("nid");
         $state = $this->where(array("pid" => $nid))->find();
         if (!$state) {
-            return $this->del($nid);
+            $this->del($nid);
+            return $this->updateCache();
         } else {
             $this->error = '请删除子菜单';
             return false;
@@ -47,22 +44,6 @@ class NodeModel extends Model
     {
         $data = $this->order(array("list_order" => "ASC", 'nid' => 'ASC'))->all();
         $node = Data::tree($data, "title", "nid", "pid");
-        return F("node", $node,CACHE_DATA_PATH);
+        return F("node", $node, CACHE_DATA_PATH);
     }
-
-    function __after_insert($data)
-    {
-        $this->updateCache($data);
-    }
-
-    function __after_update($data)
-    {
-        $this->updateCache($data);
-    }
-
-    function __after_delete($data)
-    {
-        $this->updateCache($data);
-    }
-
 }

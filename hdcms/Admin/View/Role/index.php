@@ -1,19 +1,18 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta charset="UTF-8">
     <title>管理员角色</title>
     <hdjs/>
-    <css file="__CONTROL_TPL__/css/css.css"/>
+    <css file="__PUBLIC__/common.css"/>
 </head>
 <body>
 <div class="wrap">
     <div class="menu_list">
         <ul>
-            <li><a href="javascript:;" class="action">角色列表</a></li>
+            <li><a href="{|U:'index'}" class="action">角色列表</a></li>
             <li><a href="{|U:'add'}">添加角色</a></li>
-             <li><a href="javascript:;" onclick="hd_ajax('{|U:updateCache}')">更新缓存</a></li>
+            <li><a href="javascript:;" onclick="hd_ajax('{|U:updateCache}')">更新缓存</a></li>
         </ul>
     </div>
     <table class="table2">
@@ -42,15 +41,15 @@
                 <td>
                     <a href="{|U:'edit',array('rid'=>$d['rid'])}">修改</a> |
                     <if value="$d.system eq 0">
-                        <a href="javascript:confirm('确定删除吗?')?hd_ajax('{|U:del}',{rid:{$d.rid}}):false">删除</a>
+                        <a href="javascript:hd_confirm('确定删除吗?',function(){hd_ajax('{|U:del}',{rid:{$d.rid}})})">删除</a>
                     <else>
-                    	删除
+                            删除
                     </if>
-                     |
+                    |
                     <if value="$d.rid eq 1">
-                    	权限设置
-                    <else>
-                    	<a href="{|U:'Access/edit',array('rid'=>$d['rid'])}">权限设置</a>
+                        权限设置
+                        <else>
+                            <a href="{|U:'Access/edit',array('rid'=>$d['rid'])}">权限设置</a>
                     </if>
                 </td>
             </tr>

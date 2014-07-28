@@ -59,7 +59,7 @@
                     <if value="$d.system eq 1">
                     	<span>删除</span>
                     <else>
-                        <a href="javascript:confirm('确定删除吗？')?hd_ajax('{|U:'del'}',{'rid':{$d['rid']}}):false">删除</a>
+                        <a href="javascript:hd_confirm('确定删除吗？',function(){hd_ajax('{|U:'del'}',{'rid':{$d['rid']}})})">删除</a>
                     </if>
                 </td>
             </tr>

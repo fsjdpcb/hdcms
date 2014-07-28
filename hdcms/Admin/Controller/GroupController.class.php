@@ -5,10 +5,10 @@
  * Class GroupControl
  * @author 向军 <houdunwangxj@gmail.com>
  */
-class GroupControl extends AuthControl {
+class GroupController extends AuthController {
 
 	public function index() {
-		$roleData = cache('role');
+		$roleData = F('role',false,CACHE_DATA_PATH);
 		$AdminRole = array();
 		foreach ($roleData as $role) {
 			if ($role['admin'] == 0) {

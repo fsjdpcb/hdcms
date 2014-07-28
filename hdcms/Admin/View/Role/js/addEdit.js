@@ -5,7 +5,7 @@ $(function () {
         rname: {
             rule: {
                 required: true,
-                ajax: {url: CONTROL + "&m=check_role", field: ["rid"]}
+                ajax: {url: CONTROLLER + "&a=checkRole", field: ["rid"]}
             },
             error: {
                 required: '角色名称不能为空',

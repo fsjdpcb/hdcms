@@ -4,8 +4,8 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>添加角色</title>
     <hdjs/>
-    <js file="__CONTROL_TPL__/js/js.js"/>
-    <css file="__CONTROL_TPL__/css/css.css"/>
+    <js file="__CONTROLLER_TPL__/js/addEdit.js"/>
+    <css file="__PUBLIC__/common.css"/>
 </head>
 <body>
 <div class="wrap">
@@ -16,7 +16,7 @@
         </ul>
     </div>
     <div class="title-header">角色信息</div>
-    <form action="{|U:'add'}" method="post" class="hd-form"  onsubmit="return hd_submit(this,'{|U:index}')">
+    <form action="{|U:'add'}" method="post" class="hd-form" onsubmit="return hd_submit(this,'{|U:index}')">
         <input type="hidden" name="admin" value="1"/>
         <table class="table1">
             <tr>

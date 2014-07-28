@@ -4,18 +4,18 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>添加管理员</title>
     <hdjs/>
-    <js file="__CONTROL_TPL__/js/add_validate.js"/>
+    <css file="__PUBLIC__/common.css"/>
 </head>
 <body>
-<div class="wrap">
-    <div class="menu_list">
-        <ul>
-            <li><a href="{|U:'index'}">管理员</a></li>
-            <li><a href="javascript:;" class="action">添加管理员</a></li>
-        </ul>
-    </div>
-    <div class="title-header">管理员信息</div>
-    <form action="{|U:'add'}" method="post" class="form-inline hd-form" onsubmit="return hd_submit(this,'__CONTROL__')">
+<form method="post" class="hd-form" onsubmit="return hd_submit(this,'__CONTROLLER__')">
+    <div class="wrap">
+        <div class="menu_list">
+            <ul>
+                <li><a href="{|U:'index'}">管理员</a></li>
+                <li><a href="javascript:;" class="action">添加管理员</a></li>
+            </ul>
+        </div>
+        <div class="title-header">管理员信息</div>
         <input type="hidden" name="admin" value="1"/>
         <table class="table1">
             <tr>
@@ -59,19 +59,19 @@
                 </td>
             </tr>
         </table>
-        <div class="position-bottom">
-            <input type="submit" class="hd-success" value="确定"/>
-            <input type="button" class="hd-cancel" value="取消" onclick="location.href='__CONTROL__'"/>
-        </div>
-    </form>
-</div>
+    </div>
+    <div class="position-bottom">
+        <input type="submit" class="hd-success" value="确定"/>
+        <input type="button" class="hd-cancel" value="取消" onclick="location.href='__CONTROLLER__'"/>
+    </div>
+</form>
 <script type="text/javascript" charset="utf-8">
-	$("form").validate({
+    $("form").validate({
         //验证规则
         username: {
             rule: {
                 required: true,
-                ajax: {url: CONTROL + '&m=check_username', field: ['uid']}
+                ajax: {url: "{|U:'checkUsername'}", field: ['uid']}
             },
             error: {
                 required: "管理员名不能为空",
@@ -82,7 +82,7 @@
             rule: {
                 required: true,
                 email: true,
-                ajax: {url: CONTROL + '&m=check_email'}
+                ajax: {url: '{|U:"checkEmail"}'}
             },
             error: {
                 required: '邮箱不能为空',

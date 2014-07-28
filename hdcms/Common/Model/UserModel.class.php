@@ -19,9 +19,6 @@ class UserModel extends ViewModel
      */
     public function delUser($uid)
     {
-        //删除评论与回复
-        M('comment')->where("uid=$uid")->del();
-        //删除用户表记录
         return $this->del($uid);
     }
 
@@ -31,15 +28,11 @@ class UserModel extends ViewModel
     public function editUser($data)
     {
         //修改密码
-        if (!empty($data['password'])) {
+        if (isset($data['password'])) {
             $data['code'] = $this->getUserCode();
             $data['password'] = md5($data['password'] . $data['code']);
-        } else {
-            unset($data['password']);
         }
-
-        $uid = intval($data['uid']);
-        return $this->where("uid={$uid}")->save($data);
+        return $this->save($data);
     }
 
     /**
@@ -66,8 +59,8 @@ class UserModel extends ViewModel
         $data['credits'] = C('init_credits');
         //设置用户头像
         if ($uid = $this->add($data)) {
-            M('user')->save(array('uid' => $uid, 'domain' => "houdunwang{$uid}"));
-            return true;
+            //空间id
+            return M('user')->save(array('uid' => $uid, 'domain' => "hd{$uid}"));
         } else {
             $this->error = '帐号注册失败';
             return false;
@@ -80,7 +73,7 @@ class UserModel extends ViewModel
      */
     public function getUserCode()
     {
-        return substr(md5(C("AUTH_KEY") . mt_rand() . time() . C('AUTH_KEY')), 0, 10);
+        return substr(md5(C("AUTH_KEY") . mt_rand(1, 1000) . time() . C('AUTH_KEY')), 0, 10);
     }
 
     /**
@@ -92,10 +85,6 @@ class UserModel extends ViewModel
     public function checkUserPassword($uid, $password)
     {
         $data = $this->find($uid);
-        if (!$uid) {
-            $this->error = '用户不存在';
-            return false;
-        }
         if (md5($password . $data['code']) != $data['password']) {
             return false;
         } else {
