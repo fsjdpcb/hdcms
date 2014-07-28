@@ -5,10 +5,8 @@
  * Class ContentControl
  * @author 向军 <houdunwangxj@gmail.com>
  */
-class ContentAuditControl extends AuthControl
+class ContentAuditController extends AuthController
 {
-    //栏目缓存
-    private $category;
     //模型缓存
     private $model;
     //模型mid
@@ -19,10 +17,8 @@ class ContentAuditControl extends AuthControl
     //构造函数
     public function __init()
     {
-        $this->model = cache("model", false);
-        $this->category = cache("category", false);
+        $this->model = F("model", false, CACHE_DATA_PATH);
         $this->mid = Q('mid', 0, 'intval');
-        $this->cid = Q('cid', 0, 'intval');
         if (!isset($this->model[$this->mid])) {
             $this->error("模型不存在！");
         }
@@ -32,9 +28,9 @@ class ContentAuditControl extends AuthControl
     public function content()
     {
         $Model = ContentViewModel::getInstance($this->mid);
-        $count = $Model->where('content_state=0')->count();
+        $count = $Model->where('content_status=0')->count();
         $page = new Page($count, 15);
-        $data = $Model->where('content_state=0')->limit($page->limit())->order('updatetime DESC')->all();
+        $data = $Model->where('content_status=0')->limit($page->limit())->order('updatetime DESC')->all();
         $this->assign('data', $data);
         $this->assign('mid', $this->mid);
         $this->assign('model', $this->model);
@@ -42,9 +38,7 @@ class ContentAuditControl extends AuthControl
         $this->display();
     }
 
-    /**
-     * 删除文章
-     */
+    //删除文章
     public function del()
     {
         $aids = Q("request.aid");
@@ -62,21 +56,17 @@ class ContentAuditControl extends AuthControl
         }
     }
 
-    /**
-     * 审核或取消审核
-     */
+    //审核或取消审核
     public function audit()
     {
         $Model = ContentViewModel::getInstance($this->mid);
         //1 审核  0 取消审核
-        $content_state = Q("content_state", 1, "intval");
+        $status = Q("status", 1, "intval");
         //文章id
         $aids = Q("post.aid");
         foreach ($aids as $aid) {
-            $Model->save(array("aid" => $aid, "content_state" => $content_state));
+            $Model->save(array("aid" => $aid, "content_status" => $status));
         }
-        $this->success('操作成功！');
+        $this->success('操作成功！', U('content', array('mid' => $this->mid)));
     }
 }
-
-

@@ -27,7 +27,7 @@ function del() {
         if (confirm("确定要删除文章吗?")) {
             $.ajax({
                 type: "POST",
-                url: CONTROL + "&m=del",
+                url: CONTROLLER + "&a=del",
                 dataType: "JSON",
                 cache: false,
                 data: ids,
@@ -58,18 +58,18 @@ function del() {
     }
 }
 //设置状态
-function audit(mid,state) {
+function audit(mid,status) {
     //单文章删除
     var ids = $("input:checked").serialize();
     if (ids) {
         $.ajax({
             type: "POST",
-            url: CONTROL + "&m=audit" + "&state=" + state + "&mid="+mid,
+            url: CONTROLLER + "&a=audit" + "&status=" + status + "&mid="+mid,
             dataType: "JSON",
             cache: false,
             data: ids,
             success: function (data) {
-                if (data.state == 1) {
+                if (data.status == 1) {
                     $.dialog({
                         message: "设置文章成功",
                         type: "success",
@@ -80,7 +80,7 @@ function audit(mid,state) {
                     });
                 } else {
                     $.dialog({
-                        message: "设置文章失败",
+                        message:data.message,
                         type: "error",
                         close_handler: function () {
                             location.href = URL;

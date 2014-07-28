@@ -141,10 +141,8 @@ class CategoryController extends AuthController
             $this->db->updateCache();
             $this->success('修改成功');
         } else {
-            if (empty($_POST['cid'])) {
-                $this->error('cid参数错误');
-            }
-            $data = $this->db->where($_POST['cid'])->all();
+            $cid = explode('|', Q('cids'));
+            $data = $this->db->where(array('cid'=>$cid))->all();
             $this->assign('data', $data);
             $this->display();
         }

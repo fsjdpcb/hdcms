@@ -198,8 +198,7 @@ class ContentController extends AuthController
     //删除文章
     public function del()
     {
-        $aid = Q('aid', 0);
-        if ($aid) {
+        if ($aid = Q('aid', 0)) {
             $ContentModel = new Content();
             if ($ContentModel->del($aid)) {
                 $this->success('删除成功');
@@ -214,14 +213,11 @@ class ContentController extends AuthController
     //排序
     public function order()
     {
-        if (!$this->ContentAccess->isOrder($this->_cid)) {
-            $this->error('没有操作权限');
-        }
         $arc_order = Q('arc_order');
         if (!empty($arc_order) && is_array($arc_order)) {
             $ContentModel = ContentModel::getInstance($this->mid);
             foreach ($arc_order as $aid => $order) {
-                $ContentModel->join(null)->save(array('aid' => $aid, 'arc_sort' => $order));
+                $ContentModel->save(array('aid' => $aid, 'arc_sort' => $order));
             }
         }
         $this->success('排序成功');
@@ -230,58 +226,56 @@ class ContentController extends AuthController
     //审核文章
     public function audit()
     {
-        if (!$this->ContentAccess->isAudit($this->_cid)) {
-            $this->error('没有操作权限');
-        }
-        $content_state = Q('content_state', 0, 'intval');
-        $aids = Q('aid');
-        if (!empty($aids) && is_array($aids)) {
+        if ($aids = Q('aid')) {
+            $status = Q('status', 0, 'intval');
             $ContentModel = ContentModel::getInstance($this->mid);
             foreach ($aids as $aid) {
-                $ContentModel->save(array('aid' => $aid, 'content_state' => $content_state));
+                $ContentModel->save(array('aid' => $aid, 'content_status' => $status));
             }
+            $this->success('操作成功');
+        } else {
+            $this->error('参数错误');
         }
-        $this->success('操作成功');
     }
 
     //移动文章
     public function move()
     {
-        if (!$this->ContentAccess->isMove($this->_cid)) {
-            $this->error('没有操作权限');
-        }
         if (IS_POST) {
             $ContentModel = ContentModel::getInstance($this->mid);
             //移动方式  1 从指定ID  2 从指定栏目
-            $from_type = Q("post.from_type", NULL, "intval");
+            $from_type = Q("post.from_type", 0, "intval");
             //目标栏目cid
-            $to_cid = Q("post.to_cid", NULL, 'intval');
+            $to_cid = Q("post.to_cid", 0, 'intval');
             if ($to_cid) {
                 switch ($from_type) {
                     case 1 :
                         //移动aid
-                        $aid = Q("post.aid", NULL, "trim");
+                        $aid = Q("post.aid", 0, "trim");
                         $aid = explode("|", $aid);
                         if ($aid && is_array($aid)) {
                             foreach ($aid as $id) {
                                 if (is_numeric($id))
-                                    $ContentModel->join(null)->save(array("aid" => $id, "cid" => $to_cid));
+                                    $ContentModel->save(array("aid" => $id, "cid" => $to_cid));
                             }
                         }
                         break;
                     case 2 :
                         //来源栏目cid
-                        $from_cid = Q("post.from_cid", NULL, 'intval');
+                        $from_cid = Q("post.from_cid", 0, 'intval');
                         if ($from_cid) {
                             foreach ($from_cid as $d) {
                                 if (is_numeric($d))
-                                    $ContentModel->join(null)->where("cid=$d")->save(array("cid" => $to_cid));
+                                    $ContentModel->where("cid=$d")->save(array("cid" => $to_cid));
                             }
                         }
                         break;
                 }
+                $this->success('移动成功！');
+            } else {
+                $this->error('请选择目录栏目');
             }
-            $this->success('移动成功！');
+
         } else {
             $category = array();
             foreach ($this->category as $n => $v) {
@@ -289,17 +283,16 @@ class ContentController extends AuthController
                 if ($v['mid'] != $this->mid || $v['cattype'] == 3 || $v['cattype'] == 4) {
                     continue;
                 }
-                $selected = '';
                 if ($this->cid == $v['cid']) {
                     $v['selected'] = "selected";
                 }
-                //非本栏目模型关闭
-                if ($v['cattype'] != 1) {
+                //封面栏目
+                if ($v['cattype'] == 2) {
                     $v['disabled'] = 'disabled';
                 }
                 $category[$n] = $v;
             }
-            $this->category = $category;
+            $this->assign('category', $category);
             $this->display();
         }
     }

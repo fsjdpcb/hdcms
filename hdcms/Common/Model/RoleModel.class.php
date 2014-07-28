@@ -53,7 +53,7 @@ class RoleModel extends Model {
 	//更新缓存
 	public function updateCache() {
 		$role = $this -> all();
-		if (!cache('role', $role)) {
+		if (!F('role', $role,CACHE_DATA_PATH)) {
 			$this -> error = '缓存更新失败';
 			return false;
 		} else {

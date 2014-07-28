@@ -109,6 +109,7 @@ class ContentUploadController extends Controller
             $uploadModel->add($file);
             $data = $file;
             $data['status'] = 1;
+            $data['isimage'] = $file['image']?1:0;
         } else {
             $data['status'] = 0;
             $data['message'] = $upload->error;

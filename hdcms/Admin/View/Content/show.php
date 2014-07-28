@@ -4,6 +4,7 @@
 		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 		<title>内容列表</title>
 		<hdjs/>
+        <js file="__CONTROLLER_TPL__/js/show.js"/>
         <css file="__PUBLIC__/common.css"/>
 	</head>
 	<body>
@@ -129,7 +130,6 @@
 				{$page}
 			</div>
 		</div>
-
 		<div class="position-bottom">
 			<input type="button" class="hd-cancel" value="全选" onclick="select_all('.table2')"/>
 			<input type="button" class="hd-cancel" value="反选" onclick="reverse_select('.table2')"/>

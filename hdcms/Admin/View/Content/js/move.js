@@ -19,12 +19,12 @@ $(function () {
     $("form").submit(function () {
         $.ajax({
             type: "POST",
-            url: CONTROL + "&m=move",
+            url: CONTROLLER + "&a=move",
             dataType: "JSON",
             cache: false,
             data: $(this).serialize(),
             success: function (data) {
-                if (data.state == 1) {
+                if (data.status == 1) {
                     $.dialog({
                         message: "移动成功",
                         type: "success",
@@ -34,7 +34,7 @@ $(function () {
                     });
                 } else {
                     $.dialog({
-                        message: "移动失败",
+                        message: data.message,
                         type: "error",
                         close_handler: function () {
                             parent.location.reload();

@@ -48,7 +48,10 @@ class IndexController extends AuthController
             $MenuData = F('node',false,CACHE_DATA_PATH);
         } else {
             $menuModel = V('node');
-            $menuModel->view = array('access' => array('type' => LEFT_JOIN, "on" => "node.nid=access.nid",));
+            $menuModel->view=array(
+                'node' => array('_type' => 'LEFT'),
+                'access' => array('_on' => '__node__.nid=__access__.nid'),
+            );
             //获得当前角色权限
             $MenuData = $menuModel->field("*," . $menuModel->tableFull . '.nid')->where(C('DB_PREFIX') . "access.rid=" . session('rid') . " OR type=2")
                 ->order(array("list_order" => "ASC"))->all();

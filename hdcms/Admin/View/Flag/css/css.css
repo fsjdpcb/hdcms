@@ -1,12 +1,3 @@
-/*列表页flag样式*/
-tr td span.flag {
-    color: #E32428;
-    margin-left: 3px;
-}
-
-input#title {
-    background: url("../img/ruler.gif") #ffffff repeat-x 0px 13px;
-}
 
 /*搜索框*/
 div.search {

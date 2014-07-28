@@ -10,7 +10,7 @@ $(function () {
 function del_backup() {
     if (check_select_table()) {
         if (confirm("确定删除目录吗？")) {
-            hd_ajax(CONTROL + '&m=del', $("[name*='dir']:checked").serialize());
+            hd_ajax(CONTROLLER + '&a=del', $("[name*='dir']:checked").serialize());
         }
     }
 }

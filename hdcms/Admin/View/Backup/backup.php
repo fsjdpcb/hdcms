@@ -1,18 +1,18 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta charset="UTF-8">
     <title>备份数据库</title>
     <hdjs/>
-    <js file="__CONTROL_TPL__/js/backup.js"/>
+    <js file="__CONTROLLER_TPL__/js/backup.js"/>
+    <css file="__PUBLIC__/common.css"/>
 </head>
 <body>
 <div class="wrap">
     <div class="menu_list">
         <ul>
+            <li><a href="{|U:'backup'}" class="action">备份数据</a></li>
             <li><a href="{|U:'Backup/index'}">备份列表</a></li>
-            <li><a href="javascript:;" class="action">备份数据</a></li>
         </ul>
     </div>
     <form action="{|U:'backup_db'}" method="post"  class="hd-form" onsubmit="return backup();">
@@ -24,8 +24,8 @@
             </thead>
             <tbody>
             <tr>
-                <td width="50">
-                    <table class="table">
+                <td>
+                    <table class="table" width="100%">
                         <tr>
                             <td class="w100">分卷大小</td>
                             <td>
@@ -52,7 +52,7 @@
             </tr>
             </tbody>
         </table>
-        <table class="table2">
+        <table class="table2" id="table_list">
             <thead>
             <tr>
                 <td width="50">
@@ -90,8 +90,8 @@
     </form>
 </div>
 <div class="position-bottom">
-    <input type="button" class="hd-cancel" onclick="select_all('.table2')" value="全选"/>
-    <input type="button" class="hd-cancel" onclick="reverse_select('.table2')" value="反选"/>
+    <input type="button" class="hd-cancel" onclick="select_all('#table_list')" value="全选"/>
+    <input type="button" class="hd-cancel" onclick="reverse_select('#table_list')" value="反选"/>
     <input type="button" class="hd-cancel" onclick="optimize()" value="批量优化"/>
     <input type="button" class="hd-cancel" onclick="repair()" value="批量修复"/>
 </div>

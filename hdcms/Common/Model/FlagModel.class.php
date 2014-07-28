@@ -23,7 +23,7 @@ class FlagModel extends Model
             return false;
         }
         $this->flag = F($this->mid, false, CACHE_FLAG_PATH);
-        $this->contentTable = $table = $model[$this->mid]['table_name'];
+        $this->contentTable = $model[$this->mid]['table_name'];
     }
 
     //删除属性
@@ -45,14 +45,13 @@ class FlagModel extends Model
     public function editFlag($mid, $data)
     {
         if (!empty($data)) {
-            $sql = "ALTER TABLE " . C('DB_PREFIX') . "$table MODIFY flag set('" . implode("','", $data) . "')";
+            $sql = "ALTER TABLE " . C('DB_PREFIX') . $this->contentTable." MODIFY flag set('" . implode("','", $data) . "')";
             if (!$this->exe($sql)) {
                 $this->error = '修改表失败';
                 return false;
             }
         }
-        $this->updateCache($mid);
-        return true;
+       return $this->updateCache($mid);
     }
 
     /**

@@ -4,9 +4,8 @@
  * 上传附件管理
  * Class AttachmentControl
  */
-class AttachmentControl extends AuthControl {
-	protected $db;
-
+class AttachmentController extends AuthController {
+	private $db;
 	public function __init() {
 		$this -> db = K("Upload");
 	}
@@ -22,11 +21,11 @@ class AttachmentControl extends AuthControl {
 				if ($v['image'] == 1 && is_file($v['path'])) {
 					$upload[$id]['pic'] = __ROOT__ . '/' . $v['path'];
 				} else {
-					$upload[$id]['pic'] = __GROUP__ . '/static/img/upload-pic.png';
+					$upload[$id]['pic'] = __COMMON__ . '/static/img/upload-pic.png';
 				}
 			}
 		}
-		$this -> upload = $upload;
+		$this->assign('upload',$upload);
 		$this -> display();
 	}
 

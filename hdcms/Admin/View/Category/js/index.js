@@ -1,20 +1,28 @@
 //展开栏目
-$(".explodeCategory").click(function () {
-    var action = parseInt($(this).attr("action"));
-    var tr = $(this).parents('tr').eq(0);
-    switch (action) {
-        case 1://展示
-            $(tr).nextUntil('.top').show();
-            $(this).attr('action', 2);
-            $(this).attr('src', "__CONTROLLER_TPL__/img/contract.gif");
-            break;
-        case 2://收缩
-            $(tr).nextUntil('.top').hide();
-            $(this).attr('action', 1);
-            $(this).attr('src', "__CONTROLLER_TPL__/img/explode.gif");
-            break;
-    }
+$(function(){
+    $(".explodeCategory").click(function () {
+        var action = parseInt($(this).attr("action"));
+        var tr = $(this).parents('tr').eq(0);
+        switch (action) {
+            case 1://展示
+                $(tr).nextUntil('.top').show();
+                $(this).attr('action', 2);
+                $(this).attr('src', CONTROLLERTPL+"/img/contract.gif");
+                break;
+            case 2://收缩
+                $(tr).nextUntil('.top').hide();
+                $(this).attr('action', 1);
+                $(this).attr('src', CONTROLLERTPL+"/img/explode.gif");
+                break;
+        }
+    })
 })
+//全部收起子栏目
+function explodeCategory(){
+    $(".explodeCategory").each(function(i){
+        $(this).trigger('click');
+    })
+}
 //更新排序
 function updateOrder() {
     //栏目检测
@@ -49,5 +57,11 @@ function BulkEdit() {
         alert('请选择栏目');
         return false;
     }
-    $("form").trigger('submit');
+    var cid = '';
+    $("[name='cid[]']").each(function (i) {
+        cid += $(this).val() + '|';
+    })
+    cid = cid.slice(0, -1);
+    var url = CONTROLLER + '&a=BulkEdit&cids=' + cid;
+    location.href = url;
 }

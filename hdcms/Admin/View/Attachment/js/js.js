@@ -1,3 +1,31 @@
+//点击input表单实现 全选或反选
+$(function () {
+    //全选
+    $("input.select_all").click(function () {
+        $("[type='checkbox']").attr("checked", $(this).attr('checked') == 'checked');
+    })
+})
+//全选复选框
+function select_all(state) {
+    if (state == 1) {
+        $("[type='checkbox']").attr("checked", state);
+    } else {
+        $("[type='checkbox']").attr("checked", function () {
+            return !$(this).attr('checked')
+        });
+    }
+}
+//指量删除
+function BulkDel() {
+    if (confirm('确定要删除图片吗？')) {
+        //栏目检测
+        if ($("input[type='checkbox']:checked").length == 0) {
+            alert('请选择文件');
+            return false;
+        }
+        $("form").trigger('submit');
+    }
+}
 //预览图片
 function view_image(obj) {
 	var src = $(obj).attr('src');

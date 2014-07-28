@@ -47,7 +47,7 @@ class NodeModel extends Model
     {
         $data = $this->order(array("list_order" => "ASC", 'nid' => 'ASC'))->all();
         $node = Data::tree($data, "title", "nid", "pid");
-        return cache("node", $node);
+        return F("node", $node,CACHE_DATA_PATH);
     }
 
     function __after_insert($data)

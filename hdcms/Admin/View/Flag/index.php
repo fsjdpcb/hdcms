@@ -4,7 +4,8 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>属性管理</title>
     <hdjs/>
-    <css file="__CONTROL_TPL__/css/css.css"/>
+    <css file="__CONTROLLER_TPL__/css/css.css"/>
+    <css file="__PUBLIC__/common.css"/>
 </head>
 <body>
 <div class="wrap">

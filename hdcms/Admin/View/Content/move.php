@@ -4,8 +4,8 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>批量移动文章</title>
     <hdjs/>
-    <js file="__CONTROL_TPL__/js/move.js"/>
-    <css file="__CONTROL_TPL__/css/move.css"/>
+    <js file="__CONTROLLER_TPL__/js/move.js"/>
+    <css file="__CONTROLLER_TPL__/css/move.css"/>
     <css file="__PUBLIC__/common.css"/>
 </head>
 <body>
@@ -13,7 +13,7 @@
     <div class="title-header">温馨提示</div>
     <div class="help" style="margin-bottom:0px;"> 不能够跨模型移动文章</div>
     <div class="line"></div>
-    <form action="__METH__" method="post" onsubmit="return false" class="hd-form">
+    <form method="post" onsubmit="return false" class="hd-form">
     	<input type="hidden" name="mid" value="{$hd.get.mid}"/>
         <input type="hidden" name="cid" value="{$hd.get.cid}"/>
         <table style="table1">
@@ -50,8 +50,7 @@
                     </div>
                 </td>
                 <td>
-                    <select id="fromid" style="width:250px;height:215px;"  size="100"
-                            name="to_cid">
+                    <select id="fromid" style="width:250px;height:215px;"  size="100" name="to_cid">
                         <list from="$category" name="c">
                             <option value="{$c.cid}" {$c.disabled} {$c.selected}>
                             {$c._name}

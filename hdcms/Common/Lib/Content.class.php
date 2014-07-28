@@ -91,7 +91,7 @@ class Content
         $tagModel = M('tag');
         $contentTagModel = M("content_tag");
         //删除文章旧的tag记录
-        $contentTagModel->where(array('aid' => $aid, 'mid' => $this->mid))->del();
+        $contentTagModel->where(array('aid' => $aid, 'cid' => $this->cid))->del();
         //修改tag
         $tag = Q('tag');
         if ($tag) {
@@ -105,12 +105,12 @@ class Content
                     $tid = $tagModel->where(array('tag' => $tag))->getField('tid');
                     if ($tid) {
                         //修改tag记数
-                        $tagModel->exe("UPDATE " . C('DB_PREFIX') . "tag SET `total`=total+1");
+                        $tagModel->exe("UPDATE " . C('DB_PREFIX') . "tag SET `total`=total+1 WHERE tag='$tag'");
                     } else {
                         //tag表没有记录时，添加tag字符记录
                         $tid = $tagModel->add(array('tag' => $tag, 'total' => 1));
                     }
-                    $contentTagModel->add(array('aid' => $aid, 'uid' => $_SESSION['uid'], 'mid' => $this->mid, 'cid' => $this->cid, 'tid' => $tid));
+                    $contentTagModel->add(array('aid' => $aid, 'cid' => $this->cid, 'tid' => $tid));
                 }
             }
         }
@@ -120,10 +120,9 @@ class Content
     public function del($aid)
     {
         $ContentModel = ContentModel::getInstance($this->mid);
-        $data = $ContentModel->find($aid);
         if ($ContentModel->del($aid)) {
             //删除文章tag属性
-            return M('content_tag')->where(array('mid' => $this->mid, 'cid' => $this->cid))->del();
+            return M('content_tag')->where(array('cid' => $this->cid))->del();
         } else {
             $this->error = '删除文章失败';
         }

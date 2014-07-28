@@ -11,9 +11,14 @@
             if (error) {
                 $("div#error_tips").show();
                 $(".err_m").html(error);
-                setTimeout(function(){ $("div#error_tips").hide()},5000);
+                setTimeout(function () {
+                    $("div#error_tips").hide()
+                }, 5000);
             }
         })
+        if (window.parent != window) {
+            window.parent.location.href = location.href;
+        }
     </script>
 </head>
 <body>

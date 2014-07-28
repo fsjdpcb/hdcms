@@ -1,20 +1,19 @@
-<?php if (!defined("HDPHP_PATH")) exit; ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta charset="UTF-8">
     <title>属性管理</title>
     <hdjs/>
-    <css file="__CONTROL_TPL__/css/css.css"/>
-    <js file="__CONTROL_TPL__/js/add.js"/>
+    <css file="__CONTROLLER_TPL__/css/css.css"/>
+    <js file="__CONTROLLER_TPL__/js/add.js"/>
+    <css file="__PUBLIC__/common.css"/>
 </head>
 <body>
 <div class="wrap">
     <div class="menu_list">
         <ul>
             <li><a href="{|U:index,array('mid'=>$_REQUEST['mid'])}">属性管理</a></li>
-            <li><a href="javascript:;" class="action">添加属性</a></li>
+            <li><a href="{|U:'add',array('mid'=>$_REQUEST['mid'])}" class="action">添加属性</a></li>
         </ul>
     </div>
     <div class="title-header">添加属性</div>

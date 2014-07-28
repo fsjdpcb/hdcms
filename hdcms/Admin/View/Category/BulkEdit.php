@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 	<title>批量编辑栏目</title>
 	<hdjs/>
-	<js file="__TPL__/Content/js/addEdit.js"/>
+    <css file="__PUBLIC__/common.css"/>
 	<style type="text/css">
 		div.wrap {
 		  	padding-right: 0px;
@@ -210,7 +210,6 @@
 		$(window).resize(function(){
 			alert_div();
 		})
-		
 		$(function(){
 			$('input[type=radio]').dblclick(function(e){
 				var tr_index =$($(this).parents('tr')).index();
@@ -227,6 +226,25 @@
 				})
 			})
 		})
+        /**
+         * 更换模板
+         * @param input_id
+         */
+        function select_template(name) {
+            $.modal({
+                title : '选择模板文件',
+                button_cancel : '关闭',
+                width : 650,
+                height : 400,
+                content : '<iframe frameborder=0 scrolling="no" style="height:99%;border:none;" src="' + MODULE + '&c=TemplateSelect&a=selectTpl&name=' + name + '"></iframe>'
+            });
+        }
+        /**
+         * 关闭模板选择窗口
+         */
+        function close_select_template() {
+            $.removeModal();
+        }
 	</script>
 </body>
 </html>

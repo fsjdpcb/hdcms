@@ -5,6 +5,7 @@
 		<title>栏目列表</title>
 		<hdjs/>
         <js file="__CONTROLLER_TPL__/js/index.js"/>
+        <css file="__PUBLIC__/common.css"/>
 		<style type="text/css">
 			img.explodeCategory{
 				cursor: pointer;
@@ -90,6 +91,7 @@
 			<div class="position-bottom">
 				<input type="button" class="hd-cancel" onclick="select_all(1)" value='全选'/>
 				<input type="button" class="hd-cancel" onclick="select_all(0)" value='反选'/>
+                <input type="button" class="hd-cancel" onclick="explodeCategory()" value="收缩"/>
 				<input type="button" class="hd-cancel" onclick="updateOrder()" value="更改排序"/>
 				<input type="button" class="hd-cancel" onclick="BulkEdit()" value="批量编辑"/>				
 			</div>

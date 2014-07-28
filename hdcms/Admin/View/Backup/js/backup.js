@@ -2,7 +2,7 @@
 $(function () {
     //checkbox选择
     $(".s_all_ck").click(function () {
-        $("input[name*='table']").attr("checked", !!$(this).attr("checked"));
+        $("[name='table[]']").attr("checked", !!$(this).attr("checked"));
     })
 })
 //备份数据库
@@ -26,12 +26,12 @@ function check_select_table() {
 //优化表
 function optimize() {
     if (check_select_table()) {
-        hd_ajax(CONTROL + '&m=optimize', $("[name*='table']:checked").serialize());
+        hd_ajax(CONTROLLER + '&a=optimize', $("[name*='table']:checked").serialize());
     }
 }
 //修复表
 function repair() {
     if (check_select_table()) {
-        hd_ajax(CONTROL + '&m=repair', $("[name*='table']:checked").serialize());
+        hd_ajax(CONTROLLER + '&a=repair', $("[name*='table']:checked").serialize());
     }
 }

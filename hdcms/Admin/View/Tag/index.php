@@ -1,9 +1,10 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta charset="UTF-8">
     <title>tag标签</title>
     <hdjs/>
+    <css file="__PUBLIC__/common.css"/>
 </head>
 <body>
 <div class="wrap">
@@ -73,7 +74,7 @@ function del(tid) {
         return;
     }
     if (confirm("确定要删除tag吗?")) {
-        hd_ajax(CONTROL + '&m=del', data);
+        hd_ajax(CONTROLLER + '&a=del', data);
     }
 }
 </script>
