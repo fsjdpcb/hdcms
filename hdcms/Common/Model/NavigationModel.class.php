@@ -20,7 +20,7 @@ class NavigationModel extends Model
      */
     protected function _url($v)
     {
-       return str_ireplace(__ROOT__, '[ROOT]', $v);
+        return str_ireplace(__ROOT__, '[ROOT]', $v);
     }
 
     /**
@@ -47,10 +47,11 @@ class NavigationModel extends Model
     /**
      * 删除导航
      */
-    public function del_nav()
+    public function delNavigation()
     {
         $nid = Q("nid");
-        $state = $this->join()->where(array("pid" => $nid))->find();
+        //是否有子导航
+        $state = $this->where(array("pid" => $nid))->find();
         if (!$state) {
             return $this->del($nid);
         } else {
@@ -85,7 +86,7 @@ class NavigationModel extends Model
     {
         $nav = $this->order('list_order ASC,nid ASC')->all();
         $data = Data::tree($nav, 'title', 'nid', 'pid');
-        return cache('navigation', $data);
+        return F('navigation', $data, CACHE_DATA_PATH);
     }
 
     public function __after_insert($data)

@@ -17,14 +17,16 @@ function select_all(state) {
 }
 //指量删除
 function BulkDel() {
-    if (confirm('确定要删除图片吗？')) {
-        //栏目检测
-        if ($("input[type='checkbox']:checked").length == 0) {
-            alert('请选择文件');
-            return false;
-        }
-        $("form").trigger('submit');
+    if ($("input[type='checkbox']:checked").length == 0) {
+        $.dialog({
+            message: '请选择文件',
+            type: "error"
+        });
+        return false;
     }
+    hd_confirm('确定要删除图片吗？',function(){
+        $("form").trigger('submit');
+    })
 }
 //预览图片
 function view_image(obj) {

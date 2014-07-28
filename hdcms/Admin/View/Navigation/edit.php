@@ -1,15 +1,15 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta charset="UTF-8">
     <title>修改导航</title>
     <hdjs/>
-    <js file="__CONTROL_TPL__/js/js.js"/>
-    <css file="__CONTROL_TPL__/css/css.css"/>
+    <js file="__CONTROLLER_TPL__/js/js.js"/>
+    <css file="__CONTROLLER_TPL__/css/css.css"/>
+    <css file="__PUBLIC__/common.css"/>
 </head>
 <body>
-<form action="{|U:'edit'}" method="post" class="hd-form" onsubmit="return hd_submit(this,'{|U:index}')">
+<form method="post" class="hd-form" onsubmit="return hd_submit(this,'{|U:index}')">
     <input type="hidden" name="nid" value="{$field.nid}"/>
     <div class="wrap">
         <div class="menu_list">

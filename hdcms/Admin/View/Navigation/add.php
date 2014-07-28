@@ -1,20 +1,20 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta charset="UTF-8">
     <title>后台菜单管理</title>
     <hdjs/>
-    <js file="__CONTROL_TPL__/js/js.js"/>
-    <css file="__CONTROL_TPL__/css/css.css"/>
+    <js file="__CONTROLLER_TPL__/js/js.js"/>
+    <css file="__CONTROLLER_TPL__/css/css.css"/>
+    <css file="__PUBLIC__/common.css"/>
 </head>
 <body>
-<form action="{|U:'add'}" method="post" class="hd-form" onsubmit="return hd_submit(this,'{|U:index}')">
+<form method="post" class="hd-form" onsubmit="return hd_submit(this,'{|U:index}')">
     <div class="wrap">
         <div class="menu_list">
             <ul>
                 <li><a href="{|U:'index'}">导航列表</a></li>
-                <li><a href="javascript:;" class="action">添加导航</a></li>
+                <li><a href="{|U:'add',array('pid'=>0)}" class="action">添加导航</a></li>
                 <li><a href="javascript:hd_ajax('{|U:update_cache}');">更新缓存</a></li>
             </ul>
         </div>
@@ -25,7 +25,7 @@
                 <td>
                     <select name="pid">
                         <option value="0"> == 一级导航 == </option>
-                        <list from="$nav" name="n">
+                        <list from="$navigation" name="n">
                                 <option value="{$n.nid}" <if value="$n.nid==$hd.get.pid">selected="selected"</if>>{$n._name}</option>
                         </list>
                     </select>

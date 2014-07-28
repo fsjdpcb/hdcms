@@ -39,7 +39,7 @@
                     <td>{$d.size|get_size}</td>
                     <td>
                         <a href="javascript:confirm('确定还原吗？')?location.href='{|U:'recovery',array('dir'=>$d['name'])}':false;">还原</a> |
-                        <a href="javascript:confirm('确定删除吗？')?hd_ajax('{|U:del}',{dir:['{$d.name}']}):false;">删除</a>
+                        <a href="javascript:" onclick="hd_confirm('确认删除吗？',function(){hd_ajax('{|U:del}',{dir:['{$d.name}']})})">删除</a>
                     </td>
                 </tr>
             </list>

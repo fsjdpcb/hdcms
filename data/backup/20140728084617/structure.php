@@ -109,7 +109,7 @@ $db->exe("CREATE TABLE `".$db_prefix."content` (
   KEY `uid` (`uid`),
   KEY `cid` (`cid`),
   KEY `flag` (`flag`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='文章表'");
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='文章表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."content_data`");
 $db->exe("CREATE TABLE `".$db_prefix."content_data` (
   `aid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '文章主表ID',
@@ -226,11 +226,11 @@ $db->exe("CREATE TABLE `".$db_prefix."navigation` (
   `title` char(30) NOT NULL DEFAULT '菜单名称' COMMENT '菜单名',
   `pid` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '父id',
   `target` enum('_self','_blank') NOT NULL DEFAULT '_self' COMMENT '打开方式',
-  `state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态 1 显示 0 不显示',
+  `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态 1 显示 0 不显示',
   `list_order` mediumint(100) NOT NULL DEFAULT '100' COMMENT '排序',
   `url` varchar(255) NOT NULL DEFAULT '' COMMENT '链接地址',
   PRIMARY KEY (`nid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='网站前台导航'");
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='网站前台导航'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."node`");
 $db->exe("CREATE TABLE `".$db_prefix."node` (
   `nid` smallint(6) NOT NULL AUTO_INCREMENT,
@@ -283,7 +283,7 @@ $db->exe("CREATE TABLE `".$db_prefix."search` (
   PRIMARY KEY (`sid`),
   UNIQUE KEY `name` (`word`) USING BTREE,
   KEY `total` (`total`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='搜索结果表'");
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='搜索结果表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."session`");
 $db->exe("CREATE TABLE `".$db_prefix."session` (
   `sessid` char(32) NOT NULL DEFAULT '',

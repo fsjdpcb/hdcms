@@ -70,12 +70,13 @@ function del(tid) {
         var data = $("[name*='tid']:checked").serialize();
     }
     if (!data) {
-        alert("请选择删除的tag");
+        $.dialog({
+            message: '请选择删除的tag',
+            type: "error"
+        });
         return;
     }
-    if (confirm("确定要删除tag吗?")) {
-        hd_ajax(CONTROLLER + '&a=del', data);
-    }
+    hd_confirm('确认删除吗？',function(){hd_ajax(CONTROLLER + '&a=del', data)});
 }
 </script>
 </body>

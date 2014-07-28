@@ -1,52 +1,52 @@
 <?php
 
 /**
- * 前台导航
+ * 导航菜单模块
  * Class NavigationControl
  */
-class NavigationControl extends AuthControl
+class NavigationController extends AuthController
 {
     //操作模型
-    private $_db;
+    private $db;
     //导航缓存
-    private $_navigation;
+    private $navigation;
 
     public function __init()
     {
-        $this->_db = K("Navigation");
-        $this->_navigation = cache('navigation');
+        $this->db = K("Navigation");
+        $this->navigation = F('navigation', false, CACHE_DATA_PATH);
     }
 
+    //导航列表
     public function index()
     {
-        $this->navigation = $this->_navigation;
+        $this->assign('navigation', $this->navigation);
         $this->display();
     }
 
+    //添加导航
     public function add()
     {
         if (IS_POST) {
-            if ($this->_db->add_nav()) {
-                $this->_ajax(1, '添加导航成功！');
+            if ($this->db->add_nav()) {
+                $this->success('添加导航成功！');
             }
         } else {
-            $this->nav = $this->_navigation;
+            $this->assign('navigation', $this->navigation);
             $this->display();
         }
     }
 
-    /**
-     * 修改导航
-     */
+    //修改导航
     public function edit()
     {
         if (IS_POST) {
-            if ($this->_db->edit_nav()) {
+            if ($this->db->edit_nav()) {
                 $this->ajax(array('state' => 1, 'message' => '修改导航成功！'));
             }
         } else {
-            $this->nav = $this->_navigation;
-            $field = $this->_navigation[Q('nid')];
+            $this->nav = $this->navigation;
+            $field = $this->navigation[Q('nid')];
             //替换链接中的{__ROOT__}变量
             $field['url'] = str_replace('{__ROOT__}', __ROOT__, $field['url']);
             $this->field = $field;
@@ -54,32 +54,29 @@ class NavigationControl extends AuthControl
         }
     }
 
-    /**
-     * 删除导航
-     */
+    //删除导航
     public function del()
     {
-        if ($this->_db->del_nav()) {
-            $this->_ajax(1, '删除导航成功');
+        if ($this->db->delNavigation()) {
+            $this->success('删除导航成功');
         } else {
-            $this->_ajax(0, $this->_db->error);
+            $this->error($this->db->error);
         }
     }
 
-    /**
-     * 更新排序
-     */
+    //更新排序
     public function update_order()
     {
-        if ($this->_db->update_order()) {
-            $this->_ajax(1, '更改排序成功');
+        if ($this->db->update_order()) {
+            $this->success('更改排序成功');
         }
     }
 
+    //更新缓存
     public function update_cache()
     {
-        if ($this->_db->update_cache()) {
-            $this->_ajax(1, '缓存更新成功！');
+        if ($this->db->update_cache()) {
+            $this->success('缓存更新成功！');
         }
     }
 }

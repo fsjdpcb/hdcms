@@ -18,21 +18,19 @@ function reverse_select() {
 /**
  * 删除文章
  * @param mid
- * @param cid
- * @param aid
  */
-function del() {
+function del(mid) {
     var ids = $("input:checked").serialize();
     if (ids) {
-        if (confirm("确定要删除文章吗?")) {
+        hd_confirm('确定要删除文章吗', function () {
             $.ajax({
                 type: "POST",
-                url: CONTROLLER + "&a=del",
+                url: CONTROLLER + "&a=del&mid="+mid,
                 dataType: "JSON",
                 cache: false,
                 data: ids,
                 success: function (data) {
-                    if (data.state == 1) {
+                    if (data.status == 1) {
                         $.dialog({
                             message: "删除文章成功",
                             type: "success",
@@ -43,7 +41,7 @@ function del() {
                         });
                     } else {
                         $.dialog({
-                            message: "删除文章失败",
+                            message: data.message,
                             type: "error",
                             close_handler: function () {
                                 location.href = URL;
@@ -52,19 +50,19 @@ function del() {
                     }
                 }
             })
-        }
+        });
     } else {
         alert("请选择删除的文章");
     }
 }
 //设置状态
-function audit(mid,status) {
+function audit(mid, status) {
     //单文章删除
     var ids = $("input:checked").serialize();
     if (ids) {
         $.ajax({
             type: "POST",
-            url: CONTROLLER + "&a=audit" + "&status=" + status + "&mid="+mid,
+            url: CONTROLLER + "&a=audit" + "&status=" + status + "&mid=" + mid,
             dataType: "JSON",
             cache: false,
             data: ids,
@@ -80,7 +78,7 @@ function audit(mid,status) {
                     });
                 } else {
                     $.dialog({
-                        message:data.message,
+                        message: data.message,
                         type: "error",
                         close_handler: function () {
                             location.href = URL;

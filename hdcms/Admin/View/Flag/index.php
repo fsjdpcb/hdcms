@@ -52,8 +52,7 @@
                         <input type="text" name="flag[]" value="{$name}"/>
                     </td>
                     <td>
-                            <a href="javascript:;"
-                               onclick="if(confirm('确定要删除属性吗？'))hd_ajax('{|U:del}',{mid:{$hd.get.mid},number:<?php echo $hd['list']['name']['index'] - 1; ?>})">删除
+                            <a href="javascript:;" onclick="hd_confirm('确认删除吗？',function(){hd_ajax('{|U:del}',{mid:{$hd.get.mid},number:<?php echo $hd['list']['name']['index'] - 1; ?>})})">删除
                                </a>
                     </td>
                 </tr>

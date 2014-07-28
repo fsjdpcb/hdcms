@@ -7,11 +7,11 @@
     <js file="__CONTROLLER_TPL__/js/js.js"/>
 </head>
 <body>
-<form action='{|U:' BulkDel'}' method="post" onsubmit="return hd_submit(this,'{|U:'index'}');">
+<form action="{|U:'BulkDel'}" method="post" onsubmit="return hd_submit(this,'{|U:'index'}');">
 <div class="wrap">
     <div class="menu_list">
         <ul>
-            <li><a href="javascript:;" class="action">附件管理</a></li>
+            <li><a href="__URL__" class="action">附件管理</a></li>
         </ul>
     </div>
     <table class="table2">

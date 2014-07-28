@@ -38,7 +38,7 @@ function del(mid,cid,aid) {
         var aids = $("input:checked").serialize();
     }
     if (aids) {
-        if (confirm("确定要删除文章吗?")) {
+        hd_confirm('确定要删除文章吗?',function(){
             $.ajax({
                 type: "POST",
                 url: CONTROLLER + "&a=del" + "&mid=" + mid+"&cid="+cid,
@@ -65,9 +65,9 @@ function del(mid,cid,aid) {
                     }
                 }
             })
-        }
+        })
     } else {
-        alert("请选择删除的文章");
+        $.dialog({message: '请选择文章', type: "error"});
     }
 }
 //设置状态
@@ -102,7 +102,7 @@ function audit(mid,cid, state) {
             }
         })
     } else {
-        alert("请选择设置的文章");
+        $.dialog({message: '请选择文章', type: "error"});
     }
 }
 /**
@@ -123,7 +123,7 @@ function move(mid,cid) {
             content: '<iframe style="width: 100%;height: 99%;" src="' + CONTROLLER + '&a=move&mid='+mid+'&cid=' + cid + '&aid=' + aid + '" frameborder="0"></iframe>'
         })
     } else {
-        alert("请选择移动的文章");
+        $.dialog({message: '请选择文章', type: "error"});
     }
 }
 

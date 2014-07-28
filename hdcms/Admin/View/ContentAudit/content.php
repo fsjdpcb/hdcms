@@ -7,7 +7,6 @@
     <js file="__CONTROLLER_TPL__/js/content.js"/>
     <css file="__CONTROLLER_TPL__/css/css.css"/>
     <css file="__PUBLIC__/common.css"/>
-
 </head>
 <body>
 <div class="wrap">
@@ -32,7 +31,7 @@
     <div class="menu_list">
         <ul>
             <li>
-                <a href="{|U:'content'}" class="action">文章列表</a>
+                <a href="{|U:'content',array('mid'=>$_REQUEST['mid'])}" class="action">文章列表</a>
             </li>
         </ul>
     </div>
@@ -79,7 +78,7 @@
 <div class="position-bottom">
     <input type="button" class="hd-cancel" value="全选" onclick="select_all('.table2')"/>
     <input type="button" class="hd-cancel" value="反选" onclick="reverse_select('.table2')"/>
-    <input type="button" class="hd-cancel" onclick="del()" value="批量删除"/>
+    <input type="button" class="hd-cancel" onclick="del({$hd.get.mid})" value="批量删除"/>
     <input type="button" class="hd-cancel" onclick="audit({$mid},1)" value="审核"/>
 </div>
 </body>
