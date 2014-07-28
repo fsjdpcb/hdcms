@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>后台菜单管理</title>
     <hdjs/>
-    <js file="__CONTROLLER_TPL__/js/js.js"/>
+    <js file="__CONTROLLER_TPL__/js/addEdit.js"/>
     <css file="__CONTROLLER_TPL__/css/css.css"/>
     <css file="__PUBLIC__/common.css"/>
 </head>
@@ -26,7 +26,7 @@
                     <select name="pid">
                         <option value="0"> == 一级导航 == </option>
                         <list from="$navigation" name="n">
-                                <option value="{$n.nid}" <if value="$n.nid==$hd.get.pid">selected="selected"</if>>{$n._name}</option>
+                                <option value="{$n.nid}" <if value="$n.nid eq $hd.get.pid">selected="selected"</if>>{$n._name}</option>
                         </list>
                     </select>
                 </td>
@@ -62,7 +62,7 @@
         </table>
     </div>
     <div class="position-bottom">
-        <input type="submit" class="hd-success" value="提交"/>
+        <input type="button" class="hd-success" value="更改排序" onclick="update_order();"/>
     </div>
 </form>
 </body>

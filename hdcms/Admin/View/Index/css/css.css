@@ -83,7 +83,7 @@ div.main div.left_menu {
     position: fixed;
     top: 40px;
     left: 0px;
-    bottom: 0px;
+    bottom: 50px;
     overflow-y: auto;
 }
 

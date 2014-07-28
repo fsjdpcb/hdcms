@@ -26,8 +26,8 @@
                 <td>
                     <select name="pid">
                         <option value="0"> == 一级导航 == </option>
-                        <list from="$nav" name="n">
-                            <option value="{$n.nid}" <if value="$n.nid==$field.pid">selected="selected"</if>>{$n._name}</option>
+                        <list from="$navigation" name="n">
+                            <option value="{$n.nid}" {$n.disabled} {$n.selected}>{$n._name}</option>
                         </list>
                     </select>
                 </td>

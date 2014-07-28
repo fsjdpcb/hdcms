@@ -42,14 +42,23 @@ class NavigationController extends AuthController
     {
         if (IS_POST) {
             if ($this->db->edit_nav()) {
-                $this->ajax(array('state' => 1, 'message' => '修改导航成功！'));
+                $this->success('修改成功！');
             }
         } else {
-            $this->nav = $this->navigation;
-            $field = $this->navigation[Q('nid')];
-            //替换链接中的{__ROOT__}变量
-            $field['url'] = str_replace('{__ROOT__}', __ROOT__, $field['url']);
-            $this->field = $field;
+            $nid = Q('nid', 0, 'intval');
+            foreach ($this->navigation as $id => $nav) {
+                $disabled = $selected = '';
+                if (Data::isChild($this->navigation, $nav['nid'],$nid,'nid') || $id==$nid) {
+                    $disabled = 'disabled=""';
+                }
+                if ($this->navigation[$nid]['pid'] ==$nav['nid']) {
+                    $selected = 'selected="selected"';
+                }
+                $this->navigation[$id]['disabled'] = $disabled;
+                $this->navigation[$id]['selected'] = $selected;
+            }
+            $this->assign('navigation', $this->navigation);
+            $this->assign('field', $this->navigation[$nid]);
             $this->display();
         }
     }

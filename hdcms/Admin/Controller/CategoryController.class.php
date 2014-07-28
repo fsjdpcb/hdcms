@@ -85,11 +85,7 @@ class CategoryController extends AuthController
                 //父栏目select状态
                 $selected = $category['pid'] == $cat['cid'] ? 'selected=""' : '';
                 //子栏目disabled
-                $disabled = Data::isChild($this->category, $cat['cid'], $this->cid) ? 'disabled=""' : '';
-                //当前栏目不可选
-                if ($this->cid == $cat['cid']) {
-                    $disabled = 'disabled="disabled"';
-                }
+                $disabled = Data::isChild($this->category, $cat['cid'], $this->cid)||$this->cid == $cat['cid'] ? 'disabled=""' : '';
                 $cache[$n]['selected'] = $selected;
                 $cache[$n]['disabled'] = $disabled;
             }

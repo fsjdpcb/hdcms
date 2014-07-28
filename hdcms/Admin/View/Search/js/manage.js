@@ -12,7 +12,7 @@ function del(sid) {
         var data = $("[name*='sid']:checked").serialize();
     }
     if (!data) {
-        alert("请选择删除的关键词");
+        $.dialog({message: '请选择删除的关键词', type: "error"});
         return;
     }
     if (confirm("确定要删除搜索词吗?")) {
