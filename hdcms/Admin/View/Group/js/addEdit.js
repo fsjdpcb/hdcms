@@ -3,7 +3,7 @@ $(function () {
         'rname': {
             rule: {
                 required: true,
-                ajax: {url: CONTROL + '&m=check_role', field: ['rid']}
+                ajax: {url: CONTROLLER + '&a=checkRole', field: ['rid']}
             },
             error: {
                 required: '组名不能为空',

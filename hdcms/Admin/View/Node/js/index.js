@@ -1,18 +1,3 @@
-//表单验证
-$(function () {
-    $("form").validate({
-        //验证规则
-        title: {
-            rule: {
-                required: true
-            },
-            error: {
-                required: "菜单名称不能为空"
-            }
-        }
-    })
-})
-
 //更改列表排序
 function update_order() {
     var data = $("[name*='list_order']").serialize();
@@ -33,37 +18,3 @@ function update_order() {
         }
     }, 'json')
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

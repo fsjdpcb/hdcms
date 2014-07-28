@@ -25,40 +25,40 @@ class UserModel extends ViewModel
     /**
      * 修改用户
      */
-    public function editUser($data)
+    public function editUser()
     {
         //修改密码
-        if (isset($data['password'])) {
-            $data['code'] = $this->getUserCode();
-            $data['password'] = md5($data['password'] . $data['code']);
+        if (isset($_POST['password'])) {
+            $_POST['code'] = $this->getUserCode();
+            $_POST['password'] = md5($_POST['password'] . $_POST['code']);
         }
-        return $this->save($data);
+        return $this->save();
     }
 
     /**
      * 添加帐号
      */
-    public function addUser($data)
+    public function addUser()
     {
-        if (empty($data['username'])) {
+        if (empty($_POST['username'])) {
             $this->error = '用户名不能为空';
             return false;
         }
-        if (empty($data['password'])) {
+        if (empty($_POST['password'])) {
             $this->error = '密码不能为空';
             return false;
         }
         $code = $this->getUserCode();
-        $data['code'] = $code;
-        $data['password'] = md5($data['password'] . $data['code']);
-        $data['nickname'] = $data['username'];
-        $data['regtime'] = time();
-        $data['logintime'] = time();
-        $data['regip'] = ip_get_client();
-        $data['lastip'] = ip_get_client();
-        $data['credits'] = C('init_credits');
+        $_POST['code'] = $code;
+        $_POST['password'] = md5($_POST['password'] . $_POST['code']);
+        $_POST['nickname'] = $_POST['username'];
+        $_POST['regtime'] = time();
+        $_POST['logintime'] = time();
+        $_POST['regip'] = ip_get_client();
+        $_POST['lastip'] = ip_get_client();
+        $_POST['credits'] = C('init_credits');
         //设置用户头像
-        if ($uid = $this->add($data)) {
+        if ($uid = $this->add()) {
             //空间id
             return M('user')->save(array('uid' => $uid, 'domain' => "hd{$uid}"));
         } else {

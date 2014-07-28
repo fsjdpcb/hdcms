@@ -1,17 +1,18 @@
-<!DOCTYPE html >
+<!doctype html>
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta charset="UTF-8">
     <title>添加配置项</title>
     <hdjs/>
+    <css file="__PUBLIC__/common.css"/>
 </head>
 <body>
-<form action="{|U:'add'}" method="post" class="hd-form" onsubmit="return hd_submit(this,'{|U:edit}')">
+<form method="post" class="hd-form" onsubmit="return hd_submit(this,'{|U:edit}')">
 	<input type="hidden" name="type" value="自定义"/>
     <div class="wrap">
         <div class="menu_list">
             <ul>
-                <li><a href="{|U:'index'}">配置列表</a></li>
+                <li><a href="{|U:'edit'}">配置列表</a></li>
                 <li><a href="{|U:'add'}" class="action">添加配置</a></li>
             </ul>
         </div>

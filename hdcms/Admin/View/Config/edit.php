@@ -1,18 +1,17 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta charset="UTF-8">
     <title>网站配置</title>
     <hdjs/>
+    <css file="__PUBLIC__/common.css"/>
 </head>
 <body>
-<form action="{|U:edit}" method="post" class="hd-form" onsubmit="return hd_submit(this,'{|U:'edit'}')">
+<form method="post" class="hd-form" onsubmit="return hd_submit(this,'{|U:'edit'}')">
     <div class="wrap">
         <div class="title-header">温馨提示</div>
         <div class="help">
-            1 模板中使用配置项方法为{ $hd.config.变量名}
-            <br>
+            1 模板中使用配置项方法为{ $hd.config.变量名}<br>
             2 请仔细修改配置项，不当设置将影响网站的性能与安全 <br>
             3 在不了解配置项意义时，请不要随意修改
         </div>
@@ -324,7 +323,7 @@
 	                        		<td>{$c.name}</td>
 	                        		<td>{$c.message}</td>
 	                        		<td>
-	                        			<a href="javascript:hd_confirm('确证删除吗？',function(){hd_ajax(CONTROL + '&m=del', {id: {$c.id}})})">
+	                        			<a href="javascript:hd_confirm('确证删除吗？',function(){hd_ajax('{|U:'del'}', {id: {$c.id}})})">
 	                        				删除
 	                        			</a>
 	                        		</td>

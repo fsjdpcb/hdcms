@@ -1,16 +1,16 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta charset="UTF-8">
     <title>修改密码</title>
     <hdjs/>
-    <js file="__CONTROL_TPL__/js/edit_password.js"/>
+    <js file="__CONTROLLER_TPL__/js/editPassword.js"/>
+    <css file="__PUBLIC__/common.css"/>
 </head>
 <body>
 <div class="wrap">
     <div class="title-header">修改密码</div>
-    <form action="__METH__" method="post" onsubmit="return hd_submit(this)" class="hd-form">
+    <form method="post" onsubmit="return hd_submit(this)" class="hd-form">
         <table class="table1">
             <tr>
                 <th class="w100">管理员名称</th>

@@ -102,13 +102,10 @@ class IndexController extends AuthController
             //更新缓存
             $sql = "SELECT * FROM {$pre}menu_favorite AS m JOIN {$pre}node AS n ON m.nid=n.nid WHERE uid=" . $_SESSION['uid'];
             $favoriteMenu = M()->query($sql);
-            cache($_SESSION['uid'], $favoriteMenu, MENU_CACHE_PATH);
+            F($_SESSION['uid'], $favoriteMenu, CACHE_MENU_PATH);
             $this->success('设置成功');
         } else {
-            if (!is_writable(MENU_CACHE_PATH)) {
-                $this->error(MENU_CACHE_PATH . '缓存目录不可写');
-            }
-            $nodeModel = V('node');
+            $nodeModel = M('node');
             $pre = C('DB_PREFIX');
             if (session("WEB_MASTER") || session("rid") == 1) {
                 $sql = "SELECT n.nid,n.pid,m.uid,n.title FROM {$pre}node AS n  LEFT JOIN

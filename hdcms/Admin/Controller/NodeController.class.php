@@ -5,24 +5,24 @@
  * Class NodeControl
  * @author hdxj <houdunwangxj@gmail.com>
  */
-class NodeControl extends AuthControl
+class NodeController extends AuthController
 {
     //模型
-    private $_db;
+    private $db;
     //节点树
-    private $_node;
+    private $node;
 
     public function __init()
     {
         //获得模型实例
-        $this->_db = K("Node");
-        $this->_node = cache("node");
+        $this->db = K("Node");
+        $this->node = F("node",false,CACHE_DATA_PATH);
     }
 
     //节点列表
     public function index()
     {
-        $this->node = $this->_node;
+        $this->assign('node', $this->node);
         $this->display();
     }
 
@@ -30,12 +30,12 @@ class NodeControl extends AuthControl
     public function add()
     {
         if (IS_POST) {
-            if ($this->_db->add_node()) {
-                $this->_ajax( 1,  '添加节点成功');
+            if ($this->db->addNode()) {
+                $this->success('添加节点成功');
             }
         } else {
             //配置菜单列表
-            $this->node = $this->_node;
+            $this->assign('node', $this->node);
             $this->display();
         }
     }
@@ -43,10 +43,10 @@ class NodeControl extends AuthControl
     //删除节点
     public function del()
     {
-        if ($this->_db->del_node()) {
-            $this->_ajax(1, '删除节点成功');
+        if ($this->db->delNode()) {
+            $this->success('删除节点成功');
         } else {
-            $this->_ajax(0, $this->_db->error);
+            $this->error($this->db->error);
         }
     }
 
@@ -54,16 +54,16 @@ class NodeControl extends AuthControl
     public function edit()
     {
         if (IS_POST) {
-            if($this->_db->edit_node()){
-                $this->_ajax(1,  '修改节点成功');
+            if ($this->db->editNode()) {
+                $this->success('修改节点成功');
             }
         } else {
-            $nid=Q('nid');
-            $this->field = $this->_node[$nid];
-            foreach($this->_node as $id=>$node){
-                $this->_node[$id]['disabled']=Data::isChild($this->_node,$id,$nid,'nid')?' disabled="disabled" ':'';
+            $nid = Q('nid');
+            $this->field = $this->node[$nid];
+            foreach ($this->node as $id => $node) {
+                $this->node[$id]['disabled'] = Data::isChild($this->node, $id, $nid, 'nid') ? ' disabled="disabled" ' : '';
             }
-            $this->node = $this->_node;
+            $this->assign('node', $this->node);
             $this->display();
         }
     }
@@ -75,19 +75,19 @@ class NodeControl extends AuthControl
         foreach ($menu_order as $nid => $order) {
             //排序
             $order = intval($order);
-            $this->_db->save(array(
+            $this->db->save(array(
                 "nid" => $nid,
                 "list_order" => $order
             ));
         }
-        $this->_ajax(1,'更改排序成功');
+        $this->success('更改排序成功');
     }
 
     //更新缓存
     public function update_cache()
     {
-        if ($this->_db->updateCache()) {
-            $this->_ajax( 1,  '更新缓存成功');
+        if ($this->db->updateCache()) {
+            $this->success('更新缓存成功');
         }
     }
 }

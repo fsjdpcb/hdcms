@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta charset="UTF-8">
     <title>添加会员</title>
     <hdjs/>
-    <js file="__CONTROL_TPL__/js/add.js"/>
+    <js file="__CONTROLLER_TPL__/js/add.js"/>
+    <css file="__PUBLIC__/common.css"/>
 </head>
 <body>
 <div class="wrap">
@@ -28,7 +29,7 @@
                 <td>
                     <select name="rid">
                         <list from="$role" name="r">
-                            <option value="{$r.rid}">{$r.rname}</option>
+                            <option value="{$r.rid}">{$r.rname} (<if value="$r.admin">管理组<else>会员组</if>)</option>
                         </list>
                     </select>
                 </td>

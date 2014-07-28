@@ -34,7 +34,7 @@ class RoleController extends AuthController
     public function add()
     {
         if (IS_POST) {
-            if ($aid = $this->db->addRole($_POST)) {
+            if ($aid = $this->db->addRole()) {
                 $this->success('添加角色成功！');
             }
         } else {
@@ -72,7 +72,7 @@ class RoleController extends AuthController
     public function edit()
     {
         if (IS_POST) {
-            if ($this->db->editRole($_POST)) {
+            if ($this->db->editRole()) {
                 $this->success('修改角色成功！');
             } else {
                 $this->error($this->db->error);

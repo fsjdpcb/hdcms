@@ -1,9 +1,10 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta charset="UTF-8">
     <title>会员列表</title>
     <hdjs/>
+    <css file="__PUBLIC__/common.css"/>
 </head>
 <body>
 <div class="wrap">
@@ -17,13 +18,13 @@
         <thead>
         <tr>
             <td class="w30">uid</td>
-            <td class="w200">昵称</td>
+            <td>昵称</td>
             <td class="w200">帐号</td>
-            <td>会员组</td>
+            <td CLASS="W300">会员组</td>
             <td class="w150">登录时间</td>
-            <td class="w150">注册IP</td>
-            <td class="w150">最近登录IP</td>
-            <td class="w150">积分</td>
+            <td class="w100">注册IP</td>
+            <td class="w100">最近登录IP</td>
+            <td class="w100">积分</td>
             <td class="w150">操作</td>
         </tr>
         </thead>
@@ -38,17 +39,21 @@
                 <td>{$d.lastip}</td>
                 <td>{$d.credits}</td>
                 <td>
-                    <a href="{|U:'edit',array('uid'=>$d['uid'])}">修改</a>
-                    <span class="line">|</span>
-                    <?php if($d['lock_end_time']<time()){?>
-                    	<a href="javascript:;" onclick="hd_ajax('{|U:'lock'}',{uid:{$d['uid']},lock:1})">
-                    	锁定</a>
-                    <?php }else{?>
-                    	<a href="javascript:;" onclick="hd_ajax('{|U:'lock'}',{uid:{$d['uid']},lock:0})">
-                    		<font color="red">解锁</font>	</a>
-                    <?php }?>
-                    <span class="line">|</span>
-                    <a href="{|U:'del',array('uid'=>$d['uid'])}">删除</a>
+                    <if value="$d.username eq C('WEB_MASTER')">
+                        修改 | 锁定 | 删除
+                    <else>
+                        <a href="{|U:'edit',array('uid'=>$d['uid'])}">修改</a>
+                        <span class="line">|</span>
+                        <?php if($d['lock_end_time']<time()){?>
+                            <a href="javascript:;" onclick="hd_ajax('{|U:'lock'}',{uid:{$d['uid']},lock:1})">
+                            锁定</a>
+                        <?php }else{?>
+                            <a href="javascript:;" onclick="hd_ajax('{|U:'lock'}',{uid:{$d['uid']},lock:0})">
+                                <font color="red">解锁</font>	</a>
+                        <?php }?>
+                        <span class="line">|</span>
+                        <a href="{|U:'del',array('uid'=>$d['uid'])}">删除</a>
+                    </if>
                 </td>
             </tr>
         </list>

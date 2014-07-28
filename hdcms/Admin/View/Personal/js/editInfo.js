@@ -5,7 +5,7 @@ $(function() {
 				required : true,
 				email : true,
 				ajax : {
-					url : CONTROL + "&m=check_email",
+					url : CONTROLLER + "&a=checkEmail",
 					field : ['uid']
 				}
 			},

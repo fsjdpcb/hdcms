@@ -1,18 +1,17 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta charset="UTF-8">
     <title>后台菜单管理</title>
     <hdjs/>
-    <js file="__CONTROL_TPL__/js/js.js"/>
-    <css file="__CONTROL_TPL__/css/css.css"/>
+    <js file="__CONTROlLER_TPL__/js/index.js"/>
+    <css file="__PUBLIC__/common.css"/>
 </head>
 <body>
 <div class="wrap">
     <div class="menu_list">
         <ul>
-            <li><a href="javascript:;" class="action">菜单管理</a></li>
+            <li><a href="{|U:'index'}" class="action">菜单管理</a></li>
             <li><a href="{|U:'add',array('pid'=>0)}">添加菜单</a></li>
             <li><a href="javascript:hd_ajax('{|U:update_cache}');">更新缓存</a></li>
         </ul>
@@ -36,32 +35,32 @@
                 <td>{$n.nid}</td>
                 <td>{$n._name}</td>
                 <td>
-                    <if value="$n.state==1">
+                    <if value="$n.state eq 1">
                         显示
-                        <else>
+                    <else>
                         不显示
                     </if>
                 </td>
                 <td>
-                    <if value="$n.type==1">
+                    <if value="$n.type eq 1">
                         权限菜单
-                        <else>
-                        普通菜单
+                    <else>
+                         普通菜单
                     </if>
                 </td>
                 <td style="text-align: right">
-                    <if value="$n._level==3">
+                    <if value="$n._level eq 3">
                         <span class="disabled">添加子菜单  | </span>
                     <else>
                         <a href="{|U('add',array('pid'=>$n['nid']))}">添加子菜单</a> |
                     </if>
 
-                    <if value="$n.is_system==0">
+                    <if value="$n.is_system eq 0">
                         <a href="{|U('edit',array('nid'=>$n['nid']))}">修改</a> |
-                        <a href="javascript:if(confirm('确定删除菜单吗？'))hd_ajax('{|U:del}',{nid:{$n.nid}})">删除</a>
+                        <a href="javascript:hd_confirm('确定删除菜单吗？',function(){hd_ajax('{|U:del}',{nid:{$n.nid}})})">删除</a>
                     <else/>
-                         <span class="disabled">修改 | </span>
-                         <span class="disabled">删除</span>
+                        <span class="disabled">修改 | </span>
+                        <span class="disabled">删除</span>
                     </if>
                 </td>
             </tr>

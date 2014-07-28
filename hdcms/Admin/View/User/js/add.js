@@ -3,7 +3,7 @@ $(function () {
         username: {
             rule: {
                 required: true, 
-                ajax: {url: CONTROL + "&m=check_username", field: ['uid']}
+                ajax: {url: CONTROLLER + "&a=checkUsername", field: ['uid']}
             },
             error: {
                 required: "密码不能为空",
@@ -42,7 +42,7 @@ $(function () {
             rule: {
             	required: true, 
                 email: true,
-                ajax: {url: CONTROL + "&m=check_email"}
+                ajax: {url: CONTROLLER + "&a=checkEmail"}
             },
             error: {
             	required: "邮箱不能为空",

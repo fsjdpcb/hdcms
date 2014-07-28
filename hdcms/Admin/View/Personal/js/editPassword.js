@@ -4,7 +4,7 @@ $(function () {
         old_password: {
             rule: {
                 required: true,
-                ajax: {url:CONTROL + "&m=check_password"}
+                ajax: {url:CONTROLLER + "&a=checkPassword"}
             },
             error: {
                 required: "旧密码不能为空",

@@ -83,7 +83,7 @@
 			style="float:left;width:1px;margin-right:5px;overflow: hidden;background: #999999;height:15px;margin-top:12px;"></div>
 			<div class="bottom-menu">
 				<list from="$favorite_menu" name="f">
-					<a url="?a={$f.app}&c={$f.control}&m={$f.method}&nid={$f.nid}"
+					<a url="?m={$f.module}&c={$f.control}&a={$f.action}&nid={$f.nid}"
 					onclick="get_content(this,{$f.nid})" href="javascript:;" nid="{$f.nid}">
 						{$f.title}
 					</a>

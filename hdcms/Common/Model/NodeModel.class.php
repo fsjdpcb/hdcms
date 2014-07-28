@@ -8,7 +8,7 @@
 class NodeModel extends Model
 {
     //添加节点
-    public function add_node()
+    public function addNode()
     {
         if ($this->create()) {
             $this->add();
@@ -17,7 +17,7 @@ class NodeModel extends Model
     }
 
     //修改节点
-    public function edit_node()
+    public function editNode()
     {
         if ($this->create()) {
             $this->save();
@@ -26,7 +26,7 @@ class NodeModel extends Model
     }
 
     //删除节点
-    public function del_node()
+    public function delNode()
     {
         $nid = Q("nid");
         $state = $this->where(array("pid" => $nid))->find();

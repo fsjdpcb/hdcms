@@ -10,31 +10,31 @@ class RoleModel extends Model
     public $table = 'role';
 
     //添加角色
-    public function addRole($data)
+    public function addRole()
     {
-        if (empty($data['rname'])) {
+        if (empty($_POST['rname'])) {
             $this->error = '角色名不能为空';
         }
-        if ($this->where(array('rname' => $data['rname']))->find()) {
+        if ($this->where(array('rname' => $_POST['rname']))->find()) {
             $this->error = '角色已经存在';
             return false;
         }
-        if ($this->add($data)) {
+        if ($this->add()) {
             return $this->updateCache();
         }
     }
 
     //添加角色
-    public function editRole($data)
+    public function editRole()
     {
-        if (empty($data['rname'])) {
+        if (empty($_POST['rname'])) {
             $this->error = '角色名不能为空';
         }
-        if ($this->where("rname='{$data['rname']}' AND rid!={$data['rid']}")->find()) {
+        if ($this->where("rname='{$_POST['rname']}' AND rid!={$_POST['rid']}")->find()) {
             $this->error = '角色已经存在';
             return false;
         }
-        if ($this->save($data)) {
+        if ($this->save()) {
             return $this->updateCache();
         }
     }
