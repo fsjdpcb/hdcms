@@ -1,19 +1,18 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta charset="UTF-8">
     <title>生成栏目静态</title>
     <hdjs/>
     <script>
         //栏目缓存数据
         var category = {$category};
     </script>
-    <js file="__CONTROL_TPL__/js/js.js"/>
-    <css file="__CONTROL_TPL__/css/css.css"/>
+    <js file="__CONTROLLER_TPL__/js/js.js"/>
+    <css file="__PUBLIC__/common.css"/>
 </head>
 <body>
-<form method="post" action="__METH__" class="hd-form">
+<form method="post" class="hd-form">
     <div class="wrap">
         <div class="title-header">温馨提示</div>
         <div class="help">

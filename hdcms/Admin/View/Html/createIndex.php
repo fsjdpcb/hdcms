@@ -1,12 +1,13 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
 		<title>生成首页</title>
 		<hdjs/>
+        <css file="__PUBLIC__/common.css"/>
 	</head>
 	<body>
-		<form method="post" action="__METH__" class="hd-form">
+		<form method="post" class="hd-form">
 			<div class="wrap">
 				<div class="title-header">
 					温馨提示

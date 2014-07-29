@@ -34,9 +34,9 @@
 						</channel>
 					</ul>
 					<form class="navbar-form navbar-left" role="search" method="get" action="__WEB__">
-						<input type="hidden" name="a" value="Index" />
+						<input type="hidden" name="m" value="Index" />
 						<input type="hidden" name="c" value="Search" />
-						<input type="hidden" name="m" value="search" />
+						<input type="hidden" name="a" value="search" />
 						<div class="form-group">
 							<input type="text" name='word' class="form-control" placeholder="输入关键字搜索" required>
 						</div>
@@ -87,7 +87,7 @@
 						<header>
 							图片主题
 						</header>
-						<pagelist infolen="30" titlelen="20"  row="10" flag="4">
+						<pagelist infolen="30" titlelen="20"  row="1" flag="4">
 							<article>
 								<div class="pic">
 									<a href="{$field.url}">
@@ -96,9 +96,7 @@
 								</div>
 								<header>
 									<span class="cat"> {$field.catname} <i class="glyphicon glyphicon-play"></i> </span>
-									<a href="{$field.url}">
-										{$field.title}
-									</a>
+									{$field.link}
 								</header>
 								<div class="author">
 									<a href="{$field.member}" onmouseover="user.show(this,{$field.uid})">
@@ -113,7 +111,7 @@
 							</article>
 						</pagelist>
 						<div class="page">
-							<pageshow/>
+							<pageshow row="2"/>
 						</div>
 					</div>
 				</div>

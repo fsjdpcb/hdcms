@@ -11,7 +11,6 @@
 <body>
 <form method="post" onsubmit="return false;" id="add" class="hd-form">
     <input type="hidden" name="mid" value="{$hd.get.mid}"/>
-    <input type="hidden" name="postid" value="{$postid}"/>
     <div class="wrap">
         <!--右侧缩略图区域-->
         <div class="content_right">

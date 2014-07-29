@@ -1,12 +1,13 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta charset="UTF-8">
     <title>一键生成静态</title>
     <hdjs/>
+    <css file="__PUBLIC__/common.css"/>
 </head>
 <body>
-<form method="post" action="__METH__" >
+<form method="post">
     <div class="wrap">
         <div class="title-header">温馨提示</div>
         <div class="help">

@@ -34,7 +34,7 @@ return array (
   'WATER_POS' => '9',
   'DEL_CONTENT_MODEL' => '0',
   'REPLY_CREDITS' => '1',
-  'DOWN_REMOTE_PIC' => '1',
+  'DOWN_REMOTE_PIC' => '0',
   'AUTO_DESC' => '1',
   'AUTO_THUMB' => '1',
   'MEMBER_OPEN' => '1',

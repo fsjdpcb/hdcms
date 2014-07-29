@@ -2,9 +2,9 @@
 
 /**
  * 前台用户信息
- * Class UserControl
+ * Class UserController
  */
-class UserControl extends CommonControl
+class UserController extends CommonController
 {
     //获得用户信息
     public function user()

@@ -91,7 +91,7 @@ class Content
         $tagModel = M('tag');
         $contentTagModel = M("content_tag");
         //删除文章旧的tag记录
-        $contentTagModel->where(array('aid' => $aid, 'cid' => $this->cid))->del();
+        $contentTagModel->where(array('aid' => $aid,'mid'=>$this->mid))->del();
         //修改tag
         $tag = Q('tag');
         if ($tag) {
@@ -110,7 +110,7 @@ class Content
                         //tag表没有记录时，添加tag字符记录
                         $tid = $tagModel->add(array('tag' => $tag, 'total' => 1));
                     }
-                    $contentTagModel->add(array('aid' => $aid, 'cid' => $this->cid, 'tid' => $tid));
+                    $contentTagModel->add(array('aid' => $aid, 'cid' => $this->cid, 'mid'=>$this->mid,'tid' => $tid));
                 }
             }
         }

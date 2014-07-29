@@ -4,7 +4,7 @@
  * Class CommonControl
  * @author hdxj<houdunwangxj@gmail.com>
  */
-class CommentControl extends CommonControl {
+class CommentController extends CommonController {
 	//显示文章评论
 	public function show() {
 		$cid = Q('cid', 0, 'intval');
