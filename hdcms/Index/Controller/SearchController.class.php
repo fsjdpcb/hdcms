@@ -16,13 +16,12 @@ class SearchController extends Controller
     {
         $this->category = F("category", false, CACHE_DATA_PATH);
         $this->model = F("model", false, CACHE_DATA_PATH);
-        $mid = Q('mid', 0, 'intval');
-        $this->mid = $mid ? $mid : 1;
+        $this->mid = Q('mid', 1, 'intval');
         $this->cid = Q('cid', 0, 'intval');
         if ($this->mid && !isset($this->model[$this->mid])) {
             $this->error('模型不存在');
         }
-        if ($this->cid && !isset($this->model[$this->cid])) {
+        if ($this->cid && !isset($this->category[$this->cid])) {
             $this->error('栏目不存在');
         }
     }
@@ -59,7 +58,7 @@ class SearchController extends Controller
             $where = array();
             if ($this->cid) {
                 $cidData = getCategory($this->cid);
-                $where[] = $pre . "category.cid IN(" . implode(',', $cidData) . ")";
+                $where[] = "category.cid IN(" . implode(',', $cidData) . ")";
             }
             if (!empty($_GET['search_begin_time'])) {
                 $where[] = "addtime>=" . strtotime($_GET['search_begin_time']);
@@ -70,21 +69,21 @@ class SearchController extends Controller
             switch ($seachType) {
                 case 'title' :
                     $where[] = "title like '%{$word}%'";
-                    $count = $db->relation($db->table . ',category')->where($where)->count();
+                    $count = $db->relation($db->table . ',category,user')->where($where)->count();
                     $page = new Page($count, 15);
-                    $data = $db->relation($db->table . ',category')->where($where)->all();
+                    $data = $db->relation($db->table . ',category,user')->where($where)->all();
                     break;
                 case 'description' :
                     $where[] = "description like '%{$word}%'";
-                    $count = $db->relation($db->table . ',category')->where($where)->count();
+                    $count = $db->relation($db->table . ',category,user')->where($where)->count();
                     $page = new Page($count, 15);
-                    $data = $db->relation($db->table . ',category')->where($where)->all();
+                    $data = $db->relation($db->table . ',category,user')->where($where)->all();
                     break;
                 case 'username' :
                     $where[] = "username like '%{$word}%'";
-                    $count = $db->relation($db->table . ',category')->where($where)->count();
+                    $count = $db->relation($db->table . ',category,user')->where($where)->count();
                     $page = new Page($count, 15);
-                    $data = $db->relation($db->table . ',category')->where($where)->all();
+                    $data = $db->relation($db->table . ',category,user')->where($where)->all();
                     break;
             }
         }

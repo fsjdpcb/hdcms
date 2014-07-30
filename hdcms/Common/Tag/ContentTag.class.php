@@ -38,8 +38,8 @@ class ContentTag
                     var WEB='<?php echo WEB_URL;?>';
                     var CONTROL='<?php echo CONTROL_URL;?>';
                 </script>";
-        $php .= "<script type='text/javascript' src='__ROOT__/hd/Common/static/js/hdcms.js'></script>\n
-                <link rel='stylesheet' type='text/css' href='__ROOT__/hd/Common/static/css/hdcms.css?ver=1.0'/>\n";
+        $php .= "<script type='text/javascript' src='__ROOT__/hdcms/Common/static/js/hdcms.js'></script>\n
+                <link rel='stylesheet' type='text/css' href='__ROOT__/hdcms/Common/static/css/hdcms.css?ver=1.0'/>\n";
         return $php;
     }
 

@@ -20,7 +20,7 @@ class IndexController extends CommonController
     //内容页
     public function content()
     {
-        $mid = Q('mid', 0, 'intval');
+        $mid = Q('mid', 1, 'intval');
         $cid = Q('cid', 0, 'intval');
         $aid = Q('aid', 0, 'intval');
         $categoryCache = F('category', false, CACHE_DATA_PATH);
