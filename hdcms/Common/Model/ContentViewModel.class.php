@@ -38,6 +38,8 @@ class ContentViewModel extends ViewModel
     public function getOne($aid)
     {
         $field = $this->where($this->table . ".aid=$aid")->find();
+        //头像
+        $field['icon']=empty($field['icon'])?__ROOT__."/data/image/user/150.png":__ROOT__.'/'.$field['icon'];
         if ($field) {
             //获得tag
             $field['tag'] = $this->getTag($aid);

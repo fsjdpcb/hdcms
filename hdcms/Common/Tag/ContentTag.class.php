@@ -27,18 +27,13 @@ class ContentTag
     //会员登录窗口
     public function _member($attr, $content)
     {
-        return '<script type="text/javascript" src="__WEB__?a=Member&c=Index&m=Member"></script>';
+        return '<script type="text/javascript" src="__WEB__?m=Member&c=Index&a=Member"></script>';
     }
 
     //基本js与css加载(必须使用的)
     public function _hdcms($attr, $content)
     {
-        $php = "<script type='text/javascript'>
-                    var ROOT='<?php echo ROOT_URL;?>';
-                    var WEB='<?php echo WEB_URL;?>';
-                    var CONTROL='<?php echo CONTROL_URL;?>';
-                </script>";
-        $php .= "<script type='text/javascript' src='__ROOT__/hdcms/Common/static/js/hdcms.js'></script>\n
+        $php = "<script type='text/javascript' src='__ROOT__/hdcms/Common/static/js/hdcms.js'></script>\n
                 <link rel='stylesheet' type='text/css' href='__ROOT__/hdcms/Common/static/css/hdcms.css?ver=1.0'/>\n";
         return $php;
     }

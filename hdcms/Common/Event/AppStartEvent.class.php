@@ -14,8 +14,10 @@ class AppStartEvent extends Event {
         defined("IS_ADMIN") 		or define("IS_ADMIN",IS_LOGIN && $_SESSION['admin'] == 1);
         //超级管理员
         defined("IS_SUPER_ADMIN") 	or define("IS_SUPER_ADMIN",IS_ADMIN && (strtolower(C("WEB_MASTER")) == strtolower($_SESSION['username']) || $_SESSION['rid']==1));
+        //会员状态
+        defined('USER_STATUS')      or define('USER_STATUS',IS_LOGIN && $_SESSION['user_status']==1);
         //是否锁定
-        defined('IS_LOCK')			or define('IS_LOCK',IS_LOGIN && $_SESSION['user_status']==1 && $_SESSION['lock_end_time']<time());
+        defined('IS_LOCK')			or define('IS_LOCK',IS_LOGIN && $_SESSION['lock_end_time']<time());
         //数据缓存目录 栏目|模型|节点|角色
         define('CACHE_DATA_PATH','data/cache/Data/');
 		//表字段缓存

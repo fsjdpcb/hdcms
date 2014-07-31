@@ -10,8 +10,9 @@ class CommonController extends Controller
     public $cacheDir;
 
     // 构造函数
-    public function __init()
+    public function __construct()
     {
+        parent::__construct();
         //网站开启验证
         if (!IS_ADMIN && !C("web_open")) {
             parent::display('siteClose');

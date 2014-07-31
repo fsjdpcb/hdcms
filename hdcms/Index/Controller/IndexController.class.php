@@ -7,12 +7,10 @@
  */
 class IndexController extends CommonController
 {
-    public function __init(){
-        C('TPL_FIX','');
-    }
     //网站首页
     public function index()
     {
+        C('TPL_FIX', '');
         $CacheTime = C('CACHE_INDEX') >= 1 ? C('CACHE_INDEX') : -1;
         $this->display('template/' . C('WEB_STYLE') . '/index.html', $CacheTime);
     }
@@ -36,7 +34,7 @@ class IndexController extends CommonController
             if ($access) {
                 //没有登录或没有权限
                 if (!IS_LOGIN || !isset($access[$_SESSION['rid']]) || !$access[$_SESSION['rid']]['show']) {
-                    $this->_404();
+                    $this->error('没有访问权限');
                 }
             }
         }
@@ -46,6 +44,7 @@ class IndexController extends CommonController
             $field = $ContentModel->getOne($aid);
             if ($field) {
                 $this->assign('hdcms', $field);
+                C('TPL_FIX', '');
                 $this->display('template/' . C('WEB_STYLE') . '/' . $categoryCache[$cid]['arc_tpl'], $CacheTime);
                 EXIT;
             } else {
@@ -79,6 +78,7 @@ class IndexController extends CommonController
                 $category['content_num'] = $Model->where("category.cid IN(" . implode(',', $catid) . ")")->count();
                 $category['comment_num'] = intval(M('comment')->where('cid IN(' . implode(',', $catid) . ')')->count());
                 $this->assign("hdcms", $category);
+                C('TPL_FIX', '');
                 $this->display('template/' . C('WEB_STYLE') . '/' . $category['list_tpl'], $cacheTime);
             }
         } else {

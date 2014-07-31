@@ -15,7 +15,7 @@
                 <if value="$nextRole">
                     <div class="credits-num" style="width:<?php echo $field['credits']/$nextRole['creditslower']*100;?>%">
                         <a href="javascript:" title="当前积分{$field.credits}<?php if($nextRole):?>，升级还需要<?php echo $nextRole['creditslower']-$role['creditslower'];?>积分<?php endif;?>">
-                            {$field.credits}<?php if($nextRole):?>/<?php echo $nextRole['creditslower'];?><?php endif;?>
+                            {$field.credits}
                         </a>
                     </div>
                 <else/>
@@ -30,10 +30,10 @@
     </div>
     <div class="description">
         <if value="$field.signature">
-       {$field.signature}
-            <else/>
+        {$field.signature}
+       <else/>
             这家伙有点懒，还没有写个性签名
-            </if>
+       </if>
     </div>
     <div class="send_message">
         <?php if(isset($_SESSION['uid']) && $_SESSION['uid']!=$field['uid']):?>
