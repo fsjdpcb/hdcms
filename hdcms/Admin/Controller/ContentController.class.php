@@ -68,10 +68,10 @@ class ContentController extends AuthController
                     } else if ($cat['cattype'] == 1) {
                         $url = U('show', array('cid' => $cat['cid'], 'mid' => $cat['mid'], 'content_status' => 1));
                     } else {
-                        $url = 'javascript:;';
+                        $url = 'javascript:';
                     }
                     $data['id'] = $cat['cid'];
-                    $data['pid'] = $cat['pid'];
+                    $data['pId'] = $cat['pid'];
                     $data['url'] = $url;
                     $data['target'] = 'content';
                     $data['open'] = true;

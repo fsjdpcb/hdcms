@@ -16,10 +16,10 @@
         </div>
         <div class="top_menu">
             <a href="">首页</a>
-            <a href="">IT新闻</a>
-            <a href="">资讯列表</a>
-            <a href="">论坛</a>
-            <a href="">会员中心</a>
+            <a href="">案例展示</a>
+            <a href="">模板下载</a>
+            <a href="">模块插件</a>
+            <a href="" class="cur">帮助</a>
             <a href="">论坛</a>
         </div>
     </div>

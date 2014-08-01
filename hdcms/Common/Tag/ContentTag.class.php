@@ -89,7 +89,7 @@ str;
         //指定的栏目cid
         $cid = isset($attr['cid']) ? $attr['cid'] : NULL;
         //当前栏目的class样式
-        $class = isset($attr['class']) ? $attr['class'] : "";
+        $class = isset($attr['class']) ? $attr['class'] : '';
         $php = <<<str
         <?php
         \$where = '';
@@ -123,7 +123,7 @@ str;
 			\$categoryCache =F('category',false,CACHE_DATA_PATH);
             foreach (\$result as \$field):
                 //当前栏目样式
-                \$field['class']=\$_self_cid==\$field['cid']?"$class":"";
+                \$field['class']=\$_self_cid==\$field['cid']?"$class":'';
                 \$field['caturl'] = Url::getCategoryUrl(\$field);
                 \$field['target'] = \$field['cattype']==3?' target="_blank" ':' target="_self" ';
             ?>

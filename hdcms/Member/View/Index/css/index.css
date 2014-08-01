@@ -48,7 +48,8 @@ div.top div.top_warp div.top_menu a {
   line-height: 90px;
   padding: 0px 20px;
 }
-div.top div.top_warp div.top_menu a:hover {
+div.top div.top_warp div.top_menu a:hover,
+div.top div.top_warp div.top_menu a.cur {
   background: #ffffff;
   color: #333;
 }

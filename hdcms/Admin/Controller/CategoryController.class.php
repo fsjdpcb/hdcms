@@ -32,8 +32,13 @@ class CategoryController extends AuthController
     //将栏目名称转拼音做为静态目录
     public function dir_to_pinyin()
     {
+
         $dir = String::pinyin(Q("catname"));
-        echo $dir ? $dir : Q('catname');
+        $pid = Q('pid', 0, 'intval');
+        if ($pid) {
+            $dir = $this->category[$pid]['catdir'] . '/' . $dir;
+        }
+        echo $dir ? $dir : '';
         exit;
     }
 
@@ -85,7 +90,7 @@ class CategoryController extends AuthController
                 //父栏目select状态
                 $selected = $category['pid'] == $cat['cid'] ? 'selected=""' : '';
                 //子栏目disabled
-                $disabled = Data::isChild($this->category, $cat['cid'], $this->cid)||$this->cid == $cat['cid'] ? 'disabled=""' : '';
+                $disabled = Data::isChild($this->category, $cat['cid'], $this->cid) || $this->cid == $cat['cid'] ? 'disabled=""' : '';
                 $cache[$n]['selected'] = $selected;
                 $cache[$n]['disabled'] = $disabled;
             }
@@ -138,7 +143,7 @@ class CategoryController extends AuthController
             $this->success('修改成功');
         } else {
             $cid = explode('|', Q('cids'));
-            $data = $this->db->where(array('cid'=>$cid))->all();
+            $data = $this->db->where(array('cid' => $cid))->all();
             $this->assign('data', $data);
             $this->display();
         }

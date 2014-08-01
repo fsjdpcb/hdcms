@@ -80,135 +80,82 @@ div.wrap {
       }
     }
     div.message {
-      margin-bottom: 20px;
       color: #666666;
       font-size: 20px;
       float: left;
       clear: left;
     }
-    div.search {
+    div.post_data {
+      margin-bottom:10px;
       float: right;
-      input[type=text] {
-        font-size: 14px;
-        border: solid 1px #ccc;
-        background: #f3f3f3;
-        width: 205px;
-        height: 30px;
-        padding-left: 10px;
-        &:hover {
-          border: solid 1px #666;
-        }
-      }
-      input[type=submit] {
-        width: 60px;
-        height: 31px;
+      a{
+        display: block;
+        line-height: 1.9em;
+        height: 38px;
         text-align: center;
+        padding:0px 20px;
         background: #226bb0;
         color: #fff;
         border: none;
         cursor: pointer;
-        font-size: 14px;
-      }
-    }
-  }
-
-  div.menu {
-    width: 280px;
-    background: #ffffff;
-    padding: 0 0px 20px 0px;
-    border-top: solid 3px #226bb0;
-    float: right;
-    dl {
-      dt {
         font-size: 20px;
-        color: #999999;
-        border-bottom: solid 1px #dddddd;
-        padding-bottom: 15px;
-        margin-bottom: 10px;
-        padding-left: 25px;
-        padding-top: 20px;
-      }
-      dd {
-        border-bottom: dotted 1px #dddddd;
-        padding-left: 15px;
-        a {
-          display: block;
-          line-height: 45px;
-          color: #226bb0;
-          text-indent: 10px;
-          &.current, &:hover {
-            text-decoration: underline;
-          }
-        }
       }
     }
   }
   div.content {
-    width: 735px;
-    float: left;
     height: auto;
     overflow: hidden;
+    margin: 0 auto;
     div.list {
       div.header {
-        height: 35px;
+        height: 45px;
         border-top: solid 3px #226bb0;
         border-bottom: solid 1px #F3F3F3;
         background: #ffffff;
         text-indent: 20px;
-        line-height: 35px;
-
+        line-height: 45px;
+        color: #666;
       }
     }
     div.article {
       background: #ffffff;
       height: auto;
       overflow: hidden;
+      padding: 20px;
       ul {
         li {
-          padding: 18px;
-          height: auto;
+          position: relative;
+          width: 290px;
+          height: 230px;
           overflow: hidden;
-          border-bottom: dashed 1px #cccccc;
-          div.thumb {
-            width: 80px;
-            height: 80px;
-            background: #f00f00;
-            float: left;
-            margin-right: 10px;
+          border: solid 1px #dddddd;
+          padding: 10px;
+          float: left;
+          margin: 10px 8px;
+          margin-bottom: 20px;
+          &:hover {
+            border: solid 1px #226bb0;
           }
-          div.news {
-            float: left;
-            width: 540px;
-            p.title {
-              padding-bottom: 10px;
-              a {
-                font-size: 16px;
-              }
+          div {
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            height: 90px;
+            background: #000;
+            opacity: 0.4;
+            padding-left: 20px;
+            padding-top: 10px;
+            h3 {
+              color: #ffffff;
+              font-size: 20px;
+              font-weight: 400;
+              height: 35px;
             }
-            p.addtime {
-              padding-bottom: 10px;
-              color: #aaaaaa;
-              a {
-                color: #aaaaaa;
-              }
-              em {
-                float: right;
-                font-style: normal;
-                color: #aaaaaa;
-              }
+            p {
+              color: #ffffff;
+              font-size: 12px;
             }
-            p.description {
-              line-height: 1.5em;
-              color: #666;
-            }
-          }
-          div.click {
-            float: right;
-
-            text-align: center;
-            color: #fff;
-            padding: 8px 15px;
-            background: #226bb0;
           }
         }
       }
@@ -223,6 +170,7 @@ div.copyright {
   font-size: 14px;
   color: #999;
   margin-top: 20px;
+  margin-bottom: 10px;
   a{
     color:#999;
   }

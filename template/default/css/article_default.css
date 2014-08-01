@@ -64,10 +64,6 @@ div.wrap {
   height: auto;
   overflow: hidden;
 }
-div.wrap div.position {
-  height: auto;
-  overflow: hidden;
-}
 div.wrap div.position div.location {
   clear: both;
   font-size: 20px !important;
@@ -118,26 +114,25 @@ div.wrap div.menu {
 }
 div.wrap div.menu dl dt {
   font-size: 20px;
-  color: #999999;
   border-bottom: solid 1px #dddddd;
   padding-bottom: 15px;
   margin-bottom: 10px;
-  padding-left: 25px;
+  padding-left: 30px;
   padding-top: 20px;
 }
 div.wrap div.menu dl dd {
   border-bottom: dotted 1px #dddddd;
-  padding-left: 15px;
+  padding-left: 20px;
 }
 div.wrap div.menu dl dd a {
   display: block;
   line-height: 45px;
-  color: #226bb0;
   text-indent: 10px;
+  color: #666666;
 }
 div.wrap div.menu dl dd a.current,
 div.wrap div.menu dl dd a:hover {
-  text-decoration: underline;
+  color: #226bb0;
 }
 div.wrap div.content {
   width: 735px;
@@ -145,64 +140,28 @@ div.wrap div.content {
   height: auto;
   overflow: hidden;
 }
-div.wrap div.content div.list div.header {
-  height: 35px;
+div.wrap div.content div.header {
   border-top: solid 3px #226bb0;
   border-bottom: solid 1px #F3F3F3;
   background: #ffffff;
+  padding: 15px 0px;
   text-indent: 20px;
   line-height: 35px;
+  font-size: 30px;
 }
-div.wrap div.content div.article {
+div.wrap div.content div.info {
+  color: #aaaaaa;
+  font-size: 14px;
+  background: #ffffff;
+  padding: 20px;
+}
+div.wrap div.content div.body {
   background: #ffffff;
   height: auto;
   overflow: hidden;
-}
-div.wrap div.content div.article ul li {
-  padding: 18px;
-  height: auto;
-  overflow: hidden;
-  border-bottom: dashed 1px #cccccc;
-}
-div.wrap div.content div.article ul li div.thumb {
-  width: 80px;
-  height: 80px;
-  background: #f00f00;
-  float: left;
-  margin-right: 10px;
-}
-div.wrap div.content div.article ul li div.news {
-  float: left;
-  width: 540px;
-}
-div.wrap div.content div.article ul li div.news p.title {
-  padding-bottom: 10px;
-}
-div.wrap div.content div.article ul li div.news p.title a {
   font-size: 16px;
-}
-div.wrap div.content div.article ul li div.news p.addtime {
-  padding-bottom: 10px;
-  color: #aaaaaa;
-}
-div.wrap div.content div.article ul li div.news p.addtime a {
-  color: #aaaaaa;
-}
-div.wrap div.content div.article ul li div.news p.addtime em {
-  float: right;
-  font-style: normal;
-  color: #aaaaaa;
-}
-div.wrap div.content div.article ul li div.news p.description {
-  line-height: 1.5em;
-  color: #666;
-}
-div.wrap div.content div.article ul li div.click {
-  float: right;
-  text-align: center;
-  color: #fff;
-  padding: 8px 15px;
-  background: #226bb0;
+  line-height: 2em;
+  padding: 0px 20px 20px 20px;
 }
 div.copyright {
   clear: both;

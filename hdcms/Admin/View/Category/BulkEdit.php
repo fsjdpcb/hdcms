@@ -19,6 +19,7 @@
 	</style>
 </head>
 <body>
+<form action="{|U:'BulkEdit'}" class="hd-form" method="post" onsubmit="return hd_submit(this,'{|U:'Category/index'}');">
 	<div class="wrap">
 		<div class="menu_list">
 					<ul>
@@ -37,7 +38,7 @@
 		<div class="help">
 			双击单选框，可以选中所有同类型
 		</div>
-		<form action="{|U:'BulkEdit'}" class="hd-form" method="post" onsubmit="return hd_submit(this,'{|U:'Category/index'}');">
+
 			<input type="hidden" name="BulkEdit" value="1" />
 		<div class="title-header">批量编辑栏目</div>
 		<div class="category">
@@ -194,11 +195,12 @@
 			</tr>
 		</table>
 		</div>
-		<div class="position-bottom">
-			<input type="submit" class="hd-success" value="确定"/>
-		</div>
-		</form>
+
 	</div>
+    <div class="position-bottom">
+        <input type="submit" class="hd-success" value="确定"/>
+    </div>
+    </form>
 	<script type="text/javascript" charset="utf-8">
 		$(function(){
 			alert_div();

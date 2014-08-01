@@ -58,7 +58,7 @@ function BulkEdit() {
         return false;
     }
     var cid = '';
-    $("[name='cid[]']").each(function (i) {
+    $("[name='cid[]']:checked").each(function (i) {
         cid += $(this).val() + '|';
     })
     cid = cid.slice(0, -1);
