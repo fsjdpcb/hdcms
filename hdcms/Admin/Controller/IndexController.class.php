@@ -80,8 +80,6 @@ class IndexController extends AuthController
     //欢迎页
     public function welcome()
     {
-        //版本配置
-        C(require 'hdcms/Common/Config/version.php');
         $this->display();
     }
 

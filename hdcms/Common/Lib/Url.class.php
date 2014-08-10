@@ -88,9 +88,9 @@ final class Url
      * @param $field
      * @return null|string
      */
-    static public function getContentHtml($field)
+    static private function getContentHtml($field)
     {
-        $_category = cache("category");
+        $_category = F("category",false,CACHE_DATA_PATH);
         //HTML存放根目录
         $html_path = C("HTML_PATH") ? C("HTML_PATH") . '/' : '';
         //有自定义静态url时，直接使用（不需要通过栏目规则运算）

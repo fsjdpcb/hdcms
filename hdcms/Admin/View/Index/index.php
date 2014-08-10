@@ -8,6 +8,7 @@
 		<js file="__CONTROLLER_TPL__/js/quick_menu.js"/>
 		<css file="__CONTROLLER_TPL__/css/css.css"/>
 		<css file="__CONTROLLER_TPL__/css/quick_menu.css"/>
+
 	</head>
 	<body>
 		<div class="nav">
@@ -79,8 +80,7 @@
 					设置
 				</a>
 			</div>
-			<div
-			style="float:left;width:1px;margin-right:5px;overflow: hidden;background: #999999;height:15px;margin-top:12px;"></div>
+			<div style="float:left;width:1px;margin-right:5px;overflow: hidden;background: #999999;height:15px;margin-top:12px;"></div>
 			<div class="bottom-menu">
 				<list from="$favorite_menu" name="f">
 					<a url="?m={$f.module}&c={$f.control}&a={$f.action}&nid={$f.nid}"

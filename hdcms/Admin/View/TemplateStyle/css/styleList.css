@@ -1,9 +1,11 @@
 body {
     background: #fff;
 }
-a:hover{
+
+a:hover {
     text-decoration: underline;
 }
+
 div.tpl-list ul li {
     float: left;
     margin: 10px;
@@ -21,9 +23,11 @@ div.tpl-list ul li.current {
     background: #09AEEF;
     color: #ffffff;
 }
-div.tpl-list ul li.current a,div.tpl-list ul li.current h2{
-    color:#ffffff;
+
+div.tpl-list ul li.current a, div.tpl-list ul li.current h2 {
+    color: #ffffff;
 }
+
 div.tpl-list ul li.current img {
     opacity: 1;
 }
@@ -48,13 +52,15 @@ div.tpl-list ul li h4 strong {
     color: #03565E;
     font-weight: normal;
 }
-div.tpl-list ul li h2{
-    font-size:18px;
+
+div.tpl-list ul li h2 {
+    font-size: 18px;
     font-weight: bold;
     padding-left: 10px;
     margin-bottom: 5px;
     color: #333;
 }
+
 div.tpl-list ul li p {
     font-size: 12px;
     padding-left: 10px;
@@ -67,7 +73,7 @@ div.tpl-list ul li div.link {
     padding-top: 5px;
 }
 
-div.tpl-list ul li div.link a,div.tpl-list ul li div.link strong {
+div.tpl-list ul li div.link a, div.tpl-list ul li div.link strong {
     font-size: 16px;
     padding: 2px 8px 0px 0px;
     line-height: 25px;

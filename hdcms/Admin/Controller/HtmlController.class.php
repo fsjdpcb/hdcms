@@ -16,9 +16,9 @@ class HtmlController extends AuthController
         if (IS_POST) {
             //删除html目录
             Dir::del(C('HTML_PATH'));
-            F("RedirectInfo", array(array('url' => 'create_index', 'title' => '准备生成首页'), array('url' => 'create_category', 'title' => '准备生成栏目页...'), array('url' => 'create_content', 'title' => '准备生成内容页...'), array('url' => 'create_all', 'title' => '全部生成完毕...')));
+            F("RedirectInfo", array(array('url' => 'createIndex', 'title' => '准备生成首页'), array('url' => 'createCategory', 'title' => '准备生成栏目页...'), array('url' => 'createContent', 'title' => '准备生成内容页...'), array('url' => 'createAll', 'title' => '全部生成完毕...')));
             //生成首页
-            $this->success('初始化完成...', 'create_index');
+            $this->success('初始化完成...', 'createIndex');
         } else {
             F("RedirectInfo", null);
             $this->display();
@@ -37,9 +37,10 @@ class HtmlController extends AuthController
                 F('RedirectInfo', $this->RedirectInfo);
                 $this->success($redirect['title'], $redirect['url'], 0);
             } else {
-                $this->success('首页生成完毕', __METH__, 0);
+                $this->success('首页生成完毕', __ACTION__, 0);
             }
         } else {
+            F("RedirectInfo", null);
             $this->display();
         }
     }
@@ -49,15 +50,13 @@ class HtmlController extends AuthController
     {
         $this->RedirectInfo = F('RedirectInfo');
         if (IS_POST || $this->RedirectInfo) {
-            $categoryCache = cache("category");
-            $category = array();
             //没有选择栏目
             if (!isset($_POST['cid']) || count($_POST['cid']) == 1 && $_POST['cid'][0] == 0) {
                 //生成所有栏目
-                if (empty($_POST['mid']) || $_POST['mid'] == 0) {
+                if ($mid = Q('post.mid')) { //生成指定模型栏目
+                    $HtmlCategory = M('category')->where(array('mid' => $mid, 'cat_url_type' => 1))->all();
+                } else {
                     $HtmlCategory = M('category')->where(array('cat_url_type' => 1))->all();
-                } else { //生成指定模型栏目
-                    $HtmlCategory = M('category')->where(array('mid' => $_POST['mid'], 'cat_url_type' => 1))->all();
                 }
             } else { //指定栏目
                 $HtmlCategory = M('category')->where(array('cid' => $_POST['cid'], 'cat_url_type' => 1))->all();
@@ -68,7 +67,7 @@ class HtmlController extends AuthController
                     F('RedirectInfo', $this->RedirectInfo);
                     $this->success($redirect['title'], $redirect['url'], 0);
                 } else {
-                    $this->success('栏目生成完毕', __METH__, 0);
+                    $this->success('栏目生成完毕', __ACTION__, 0);
                 }
             } else {
                 $html = new Html();
@@ -86,9 +85,9 @@ class HtmlController extends AuthController
                 $this->success('栏目静态初始化完毕...', U('BatchCategory'), 0);
             }
         } else {
-            F('createCategoryFile', null);
-            $this->assign('category', json_encode(cache("category")));
-            $this->assign('model', cache("model"));
+            F("RedirectInfo", null);
+            $this->assign('category', json_encode(F("category", false, CACHE_DATA_PATH)));
+            $this->assign('model', F("model", false, CACHE_DATA_PATH));
             $this->display();
         }
     }
@@ -105,7 +104,7 @@ class HtmlController extends AuthController
                 F('RedirectInfo', $this->RedirectInfo);
                 $this->success($redirect['title'], $redirect['url'], 0);
             } else {
-                $this->success('所有栏目生成完毕', U('create_category'), 0);
+                $this->success('所有栏目生成完毕', U('createCategory'), 0);
             }
         } else {
             $html = new Html();
@@ -116,13 +115,13 @@ class HtmlController extends AuthController
                 if ($category['currentPage'] > $category['pageTotal']) {
                     unset($createCategory[$category['cid']]);
                     F('createCategoryFile', $createCategory);
-                    $this->success("栏目[{$category['catname']}]生成完毕...", __METH__, 0);
+                    $this->success("栏目[{$category['catname']}]生成完毕...", __ACTION__, 0);
                 }
             }
             $createCategory[$category['cid']] = $category;
             F('createCategoryFile', $createCategory);
             $message = "生成栏目{$category['catname']}的下" . $category['step_row'] . "页,共有{$category['pageTotal']}页(<font color='red'>" . floor($category['currentPage'] / $category['pageTotal'] * 100) . "%</font>)";
-            $this->success($message, __METH__, 0);
+            $this->success($message, __ACTION__, 0);
         }
     }
 
@@ -135,7 +134,7 @@ class HtmlController extends AuthController
             if (empty($_POST['cid']) || count($_POST['cid']) == 1 && $_POST['cid'][0] == 0) {
                 //生成所有栏目
                 if (empty($_POST['mid']) || $_POST['mid'] == 0) {
-                    $HtmlCategory = cache('category');
+                    $HtmlCategory = F('category', false, CACHE_DATA_PATH);;
                 } else {
                     $HtmlCategory = M('category')->where(array('mid' => $_POST['mid']))->all();
                 }
@@ -168,14 +167,14 @@ class HtmlController extends AuthController
                         $where[] = 'aid>=' . $_POST['start_id'] . " AND aid<=" . $_POST['end_id'];
                     }
                 }
-                $modelCache = cache('model');
+                $modelCache = F('model', false, CACHE_DATA_PATH);;
                 //最终生成的栏目
                 $createCategory = array();
                 foreach ($HtmlCategory as $cat) {
                     $cat['options']['step_row'] = Q('step_row', 20, 'intval');
                     $cat['options']['currentNum'] = 0;
                     $cat['options']['where'] = $where;
-                    $cat['options']['where'][] = C('DB_PREFIX') . 'category.cid=' . $cat['cid'];
+                    $cat['options']['where'][] = 'category.cid=' . $cat['cid'];
                     //总条数
                     if (isset($total_row)) {
                         $cat['options']['total_row'] = $total_row;
@@ -189,9 +188,9 @@ class HtmlController extends AuthController
                 $this->success('生成内容页初始化完毕...', U('BatchContent'), 0);
             }
         } else {
-            F('createContentFile', null);
-            $this->assign('category', json_encode(cache('category')));
-            $this->assign('model', cache('model'));
+            F("RedirectInfo", null);
+            $this->assign('category', json_encode(F('category', false, CACHE_DATA_PATH)));
+            $this->assign('model', F('model', false, CACHE_DATA_PATH));
             $this->display();
         }
     }
@@ -207,32 +206,29 @@ class HtmlController extends AuthController
                 F('RedirectInfo', $this->RedirectInfo);
                 $this->success($redirect['title'], $redirect['url'], 0);
             } else {
-                $this->success('所有文章生成完毕...', U('create_content'), 0);
+                $this->success('所有文章生成完毕...', U('createContent'), 0);
             }
         }
         $html = new Html();
-        $modelCache = cache('model');
-        $categorycache = cache('category');
         $oldCategory = $createCategory;
         foreach ($oldCategory as $id => $category) {
             $options = $category['options'];
             $contentModel = ContentViewModel::getInstance($category['mid']);
             $limit = $options['currentNum'] . ',' . $options['step_row'];
-            $contentData = $contentModel->join('category')->where($options['where'])->limit($limit)->all();
+            $contentData = $contentModel->where($options['where'])->limit($limit)->all();
             if (empty($contentData)) {
                 unset($createCategory[$id]);
                 F('createContentFile', $createCategory);
-                $this->success("[{$category['catname']}]文章生成完毕...", __METH__, 0);
+                $this->success("[{$category['catname']}]文章生成完毕...", __ACTION__, 0);
             }
-            $Content = new Content($category['mid']);
             foreach ($contentData as $content) {
-                $html->content($Content->find($content['aid']));
+                $html->content($contentModel->getOne($content['aid']));
             }
             $options['currentNum'] = $options['currentNum'] + $options['step_row'] - 1;
             if ($options['currentNum'] >= $options['total_row']) {
                 unset($createCategory[$id]);
                 F('createContentFile', $createCategory);
-                $this->success("[{$category['catname']}] 生成完毕...", __METH__, 0);
+                $this->success("[{$category['catname']}] 生成完毕...", __ACTION__, 0);
             } else {
                 $createCategory[$id]['options'] = $options;
                 F('createContentFile', $createCategory);
@@ -240,7 +236,7 @@ class HtmlController extends AuthController
                 $message = "[{$category['catname']}]
                                 已经更新{$options['currentNum']}条
                                 (<font color='red'>" . floor($options['currentNum'] / $options['total_row'] * 100) . "%</font>)";
-                $this->success($message, __METH__, 0);
+                $this->success($message, __ACTION__, 0);
             }
         }
     }

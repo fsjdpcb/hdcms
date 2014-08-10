@@ -212,15 +212,21 @@ div.wrap div.content div.article div.page span.close,
 div.wrap div.content div.article div.page strong,
 div.wrap div.content div.article div.page a {
   display: inline-block;
-  padding: 1px 5px;
+  padding: 3px 8px;
   margin-right: 10px;
+  background: #F5f5f5;
+  color: #CCCCCC;
+}
+div.wrap div.content div.article div.page strong.selfpage {
+  background: #226bb0;
+  color: #ffffff;
 }
 div.wrap div.content div.article div.page a {
   background: #bbbbbb;
   color: #ffffff;
 }
 div.wrap div.content div.article div.page a:hover {
-  background: #226bb0 ;
+  background: #226bb0;
   color: #fff;
 }
 div.copyright {

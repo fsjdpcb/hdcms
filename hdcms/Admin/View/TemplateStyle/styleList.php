@@ -17,21 +17,21 @@
     </div>
     <div class="title-header">当前模板</div>
     <div class="help">
-        <p>你需要了解HDCMS标签，才可以灵活编辑模板，当然这很简单 >>><a href="http://www.hdphp.com" target="_blank">获得视频教程</a></p>
+        <p>你需要了解HDCMS标签，才可以灵活编辑模板，当然这很简单 >>><a href="http://www.kuaixuewang.com" target="_blank">获得视频教程</a></p>
     </div>
     <div class="tpl-list">
         <ul>
             <list from="$style" name="t">
                 <li <if value="$t.current==1">class="active current"</if>>
-                    <img src="{$t.template_img}" width="260"/>
+                    <img src="{$t.image}" width="260"/>
                     <h2>{$t.name}</h2>
                     <p>作者: {$t.author}</p>
                     <p>Email: {$t.email}</p>
-                    <p>目录: {$t.dir_name}</p>
+                    <p>目录: {$t.dirname}</p>
 
                     <div class="link">
                         <if value="$t.current neq 1">
-                            <a href="javascript:;" class="btn" attr='select_tpl' onclick="hd_ajax('{|U:select_style}',{dir_name:'{$t.dir_name|basename}'})">使用</a>
+                            <a href="javascript:;" class="btn" attr='select_tpl' onclick="hd_ajax('{|U:selectStyle}',{dir_name:'{$t.dirname}'})">使用</a>
                        <else/>
                         <strong>使用中...</strong>
                         </if>

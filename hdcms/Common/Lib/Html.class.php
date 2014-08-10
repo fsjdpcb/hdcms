@@ -19,15 +19,24 @@ class Html extends Controller
     //内容页
     public function content($data)
     {
-        if (!$data['iscontenthtml']) {
+        $categoryCache = F('category', false, CACHE_DATA_PATH);
+        if (!$data['arc_url_type'] == 2) {
             return true;
         }
+        //模板文件
+        $template = 'template/'.C('WEB_STYLE').'/'.$data['arc_tpl'];
+        //HTML存放根目录
+        $html_path = C("HTML_PATH") ? C("HTML_PATH") . '/' : '';
+        //栏目定义的内容页生成静态规则
+        $_s = array('{catdir}', '{y}', '{m}', '{d}', '{aid}');
+        $time = getdate($data['addtime']);
+        $_r = array($data['catdir'], $time['year'], $time['mon'], $time['mday'], $data['aid']);
+        $htmlFile = $html_path . str_replace($_s, $_r, $data['arc_html_url']);
         $_REQUEST['mid'] = $data['mid'];
         $_REQUEST['cid'] = $data['cid'];
         $_REQUEST['aid'] = $data['aid'];
         $this->assign('hdcms', $data);
-        $info = explode('.', $data['htmlfile']);
-        return $this->createHtml(basename($info[0]), dirname($data['htmlfile']) . '/', $data['template']);
+        return $this->createHtml(basename($htmlFile), dirname($htmlFile) . '/', $template);
     }
 
     //栏目页
@@ -42,7 +51,7 @@ class Html extends Controller
         //单文章
         if ($cat['cattype'] == 4) {
             $Model = ContentViewModel::getInstance($cat['mid']);
-            $result = $Model->join()->where("cid={$cat['cid']}")->find();
+            $result = $Model->where("cid={$cat['cid']}")->find();
             if ($result) {
                 $Content = new Content($cat['mid']);
                 $data = $Content->find($result['aid']);
@@ -55,13 +64,10 @@ class Html extends Controller
             $_REQUEST['mid'] = $cat['mid'];
             $_REQUEST['cid'] = $cat['cid'];
             $Model = ContentViewModel::getInstance($cat['mid']);
-            $catid = getCategory($cat['cid']);
-            $cat['content_num'] = $Model->join()->where("cid IN(" . implode(',', $catid) . ")")->count();
-            $cat['comment_num'] = intval(M('comment')->where("cid IN(" . implode(',', $catid) . ")")->count());
+            $cat['content_num'] = $Model->where("category.cid ={$cat['cid']}")->count();
             $htmlFile = $htmlDir . str_replace(array('{catdir}', '{cid}', '{page}'), array($cat['catdir'], $cat['cid'], $page), $cat['cat_html_url']);
-            $info = explode('.', $htmlFile);
             $this->assign("hdcms", $cat);
-            $this->createHtml(basename($info[0]), dirname($htmlFile) . '/', $cat['template']);
+            $this->createHtml(basename($htmlFile), dirname($htmlFile) . '/', $cat['template']);
             //第1页时复制index.html
             if ($page == 1) {
                 copy($htmlFile, dirname($htmlFile) . '/index.html');
@@ -73,7 +79,7 @@ class Html extends Controller
     //生成栏目分页列表
     public function relation_category($cid)
     {
-        $cache = cache('category');
+        $cache = F('category',false,CACHE_DATA_PATH);
         $cat = $cache[$cid];
         if ($cat['cat_url_type'] == 2 || $cat['cattype'] == 3) {
             return true;

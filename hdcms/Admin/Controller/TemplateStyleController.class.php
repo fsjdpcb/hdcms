@@ -6,46 +6,27 @@
  */
 class TemplateStyleController extends AuthController
 {
-    //模板风格列表
+    //模板列表
     public function styleList()
     {
         $style = array();
         $dirs = Dir::tree('template');
         foreach ($dirs as $tpl) {
-            if ($tpl['name'] == 'system') continue;
-            //说明文档
-            $readme = $tpl['path'] . "/readme.txt";
-            if (is_file($readme) && is_readable($readme)) {
-                $tmp = preg_split('@\n@', file_get_contents($readme));
-                $config['name'] = mb_substr($tmp[0], 0, 8, 'utf-8');
-                $config['author'] = mb_substr($tmp[1], 0, 8, 'utf-8');
-                $config['email'] = mb_substr($tmp[2], 0, 9, 'utf-8');
-            } else {
-                $config = array("name" => "HDCMS免费模板", "author" => "后盾网", "email" => "houdunwang.com");
-            }
-            //模板目录名
-            $config['dir_name'] = $tpl['name'];
-            //模板缩略图
-            $template_img = $tpl['path'] . "/template.jpg";
-            if (is_file($template_img)) {
-                $template_img = str_replace(ROOT_PATH, '', $template_img);
-                $config['template_img'] = __ROOT__ . '/' . $template_img;
-            } else {
-                $config['template_img'] = __CONTROL_TPL__ . '/img/default.jpg';
-            }
-            //正在使用的模板
-            if (strtolower(C("WEB_STYLE")) == strtolower($tpl['name'])) {
-                $config['current'] = true;
-            } else {
-                $config['current'] = false;
-            }
-            $style[] = $config;
+            $xml = $tpl['path'] . '/config.xml';
+            if (!is_file($xml)) continue;
+            if (!$config = Xml::toArray(file_get_contents($xml))) continue;
+            $tpl['name'] = isset($config['name']) ? $config['name'][0] : ''; //模型名
+            $tpl['author'] = isset($config['author']) ? $config['author'][0] : ''; //作者
+            $tpl['image'] = isset($config['image']) ? __ROOT__.'/template/'.$tpl['dirname'].'/'.$config['image'][0] : __CONTROLLER_TPL__ . '/img/preview.jpg'; //预览图
+            $tpl['email'] = isset($config['email']) ? $config['email'][0] : ''; //邮箱
+            $tpl['current'] = C("WEB_STYLE") == $tpl['dirname'] ? 1 : 0; //正在使用的模板
+            $style[] = $tpl;
         }
-        $this->style = $style;
+        $this->assign('style', $style);
         $this->display();
     }
 
-    //选择模板风格（使用模板）
+    //选择模板
     public function selectStyle()
     {
         $dir_name = Q("dir_name");

@@ -96,7 +96,7 @@ str;
         \$type=strtolower(trim('$type'));
         \$cid=str_replace(' ','','$cid');
         if(empty(\$cid)){
-            \$cid=Q('get.cid',0,'intval');
+            \$cid=Q('cid',0,'intval');
         }
         \$db = M("category");
         if (\$type == 'top') {
@@ -333,7 +333,7 @@ str;
 					}
                     break;
             }
-            \$db->order('arc_sort ASC,updatetime DESC');
+            \$db->order('arc_sort ASC,addtime DESC');
             //---------------------------查询条件-------------------------------
                 \$where=array();
                 //指定栏目的文章,子栏目处理
@@ -378,18 +378,13 @@ str;
                 if(\$cid){
                     \$category=\$categoryCache[\$cid];
                     if(\$category['cat_url_type']==2){//动态
-                        if(C('PATHINFO_TYPE')){
-                            \$Url = "list_{mid}_{cid}_{page}.html";
-                            \$pageUrl=str_replace(array('{mid}','{cid}'),array(\$category['mid'],\$category['cid']),\$Url);
-                        }else{
-                            \$Url = "m=Index&c=Index&a=category&mid={mid}&cid={cid}&page={page}";
-                            \$pageUrl=str_replace(array('{mid}','{cid}'),array(\$category['mid'],\$category['cid']),\$Url);
-                        }
+                        \$Url = "list_{mid}_{cid}_{page}.html";
+                        \$pageUrl=str_replace(array('{mid}','{cid}'),array(\$category['mid'],\$category['cid']),\$Url);
                         \$ROOT_URL = C('URL_REWRITE')?'':'__WEB__?';
                         Page::\$staticUrl=\$ROOT_URL.\$pageUrl;
                     }else{//静态
                         \$html_path = C("HTML_PATH") ? C("HTML_PATH") . '/' : '';
-                        Page::\$staticUrl=ROOT_URL.'/'.\$html_path.str_replace(array('{catdir}','{cid}'),array(\$category['catdir'],\$category['cid']),\$category['cat_html_url']);
+                        Page::\$staticUrl='__ROOT__/'.\$html_path.str_replace(array('{catdir}','{cid}'),array(\$category['catdir'],\$category['cid']),\$category['cat_html_url']);
                     }
                 }else{//首页
                     Page::\$staticUrl=U('Index/Index/index',array('page'=>'{page}'));

@@ -15,7 +15,6 @@ CREATE TABLE `@pre@@table@`(
   `updatetime` int(10) NOT NULL DEFAULT '0' COMMENT '更新时间',
   `color` char(7) NOT NULL DEFAULT '' COMMENT '标题颜色',
   `template` varchar(255) NOT NULL DEFAULT '' COMMENT '模板',
-  `url_type` tinyint(80) NOT NULL DEFAULT '3' COMMENT '文章访问方式  1 静态访问  2 动态访问  3 继承栏目',
   `arc_sort` mediumint(6) NOT NULL DEFAULT '0' COMMENT '排序',
   `content_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '文章状态  1 已审核 0 未审核',
   `keywords` varchar(100) NOT NULL DEFAULT '' COMMENT '关键字',

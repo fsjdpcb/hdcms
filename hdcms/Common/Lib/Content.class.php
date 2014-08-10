@@ -9,11 +9,13 @@ class Content
     private $mid;
     private $cid;
     private $model;
+    private $category;
     public $error;
 
     public function __construct()
     {
         $this->model = F('model', false, CACHE_DATA_PATH);
+        $this->category = F('category', false, CACHE_DATA_PATH);
         $this->mid = Q('mid', 0, 'intval');
         $this->cid = Q('cid', 0, 'intval');
     }
@@ -37,13 +39,17 @@ class Content
             $this->alterUploadTable();
             //修改tag标签数据
             $this->alterTag($aid);
+            $viewModel = ContentViewModel::getInstance($this->mid);
             //内容静态
-//            $Html = new Html;
-//            $Html->content($this->find($aid));
-//            $categoryCache = cache('category');
-//            $cat = $categoryCache[$insertData['cid']];
-//            $Html->relation_category($insertData['cid']);
-//            $Html->index();
+            $Html = new Html;
+            $Html->content($viewModel->getOne($aid));
+            //生成栏目
+            $category = Data::parentChannel($this->category, $this->cid);
+            foreach ($category as $cat) {
+                $Html->relation_category($cat['cid']);
+            }
+            //生成首页
+            $Html->index();
             return $aid;
         } else {
             $this->error = $ContentModel->error;
@@ -74,11 +80,17 @@ class Content
         }
         if ($ContentModel->create($data)) {
             $result = $ContentModel->save($data);
-            $aid = $result[$ContentModel->table];
+            $status = $result[$ContentModel->table];
             $this->alterTag($data['aid']);
             //修改上传表Upload中本次上传文件状态
             $this->alterUploadTable();
-            return $aid;
+            //修改tag标签数据
+            $this->alterTag($data['aid']);
+            //内容静态
+            $Html = new Html;
+            $viewModel = ContentViewModel::getInstance($this->mid);
+            $Html->content($viewModel->getOne($data['aid']));
+            return $status;
         } else {
             $this->error = $ContentModel->error;
             return false;
@@ -91,7 +103,7 @@ class Content
         $tagModel = M('tag');
         $contentTagModel = M("content_tag");
         //删除文章旧的tag记录
-        $contentTagModel->where(array('aid' => $aid,'mid'=>$this->mid))->del();
+        $contentTagModel->where(array('aid' => $aid, 'mid' => $this->mid))->del();
         //修改tag
         $tag = Q('tag');
         if ($tag) {
@@ -110,7 +122,7 @@ class Content
                         //tag表没有记录时，添加tag字符记录
                         $tid = $tagModel->add(array('tag' => $tag, 'total' => 1));
                     }
-                    $contentTagModel->add(array('aid' => $aid, 'cid' => $this->cid, 'mid'=>$this->mid,'tid' => $tid));
+                    $contentTagModel->add(array('aid' => $aid, 'cid' => $this->cid, 'mid' => $this->mid, 'tid' => $tid));
                 }
             }
         }
