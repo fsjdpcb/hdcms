@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>后台菜单管理</title>
     <hdjs/>
-    <js file="__CONTROlLER_TPL__/js/index.js"/>
+    <js file="__CONTROLLER_TPL__/js/index.js"/>
     <css file="__PUBLIC__/common.css"/>
 </head>
 <body>
@@ -13,7 +13,7 @@
         <ul>
             <li><a href="{|U:'index'}" class="action">菜单管理</a></li>
             <li><a href="{|U:'add',array('pid'=>0)}">添加菜单</a></li>
-            <li><a href="javascript:hd_ajax('{|U:update_cache}');">更新缓存</a></li>
+            <li><a href="javascript:hd_ajax('{|U:updateCache}');">更新缓存</a></li>
         </ul>
     </div>
     <table class="table2 hd-form form-inline">

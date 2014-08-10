@@ -44,77 +44,40 @@
     <div class="content">
         <div class="list">
             <div class="header">
-                我的文章
+                {$hdcms.catname}
             </div>
             <div class="article">
                 <ul>
+                    <pagelist row="1">
                     <li>
                         <div class="thumb">
-                            <img src="" alt=""/>
+                            <a href="{$field.url}">
+                                <img src="{$field.thumb}"/>
+                            </a>
                         </div>
                         <div class="news">
                             <p class="title">
-                                <a href="">在那里可以获取官方模块和插件</a>
+                                <a href="{$field.url}">{$field.title}</a>
                             </p>
 
                             <p class="addtime">
-                                <a href="http://www.shuipfcms.com/help/use/" target="_blank" title="安装使用">安装使用</a> | 水平凡
-                                <em>最后更新于 2014-07-24 20:41:02</em>
+                                <a href="{$field.caturl}">{$field.catname}</a> | {$field.username}
+                                <em>最后更新于 {$field.addtime|date:'Y-m-d h:i:s',@@}</em>
                             </p>
 
                             <p class="description">
-                                官网扩展中的模块，和插件是在那里获取的？第一次用的人可能比较迷糊，不清楚。其实只要登录后台，进入如下界面：在这里
+                                {$field.description}
                             </p>
                         </div>
                         <div class="click">
-                            129
+                            {$field.click}
                         </div>
                     </li>
-                    <li>
-                        <div class="thumb">
-                            <img src="" alt=""/>
-                        </div>
-                        <div class="news">
-                            <p class="title">
-                                <a href="">在那里可以获取官方模块和插件</a>
-                            </p>
-
-                            <p class="addtime">
-                                <a href="http://www.shuipfcms.com/help/use/" target="_blank" title="安装使用">安装使用</a> | 水平凡
-                                <em>最后更新于 2014-07-24 20:41:02</em>
-                            </p>
-
-                            <p class="description">
-                                官网扩展中的模块，和插件是在那里获取的？第一次用的人可能比较迷糊，不清楚。其实只要登录后台，进入如下界面：在这里
-                            </p>
-                        </div>
-                        <div class="click">
-                            129
-                        </div>
-                    </li>
-                    <li>
-                        <div class="thumb">
-                            <img src="" alt=""/>
-                        </div>
-                        <div class="news">
-                            <p class="title">
-                                <a href="">在那里可以获取官方模块和插件</a>
-                            </p>
-
-                            <p class="addtime">
-                                <a href="http://www.shuipfcms.com/help/use/" target="_blank" title="安装使用">安装使用</a> | 水平凡
-                                <em>最后更新于 2014-07-24 20:41:02</em>
-                            </p>
-
-                            <p class="description">
-                                官网扩展中的模块，和插件是在那里获取的？第一次用的人可能比较迷糊，不清楚。其实只要登录后台，进入如下界面：在这里
-                            </p>
-                        </div>
-                        <div class="click">
-                            129
-                        </div>
-                    </li>
+                    </pagelist>
                 </ul>
+                <div class="page">
+                    <pageshow/>
+                </div>
             </div>
         </div>
     </div>

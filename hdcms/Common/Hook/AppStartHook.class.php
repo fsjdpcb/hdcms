@@ -5,7 +5,7 @@
  * Class AppStartEvent
  * @author 向军 <houdunwangxj@gmail.com>
  */
-class AppStartEvent extends Event {
+class AppStartHook{
 	public function run(&$options) {
 		$this -> check_install();
         //是否登录

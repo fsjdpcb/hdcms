@@ -5,6 +5,7 @@
         <meta charset="UTF-8">
 		<title>模型管理</title>
 		<hdjs/>
+        <css file="__PUBLIC__/common.css"/>
 	</head>
 	<body>
 		<div class="wrap">

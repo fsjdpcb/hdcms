@@ -1,8 +1,8 @@
 //更改列表排序
 function update_order() {
     var data = $("[name*='list_order']").serialize();
-    $.post(CONTROL + "&m=update_order", data, function (data) {
-        if (data.state == 1) {
+    $.post(CONTROLLER + "&a=updateOrder", data, function (data) {
+        if (data.status == 1) {
             $.dialog({
                 "message": data.message,
                 "type": "success",

@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>修改模型</title>
     <hdjs/>
+    <css file="__PUBLIC__/common.css"/>
 </head>
 <body>
 <form action="{|U:'edit'}" method="post" class="hd-form" onsubmit="return hd_submit(this,'{|U:index}')">

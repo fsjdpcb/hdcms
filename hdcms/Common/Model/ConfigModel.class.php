@@ -58,11 +58,6 @@ class ConfigModel extends Model
             $this->error = '允许上传类型不能为空';
             return false;
         }
-        //伪静态检测
-        if ($configData['OPEN_REWRITE'] == 1 && !is_file('.htaccess')) {
-            $this->error = '.htaccess文件不存在，开启Rewrite失败';
-            return false;
-        }
         $order_list = $configData['order_list'];
         unset($configData['order_list']);
         $configData = array_change_key_case_d($configData, 1);

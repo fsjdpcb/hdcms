@@ -1,3 +1,0 @@
-<?php if(!defined('HDPHP_PATH'))EXIT;
-$db->exe("REPLACE INTO ".$db_prefix."category (`cid`,`pid`,`catname`,`catdir`,`cat_keyworks`,`cat_description`,`index_tpl`,`list_tpl`,`arc_tpl`,`cat_html_url`,`arc_html_url`,`mid`,`cattype`,`arc_url_type`,`cat_url_type`,`cat_redirecturl`,`catorder`,`cat_show`,`cat_seo_title`,`cat_seo_description`,`add_reward`,`show_credits`,`repeat_charge_day`,`allow_user_set_credits`,`member_send_state`)
-						VALUES('5','0','a','a','','','article_index.html','article_list.html','article_default.html','{catdir}/{cid}{page}.html','{catdir}/{y}/{m}{d}/{aid}.html','1','1','2','2','','100','1','','','1','0','1','1','1')");

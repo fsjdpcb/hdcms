@@ -34,7 +34,7 @@ $db->exe("CREATE TABLE `".$db_prefix."category` (
   `allow_user_set_credits` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否允许会员投稿设置积分 1 允许 0 不允许',
   `member_send_state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '会员投稿状态 1 审核 2 未审核',
   PRIMARY KEY (`cid`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='栏目表'");
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='栏目表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."category_access`");
 $db->exe("CREATE TABLE `".$db_prefix."category_access` (
   `rid` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '角色id',
@@ -75,9 +75,10 @@ $db->exe("CREATE TABLE `".$db_prefix."config` (
   `show_type` enum('文本','数字','布尔(1/0)','多行文本') DEFAULT '文本',
   `message` varchar(255) DEFAULT NULL COMMENT '提示',
   `order_list` smallint(6) unsigned DEFAULT '100' COMMENT '排序',
+  `status` tinyint(4) DEFAULT '1' COMMENT '总配置模块显示  如模板风格就不显示 1显示 0 不显示',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM AUTO_INCREMENT=69 DEFAULT CHARSET=utf8 COMMENT='系统配置'");
+) ENGINE=MyISAM AUTO_INCREMENT=72 DEFAULT CHARSET=utf8 COMMENT='系统配置'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."content`");
 $db->exe("CREATE TABLE `".$db_prefix."content` (
   `aid` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -109,7 +110,7 @@ $db->exe("CREATE TABLE `".$db_prefix."content` (
   KEY `uid` (`uid`),
   KEY `cid` (`cid`),
   KEY `flag` (`flag`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='文章表'");
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='文章表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."content_data`");
 $db->exe("CREATE TABLE `".$db_prefix."content_data` (
   `aid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '文章主表ID',
@@ -118,6 +119,7 @@ $db->exe("CREATE TABLE `".$db_prefix."content_data` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='文章正文表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."content_tag`");
 $db->exe("CREATE TABLE `".$db_prefix."content_tag` (
+  `mid` smallint(6) NOT NULL COMMENT '模型mid',
   `cid` smallint(6) NOT NULL DEFAULT '0' COMMENT '栏目cid',
   `aid` int(11) NOT NULL DEFAULT '0' COMMENT '文章aid',
   `tid` int(11) NOT NULL DEFAULT '0' COMMENT '标签id'
@@ -141,7 +143,7 @@ $db->exe("CREATE TABLE `".$db_prefix."favorite` (
   `aid` int(10) unsigned NOT NULL,
   `uid` int(10) unsigned NOT NULL,
   PRIMARY KEY (`fid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='收藏夹'");
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='收藏夹'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."field`");
 $db->exe("CREATE TABLE `".$db_prefix."field` (
   `fid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
@@ -169,7 +171,7 @@ $db->exe("CREATE TABLE `".$db_prefix."field` (
   `isadd` tinyint(1) NOT NULL DEFAULT '1' COMMENT '在前台投稿中显示',
   PRIMARY KEY (`fid`),
   KEY `mid` (`mid`)
-) ENGINE=MyISAM AUTO_INCREMENT=390 DEFAULT CHARSET=utf8 COMMENT='模型字段'");
+) ENGINE=MyISAM AUTO_INCREMENT=426 DEFAULT CHARSET=utf8 COMMENT='模型字段'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."link`");
 $db->exe("CREATE TABLE `".$db_prefix."link` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -219,7 +221,7 @@ $db->exe("CREATE TABLE `".$db_prefix."model` (
   `description` varchar(255) NOT NULL DEFAULT '' COMMENT '模型描述',
   `is_system` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '1 系统模型  2 普通模型',
   PRIMARY KEY (`mid`)
-) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COMMENT='模型表'");
+) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COMMENT='模型表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."navigation`");
 $db->exe("CREATE TABLE `".$db_prefix."navigation` (
   `nid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -230,7 +232,7 @@ $db->exe("CREATE TABLE `".$db_prefix."navigation` (
   `list_order` mediumint(100) NOT NULL DEFAULT '100' COMMENT '排序',
   `url` varchar(255) NOT NULL DEFAULT '' COMMENT '链接地址',
   PRIMARY KEY (`nid`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='网站前台导航'");
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='网站前台导航'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."node`");
 $db->exe("CREATE TABLE `".$db_prefix."node` (
   `nid` smallint(6) NOT NULL AUTO_INCREMENT,
@@ -247,7 +249,7 @@ $db->exe("CREATE TABLE `".$db_prefix."node` (
   `is_system` tinyint(1) NOT NULL DEFAULT '0' COMMENT '系统菜单 1 是  0 不是',
   `favorite` tinyint(1) NOT NULL DEFAULT '0' COMMENT '后台常用菜单   1 是  0 不是',
   PRIMARY KEY (`nid`)
-) ENGINE=MyISAM AUTO_INCREMENT=201 DEFAULT CHARSET=utf8 COMMENT='节点表（后台菜单也使用）'");
+) ENGINE=MyISAM AUTO_INCREMENT=204 DEFAULT CHARSET=utf8 COMMENT='节点表（后台菜单也使用）'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."plugin`");
 $db->exe("CREATE TABLE `".$db_prefix."plugin` (
   `pid` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -273,7 +275,7 @@ $db->exe("CREATE TABLE `".$db_prefix."role` (
   `allowsendmessage` tinyint(1) NOT NULL DEFAULT '1' COMMENT '允许发短消息  1 允许  2 不允许',
   PRIMARY KEY (`rid`),
   KEY `gid` (`rid`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='角色表'");
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='角色表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."search`");
 $db->exe("CREATE TABLE `".$db_prefix."search` (
   `sid` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -283,7 +285,7 @@ $db->exe("CREATE TABLE `".$db_prefix."search` (
   PRIMARY KEY (`sid`),
   UNIQUE KEY `name` (`word`) USING BTREE,
   KEY `total` (`total`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='搜索结果表'");
+) ENGINE=MyISAM AUTO_INCREMENT=115 DEFAULT CHARSET=utf8 COMMENT='搜索结果表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."session`");
 $db->exe("CREATE TABLE `".$db_prefix."session` (
   `sessid` char(32) NOT NULL DEFAULT '',
@@ -309,7 +311,7 @@ $db->exe("CREATE TABLE `".$db_prefix."tag` (
   PRIMARY KEY (`tid`),
   UNIQUE KEY `name` (`tag`),
   KEY `total` (`total`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Tag标签表'");
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='Tag标签表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."template_tag`");
 $db->exe("CREATE TABLE `".$db_prefix."template_tag` (
   `tid` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -337,7 +339,7 @@ $db->exe("CREATE TABLE `".$db_prefix."upload` (
   PRIMARY KEY (`id`),
   KEY `basename` (`basename`),
   KEY `id` (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='上传文件'");
+) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COMMENT='上传文件'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."user`");
 $db->exe("CREATE TABLE `".$db_prefix."user` (
   `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -346,19 +348,16 @@ $db->exe("CREATE TABLE `".$db_prefix."user` (
   `password` char(40) NOT NULL DEFAULT '',
   `code` char(30) NOT NULL DEFAULT '' COMMENT '密码key',
   `email` char(30) NOT NULL DEFAULT '' COMMENT '邮箱',
-  `validatecode` char(50) NOT NULL DEFAULT '' COMMENT '邮箱验证key',
   `regtime` int(11) NOT NULL DEFAULT '0' COMMENT '注册时间',
   `logintime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '登录时间',
   `regip` char(255) NOT NULL DEFAULT '' COMMENT '注册IP',
   `lastip` char(15) NOT NULL DEFAULT '' COMMENT '最后登录ip',
-  `user_state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1  正常  0 锁定',
+  `user_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1  正常  0 锁定',
   `lock_end_time` int(10) NOT NULL DEFAULT '0' COMMENT '锁定到期时间',
   `qq` char(20) NOT NULL DEFAULT '' COMMENT 'qq号码',
   `sex` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 男 2 女 3 保密',
-  `favicon` varchar(255) NOT NULL DEFAULT '' COMMENT '头像',
   `credits` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '积分',
   `rid` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '角色id',
-  `allow_user_set_credits` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '允许前台会员设置投稿积分',
   `signature` varchar(255) NOT NULL DEFAULT '' COMMENT '个性签名',
   `domain` char(20) NOT NULL DEFAULT '' COMMENT '个性域名',
   `spec_num` mediumint(9) unsigned NOT NULL DEFAULT '0' COMMENT '空间访问数',
@@ -370,7 +369,7 @@ $db->exe("CREATE TABLE `".$db_prefix."user` (
   UNIQUE KEY `domain` (`domain`),
   KEY `password` (`password`),
   KEY `credits` (`credits`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='会员表'");
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='会员表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."user_deny_ip`");
 $db->exe("CREATE TABLE `".$db_prefix."user_deny_ip` (
   `ip` char(15) NOT NULL DEFAULT '' COMMENT '拒绝访问ip',

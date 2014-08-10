@@ -142,7 +142,7 @@ class ContentUploadController extends Controller
         $where = 'uid=' . $_SESSION['uid'] . " AND image={$isimage} AND status=1";
         $count = $this->db->where($where)->count();
         $page = new Page($count, 10, 8, '', '', __WEB__ . '?c=Admin&c=ContentUpload&a=site&type=' . Q('type'));
-        $this->site_data = $this->db->where($where)->limit($page->limit())->all();
+        $this->site_data = $this->db->where($where)->order("id DESC")->limit($page->limit())->all();
         $this->site_page = $page->show();
         if (ACTION == 'site') {
             $this->display('site');
@@ -160,7 +160,7 @@ class ContentUploadController extends Controller
         $where = 'uid=' . $_SESSION['uid'] . " AND image={$isimage} AND status=0";
         $count = $this->db->where($where)->count();
         $page = new Page($count, 10, 8, '', '', __WEB__ . '?m=Admin&c=ContentUpload&a=untreated&type=' . Q('type'));
-        $this->untreated_data = $this->db->where($where)->limit($page->limit())->all();
+        $this->untreated_data = $this->db->where($where)->order("id DESC")->limit($page->limit())->all();
         $this->untreated_page = $page->show();
         if (ACTION == 'untreated') {
             $this->display('untreated');

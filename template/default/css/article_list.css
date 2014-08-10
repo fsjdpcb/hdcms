@@ -167,6 +167,7 @@ div.wrap div.content div.article ul li {
 div.wrap div.content div.article ul li div.thumb {
   width: 80px;
   height: 80px;
+  overflow: hidden;
   background: #f00f00;
   float: left;
   margin-right: 10px;
@@ -203,6 +204,24 @@ div.wrap div.content div.article ul li div.click {
   color: #fff;
   padding: 8px 15px;
   background: #226bb0;
+}
+div.wrap div.content div.article div.page {
+  margin: 20px;
+}
+div.wrap div.content div.article div.page span.close,
+div.wrap div.content div.article div.page strong,
+div.wrap div.content div.article div.page a {
+  display: inline-block;
+  padding: 1px 5px;
+  margin-right: 10px;
+}
+div.wrap div.content div.article div.page a {
+  background: #bbbbbb;
+  color: #ffffff;
+}
+div.wrap div.content div.article div.page a:hover {
+  background: #226bb0 ;
+  color: #fff;
 }
 div.copyright {
   clear: both;

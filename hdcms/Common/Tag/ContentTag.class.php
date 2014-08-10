@@ -382,10 +382,10 @@ str;
                             \$Url = "list_{mid}_{cid}_{page}.html";
                             \$pageUrl=str_replace(array('{mid}','{cid}'),array(\$category['mid'],\$category['cid']),\$Url);
                         }else{
-                            \$Url = "a=Index&c=Index&m=category&mid={mid}&cid={cid}&page={page}";
+                            \$Url = "m=Index&c=Index&a=category&mid={mid}&cid={cid}&page={page}";
                             \$pageUrl=str_replace(array('{mid}','{cid}'),array(\$category['mid'],\$category['cid']),\$Url);
                         }
-                        \$ROOT_URL = C('URL_REWRITE')?'':WEB_URL.'?';
+                        \$ROOT_URL = C('URL_REWRITE')?'':'__WEB__?';
                         Page::\$staticUrl=\$ROOT_URL.\$pageUrl;
                     }else{//静态
                         \$html_path = C("HTML_PATH") ? C("HTML_PATH") . '/' : '';

@@ -66,7 +66,7 @@ class ConfigController extends AuthController
             $config['EMAIL_PASSWORD']['html'] = "<input type='password' name='EMAIL_PASSWORD' value='{$config['EMAIL_PASSWORD']['value']}' class='w400'/>";
             //========================================水印位置======================================
             ob_start();
-            require MODULE_TPL_PATH . 'Config/water.php';
+            require MODULE_VIEW_PATH . 'Config/water.php';
             $con = ob_get_clean();
             $config['WATER_POS']['html'] = $con;
             //=======================================其他字段======================================

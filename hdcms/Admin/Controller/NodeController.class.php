@@ -16,7 +16,7 @@ class NodeController extends AuthController
     {
         //获得模型实例
         $this->db = K("Node");
-        $this->node = F("node",false,CACHE_DATA_PATH);
+        $this->node = F("node", false, CACHE_DATA_PATH);
     }
 
     //节点列表
@@ -69,22 +69,21 @@ class NodeController extends AuthController
     }
 
     //更改菜单排序
-    public function update_order()
+    public function updateOrder()
     {
         $menu_order = Q("post.list_order");
         foreach ($menu_order as $nid => $order) {
-            //排序
-            $order = intval($order);
             $this->db->save(array(
                 "nid" => $nid,
                 "list_order" => $order
             ));
         }
+        $this->db->updateCache();
         $this->success('更改排序成功');
     }
 
     //更新缓存
-    public function update_cache()
+    public function updateCache()
     {
         if ($this->db->updateCache()) {
             $this->success('更新缓存成功');

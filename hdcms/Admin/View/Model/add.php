@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>添加模型</title>
     <hdjs/>
+    <css file="__PUBLIC__/common.css"/>
 </head>
 <body>
 <form action="{|U:'add'}" method="post" class="hd-form" onsubmit="return hd_submit(this,'{|U:index}')">

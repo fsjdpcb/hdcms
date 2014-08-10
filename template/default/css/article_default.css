@@ -114,25 +114,26 @@ div.wrap div.menu {
 }
 div.wrap div.menu dl dt {
   font-size: 20px;
+  color: #999999;
   border-bottom: solid 1px #dddddd;
   padding-bottom: 15px;
   margin-bottom: 10px;
-  padding-left: 30px;
+  padding-left: 25px;
   padding-top: 20px;
 }
 div.wrap div.menu dl dd {
   border-bottom: dotted 1px #dddddd;
-  padding-left: 20px;
+  padding-left: 15px;
 }
 div.wrap div.menu dl dd a {
   display: block;
   line-height: 45px;
+  color: #226bb0;
   text-indent: 10px;
-  color: #666666;
 }
 div.wrap div.menu dl dd a.current,
 div.wrap div.menu dl dd a:hover {
-  color: #226bb0;
+  text-decoration: underline;
 }
 div.wrap div.content {
   width: 735px;
@@ -162,6 +163,12 @@ div.wrap div.content div.body {
   font-size: 16px;
   line-height: 2em;
   padding: 0px 20px 20px 20px;
+}
+div.wrap div.content div.body p {
+  font-size: 14px;
+}
+div.wrap div.content div.body p img {
+  max-width: 700px;
 }
 div.copyright {
   clear: both;

@@ -1,20 +1,19 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta charset="UTF-8">
     <title>批量移动文章</title>
     <hdjs/>
     <js file="__CONTROLLER_TPL__/js/move.js"/>
     <css file="__CONTROLLER_TPL__/css/move.css"/>
-    <css file="__PUBLIC__/common.css"/>
 </head>
 <body>
-<div class="wrap">
-    <div class="title-header">温馨提示</div>
-    <div class="help" style="margin-bottom:0px;"> 不能够跨模型移动文章</div>
-    <div class="line"></div>
-    <form method="post" onsubmit="return false" class="hd-form">
-    	<input type="hidden" name="mid" value="{$hd.get.mid}"/>
+<form method="post" onsubmit="return false" class="hd-form">
+    <div class="wrap">
+        <div class="title-header">温馨提示</div>
+        <div class="help" style="margin-bottom:0px;"> 不能够跨模型移动文章</div>
+        <div class="line"></div>
+        <input type="hidden" name="mid" value="{$hd.get.mid}"/>
         <input type="hidden" name="cid" value="{$hd.get.cid}"/>
         <table style="table1">
             <tr>
@@ -32,7 +31,7 @@
                             <label><input type="radio" name="from_type" value="1" checked="checked"/> 从指定aid </label>
                         </li>
                         <li>
-                            <label> <input type="radio" name="from_type" value="2" /> 从指定栏目</label>
+                            <label> <input type="radio" name="from_type" value="2"/> 从指定栏目</label>
                         </li>
                     </ul>
                     <div id="t_aid">
@@ -42,17 +41,16 @@
                         <select id="fromid" style="width:250px;height:180px;" multiple="multiple" size="2"
                                 name="from_cid[]">
                             <list from="$category" name="c">
-                                <option value="{$c.cid}" {$c.disabled}>
-                                {$c._name}
-                                </option>
+                                <option value="{$c.cid}"{$c.disabled}>{$c._name}</option>
                             </list>
                         </select>
                     </div>
                 </td>
                 <td>
-                    <select id="fromid" style="width:250px;height:215px;"  size="100" name="to_cid">
+                    <select id="fromid" style="width:250px;height:215px;" size="100" name="to_cid">
                         <list from="$category" name="c">
-                            <option value="{$c.cid}" {$c.disabled} {$c.selected}>
+                            <option value="{$c.cid}"
+                            {$c.disabled} {$c.selected}>
                             {$c._name}
                             </option>
                         </list>
@@ -64,7 +62,7 @@
             <input type="submit" class="hd-success" value="确定"/>
             <input type="button" class="hd-cancel" id="close_window" value="关闭"/>
         </div>
-    </form>
-</div>
+    </div>
+</form>
 </body>
 </html>

@@ -29,9 +29,7 @@
 <div class="wrap">
     <div class="position">
         <div class="location">
-            <a href="http://www.shuipfcms.com/" target="_blank">首页</a> &gt; <a
-                href="http://www.shuipfcms.com/help/">帮助</a> &gt; <a
-                href="http://www.shuipfcms.com/help/use/">安装使用</a>
+            <location/>
         </div>
         <div class="message">
             欢迎加群：166421499 进行使用交流！
@@ -45,23 +43,21 @@
     </div>
     <div class="content">
         <div class="header">
-            我的文章
+            {$hdcms.title}
         </div>
         <div class="info">
-            发布日期：2014-07-24 20:41:02分类：安装使用点击数：131
+          作者：{$hdcms.username}  发布日期：{$hdcms.addtime|date:'Y-m-d',@@}  点击数：{$hdcms.click}
         </div>
         <div class="body">
-            官网扩展中的模块，和插件是在那里获取的？第一次用的人可能比较迷糊，不清楚。
-
-            其实只要登录后台，进入如下界面：
+            {$hdcms.content}
         </div>
     </div>
     <div class="menu">
         <dl>
             <dt>文章管理</dt>
-            <dd><a href="" class="cur">我的文章</a></dd>
-            <dd><a href="">发表文章</a></dd>
-            <dd><a href="">我的收藏</a></dd>
+            <channel type="self" class="cur">
+                <dd><a href="{$field.caturl}" class="{$field.class}">{$field.catname}</a></dd>
+            </channel>
         </dl>
     </div>
 </div>
