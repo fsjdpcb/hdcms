@@ -88,7 +88,7 @@ class ContentController extends AuthController
     {
         $ContentModel = ContentViewModel::getInstance($this->mid);
         //文章状态
-        $content_status = Q('content_status', 1, 'intval');
+        $content_status = Q('content_status', 0, 'intval');
         $where = array();
         $where[] = "content_status=$content_status";
         //按时间搜索
@@ -126,7 +126,6 @@ class ContentController extends AuthController
                     break;
             }
         }
-
         $where[] = "category.cid=" . $this->cid;
         $page = new Page($ContentModel->where($where)->count(), 15);
         $data = $ContentModel->where($where)->limit($page->limit())->order(array("arc_sort" => "ASC", 'addtime' => "DESC"))->all();

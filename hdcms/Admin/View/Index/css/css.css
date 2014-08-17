@@ -1,4 +1,3 @@
-
 html {
     overflow: hidden;
 }
@@ -27,19 +26,18 @@ div.nav div.top_menu {
 }
 
 div.nav div.top_menu a {
-    display: block;
     float: left;
     color: #CCDFCB;
     display: block;
     height: 40px;
-    font-size: 14px;
+    font-size: 12px;
     text-align: center;
     padding:0px 20px;
     line-height: 40px;
 }
 
 div.nav div.top_menu a.action, div.nav div.top_menu a:hover {
-    font-size: 14px;
+    font-size: 12px;
     color: #03565E;
     background: #CCDFCB;
 }
@@ -94,7 +92,7 @@ div.main div.left_menu dl {
 div.main div.left_menu dl dt {
     border-bottom: 1px solid #CCCCCC;
     color: #03565E;
-    font-size: 14px;
+    font-size: 12px;
     margin-bottom: 5px;
     padding: 5px 15px 6px;
 }
@@ -237,101 +235,3 @@ div.main div.top_content {
     bottom: 37px;
     background: #F3F3F3;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

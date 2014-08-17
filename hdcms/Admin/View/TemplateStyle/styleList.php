@@ -31,7 +31,7 @@
 
                     <div class="link">
                         <if value="$t.current neq 1">
-                            <a href="javascript:;" class="btn" attr='select_tpl' onclick="hd_ajax('{|U:selectStyle}',{dir_name:'{$t.dirname}'})">使用</a>
+                            <a href="javascript:;" class="btn" attr='select_tpl' onclick="hd_ajax('{|U:selectStyle}',{dirName:'{$t.filename}'})">使用</a>
                        <else/>
                         <strong>使用中...</strong>
                         </if>

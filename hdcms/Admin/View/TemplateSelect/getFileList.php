@@ -23,11 +23,11 @@
                     <div>
 	                    <if value="$f.type=='file'">
 	            			<a href="javascript:;" class="{$f.type}"  onclick="getTplFile('{$f.path}')">
-	                            <span class="{$f.type}">{$f.name}</span>
+	                            <span class="{$f.type}">{$f.filename}</span>
 	                        </a>
 	            		<else/>
 	            			<a href="javascript:;" class="{$f.type}" onclick="getFileList('{$f.url}');">
-	                            <span class="{$f.type}">{$f.name}</span>
+	                            <span class="{$f.type}">{$f.filename}</span>
 	                        </a>
 	            		</if>
                     </div>

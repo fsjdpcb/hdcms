@@ -10,6 +10,7 @@ class TemplateSelectController extends AuthController
     }
 	//获得模板列表
 	public function getFileList(){
+        //风格目录
 		$stylePath = ROOT_PATH . 'template/' . C("WEB_STYLE").'/';
         $path = Q("request.path", '',"urldecode");
 		if($path){
@@ -19,7 +20,7 @@ class TemplateSelectController extends AuthController
 			$history='';
 			$dir = $stylePath;
 		}
-        $file = Dir::tree($dir, "htm");
+        $file = Dir::tree($dir, "html");
         foreach ($file as $n => $v) {
             if ($v['type'] == 'dir') {
                 $file[$n]['url'] = __ACTION__.'&path='.urlencode($v['path']);

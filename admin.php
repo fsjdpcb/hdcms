@@ -1,2 +1,2 @@
 <?php
-header("location:index.php?admin.html");
+header("location:index.php?m=admin");

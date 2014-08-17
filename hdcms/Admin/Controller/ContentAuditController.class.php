@@ -5,7 +5,7 @@
  * Class ContentControl
  * @author 向军 <houdunwangxj@gmail.com>
  */
-class tContentAuditController extends AuthController
+class ContentAuditController extends AuthController
 {
     //模型缓存
     private $model;
