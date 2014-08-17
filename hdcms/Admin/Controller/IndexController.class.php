@@ -26,7 +26,7 @@ class IndexController extends AuthController
             $model = M();
             $pre = C('DB_PREFIX');
             $sql = "SELECT n.nid,n.title FROM {$pre}access AS a RIGHT JOIN {$pre}node AS n  ON n.nid=a.nid
-			WHERE n.state=1 and n.pid=0 AND (n.type=2 OR a.rid=" . $_SESSION['rid'] . ')';
+			WHERE n.show=1 and n.pid=0 AND (n.type=2 OR a.rid=" . $_SESSION['rid'] . ')';
             $topMenu = $model->query($sql);
         }
         //当前用户常用菜单
@@ -55,22 +55,24 @@ class IndexController extends AuthController
         //去掉隐藏的菜单
         $showMenuData = array();
         foreach ($MenuData as $menu) {
-            if ($menu['state'] == 1) {
+            if ($menu['show'] == 1) {
                 $showMenuData[] = $menu;
             }
         }
         $childMenuData = Data::channelLevel($showMenuData, $pid, '', 'nid');
         $html = "<div class='nid_$pid'>";
         foreach ($childMenuData as $menu) {
-            if (!empty($menu['_data'])) {
-                $html .= "<dl><dt>" . $menu['title'] . "</dt>";
-                foreach ($menu['_data'] as $linkMenu) {
+            $html .= "<dl><dt>" . $menu['title'] . "</dt>";
+            foreach ($menu['_data'] as $linkMenu) {
                     $param = $linkMenu['param'] ? '&' . $linkMenu['param'] : '';
-                    $url = __ROOT__ . "/index.php?m=" . $linkMenu['module'] . "&c=" . $linkMenu['control'] . "&a=" . $linkMenu['action'] . $param;
+                    if($linkMenu['app']){
+                        $url = __ROOT__ . "/index.php?app=".$linkMenu['app']."&m=" . $linkMenu['module'] . "&c=" . $linkMenu['controller'] . "&a=" . $linkMenu['action'] . $param;
+                    }else{
+                        $url = __ROOT__ . "/index.php?m=" . $linkMenu['module'] . "&c=" . $linkMenu['controller'] . "&a=" . $linkMenu['action'] . $param;
+                    }
                     $html .= "<dd><a nid='" . $linkMenu["nid"] . "' href='javascript:;'
                     onclick='get_content(this," . $linkMenu["nid"] . ")' url='" . $url . "'>" . $linkMenu['title'] . "</a></dd>";
                 }
-            }
             $html .= "</dl>";
         }
         $html .= "</div>";
@@ -107,11 +109,11 @@ class IndexController extends AuthController
             $pre = C('DB_PREFIX');
             if (session("WEB_MASTER") || session("rid") == 1) {
                 $sql = "SELECT n.nid,n.pid,m.uid,n.title FROM {$pre}node AS n  LEFT JOIN
-							 (SELECT * FROM {$pre}menu_favorite WHERE uid={$_SESSION['uid']}) AS m ON n.nid = m.nid WHERE n.state=1";
+							 (SELECT * FROM {$pre}menu_favorite WHERE uid={$_SESSION['uid']}) AS m ON n.nid = m.nid WHERE n.show=1";
             } else {
                 $sql = "SELECT n.nid,n.pid,m.uid,n.title FROM {$pre}node AS n  LEFT JOIN  {$pre}access AS a ON n.nid=a.nid LEFT JOIN
 							 (SELECT * FROM {$pre}menu_favorite WHERE uid={$_SESSION['uid']}) AS m ON n.nid = m.nid 
-							 WHERE n.type=2 OR (n.state=1 AND m.nid is not null)";
+							 WHERE n.type=2 OR (n.show=1 AND m.nid is not null)";
             }
             $nodeData = $nodeModel->query($sql);
             $nodeData = Data::channelLevel($nodeData, 0, "", "nid");
