@@ -16,7 +16,7 @@ class NodeController extends AuthController
     {
         //获得模型实例
         $this->db = K("Node");
-        $this->node = F("node", false, CACHE_DATA_PATH);
+        $this->node = S("node");
     }
 
     //节点列表

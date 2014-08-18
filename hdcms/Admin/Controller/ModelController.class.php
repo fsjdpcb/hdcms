@@ -13,7 +13,7 @@ class ModelController extends AuthController
     public function __init()
     {
         $this->db = K('Model');
-        $this->model = F('model', false, CACHE_DATA_PATH);
+        $this->model = S('model');
         $this->mid = Q('mid', 0, 'intval');
     }
 

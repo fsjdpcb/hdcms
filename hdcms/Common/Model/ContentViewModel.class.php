@@ -17,7 +17,7 @@ class ContentViewModel extends ViewModel
     static public function getInstance($mid)
     {
         if (!isset(self::$instance[$mid])) {
-            $modelCache = F('model', false, CACHE_DATA_PATH);
+            $modelCache = S('model');
             $table = $modelCache[$mid]['table_name'];
             $model = new self($table);
             $model->stable = $table . '_data'; //副表名

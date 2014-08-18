@@ -37,13 +37,17 @@
                     <td>{$d.name}</td>
                     <td>{$d.title}</td>
                     <td>{$d.description}</td>
-                    <td>{$d.status}</td>
+                    <td>{$d.status_text}</td>
                     <td>{$d.author}</td>
                     <td>{$d.version}</td>
                     <td>
-                        <if value="$d.status">
+                        <if value="$d.install">
                             <a href="{|U:'config',array('addon'=>$d['name'])}">设置</a>
-                            <a href="{|U:'disabled',array('addon'=>$d['name'])}">禁用</a>
+                            <if value="$d.status">
+                                <a href="{|U:'disabled',array('addon'=>$d['name'])}">禁用</a>
+                            <else>
+                                <a href="{|U:'enabled',array('addon'=>$d['name'])}">启用</a>
+                            </if>
                             <a href="{|U:'uninstall',array('addon'=>$d['name'])}">卸载</a>
                         <else>
                             <a href="{|U:'install',array('addon'=>$d['name'])}">安装</a>

@@ -16,7 +16,7 @@ class ModelModel extends Model
     public function __init()
     {
         $this->mid = Q('mid', 0, 'intval');
-        $this->model = F('model', false, CACHE_DATA_PATH);
+        $this->model = S('model');
     }
 
     /**
@@ -137,9 +137,9 @@ class ModelModel extends Model
                 //删除模型字段信息并更新字段缓存
                 $this->table("field")->where("mid={$this->mid}")->del();
                 //删除字段缓存文件
-                F($this->mid, null, CACHE_FIELD_PATH);
+                S('field' . $this->mid, null);
                 //删除模型flag缓存
-                F($this->mid, null, CACHE_FLAG_PATH);
+                S('field' . $this->mid, null);
                 //更新模型缓存
                 return $this->updateCache();
             }
@@ -168,7 +168,7 @@ class ModelModel extends Model
         foreach ($model as $m) {
             $cache[$m['mid']] = $m;
         }
-        $stat = F("model", $cache, CACHE_DATA_PATH);
+        $stat = S('model', $cache);
         if ($stat) {
             return true;
         } else {

@@ -1,8 +1,8 @@
 <?php
 
 /**
- * 权限模型
- * Class AccessModel
+ * 网站配置模型
+ * Class ConfigModel
  * @author hdxj <houdunwangxj@gmail.com>
  */
 class ConfigModel extends Model

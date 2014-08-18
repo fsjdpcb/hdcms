@@ -8,10 +8,10 @@ class CacheController extends AuthController
 {
     public function updateCache()
     {
-        $ActionCache = F('updateCache');
+        $ActionCache = S('updateCache');
         if ($ActionCache) {
             $action = array_shift($ActionCache);
-            F('updateCache', $ActionCache);
+            S('updateCache', $ActionCache);
             switch ($action) {
                 case "Config" :
                     $Model = K("Config");
@@ -24,8 +24,7 @@ class CacheController extends AuthController
                     $this->success('模型更新完毕...', U("updateCache"), 0);
                     break;
                 case "Field" :
-
-                    $ModelCache = F("model", false, CACHE_DATA_PATH);
+                    $ModelCache = S("model");
                     foreach ($ModelCache as $mid => $data) {
                         $_REQUEST['mid'] = $mid;
                         $Model = new FieldModel();
@@ -53,7 +52,7 @@ class CacheController extends AuthController
                     $this->success('角色更新完毕...', U("updateCache"), 0);
                     break;
                 case "Flag" :
-                    $ModelCache = F("model", false, CACHE_DATA_PATH);
+                    $ModelCache = S("model");
                     foreach ($ModelCache as $mid => $data) {
                         $_REQUEST['mid'] = $mid;
                         $Model = new FlagModel();
@@ -63,7 +62,7 @@ class CacheController extends AuthController
                     break;
             }
         } else {
-            Dir::del('temp');
+            Dir::del('Compile');
             $this->success('缓存更新成功...', U('index'), 0);
         }
     }
@@ -73,7 +72,7 @@ class CacheController extends AuthController
     {
         if (IS_POST) {
             $Action = Q('Action');
-            F("updateCache", $Action);
+            S("updateCache", $Action);
             $this->success('准备更新...', U('updateCache'), 1);
         } else {
             $this->display();

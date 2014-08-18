@@ -16,7 +16,7 @@ class FlagController extends AuthController
 
     public function __init()
     {
-        $this->model = F('model', false, CACHE_DATA_PATH);
+        $this->model = S('model' );
         $this->mid = Q('mid', 0, 'intval');
         if (!$this->mid || !isset($this->model[$this->mid])) {
             $this->error('模型不存在');
@@ -28,7 +28,7 @@ class FlagController extends AuthController
     public function index()
     {
         $this->assign("model", $this->model);
-        $this->assign('flag', F($this->mid, false, CACHE_FLAG_PATH));
+        $this->assign('flag', S('flag'.$this->mid));
         $this->display();
     }
 

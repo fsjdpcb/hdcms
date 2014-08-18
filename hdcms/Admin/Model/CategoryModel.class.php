@@ -40,8 +40,8 @@ class CategoryModel extends ViewModel
     //构造函数
     public function __init()
     {
-        $this->category = F("category", false, CACHE_DATA_PATH);
-        $this->model = F("model", false, CACHE_DATA_PATH);
+        $this->category = S("category");
+        $this->model = S("model");
         $this->cid = Q('cid', 0, 'intval');
         $this->mid = Q('mid', 0, 'intval');
     }
@@ -141,7 +141,7 @@ class CategoryModel extends ViewModel
                 $cache[$cat['cid']] = $cat;
             }
         }
-        if (F("category", $cache, CACHE_DATA_PATH)) {
+        if (S("category", $cache)) {
             return true;
         } else {
             $this->error = '栏目缓存更新失败';

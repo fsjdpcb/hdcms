@@ -25,8 +25,8 @@ class FieldController extends AuthController
         if (!$this->mid) {
             $this->error("模型不存在！");
         }
-        $this->model = F("model", false, CACHE_DATA_PATH);
-        $this->field = F($this->mid, false, CACHE_FIELD_PATH);
+        $this->model = S("model");
+        $this->field = S($this->mid);
         $this->db = K('Field');
     }
 

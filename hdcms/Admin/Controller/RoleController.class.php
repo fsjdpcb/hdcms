@@ -19,7 +19,7 @@ class RoleController extends AuthController
     //角色列表
     public function index()
     {
-        $roleData = F('role', false, CACHE_DATA_PATH);
+        $roleData = S('role');
         $AdminRole = array();
         foreach ($roleData as $role) {
             if ($role['admin'] == 1) {

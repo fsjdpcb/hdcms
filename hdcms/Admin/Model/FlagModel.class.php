@@ -17,12 +17,12 @@ class FlagModel extends Model
     public function __init()
     {
         $this->mid = Q('mid', 0, 'intval');
-        $model = F('model', false, CACHE_DATA_PATH);
+        $model = S('model');
         if (!isset($model[$this->mid])) {
             $this->error = '模型不存在';
             return false;
         }
-        $this->flag = F($this->mid, false, CACHE_FLAG_PATH);
+        $this->flag = S('flag' . $this->mid);
         $this->contentTable = $model[$this->mid]['table_name'];
     }
 
@@ -45,13 +45,13 @@ class FlagModel extends Model
     public function editFlag($mid, $data)
     {
         if (!empty($data)) {
-            $sql = "ALTER TABLE " . C('DB_PREFIX') . $this->contentTable." MODIFY flag set('" . implode("','", $data) . "')";
+            $sql = "ALTER TABLE " . C('DB_PREFIX') . $this->contentTable . " MODIFY flag set('" . implode("','", $data) . "')";
             if (!$this->exe($sql)) {
                 $this->error = '修改表失败';
                 return false;
             }
         }
-       return $this->updateCache($mid);
+        return $this->updateCache($mid);
     }
 
     /**
@@ -83,7 +83,7 @@ class FlagModel extends Model
                 break;
             }
         }
-        return F($this->mid, $flag, CACHE_FLAG_PATH);
+        return S('flag' . $this->mid,$flag);
     }
 
 }

@@ -14,8 +14,8 @@ class Content
 
     public function __construct()
     {
-        $this->model = F('model', false, CACHE_DATA_PATH);
-        $this->category = F('category', false, CACHE_DATA_PATH);
+        $this->model = S('model' );
+        $this->category = S('category');
         $this->mid = Q('mid', 0, 'intval');
         $this->cid = Q('cid', 0, 'intval');
     }

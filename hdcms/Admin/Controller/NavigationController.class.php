@@ -14,7 +14,7 @@ class NavigationController extends AuthController
     public function __init()
     {
         $this->db = K("Navigation");
-        $this->navigation = F('navigation', false, CACHE_DATA_PATH);
+        $this->navigation = S('navigation');
     }
 
     //导航列表

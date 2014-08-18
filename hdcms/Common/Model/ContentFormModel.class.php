@@ -24,9 +24,9 @@ class ContentFormModel extends CommonModel
     {
         $this->mid = Q("mid", 0, "intval");
         //字段所在表模型信息
-        $this->model = F("model", false, CACHE_DATA_PATH);
+        $this->model = S("model");
         //字段缓存
-        $this->field = F($this->mid, false, CACHE_FIELD_PATH);
+        $this->field = S($this->mid);
     }
 
     /**
@@ -173,7 +173,7 @@ class ContentFormModel extends CommonModel
     //文章Flag属性如推荐、置顶等
     private function flag($field, $value)
     {
-        $flag = F($this->mid, false, CACHE_FLAG_PATH);
+        $flag = S('flag'.$this->mid);
         $set = $field['set'];
         if (!empty($value)) {
             $value = explode(',', $value);
@@ -196,7 +196,7 @@ class ContentFormModel extends CommonModel
     //栏目cid
     private function cid($field, $value)
     {
-        $category = F('category', false, CACHE_DATA_PATH);
+        $category = S('category');
         $set = $field['set'];
         $cid = Q('cid', 0, 'intval');
         return $category[Q('cid')]['catname'] . "<input type='hidden' name='cid' value='$cid'/>";

@@ -12,8 +12,8 @@ class CategoryController extends AuthController
     //构造函数
     public function __init()
     {
-        $this->category = F("category", false, CACHE_DATA_PATH);
-        $this->model = F("model", false, CACHE_DATA_PATH);
+        $this->category = S("category");
+        $this->model = S("model");
         $this->db = K('Category');
         $this->cid = Q('cid', null, 'intval');
         $this->mid = Q('mid', null, 'intval');
@@ -54,7 +54,7 @@ class CategoryController extends AuthController
             }
         } else {
             //获取角色数据，以后台和前台用户区分
-            $roles = F('role', false, CACHE_DATA_PATH);
+            $roles = S('role');
             $roleData = array('admin' => array(), 'user' => array());
             foreach ($roles as $role) {
                 if ($role['admin'] == 1) {

@@ -17,7 +17,7 @@ class ContentAuditController extends AuthController
     //构造函数
     public function __init()
     {
-        $this->model = F("model", false, CACHE_DATA_PATH);
+        $this->model = S("model");
         $this->mid = Q('mid', 0, 'intval');
         if (!isset($this->model[$this->mid])) {
             $this->error("模型不存在！");

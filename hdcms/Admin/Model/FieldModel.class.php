@@ -60,9 +60,9 @@ class FieldModel extends Model
     {
         $this->mid = Q('mid', 0, 'intval');
         //字段所在表模型信息
-        $this->model = F("model", false, CACHE_DATA_PATH);
+        $this->model = S("model");
         //字段缓存
-        $this->field = F($this->mid, false, CACHE_FIELD_PATH);
+        $this->field = S('field'.$this->mid);
     }
 
     /**
@@ -141,7 +141,7 @@ class FieldModel extends Model
                 $field = $this->data['field_name'] . " char(100) NOT NULL DEFAULT ''";
                 break;
             case "flag" :
-                $flag = F('flag', false, CACHE_FLAG_PATH);
+                $flag = S('flag');
                 //标题
                 $field = $this->data['field_name'] . " set('" . implode("','", $flag) . "') DEFAULT NULL";
                 break;
@@ -222,7 +222,7 @@ class FieldModel extends Model
                 $cacheData[$field['field_name']] = $field;
             }
         }
-        if (!F($this->mid, $cacheData, CACHE_FIELD_PATH)) {
+        if (!S($this->mid, $cacheData)) {
             $this->error = '更新字段缓存失败';
             return false;
         } else {

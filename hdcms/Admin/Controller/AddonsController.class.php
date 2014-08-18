@@ -22,6 +22,24 @@ class AddonsController extends AuthController
         $this->display();
     }
 
+    //禁用插件
+    public function disabled()
+    {
+        if ($this->db->disabledAddon()) {
+            $this->success('禁用成功','index');
+        } else {
+            $this->error($this->db->error);
+        }
+    }
+    //启用插件
+    public function enabled()
+    {
+        if ($this->db->enabledAddon()) {
+            $this->success('启用成功','index');
+        } else {
+            $this->error($this->db->error);
+        }
+    }
     //创建插件
     public function add()
     {
@@ -143,7 +161,7 @@ str;
                 Dir::create($addonDir . 'View/Index');
                 copy(MODULE_PATH . 'Data/View/addonIndex.php', $addonDir . 'View/Index/index.php');
             }
-            $this->success('创建成功','index');
+            $this->success('创建成功', 'index');
         } else {
             $this->assign('hooks', K('Hooks')->all());
             $this->display();

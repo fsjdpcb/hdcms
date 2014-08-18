@@ -8,13 +8,13 @@ class AddonsModel extends Model
 {
     public $table = 'addons';
     private $id;
-    private $name; //插件名
+    private $addon; //插件名
 
     //构造函数
     public function __init()
     {
         $this->id = Q('id', 0, 'intval'); //插件id
-        $this->name = Q('name', ''); //插件名
+        $this->addon = Q('addon', ''); //插件名
     }
 
     //验证插件唯一性
@@ -59,8 +59,37 @@ class AddonsModel extends Model
                 $addons[$d] = $addon;
             }
         }
-        int_to_string($addons, array('status' => array(0 => '禁用', 1 => '启用', null => '未安装')));
+        int_to_string($addons, array('status' => array(0 => '启用', 1 => '禁用')));
+        int_to_string($addons, array('install' => array(0 => '安装', 1 => '卸载')));
         return $addons;
+    }
+
+    //禁用插件
+    public function disabledAddon()
+    {
+        if (!$this->addon) {
+            $this->error = '参数错误';
+            return false;
+        }
+        if (!$this->where(array('name' => $this->addon))->find()) {
+            $this->error = '插件不存在';
+            return false;
+        }
+        return $this->where(array('name' => $this->addon))->save(array('status' => 0));
+    }
+
+    //启用插件
+    public function enabledAddon()
+    {
+        if (!$this->addon) {
+            $this->error = '参数错误';
+            return false;
+        }
+        if (!$this->where(array('name' => $this->addon))->find()) {
+            $this->error = '插件不存在';
+            return false;
+        }
+        return $this->where(array('name' => $this->addon))->save(array('status' => 1));
     }
 
     /**
@@ -171,25 +200,29 @@ class AddonsModel extends Model
     public function addAdminMenu($addon_name)
     {
         $addon = $this->where(array('name' => $addon_name))->find();
-        $node = array(
+        $data = array(
             'pid' => 50,
             'title' => $addon['title'],
             'app' => 'Addon',
             'module' => $addon_name,
-            'controller' => 'Index',
+            'controller' => 'Admin',
             'action' => 'index',
             'param' => '',
             'comment' => '插件' . $addon_name . '后台管理',
             'state' => '1',
             'type' => '1',
         );
-        return M('node')->add($node);
+        $node = K('Node');
+        $node->add($data);
+        return $node->updateCache();
     }
 
     //删除插件菜单
     public function delAdminMenu($addon_name)
     {
-        return M('node')->where(array('module' => $addon_name, 'app' => 'addons'))->del();
+        $node = K('Node');
+        $node->where(array('module' => $addon_name, 'app' => 'Addon'))->del();
+        return $node->updateCache();
     }
 
     //更新缓存

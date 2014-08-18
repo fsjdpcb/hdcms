@@ -13,7 +13,7 @@ class IndexController extends AuthController
     {
         //获得顶级菜单
         if (IS_SUPER_ADMIN) {
-            $nodeData = F('node', false,CACHE_DATA_PATH);
+            $nodeData = S('node');
             $topMenu = array();
             if ($nodeData) {
                 foreach ($nodeData as $node) {
@@ -30,7 +30,7 @@ class IndexController extends AuthController
             $topMenu = $model->query($sql);
         }
         //当前用户常用菜单
-        $favoriteMenu = F($_SESSION['uid'], false,CACHE_MENU_PATH);
+        $favoriteMenu = S('user_menu'.$_SESSION['uid']);
         $this->assign('top_menu', $topMenu);
         $this->assign('favorite_menu', $favoriteMenu);
         $this->display();
@@ -42,7 +42,7 @@ class IndexController extends AuthController
         $pid = Q('pid', 0, 'intval');
         //超级管理员获得所有菜单
         if (IS_SUPER_ADMIN) {
-            $MenuData = F('node',false,CACHE_DATA_PATH);
+            $MenuData = S('node');
         } else {
             $nodeModel = V('node');
             $nodeModel->view=array(
@@ -102,7 +102,7 @@ class IndexController extends AuthController
             //更新缓存
             $sql = "SELECT * FROM {$pre}menu_favorite AS m JOIN {$pre}node AS n ON m.nid=n.nid WHERE uid=" . $_SESSION['uid'];
             $favoriteMenu = M()->query($sql);
-            F($_SESSION['uid'], $favoriteMenu, CACHE_MENU_PATH);
+            S('user_menu'.$_SESSION['uid'], $favoriteMenu);
             $this->success('设置成功');
         } else {
             $nodeModel = M('node');
