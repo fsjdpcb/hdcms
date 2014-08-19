@@ -1,3 +1,0 @@
-<?php
-//0000000000a:3:{i:0;a:8:{s:3:"rid";s:1:"1";s:5:"rname";s:15:"超级管理员";s:5:"title";s:15:"超级管理员";s:5:"admin";s:1:"1";s:6:"system";s:1:"1";s:12:"creditslower";s:5:"10000";s:13:"comment_state";s:1:"1";s:16:"allowsendmessage";s:1:"1";}i:1;a:8:{s:3:"rid";s:1:"2";s:5:"rname";s:6:"编辑";s:5:"title";s:12:"内容编辑";s:5:"admin";s:1:"1";s:6:"system";s:1:"1";s:12:"creditslower";s:5:"10000";s:13:"comment_state";s:1:"1";s:16:"allowsendmessage";s:1:"1";}i:2;a:8:{s:3:"rid";s:1:"3";s:5:"rname";s:12:"发布人员";s:5:"title";s:12:"发布人员";s:5:"admin";s:1:"1";s:6:"system";s:1:"1";s:12:"creditslower";s:5:"10000";s:13:"comment_state";s:1:"1";s:16:"allowsendmessage";s:1:"1";}}
-?>
