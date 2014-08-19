@@ -11,5 +11,7 @@ if (isset($_GET['app'])) {
 }
 //临时目录
 define('TEMP_PATH', 'temp/');
+//插件目录
+define('APP_ADDON_PATH','Addons/');
 //引入框架主文件
 require '../hdphp/hdphp/hdphp.php';

@@ -34,6 +34,7 @@
                     <td>{$d.author}</td>
                     <td>{$d.version}</td>
                     <td>
+                        <a href="javascript:hd_ajax('{|U:'package'}', {addon: '{$d.name}'})">打包</a>
                         <if value="$d.install">
                             <if value="$d.config">
                                 <a href="{|U:'config',array('id'=>$d['id'])}">设置</a>
@@ -46,8 +47,7 @@
                             <a href="javascript:hd_confirm('确证卸载吗？',function(){hd_ajax('{|U:'uninstall'}', {addon: '{$d.name}'})})">
                             卸载</a>
                         <else>
-                            <a href="javascript:hd_ajax('{|U:'install'}', {addon: '{$d.name}'})">
-                            安装</a>
+                            <a href="javascript:hd_ajax('{|U:'install'}', {addon: '{$d.name}'})">安装</a>
                         </if>
                     </td>
                 </tr>

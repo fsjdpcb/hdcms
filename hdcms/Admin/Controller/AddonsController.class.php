@@ -179,10 +179,10 @@ str;
             if (empty($data)) {
                 $this->error(':( 插件没安装');
             }
-            $config=serialize(Q('post.config','',''));
-            if(M('addons')->where("id=$id")->save(array('config'=>$config))){
-                $this->success('修改成功','index');
-            }else{
+            $config = serialize(Q('post.config', '', ''));
+            if (M('addons')->where("id=$id")->save(array('config' => $config))) {
+                $this->success('修改成功', 'index');
+            } else {
                 $this->error('修改失败');
             }
         } else {
@@ -207,11 +207,26 @@ str;
         }
     }
 
+    //打包插件
+    public function package()
+    {
+        $addon = Q('addon','','');
+        if (!$addon || !is_dir(APP_ADDON_PATH . $addon)) {
+            $this->error('插件不存在');
+        }
+        $zip = new PclZip(APP_ADDON_PATH.$addon.'.zip');
+        if ($zip->create(APP_ADDON_PATH . $addon)) {
+            $this->success('压缩成功，请Addons目录查看');
+        } else {
+            $this->error('压缩失败');
+        }
+    }
+
     //安装插件
     public function install()
     {
         if ($this->db->installAddon()) {
-            $this->success('安装成功', 'index');
+            $this->success('安装成功', 'index', 3);
         } else {
             $this->error($this->db->error);
         }
@@ -221,7 +236,7 @@ str;
     public function uninstall()
     {
         if ($this->db->uninstallAddon()) {
-            $this->success('卸载成功', 'index');
+            $this->success('卸载成功,请刷新后台', 'index', 3);
         } else {
             $this->error($this->db->error);
         }
