@@ -1,5 +1,5 @@
 <?php
-$config 					    = require 'data/config/config.inc.php';
+$config 					    = require APP_CONFIG_PATH.'config.inc.php';
 $config['HDCMS_NAME']           = 'HDCMS 简体中文 UTF8 版';
 $config['HDCMS_VERSION']        = '2014.08.18';
 $config['SESSION_OPTIONS']      = array('type' => 'mysql', 'table' => 'session');
@@ -14,5 +14,5 @@ $config['ROUTE']                = array(
     '/^list_(\d+)_(\d+)_(\d+).html$/' 	=> 'm=Index&c=Index&a=category&mid=#1&cid=#2&page=#3',//栏目分页
     '/^(\d+)_(\d+)_(\d+).html$/' 		=> 'm=Index&c=Index&a=content&mid=#1&cid=#2&aid=#3',//内页页
 );
-return array_merge($config,require 'data/config/db.inc.php');
+return array_merge($config,require APP_CONFIG_PATH.'db.inc.php');
 ?>

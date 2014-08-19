@@ -9,8 +9,6 @@ if (isset($_GET['app'])) {
 } else {
     define('APP_PATH', 'HDCMS/');
 }
-//临时目录
-define('TEMP_PATH', 'Temp/');
 //插件目录
 define('APP_ADDON_PATH','Addons/');
 //引入框架主文件

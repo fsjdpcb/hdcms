@@ -49,7 +49,7 @@
             </td>
             <td>
                 <if value="$c.pid eq 0">
-                    <img src="__STATIC__/image/contract.gif" action="2" class="explodeCategory"/>
+                    <img src="__APP__/Static/image/contract.gif" action="2" class="explodeCategory"/>
                 </if>
                 {$c._name}
             </td>
@@ -99,12 +99,12 @@
             case 1://展示
                 $(tr).nextUntil('.top').show();
                 $(this).attr('action', 2);
-                $(this).attr('src', STATIC + "/image/contract.gif");
+                $(this).attr('src', APP + "/Static/image/contract.gif");
                 break;
             case 2://收缩
                 $(tr).nextUntil('.top').hide();
                 $(this).attr('action', 1);
-                $(this).attr('src', STATIC + "/image/explode.gif");
+                $(this).attr('src', APP + "/Static/image/explode.gif");
                 break;
         }
     })

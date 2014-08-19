@@ -43,7 +43,7 @@ class ConfigController extends AuthController
     public function edit()
     {
         if (IS_POST) {
-            if ($this->db->saveConfig($_POST)) {
+            if ($this->db->saveConfig()) {
                 $this->success("修改成功");
             } else {
                 $this->error($this->db->error);

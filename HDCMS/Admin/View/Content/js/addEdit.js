@@ -201,7 +201,7 @@ $(function() {
 //------------------------上传图片处理（自定义表单）-------------------------
 //移除缩略图
 function remove_thumb(obj, type, id) {
-	$(obj).siblings("img").attr("src", STATIC + "/image/upload_pic.png");
+	$(obj).siblings("img").attr("src", APP + "/Static/image/upload_pic.png");
 	$(obj).siblings("input").val('');
 }
 

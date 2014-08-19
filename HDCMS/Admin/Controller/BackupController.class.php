@@ -27,7 +27,7 @@ class BackupController extends AuthController
         $result = Backup::backup(
             array(
                 'size' => Q("size", 2000000, "intval"),
-                'dir' => 'data/backup/' . date("Ymdhis"),
+                'dir' => APP_PATH.'backup/' . date("Ymdhis"),
                 'table' => Q('table'),
                 'structure' => Q('structure', 0)
             )
@@ -49,7 +49,7 @@ class BackupController extends AuthController
     //还原数据
     public function recovery()
     {
-        $dir = "data/backup/" . Q("dir");
+        $dir = APP_PATH."backup/" . Q("dir");
         $result = Backup::recovery(array('backup_dir' => $dir));
         if ($result['state'] == 'success') {
             $this->success($result['message'], U('index'));

@@ -311,7 +311,7 @@ class ContentFormModel extends Model
     //缩略图
     private function thumb($field, $value)
     {
-        $src = empty($value) ? __STATIC__ . '/image/upload_pic.png' : __ROOT__ . '/' . $value;
+        $src = empty($value) ? __APP__ . '/Static/image/upload_pic.png' : __ROOT__ . '/' . $value;
         $fieldName = $field['field_name'];
         return '  <img id="' . $fieldName . '" src="' . $src . '" style="cursor: pointer;width:145px;height:123px;margin-bottom:5px;" onclick="file_upload({id:\'' . $fieldName . '\',type:\'thumb\',num:1,name:\'' . $fieldName . '\'})">
                         <input type="hidden" name="' . $fieldName . '" value="' . $value . '"/>

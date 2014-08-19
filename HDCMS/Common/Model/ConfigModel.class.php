@@ -30,8 +30,9 @@ class ConfigModel extends Model
     }
 
     //修改配置文件
-    public function saveConfig($configData)
+    public function saveConfig()
     {
+        $configData=$_POST;
         if (!is_array($configData)) {
             $this->error = '数据不能为空';
             return false;
@@ -79,6 +80,6 @@ class ConfigModel extends Model
         }
         //写入配置文件
         $content = "<?php if (!defined('HDPHP_PATH')) exit; \nreturn " . var_export($data, true) . ";\n?>";
-        return file_put_contents("data/config/config.inc.php", $content);
+        return file_put_contents(APP_CONFIG_PATH."config.inc.php", $content);
     }
 }
