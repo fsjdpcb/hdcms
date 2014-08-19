@@ -7,6 +7,9 @@
  */
 class AppStartHook{
 	public function run(&$options) {
+        if(isset($_GET['admin'])){
+            header("location:index.php?m=admin");exit;
+        }
         $data = S('hooks');
         if(!$data){
             $hooks = M('Hooks')->getField('name,addons',true);
@@ -27,12 +30,12 @@ class AppStartHook{
             Hook::import($data,false);
         }
         //--------------安装检测--------------
-        if (!file_exists('install/lock.php')) {
-            echo "<script>
-                top.location.href='install/';
-            </script>";
-            exit ;
-        }
+//        if (!file_exists('install/lock.php')) {
+//            echo "<script>
+//                top.location.href='install/';
+//            </script>";
+//            exit ;
+//        }
 	}
 
 }
