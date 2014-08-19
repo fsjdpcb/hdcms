@@ -1,11 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>插件列表</title>
-    <hdjs/>
-    <css file="__PUBLIC__/common.css"/>
-</head>
+<include file="__PUBLIC__/header.php"/>
 <body>
 <div class="wrap">
     <form action="" class="hd-form">
@@ -42,15 +35,19 @@
                     <td>{$d.version}</td>
                     <td>
                         <if value="$d.install">
-                            <a href="{|U:'config',array('addon'=>$d['name'])}">设置</a>
+                            <if value="$d.config">
+                                <a href="{|U:'config',array('id'=>$d['id'])}">设置</a>
+                            </if>
                             <if value="$d.status">
                                 <a href="{|U:'disabled',array('addon'=>$d['name'])}">禁用</a>
                             <else>
                                 <a href="{|U:'enabled',array('addon'=>$d['name'])}">启用</a>
                             </if>
-                            <a href="{|U:'uninstall',array('addon'=>$d['name'])}">卸载</a>
+                            <a href="javascript:hd_confirm('确证卸载吗？',function(){hd_ajax('{|U:'uninstall'}', {addon: '{$d.name}'})})">
+                            卸载</a>
                         <else>
-                            <a href="{|U:'install',array('addon'=>$d['name'])}">安装</a>
+                            <a href="javascript:hd_ajax('{|U:'install'}', {addon: '{$d.name}'})">
+                            安装</a>
                         </if>
                     </td>
                 </tr>

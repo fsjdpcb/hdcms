@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <title>发表文章</title>
-    <hdjs/>
-    <js file="__CONTROLLER_TPL__/js/addEdit.js"/>
-    <css file="__CONTROLLER_TPL__/css/css.css"/>
-    <css file="__PUBLIC__/common.css"/>
-</head>
+<include file="__PUBLIC__/header.php"/>
 <body>
 <form method="post" onsubmit="return false;" id="add" class="hd-form">
     <input type="hidden" name="mid" value="{$hd.get.mid}"/>
@@ -42,8 +33,7 @@
             <table class="table1">
                 <?php foreach ($form['base'] as $field): ?>
                     <tr>
-                        <th class="w80">
-                            {$field['title']}
+                        <th class="w80">{$field['title']}</th>
                             <td>
                                 {$field['form']}
                             </td>
@@ -61,5 +51,7 @@
 <script type="text/javascript">
     $('form').validate({$formValidate});
 </script>
+<js file="__CONTROLLER_VIEW__/js/addEdit.js"/>
+<css file="__CONTROLLER_VIEW__/css/css.css"/>
 </body>
 </html>

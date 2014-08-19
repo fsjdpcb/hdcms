@@ -1,13 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>修改导航</title>
-    <hdjs/>
-    <js file="__CONTROLLER_TPL__/js/js.js"/>
-    <css file="__CONTROLLER_TPL__/css/css.css"/>
-    <css file="__PUBLIC__/common.css"/>
-</head>
+<include file="__PUBLIC__/header.php"/>
 <body>
 <form method="post" class="hd-form" onsubmit="return hd_submit(this,'{|U:index}')">
     <input type="hidden" name="nid" value="{$field.nid}"/>
@@ -66,5 +57,27 @@
         <input type="submit" class="hd-success" value="提交"/>
     </div>
 </form>
+<script>
+    //表单验证
+    $("form").validate({
+        //验证规则
+        title: {
+            rule: {
+                required: true
+            },
+            error: {
+                required: "不能为空"
+            }
+        },
+        url: {
+            rule: {
+                required: true
+            },
+            error: {
+                required: '不能为空'
+            }
+        }
+    })
+</script>
 </body>
 </html>

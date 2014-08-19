@@ -14,14 +14,15 @@ class ContentInputModel
     private $noDealField = array('aid', 'cid', 'mid', 'favorites', 'comment_num', 'read_credits', 'new_window');
 
     /**
+     *
      * 构造函数
      * @param int $mid 模型mid
      */
     public function __construct($mid)
     {
         $this->mid = $mid;
-        $this->field = F($this->mid, false, CACHE_FIELD_PATH);
-        $this->category = F('category', false, CACHE_DATA_PATH);
+        $this->field = S('field' . $this->mid);
+        $this->category = S('category');
     }
 
     /**
@@ -38,7 +39,7 @@ class ContentInputModel
         //修改时间
         $data['updatetime'] = time();
         //前台会员设置文章状态
-        if (!IS_ADMIN) {
+        if (empty($_SESSION['admin'])) {
             $data['content_status'] = $this->category[$data['cid']]['member_send_state'];
         }
         //文章模型
@@ -200,7 +201,7 @@ class ContentInputModel
         if (empty($value)) {
             $value = array();
         }
-        $flagCache = F($this->mid, false, CACHE_FLAG_PATH);
+        $flagCache = S('flag' . $this->mid);
         $data = array();
         foreach ($value as $flag) {
             if (!in_array($flag, $flagCache)) {

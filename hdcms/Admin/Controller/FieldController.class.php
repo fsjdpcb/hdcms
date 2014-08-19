@@ -26,7 +26,7 @@ class FieldController extends AuthController
             $this->error("模型不存在！");
         }
         $this->model = S("model");
-        $this->field = S($this->mid);
+        $this->field = S('field' . $this->mid);
         $this->db = K('Field');
     }
 
@@ -77,12 +77,12 @@ class FieldController extends AuthController
         if (IS_POST) {
             if ($this->db->editField()) {
                 $this->success('修改成功');
-            }else{
+            } else {
                 $this->error($this->db->error);
             }
         } else {
             $fid = Q('fid', 0, 'intval');
-            $field_name = M('field')->where(array('fid' => $fid))->getField('field_name');
+            $field_name = M('field')->where("fid=$fid")->getField('field_name');
             $field = $this->field[$field_name];
             $this->assign('field', $field);
             $this->assign('model_name', $this->model[$this->mid]['model_name']);
@@ -111,7 +111,7 @@ class FieldController extends AuthController
         $field_type = Q("post.field_type");
         $this->assign('field_type', $field_type);
         ob_start();
-        require CONTROLLER_TPL_PATH . "field/{$field_type}/form_{$tpl_type}.inc.php";
+        require CONTROLLER_VIEW_PATH . "field/{$field_type}/form_{$tpl_type}.inc.php";
         echo ob_get_clean();
         exit;
     }

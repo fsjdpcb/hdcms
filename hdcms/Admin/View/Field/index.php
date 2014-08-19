@@ -1,12 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>模型字段管理</title>
-    <hdjs/>
-    <js file="__CONTROLLER_TPL__/js/js.js"/>
-    <css file="__PUBLIC__/common.css"/>
-</head>
+<include file="__PUBLIC__/header.php"/>
 <body>
 <div class="wrap">
     <div class="menu_list">
@@ -30,7 +22,7 @@
             <td class="w80">必填</td>
             <td class="w80">搜索</td>
             <td class="w80">投稿</td>
-            <td class="w120">操作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td class="w120">操作</td>
         </tr>
         </thead>
         <tbody>

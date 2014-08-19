@@ -1,12 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>修改密码</title>
-    <hdjs/>
-    <js file="__CONTROLLER_TPL__/js/editPassword.js"/>
-    <css file="__PUBLIC__/common.css"/>
-</head>
+<include file="__PUBLIC__/header.php"/>
 <body>
 <div class="wrap">
     <div class="title-header">修改密码</div>
@@ -42,5 +34,40 @@
         </div>
     </form>
 </div>
+<script>
+    $("form").validate({
+        //验证规则
+        old_password: {
+            rule: {
+                required: true,
+                ajax: {url: CONTROLLER + "&a=checkPassword"}
+            },
+            error: {
+                required: "旧密码不能为空",
+                ajax: "旧密码输入错误"
+            }
+        },
+        password: {
+            rule: {
+                required: true,
+                regexp: /^\w{5,}$/
+            },
+            error: {
+                required: "密码不能为空",
+                regexp: "密码不能小于5位"
+            }
+        },
+        passwordc: {
+            rule: {
+                required: true,
+                confirm: "password"
+            },
+            error: {
+                required: "确认密码不能为空",
+                confirm: "两次密码不一致"
+            }
+        }
+    })
+</script>
 </body>
 </html>

@@ -61,7 +61,7 @@ class RoleController extends AuthController
         //角色ID（编辑角色时验证）
         $rid = Q('rid', NULL, 'intval');
         if ($rid) {
-            $model->where("rid <>$rid");
+            $model->where(array('rid'=>array('NEQ',$rid)));
         }
         //编辑角色时验证
         $stat = $model->where("rname ='$rname'")->find() ? 0 : 1;

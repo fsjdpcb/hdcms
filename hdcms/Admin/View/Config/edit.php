@@ -1,11 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>网站配置</title>
-    <hdjs/>
-    <css file="__PUBLIC__/common.css"/>
-</head>
+<include file="__PUBLIC__/header.php"/>
 <body>
 <form method="post" class="hd-form" onsubmit="return hd_submit(this,'{|U:'edit'}')">
     <div class="wrap">

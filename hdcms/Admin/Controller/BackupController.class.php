@@ -32,7 +32,7 @@ class BackupController extends AuthController
                 'structure' => Q('structure', 0)
             )
         );
-        if ($result['state'] == 'success') {
+        if ($result['status'] == 'success') {
             $this->success($result['message'], U('index'));
         } else {
             $this->success($result['message'], $result['url'], 0.2);

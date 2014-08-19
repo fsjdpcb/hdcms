@@ -7,39 +7,32 @@
  */
 class AppStartHook{
 	public function run(&$options) {
-		$this -> check_install();
-        //是否登录
-        defined("IS_LOGIN")		    or define("IS_LOGIN", isset($_SESSION['uid']));
-        //是否为管理员
-        defined("IS_ADMIN") 		or define("IS_ADMIN",IS_LOGIN && $_SESSION['admin'] == 1);
-        //超级管理员
-        defined("IS_SUPER_ADMIN") 	or define("IS_SUPER_ADMIN",IS_ADMIN && (strtolower(C("WEB_MASTER")) == strtolower($_SESSION['username']) || $_SESSION['rid']==1));
-        //会员状态
-        defined('USER_STATUS')      or define('USER_STATUS',IS_LOGIN && $_SESSION['user_status']==1);
-        //是否锁定
-        defined('IS_LOCK')			or define('IS_LOCK',IS_LOGIN && $_SESSION['lock_end_time']<time());
-        //数据缓存目录 栏目|模型|节点|角色
-        define('CACHE_DATA_PATH','data/cache/Data/');
-		//表字段缓存
-		define("CACHE_FIELD_PATH", 'data/cache/Field/');
-		//Flag模型属性缓存（推荐、置顶）
-		define("CACHE_FLAG_PATH", 'data/cache/Flag/');
-		//常用菜单缓存
-		define('CACHE_MENU_PATH', 'data/cache/Menu/');
-		//文章缓存
-		define("CACHE_CONTENT_PATH", 'data/cache/Content/');
-		//模板目录
-        defined("__TEMPLATE__") or define("__TEMPLATE__", __ROOT__ . "/template/" . C("WEB_STYLE"));
-	}
-
-	//验证安装
-	public function check_install() {
-		if (is_dir('install') && !file_exists('install/lock.php')) {
-			echo "<script>
+        $data = S('hooks');
+        if(!$data){
+            $hooks = M('Hooks')->getField('name,addons',true);
+            foreach ($hooks as $key => $value) {
+                if($value){
+                    $map['status']  =   1;
+                    $names          =   explode(',',$value);
+                    $map['name']    =   array('IN',$names);
+                    $data = M('Addons')->where($map)->getField('id,name');
+                    if($data){
+                        $addons = array_intersect($names, $data);
+                        Hook::add($key,$addons);
+                    }
+                }
+            }
+//            S('hooks',Hook::get());
+        }else{
+            Hook::import($data,false);
+        }
+        //--------------安装检测--------------
+        if (!file_exists('install/lock.php')) {
+            echo "<script>
                 top.location.href='install/';
             </script>";
-			exit ;
-		}
+            exit ;
+        }
 	}
 
 }

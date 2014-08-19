@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <title>属性管理</title>
-    <hdjs/>
-    <css file="__CONTROLLER_TPL__/css/css.css"/>
-    <css file="__PUBLIC__/common.css"/>
-</head>
+<include file="__PUBLIC__/header.php"/>
 <body>
 <div class="wrap">
 	<form id="search" class="hd-form" onsubmit="return false;">
@@ -64,5 +56,13 @@
         </div>
     </form>
 </div>
+<style type="text/css">
+    div.search {
+        border: 1px solid #FFBE7A;
+        background: none repeat scroll 0 0 #FFFCED;
+        line-height: 20px;
+        padding: 8px 10px;
+    }
+</style>
 </body>
 </html>

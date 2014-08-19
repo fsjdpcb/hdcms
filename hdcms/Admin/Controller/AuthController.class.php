@@ -27,9 +27,9 @@ class AuthController extends Controller
     protected function checkAdminAccess()
     {
         //没登录或普通用户
-        IS_ADMIN or go("Login/login");
+        Q('session.admin') or go("Login/login");
         //超级管理员不限制
-        if (IS_SUPER_ADMIN) return true;
+        if (Q('session.web_master')) return true;
         //普通管理员权限控制
         $nodeModel = M("node");
         $nodeModel->where = array("MODULE" => MODULE, "control" => CONTROLLER, "action" => ACTION, 'type' => 1);

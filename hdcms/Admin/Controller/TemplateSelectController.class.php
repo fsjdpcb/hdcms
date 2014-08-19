@@ -1,5 +1,4 @@
 <?php
-
 //模板选择（后台文章与栏目更改模板使用）
 class TemplateSelectController extends AuthController
 {

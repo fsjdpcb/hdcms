@@ -1,13 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>属性管理</title>
-    <hdjs/>
-    <css file="__CONTROLLER_TPL__/css/css.css"/>
-    <js file="__CONTROLLER_TPL__/js/add.js"/>
-    <css file="__PUBLIC__/common.css"/>
-</head>
+<include file="__PUBLIC__/header.php"/>
 <body>
 <div class="wrap">
     <div class="menu_list">
@@ -31,5 +22,26 @@
         </div>
     </form>
 </div>
+<script>
+    $("form").validate({
+        //验证规则
+        flagname: {
+            rule: {
+                required: true
+            },
+            error: {
+                required: "属性名不能为空"
+            }
+        },
+        title: {
+            rule: {
+                required: true
+            },
+            error: {
+                required: "属性别名不能为空"
+            }
+        }
+    })
+</script>
 </body>
 </html>

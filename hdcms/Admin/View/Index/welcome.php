@@ -4,7 +4,7 @@
 		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 		<title>HDCMS快速建站利器</title>
 		<hdjs/>
-		<css file="__CONTROLLER_TPL__/css/welcome.css"/>
+		<css file="__CONTROLLER_VIEW__/css/welcome.css"/>
 	</head>
 	<body>
 		<div class="wrap">

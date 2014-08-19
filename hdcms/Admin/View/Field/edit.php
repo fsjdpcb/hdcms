@@ -1,13 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <title>修改字段</title>
-    <meta charset="UTF-8">
-    <hdjs/>
-    <css file="__CONTROLLER_TPL__/css/addEdit.css"/>
-    <css file="__PUBLIC__/common.css"/>
-    <js file="__CONTROLLER_TPL__/js/js.js"/>
-</head>
+<include file="__PUBLIC__/header.php"/>
 <body>
 <form method="post" class="hd-form" onsubmit="return hd_submit(this,'{|U:index,array('mid'=>$_GET['mid'])}');">
     <div class="wrap">
@@ -40,7 +31,7 @@
 			</tr>
         </table>
         <div class="field_tpl">
-            <?php require CONTROLLER_TPL_PATH . 'field/' . $field['field_type'] . '/form_edit.inc.php'; ?>
+            <?php require CONTROLLER_VIEW_PATH . 'field/' . $field['field_type'] . '/form_edit.inc.php'; ?>
         </div>
         <table class="table1">
 			<tr>
@@ -56,7 +47,7 @@
 			<tr>
 			    <th> 表单验证 <span class="notice">系统将通过此正则校验表单提交的数据合法性，如果不想校验数据请留空</span></th>
                 <td>
-                        <input type="text" name="validate" class="w250 input_validation" value="{$field.validate}"/>
+                    <input type="text" name="validate" class="w250 input_validation" value="{$field.validate}"/>
 					<select id="field_check">
 						<option value="">常用正则</option>
 						<option value="/^[0-9.-]+$/">数字</option>
@@ -127,5 +118,61 @@
         <input type="submit" value="确定" class="hd-success"/>
     </div>
 </form>
+<style type="text/css">
+    table.table1 tr th {
+        text-align: right;
+    }
+
+    span.notice {
+        display: block;
+        color: #999;
+        font-weight: normal;
+    }
+</style>
+<script>
+    $("form").validate({
+        //验证规则
+        title: {
+            rule: {
+                required: true,
+                china: true
+            },
+            error: {
+                required: "字段标题不能为空",
+                china: "不能输入特殊字母"
+            }
+        },
+        field_name: {
+            rule: {
+                required: true,
+                regexp: /^[a-z]\w*$/i,
+                ajax: {url: CONTROLLER + "&a=fieldIsExists", field: ["mid"]}
+            },
+            error: {
+                required: "字段名不能为空",
+                regexp: "必须输入英文字母",
+                ajax: "字段已经存在"
+            }
+        },
+        //最小长度
+        minlength: {
+            rule: {
+                regexp: /^\d+$/
+            },
+            error: {
+                regexp: "请输入数字"
+            }
+        },
+        //最大长度
+        maxlength: {
+            rule: {
+                regexp: /^\d+$/
+            },
+            error: {
+                regexp: "请输入数字"
+            }
+        }
+    })
+</script>
 </body>
 </html>

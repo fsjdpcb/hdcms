@@ -4,7 +4,7 @@
  * 添加、删除文章时表单显示处理
  * @author hdxj <houdunwangxj@gmail.com>
  */
-class ContentFormModel extends CommonModel
+class ContentFormModel extends Model
 {
     //表
     public $table = "field";
@@ -26,7 +26,7 @@ class ContentFormModel extends CommonModel
         //字段所在表模型信息
         $this->model = S("model");
         //字段缓存
-        $this->field = S($this->mid);
+        $this->field = S('field'.$this->mid);
     }
 
     /**
@@ -311,7 +311,7 @@ class ContentFormModel extends CommonModel
     //缩略图
     private function thumb($field, $value)
     {
-        $src = empty($value) ? __ROOT__ . '/hdcms/Common/static/img/upload-pic.png' : __ROOT__ . '/' . $value;
+        $src = empty($value) ? __STATIC__ . '/image/upload_pic.png' : __ROOT__ . '/' . $value;
         $fieldName = $field['field_name'];
         return '  <img id="' . $fieldName . '" src="' . $src . '" style="cursor: pointer;width:145px;height:123px;margin-bottom:5px;" onclick="file_upload({id:\'' . $fieldName . '\',type:\'thumb\',num:1,name:\'' . $fieldName . '\'})">
                         <input type="hidden" name="' . $fieldName . '" value="' . $value . '"/>

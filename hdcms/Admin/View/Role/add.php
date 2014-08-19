@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <title>添加角色</title>
-    <hdjs/>
-    <js file="__CONTROLLER_TPL__/js/addEdit.js"/>
-    <css file="__PUBLIC__/common.css"/>
-</head>
+<include file="__PUBLIC__/header.php"/>
 <body>
 <div class="wrap">
     <div class="menu_list">
@@ -37,5 +29,21 @@
         </div>
     </form>
 </div>
+<script>
+    //表单验证
+    $("form").validate({
+        //验证规则
+        rname: {
+            rule: {
+                required: true,
+                ajax: {url: CONTROLLER + "&a=checkRole"}
+            },
+            error: {
+                required: '角色名称不能为空',
+                ajax: "角色已经存在"
+            }
+        }
+    })
+</script>
 </body>
 </html>

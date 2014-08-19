@@ -100,19 +100,19 @@ str;
         }
         \$db = M("category");
         if (\$type == 'top') {
-            \$where = ' pid=0 ';
+            \$where['pid']=array('EQ',0);
         }else if(\$cid) {
             switch (\$type) {
                 case 'current':
-                    \$where = " cid IN(".\$cid.')';
+                    \$where['cid'] =array('IN',\$cid);
                     break;
                 case "son":
-                    \$where = " pid IN(".\$cid.')';
+                    \$where['pid'] =array('IN',\$cid);
                     break;
                 case "self":
-                    \$_cid=explode(',',\$cid);
-                    \$pid = \$db->where(array('cid'=>\$_cid))->getField('pid');
-                    \$where = ' pid IN('.\$pid.')';
+                    \$map=array('IN',\$_cid);
+                    \$pid = \$db->getField('pid');
+                    \$where['pid'] =array('IN',\$pid);
                     break;
             }
         }
@@ -120,7 +120,7 @@ str;
         if(\$result){
             //当前栏目,用于改变样式
             \$_self_cid = Q('cid',0,'intval');
-			\$categoryCache =F('category',false,CACHE_DATA_PATH);
+			\$categoryCache =S('category');
             foreach (\$result as \$field):
                 //当前栏目样式
                 \$field['class']=\$_self_cid==\$field['cid']?"$class":'';
@@ -228,7 +228,7 @@ str;
                 }
                 //指定筛选属性flag='1,2,3'时,获取指定属性的文章
 		        if(\$flag){
-		            \$flagCache =F(\$mid,false,CACHE_FLAG_PATH);
+		            \$flagCache =S('flag'.\$mid);
 		            \$flag = explode(',',\$flag);
 		            foreach(\$flag as \$f){
 		                \$f=\$flagCache[\$f-1];
@@ -237,7 +237,7 @@ str;
 		        }
 		        //排除flag
 		        if(\$noflag){
-		            \$flagCache =F(\$mid,false,CACHE_FLAG_PATH);
+		            \$flagCache =S('flag'.\$mid);
 		            \$noflag = explode(',',\$noflag);
 		            foreach(\$noflag as \$f){
 		                \$f=\$flagCache[\$f-1];
@@ -348,7 +348,7 @@ str;
                 }
                 //指定筛选属性flag='1,2,3'时,获取指定属性的文章
 		        if(\$flag){
-		            \$flagCache =F(\$mid,false,CACHE_FLAG_PATH);
+		            \$flagCache =S('flag'.\$mid);
 		            \$flag = explode(',',\$flag);
 		            foreach(\$flag as \$f){
 		                \$f=\$flagCache[\$f-1];
@@ -357,7 +357,7 @@ str;
 		        }
 		        //排除flag
 		        if(\$noflag){
-		            \$flagCache =F(\$mid,false,CACHE_FLAG_PATH);
+		            \$flagCache =S('flag'.\$mid);
 		            \$noflag = explode(',',\$noflag);
 		            foreach(\$noflag as \$f){
 		                \$f=\$flagCache[\$f-1];
@@ -373,7 +373,7 @@ str;
                 //总条数
                 \$count = \$db->relation(\$join)->order("arc_sort ASC")->where(\$where)->count(\$db->table.'.aid');
                 //栏目缓存
-                \$categoryCache=F('category',false,CACHE_DATA_PATH);
+                \$categoryCache=S('category');
                 //分页设置
                 if(\$cid){
                     \$category=\$categoryCache[\$cid];
@@ -476,7 +476,7 @@ str;
         <?php
         \$sep = "$sep";
         if(!empty(\$_REQUEST['cid'])){
-            \$cat = F("category",false,CACHE_DATA_PATH);
+            \$cat = S("category");
             \$cat= array_reverse(Data::parentChannel(\$cat,\$_REQUEST['cid']));
             \$str = "<a href='__ROOT__'>首页</a>{$sep}";
             foreach(\$cat as \$c){

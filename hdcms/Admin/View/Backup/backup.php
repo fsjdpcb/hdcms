@@ -1,12 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>备份数据库</title>
-    <hdjs/>
-    <js file="__CONTROLLER_TPL__/js/backup.js"/>
-    <css file="__PUBLIC__/common.css"/>
-</head>
+<include file="__PUBLIC__/header.php"/>
 <body>
 <div class="wrap">
     <div class="menu_list">
@@ -95,5 +87,41 @@
     <input type="button" class="hd-cancel" onclick="optimize()" value="批量优化"/>
     <input type="button" class="hd-cancel" onclick="repair()" value="批量修复"/>
 </div>
+<script>
+    //全选与反选  checkbox
+    $(".s_all_ck").click(function () {
+        $("[name='table[]']").attr("checked", !!$(this).attr("checked"));
+    })
+    //备份数据库
+    function backup() {
+        if ($("[name*='table']:checked").length == 0) {
+            alert("你还没有选择表");
+            return false;
+        }
+        return true;
+    }
+
+    //检查有没有选择备份目录
+    function check_select_table() {
+        if ($("[name*='table']:checked").length == 0) {
+            alert("你还没有选择表");
+            return false;
+        }
+        return true;
+    }
+
+    //优化表
+    function optimize() {
+        if (check_select_table()) {
+            hd_ajax(CONTROLLER + '&a=optimize', $("[name*='table']:checked").serialize());
+        }
+    }
+    //修复表
+    function repair() {
+        if (check_select_table()) {
+            hd_ajax(CONTROLLER + '&a=repair', $("[name*='table']:checked").serialize());
+        }
+    }
+</script>
 </body>
 </html>

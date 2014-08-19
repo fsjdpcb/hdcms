@@ -38,7 +38,7 @@ class ContentController extends AuthController
     //验证操作权限
     public function checkAccess()
     {
-        if (!IS_SUPER_ADMIN && in_array(ACTION, $this->authAction)) {
+        if (!$_SESSION['web_master'] && in_array(ACTION, $this->authAction)) {
             $access = M('category_access')->where(array('admin' => 1, 'cid' => $this->cid))->getField('rid,`' . ACTION . '`');
             //栏目没有设置管理员权限时，验证通过
             return empty($access) || $access[$_SESSION['rid']][ACTION];
@@ -90,19 +90,19 @@ class ContentController extends AuthController
         //文章状态
         $content_status = Q('content_status', 0, 'intval');
         $where = array();
-        $where[] = "content_status=$content_status";
+        $where['content_status'] = array('EQ',$content_status);
         //按时间搜索
         $search_begin_time = Q('search_begin_time', 0, 'strtotime');
         if ($search_begin_time) {
-            $where[] = "addtime>=$search_begin_time";
+            $where['addtime'] =array('EGT',$search_begin_time);
         }
         $search_end_time = Q('search_end_time', null, 'strtotime');
         if ($search_end_time) {
-            $where[] = "addtime<=$search_end_time";
+            $where['addtime'] =array('ELT',$search_end_time);
         }
         //按flag搜索
         if ($flag = Q('flag')) {
-            $where[] = "find_in_set('$flag',flag)";
+            $where[] = "find_in_set('$flag',flag) AND ";
         }
         //按字段类型
         if (!empty($_POST['search_type']) && !empty($_POST['search_keyword'])) {
@@ -110,15 +110,15 @@ class ContentController extends AuthController
             switch (strtolower($_POST['search_type'])) {
                 case 1 :
                     //标题
-                    $where[] = "title LIKE '%$search_keyword%'";
+                    $where['title'] = array('like',"'%$search_keyword%'");
                     break;
                 case 2 :
                     //简介
-                    $where[] = "description LIKE '%$search_keyword%'";
+                    $where['description'] = array('like',"'%$search_keyword%'");
                     break;
                 case 3 :
                     //用户名
-                    $where[] = "username ='$search_keyword'";
+                    $where['username']=array('EQ',$search_keyword);
                     break;
                 case 4 :
                     //用户uid
@@ -128,8 +128,8 @@ class ContentController extends AuthController
         }
         $where[] = "category.cid=" . $this->cid;
         $page = new Page($ContentModel->where($where)->count(), 15);
-        $data = $ContentModel->where($where)->limit($page->limit())->order(array("arc_sort" => "ASC", 'addtime' => "DESC"))->all();
-        $this->assign('flag', F($this->mid, false, CACHE_FLAG_PATH));
+        $data = $ContentModel->where($where)->limit($page->limit())->order('arc_sort ASC,addtime DESC')->all();
+        $this->assign('flag', S('flag'.$this->mid));
         $this->assign('data', $data);
         $this->assign('page', $page->show());
         $this->display();

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>HDCMS内容管理系统</title>
     <meta http-equiv="Cache-Control" content="no-cache"/>
-    <link type="text/css" rel="stylesheet" href="http://localhost/hdcms/template/default/css/index.css"/>
+    <link type="text/css" rel="stylesheet" href="__TEMPLATE__/css/index.css"/>
     <script type='text/javascript' src='http://localhost/hdphp/hdphp/Extend/Org/Jquery/jquery-1.8.2.min.js'></script>
 
     <bootstarp/>
@@ -13,7 +13,7 @@
 <div class="top">
     <div class="top_warp">
         <div class="logo">
-            <img src="http://localhost/hdcms/template/default/image/index_logo.png" alt=""/>
+            <img src="__TEMPLATE__/image/index_logo.png" alt=""/>
         </div>
         <div class="top_menu">
                                     <a href="http://localhost/hdcms/h/case">案例展示</a>

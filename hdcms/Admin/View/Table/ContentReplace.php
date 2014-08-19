@@ -1,80 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <title>数据库内容替换</title>
-    <hdjs/>
-    <css file="__PUBLIC__/common.css"/>
-    <style type="text/css">
-        div#tablefieldlist {
-            margin: 10px 0px;
-            padding: 10px;
-        }
-
-        div#tablefieldlist a {
-            display: inline-block;
-            margin-right: 5px;
-            border: solid 1px #dcdcdc;
-            padding: 3px 6px;
-            margin-bottom: 5px;
-        }
-
-        div#tablefieldlist a.select {
-            background: #006DCC;
-            color: #fff;
-        }
-    </style>
-    <script type="text/javascript" charset="utf-8">
-        $(function () {
-            $('form').validate({
-                table: {
-                    rule: {required: true},
-                    error: {required: '请选择表'}
-                },
-                field: {
-                    rule: {required: true},
-                    error: {required: '字段不能为空'}
-                },
-                searchcontent: {
-                    rule: {required: true},
-                    error: {required: '不能为空'}
-                },
-                replacecontent: {
-                    rule: {required: true},
-                    error: {required: '不能为空'}
-                },
-                replacewhere: {
-                    rule: {required: false},
-                    message: 'SQL语句中WHERE关键字后内容'
-                },
-                code: {
-                    rule: {required: true, ajax: {url: '{|U:'checkCode'}'}},
-                    error: {required: '不能为空', ajax: '验证码错误'}
-                }
-            })
-        });
-    </script>
-    <script type="text/javascript" charset="utf-8">
-        $(function () {
-            //选择表时获取字段
-            $("#tables").change(function () {
-                var tablesJson = {$tablesJson};
-                var fieldHtml = '';
-                var table = $(this).val();
-                for (var field in tablesJson[table]['field']) {
-                    fieldHtml += '<a href="javascript:;" onclick="selectField(\'' + field + '\')" id=\'' + field + '\'>' + field + '</a>';
-                }
-                $("#tablefieldlist").css('background', '#ffffff').html(fieldHtml);
-            })
-        })
-        function selectField(field) {
-            $("#tablefieldlist a").removeClass('select');
-            $("#" + field).addClass('select');
-            $("input[name=field]").val(field);
-        }
-    </script>
-
-</head>
+<include file="__PUBLIC__/header.php"/>
 <body>
 <form action="{|U:'ContentReplace'}" class="hd-form" method="post" onsubmit="return hd_submit(this)">
     <div class="wrap">
@@ -127,5 +51,71 @@
         <input type="submit" class="hd-success" value="确定"/>
     </div>
 </form>
+<style type="text/css">
+    div#tablefieldlist {
+        margin: 10px 0px;
+        padding: 10px;
+    }
+
+    div#tablefieldlist a {
+        display: inline-block;
+        margin-right: 5px;
+        border: solid 1px #dcdcdc;
+        padding: 3px 6px;
+        margin-bottom: 5px;
+    }
+
+    div#tablefieldlist a.select {
+        background: #006DCC;
+        color: #fff;
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
+        $('form').validate({
+            table: {
+                rule: {required: true},
+                error: {required: '请选择表'}
+            },
+            field: {
+                rule: {required: true},
+                error: {required: '字段不能为空'}
+            },
+            searchcontent: {
+                rule: {required: true},
+                error: {required: '不能为空'}
+            },
+            replacecontent: {
+                rule: {required: true},
+                error: {required: '不能为空'}
+            },
+            replacewhere: {
+                rule: {required: false},
+                message: 'SQL语句中WHERE关键字后内容'
+            },
+            code: {
+                rule: {required: true, ajax: {url: '{|U:'checkCode'}'}},
+                error: {required: '不能为空', ajax: '验证码错误'}
+            }
+        })
+    });
+    $(function () {
+        //选择表时获取字段
+        $("#tables").change(function () {
+            var tablesJson = {$tablesJson};
+            var fieldHtml = '';
+            var table = $(this).val();
+            for (var field in tablesJson[table]['field']) {
+                fieldHtml += '<a href="javascript:;" onclick="selectField(\'' + field + '\')" id=\'' + field + '\'>' + field + '</a>';
+            }
+            $("#tablefieldlist").css('background', '#ffffff').html(fieldHtml);
+        })
+    })
+    function selectField(field) {
+        $("#tablefieldlist a").removeClass('select');
+        $("#" + field).addClass('select');
+        $("input[name=field]").val(field);
+    }
+</script>
 </body>
 </html>

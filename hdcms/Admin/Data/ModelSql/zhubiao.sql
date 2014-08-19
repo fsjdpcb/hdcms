@@ -20,8 +20,6 @@ CREATE TABLE `@pre@@table@`(
   `content_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '文章状态  1 已审核 0 未审核',
   `keywords` varchar(100) NOT NULL DEFAULT '' COMMENT '关键字',
   `description` varchar(255) DEFAULT NULL COMMENT '描述',
-  `favorites` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '收藏数',
-  `comment_num` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '评论数',
   PRIMARY KEY (`aid`),
   KEY `uid` (`uid`),
   KEY `cid` (`cid`),

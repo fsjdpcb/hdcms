@@ -4,10 +4,10 @@
 		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 		<title>HDCMS - 后台管理中心</title>
 		<hdjs/>
-		<js file="__CONTROLLER_TPL__/js/menu.js"/>
-		<js file="__CONTROLLER_TPL__/js/quick_menu.js"/>
-		<css file="__CONTROLLER_TPL__/css/css.css"/>
-		<css file="__CONTROLLER_TPL__/css/quick_menu.css"/>
+		<js file="__CONTROLLER_VIEW__/js/menu.js"/>
+		<js file="__CONTROLLER_VIEW__/js/quick_menu.js"/>
+		<css file="__CONTROLLER_VIEW__/css/css.css"/>
+		<css file="__CONTROLLER_VIEW__/css/quick_menu.css"/>
 
 	</head>
 	<body>

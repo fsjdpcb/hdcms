@@ -19,7 +19,7 @@ class FlagController extends AuthController
         $this->model = S('model' );
         $this->mid = Q('mid', 0, 'intval');
         if (!$this->mid || !isset($this->model[$this->mid])) {
-            $this->error('模型不存在');
+            $this->error('模型不存在','index');
         }
         $this->db = new FlagModel();
     }

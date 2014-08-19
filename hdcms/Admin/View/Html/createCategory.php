@@ -8,7 +8,7 @@
         //栏目缓存数据
         var category = {$category};
     </script>
-    <js file="__CONTROLLER_TPL__/js/js.js"/>
+    <js file="__CONTROLLER_VIEW__/js/js.js"/>
     <css file="__PUBLIC__/common.css"/>
 </head>
 <body>

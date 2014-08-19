@@ -11,7 +11,7 @@ class ContentUploadController extends Controller
 
     public function __init()
     {
-        if (!IS_LOGIN) {
+        if (empty($_SESSION['uid'])) {
             go("Index/Index/index");
         }
         $this->db = M('upload');

@@ -1,13 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>风格列表</title>
-    <hdjs/>
-    <js file="__CONTROLLER_TPL__/js/styleList.js"/>
-    <css file="__CONTROLLER_TPL__/css/styleList.css"/>
-
-</head>
+<include file="__PUBLIC__/header.php"/>
 <body>
 <div class="wrap" style="bottom: 0px;">
     <div class="title-header">友情提示</div>
@@ -41,5 +32,91 @@
         </ul>
     </div>
 </div>
+<style type="text/css">
+    div.wrap{margin-bottom: 0px !important;}
+    a:hover {
+        text-decoration: underline;
+    }
+
+    div.tpl-list ul li {
+        float: left;
+        margin: 10px;
+        height: auto;
+        overflow: hidden;
+        background: #efefef;
+        border: solid 5px #DDDDDD;
+        padding-bottom: 2px;
+        position: relative;
+    }
+
+    div.tpl-list ul li.current {
+        border: solid 5px #09AEEF;
+        background: #09AEEF;
+        color: #ffffff;
+    }
+
+    div.tpl-list ul li.current a, div.tpl-list ul li.current h2 {
+        color: #ffffff;
+    }
+
+    div.tpl-list ul li.current img {
+        opacity: 1;
+    }
+
+    div.tpl-list ul li img {
+        width: 230px;
+        height: 260px;
+        border-bottom: solid 2px #DCDCDC;
+        margin-bottom: 6px;
+        opacity: 0.5;
+    }
+
+    div.tpl-list ul li h4 {
+        font-size: 18px;
+        padding-left: 10px;
+        color: #333333;
+        margin-bottom: 5px;
+    }
+
+    div.tpl-list ul li h4 strong {
+        font-size: 12px;
+        color: #03565E;
+        font-weight: normal;
+    }
+
+    div.tpl-list ul li h2 {
+        font-size: 18px;
+        font-weight: bold;
+        padding-left: 10px;
+        margin-bottom: 5px;
+        color: #333;
+    }
+
+    div.tpl-list ul li p {
+        font-size: 12px;
+        padding-left: 10px;
+        margin: 0px;
+    }
+
+    div.tpl-list ul li div.link {
+        padding-left: 10px;
+        margin-top: 6px;
+        padding-top: 5px;
+    }
+
+    div.tpl-list ul li div.link a, div.tpl-list ul li div.link strong {
+        font-size: 16px;
+        padding: 2px 8px 0px 0px;
+        line-height: 25px;
+    }
+</style>
+<script>
+    //改变li样式
+    $(".tpl-list li").mouseover(function () {
+        $(this).addClass("active")
+    }).mouseout(function () {
+        $(this).removeClass("active")
+    })
+</script>
 </body>
 </html>

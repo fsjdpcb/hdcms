@@ -4,8 +4,8 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>编辑文章</title>
     <hdjs/>
-    <js file="__CONTROLLER_TPL__/js/addEdit.js"/>
-    <css file="__CONTROLLER_TPL__/css/css.css"/>
+    <js file="__CONTROLLER_VIEW__/js/addEdit.js"/>
+    <css file="__CONTROLLER_VIEW__/css/css.css"/>
     <css file="__PUBLIC__/common.css"/>
 </head>
 <body>
@@ -44,8 +44,7 @@
             <table class="table1">
             	<?php foreach($form['base'] as $field):?>
                 <tr>
-                    <th class="w80">
-                    	{$field['title']}
+                    <th class="w80">{$field['title']}</th>
                     <td>
                        {$field['form']}
                     </td>

@@ -1,12 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>修改会员组</title>
-    <hdjs/>
-    <js file="__CONTROLLER_TPL__/js/addEdit.js"/>
-    <css file="__PUBLIC__/common.css"/>
-</head>
+<include file="__PUBLIC__/header.php"/>
 <body>
 <div class="wrap">
     <div class="menu_list">
@@ -65,5 +57,29 @@
         </div>
     </form>
 </div>
+<script>
+    $("form").validate({
+        'rname': {
+            rule: {
+                required: true,
+                ajax: {url: CONTROLLER + '&a=checkRole', field: ['rid']}
+            },
+            error: {
+                required: '组名不能为空',
+                ajax: '会员组已经存在'
+            }
+        },
+        'creditslower': {
+            rule: {
+                required: true,
+                regexp: /^\d+$/
+            },
+            error: {
+                required: '积分不能为空',
+                regexp: '必须为数字'
+            }
+        }
+    })
+</script>
 </body>
 </html>

@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta charset="UTF-8">
     <title>HDCMS后台登录</title>
     <hdjs/>
-    <css file="__CONTROLLER_TPL__/css/css.css"/>
+    <css file="__CONTROLLER_VIEW__/css/css.css"/>
     <script>
         $(function () {
             var error = '{$error}';

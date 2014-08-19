@@ -16,11 +16,11 @@ class HtmlController extends AuthController
         if (IS_POST) {
             //删除html目录
             Dir::del(C('HTML_PATH'));
-            F("RedirectInfo", array(array('url' => 'createIndex', 'title' => '准备生成首页'), array('url' => 'createCategory', 'title' => '准备生成栏目页...'), array('url' => 'createContent', 'title' => '准备生成内容页...'), array('url' => 'createAll', 'title' => '全部生成完毕...')));
+            S("RedirectInfo", array(array('url' => 'createIndex', 'title' => '准备生成首页'), array('url' => 'createCategory', 'title' => '准备生成栏目页...'), array('url' => 'createContent', 'title' => '准备生成内容页...'), array('url' => 'createAll', 'title' => '全部生成完毕...')));
             //生成首页
             $this->success('初始化完成...', 'createIndex');
         } else {
-            F("RedirectInfo", null);
+            S("RedirectInfo", null);
             $this->display();
         }
     }
@@ -28,19 +28,19 @@ class HtmlController extends AuthController
     //生成首页
     public function createIndex()
     {
-        $this->RedirectInfo = F('RedirectInfo');
+        $this->RedirectInfo = S('RedirectInfo');
         if (IS_POST || $this->RedirectInfo) {
             $html = new Html();
             $html->index();
             if ($this->RedirectInfo) {
                 $redirect = array_shift($this->RedirectInfo);
-                F('RedirectInfo', $this->RedirectInfo);
+                S('RedirectInfo', $this->RedirectInfo);
                 $this->success($redirect['title'], $redirect['url'], 0);
             } else {
                 $this->success('首页生成完毕', __ACTION__, 0);
             }
         } else {
-            F("RedirectInfo", null);
+            S("RedirectInfo", null);
             $this->display();
         }
     }
@@ -48,7 +48,7 @@ class HtmlController extends AuthController
     //创建栏目
     public function createCategory()
     {
-        $this->RedirectInfo = F('RedirectInfo');
+        $this->RedirectInfo = S('RedirectInfo');
         if (IS_POST || $this->RedirectInfo) {
             //没有选择栏目
             if (!isset($_POST['cid']) || count($_POST['cid']) == 1 && $_POST['cid'][0] == 0) {
@@ -64,7 +64,7 @@ class HtmlController extends AuthController
             if (empty($HtmlCategory)) {
                 if ($this->RedirectInfo) {
                     $redirect = array_shift($this->RedirectInfo);
-                    F('RedirectInfo', $this->RedirectInfo);
+                    S('RedirectInfo', $this->RedirectInfo);
                     $this->success($redirect['title'], $redirect['url'], 0);
                 } else {
                     $this->success('栏目生成完毕', __ACTION__, 0);
@@ -81,13 +81,13 @@ class HtmlController extends AuthController
                     $cat['step_row'] = $step_row;
                     $createCategory[$cat['cid']] = $cat;
                 }
-                F('createCategoryFile', $createCategory);
+                S('createCategoryFile', $createCategory);
                 $this->success('栏目静态初始化完毕...', U('BatchCategory'), 0);
             }
         } else {
-            F("RedirectInfo", null);
-            $this->assign('category', json_encode(F("category", false, CACHE_DATA_PATH)));
-            $this->assign('model', F("model", false, CACHE_DATA_PATH));
+            S("RedirectInfo", null);
+            $this->assign('category', json_encode(S("category")));
+            $this->assign('model', S("model"));
             $this->display();
         }
     }
@@ -95,13 +95,13 @@ class HtmlController extends AuthController
     //批量生成栏目
     public function BatchCategory()
     {
-        $this->RedirectInfo = F('RedirectInfo');
-        $createCategory = F('createCategoryFile');
+        $this->RedirectInfo = S('RedirectInfo');
+        $createCategory = S('createCategoryFile');
         if (empty($createCategory)) {
-            F('createCategoryFile', null);
+            S('createCategoryFile', null);
             if ($this->RedirectInfo) {
                 $redirect = array_shift($this->RedirectInfo);
-                F('RedirectInfo', $this->RedirectInfo);
+                S('RedirectInfo', $this->RedirectInfo);
                 $this->success($redirect['title'], $redirect['url'], 0);
             } else {
                 $this->success('所有栏目生成完毕', U('createCategory'), 0);
@@ -114,12 +114,12 @@ class HtmlController extends AuthController
                 $category['currentPage']++;
                 if ($category['currentPage'] > $category['pageTotal']) {
                     unset($createCategory[$category['cid']]);
-                    F('createCategoryFile', $createCategory);
+                    S('createCategoryFile', $createCategory);
                     $this->success("栏目[{$category['catname']}]生成完毕...", __ACTION__, 0);
                 }
             }
             $createCategory[$category['cid']] = $category;
-            F('createCategoryFile', $createCategory);
+            S('createCategoryFile', $createCategory);
             $message = "生成栏目{$category['catname']}的下" . $category['step_row'] . "页,共有{$category['pageTotal']}页(<font color='red'>" . floor($category['currentPage'] / $category['pageTotal'] * 100) . "%</font>)";
             $this->success($message, __ACTION__, 0);
         }
@@ -128,13 +128,13 @@ class HtmlController extends AuthController
     //生成内容页
     public function createContent()
     {
-        $this->RedirectInfo = F('RedirectInfo');
+        $this->RedirectInfo = S('RedirectInfo');
         if (IS_POST || $this->RedirectInfo) {
             //没有选择栏目
             if (empty($_POST['cid']) || count($_POST['cid']) == 1 && $_POST['cid'][0] == 0) {
                 //生成所有栏目
                 if (empty($_POST['mid']) || $_POST['mid'] == 0) {
-                    $HtmlCategory = F('category', false, CACHE_DATA_PATH);;
+                    $HtmlCategory = S('category');;
                 } else {
                     $HtmlCategory = M('category')->where(array('mid' => $_POST['mid']))->all();
                 }
@@ -142,10 +142,10 @@ class HtmlController extends AuthController
                 $HtmlCategory = M('category')->where(array('cid' => $_POST['cid']))->all();
             }
             if (empty($HtmlCategory)) {
-                F('createContentFile', null);
+                S('createContentFile', null);
                 if ($this->RedirectInfo) {
                     $redirect = array_shift($this->RedirectInfo);
-                    F('RedirectInfo', $this->RedirectInfo);
+                    S('RedirectInfo', $this->RedirectInfo);
                     $this->success($redirect['title'], $redirect['url'], 0);
                 } else {
                     $this->success('所有文章生成完毕', U('create_content'), 0);
@@ -167,7 +167,7 @@ class HtmlController extends AuthController
                         $where[] = 'aid>=' . $_POST['start_id'] . " AND aid<=" . $_POST['end_id'];
                     }
                 }
-                $modelCache = F('model', false, CACHE_DATA_PATH);;
+                $modelCache = S('model');;
                 //最终生成的栏目
                 $createCategory = array();
                 foreach ($HtmlCategory as $cat) {
@@ -184,13 +184,13 @@ class HtmlController extends AuthController
                     }
                     $createCategory[$cat['cid']] = $cat;
                 }
-                F('createContentFile', $createCategory);
+                S('createContentFile', $createCategory);
                 $this->success('生成内容页初始化完毕...', U('BatchContent'), 0);
             }
         } else {
-            F("RedirectInfo", null);
-            $this->assign('category', json_encode(F('category', false, CACHE_DATA_PATH)));
-            $this->assign('model', F('model', false, CACHE_DATA_PATH));
+            S("RedirectInfo", null);
+            $this->assign('category', json_encode(S('category')));
+            $this->assign('model', S('model'));
             $this->display();
         }
     }
@@ -198,12 +198,12 @@ class HtmlController extends AuthController
     //指生成内容页
     public function BatchContent()
     {
-        $this->RedirectInfo = F('RedirectInfo');
-        $createCategory = F('createContentFile');
+        $this->RedirectInfo = S('RedirectInfo');
+        $createCategory = S('createContentFile');
         if (empty($createCategory)) {
             if ($this->RedirectInfo) {
                 $redirect = array_shift($this->RedirectInfo);
-                F('RedirectInfo', $this->RedirectInfo);
+                S('RedirectInfo', $this->RedirectInfo);
                 $this->success($redirect['title'], $redirect['url'], 0);
             } else {
                 $this->success('所有文章生成完毕...', U('createContent'), 0);
@@ -218,7 +218,7 @@ class HtmlController extends AuthController
             $contentData = $contentModel->where($options['where'])->limit($limit)->all();
             if (empty($contentData)) {
                 unset($createCategory[$id]);
-                F('createContentFile', $createCategory);
+                S('createContentFile', $createCategory);
                 $this->success("[{$category['catname']}]文章生成完毕...", __ACTION__, 0);
             }
             foreach ($contentData as $content) {
@@ -227,11 +227,11 @@ class HtmlController extends AuthController
             $options['currentNum'] = $options['currentNum'] + $options['step_row'] - 1;
             if ($options['currentNum'] >= $options['total_row']) {
                 unset($createCategory[$id]);
-                F('createContentFile', $createCategory);
+                S('createContentFile', $createCategory);
                 $this->success("[{$category['catname']}] 生成完毕...", __ACTION__, 0);
             } else {
                 $createCategory[$id]['options'] = $options;
-                F('createContentFile', $createCategory);
+                S('createContentFile', $createCategory);
                 $createCategory[$id]['options'] = $options;
                 $message = "[{$category['catname']}]
                                 已经更新{$options['currentNum']}条

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
 		<title>生成首页</title>
 		<hdjs/>
+        <bootstrap/>
         <css file="__PUBLIC__/common.css"/>
 	</head>
 	<body>
@@ -15,11 +16,16 @@
 				<div class="help">
 					建议创建计划任务，自动更新首页
 				</div>
-				<div class="title-header">
-					生成网站首页html文件
-				</div>
-				<br/>
-				<input type="submit" value="开始更新" class="hd-success"/>
+
+                <?php if(C('CREATE_INDEX_HTML')){?>
+                    <div class="title-header">
+                        生成网站首页html文件
+                    </div>
+                    <br/>
+				    <input type="submit" value="开始更新" class="hd-success"/>
+                <?php }else{?>
+                    <div class="alert alert-danger" role="alert">首页生成已经关闭，请修改配置项开启</div>
+                <?php }?>
 			</div>
 		</form>
 	</body>

@@ -9,7 +9,7 @@ class LoginController extends Controller
 {
     public function __init()
     { //已经登录用户不允许执行
-        if (IS_ADMIN && ACTION != 'out') {
+        if (Q('session.uid') && ACTION != 'out') {
             go("Index/index");
         }
     }
@@ -30,48 +30,42 @@ class LoginController extends Controller
     {
         if (IS_POST) {
             $Model = K("User");
-            $code = Q('post.code', null, 'strtoupper');
-            $username = Q('username');
-            $password = Q('post.password', null, '');
-            if (empty($code) || $code != $_SESSION['code']) {
+            if (Q('post.code', '', 'strtoupper') != $_SESSION['code']) {
                 $this->error = '验证码错误';
                 $this->display();
                 exit;
             }
-            if (empty($username)) {
+            if (empty($_POST['username'])) {
                 $this->error = '帐号不能为空';
                 $this->display();
                 exit;
             }
-            if (empty($password)) {
+            if (empty($_POST['password'])) {
                 $this->error = '密码不能为空';
                 $this->display();
                 exit;
             }
-            $user = $Model->where(array('username' => $username))->find();
+            $user = $Model->where(array('username' => $_POST['username']))->find();
             if (!$user) {
                 $this->error = "帐号不存在";
                 $this->display();
                 exit;
             }
-            if ($user['password'] !== md5($password . $user['code'])) {
+            if ($user['password'] !== md5($_POST['password'] . $user['code'])) {
                 $this->error('密码输入错误');
                 $this->display();
             }
-            setcookie('login', 1, 0, '/');
             unset($user['password']);
             unset($user['code']);
-            //是否为超级管理员
             $_SESSION = array_merge($_SESSION, $user);
+            //是否为站长
+            $_SESSION['web_master'] = strtolower($_SESSION['username']) == strtolower(C('WEB_MASTER'));
+            //头像设置
             if (empty($user['icon'])) {
-                $_SESSION['icon'] = __ROOT__ . '/data/image/user/250.png';
+                $_SESSION['icon'] = __STATIC__ . '/image/user.png';
             } else {
                 $_SESSION['icon'] = __ROOT__ . '/' . $user['icon'];
             }
-            $_SESSION['icon250'] = $_SESSION['icon'];
-            $_SESSION['icon150'] = str_replace(250, 150, $_SESSION['icon250']);
-            $_SESSION['icon100'] = str_replace(250, 100, $_SESSION['icon250']);
-            $_SESSION['icon50'] = str_replace(250, 50, $_SESSION['icon250']);
             $Model->save(array('uid' => $user['uid'], 'logintime' => time(), 'lastip' => ip_get_client()));
             go("Index/index");
         } else {

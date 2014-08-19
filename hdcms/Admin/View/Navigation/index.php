@@ -1,13 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>导航管理</title>
-    <hdjs/>
-    <js file="__CONTROLLER_TPL__/js/js.js"/>
-    <css file="__CONTROLLER_TPL__/css/css.css"/>
-    <css file="__PUBLIC__/common.css"/>
-</head>
+<include file="__PUBLIC__/header.php"/>
 <body>
 <div class="wrap">
     <div class="menu_list">
@@ -53,5 +44,27 @@
 <div class="position-bottom">
     <input type="button" class="hd-success" value="更改排序" onclick="update_order();"/>
 </div>
+<script>
+    //更改列表排序
+    function update_order() {
+        var data = $("[name*='list_order']").serialize();
+        $.post(CONTROL + "&m=update_order", data, function (data) {
+            if (data.state == 1) {
+                $.dialog({
+                    "message":data.message,
+                    "type": "success",
+                    "close_handler": function () {
+                        location.href = URL;
+                    }
+                });
+            } else {
+                $.dialog({
+                    "message": "排序修改失败",
+                    "type": "error"
+                });
+            }
+        },'json')
+    }
+</script>
 </body>
 </html>

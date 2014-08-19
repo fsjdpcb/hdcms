@@ -1,12 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>修改会员资料</title>
-    <hdjs/>
-    <js file="__CONTROLLER_TPL__/js/edit.js"/>
-    <css file="__PUBLIC__/common.css"/>
-</head>
+<include file="__PUBLIC__/header.php"/>
 <body>
 <div class="wrap">
     <div class="menu_list">
@@ -91,5 +83,57 @@
         </div>
     </form>
 </div>
+<script>
+    $("form").validate({
+        username: {
+            rule: {
+                required: true,
+                ajax: {url: CONTROLLER + "&a=checkUsername", field: ['uid']}
+            },
+            error: {
+                required: "密码不能为空",
+                ajax: '帐号已经存在'
+            }
+        },
+        password: {
+            rule: {
+                regexp: /^\w{5,}$/
+            },
+            error: {
+                regexp: '密码不能小于5位'
+            }
+        },
+        'password_c': {
+            rule: {
+                confirm: 'password'
+            },
+            error: {
+                confirm: '两次密码不匹配'
+            }
+        },
+        credits: {
+            rule: {
+                required: true,
+                regexp: /^\d+$/
+            },
+            error: {
+                required: "积分不能为空",
+                regexp: "积分必须为数字"
+            }
+        },
+        email: {
+            rule: {
+                required: true,
+                email: true,
+                ajax: {url: CONTROLLER + "&a=checkEmail", field: ['uid']}
+            },
+            error: {
+                required: "邮箱不能为空",
+                email: '邮箱格式不正确',
+                ajax: '邮箱已经使用'
+            }
+        }
+    })
+</script>
 </body>
 </html>

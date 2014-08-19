@@ -1,22 +1,9 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <title>添加字段</title>
-    <meta charset="UTF-8">
-    <hdjs/>
-    <js file="__CONTROLLER_TPL__/js/js.js"/>
-    <css file="__CONTROLLER_TPL__/css/addEdit.css"/>
-    <css file="__PUBLIC__/common.css"/>
-    <script type="text/javascript">
-        var mid = '{$hd.get.mid}';
-        //获得字段模板类型
-        var tpl_type = "add";
-    </script>
-</head>
+<include file="__PUBLIC__/header.php"/>
 <body>
 <form method="post" class="hd-form" onsubmit="return hd_submit(this,'{|U:index,array('mid'=>$_GET['mid'])}');">
-<div class="wrap">
+    <div class="wrap">
         <input type="hidden" name="mid" value="{$model.mid}"/>
+
         <div class="menu_list">
             <ul>
                 <li>
@@ -177,11 +164,92 @@
             </tr>
 
         </table>
-</div>
-<div class="position-bottom">
-    <input type="submit" value="确定" class="hd-success"/>
-</div>
+    </div>
+    <div class="position-bottom">
+        <input type="submit" value="确定" class="hd-success"/>
+    </div>
 </form>
+<style type="text/css">
+    table.table1 tr th {
+        text-align: right;
+    }
+
+    span.notice {
+        display: block;
+        color: #999;
+        font-weight: normal;
+    }
+</style>
+<script>
+    $("form").validate({
+        //验证规则
+        title: {
+            rule: {
+                required: true,
+                china: true
+            },
+            error: {
+                required: "字段标题不能为空",
+                china: "不能输入特殊字母"
+            }
+        },
+        field_name: {
+            rule: {
+                required: true,
+                regexp: /^[a-z]\w*$/i,
+                ajax: {url: CONTROLLER + "&a=fieldIsExists", field: ["mid"]}
+            },
+            error: {
+                required: "字段名不能为空",
+                regexp: "必须输入英文字母",
+                ajax: "字段已经存在"
+            }
+        },
+        //最小长度
+        minlength: {
+            rule: {
+                regexp: /^\d+$/
+            },
+            error: {
+                regexp: "请输入数字"
+            }
+        },
+        //最大长度
+        maxlength: {
+            rule: {
+                regexp: /^\d+$/
+            },
+            error: {
+                regexp: "请输入数字"
+            }
+        }
+    })
+    //选择字段模板
+    var field_tpl = {};
+    $("#field_type").change(function () {
+        var field_type = $(this).val();
+        if (field_tpl[field_type]) {
+            $(".field_tpl").html(field_tpl[field_type]);
+        } else {
+            $.ajax({
+                url: '{|U:"getFieldTpl"}',
+                type: "POST",
+                data: {field_type: field_type, tpl_type: 'add', mid: '{$hd.get.mid}'},
+                cache: false,
+                success: function (data) {
+                    field_tpl[field_type] = data;
+                    $(".field_tpl").html(data);
+                }
+            })
+        }
+    })
+    //加载时触发，add时默认加载input模板
+    $("#field_type").trigger("change");
+    //验证规则切换
+    $("#field_check").live("change", function () {
+        $("[name='validate']").val($(this).val());
+    })
+</script>
 </body>
 </html>
 

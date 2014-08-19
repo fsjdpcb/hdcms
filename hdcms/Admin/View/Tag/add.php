@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <title>添加tag</title>
-    <hdjs/>
-    <js file="__CONTROL_TPL__/js/addEdit.js"/>
-</head>
+<include file="__PUBLIC__/header.php"/>
 <body>
 <div class="wrap">
     <div class="menu_list">
@@ -35,5 +28,29 @@
         </div>
     </form>
 </div>
+<script>
+    $('form').validate({
+        tag: {
+            rule: {
+                required: true
+            },
+            error: {
+                required: 'tag内容不能为空'
+            },
+            success: '输入正确'
+        },
+        total: {
+            rule: {
+                required: true,
+                regexp:/^\d+$/i
+            },
+            error: {
+                required: '统计数不能为空',
+                regexp:'统计数输入错误'
+            },
+            success: '输入正确'
+        }
+    })
+</script>
 </body>
 </html>

@@ -1,4 +1,5 @@
-        <table class="w300 table3">
+<include file="__PUBLIC__/header.php"/>
+<table class="w300 table3">
             <tr>
                 <td>
                     <label><input type="radio" name="WATER_POS" value="1"

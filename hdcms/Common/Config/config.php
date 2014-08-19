@@ -5,10 +5,10 @@ $config['HDCMS_VERSION']        = '2014.08.18';
 $config['SESSION_OPTIONS']      = array('type' => 'mysql', 'table' => 'session');
 $config['HOOK']                 = array("APP_START" => array("AppStartHook"));
 $config['URL_TYPE']             = 2;
+$config['TPL_FIX']             = '.php'; //模板后缀
 $config['EDITOR_SAVE_PATH']     = 'upload/editor/' . date('y/m/d/');//编辑器上传文件存储目录
 $config['TPL_TAGS']             = array('@.Index.Tag.ContentTag');//模板标签
-$config['EMAIL_FORMMAIL']       = $config['EMAIL_USERNAME'];//邮件发送者
-$config['AUTO_LOAD_FILE']       = array('hdcms/Common/Functions/functions.php');//自动加载文件
+$config['AUTO_LOAD_FILE']       = array('functions.php');//自动加载文件
 $config['ROUTE']                = array(
     '/^list_(\d+)_(\d+).html$/' 		=> 'm=Index&c=Index&a=category&mid=#1&cid=#2',//栏目
     '/^list_(\d+)_(\d+)_(\d+).html$/' 	=> 'm=Index&c=Index&a=category&mid=#1&cid=#2&page=#3',//栏目分页

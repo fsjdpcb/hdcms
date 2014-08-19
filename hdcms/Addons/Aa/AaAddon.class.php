@@ -28,10 +28,6 @@ class AaAddon extends Addon
     {
         return true;
     }
-    //实现的app_begin钩子方法
-    public function app_begin($param){
-    }
-
     //实现的conent_edit_begin钩子方法
     public function conent_edit_begin($param){
     }
@@ -46,9 +42,5 @@ class AaAddon extends Addon
 
     //实现的content_add_begin钩子方法
     public function content_add_begin($param){
-    }
-
-    //实现的content_add_end钩子方法
-    public function content_add_end($param){
     }
 }

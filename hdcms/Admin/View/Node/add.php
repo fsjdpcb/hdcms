@@ -1,12 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>后台菜单管理</title>
-    <hdjs/>
-    <js file="__CONTROL_TPL__/js/addEdit.js"/>
-    <css file="__PUBLIC__/common.css"/>
-</head>
+<include file="__PUBLIC__/header.php"/>
 <body>
 <form method="post" class="hd-form" onsubmit="return hd_submit(this,'{|U:index}')">
     <div class="wrap">
@@ -88,5 +80,19 @@
         <input type="submit" class="hd-success" value="提交"/>
     </div>
 </form>
+<script>
+    //表单验证
+    $("form").validate({
+        //验证规则
+        title: {
+            rule: {
+                required: true
+            },
+            error: {
+                required: "菜单名称不能为空"
+            }
+        }
+    })
+</script>
 </body>
 </html>

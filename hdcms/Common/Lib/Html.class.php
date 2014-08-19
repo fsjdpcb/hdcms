@@ -19,7 +19,7 @@ class Html extends Controller
     //内容页
     public function content($data)
     {
-        $categoryCache = F('category', false, CACHE_DATA_PATH);
+        $categoryCache = S('category');
         if (!$data['arc_url_type'] == 2) {
             return true;
         }
@@ -42,7 +42,7 @@ class Html extends Controller
     //栏目页
     public function category($cid, $page = 1)
     {
-        $categoryCache = F('category', false, CACHE_DATA_PATH);
+        $categoryCache = S('category');
         $cat = $categoryCache[$cid];
         $GLOBALS['totalPage'] = 0;
         if ($cat['cat_url_type'] == 2 || $cat['cattype'] == 3) {
@@ -79,7 +79,7 @@ class Html extends Controller
     //生成栏目分页列表
     public function relation_category($cid)
     {
-        $cache = F('category',false,CACHE_DATA_PATH);
+        $cache = S('category');
         $cat = $cache[$cid];
         if ($cat['cat_url_type'] == 2 || $cat['cattype'] == 3) {
             return true;

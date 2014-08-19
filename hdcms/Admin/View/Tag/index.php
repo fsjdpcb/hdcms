@@ -1,11 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>tag标签</title>
-    <hdjs/>
-    <css file="__PUBLIC__/common.css"/>
-</head>
+<include file="__PUBLIC__/header.php"/>
 <body>
 <div class="wrap">
     <div class="menu_list">
@@ -54,14 +47,10 @@
     <input type="button" class="hd-cancel" onclick="del()" value="批量删除"/>
 </div>
 <script>
-	//全选 or  反选
-$(function () {
     //全选
     $("input#select_all").click(function () {
         $("[type='checkbox']").attr("checked", $(this).attr("checked") == "checked");
     })
-})
-
 //删除
 function del(tid) {
     if (tid) {

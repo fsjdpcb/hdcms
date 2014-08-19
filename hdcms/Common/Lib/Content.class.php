@@ -14,7 +14,7 @@ class Content
 
     public function __construct()
     {
-        $this->model = S('model' );
+        $this->model = S('model');
         $this->category = S('category');
         $this->mid = Q('mid', 0, 'intval');
         $this->cid = Q('cid', 0, 'intval');
@@ -139,5 +139,4 @@ class Content
             $this->error = '删除文章失败';
         }
     }
-
 }

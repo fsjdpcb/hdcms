@@ -26,20 +26,22 @@ class AddonsController extends AuthController
     public function disabled()
     {
         if ($this->db->disabledAddon()) {
-            $this->success('禁用成功','index');
+            $this->success('禁用成功', 'index');
         } else {
             $this->error($this->db->error);
         }
     }
+
     //启用插件
     public function enabled()
     {
         if ($this->db->enabledAddon()) {
-            $this->success('启用成功','index');
+            $this->success('启用成功', 'index');
         } else {
             $this->error($this->db->error);
         }
     }
+
     //创建插件
     public function add()
     {
@@ -164,6 +166,43 @@ str;
             $this->success('创建成功', 'index');
         } else {
             $this->assign('hooks', K('Hooks')->all());
+            $this->display();
+        }
+    }
+
+    //设置配置项
+    public function config()
+    {
+        if (IS_POST) {
+            $id = Q('post.id', 0, 'intval');
+            $data = M('addons')->find($id);
+            if (empty($data)) {
+                $this->error(':( 插件没安装');
+            }
+            $config=serialize(Q('post.config','',''));
+            if(M('addons')->where("id=$id")->save(array('config'=>$config))){
+                $this->success('修改成功','index');
+            }else{
+                $this->error('修改失败');
+            }
+        } else {
+            $id = Q('id', 0, 'intval');
+            $data = M('addons')->find($id);
+            if (empty($data)) {
+                $this->error(':( 插件没安装');
+            }
+            $addonObj = $this->db->getAddonObj($data['name']); //获取插件对象
+            $data['config'] = unserialize($data['config']);
+            $configFile = require $addonObj->configFile; //文件配置
+            if (!empty($configFile)) {
+                foreach ($configFile as $key => $value) {
+                    if (isset($data['config'][$key])) {
+                        $configFile[$key]['value'] = $data['config'][$key];
+                    }
+                }
+            }
+            $this->assign('data', $data);
+            $this->assign('configFile', $configFile);
             $this->display();
         }
     }

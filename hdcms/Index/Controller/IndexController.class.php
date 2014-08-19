@@ -13,12 +13,13 @@ class IndexController extends Controller
     // 构造函数
     public function __init()
     {
-        C('TPL_FIX','.html');
+        C('TPL_FIX', '.html');
         //网站开启验证
-        if (!IS_ADMIN && !C("web_open")) {
+        if (Q('session.admin') && !C("web_open")) {
             parent::display('siteClose');
             exit;
         }
+        define("__TEMPLATE__", __ROOT__ . "/template/" . C("WEB_STYLE"));
         $this->cacheDir = 'temp/Content/' . ACTION . '/' . substr(md5(__URL__), 0, 3);
     }
 
@@ -34,6 +35,7 @@ class IndexController extends Controller
         $cacheDir = $this->cacheDir;
         parent::display($tplFile, $cacheTime, $cacheDir);
     }
+
     //网站首页
     public function index()
     {

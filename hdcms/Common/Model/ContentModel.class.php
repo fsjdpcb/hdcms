@@ -13,7 +13,7 @@ class ContentModel extends RelationModel
     static public function getInstance($mid)
     {
         if (empty(self::$_instance[$mid])) {
-            $modelCache = F('model', false, CACHE_DATA_PATH);
+            $modelCache = S('model');
             $table = $modelCache[$mid]['table_name'];
             $model = new self($table);
             //副表
