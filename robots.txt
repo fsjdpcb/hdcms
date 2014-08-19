@@ -2,9 +2,10 @@
 # robots.txt for HDCMS 2014
 #
 User-agent: * 
+Disallow: /Addon
 Disallow: /data
-Disallow: /hd
-Disallow: /install
+Disallow: /hdcms
+Disallow: /hdcms/install
 Disallow: /temp
 Disallow: /template
 Disallow: /admin.php
