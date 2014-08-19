@@ -15,13 +15,13 @@
         <table class="table2">
             <thead>
             <tr>
-                <td class="w200">名称</td>
-                <td class="w200">标识</td>
+                <td class="w100">名称</td>
+                <td class="w100">标识</td>
                 <td>描述</td>
-                <td class="w100">状态</td>
+                <td class="w60">状态</td>
                 <td class="w100">作者</td>
-                <td class="w100">版本</td>
-                <td class="w150">操作</td>
+                <td class="w50">版本</td>
+                <td class="w100">操作</td>
             </tr>
             </thead>
             <tbody>
