@@ -100,7 +100,7 @@
 		</div>
 		<!--加载后触发第一个顶级菜单-->
 		<script>
-			$("a[nid=1]").trigger("click");
+			$("a[nid='{$hd.get.nid|default:1}']").trigger("click");
 		</script>
 		
 	</body>

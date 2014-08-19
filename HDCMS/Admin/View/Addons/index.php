@@ -30,7 +30,7 @@
                     <td>{$d.name}</td>
                     <td>{$d.title}</td>
                     <td>{$d.description}</td>
-                    <td>{$d.status_text}</td>
+                    <td>{$d.status_text|default:'禁用'}</td>
                     <td>{$d.author}</td>
                     <td>{$d.version}</td>
                     <td>
@@ -44,10 +44,10 @@
                             <else>
                                 <a href="{|U:'enabled',array('addon'=>$d['name'])}">启用</a>
                             </if>
-                            <a href="javascript:hd_confirm('确证卸载吗？',function(){hd_ajax('{|U:'uninstall'}', {addon: '{$d.name}'})})">
+                            <a href="javascript:hd_confirm('确证卸载吗？',function(){location.href='{|U:'uninstall',array('addon'=>$d['name'])}';})">
                             卸载</a>
                         <else>
-                            <a href="javascript:hd_ajax('{|U:'install'}', {addon: '{$d.name}'})">安装</a>
+                            <a href="javascript:location.href='{|U:'install',array('addon'=>$d['name'])}'">安装</a>
                         </if>
                     </td>
                 </tr>

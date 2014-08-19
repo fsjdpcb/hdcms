@@ -1,17 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-		<title>设置常用菜单</title>
-		<hdjs/>
-		<style type="text/css">
-			ul li {
-				width: 130px;
-				float: left;
-			}
-		</style>
-    <css file="__PUBLIC__/common.css"/>
-	</head>
+<include file="__PUBLIC__/header.php"/>
 	<body>
 		<form method="post" class="hd-form" onsubmit="return hd_submit(this,'',function(){top.location.href=top.location.href});">
 			<div class="wrap">
@@ -44,4 +31,10 @@
 			</div>
 		</form>
 	</body>
+<style type="text/css">
+    ul li {
+        width: 130px;
+        float: left;
+    }
+</style>
 </html>

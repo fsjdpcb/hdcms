@@ -33,7 +33,7 @@
             <tr>
                 <th class="w100">版本</th>
                 <td>
-                    <input type="text" name="version" class="w200" value="0.1"/>
+                    <input type="text" name="version" class="w200" value="1.0"/>
                 </td>
             </tr>
             <tr>
@@ -53,12 +53,14 @@
                 <th>插件是否有后台</th>
                 <td>
                     <label><input type="checkbox" name="has_adminlist" value="1" checked=""/> 有</label>
+                    <span id="hd_has_adminlist"></span>
                 </td>
             </tr>
             <tr>
                 <th>开启外部访问</th>
                 <td>
                     <label><input type="checkbox" name="has_outurl" value="1" checked=""/> 开启</label>
+                    <span id="hd_has_outurl"></span>
                 </td>
             </tr>
             <tr>
@@ -85,11 +87,20 @@
     </div>
 </form>
 <script>
-    $("form").va1lidate({
+    $("form").validate({
         name: {
             rule: {required: true},
             error: {required: '标识名不能为空'},
             message: '只能是英文开头，且首字母大写，标识只能包含英文、数子、下划线'
+        },
+        has_adminlist:{
+            message:'访问方法:?app=Addon&m=模块名&c=Admin&a=index'
+        },
+        has_outurl:{
+            message:'访问方法:?app=Addon&m=模块名&c=Index&a=index'
+        },
+        'hooks[]':{
+            message:'如果不挂钩子可以不选择'
         }
     })
 </script>

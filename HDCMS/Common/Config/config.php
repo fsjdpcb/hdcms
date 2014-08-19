@@ -3,7 +3,7 @@ $config 					    = require APP_CONFIG_PATH.'config.inc.php';
 $config['HDCMS_NAME']           = 'HDCMS 简体中文 UTF8 版';
 $config['HDCMS_VERSION']        = '2014.08.18';
 $config['SESSION_OPTIONS']      = array('type' => 'mysql', 'table' => 'session');
-$config['HOOK']                 = array("APP_START" => array("AppStartHook"));
+$config['HOOK']                 = array("APP_INIT" => array("AppInitHook"));
 $config['URL_TYPE']             = 2;
 $config['TPL_FIX']             = '.php'; //模板后缀
 $config['EDITOR_SAVE_PATH']     = 'upload/editor/' . date('y/m/d/');//编辑器上传文件存储目录

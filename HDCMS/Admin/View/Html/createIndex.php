@@ -1,12 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-		<title>生成首页</title>
-		<hdjs/>
-        <bootstrap/>
-        <css file="__PUBLIC__/common.css"/>
-	</head>
+<include file="__PUBLIC__/header.php"/>
 	<body>
 		<form method="post" class="hd-form">
 			<div class="wrap">

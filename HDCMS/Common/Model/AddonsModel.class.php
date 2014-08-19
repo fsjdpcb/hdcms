@@ -21,7 +21,7 @@ class AddonsModel extends Model
     public function addonUniqueCheck($name, $value, $msg, $arg)
     {
         $name = Q('name', '');
-        if ($this->where(array('name' => $name))->find()) {
+        if ($this->where("name='$name'")->find()) {
             return $msg;
         } else if (is_dir(APP_ADDON_PATH . $name)) {
             return $msg;
@@ -39,7 +39,7 @@ class AddonsModel extends Model
             return false;
         }
         $addons = array();
-        $addonList = $this->where(array('name' => $dirs))->order('id ASC')->all();
+        $addonList = $this->where(array('name'=>array('IN',$dirs)))->order('id ASC')->all();
         if ($addonList != null) {
             foreach ($addonList as $addon) {
                 $addon['install'] = 1;
@@ -59,7 +59,7 @@ class AddonsModel extends Model
                 $addons[$d] = $addon;
             }
         }
-        int_to_string($addons, array('status' => array(0 => '启用', 1 => '禁用')));
+        int_to_string($addons, array('status' => array(1 => '启用', 0 => '禁用')));
         ksort($addons);
         return  $addons;
     }
@@ -203,7 +203,7 @@ class AddonsModel extends Model
         $data = array(
             'pid' => 50,
             'title' => $addon['title'],
-            'app' => 'Addon',
+            'app'=>'Addon',
             'module' => $addon_name,
             'controller' => 'Admin',
             'action' => 'index',
@@ -221,7 +221,7 @@ class AddonsModel extends Model
     public function delAdminMenu($addon_name)
     {
         $node = K('Node');
-        $node->where(array('module' => $addon_name, 'app' => 'Addon'))->del();
+        $node->where("app='Addon' AND module='$addon_name'")->del();
         return $node->updateCache();
     }
 
@@ -236,6 +236,7 @@ class AddonsModel extends Model
                 $addons['config'] = unserialize($addon['config']);
             }
         }
-        return S('addons', $addons,0);
+        S('hook',null);
+        return S('addons', $addons);
     }
 }

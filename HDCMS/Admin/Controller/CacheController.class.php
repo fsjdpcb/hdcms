@@ -58,7 +58,7 @@ class CacheController extends AuthController
                         $Model = new FlagModel();
                         $Model->updateCache();
                     }
-                    $this->success('Flag更新完毕...', U("updateCache"), 0);
+                    $this->display('success.php');
                     break;
             }
         } else {

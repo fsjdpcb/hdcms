@@ -1,11 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>钓子列表</title>
-    <hdjs/>
-    <css file="__PUBLIC__/common.css"/>
-</head>
+<include file="__PUBLIC__/header.php"/>
 <body>
 <div class="wrap">
     <form action="" class="hd-form">

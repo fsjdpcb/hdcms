@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-		<title>HDCMS快速建站利器</title>
-		<hdjs/>
-		<css file="__CONTROLLER_VIEW__/css/welcome.css"/>
-	</head>
+<include file="__PUBLIC__/header.php"/>
 	<body>
 		<div class="wrap">
 			<div class="title-header">
@@ -124,5 +117,18 @@
 				&nbsp;
 			</div>
 		</div>
+        <style type="">
+            a{
+                color: #666;
+            }
+            div.wrap{
+                bottom: 0px;
+            }
+            h2{
+                font-size:12px;
+                font-weight: normal;
+                margin-bottom: 10px;
+            }
+        </style>
 	</body>
 </html>

@@ -163,7 +163,7 @@ str;
                 Dir::create($addonDir . 'View/Index');
                 copy(MODULE_PATH . 'Data/View/addonIndex.php', $addonDir . 'View/Index/index.php');
             }
-            $this->success('创建成功', 'index');
+            $this->display('success.php');
         } else {
             $this->assign('hooks', K('Hooks')->all());
             $this->display();
@@ -210,11 +210,11 @@ str;
     //打包插件
     public function package()
     {
-        $addon = Q('addon','','');
+        $addon = Q('addon', '', '');
         if (!$addon || !is_dir(APP_ADDON_PATH . $addon)) {
             $this->error('插件不存在');
         }
-        $zip = new PclZip(APP_ADDON_PATH.$addon.'.zip');
+        $zip = new PclZip(APP_ADDON_PATH . $addon . '.zip');
         if ($zip->create(APP_ADDON_PATH . $addon)) {
             $this->success('压缩成功，请Addons目录查看');
         } else {
@@ -226,7 +226,7 @@ str;
     public function install()
     {
         if ($this->db->installAddon()) {
-            $this->success('安装成功', 'index', 3);
+            $this->display('success.php');
         } else {
             $this->error($this->db->error);
         }
@@ -236,7 +236,7 @@ str;
     public function uninstall()
     {
         if ($this->db->uninstallAddon()) {
-            $this->success('卸载成功,请刷新后台', 'index', 3);
+            $this->display('success.php');
         } else {
             $this->error($this->db->error);
         }

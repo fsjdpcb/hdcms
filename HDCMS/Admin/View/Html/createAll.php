@@ -1,11 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>一键生成静态</title>
-    <hdjs/>
-    <css file="__PUBLIC__/common.css"/>
-</head>
+<include file="__PUBLIC__/header.php"/>
 <body>
 <form method="post">
     <div class="wrap">
