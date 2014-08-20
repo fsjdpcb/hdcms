@@ -2,14 +2,14 @@
 /**
  * 获得栏目
  * @param $cid 栏目cid
- * @param int $type 1 子栏目  2 父栏目
+ * @param int $type 1 返回子栏目  2 返回父栏目
  * @param int $return 1 只有cid  2 内容
  * @return array
  */
 function getCategory($cid, $type = 1, $return = 1)
 {
     $cid=intval($cid);
-    $cache = F('category',false,CACHE_DATA_PATH);
+    $cache = S('category');
     $cat = $catid = array();
     if ($type == 1) { //子栏目
         $cat = Data::channelList($cache, $cid);

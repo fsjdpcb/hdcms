@@ -1,5 +1,4 @@
 <?php
-
 /**
  * 网站前台
  * Class IndexController
@@ -8,19 +7,33 @@
 class IndexController extends Controller
 {
     //缓存目录
-    public $cacheDir;
+    private $cacheDir;
+    private $model;
+    private $category;
+    private $mid;
+    private $cid;
+    private $aid;
 
     // 构造函数
     public function __init()
     {
-        C('TPL_FIX', '.html');
-        //网站开启验证
-        if (Q('session.admin') && !C("web_open")) {
+        C(array('TPL_FIX'=>'.html'));
+        //网站关闭
+        if (!Q('session.admin') && !C("web_open")) {
             parent::display('siteClose');
             exit;
         }
-        define("__TEMPLATE__", __ROOT__ . "/template/" . C("WEB_STYLE"));
-        $this->cacheDir = 'temp/Content/' . ACTION . '/' . substr(md5(__URL__), 0, 3);
+        $this->cacheDir = 'temp/Content/' . substr(md5(__URL__), 0, 2);
+        $this->model = S('model');
+        $this->category = S('category');
+        $this->mid = Q('mid', 0, 'intval');
+        $this->cid = Q('cid', 0, 'intval');
+        if ($this->mid and !isset($this->model[$this->mid])) {
+            $this->_404();
+        }
+        if ($this->cid and !isset($this->category[$this->cid])) {
+            $this->_404();
+        }
     }
 
     //视图缓存检测
@@ -32,16 +45,13 @@ class IndexController extends Controller
     // 界面显示
     protected function display($tplFile = null, $cacheTime = null, $cachePath = null, $stat = false, $contentType = "text/html", $charset = "", $show = true)
     {
-        $cacheDir = $this->cacheDir;
-        parent::display($tplFile, $cacheTime, $cacheDir);
+        parent::display($tplFile, $cacheTime, $this->cacheDir);
     }
 
     //网站首页
     public function index()
     {
-        C('TPL_FIX', '');
-        $CacheTime = C('CACHE_INDEX') >= 1 ? C('CACHE_INDEX') : -1;
-        $this->display('template/' . C('WEB_STYLE') . '/index.html', $CacheTime);
+        $this->display('template/' . C('WEB_STYLE') . '/index.html', C('INDEX_CACHE_TIME'));
     }
 
     //内容页
@@ -88,16 +98,8 @@ class IndexController extends Controller
     //栏目列表
     public function category()
     {
-        $mid = Q('mid', 0, 'intval');
-        $cid = Q('cid', 0, 'intval');
-        $categoryCache = F('category', false, CACHE_DATA_PATH);
-        $modelCache = F('model', false, CACHE_DATA_PATH);
-        if (!isset($modelCache[$mid]) || !isset($categoryCache[$cid])) {
-            _404();
-        }
-        $cacheTime = C('CACHE_CATEGORY') >= 1 ? C('CACHE_CATEGORY') : null;
         if (!$this->isCache()) {
-            $category = $categoryCache[$cid];
+            $category = $this->category[$this->cid];
             //外部链接，直接跳转
             if ($category['cattype'] == 3) {
                 go($category['cat_redirecturl']);
@@ -105,13 +107,11 @@ class IndexController extends Controller
                 $Model = ContentViewModel::getInstance($category['mid']);
                 $catid = getCategory($category['cid']);
                 $category['content_num'] = $Model->where("category.cid IN(" . implode(',', $catid) . ")")->count();
-                $category['comment_num'] = intval(M('comment')->where('cid IN(' . implode(',', $catid) . ')')->count());
                 $this->assign("hdcms", $category);
-                C('TPL_FIX', '');
-                $this->display('template/' . C('WEB_STYLE') . '/' . $category['list_tpl'], $cacheTime);
+                $this->display('template/' . C('WEB_STYLE') . '/' . $category['list_tpl'], C('CATEGORY_CACHE_TIME'));
             }
         } else {
-            $this->display(null, $cacheTime);
+            $this->display(null, C('CATEGORY_CACHE_TIME'));
         }
     }
 
@@ -131,7 +131,7 @@ class IndexController extends Controller
                 $this->error('已经收藏过');
             } else {
                 $db->add($data);
-                $this->success('收藏成功!');
+                $this->success('收藏成功!','index');
             }
         }
     }
@@ -153,6 +153,6 @@ class IndexController extends Controller
     public function _404()
     {
         //寻找走失儿童404页面
-        $this->display('404.html');
+        parent::display('404.html');
     }
 }

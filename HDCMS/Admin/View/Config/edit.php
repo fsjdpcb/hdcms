@@ -28,7 +28,7 @@
                     <table class="table1">
                     	<tr style="background: #E6E6E6;">
                     		<th  class="w50">排序</th>
-                    		<th  class="w150">标题</th>
+                    		<th  class="w200">标题</th>
                     		<th>配置</th>
                     		<th class="w300">变量</th>
                     		<th class="w300">描述</th>
@@ -52,7 +52,7 @@
                     <table class="table1">
                     	<tr style="background: #E6E6E6;">
                     		<th  class="w50">排序</th>
-                    		<th  class="w150">标题</th>
+                    		<th  class="w200">标题</th>
                     		<th>配置</th>
                     		<th class="w300">变量</th>
                     		<th class="w300">描述</th>
@@ -76,7 +76,7 @@
                     <table class="table1">
                     	<tr style="background: #E6E6E6;">
                     		<th  class="w50">排序</th>
-                    		<th  class="w150">标题</th>
+                    		<th  class="w200">标题</th>
                     		<th>配置</th>
                     		<th class="w300">变量</th>
                     		<th class="w300">描述</th>
@@ -100,7 +100,7 @@
                     <table class="table1">
                     	<tr style="background: #E6E6E6;">
                     		<th  class="w50">排序</th>
-                    		<th  class="w150">标题</th>
+                    		<th  class="w200">标题</th>
                     		<th>配置</th>
                     		<th class="w300">变量</th>
                     		<th class="w300">描述</th>
@@ -124,7 +124,7 @@
                     <table class="table1">
                     	<tr style="background: #E6E6E6;">
                     		<th  class="w50">排序</th>
-                    		<th  class="w150">标题</th>
+                    		<th  class="w200">标题</th>
                     		<th>配置</th>
                     		<th class="w300">变量</th>
                     		<th class="w300">描述</th>
@@ -148,7 +148,7 @@
                     <table class="table1">
                     	<tr style="background: #E6E6E6;">
                     		<th  class="w50">排序</th>
-                    		<th  class="w150">标题</th>
+                    		<th  class="w200">标题</th>
                     		<th>配置</th>
                     		<th class="w300">变量</th>
                     		<th class="w300">描述</th>
@@ -172,7 +172,7 @@
                     <table class="table1">
                     	<tr style="background: #E6E6E6;">
                     		<th  class="w50">排序</th>
-                    		<th  class="w150">标题</th>
+                    		<th  class="w200">标题</th>
                     		<th>配置</th>
                     		<th class="w300">变量</th>
                     		<th class="w300">描述</th>
@@ -196,7 +196,7 @@
                     <table class="table1">
                     	<tr style="background: #E6E6E6;">
                     		<th  class="w50">排序</th>
-                    		<th  class="w150">标题</th>
+                    		<th  class="w200">标题</th>
                     		<th>配置</th>
                     		<th class="w300">变量</th>
                     		<th class="w300">描述</th>
@@ -220,7 +220,7 @@
                     <table class="table1">
                     	<tr style="background: #E6E6E6;">
                     		<th  class="w50">排序</th>
-                    		<th  class="w150">标题</th>
+                    		<th  class="w200">标题</th>
                     		<th>配置</th>
                     		<th class="w300">变量</th>
                     		<th class="w300">描述</th>
@@ -249,7 +249,7 @@
                     <table class="table1">
                     	<tr style="background: #E6E6E6;">
                     		<th  class="w50">排序</th>
-                    		<th  class="w150">标题</th>
+                    		<th  class="w200">标题</th>
                     		<th>配置</th>
                     		<th class="w300">变量</th>
                     		<th class="w300">描述</th>
@@ -273,7 +273,7 @@
                     <table class="table1">
                     	<tr style="background: #E6E6E6;">
                     		<th  class="w50">排序</th>
-                    		<th  class="w150">标题</th>
+                    		<th  class="w200">标题</th>
                     		<th>配置</th>
                     		<th class="w300">变量</th>
                     		<th class="w300">描述</th>
@@ -297,9 +297,9 @@
                     <table class="table1">
                     	<tr style="background: #E6E6E6;">
                     		<th  class="w50">排序</th>
-                    		<th  class="w150">标题</th>
+                    		<th  class="w200">标题</th>
                     		<th>配置</th>
-                    		<th class="w300">变量</th>
+                    		<th class="w100">变量</th>
                     		<th class="w300">描述</th>
                     		<th class="w100">操作</th>
                     	</tr>

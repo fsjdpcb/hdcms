@@ -1,12 +1,4 @@
 <include file="__PUBLIC__/header.php"/>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <title>修改栏目</title>
-    <hdjs/>
-    <js file="__CONTROLLER_VIEW__/js/addEdit.js"/>
-    <css file="__PUBLIC__/common.css"/>
-</head>
 <body>
 <form action="{|U:edit}" method="post" class="hd-form" onsubmit="return hd_submit(this,'{|U:index}')">
     <input type="hidden" value="{$field.cid}" name="cid"/>
@@ -329,7 +321,7 @@
     </div>
     <div class="position-bottom">
         <input type="submit" class="hd-success" value="确定"/>
-        <input type="button" class="hd-cancel" value="取消" onclick="location.href='__CONTROL__'"/>
+        <input type="button" class="hd-cancel" value="取消" onclick="location.href='__CONTROLLER__'"/>
     </div>
 </form>
 <script>

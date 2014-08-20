@@ -9,6 +9,7 @@ class Addon
     public $addonName; //插件名
     public $addonPath; //插件目录
     public $configFile; //插件配置文件
+    public $error;//插件错误信息
     public function __construct()
     {
         $this->addonName = $this->getAddonName();

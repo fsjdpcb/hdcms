@@ -15,10 +15,21 @@
                     </div>
                     <br/>
 				    <input type="submit" value="开始更新" class="hd-success"/>
-                <?php }else{?>
+                    <?php }else{?>
                     <div class="alert alert-danger" role="alert">首页生成已经关闭，请修改配置项开启</div>
                 <?php }?>
 			</div>
 		</form>
+        <style type="text/css">
+            div.alert{
+                color: #a94442;
+                background-color: #f2dede;
+                border-color: #ebccd1;
+                padding: 15px;
+                margin-bottom: 20px;
+                border: 1px solid transparent;
+                border-radius: 4px;
+            }
+        </style>
 	</body>
 </html>

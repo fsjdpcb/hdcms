@@ -11,7 +11,7 @@ class Html extends Controller
     {
         if (C('CREATE_INDEX_HTML') == 1) {
             $template = 'template/' . C('WEB_STYLE') . '/index.html';
-            return $this->createHtml('index', './', $template);
+            return $this->createHtml('index.html', './', $template);
         }
         return true;
     }

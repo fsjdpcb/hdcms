@@ -68,6 +68,7 @@ class CategoryModel extends ViewModel
      * @param int $mid 模型mid
      * @param int $cid 栏目id
      * @param array $access 权限信息
+     * @return boolean
      */
     private function setCategoryAccess($mid, $cid, $access)
     {
@@ -80,6 +81,7 @@ class CategoryModel extends ViewModel
             $a['mid'] = $mid;
             $model->add($a);
         }
+        return true;
     }
 
     //修改栏目

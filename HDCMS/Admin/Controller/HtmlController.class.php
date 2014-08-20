@@ -37,7 +37,7 @@ class HtmlController extends AuthController
                 S('RedirectInfo', $this->RedirectInfo);
                 $this->success($redirect['title'], $redirect['url'], 0);
             } else {
-                $this->success('首页生成完毕', __ACTION__, 0);
+                $this->success('首页生成完毕', __ACTION__);
             }
         } else {
             S("RedirectInfo", null);

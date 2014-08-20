@@ -72,5 +72,4 @@ class PersonalController extends AuthController
         echo $this->db->find("email='$email'") ? 0 : 1;
         exit;
     }
-
 }

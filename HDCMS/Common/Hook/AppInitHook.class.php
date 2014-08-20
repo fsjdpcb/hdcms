@@ -7,6 +7,8 @@
  */
 class AppInitHook{
 	public function run(&$options) {
+        //前台模板常量
+        define("__TEMPLATE__", __ROOT__ . "/template/" . C("WEB_STYLE"));
         if(isset($_GET['admin'])){
             header("location:index.php?m=admin");exit;
         }

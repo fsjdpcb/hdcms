@@ -133,7 +133,11 @@ class AddonsModel extends Model
         }
         $data = $info;
         if (!$addonObj->install()) {
-            $this->error = '执行插件预安装失败';
+            if($addonObj->error){
+                $this->error=$addonObj->error;
+            }else{
+                $this->error = '执行插件预安装失败';
+            }
             return false;
         }
         $data['create_time'] = time(); //安装时间
