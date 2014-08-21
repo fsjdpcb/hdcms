@@ -65,8 +65,8 @@ class IndexController extends AuthController
             $html .= "<dl><dt>" . $menu['title'] . "</dt>";
             foreach ($menu['_data'] as $linkMenu) {
                     $param = $linkMenu['param'] ? '&' . $linkMenu['param'] : '';
-                    if($linkMenu['app']){
-                        $url = __ROOT__ . "/index.php?app=".$linkMenu['app']."&m=" . $linkMenu['module'] . "&c=" . $linkMenu['controller'] . "&a=" . $linkMenu['action'] . $param;
+                    if($linkMenu['group']){
+                        $url = __ROOT__ . "/index.php?g=".$linkMenu['group']."&m=" . $linkMenu['module'] . "&c=" . $linkMenu['controller'] . "&a=" . $linkMenu['action'] . $param;
                     }else{
                         $url = __ROOT__ . "/index.php?m=" . $linkMenu['module'] . "&c=" . $linkMenu['controller'] . "&a=" . $linkMenu['action'] . $param;
                     }

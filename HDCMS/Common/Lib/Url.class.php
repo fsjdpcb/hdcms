@@ -90,7 +90,7 @@ final class Url
      */
     static private function getContentHtml($field)
     {
-        $_category = F("category",false,CACHE_DATA_PATH);
+        $_category = S("category");
         //HTML存放根目录
         $html_path = C("HTML_PATH") ? C("HTML_PATH") . '/' : '';
         //有自定义静态url时，直接使用（不需要通过栏目规则运算）

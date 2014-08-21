@@ -32,7 +32,6 @@ class CategoryController extends AuthController
     //将栏目名称转拼音做为静态目录
     public function dir_to_pinyin()
     {
-
         $dir = String::pinyin(Q("catname"));
         $pid = Q('pid', 0, 'intval');
         if ($pid) {

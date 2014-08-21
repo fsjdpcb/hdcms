@@ -12,7 +12,6 @@ class IndexController extends Controller
     private $category;
     private $mid;
     private $cid;
-    private $aid;
 
     // 构造函数
     public function __init()
@@ -23,7 +22,7 @@ class IndexController extends Controller
             parent::display('siteClose');
             exit;
         }
-        $this->cacheDir = 'temp/Content/' . substr(md5(__URL__), 0, 2);
+        $this->cacheDir = TEMP_PATH.'Content/'. substr(md5(__URL__), 0, 2);
         $this->model = S('model');
         $this->category = S('category');
         $this->mid = Q('mid', 0, 'intval');
@@ -57,41 +56,32 @@ class IndexController extends Controller
     //内容页
     public function content()
     {
-        $mid = Q('mid', 1, 'intval');
-        $cid = Q('cid', 0, 'intval');
         $aid = Q('aid', 0, 'intval');
-        $categoryCache = F('category', false, CACHE_DATA_PATH);
-        $modelCache = F('model', false, CACHE_DATA_PATH);
-        if (!isset($modelCache[$mid]) || !isset($categoryCache[$cid]) || !$aid) {
-            _404();
+        if(!$aid){
+            $this->_404();
         }
         //验证阅读权限
-        if (!IS_ADMIN) {
+        if (!Q('session.admin')) {
             $categoryAccessModel = M("category_access");
-            $access = $categoryAccessModel->where(array('cid' => $cid, 'admin' => 0))->getField('rid,`show`');
+            $access = $categoryAccessModel->where(array('cid' => $this->cid, 'admin' => 0))->getField('rid,`show`');
             //栏目设置前台权限时验证
             if ($access) {
                 //没有登录或没有权限
-                if (!IS_LOGIN || !isset($access[$_SESSION['rid']]) || !$access[$_SESSION['rid']]['show']) {
+                if (!session('uid') || !isset($access[$_SESSION['rid']]) || !$access[$_SESSION['rid']]['show']) {
                     $this->error('没有访问权限');
                 }
             }
         }
-        $CacheTime = C('CACHE_CONTENT') >= 1 ? C('CACHE_CONTENT') : -1;
         if (!$this->isCache()) {
-            $ContentModel = ContentViewModel::getInstance($mid);
+            $ContentModel = ContentViewModel::getInstance($this->mid);
             $field = $ContentModel->getOne($aid);
             if ($field) {
                 $this->assign('hdcms', $field);
-                C('TPL_FIX', '');
-                $this->display('template/' . C('WEB_STYLE') . '/' . $categoryCache[$cid]['arc_tpl'], $CacheTime);
+                $this->display('template/' . C('WEB_STYLE') . '/' . $this->category[$this->cid]['arc_tpl'], C('CONTENT_CACHE_TIME'));
                 EXIT;
-            } else {
-                //文章不存在
-                $this->_404();
             }
         } else {
-            $this->display(null, $CacheTime);
+            $this->display(null, C('CONTENT_CACHE_TIME'));
         }
     }
 

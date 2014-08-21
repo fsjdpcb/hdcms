@@ -35,36 +35,18 @@ class Content
         if ($ContentModel->create($data)) {
             $result = $ContentModel->add($data);
             $aid = $result[$ContentModel->table];
+            //生成静态
+            $this->createHtml($aid);
+            //更新栏目静态
+            $this->createCategoryHtml($this->cid);
             //修改上传表Upload中本次上传文件状态
             $this->alterUploadTable();
             //修改tag标签数据
             $this->alterTag($aid);
-            $viewModel = ContentViewModel::getInstance($this->mid);
-            //内容静态
-            $Html = new Html;
-            $Html->content($viewModel->getOne($aid));
-            //生成栏目
-            $category = Data::parentChannel($this->category, $this->cid);
-            foreach ($category as $cat) {
-                $Html->relation_category($cat['cid']);
-            }
-            //生成首页
-            $Html->index();
             return $aid;
         } else {
             $this->error = $ContentModel->error;
             return false;
-        }
-    }
-
-    //修改上传表Upload中本次上传文件状态
-    private function alterUploadTable()
-    {
-        if (isset($_SESSION['uploadFile']) && is_array($_SESSION['uploadFile'])) {
-            $uploadModel = M("upload");
-            foreach ($_SESSION['uploadFile'] as $path) {
-                $uploadModel->where(array('path' => $path))->save(array('status' => 1, 'mid' => $this->mid));
-            }
         }
     }
 
@@ -79,21 +61,85 @@ class Content
             return false;
         }
         if ($ContentModel->create($data)) {
-            $result = $ContentModel->save($data);
-            $status = $result[$ContentModel->table];
-            $this->alterTag($data['aid']);
-            //修改上传表Upload中本次上传文件状态
-            $this->alterUploadTable();
-            //修改tag标签数据
-            $this->alterTag($data['aid']);
-            //内容静态
-            $Html = new Html;
-            $viewModel = ContentViewModel::getInstance($this->mid);
-            $Html->content($viewModel->getOne($data['aid']));
-            return $status;
+            if ($result = $ContentModel->save($data)) {
+                $this->alterTag($data['aid']);
+                //修改上传表Upload中本次上传文件状态
+                $this->alterUploadTable();
+                //修改tag标签数据
+                $this->alterTag($data['aid']);
+                //内容静态
+                $this->createHtml($data['aid']);
+                //生成栏目静态
+                $this->createCategoryHtml($this->cid);
+                return true;
+            }
         } else {
             $this->error = $ContentModel->error;
             return false;
+        }
+    }
+
+    //删除文章
+    public function del($aid)
+    {
+        $ContentModel = ContentModel::getInstance($this->mid);
+        if ($ContentModel->del($aid)) {
+            //删除文章tag属性
+            M('content_tag')->where(array('cid' => $this->cid))->del();
+            //生成栏目静态
+            $this->createCategoryHtml($this->cid);
+            return true;
+        } else {
+            $this->error = '删除文章失败';
+        }
+    }
+
+    //更新栏目静态
+    public function createCategoryHtml($cid)
+    {
+        //更新栏目静态
+        $html = new Html();
+        //生成当前栏目
+        $html->relation_category($cid);
+        //更新父级栏目
+        $parentCategory = Data::parentChannel(S('category'), $cid);
+        if (!empty($parentCategory)) {
+            foreach ($parentCategory as $cat) {
+                $html->relation_category($cat['cid']);
+            }
+        }
+        //更新首页
+        $html->index();
+        return true;
+    }
+
+    //生成静态
+    private function createHtml($aid)
+    {
+        $content = ContentViewModel::getInstance($this->mid)->getOne($aid);
+        $html = new Html;
+        //内容静态
+        $html->content($content);
+        //生成栏目
+        $category = Data::parentChannel($this->category, $content['cid']);
+        //生成当前栏目
+        $html->relation_category($content['cid']);
+        foreach ($category as $cat) {
+            $html->relation_category($cat['cid']);
+        }
+        //生成首页
+        $html->index();
+        return true;
+    }
+
+    //修改上传表Upload中本次上传文件状态
+    private function alterUploadTable()
+    {
+        if (isset($_SESSION['uploadFile']) && is_array($_SESSION['uploadFile'])) {
+            $uploadModel = M("upload");
+            foreach ($_SESSION['uploadFile'] as $path) {
+                $uploadModel->where(array('path' => $path))->save(array('status' => 1, 'mid' => $this->mid));
+            }
         }
     }
 
@@ -128,15 +174,5 @@ class Content
         }
     }
 
-    //删除文章
-    public function del($aid)
-    {
-        $ContentModel = ContentModel::getInstance($this->mid);
-        if ($ContentModel->del($aid)) {
-            //删除文章tag属性
-            return M('content_tag')->where(array('cid' => $this->cid))->del();
-        } else {
-            $this->error = '删除文章失败';
-        }
-    }
+
 }

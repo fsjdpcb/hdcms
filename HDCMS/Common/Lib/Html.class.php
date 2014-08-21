@@ -16,10 +16,9 @@ class Html extends Controller
         return true;
     }
 
-    //内容页
+    //内容页(内容与栏目关联数据）
     public function content($data)
     {
-        $categoryCache = S('category');
         if (!$data['arc_url_type'] == 2) {
             return true;
         }
@@ -43,6 +42,7 @@ class Html extends Controller
     public function category($cid, $page = 1)
     {
         $categoryCache = S('category');
+        if(!isset($categoryCache[$cid]))return false;
         $cat = $categoryCache[$cid];
         $GLOBALS['totalPage'] = 0;
         if ($cat['cat_url_type'] == 2 || $cat['cattype'] == 3) {
@@ -70,7 +70,7 @@ class Html extends Controller
             $this->createHtml(basename($htmlFile), dirname($htmlFile) . '/', $cat['template']);
             //第1页时复制index.html
             if ($page == 1) {
-                copy($htmlFile, dirname($htmlFile) . '/index.html');
+                copy($htmlFile, $htmlDir.$cat['catdir'] . '/index.html');
             }
             return true;
         }
@@ -80,6 +80,7 @@ class Html extends Controller
     public function relation_category($cid)
     {
         $cache = S('category');
+        if(!isset($cache[$cid]))return false;
         $cat = $cache[$cid];
         if ($cat['cat_url_type'] == 2 || $cat['cattype'] == 3) {
             return true;

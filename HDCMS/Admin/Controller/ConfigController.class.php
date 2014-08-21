@@ -54,16 +54,8 @@ class ConfigController extends AuthController
             foreach ($data as $d) {
                 $config[$d['name']] = $d;
             }
-            //======================================会员角色======================================
-            $roleData = $this->db->table("role")->where("admin=0")->all();
-            $config['DEFAULT_MEMBER_GROUP']['html'] = '<select name="DEFAULT_MEMBER_GROUP">';
-            foreach ($roleData as $role) {
-                $checked = $config['DEFAULT_MEMBER_GROUP']['value'] == $role['rid'] ? "selected='selected'" : "";
-                $config['DEFAULT_MEMBER_GROUP']['html'] .= "<option value='{$role['rid']}' {$checked}>{$role['rname']}</option>";
-            }
-            $config['DEFAULT_MEMBER_GROUP']['html'] .= '</select>';
             //邮箱密码设置字段为PASSWORD
-            $config['EMAIL_PASSWORD']['html'] = "<input type='password' name='EMAIL_PASSWORD' value='{$config['EMAIL_PASSWORD']['value']}' class='w400'/>";
+            $config['EMAIL_PASSWORD']['html'] = "<input type='password' name='EMAIL_PASSWORD' value='{$config['EMAIL_PASSWORD']['value']}' class='w250'/>";
             //========================================水印位置======================================
             ob_start();
             require MODULE_VIEW_PATH . 'Config/water.php';
@@ -76,7 +68,7 @@ class ConfigController extends AuthController
                 switch ($c['show_type']) {
                     case '数字' :
                     case '文本' :
-                        $config[$name]['html'] = "<input type='text' name='{$c['name']}' value='{$c['value']}' class='w400'/>";
+                        $config[$name]['html'] = "<input type='text' name='{$c['name']}' value='{$c['value']}' class='w250'/>";
                         break;
                     //布尔
                     case '布尔(1/0)' :
@@ -91,7 +83,7 @@ class ConfigController extends AuthController
                         break;
                     //多行文本
                     case '多行文本' :
-                        $config[$name]['html'] = "<textarea class='w400 h100' name='{$c['name']}'>{$c['value']}</textarea>";
+                        $config[$name]['html'] = "<textarea class='w250 h100' name='{$c['name']}'>{$c['value']}</textarea>";
                         break;
                 }
             }
@@ -114,8 +106,8 @@ class ConfigController extends AuthController
             'EMAIL_FROMNAME' => $_POST['EMAIL_FROMNAME'],
         );
         C($Config);
-        $state = Mail::send("houdunwangxj@gmail.com", "houdunwangxj@gmail.com", "HDCMS系统测试邮件", "使用者网站:" . __HOST__);
-        if ($state) {
+        $status = Mail::send("houdunwangxj@gmail.com", "houdunwangxj@gmail.com", "HDCMS系统测试邮件", "使用者网站:" . __HOST__);
+        if ($status) {
             $this->success('邮箱配置正确，发送正常!');
         } else {
             $this->error('邮箱配置错误...');

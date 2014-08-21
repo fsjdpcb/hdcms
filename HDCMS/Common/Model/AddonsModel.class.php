@@ -207,7 +207,7 @@ class AddonsModel extends Model
         $data = array(
             'pid' => 50,
             'title' => $addon['title'],
-            'app'=>'Addon',
+            'group'=>'Addons',
             'module' => $addon_name,
             'controller' => 'Admin',
             'action' => 'index',
@@ -225,7 +225,7 @@ class AddonsModel extends Model
     public function delAdminMenu($addon_name)
     {
         $node = K('Node');
-        $node->where("app='Addon' AND module='$addon_name'")->del();
+        $node->where("group='Addons' AND module='$addon_name'")->del();
         return $node->updateCache();
     }
 

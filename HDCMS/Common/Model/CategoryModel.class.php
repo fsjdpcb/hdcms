@@ -53,9 +53,12 @@ class CategoryModel extends ViewModel
             $cid = $this->add();
             if ($cid) {
                 //设置权限
-                $this->setCategoryAccess($_POST['mid'], $cid, $_POST['access']);
+                $this->setCategoryAccess($this->mid, $cid, $_POST['access']);
                 //更新缓存
-                return $this->updateCache();
+                $this->updateCache();
+                //更新静态
+                $this->createHtml($cid);
+                return true;
             } else {
                 $this->error = '栏目添加失败';
                 return false;
@@ -63,23 +66,36 @@ class CategoryModel extends ViewModel
         }
     }
 
-    /**
-     * 设置栏目权限
-     * @param int $mid 模型mid
-     * @param int $cid 栏目id
-     * @param array $access 权限信息
-     * @return boolean
-     */
+    //更新栏目静态
+    public function createHtml($cid)
+    {
+        $html = new Html();
+        //生成首页
+        $html->index();
+        //生成当前栏目
+        $html->relation_category($cid);
+        //更新父级栏目
+        $parentCategory = Data::parentChannel(S('category'), $cid);
+        if (!empty($parentCategory)) {
+            foreach ($parentCategory as $cat) {
+                $html->relation_category($cat['cid']);
+            }
+        }
+        return true;
+    }
+
+    //设置栏目权限
     private function setCategoryAccess($mid, $cid, $access)
     {
+        if (empty($access)) return;
         $model = M('category_access');
         //删除栏目原有权限信息
-        $model->del(array('cid' => $cid));
-        foreach ($access as $a) {
-            if (count($a) == 2) continue;
-            $a['cid'] = $cid;
+        $model->del(array('cid' => $this->cid));
+        foreach ($_POST['access'] as $access) {
+            if (count($access) == 2) continue;
             $a['mid'] = $mid;
-            $model->add($a);
+            $a['cid'] = $cid;
+            $model->add($access);
         }
         return true;
     }
@@ -87,14 +103,16 @@ class CategoryModel extends ViewModel
     //修改栏目
     public function editCategory()
     {
-        if (!$this->cid || !isset($this->category[$this->cid])) {
-            $this->error = 'cid不存在';
+        if (!M('category')->find($this->cid)) {
+            $this->error = '栏目不存在';
             return false;
         }
         if ($this->create()) {
             if ($this->save()) {
                 $this->setCategoryAccess($this->mid, $this->cid, $_POST['access']);
-                return $this->updateCache();
+                $this->updateCache();
+                $this->createHtml($this->cid);
+                return true;
             } else {
                 $this->error = '修改栏目失败';
                 return false;
@@ -131,13 +149,29 @@ class CategoryModel extends ViewModel
             $this->error = '请先删除子栏目';
             return false;
         }
-//        $ContentModel = ContentModel::getInstance($this->category[$cid]['mid']);
-//        $ContentModel->where(array('cid' => $cid))->del();
+        $ContentModel = ContentModel::getInstance($this->category[$cid]['mid']);
+        $ContentModel->where(array('cid' => $cid))->del();
         //删除栏目权限
         M("category_access")->where("cid=$cid")->del();
         //删除栏目
-        $this->del($cid);
-        return $this->updateCache();
+        if ($this->del($cid)) {
+            $html = new Html();
+            //生成首页
+            $html->index();
+            //更新父级栏目
+            $parentCategory = Data::parentChannel(S('category'), $cid);
+            if (!empty($parentCategory)) {
+                foreach ($parentCategory as $cat) {
+                    $html->relation_category($cat['cid']);
+                }
+            }
+            //更新缓存
+            $this->updateCache();
+            return true;
+        } else {
+            $this->error = '删除失败';
+            return false;
+        }
     }
 
     //获得栏目前后台角色权限

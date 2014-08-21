@@ -5,9 +5,6 @@ define('DEBUG', True);
 //设置时区
 date_default_timezone_set('PRC');
 
-//插件目录
-define('APP_ADDON_PATH','Addons/');
-
 //应用目录
 define('APP_PATH','HDCMS/');
 

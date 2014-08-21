@@ -37,18 +37,6 @@ class ConfigModel extends Model
             $this->error = '数据不能为空';
             return false;
         }
-        //SESSION域名验证
-        $sessionDomain = trim($configData['SESSION_DOMAIN'], '.');
-        if (!empty($sessionDomain) && !strpos(__ROOT__, $sessionDomain)) {
-            $this->error = 'SESSION域名设置错误';
-            return false;
-        }
-        //Cookie有效域名
-        $cookieDomain = trim($configData['COOKIE_DOMAIN'], '.');
-        if (!empty($cookieDomain) && !strpos(__ROOT__, $cookieDomain)) {
-            $this->error = 'COOKIE域名设置错误';
-            return false;
-        }
         //上传文件大小
         if (intval($configData['ALLOW_SIZE']) < 100000) {
             $this->error = '上传文件大小不能小于100KB';

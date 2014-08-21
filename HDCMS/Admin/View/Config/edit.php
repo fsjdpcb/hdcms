@@ -16,11 +16,8 @@
                 <li lab="member"><a href="#">会员配置</a></li>
                 <li lab="content"><a href="#">内容相关</a></li>
                 <li lab="water"><a href="#">水印配置</a></li>
-                <li lab="safe"><a href="#">安全配置</a></li>
                 <li lab="optimize"><a href="#">性能优化</a></li>
                 <li lab="email"><a href="#">邮箱配置</a></li>
-                <li lab="cookie"><a href="#">COOKIE配置</a></li>
-                <li lab="session"><a href="#">SESSION配置</a></li>
                 <li lab="custom"><a href="#">自定义</a></li>
             </ul>
             <div class="tab_content">
@@ -168,30 +165,7 @@
                         </list>
                     </table>
                 </div>
-                <div id="safe">
-                    <table class="table1">
-                    	<tr style="background: #E6E6E6;">
-                    		<th  class="w50">排序</th>
-                    		<th  class="w200">标题</th>
-                    		<th>配置</th>
-                    		<th class="w300">变量</th>
-                    		<th class="w300">描述</th>
-                    	</tr>
-                    	<list from="$config" name="c">
-                        	<if value="$c.type eq '安全配置'">
-                        		<tr>
-                        			<td>
-                        				<input type="text" value="{$c.order_list}" class="w30" name="order_list[{$c.name}]"/>
-                        			</td>
-	                        		<td>{$c.title}</td>
-	                        		<td>{$c.html}</td>
-	                        		<td>{$c.name}</td>
-	                        		<td>{$c.message}</td>
-                        		</tr>
-                            </if>
-                        </list>
-                    </table>
-                </div>
+
                 <div id="optimize">
                     <table class="table1">
                     	<tr style="background: #E6E6E6;">
@@ -245,54 +219,7 @@
                         </tr>
                     </table>
                 </div>
-                <div id="cookie">
-                    <table class="table1">
-                    	<tr style="background: #E6E6E6;">
-                    		<th  class="w50">排序</th>
-                    		<th  class="w200">标题</th>
-                    		<th>配置</th>
-                    		<th class="w300">变量</th>
-                    		<th class="w300">描述</th>
-                    	</tr>
-                    	<list from="$config" name="c">
-                        	<if value="$c.type eq 'COOKIE配置'">
-                        		<tr>
-                        			<td>
-                        				<input type="text" value="{$c.order_list}" class="w30" name="order_list[{$c.name}]"/>
-                        			</td>
-	                        		<td>{$c.title}</td>
-	                        		<td>{$c.html}</td>
-	                        		<td>{$c.name}</td>
-	                        		<td>{$c.message}</td>
-                        		</tr>
-                            </if>
-                        </list>
-                    </table>
-                </div>
-                <div id="session">
-                    <table class="table1">
-                    	<tr style="background: #E6E6E6;">
-                    		<th  class="w50">排序</th>
-                    		<th  class="w200">标题</th>
-                    		<th>配置</th>
-                    		<th class="w300">变量</th>
-                    		<th class="w300">描述</th>
-                    	</tr>
-                    	<list from="$config" name="c">
-                        	<if value="$c.type eq 'SESSION配置'">
-                        		<tr>
-                        			<td>
-                        				<input type="text" value="{$c.order_list}" class="w30" name="order_list[{$c.name}]"/>
-                        			</td>
-	                        		<td>{$c.title}</td>
-	                        		<td>{$c.html}</td>
-	                        		<td>{$c.name}</td>
-	                        		<td>{$c.message}</td>
-                        		</tr>
-                            </if>
-                        </list>
-                    </table>
-                </div>
+
                 <div id="custom">
                     <table class="table1">
                     	<tr style="background: #E6E6E6;">
