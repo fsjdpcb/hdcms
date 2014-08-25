@@ -36,7 +36,7 @@ div.top div.top_warp {
 }
 div.top div.top_warp div.logo {
   float: left;
-  width: 280px;
+  width: 260px;
   margin-top: 20px;
 }
 div.top div.top_warp div.top_menu {
@@ -44,7 +44,7 @@ div.top div.top_warp div.top_menu {
   color: #ffffff;
 }
 div.top div.top_warp div.top_menu a {
-  font-size: 25px;
+  font-size: 20px;
   color: #fff;
   display: block;
   float: left;
@@ -56,6 +56,18 @@ div.top div.top_warp div.top_menu a:hover,
 div.top div.top_warp div.top_menu a.cur {
   background: #ffffff;
   color: #333;
+}
+div.top div.top_warp div.top_menu a.login {
+  background: #5998d7;
+  color: #ffffff;
+}
+div.top div.top_warp div.top_menu a.login img.user {
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+  border-radius: 30px;
+  border: solid 1px #DCDCDC;
+  margin-top: -8px;
 }
 div.wrap {
   width: 1030px;
