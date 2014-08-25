@@ -4,10 +4,10 @@
  * 数据表内容替换模块
  * @author hdxj<houdunwangxj@gmail.com>
  */
-class TableController extends AuthController
+class AdminController extends AuthController
 {
     //字段内容替换
-    public function contentReplace()
+    public function index()
     {
         if (IS_POST) {
             $WHERE = !empty($_POST['replacewhere']) ? " WHERE {$_POST['replacewhere']}" : '';

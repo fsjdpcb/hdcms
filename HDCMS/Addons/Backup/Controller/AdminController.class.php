@@ -55,9 +55,9 @@ class AdminController extends AddonController
     //还原数据
     public function recovery()
     {
-        $dir = APP_PATH . "backup/" . Q("dir");
-        $result = Backup::recovery(array('backup_dir' => $dir));
-        if ($result['state'] == 'success') {
+        $dir = APP_PATH . "Backup/" . Q("dir");
+        $result = Backup::recovery(array('dir' => $dir));
+        if ($result['status'] == 'success') {
             $this->success($result['message'], U('index'));
         } else {
             $this->success($result['message'], $result['url'], 0.2);

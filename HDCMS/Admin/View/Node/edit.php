@@ -41,7 +41,7 @@
             <tr>
                 <th>控制器</th>
                 <td>
-                    <input type="text" name="control" value="{$field.control}" class="w200"/>
+                    <input type="text" name="controller" value="{$field.controller}" class="w200"/>
                 </td>
             </tr>
             <tr>

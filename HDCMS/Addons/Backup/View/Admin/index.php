@@ -17,7 +17,7 @@
                 <td>备份目录</td>
                 <td>备份时间</td>
                 <td>大小</td>
-                <td width="150">操作</td>
+                <td width="80">操作</td>
             </tr>
             </thead>
             <tbody>
@@ -30,7 +30,7 @@
                     <td>{$d.filemtime|date:'Y-m-d h:i:s',@@}</td>
                     <td>{$d.size|get_size}</td>
                     <td>
-                        <a href="javascript:confirm('确定还原吗？')?location.href='{|U:'recovery',array('dir'=>$d['name'])}':false;">还原</a> |
+                        <a href="javascript:confirm('确定还原吗？')?location.href='{|U:'recovery',array('dir'=>$d['filename'])}':false;">还原</a> |
                         <a href="javascript:" onclick="hd_confirm('确认删除吗？',function(){hd_ajax('{|U:del}',{dir:['{$d.filename}']})})">删除</a>
                     </td>
                 </tr>
@@ -53,7 +53,7 @@
     function del_backup() {
         if (check_select_table()) {
             if (confirm("确定删除目录吗？")) {
-                hd_ajax(CONTROLLER + '&a=del&app=Addon', $("[name*='dir']:checked").serialize());
+                hd_ajax(CONTROLLER + '&a=del&g=Addons', $("[name*='dir']:checked").serialize());
             }
         }
     }

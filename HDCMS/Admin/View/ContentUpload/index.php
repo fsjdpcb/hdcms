@@ -200,11 +200,9 @@
                     var _alt = $(this).parent().find("[name*=alt]").val();
                     _ul += "<li style='width:98%'>";
                     _ul += "<img src='" + HDPHPEXTEND + "/Org/Uploadify/default.png' style='width:50px;height:50px;'/>";
-                    _ul += "<input type='hidden' name='" + name + "[path][]'  value='" + $(_img[i]).attr("path") + "'/> ";
-                    _ul += "描述：<input type='text' name='" + name + "[alt][]' style='width:200px;' value='" + _alt + "'/>";
-                    _ul += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-                    _ul += '下载金币：<input type="text" name="' + name + '[credits][]" style="width:200px;" value="0" onblur="if(!/^\\d+$/.test(this.value))this.value=0"/>';
-                    _ul += "&nbsp;&nbsp;&nbsp;<a href='javascript:;' onclick='remove_upload(this)'>删除</a>";
+                    _ul += "&nbsp;&nbsp;地址: <input type='text' name='" + name + "[path][]'  value='" + $(_img[i]).attr("path") + "' style='width:35%' readonly=''/> ";
+                    _ul += "&nbsp;&nbsp;描述: <input type='text' name='" + name + "[alt][]' style='width:35%;' value='" + _alt + "'/>";
+                    _ul += "&nbsp;&nbsp;<a href='javascript:;' onclick='remove_upload(this)'>删除</a>";
                     _ul += "</li>";
                 })
                 _ul = _ul + "</ul>";

@@ -85,5 +85,4 @@ class FlagModel extends Model
         }
         return S('flag' . $this->mid,$flag,0);
     }
-
 }

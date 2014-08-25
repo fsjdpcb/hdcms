@@ -282,23 +282,6 @@
                 <div id="charge">
                     <table class="table1">
                         <tr>
-                            <th class="w100">会员设置阅读金币</th>
-                            <td>
-                                <label><input type="radio" name="allow_user_set_credits" value="1" <if value="$field.allow_user_set_credits eq 1">checked=""</if>/> 允许</label>
-                                <label><input type="radio" name="allow_user_set_credits" value="0" <if value="$field.allow_user_set_credits eq 0">checked=""</if>/> 不允许</label>
-                                <span class="validate-message">
-                                    是否允许会员投稿时设置阅读金币 （只对前台投稿有效）
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="w100">投稿奖励</th>
-                            <td>
-                                <input type="text" name="add_reward" required="" class="w100" value="{$field.add_reward}"/> 金币
-                                <span id="hd_add_reward"></span>
-                            </td>
-                        </tr>
-                        <tr>
                             <th class="w100">阅读金币</th>
                             <td>
                                 <input type="text" name="show_credits" required="" class="w100" value="{$field.show_credits}"/> 金币

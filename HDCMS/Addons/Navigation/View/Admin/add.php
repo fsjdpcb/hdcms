@@ -6,22 +6,10 @@
             <ul>
                 <li><a href="{|U:'index'}">导航列表</a></li>
                 <li><a href="{|U:'add',array('pid'=>0)}" class="action">添加导航</a></li>
-                <li><a href="javascript:hd_ajax('{|U:update_cache}');">更新缓存</a></li>
             </ul>
         </div>
         <div class="title-header">菜单信息</div>
         <table class="table1">
-            <tr>
-                <td class="w100">上级:</td>
-                <td>
-                    <select name="pid">
-                        <option value="0"> == 一级导航 == </option>
-                        <list from="$navigation" name="n">
-                                <option value="{$n.nid}" <if value="$n.nid eq $hd.get.pid">selected="selected"</if>>{$n._name}</option>
-                        </list>
-                    </select>
-                </td>
-            </tr>
             <tr>
                 <td>导航:</td>
                 <td>

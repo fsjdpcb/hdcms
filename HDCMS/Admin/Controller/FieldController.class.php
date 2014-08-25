@@ -38,7 +38,7 @@ class FieldController extends AuthController
         //不允许禁用字段
         $this->assign('noallowforbidden', FieldModel::$NoAllowForbidden);
         //分配当前模型的字段数据
-        $this->assign('field', $this->field);
+        $this->assign('field', M('field')->where(array('mid'=>array('IN',array($this->mid))))->order('fieldsort ASC')->all());
         $this->display();
     }
 

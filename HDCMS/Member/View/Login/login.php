@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="Cache-Control" content="no-cache"/>
     <title>登录</title>
-    <css file="__CONTROLLER_TPL__/css/login.css"/>
+    <css file="__CONTROLLER_VIEW__/css/login.css"/>
     <bootstrap/>
 </head>
 <body>
 
 <div class="left">
     <div class="icon">
-        <img src="__CONTROLLER_TPL__/image/qr.png" alt="HDCMS"/>
+        <img src="__CONTROLLER_VIEW__/image/qr.png" alt="HDCMS"/>
 
         <p>微信：后盾网<br/>QQ群：1728288289</p>
     </div>
@@ -19,7 +19,7 @@
 <div class="right">
     <div class="logo">
         <a href="http://www.hdphp.com">
-            <img src="__CONTROLLER_TPL__/image/logo_reg.png" alt="HDCMS"/>
+            <img src="__CONTROLLER_VIEW__/image/logo_reg.png" alt="HDCMS"/>
         </a>
 
         <p class="">

@@ -9,7 +9,7 @@ class LoginController extends Controller
 {
     public function __init()
     { //已经登录用户不允许执行
-        if (Q('session.uid') && ACTION != 'out') {
+        if (Q('session.admin') && ACTION != 'out') {
             go("Index/index");
         }
     }

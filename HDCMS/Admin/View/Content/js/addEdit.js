@@ -176,28 +176,6 @@ function close_file_upload() {
 	$.removeModal();
 }
 
-//image || images上传图片显示预览
-$(function() {
-	$("input.images").live("mouseover", function() {
-		//添加预览DIV
-		if ($("#img_view").length == 0) {
-			var div = "<div id='img_view' style='position:absolute;border:solid 5px #dcdcdc;padding:0px;'><img src='' width='205' height='183'/></div>";
-			$("body").append(div);
-		}
-		var offset = $(this).offset();
-		var _l = parseInt(offset.left) + 420;
-		var _t = parseInt(offset.top) - 50;
-		//有上传图片才可以预览
-		if ($(this).val())
-			$("#img_view").css({
-				left : _l,
-				top : _t
-			}).find("img").attr("src", $(this).attr("src")).end().fadeIn(200);
-
-	}).live("mouseout", function() {
-		$("#img_view").hide();
-	})
-})
 //------------------------上传图片处理（自定义表单）-------------------------
 //移除缩略图
 function remove_thumb(obj, type, id) {
@@ -216,6 +194,7 @@ function remove_upload_one_img(obj) {
 //预览单张图片
 function view_image(obj) {
 	var src = $(obj).attr('src');
+    if(!src)return;
 	var id = $(obj).attr('id');
 	var viewImg = $('#view_' + id);
 	//删除预览图

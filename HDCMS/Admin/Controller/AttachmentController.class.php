@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 上传附件管理
+ * 附件管理
  * Class AttachmentControl
  */
 class AttachmentController extends AuthController
@@ -36,7 +36,7 @@ class AttachmentController extends AuthController
     //删除附件
     public function del()
     {
-        $id = Q("id", null, "intval");p($id);exit;
+        $id = Q("id", null, "intval");
         if ($id) {
             $file = $this->db->find($id);
             is_file($file['path']) and unlink($file['path']);

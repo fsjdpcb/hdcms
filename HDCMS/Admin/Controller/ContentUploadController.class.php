@@ -34,6 +34,7 @@ class ContentUploadController extends Controller
                     'limit' => 1,
                     'width' => 88,
                     'height' => 78,
+                    'water'=>C('WATER_ON'),
                     'waterbtn' => 1
                 );
                 break;
@@ -46,6 +47,7 @@ class ContentUploadController extends Controller
                     'width' => 88,
                     'height' => 78,
                     'alt' => 1,
+                    'water'=>C('WATER_ON'),
                     'waterbtn' => 1
                 );
                 break;
@@ -58,6 +60,7 @@ class ContentUploadController extends Controller
                     'width' => 88,
                     'height' => 78,
                     'alt' => 1,
+                    'water'=>C('WATER_ON'),
                     'waterbtn' => 1
                 );
                 break;

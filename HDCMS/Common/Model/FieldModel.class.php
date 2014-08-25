@@ -17,9 +17,9 @@ class FieldModel extends Model
     //前台投稿不允许隐藏的字段
     static public $NoAllowHide = array('title', 'cid');
     //不允许删除的字段
-    static public $NoAllowDelete = array('title', 'cid', 'addtime', 'arc_sort');
+    static public $NoAllowDelete = array('title', 'cid', 'addtime', 'arc_sort', 'readpoint', 'content_status');
     //不允许禁用的字段
-    static public $NoAllowForbidden = array('title', 'cid', 'addtime', 'arc_sort');
+    static public $NoAllowForbidden = array('title', 'cid', 'addtime', 'arc_sort', 'readpoint', 'content_status');
     //自动验证
     public $validate = array(
         array('field_name', 'nonull', '字段名不能为空', 2, 1), //字段类型
@@ -199,7 +199,11 @@ class FieldModel extends Model
                 break;
             case "box" :
                 //checkbox radio select
-                $field = '`' . $this->data['field_name'] . '`' . " CHAR(80) NOT NULL DEFAULT ''";
+                if ($this->data['set']['form_type'] == 'radio') {
+                    $field = '`' . $this->data['field_name'] . '`' . " tinyint";
+                } else {
+                    $field = '`' . $this->data['field_name'] . '`' . " CHAR(80) NOT NULL DEFAULT ''";
+                }
                 break;
             case "datetime" :
                 $field = '`' . $this->data['field_name'] . '`' . " int(10) NOT NULL DEFAULT 0";
@@ -222,11 +226,9 @@ class FieldModel extends Model
         $ModelField = M("field");
         $fieldData = $ModelField->where("mid={$this->mid}")->order('fieldsort ASC')->all();
         $cacheData = array();
-        if (!empty($fieldData)) {
-            foreach ($fieldData as $field) {
-                $field['set'] = unserialize($field['set']);
-                $cacheData[$field['field_name']] = $field;
-            }
+        foreach ($fieldData as $field) {
+            $field['set'] = unserialize($field['set']);
+            $cacheData[$field['field_name']] = $field;
         }
         if (!S('field' . $this->mid, $cacheData, 0)) {
             $this->error = '更新字段缓存失败';

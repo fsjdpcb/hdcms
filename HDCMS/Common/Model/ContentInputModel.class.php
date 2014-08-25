@@ -7,11 +7,12 @@ class ContentInputModel
 {
     //字段缓存
     private $field;
+    //模型mid
     private $mid;
     //栏目缓存
     private $category;
     //不需要处理的字段
-    private $noDealField = array('aid', 'cid', 'mid', 'favorites', 'comment_num', 'read_credits', 'new_window');
+    private $noDealField = array('aid', 'cid', 'mid', 'new_window');
 
     /**
      *
@@ -53,24 +54,8 @@ class ContentInputModel
             $len = isset($data['auto_desc_length']) ? $data['auto_desc_length'] : 200;
             $data['description'] = mb_substr(strip_tags($data['content']), 0, $len, 'utf-8');
         }
-        //自动提取关键字
-        if (empty($data['keywords'])) {
-            $description = preg_replace("@\s@is", "", $data['description']);
-            $words = String::splitWord($description);
-            //没有分词不处理
-            if (!empty($words)) {
-                $i = 0;
-                $k = "";
-                foreach ($words as $w => $id) {
-                    $k .= $w . ",";
-                    $i++;
-                    if ($i > 8)
-                        break;
-                }
-                $data['keywords'] = substr($k, 0, -1);
-            }
-        }
-        foreach ($this->field as $field => $fieldInfo) {
+        foreach ($this->field as $fieldInfo) {
+            $field=$fieldInfo['field_name'];
             //字段set选项
             $set = $fieldInfo['set'];
             //不需要处理的字段
@@ -81,11 +66,10 @@ class ContentInputModel
             $METHOD = $fieldInfo['field_type'];
             $data[$field] = isset($data[$field]) ? $data[$field] : '';
             if (method_exists($this, $METHOD)) {
+                $Value = $this->$METHOD($fieldInfo, $data[$field]);
                 if ($fieldInfo['table_type'] == 1) { //主表数据
-                    $Value = $this->$METHOD($fieldInfo, $data[$field]);
                     $data[$field] = $Value;
                 } else { //副表
-                    $Value = $this->$METHOD($fieldInfo, $data[$field]);
                     $data[$fieldInfo['table_name']][$field] = $Value;
                 }
             }
@@ -288,6 +272,4 @@ class ContentInputModel
     {
         return strtotime($value);
     }
-
-
 }

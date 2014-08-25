@@ -62,7 +62,6 @@ class Content
         }
         if ($ContentModel->create($data)) {
             if ($result = $ContentModel->save($data)) {
-                $this->alterTag($data['aid']);
                 //修改上传表Upload中本次上传文件状态
                 $this->alterUploadTable();
                 //修改tag标签数据

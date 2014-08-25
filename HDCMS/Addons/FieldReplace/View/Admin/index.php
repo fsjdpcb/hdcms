@@ -1,6 +1,15 @@
-<include file="__PUBLIC__/header.php"/>
+<?php if (!defined('HDPHP_PATH')) exit(); ?>
+<!doctype html>
+<html lang="en">
+<head>
+<head>
+    <meta charset="UTF-8">
+    <title>系统后台 - {$hd.config.webname} - by HDCMS</title>
+    <hdjs/>
+    <css file="__PUBLIC__/common.css"/>
+</head>
 <body>
-<form action="{|U:'ContentReplace'}" class="hd-form" method="post" onsubmit="return hd_submit(this)">
+<form class="hd-form" method="post" onsubmit="return hd_submit(this)">
     <div class="wrap">
         <div class="title-header">友情提示</div>
         <div class="help">程序用于批量替换数据库中某字段的内容，此操作极为危险，请小心使用。</div>
@@ -16,7 +25,7 @@
                     </select>
 
                     <div id="tablefieldlist"></div>
-                    要替换的字段：<input type="text" name="field" class="w200"/>
+                    要替换的字段：<input type="text" name="field" class="w200" readonly=""/>
                 </td>
             </tr>
             <tr>

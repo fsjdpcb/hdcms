@@ -18,7 +18,7 @@
             <td>文件名</td>
             <td>大小</td>
             <td class="w200">上传时间</td>
-            <td class="w100">用户id</td>
+            <td class="w100">用户</td>
             <td class="w50">操作</td>
         </tr>
         </thead>

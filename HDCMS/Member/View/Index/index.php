@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title></title>
     <meta http-equiv="Cache-Control" content="no-cache"/>
-    <css file="__CONTROLLER_TPL__/css/index.css"/>
+    <css file="__CONTROLLER_VIEW__/css/index.css"/>
     <jquery/>
     <bootstarp/>
 </head>
@@ -12,7 +12,7 @@
 <div class="top">
     <div class="top_warp">
         <div class="logo">
-            <img src="__CONTROLLER_TPL__/image/member_logo.png" alt=""/>
+            <img src="__CONTROLLER_VIEW__/image/member_logo.png" alt=""/>
         </div>
         <div class="top_menu">
             <a href="">首页</a>

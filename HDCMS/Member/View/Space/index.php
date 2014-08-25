@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>个人空间</title>
     <bootstrap/>
-    <css file="__CONTROLLER_TPL__/css/space.css"/>
+    <css file="__CONTROLLER_VIEW__/css/space.css"/>
 </head>
 <body>
 <div class="wrap">
@@ -14,7 +14,7 @@
         </div>
         <div class="about">
             <div class="feeb">
-                <img src="__CONTROLLER_TPL__/image/feebd134.jpeg" alt=""/>
+                <img src="__CONTROLLER_VIEW__/image/feebd134.jpeg" alt=""/>
             </div>
             <div class="userinfo">
                 <div class="username">
@@ -87,42 +87,42 @@
                 <ul>
                     <li>
                         <a href="">
-                            <img src="__CONTROLLER_TPL__/image/user_ico.jpeg" alt=""/>
+                            <img src="__CONTROLLER_VIEW__/image/user_ico.jpeg" alt=""/>
                         </a>
                     </li>
                     <li>
                         <a href="">
-                            <img src="__CONTROLLER_TPL__/image/user_ico.jpeg" alt=""/>
+                            <img src="__CONTROLLER_VIEW__/image/user_ico.jpeg" alt=""/>
                         </a>
                     </li>
                     <li>
                         <a href="">
-                            <img src="__CONTROLLER_TPL__/image/user_ico.jpeg" alt=""/>
+                            <img src="__CONTROLLER_VIEW__/image/user_ico.jpeg" alt=""/>
                         </a>
                     </li>
                     <li>
                         <a href="">
-                            <img src="__CONTROLLER_TPL__/image/user_ico.jpeg" alt=""/>
+                            <img src="__CONTROLLER_VIEW__/image/user_ico.jpeg" alt=""/>
                         </a>
                     </li>
                     <li>
                         <a href="">
-                            <img src="__CONTROLLER_TPL__/image/user_ico.jpeg" alt=""/>
+                            <img src="__CONTROLLER_VIEW__/image/user_ico.jpeg" alt=""/>
                         </a>
                     </li>
                     <li>
                         <a href="">
-                            <img src="__CONTROLLER_TPL__/image/user_ico.jpeg" alt=""/>
+                            <img src="__CONTROLLER_VIEW__/image/user_ico.jpeg" alt=""/>
                         </a>
                     </li>
                     <li>
                         <a href="">
-                            <img src="__CONTROLLER_TPL__/image/user_ico.jpeg" alt=""/>
+                            <img src="__CONTROLLER_VIEW__/image/user_ico.jpeg" alt=""/>
                         </a>
                     </li>
                     <li>
                         <a href="">
-                            <img src="__CONTROLLER_TPL__/image/user_ico.jpeg" alt=""/>
+                            <img src="__CONTROLLER_VIEW__/image/user_ico.jpeg" alt=""/>
                         </a>
                     </li>
                 </ul>

@@ -5,7 +5,7 @@
     	<input type="hidden" name="fid" value="{$hd.get.fid}"/>
      	<input type="hidden" name="mid" value="{$hd.get.mid}"/>
      	<input type="hidden" name="field_type" value="{$field.field_type}"/>
-     	<input type="hidden" name="table_name" value="{$field.table_name}"/>	
+     	<input type="hidden" name="table_name" value="{$field.table_name}"/>
         <div class="menu_list">
             <ul>
                 <li><a href="{|U:'Model/index'}">模型列表</a></li>
@@ -130,6 +130,10 @@
     }
 </style>
 <script>
+    //验证规则切换
+    $("#field_check").live("change", function () {
+        $("[name='validate']").val($(this).val());
+    })
     $("form").validate({
         //验证规则
         title: {

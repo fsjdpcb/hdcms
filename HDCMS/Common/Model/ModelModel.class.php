@@ -165,8 +165,10 @@ class ModelModel extends Model
     {
         $model = M('model')->order('mid ASC')->all();
         $cache = array();
-        foreach ($model as $m) {
-            $cache[$m['mid']] = $m;
+        if (!empty($model)) {
+            foreach ($model as $m) {
+                $cache[$m['mid']] = $m;
+            }
         }
         $stat = S('model', $cache, 0);
         if ($stat) {

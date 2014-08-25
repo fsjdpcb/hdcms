@@ -100,7 +100,7 @@ class ContentFormModel extends Model
         }
         //有验证规则
         if (!empty($field['validate'])) {
-            $validate['rule']['regexp'] = $field['validate'];
+            $validate['rule']['regexp'] = '/'.str_replace('/','\/',(substr($field['validate'],1,-1))).'/';
             $validate['error']['regexp'] = empty($field['error']) ? '输入错误' : $field['error'];
         }
         //最小长度
@@ -409,11 +409,9 @@ class ContentFormModel extends Model
                 foreach ($file['path'] as $N => $path) {
                     $h .= "<li style='width:98%'>";
                     $h .= "<img src='" . __HDPHP_EXTEND__ . "/Org/Uploadify/default.png' style='width:50px;height:50px;'/>";
-                    $h .= "<input type='hidden' name='" . $field['field_name'] . "[path][]'  value='" . $path . "'/> ";
-                    $h .= "描述：<input type='text' name='" . $field['field_name'] . "[alt][]' style='width:200px;' value='" . $file['alt'][$N] . "'/>";
-                    $h .= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-                    $h .= "下载金币：<input type='text' name='" . $field['field_name'] . "[credits][]' style='width:200px;' value='" . $file['credits'][$N] . "' onblur='if(!/^\d+$/.test(this.value))this.value=0'/>";
-                    $h .= "&nbsp;&nbsp;&nbsp;<a href='javascript:;' onclick='remove_upload(this,\"{$id}\")'>删除</a>";
+                    $h .= "&nbsp;&nbsp;地址: <input type='text' name='" . $field['field_name'] . "[path][]'  value='" . $path . "' style='width:35%' readonly=''/> ";
+                    $h .= "&nbsp;&nbsp;描述: <input type='text' name='" . $field['field_name'] . "[alt][]' style='width:35%' value='" . $file['alt'][$N] . "'/>";
+                    $h .= "&nbsp;&nbsp;<a href='javascript:;' onclick='remove_upload(this,\"{$id}\")'>删除</a>";
                     $h .= "</li>";
                 }
                 $h .= '</ul>';

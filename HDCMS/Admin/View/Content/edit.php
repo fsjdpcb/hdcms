@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <title>编辑文章</title>
-    <hdjs/>
-    <js file="__CONTROLLER_VIEW__/js/addEdit.js"/>
-    <css file="__CONTROLLER_VIEW__/css/css.css"/>
-    <css file="__PUBLIC__/common.css"/>
-</head>
+<include file="__PUBLIC__/header.php"/>
 <body>
 <form method="post" onsubmit="return false;" id="add" class="hd-form">
     <input type="hidden" name="mid" value="{$hd.request.mid}"/>
@@ -18,25 +9,15 @@
         <div class="content_right">
             <table class="table1">
             	<?php foreach($form['nobase'] as $field):?>
-            	<tr>
-            		<th>{$field['title']}</th>
-            	</tr>
-                <tr>
-                    <td>
-                       {$field['form']}
-                    </td>
-                </tr>
+                    <tr>
+                        <th>{$field['title']}</th>
+                    </tr>
+                    <tr>
+                        <td>
+                           {$field['form']}
+                        </td>
+                    </tr>
                 <?php endforeach;?>
-                <tr>
-            		<th>已审核</th>
-            	</tr>
-            	<tr>
-                    <td>
-                       <label><input type="radio" name="content_status" value="1" <?php if($editData['content_status']==1):?>checked=""<?php endif;?>>是</label>
-                       &nbsp;&nbsp;
-                       <label><input type="radio" name="content_status" value="0" <?php if($editData['content_status']==0):?>checked=""<?php endif;?>>否</label>
-                     </td>
-                </tr>
             </table>
         </div>
         <div class="content_left">
@@ -59,7 +40,9 @@
     </div>
 </form>
 <script type="text/javascript">
-	$('form').validate({$formValidate});
+    $('form').validate({$formValidate});
 </script>
+<js file="__CONTROLLER_VIEW__/js/addEdit.js"/>
+<css file="__CONTROLLER_VIEW__/css/css.css"/>
 </body>
 </html>

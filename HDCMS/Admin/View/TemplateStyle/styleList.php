@@ -18,7 +18,7 @@
                     <h2>{$t.name}</h2>
                     <p>作者: {$t.author}</p>
                     <p>Email: {$t.email}</p>
-                    <p>目录: {$t.dirname}</p>
+                    <p>目录: {$t.filename}</p>
 
                     <div class="link">
                         <if value="$t.current neq 1">

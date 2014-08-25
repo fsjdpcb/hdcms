@@ -30,7 +30,7 @@
                     <td>{$d.name}</td>
                     <td>{$d.title}</td>
                     <td>{$d.description}</td>
-                    <td>{$d.status_text|default:'禁用'}</td>
+                    <td><if value="$d.status"><font color="red">√</font><else><font color="blue">×</font></if></td>
                     <td>{$d.author}</td>
                     <td>{$d.version}</td>
                     <td>

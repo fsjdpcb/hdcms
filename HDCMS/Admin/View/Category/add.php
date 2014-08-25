@@ -271,21 +271,6 @@
                         <tr>
                             <th class="w100">阅读金币</th>
                             <td>
-                                <label><input type="radio" name="allow_user_set_credits" value="1" checked="checked"/> 允许</label>
-                                <label><input type="radio" name="allow_user_set_credits" value="0"/> 不允许</label>
-                                    <span class="validate-message">是否允许会员投稿时设置阅读金币 （只对前台投稿有效）</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="w100">投稿奖励</th>
-                            <td>
-                                <input type="text" name="add_reward" required="" class="w100" value="1"/> 金币
-                                <span id="hd_add_reward"></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="w100">阅读金币</th>
-                            <td>
                                 <input type="text" name="show_credits" required="" class="w100" value="0"/> 金币
                                 <span id="hd_show_credits"></span>
                             </td>
@@ -411,7 +396,7 @@
                 required: "阅读积分不能为空",
                 regexp: '阅读积分必须为数字'
             },
-            message: '查看此栏目下文章的收费标准。如果文章单独设置了查看积分，则以文章设置为准。'
+            message: '当这里设置为0时，发布页设置了，可只对设置的文章收费，<span style="color:#f00">生成静态时收费无效</span>'
 
         },
         repeat_charge_day: {
@@ -423,7 +408,7 @@
                 required: "重复收费天数不能为空",
                 regexp: '重复收费天数，最小设置为1天'
             },
-            message: '重复收费天数，必须大于1天。'
+            message: '重复收费天数，<span style="color:#f00">最小设置为1天。</span>'
 
         }
     })

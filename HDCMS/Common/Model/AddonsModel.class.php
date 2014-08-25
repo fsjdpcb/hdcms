@@ -225,7 +225,7 @@ class AddonsModel extends Model
     public function delAdminMenu($addon_name)
     {
         $node = K('Node');
-        $node->where("group='Addons' AND module='$addon_name'")->del();
+        $node->where("`group`='Addons' AND module='$addon_name'")->del();
         return $node->updateCache();
     }
 

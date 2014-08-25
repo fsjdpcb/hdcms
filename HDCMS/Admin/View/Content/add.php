@@ -16,16 +16,6 @@
                         </td>
                     </tr>
                 <?php endforeach; ?>
-                <tr>
-                    <th>已审核</th>
-                </tr>
-                <tr>
-                    <td>
-                        <label><input type="radio" name="content_status" value="1" checked="">是</label>
-                        &nbsp;&nbsp;
-                        <label><input type="radio" name="content_status" value="0">否</label>
-                    </td>
-                </tr>
             </table>
         </div>
         <div class="content_left">
@@ -39,7 +29,6 @@
                             </td>
                     </tr>
                 <?php endforeach; ?>
-
             </table>
         </div>
     </div>
