@@ -9,14 +9,6 @@ $(function () {
                 required: "选项列表不能为空"
             },
             message: "例：1|男,2|女"
-        },
-        'set[default]': {//select默认值
-            rule: {
-                regexp: /^\d+$/
-            },
-            error: {
-                regexp: "请输入数字"
-            }
         }
     })
 })

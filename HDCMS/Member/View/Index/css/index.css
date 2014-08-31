@@ -53,6 +53,14 @@ div.top div.top_warp div.top_menu a.cur {
   background: #ffffff;
   color: #333;
 }
+div.top div.top_warp div.top_menu a img.user {
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+  border-radius: 30px;
+  border: solid 1px #DCDCDC;
+  margin-top: -8px;
+}
 div.wrap {
   width: 1030px;
   margin: 0 auto;

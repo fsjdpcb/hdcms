@@ -29,20 +29,20 @@
     </div>
     <div class="form">
         <div class="reg">
-            没有账号？ <a href="">立即注册</a>
+            没有账号？ <a href="{|U:'reg'}">立即注册</a>
         </div>
-        <form action="">
+        <form action="" method="post">
             <div class="input">
-                <input type="text" name="username" placeholder="帐号"/>
+                <input type="text" name="username" placeholder="帐号" required=""/>
             </div>
             <div class="input">
-                <input type="text" name="password" placeholder="密码"/>
+                <input type="password" name="password" placeholder="密码" required=""/>
             </div>
             <div class="input">
-                <input type="submit"/>
+                <input type="submit" value="登录"/>
             </div>
             <div class="getpassword">
-                <input type="checkbox" name="recond"/> 记住我 | <a href="">忘记密码了</a>
+                <label><input type="checkbox" name="recond"/> 记住我</label> | <a href="">忘记密码了</a>
             </div>
         </form>
     </div>

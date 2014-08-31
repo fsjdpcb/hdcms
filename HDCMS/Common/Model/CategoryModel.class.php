@@ -26,7 +26,7 @@ class CategoryModel extends ViewModel
     public $validate = array(
         array('catname', 'nonull', '栏目名称不能为空', 2, 3),
         array('catname', 'maxlen:30', '栏目名不能超过30个字', 2, 3),
-        array('mid', 'nonull', '模型mid不能为空', 2, 3),
+        array('mid', 'nonull', '模型选择错误', 2, 3),
         array('mid', 'CheckMid', '模型不存在', 2, 3),
         array('catdir', 'nonull', '静态目录不能为空', 2, 3)
     );
@@ -91,11 +91,11 @@ class CategoryModel extends ViewModel
         $model = M('category_access');
         //删除栏目原有权限信息
         $model->del(array('cid' => $this->cid));
-        foreach ($_POST['access'] as $access) {
-            if (count($access) == 2) continue;
+        foreach ($access as $a) {
+            if (count($a) == 2) continue;
             $a['mid'] = $mid;
             $a['cid'] = $cid;
-            $model->add($access);
+            $model->add($a);
         }
         return true;
     }
@@ -179,7 +179,7 @@ class CategoryModel extends ViewModel
     {
         $pre = C("DB_PREFIX");
         $db = M("category_access");
-        $sql = "SELECT a.cid,r.rid,r.rname,r.admin,a.add,a.del,a.edit,a.show,a.move,a.audit,a.order FROM
+        $sql = "SELECT a.cid,r.rid,r.rname,r.admin,a.add,a.del,a.edit,a.content,a.move,a.audit,a.order FROM
 					{$pre}role AS r  LEFT JOIN (SELECT * FROM {$pre}category_access  WHERE cid=$cid) AS a
                	 	ON r.rid = a.rid";
         $accessData = $db->query($sql);

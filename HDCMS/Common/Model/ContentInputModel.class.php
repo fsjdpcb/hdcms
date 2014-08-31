@@ -9,6 +9,8 @@ class ContentInputModel
     private $field;
     //模型mid
     private $mid;
+    //栏目cid
+    private $cid;
     //栏目缓存
     private $category;
     //不需要处理的字段
@@ -22,6 +24,7 @@ class ContentInputModel
     public function __construct($mid)
     {
         $this->mid = $mid;
+        $this->cid = Q('cid', 0, 'intval');
         $this->field = S('field' . $this->mid);
         $this->category = S('category');
     }
@@ -34,13 +37,13 @@ class ContentInputModel
     {
         $data = $_POST;
         //作者uid
-        $data['uid'] = session('uid');
+        $data['uid'] = $_SESSION['user']['uid'];
         //添加时间
         $data['addtime'] = empty($data['addtime']) ? date("Y/m/d H:i:s") : $data['addtime'];
         //修改时间
         $data['updatetime'] = time();
         //前台会员设置文章状态
-        if (empty($_SESSION['admin'])) {
+        if (empty($_SESSION['user']['admin'])) {
             $data['content_status'] = $this->category[$data['cid']]['member_send_state'];
         }
         //文章模型
@@ -55,7 +58,7 @@ class ContentInputModel
             $data['description'] = mb_substr(strip_tags($data['content']), 0, $len, 'utf-8');
         }
         foreach ($this->field as $fieldInfo) {
-            $field=$fieldInfo['field_name'];
+            $field = $fieldInfo['field_name'];
             //字段set选项
             $set = $fieldInfo['set'];
             //不需要处理的字段
@@ -128,6 +131,12 @@ class ContentInputModel
     private function title($fieldInfo, $value)
     {
         return htmlspecialchars(trim($value));
+    }
+
+    //文章状态
+    private function content_status($fieldInfo, $value)
+    {
+        return MODULE == 'Member' ? $this->category[$this->cid]['member_send_state'] : 1;
     }
 
     //缩略图

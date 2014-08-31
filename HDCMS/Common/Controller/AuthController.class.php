@@ -27,9 +27,9 @@ class AuthController extends Controller
     protected function checkAdminAccess()
     {
         //没登录或普通用户
-        Q('session.admin') or go("Login/login");
+        isset($_SESSION['user']) or go("Login/login");
         //超级管理员不限制
-        if (Q('session.web_master')) return true;
+        if ($_SESSION['user']['web_master']) return true;
         //普通管理员权限控制
         $nodeModel = M("node");
         $nodeModel->where = array("MODULE" => MODULE, "control" => CONTROLLER, "action" => ACTION, 'type' => 1);
@@ -38,7 +38,7 @@ class AuthController extends Controller
         if (is_null($node)) {
             return true;
         } else {
-            return M('access')->where(array("nid" => $node['nid'], "rid" => session("rid")))->find();
+            return M('access')->where(array("nid" => $node['nid'], "rid" => $_SESSION['user']['rid']))->find();
         }
     }
 }

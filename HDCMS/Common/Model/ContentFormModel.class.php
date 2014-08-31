@@ -26,7 +26,7 @@ class ContentFormModel extends Model
         //字段所在表模型信息
         $this->model = S("model");
         //字段缓存
-        $this->field = S('field'.$this->mid);
+        $this->field = S('field' . $this->mid);
     }
 
     /**
@@ -59,7 +59,11 @@ class ContentFormModel extends Model
             //设置验证规则
             $this->setValidateRule($field, $value);
             //验证规则
-            $form[$isbase][] = $field;
+            if (MODULE == 'Member') {
+                $form[] = $field;
+            } else {
+                $form[$isbase][] = $field;
+            }
         }
         //编辑验证规则为合法的JS格式
         $this->validateCompileJs();
@@ -100,7 +104,7 @@ class ContentFormModel extends Model
         }
         //有验证规则
         if (!empty($field['validate'])) {
-            $validate['rule']['regexp'] = '/'.str_replace('/','\/',(substr($field['validate'],1,-1))).'/';
+            $validate['rule']['regexp'] = '/' . str_replace('/', '\/', (substr($field['validate'], 1, -1))) . '/';
             $validate['error']['regexp'] = empty($field['error']) ? '输入错误' : $field['error'];
         }
         //最小长度
@@ -149,7 +153,7 @@ class ContentFormModel extends Model
     private function title($field, $value)
     {
         $set = $field['set'];
-        if (APP != 'Member') {
+        if (MODULE != 'Member') {
             $color = isset($this->editData['color']) ? $this->editData['color'] : '';
             if (isset($this->editData['new_window']) && $this->editData['new_window'] == 1) {
                 $new_window = 'checked=""';
@@ -173,7 +177,7 @@ class ContentFormModel extends Model
     //文章Flag属性如推荐、置顶等
     private function flag($field, $value)
     {
-        $flag = S('flag'.$this->mid);
+        $flag = S('flag' . $this->mid);
         $set = $field['set'];
         if (!empty($value)) {
             $value = explode(',', $value);
@@ -197,9 +201,15 @@ class ContentFormModel extends Model
     private function cid($field, $value)
     {
         $category = S('category');
-        $set = $field['set'];
-        $cid = Q('cid', 0, 'intval');
-        return $category[Q('cid')]['catname'] . "<input type='hidden' name='cid' value='$cid'/>";
+        $html = "<select name='cid'>";
+        $html .= "<option value='0'>==选择栏目==</option>";
+        foreach ($category as $cat) {
+            $disabled = $cat['cattype'] == 1 && $cat['mid'] == $this->mid ? '' : 'disabled=""';
+            $selected = $cat['cattype'] == 1 && isset($_REQUEST['cid']) && $_REQUEST['cid'] == $cat['cid'] ? 'selected=""' : '';
+            $html .= "<option value='{$cat['cid']}' $disabled $selected>{$cat['_name']}</option>";
+        }
+        $html .= "</select>";
+        return $html;
     }
 
     //栏目文本域
@@ -311,13 +321,25 @@ class ContentFormModel extends Model
     //缩略图
     private function thumb($field, $value)
     {
-        $src = empty($value) ? __APP__ . '/Static/image/upload_pic.png' : __ROOT__ . '/' . $value;
-        $fieldName = $field['field_name'];
-        return '  <img id="' . $fieldName . '" src="' . $src . '" style="cursor: pointer;width:145px;height:123px;margin-bottom:5px;" onclick="file_upload({id:\'' . $fieldName . '\',type:\'thumb\',num:1,name:\'' . $fieldName . '\'})">
+        if (MODULE != 'Member') {
+            $src = empty($value) ? __APP__ . '/Static/image/upload_pic.png' : __ROOT__ . '/' . $value;
+            $fieldName = $field['field_name'];
+            return '  <img id="' . $fieldName . '" src="' . $src . '" style="cursor: pointer;width:145px;height:123px;margin-bottom:5px;" onclick="file_upload({id:\'' . $fieldName . '\',type:\'thumb\',num:1,name:\'' . $fieldName . '\'})">
                         <input type="hidden" name="' . $fieldName . '" value="' . $value . '"/>
                         <button type="button" class="hd-cancel-small" onclick="file_upload({id:\'' . $fieldName . '\',type:\'thumb\',num:1,name:\'' . $fieldName . '\'})">上传图片</button>
                         &nbsp;&nbsp;
                         <button type="button" class="hd-cancel-small" onclick="remove_thumb(this)">取消上传</button>';
+        } else {
+            $id = "img_" . $field['field_name'];
+            $path = isset($value) ? $value : "";
+            $src = !empty($value) ? __ROOT__ . '/' . $value : "";
+            $options = json_encode(array('id' => $id, 'type' => 'image', 'num' => 1, 'name' => $field['field_name'], 'allow_size' => '2MB'));
+            $h = "<input id='$id' type='text' name='" . $field['field_name'] . "'  value='$path' src='$src' class='w300 images' onmouseover='view_image(this)' readonly=''/> ";
+            $h .= "<button class='hd-cancel-small' onclick='file_upload($options)' type='button'>上传图片</button>&nbsp;&nbsp;";
+            $h .= "<button class='hd-cancel-small' onclick='remove_upload_one_img(this)' type='button'>移除</button>";
+            $h .= " <span id='hd_{$field['field_name']}' class='{$field['field_name']} validate-message'>" . $field['tips'] . "</span>";
+            return $h;
+        }
     }
 
     //单张图
@@ -326,7 +348,7 @@ class ContentFormModel extends Model
         $id = "img_" . $field['field_name'];
         $path = isset($value) ? $value : "";
         $src = !empty($value) ? __ROOT__ . '/' . $value : "";
-        $options = json_encode(array('id' => $id, 'type' => 'image', 'num' => 1, 'name' => $field['field_name'],'allow_size'=>$field['set']['allow_size']));
+        $options = json_encode(array('id' => $id, 'type' => 'image', 'num' => 1, 'name' => $field['field_name'], 'allow_size' => $field['set']['allow_size']));
         $h = "<input id='$id' type='text' name='" . $field['field_name'] . "'  value='$path' src='$src' class='w300 images' onmouseover='view_image(this)' readonly=''/> ";
         $h .= "<button class='hd-cancel-small' onclick='file_upload($options)' type='button'>上传图片</button>&nbsp;&nbsp;";
         $h .= "<button class='hd-cancel-small' onclick='remove_upload_one_img(this)' type='button'>移除</button>";
@@ -372,7 +394,7 @@ class ContentFormModel extends Model
                 $h .= '</ul>';
             }
         }
-        $options = json_encode(array('id' => $id, 'type' => 'images', 'num' => $num, 'name' => $field['field_name'],'allow_size'=>$field['set']['allow_size']));
+        $options = json_encode(array('id' => $id, 'type' => 'images', 'num' => $num, 'name' => $field['field_name'], 'allow_size' => $field['set']['allow_size']));
         $h .= "</div>
 </fieldset>
 <button class='hd-cancel-small' onclick='file_upload({$options})' type='button'>上传图片</button>";
@@ -409,7 +431,7 @@ class ContentFormModel extends Model
                 foreach ($file['path'] as $N => $path) {
                     $h .= "<li style='width:98%'>";
                     $h .= "<img src='" . __HDPHP_EXTEND__ . "/Org/Uploadify/default.png' style='width:50px;height:50px;'/>";
-                    $h .= "&nbsp;&nbsp;地址: <input type='text' name='" . $field['field_name'] . "[path][]'  value='" . $path . "' style='width:35%' readonly=''/> ";
+                    $h .= "&nbsp;&nbsp;地址: <input type='text' name='" . $field['field_name'] . "[path][]'  value='" . $path . "' style='width:28%' readonly=''/> ";
                     $h .= "&nbsp;&nbsp;描述: <input type='text' name='" . $field['field_name'] . "[alt][]' style='width:35%' value='" . $file['alt'][$N] . "'/>";
                     $h .= "&nbsp;&nbsp;<a href='javascript:;' onclick='remove_upload(this,\"{$id}\")'>删除</a>";
                     $h .= "</li>";

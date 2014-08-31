@@ -9,13 +9,13 @@ class ContentController extends AuthController
 {
     private $category, $model, $cid, $mid;
     //权限验证的动作
-    private $authAction = array('add', 'edit', 'del', 'show', 'order', 'audit', 'move');
+    private $authAction = array('add', 'edit', 'del', 'content', 'order', 'audit', 'move');
 
     public function __init()
     {
         $this->category = S('category');
         $this->model = S('model');
-        $this->cid = Q('cid', 0, 'intval');
+        $this->cid = Q('cid', null, 'intval');
         $this->mid = Q('mid', 0, 'intval');
         //验证模型mid
         if ($this->mid) {
@@ -24,7 +24,7 @@ class ContentController extends AuthController
             }
         }
         //验证栏目cid
-        if ($this->cid) {
+        if (!is_null($this->cid)) {
             if (!isset($this->category[$this->cid])) {
                 $this->error('栏目不存在');
             }
@@ -38,10 +38,10 @@ class ContentController extends AuthController
     //验证操作权限
     public function checkAccess()
     {
-        if (!$_SESSION['web_master'] && in_array(ACTION, $this->authAction)) {
-            $access = M('category_access')->where(array('admin' => 1, 'cid' => $this->cid))->getField('rid,`' . ACTION . '`');
+        if (!$_SESSION['user']['web_master'] && in_array(ACTION, $this->authAction)) {
+            $access = M('category_access')->where(array('admin' => 0, 'cid' => $this->cid))->getField('rid,`add`,`edit`,`del`,`content`,`order`,`audit`,`move`');
             //栏目没有设置管理员权限时，验证通过
-            return empty($access) || $access[$_SESSION['rid']][ACTION];
+            return empty($access) || $access[$_SESSION['user']['rid']][ACTION];
         }
         return true;
     }
@@ -63,10 +63,10 @@ class ContentController extends AuthController
                 if ($cat['cattype'] != 3) {
                     //单文章栏目
                     if ($cat['cattype'] == 4) {
-                        $link = __WEB__ . "?m=Admin&c=show&a=single&cid={$cat['cid']}&mid={$cat['mid']}";
+                        $link = __WEB__ . "?m=Admin&c=content&a=single&cid={$cat['cid']}&mid={$cat['mid']}";
                         $url = "javascript:hd_open_window(\"$link\")";
                     } else if ($cat['cattype'] == 1) {
-                        $url = U('show', array('cid' => $cat['cid'], 'mid' => $cat['mid'], 'content_status' => 1));
+                        $url = U('content', array('cid' => $cat['cid'], 'mid' => $cat['mid'], 'content_status' => 1));
                     } else {
                         $url = 'javascript:';
                     }
@@ -84,7 +84,7 @@ class ContentController extends AuthController
     }
 
     //内容列表
-    public function show()
+    public function content()
     {
         $ContentModel = ContentViewModel::getInstance($this->mid);
         //文章状态

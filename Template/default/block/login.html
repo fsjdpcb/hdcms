@@ -1,0 +1,9 @@
+<if value="$hd.session.user">
+    <a href="{|U:'Member/Login/login'}" class="login">
+        <img src="{$hd.session.user.icon}" class="user"/> {$hd.session.user.username}
+    </a>
+    <else>
+        <a href="{|U:'Member/Login/login'}" class="login">
+            <img src="__ROOT__/HDCMS/Static/image/user.png" class="user"/> 未登录
+        </a>
+</if>

@@ -19,7 +19,6 @@
         <a href="http://www.hdphp.com">
             <img src="__CONTROLLER_VIEW__/image/logo_reg.png" alt="HDCMS"/>
         </a>
-
         <p class="">
             简单而强大的内容管理系统<br/>
             开源、安全值得信赖！
@@ -27,23 +26,23 @@
     </div>
     <div class="form">
         <div class="reg">
-            已有帐号？ <a href="">立即登录</a>
+            已有帐号？ <a href="{|U:'login'}">立即登录</a>
         </div>
-        <form action="">
+        <form method="post">
             <div class="input">
-                <input type="text" name="username" placeholder="帐号"/>
+                <input type="text" name="username" placeholder="帐号" required=""/>
             </div>
             <div class="input">
-                <input type="text" name="nickname" placeholder="昵称"/>
+                <input type="text" name="nickname" placeholder="昵称" required=""/>
             </div>
             <div class="input">
-                <input type="text" name="password" placeholder="密码"/>
+                <input type="password" name="password" placeholder="密码" required=""/>
             </div>
             <div class="input">
-                <input type="text" name="password" placeholder="确认密码"/>
+                <input type="password" name="passwordc" placeholder="确认密码" required=""/>
             </div>
             <div class="input">
-                <input type="text" name="email" placeholder="邮箱( 请填写有效邮箱地址，以便收取账号激活邮件 )"/>
+                <input type="email" name="email" placeholder="邮箱( 请填写有效邮箱地址，以便收取账号激活邮件 )" required=""/>
             </div>
             <div class="input">
                 <input type="submit"/>

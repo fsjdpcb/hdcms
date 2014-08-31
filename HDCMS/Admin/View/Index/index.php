@@ -23,7 +23,7 @@
 			<!--头部左侧导航-->
 			<!--头部右侧导航-->
 			<div class="r_menu">
-				{$hd.session.rname} : {$hd.session.username}
+				{$hd.session.user.rname} : {$hd.session.user.username}
 				<a href="{|U:'Login/out'}" target="_self">
 					[退出]
 				</a>
@@ -83,7 +83,7 @@
 			<div style="float:left;width:1px;margin-right:5px;overflow: hidden;background: #999999;height:15px;margin-top:12px;"></div>
 			<div class="bottom-menu">
 				<list from="$favorite_menu" name="f">
-					<a url="?m={$f.module}&c={$f.controller}&a={$f.action}&nid={$f.nid}"
+					<a url="{$f.url}"
 					onclick="get_content(this,{$f.nid})" href="javascript:;" nid="{$f.nid}">
 						{$f.title}
 					</a>

@@ -198,12 +198,7 @@ class FieldModel extends Model
                 $field = '`' . $this->data['field_name'] . '`' . " MEDIUMTEXT";
                 break;
             case "box" :
-                //checkbox radio select
-                if ($this->data['set']['form_type'] == 'radio') {
-                    $field = '`' . $this->data['field_name'] . '`' . " tinyint";
-                } else {
-                    $field = '`' . $this->data['field_name'] . '`' . " CHAR(80) NOT NULL DEFAULT ''";
-                }
+                $field = '`' . $this->data['field_name'] . '`' . " CHAR(250) NOT NULL DEFAULT ''";
                 break;
             case "datetime" :
                 $field = '`' . $this->data['field_name'] . '`' . " int(10) NOT NULL DEFAULT 0";
@@ -230,7 +225,7 @@ class FieldModel extends Model
             $field['set'] = unserialize($field['set']);
             $cacheData[$field['field_name']] = $field;
         }
-        if (!S('field' . $this->mid, $cacheData, 0)) {
+        if (!S('field' . $this->mid, $cacheData)) {
             $this->error = '更新字段缓存失败';
             return false;
         } else {

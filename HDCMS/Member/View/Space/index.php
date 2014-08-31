@@ -18,119 +18,54 @@
             </div>
             <div class="userinfo">
                 <div class="username">
-                    <span class="userinfo_username">卑微的小情绪5</span>
+                    <span class="userinfo_username">{$user.nickname}</span>
                 </div>
                 <div class="userinfo_userdata">
-                    <span class="sex_boy"></span>
-                    <span>吧龄:1.1年</span>
-                    <span class="userinfo_split"></span><span>发贴:2364</span>
+                    <span>签名: {$hd.session.user.signature}</span>
+                    <span class="userinfo_split"></span>
                 </div>
             </div>
             <div class="userinfo_shortcut">
-                <a href="">返回首页</a> |
-                <a href="">会员中心</a>
+                <a href="__ROOT__">返回首页</a> |
+                <a href="{|U:'Member/Index/index'}">会员中心</a>
             </div>
         </div>
         <div class="content_wrap">
             <div class="article_list">
                 <h1 class="list_title">文章</h1>
                 <ul>
+                    <list from="$data" name="d">
                     <li>
-                        <div class="addtime">2014/07/11</div>
+                        <div class="addtime">{$d.addtime|date:"Y-m-d",@@}</div>
                         <div class="article_content">
                             <span class="post_ico"></span>
                             <span class="post_content">
-                                <a href="">回复 小情绪的123 :你三蛋</a>
+                                <a href="{|U:'Index/Index/Content',array('mid'=>$d['mid'],'cid'=>$d['cid'],'aid'=>$d['aid'])}">{$d.title}</a>
                             </span>
                         </div>
                     </li>
-                    <li>
-                        <div class="addtime">2014/07/11</div>
-                        <div class="article_content">
-                            <span class="post_ico"></span>
-                            <span class="post_content">
-                                <a href="">回复 小情绪的123 :你三蛋</a>
-                            </span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="addtime">2014/07/11</div>
-                        <div class="article_content">
-                            <span class="post_ico"></span>
-                            <span class="post_content">
-                                <a href="">回复 小情绪的123 :你三蛋</a>
-                            </span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="addtime">2014/07/11</div>
-                        <div class="article_content">
-                            <span class="post_ico"></span>
-                            <span class="post_content">
-                                <a href="">回复 小情绪的123 :你三蛋</a>
-                            </span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="addtime">2014/07/11</div>
-                        <div class="article_content">
-                            <span class="post_ico"></span>
-                            <span class="post_content">
-                                <a href="">回复 小情绪的123 :你三蛋</a>
-                            </span>
-                        </div>
-                    </li>
+                    </list>
                 </ul>
+                <div class="page1">
+                    {$page}
+                </div>
             </div>
             <div class="follow">
                 <h1 class="ihome_aside_title">最近来访</h1>
                 <ul>
-                    <li>
-                        <a href="">
-                            <img src="__CONTROLLER_VIEW__/image/user_ico.jpeg" alt=""/>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <img src="__CONTROLLER_VIEW__/image/user_ico.jpeg" alt=""/>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <img src="__CONTROLLER_VIEW__/image/user_ico.jpeg" alt=""/>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <img src="__CONTROLLER_VIEW__/image/user_ico.jpeg" alt=""/>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <img src="__CONTROLLER_VIEW__/image/user_ico.jpeg" alt=""/>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <img src="__CONTROLLER_VIEW__/image/user_ico.jpeg" alt=""/>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <img src="__CONTROLLER_VIEW__/image/user_ico.jpeg" alt=""/>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <img src="__CONTROLLER_VIEW__/image/user_ico.jpeg" alt=""/>
-                        </a>
-                    </li>
+                    <list from="$guest" name="g">
+                        <li>
+                            <a href="{|U:'index',array('uid'=>$g['uid'])}">
+                                <img src="__ROOT__/{$g.icon}" alt="{$g.nickname}" title="{$g.nickname}"/>
+                            </a>
+                        </li>
+                    </list>
                 </ul>
             </div>
         </div>
     </div>
     <div class="copyright">
-        ©2014 Baidu | 使用百度前必读 | 百度卫士用户使用许可协议 | 百度杀毒用户使用许可协议
+        {$hd.config.copyright}
     </div>
 </div>
 

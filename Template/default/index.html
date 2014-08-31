@@ -12,16 +12,13 @@
 <div class="top">
     <div class="top_warp">
         <div class="logo">
-            <img src="__TEMPLATE__/image/index_logo.png" alt=""/>
+            <img src="__TEMPLATE__/image/index_logo.png" title="{$hd.config.webname}"/>
         </div>
         <div class="top_menu">
             <channel type="top">
                 <a href="{$field.caturl}">{$field.catname}</a>
             </channel>
-            <a href="{$field.caturl}" class="login">
-                <img src="__ROOT__/HDCMS/Static/image/user.png" class="user"/>
-                未登录
-            </a>
+            <include file="__TEMPLATE__/block/login.html"/>
         </div>
     </div>
 </div>
@@ -34,7 +31,7 @@
         <a href="http://www.hdphp.com/hdcms.zip" class="hdcms"></a>
     </div>
     <div class="version">
-        官网版本：{$hd.config.HDCMS_VERSION}&nbsp;&nbsp; | &nbsp;&nbsp;运行环境：MySQL5 + PHP 5.1.6 或以上
+        100%免费，免费用于任何网站&nbsp;&nbsp; | &nbsp;&nbsp;运行环境：MySQL5 + PHP 5.1.6 或以上
     </div>
 </div>
 <div class="introduce">
@@ -63,7 +60,7 @@
     </div>
 </div>
 <div class="copyright">
-    ©2014 HDPHP&HDCMS来自<a href="http://www.houdunwang.com">后盾网</a> | 唯一教育机构推出的开源产品
+    {$hd.config.copyright}
 </div>
 </body>
 </html>

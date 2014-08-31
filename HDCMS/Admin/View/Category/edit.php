@@ -23,6 +23,19 @@
                 <div id="base">
                     <table class="table1">
                         <tr>
+                            <th class="w100">内容模型</th>
+                            <td>
+                                <select name="mid" class="w200">
+                                    <option value=''>模型选择</option>
+                                    <list from="$model" name="m">
+                                        <option value="{$m.mid}" <if value="$field.mid eq $m.mid">selected=""</if>>
+                                            {$m.model_name}
+                                        </option>
+                                    </list>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
                             <th class="w100">上级</th>
                             <td>
                                 <select name="pid">
@@ -222,7 +235,7 @@
                                                 <input type="hidden" name="access[{$r.rid}][rid]" value="{$r.rid}"/>
                                                 <input type="hidden" name="access[{$r.rid}][admin]" value="1"/>
                                             </td>
-                                            <td><input type="checkbox" name="access[{$r.rid}][show]" value="1" <if value="$r.show">checked=""</if>/></td>
+                                            <td><input type="checkbox" name="access[{$r.rid}][content]" value="1" <if value="$r.content">checked=""</if>/></td>
                                             <td><input type="checkbox" name="access[{$r.rid}][add]" value="1" <if value="$r.add">checked=""</if>/></td>
                                             <td><input type="checkbox" name="access[{$r.rid}][edit]" value="1" <if value="$r.edit">checked=""</if>/></td>
                                             <td><input type="checkbox" name="access[{$r.rid}][del]" value="1" <if value="$r.del">checked=""</if>/></td>
@@ -259,7 +272,7 @@
                                                 <input type="hidden" name="access[{$r.rid}][admin]" value="0"/>
                                             </td>
                                             <td>
-                                                <input type="checkbox" name="access[{$r.rid}][show]" value="1" <if value="$r.show">checked=""</if>/>
+                                                <input type="checkbox" name="access[{$r.rid}][content]" value="1" <if value="$r.content">checked=""</if>/>
                                             </td>
                                             <td>
                                                 <input type="checkbox" name="access[{$r.rid}][add]" value="1" <if value="$r.add">checked=""</if>/>

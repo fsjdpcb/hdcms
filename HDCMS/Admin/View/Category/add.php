@@ -210,7 +210,7 @@
                                                 <input type="hidden" name="access[{$r.rid}][rid]" value="{$r.rid}"/>
                                                 <input type="hidden" name="access[{$r.rid}][admin]" value="1"/>
                                             </td>
-                                            <td><input type="checkbox" name="access[{$r.rid}][show]" value="1"/></td>
+                                            <td><input type="checkbox" name="access[{$r.rid}][content]" value="1"/></td>
                                             <td><input type="checkbox" name="access[{$r.rid}][add]" value="1"/></td>
                                             <td><input type="checkbox" name="access[{$r.rid}][edit]" value="1"/></td>
                                             <td><input type="checkbox" name="access[{$r.rid}][del]" value="1"/></td>
@@ -247,7 +247,7 @@
                                                 <input type="hidden" name="access[{$r.rid}][admin]" value="0"/>
                                             </td>
                                             <td>
-                                                <input type="checkbox" name="access[{$r.rid}][show]" value="1"/>
+                                                <input type="checkbox" name="access[{$r.rid}][content]" value="1"/>
                                             </td>
                                             <td>
                                                 <input type="checkbox" name="access[{$r.rid}][add]" value="1"/>

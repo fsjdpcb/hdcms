@@ -11,7 +11,7 @@ class ContentUploadController extends Controller
 
     public function __init()
     {
-        if (empty($_SESSION['uid'])) {
+        if (empty($_SESSION['user'])) {
             go("Index/Index/index");
         }
         $this->db = M('upload');
@@ -142,7 +142,7 @@ class ContentUploadController extends Controller
         //图片文件
         $isimage = in_array(Q('type'), array('image', 'images', 'thumb')) ? 1 : 0;
         //只查找自己的图片
-        $where = 'uid=' . $_SESSION['uid'] . " AND image={$isimage} AND status=1";
+        $where = 'uid=' . $_SESSION['user']['uid'] . " AND image={$isimage} AND status=1";
         $count = $this->db->where($where)->count();
         $page = new Page($count, 10, 8, '', '', __WEB__ . '?c=Admin&c=ContentUpload&a=site&type=' . Q('type'));
         $this->site_data = $this->db->where($where)->order("id DESC")->limit($page->limit())->all();
@@ -160,7 +160,7 @@ class ContentUploadController extends Controller
         //图片文件
         $isimage = in_array(Q('type'), array('image', 'images', 'thumb')) ? 1 : 0;
         //只查找自己的图片
-        $where = 'uid=' . $_SESSION['uid'] . " AND image={$isimage} AND status=0";
+        $where = 'uid=' . $_SESSION['user']['uid'] . " AND image={$isimage} AND status=0";
         $count = $this->db->where($where)->count();
         $page = new Page($count, 10, 8, '', '', __WEB__ . '?m=Admin&c=ContentUpload&a=untreated&type=' . Q('type'));
         $this->untreated_data = $this->db->where($where)->order("id DESC")->limit($page->limit())->all();

@@ -1,7 +1,7 @@
 <include file="__PUBLIC__/header.php"/>
 <body>
 <form method="post" class="hd-form" onsubmit="return hd_submit(this,'{|U:edit}')">
-	<input type="hidden" name="type" value="自定义"/>
+	<input type="hidden" name="type" value="custom"/>
     <div class="wrap">
         <div class="menu_list">
             <ul>

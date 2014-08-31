@@ -87,11 +87,13 @@
 				</tr>
 				<tr>
 					<th> 作为基本信息 <span class="notice">基本信息将在添加页面左侧显示</span></th>
-					<td><label>
-						<input type="radio" name="isbase" value="1" <if value="$field.isbase eq 1">checked=""</if>/>
-						是</label><label>
-						<input type="radio" name="isbase" value="0" <if value="$field.isbase eq 0">checked=""</if>/>
-						否</label>
+					<td>
+                        <label>
+						    <input type="radio" name="isbase" value="1" <if value="$field.isbase eq 1">checked=""</if>/>是
+                        </label>
+                        <label>
+						    <input type="radio" name="isbase" value="0" <if value="$field.isbase eq 0">checked=""</if>/>否
+                        </label>
                     </td>
 				</tr>
 				<tr>

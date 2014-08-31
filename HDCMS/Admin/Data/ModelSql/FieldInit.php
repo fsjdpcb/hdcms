@@ -1,6 +1,6 @@
 <?php if(!defined('HDPHP_PATH'))EXIT;
 $db->exe("REPLACE INTO ".$db_prefix."field (`mid`,`status`,`field_type`,`table_type`,`table_name`,`field_name`,`title`,`tips`,`enable`,`is_system`,`fieldsort`,`set`,`css`,`minlength`,`maxlength`,`validate`,`required`,`error`,`isunique`,`isbase`,`issearch`,`isadd`)
-						VALUES('{$mid}','1','textarea','1','{$table}','description','描述','','1','1','8','a:3:{s:5:\"width\";s:3:\"500\";s:6:\"height\";s:3:\"100\";s:7:\"default\";s:0:\"\";}','','0','','','0','','0','1','0','1')");
+						VALUES('{$mid}','1','textarea','1','{$table}','description','描述','','1','1','8','a:3:{s:5:\"width\";s:3:\"500\";s:6:\"height\";s:3:\"100\";s:7:\"default\";s:0:\"\";}','','0','','','0','','0','1','0','0')");
 $db->exe("REPLACE INTO ".$db_prefix."field (`mid`,`status`,`field_type`,`table_type`,`table_name`,`field_name`,`title`,`tips`,`enable`,`is_system`,`fieldsort`,`set`,`css`,`minlength`,`maxlength`,`validate`,`required`,`error`,`isunique`,`isbase`,`issearch`,`isadd`)
 						VALUES('{$mid}','1','input','1','{$table}','keywords','关键字','','1','1','7','a:3:{s:4:\"size\";s:3:\"300\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";}','','0','','','0','','0','1','0','0')");
 $db->exe("REPLACE INTO ".$db_prefix."field (`mid`,`status`,`field_type`,`table_type`,`table_name`,`field_name`,`title`,`tips`,`enable`,`is_system`,`fieldsort`,`set`,`css`,`minlength`,`maxlength`,`validate`,`required`,`error`,`isunique`,`isbase`,`issearch`,`isadd`)

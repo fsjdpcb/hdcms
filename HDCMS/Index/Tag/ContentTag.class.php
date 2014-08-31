@@ -99,6 +99,7 @@ str;
             \$cid=Q('cid',0,'intval');
         }
         \$db = M("category");
+        \$categoryCache =S('category');
         if (\$type == 'top') {
             \$where['pid']=array('EQ',0);
         }else if(\$cid) {
@@ -110,9 +111,9 @@ str;
                     \$where['pid'] =array('IN',\$cid);
                     break;
                 case "self":
-                    \$map=array('IN',\$_cid);
-                    \$pid = \$db->getField('pid');
-                    \$where['pid'] =array('IN',\$pid);
+                    \$map['cid']=array('IN',array(\$cid));
+                    \$pid = \$db->where(\$map)->getField('pid');
+                    \$where['pid'] =array('IN',array(\$pid));
                     break;
             }
         }
@@ -120,7 +121,6 @@ str;
         if(\$result){
             //当前栏目,用于改变样式
             \$_self_cid = Q('cid',0,'intval');
-			\$categoryCache =S('category');
             foreach (\$result as \$field):
                 //当前栏目样式
                 \$field['class']=\$_self_cid==\$field['cid']?"$class":'';

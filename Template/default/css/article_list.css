@@ -36,11 +36,11 @@ div.top div.top_warp {
 }
 div.top div.top_warp div.logo {
   float: left;
-  width: 260px;
+  width: 200px;
   margin-top: 20px;
 }
 div.top div.top_warp div.top_menu {
-  float: left;
+  float: right;
   color: #ffffff;
 }
 div.top div.top_warp div.top_menu a {
@@ -50,7 +50,7 @@ div.top div.top_warp div.top_menu a {
   float: left;
   height: 80px;
   line-height: 90px;
-  padding: 0px 15px;
+  padding: 0px 16px;
 }
 div.top div.top_warp div.top_menu a:hover,
 div.top div.top_warp div.top_menu a.cur {

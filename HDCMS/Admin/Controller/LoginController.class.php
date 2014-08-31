@@ -9,7 +9,7 @@ class LoginController extends Controller
 {
     public function __init()
     { //已经登录用户不允许执行
-        if (Q('session.admin') && ACTION != 'out') {
+        if (isset($_SESSION['user']) && $_SESSION['user']['admin'] && ACTION != 'out') {
             go("Index/index");
         }
     }
@@ -30,7 +30,7 @@ class LoginController extends Controller
     {
         if (IS_POST) {
             $Model = K("User");
-            if (Q('post.code', '', 'strtoupper') != $_SESSION['code']) {
+            if (Q('post.code', '', 'strtoupper') != session('code')) {
                 $this->error = '验证码错误';
                 $this->display();
                 exit;
@@ -57,15 +57,17 @@ class LoginController extends Controller
             }
             unset($user['password']);
             unset($user['code']);
-            $_SESSION = array_merge($_SESSION, $user);
+            //删除验证码
+            session('code', null);
             //是否为站长
-            $_SESSION['web_master'] = strtolower($_SESSION['username']) == strtolower(C('WEB_MASTER'));
+            $user['web_master'] = strtolower($user['username']) == strtolower(C('WEB_MASTER'));
             //头像设置
             if (empty($user['icon'])) {
-                $_SESSION['icon'] = __STATIC__ . '/image/user.png';
+                $user['icon'] = __APP__ . '/Static/image/user.png';
             } else {
-                $_SESSION['icon'] = __ROOT__ . '/' . $user['icon'];
+                $user['icon'] = __ROOT__ . '/' . $user['icon'];
             }
+            $_SESSION['user'] = $user;
             $Model->save(array('uid' => $user['uid'], 'logintime' => time(), 'lastip' => ip_get_client()));
             go("Index/index");
         } else {

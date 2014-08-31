@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 网站前台
  * Class IndexController
@@ -16,13 +17,13 @@ class IndexController extends Controller
     // 构造函数
     public function __init()
     {
-        C(array('TPL_FIX'=>'.html'));
+        C(array('TPL_FIX' => '.html'));
         //网站关闭
         if (!Q('session.admin') && !C("web_open")) {
             parent::display('siteClose');
             exit;
         }
-        $this->cacheDir = TEMP_PATH.'Content/'. substr(md5(__URL__), 0, 2);
+        $this->cacheDir = TEMP_PATH . 'Content/' . substr(md5(__URL__), 0, 2);
         $this->model = S('model');
         $this->category = S('category');
         $this->mid = Q('mid', 0, 'intval');
@@ -57,13 +58,13 @@ class IndexController extends Controller
     public function content()
     {
         $aid = Q('aid', 0, 'intval');
-        if(!$aid){
+        if (!$aid) {
             $this->_404();
         }
         //验证阅读权限
         if (!Q('session.admin')) {
             $categoryAccessModel = M("category_access");
-            $access = $categoryAccessModel->where(array('cid' => $this->cid, 'admin' => 0))->getField('rid,`show`');
+            $access = $categoryAccessModel->where(array('cid' => $this->cid, 'admin' => 0))->find();
             //栏目设置前台权限时验证
             if ($access) {
                 //没有登录或没有权限
@@ -72,9 +73,12 @@ class IndexController extends Controller
                 }
             }
         }
+        $ContentModel = ContentViewModel::getInstance($this->mid);
+        $field = $ContentModel->getOne($aid);
+        if ($field['content_status'] == 0) {
+            $this->error('文章正在审核中');
+        }
         if (!$this->isCache()) {
-            $ContentModel = ContentViewModel::getInstance($this->mid);
-            $field = $ContentModel->getOne($aid);
             if ($field) {
                 $this->assign('hdcms', $field);
                 $this->display('template/' . C('WEB_STYLE') . '/' . $this->category[$this->cid]['arc_tpl'], C('CONTENT_CACHE_TIME'));
@@ -121,7 +125,7 @@ class IndexController extends Controller
                 $this->error('已经收藏过');
             } else {
                 $db->add($data);
-                $this->success('收藏成功!','index');
+                $this->success('收藏成功!', 'index');
             }
         }
     }

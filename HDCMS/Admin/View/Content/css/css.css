@@ -56,12 +56,10 @@ fieldset.img_list legend {
 	padding: 3px 8px;
 }
 div.fileList ul li {
-	margin-bottom: 5px;
 	float: left;
 	margin: 10px;
 }
 div.picList ul li {
-	margin-bottom: 5px;
 	float: left;
 	margin: 10px;
 	width: 154px;

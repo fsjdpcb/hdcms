@@ -68,9 +68,7 @@ class FieldController extends AuthController
         }
     }
 
-    /**
-     * 修改字段
-     */
+    //修改字段
     public function edit()
     {
 
@@ -84,6 +82,7 @@ class FieldController extends AuthController
             $fid = Q('fid', 0, 'intval');
             $field_name = M('field')->where("fid=$fid")->getField('field_name');
             $field = $this->field[$field_name];
+//            p($this->field);exit;
             $this->assign('field', $field);
             $this->assign('model_name', $this->model[$this->mid]['model_name']);
             $this->display();

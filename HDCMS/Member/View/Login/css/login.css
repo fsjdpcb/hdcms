@@ -57,7 +57,9 @@ div.right div.form div.reg {
 div.right div.form div.input {
   margin-bottom: 30px;
 }
-div.right div.form div.input input[type=text] {
+div.right div.form div.input input[type=text],
+div.right div.form div.input input[type=email],
+div.right div.form div.input input[type=password] {
   font-size: 14px;
   border: solid 1px #ccc;
   background: #f3f3f3;
@@ -65,7 +67,9 @@ div.right div.form div.input input[type=text] {
   height: 40px;
   padding-left: 10px;
 }
-div.right div.form div.input input[type=text]:hover {
+div.right div.form div.input input[type=text]:hover,
+div.right div.form div.input input[type=email]:hover,
+div.right div.form div.input input[type=password]:hover {
   border: solid 1px #666;
 }
 div.right div.form div.input input[type=submit] {

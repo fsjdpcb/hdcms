@@ -22,11 +22,11 @@ class PersonalController extends AuthController
     public function editInfo()
     {
         if (IS_POST) {
-            if ($this->db->where("uid={$_SESSION['uid']}")->save()) {
+            if ($this->db->where("uid={$_SESSION['user']['uid']}")->save()) {
                 $this->success('修改个人资料成功');
             }
         } else {
-            $this->user = $this->db->find(session('uid'));
+            $this->user = $this->db->find($_SESSION['user']['uid']);
             $this->display();
         }
     }
@@ -37,14 +37,14 @@ class PersonalController extends AuthController
     public function editPassword()
     {
         if (IS_POST) {
-            $_POST['uid'] = session('uid');
+            $_POST['uid'] = $_SESSION['user']['uid'];
             if ($this->db->editUser($_POST)) {
                 $this->success('修改密码成功');
             } else {
                 $this->error($this->db->error);
             }
         } else {
-            $this->user = $this->db->find(session('uid'));
+            $this->user = $this->db->find($_SESSION['user']['uid']);
             $this->display();
         }
     }
@@ -54,7 +54,7 @@ class PersonalController extends AuthController
      */
     public function checkPassword()
     {
-        if ($this->db->checkUserPassword(session('uid'), $_POST['old_password'])) {
+        if ($this->db->checkUserPassword($_SESSION['user']['uid'], $_POST['old_password'])) {
             echo 1;
         } else {
             echo 0;

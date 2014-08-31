@@ -49,29 +49,21 @@ class ConfigController extends AuthController
                 $this->error($this->db->error);
             }
         } else {
-            $data = $this->db->where('status=1')->order('order_list ASC')->all();
+            $data = $this->db->where(array('type' => array('NOT IN', array('water', 'template'))))->order('order_list ASC')->all();
             $config = array();
             foreach ($data as $d) {
                 $config[$d['name']] = $d;
             }
-            //邮箱密码设置字段为PASSWORD
-            $config['EMAIL_PASSWORD']['html'] = "<input type='password' name='EMAIL_PASSWORD' value='{$config['EMAIL_PASSWORD']['value']}' class='w250'/>";
-            //========================================水印位置======================================
-            ob_start();
-            require MODULE_VIEW_PATH . 'Config/water.php';
-            $con = ob_get_clean();
-            $config['WATER_POS']['html'] = $con;
-            //=======================================其他字段======================================
             foreach ($config as $name => $c) {
-                if (in_array($name, array('DEFAULT_MEMBER_GROUP', 'WATER_POS', 'EMAIL_PASSWORD')))
-                    continue;
                 switch ($c['show_type']) {
-                    case '数字' :
-                    case '文本' :
+                    case 'password' :
+                        $config[$name]['html'] = "<input type='password' name='{$c['name']}' value='{$c['value']}' class='w250'/>";
+                        break;
+                    case 'text' :
                         $config[$name]['html'] = "<input type='text' name='{$c['name']}' value='{$c['value']}' class='w250'/>";
                         break;
                     //布尔
-                    case '布尔(1/0)' :
+                    case 'radio' :
                         $Yes = $No = '';
                         if ($c['value'] == 1) {
                             $Yes = "checked='checked'";
@@ -82,9 +74,19 @@ class ConfigController extends AuthController
                                         <label><input type='radio' name='{$c['name']}' value='0' $No/> 否</label>";
                         break;
                     //多行文本
-                    case '多行文本' :
+                    case 'textarea' :
                         $config[$name]['html'] = "<textarea class='w250 h100' name='{$c['name']}'>{$c['value']}</textarea>";
                         break;
+                    //会员组
+                    case 'group':
+                        $group = M('role')->where("admin<>1")->all();
+                        $html = "<select name='{$c['name']}'>";
+                        foreach ($group as $g) {
+                            $selected = C('DEFAULT_GROUP') == $g['rid'] ? 'selected=""' : '';
+                            $html .= "<option value='{$g['rid']}' $selected>{$g['rname']}</option>";
+                        }
+                        $html .= "</selected>";
+                        $config[$name]['html'] = $html;
                 }
             }
             $this->assign("config", $config);
@@ -92,6 +94,38 @@ class ConfigController extends AuthController
         }
     }
 
+    //水印设置
+    public function water()
+    {
+        if (IS_POST) {
+            $_POST = array_filter($_POST);
+            $db = M('config');
+            foreach ($_POST as $name => $value) {
+                $db->where("name='{$name}'")->save(array('value' => $value));
+            }
+            $this->success('设置成功');
+        } else {
+            $config = M('config')->where(array('type' => array('IN', 'water')))->getField('name,value,message,title');
+            $this->assign('config', $config);
+            $this->display();
+        }
+    }
+    //水印设置
+    public function email()
+    {
+        if (IS_POST) {
+            $_POST = array_filter($_POST);
+            $db = M('config');
+            foreach ($_POST as $name => $value) {
+                $db->where("name='{$name}'")->save(array('value' => $value));
+            }
+            $this->success('设置成功');
+        } else {
+            $config = M('config')->where(array('type' => array('IN', 'email')))->getField('name,value,message,title');
+            $this->assign('config', $config);
+            $this->display();
+        }
+    }
     //验证EMAIL发送
     public function checkEmail()
     {

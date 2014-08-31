@@ -15,8 +15,11 @@ class CategoryController extends AuthController
         $this->category = S("category");
         $this->model = S("model");
         $this->db = K('Category');
-        $this->cid = Q('cid', null, 'intval');
-        $this->mid = Q('mid', null, 'intval');
+        $this->cid = Q('cid', 0, 'intval');
+        $this->mid = Q('mid', 0, 'intval');
+        if ($this->mid && !isset($this->model[$this->mid])) {
+            $this->error('模型选择错误');
+        }
     }
 
     /**
@@ -97,6 +100,7 @@ class CategoryController extends AuthController
             //分配角色权限
             $this->assign('access', $categoryAccess);
             $this->assign('field', $category);
+            $this->assign('model', $this->model);
             $this->assign('category', $cache);
             $this->display();
         }

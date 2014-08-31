@@ -21,10 +21,7 @@
                 <channel type="top" class="cur">
                     <a href="{$field.caturl}" class="{$field.class}">{$field.catname}</a>
                 </channel>
-                <a href="{$field.caturl}" class="login">
-                    <img src="__ROOT__/HDCMS/Static/image/user.png" class="user"/>
-                    未登录
-                </a>
+                <include file="__TEMPLATE__/block/login.html"/>
             </div>
         </div>
     </div>
@@ -95,7 +92,7 @@
     </div>
 </div>
 <div class="copyright">
-    ©2014 HDPHP&HDCMS来自<a href="http://www.houdunwang.com">后盾网</a> | 唯一教育机构推出的开源产品
+    {$hd.config.copyright}
 </div>
 </body>
 </html>

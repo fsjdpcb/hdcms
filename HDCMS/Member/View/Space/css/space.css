@@ -11,6 +11,68 @@ ul {
   margin: 0px;
   list-style: none;
 }
+/* ===================================--|分页|--========================================*/
+div.page1 {
+  margin-top: 20px;
+  margin-left: 10px;
+  float: right;
+  color: #666;
+}
+/*当前页*/
+div.page1 strong,
+div.page1 a {
+  padding: 3px 10px;
+  display: block;
+  float: left;
+  border: solid 1px #dcdcdc;
+  margin-right: 5px;
+  font-size: 12px;
+}
+/**上一页与下一页失效状态*/
+div.page1 span.close {
+  padding: 3px 10px;
+  display: block;
+  float: left;
+  font-size: 12px;
+  border: solid 1px #dcdcdc;
+  margin-right: 5px;
+  color: #ccc;
+  cursor: no-drop;
+}
+div.page1 strong {
+  display: block;
+  font-size: 12px;
+  float: left;
+  background: none repeat scroll 0 0 #488FCF !important;
+  border-color: #2470B5 #488FCF #488FCF;
+  color: #FFFFFF !important;
+}
+div.page1 a {
+  color: #333;
+  float: left;
+  display: block;
+}
+div.page1 a:hover {
+  background: none repeat scroll 0 0 #488FCF !important;
+  border-color: #2470B5 #488FCF #488FCF;
+  color: #FFFFFF !important;
+}
+div.page1 span.count {
+  font-size: 12px;
+  float: left;
+  display: block;
+  margin-right: 5px;
+  padding: 3px 10px;
+}
+table.table1 th {
+  background: none !important;
+  border-right: none !important;
+  font-weight: normal !important;
+}
+table.table1 tr:hover,
+table.table1 td:hover {
+  background: url("../image/tr_border.png") repeat-x scroll 0 bottom rgba(0, 0, 0, 0) !important;
+}
 div.wrap {
   background: url("../image/space_bg.jpg") no-repeat #96d4f2;
 }
