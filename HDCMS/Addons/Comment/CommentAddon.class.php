@@ -21,8 +21,8 @@ class CommentAddon extends Addon
     //安装
     public function install()
     {
-        if (!M()->exe("DROP TABLE IF EXISTS `" . C('DB_PREFIX') . "comment`")) return false;
-        return M()->exe("CREATE TABLE `" . C('DB_PREFIX') . "comment` (
+        if (!M()->exe("DROP TABLE IF EXISTS `" . C('DB_PREFIX') . "addon_comment`")) return false;
+        return M()->exe("CREATE TABLE `" . C('DB_PREFIX') . "addon_comment` (
   `comment_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '评论ID',
   `userid` int(10) unsigned DEFAULT NULL COMMENT '用户ID',
   `username` char(50) DEFAULT NULL COMMENT '用户名',
@@ -43,6 +43,6 @@ class CommentAddon extends Addon
     //卸载
     public function uninstall()
     {
-        return M()->exe("DROP TABLE IF EXISTS `" . C('DB_PREFIX') . "comment`");
+        return M()->exe("DROP TABLE IF EXISTS `" . C('DB_PREFIX') . "addon_comment`");
     }
 }

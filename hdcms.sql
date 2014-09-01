@@ -11,7 +11,7 @@
  Target Server Version : 50617
  File Encoding         : utf-8
 
- Date: 08/26/2014 01:53:07 AM
+ Date: 09/02/2014 02:49:49 AM
 */
 
 SET NAMES utf8;
@@ -27,6 +27,27 @@ CREATE TABLE `hd_access` (
   KEY `gid` (`rid`),
   KEY `nid` (`nid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='管理员权限分配表';
+
+-- ----------------------------
+--  Table structure for `hd_addon_comment`
+-- ----------------------------
+DROP TABLE IF EXISTS `hd_addon_comment`;
+CREATE TABLE `hd_addon_comment` (
+  `comment_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '评论ID',
+  `userid` int(10) unsigned DEFAULT NULL COMMENT '用户ID',
+  `username` char(50) DEFAULT NULL COMMENT '用户名',
+  `comment_status` tinyint(1) DEFAULT NULL COMMENT '评论状态',
+  `content` text COMMENT '评论内容',
+  `create_time` int(11) DEFAULT NULL,
+  `reply` tinyint(1) DEFAULT NULL COMMENT '是否为回复',
+  `ip` char(15) DEFAULT NULL COMMENT '用户IP地址',
+  `direction` tinyint(1) DEFAULT '0' COMMENT '评论方向{0:无方向,1:正文,2:反方,3:中立}',
+  `mid` smallint(5) unsigned DEFAULT NULL,
+  `cid` smallint(5) unsigned DEFAULT NULL,
+  `aid` int(10) unsigned DEFAULT NULL,
+  PRIMARY KEY (`comment_id`),
+  KEY `mid_cid_aid` (`mid`,`cid`,`aid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Table structure for `hd_addon_link`
@@ -75,13 +96,13 @@ CREATE TABLE `hd_addons` (
   `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '安装时间',
   `has_adminlist` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否有后台列表',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=180 DEFAULT CHARSET=utf8 COMMENT='插件表';
+) ENGINE=MyISAM AUTO_INCREMENT=193 DEFAULT CHARSET=utf8 COMMENT='插件表';
 
 -- ----------------------------
 --  Records of `hd_addons`
 -- ----------------------------
 BEGIN;
-INSERT INTO `hd_addons` VALUES ('170', 'Backup', '数据备份', '数据备份还原插件', '1', 'a:0:{}', '后盾网向军', '1.0', '1408985011', '1'), ('178', 'Link', '友情链接', '友情链接', '1', 'a:0:{}', '后盾网向军', '1.0', '1408988196', '1'), ('179', 'Navigation', '导航菜单', '导航菜单', '1', 'a:0:{}', '后盾网向军', '1.0', '1408988221', '1');
+INSERT INTO `hd_addons` VALUES ('189', 'Backup', '数据备份', '数据备份还原插件', '1', 'a:0:{}', '后盾网向军', '1.0', '1409578221', '1'), ('178', 'Link', '友情链接', '友情链接', '1', 'a:0:{}', '后盾网向军', '1.0', '1408988196', '1'), ('179', 'Navigation', '导航菜单', '导航菜单', '1', 'a:0:{}', '后盾网向军', '1.0', '1408988221', '1'), ('192', 'Comment', '评论', '评论', '1', 'a:0:{}', '后盾网向军', '1.0', '1409595872', '1'), ('190', 'FieldReplace', '数据库内容替换', '数据库内容替换', '1', 'a:0:{}', '后盾网向军', '1.0', '1409580307', '1'), ('191', 'Search', '前台搜索', '前台搜索', '1', 'a:0:{}', '后盾网向军', '1.0', '1409580312', '1');
 COMMIT;
 
 -- ----------------------------
@@ -115,13 +136,13 @@ CREATE TABLE `hd_category` (
   `allow_user_set_credits` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否允许会员投稿设置积分 1 允许 0 不允许',
   `member_send_state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '会员投稿状态 1 审核 2 未审核',
   PRIMARY KEY (`cid`)
-) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COMMENT='栏目表';
+) ENGINE=MyISAM AUTO_INCREMENT=55 DEFAULT CHARSET=utf8 COMMENT='栏目表';
 
 -- ----------------------------
 --  Records of `hd_category`
 -- ----------------------------
 BEGIN;
-INSERT INTO `hd_category` VALUES ('1', '0', '案例展示', 'case', '', '提交案例请发送到<a href=\"mailto:2300071698@qq.com\">2300071698@QQ.COM</a> 邮箱', 'article_index.html', 'image_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '100', '1', '提交案例', '', '1', '0', '1', '1', '1'), ('2', '0', '模板下载', 'template', '', '所有模板免费使用！提交模板请发送到<a href=\"mailto:2300071698@QQ.COM\">2300071698@QQ.COM</a> 邮箱', 'article_index.html', 'image_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '100', '1', '提交模板', '', '1', '0', '1', '1', '1'), ('3', '0', '模块插件', 'addon', '', '', 'article_index.html', 'article_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '100', '1', '', '', '1', '0', '1', '1', '1'), ('4', '0', 'CMS帮助', 'hdcms', '', '使用交流，问题求助社区', 'article_index.html', 'cms_help_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '100', '1', '', '', '1', '0', '1', '1', '1'), ('5', '0', '论坛', 'luntan', '', '', 'article_index.html', 'article_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '3', '1', '1', 'http://bbs.houdunwang.com', '1001', '1', '', '', '1', '0', '1', '1', '1'), ('6', '4', '标签使用', 'help/tag', '', '', 'article_index.html', 'cms_help_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '2', '1', '', '', '1', '0', '1', '1', '1'), ('7', '4', '安装使用', 'help/setup', '', '', 'article_index.html', 'cms_help_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '1', '1', '', '', '1', '0', '1', '1', '1'), ('8', '4', '模块插件', 'help/addon', '', '', 'article_index.html', 'cms_help_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '3', '1', '', '', '1', '0', '1', '1', '1'), ('9', '0', '框架帮助', 'hdphp', '', '', 'article_index.html', 'hdphp_help_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '100', '1', '', '', '1', '0', '1', '1', '1'), ('12', '9', '模板标签', 'hdphp/tag', '', '', 'article_index.html', 'hdphp_help_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '2', '1', '', '', '1', '0', '1', '1', '1'), ('11', '9', '起步知识', 'hdphp/base', '', '', 'article_index.html', 'hdphp_help_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '1', '1', '', '', '1', '0', '1', '1', '1'), ('13', '9', '数据模型', 'hdphp/model', '', '', 'article_index.html', 'hdphp_help_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '100', '1', '', '', '1', '0', '1', '1', '1'), ('14', '3', '模块', 'addon/module', '', '', 'article_index.html', 'article_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '100', '1', '', '', '1', '0', '1', '1', '1'), ('15', '3', '插件', 'addon/plugin', '', '', 'article_index.html', 'article_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '1', '1', '', '100', '1', '', '', '1', '0', '1', '1', '1');
+INSERT INTO `hd_category` VALUES ('1', '0', '案例展示', 'case', '', '提交案例，可以让更多的人知道你的网站!', 'image_index.html', 'image_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '2', '2', '2', '', '100', '1', '提交案例', '', '1', '0', '1', '1', '0'), ('2', '0', '模板下载', 'template', '', '所有模板免费使用，可以用在任何商业用途！', 'article_index.html', 'image_list.html', 'download_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '2', '2', '2', '2', '', '100', '1', '提交模板', '', '1', '0', '1', '1', '1'), ('3', '0', '模块插件', 'addon', '', '所在插件与模块均免费使用！', 'download_index.html', 'download_list.html', 'download_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '2', '2', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '1'), ('4', '0', 'CMS帮助', 'hdcms', '', '使用交流，问题求助社区', 'article_index.html', 'cms_help_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '1'), ('5', '0', '论坛求助', 'luntan', '', '', 'article_index.html', 'article_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '3', '2', '2', 'http://bbs.houdunwang.com', '1001', '1', '', '', '1', '0', '1', '1', '1'), ('6', '4', '标签使用', 'help/tag', '', '', 'article_index.html', 'cms_help_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '2', '1', '', '', '1', '0', '1', '1', '1'), ('7', '4', '安装使用', 'help/setup', '', '', 'article_index.html', 'cms_help_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '1', '1', '', '', '1', '0', '1', '1', '1'), ('8', '4', '模块插件', 'help/addon', '', '', 'article_index.html', 'cms_help_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '3', '1', '', '', '1', '0', '1', '1', '1'), ('9', '0', '框架帮助', 'hdphp', '', '', 'article_index.html', 'hdphp_help_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '1'), ('12', '9', '模板标签', 'hdphp/tag', '', '', 'article_index.html', 'hdphp_help_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '2', '1', '', '', '1', '0', '1', '1', '1'), ('11', '9', '起步知识', 'hdphp/base', '', '', 'article_index.html', 'hdphp_help_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '1', '1', '', '', '1', '0', '1', '1', '1'), ('13', '9', '数据模型', 'hdphp/model', '', '', 'article_index.html', 'hdphp_help_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '1'), ('14', '3', '模块', 'addon/module', '', '所有模块免费使用！', 'article_index.html', 'download_list.html', 'download_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '2', '1', '2', '2', '', '100', '1', '提交模块', '', '1', '0', '1', '1', '1'), ('15', '3', '插件', 'addon/plugin', '', '所有插件免费使用！', 'article_index.html', 'download_list.html', 'download_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '2', '1', '2', '2', '', '100', '1', '提交插件', '', '1', '0', '1', '1', '1'), ('51', '1', '企业网站', 'case/qiyewangzhan', '', '提交案例，可以让更多的人知道你的网站!', 'article_index.html', 'image_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '100', '1', '提交案例', '', '0', '0', '1', '1', '1'), ('52', '1', '行业门户', 'case/xingyemenhu', '', '提交案例，可以让更多的人知道你的网站!', 'article_index.html', 'image_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '100', '1', '提交案例', '', '0', '0', '1', '1', '1'), ('53', '2', '企业网站', 'template/qiyewangzhan', '', '', 'article_index.html', 'article_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '100', '1', '', '', '0', '0', '1', '1', '1'), ('54', '2', '行业门户', 'template/xingyemenhu', '', '', 'article_index.html', 'article_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '2', '1', '2', '2', '', '100', '1', '', '', '0', '0', '1', '1', '1');
 COMMIT;
 
 -- ----------------------------
@@ -132,14 +153,14 @@ CREATE TABLE `hd_category_access` (
   `rid` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '角色id',
   `cid` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '栏目cid',
   `mid` smallint(1) NOT NULL DEFAULT '0' COMMENT '模型mid',
-  `show` tinyint(1) NOT NULL DEFAULT '0' COMMENT '允许访问 1 允许 0 不允许',
+  `content` tinyint(1) NOT NULL DEFAULT '0' COMMENT '允许访问 1 允许 0 不允许',
   `add` tinyint(1) NOT NULL DEFAULT '0' COMMENT '允许投稿(添加) 1允许 0 不允许',
   `edit` tinyint(1) NOT NULL DEFAULT '0' COMMENT '允许更新 1允许 0 不允许',
   `del` tinyint(1) NOT NULL DEFAULT '0' COMMENT '允许删除 1允许 0 不允许',
   `order` tinyint(1) NOT NULL DEFAULT '0' COMMENT '允许排序 1允许 0 不允许',
   `move` tinyint(1) NOT NULL DEFAULT '0' COMMENT '允许移动 1允许 0 不允许',
   `audit` tinyint(1) NOT NULL DEFAULT '0' COMMENT '允许审核栏目文章 1 允许 0 不允许',
-  `admin` tinyint(1) NOT NULL COMMENT '是否为管理员权限 1 管理员 2 前台用户'
+  `admin` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否为管理员权限 1 管理员 2 前台用户'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='栏目权限表';
 
 -- ----------------------------
@@ -150,21 +171,21 @@ CREATE TABLE `hd_config` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL DEFAULT '' COMMENT '配置名称\n',
   `value` text NOT NULL COMMENT '配置值',
-  `type` enum('站点配置','高级配置','上传配置','会员配置','邮箱配置','安全配置','水印配置','内容相关','性能优化','伪静态','COOKIE配置','SESSION配置','自定义') NOT NULL DEFAULT '站点配置' COMMENT '配置类型\n1 站点配置\n2 性能设置\n3 上传配置\n4 交互设置\n5 会员设置',
+  `type` enum('site','upload','member','email','water','content','optimize','rewrite','custom','template') NOT NULL DEFAULT 'site' COMMENT '配置类型\n1 站点配置\n2 性能设置\n3 上传配置\n4 交互设置\n5 会员设置',
   `title` char(30) NOT NULL DEFAULT '',
-  `show_type` enum('文本','数字','布尔(1/0)','多行文本') DEFAULT '文本',
+  `show_type` enum('text','radio','textarea','group','password','waterpos') DEFAULT 'text',
   `message` varchar(255) DEFAULT NULL COMMENT '提示',
   `order_list` smallint(6) unsigned DEFAULT '100' COMMENT '排序',
   `status` tinyint(4) DEFAULT '1' COMMENT '总配置模块显示  如模板风格就不显示 1显示 0 不显示',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM AUTO_INCREMENT=73 DEFAULT CHARSET=utf8 COMMENT='系统配置';
+) ENGINE=MyISAM AUTO_INCREMENT=75 DEFAULT CHARSET=utf8 COMMENT='系统配置';
 
 -- ----------------------------
 --  Records of `hd_config`
 -- ----------------------------
 BEGIN;
-INSERT INTO `hd_config` VALUES ('1', 'WEBNAME', 'HDCMS内容管理系统', '站点配置', '网站名称', '文本', null, '1', '1'), ('2', 'ICP', '京ICP备12048441号-3', '站点配置', 'ICP备案号', '文本', null, '100', '1'), ('3', 'HTML_PATH', 'h', '站点配置', '静态html目录', '文本', null, '8', '1'), ('4', 'COPYRIGHT', 'Copyright © 2012-2014 HDCMS 后盾网', '站点配置', '网站版权信息', '文本', null, '100', '1'), ('5', 'KEYWORDS', 'php培训,php实训,后盾网', '站点配置', '网站关键词', '文本', null, '1', '1'), ('6', 'DESCRIPTION', '后盾网顶尖PHP培训 内容全面 全程实战!业内顶级讲师亲自授课,千余课时独家视频教程免费下载,超百G原创视频资源,实力不容造假!010-64825057', '站点配置', '网站描述', '多行文本', null, '100', '1'), ('7', 'EMAIL', 'houdunwangxj@gmail.com', '站点配置', '管理员邮箱', '文本', null, '100', '1'), ('8', 'BACKUP_DIR', 'backup', '内容相关', '数据备份目录', '文本', null, '100', '1'), ('9', 'WEB_OPEN', '1', '站点配置', '网站开启', '布尔(1/0)', null, '100', '1'), ('10', 'AUTH_KEY', 'houdunwang.com', '安全配置', 'cookie加密KEY', '文本', null, '100', '1'), ('63', 'UPLOAD_PATH', 'upload', '上传配置', '上传目录', '文本', null, '100', '1'), ('20', 'ALLOW_TYPE', 'jpg,jpeg,png,bmp,gif,zip,rar,doc', '上传配置', '允许上传文件类型', '文本', null, '100', '1'), ('21', 'ALLOW_SIZE', '10480000', '上传配置', '允许上传大小（字节）', '数字', null, '100', '1'), ('22', 'WATER_ON', '1', '上传配置', '上传文件加水印', '布尔(1/0)', null, '100', '1'), ('24', 'MEMBER_VERIFY', '1', '会员配置', '会员注册不需要审核', '布尔(1/0)', null, '1', '1'), ('25', 'REG_SHOW_CODE', '1', '会员配置', '会员注册显示验证码', '布尔(1/0)', null, '2', '1'), ('68', 'WEB_TITLE', '后盾网PHP开源项目', '站点配置', '网站标题', '文本', null, '2', '1'), ('27', 'REG_INTERVAL', '0', '会员配置', '2次注册间隔间间', '数字', '单位秒，0为不限', '100', '1'), ('28', 'DEFAULT_MEMBER_GROUP', '4', '会员配置', '新注册会员初始组', '数字', null, '100', '1'), ('29', 'TOKEN_ON', '0', '会员配置', '表单使用令牌验证', '布尔(1/0)', null, '100', '1'), ('30', 'LOG_KEY', 'houdunwang.com', '安全配置', '日志文件加密KEY', '文本', null, '100', '1'), ('61', 'SESSION_NAME', 'hdsid', 'SESSION配置', 'SESSION_NAME值', '文本', '一般不用更改', '100', '1'), ('64', 'TEL', '010-64825057', '站点配置', '联系电话', '文本', null, '100', '1'), ('41', 'WATER_TEXT', 'houdunwang.com', '水印配置', '水印文字', '文本', null, '100', '1'), ('42', 'WATER_TEXT_SIZE', '16', '水印配置', '文字大小', '数字', null, '100', '1'), ('43', 'WATER_IMG', 'static/image/water.png', '水印配置', '水印图像', '文本', null, '100', '1'), ('44', 'WATER_PCT', '80', '水印配置', '水印图片透明度', '数字', null, '100', '1'), ('45', 'WATER_QUALITY', '90', '水印配置', '图片压缩比', '数字', null, '100', '1'), ('46', 'WATER_POS', '9', '水印配置', '水印位置', '数字', null, '100', '1'), ('47', 'DEL_CONTENT_MODEL', '0', '内容相关', '删除文章标记为未审核', '布尔(1/0)', null, '100', '1'), ('67', 'CREATE_INDEX_HTML', '1', '站点配置', '首页生成静态', '布尔(1/0)', null, '9', '1'), ('31', 'REPLY_CREDITS', '1', '会员配置', '评论奖励积分', '文本', '会员提交回复奖励积分', '100', '1'), ('48', 'DOWN_REMOTE_PIC', '0', '内容相关', '下载远程图片', '布尔(1/0)', null, '100', '1'), ('49', 'AUTO_DESC', '1', '内容相关', '截取内容为摘要', '布尔(1/0)', null, '100', '1'), ('50', 'AUTO_THUMB', '1', '内容相关', '提取内容图片为缩略图', '布尔(1/0)', null, '100', '1'), ('32', 'MEMBER_OPEN', '1', '会员配置', '开启会员中心', '布尔(1/0)', null, '100', '1'), ('11', 'WEB_CLOSE_MESSAGE', '网站维护中，请稍候访问...', '站点配置', '网站关闭提示信息', '文本', null, '100', '1'), ('12', 'WEB_STYLE', 'default', '站点配置', '网站模板', '文本', null, '100', '0'), ('13', 'QQ', '1455067020', '站点配置', 'QQ号', '文本', null, '100', '1'), ('14', 'WEIBO', 'houdunwangxj@gmail.com', '站点配置', '新浪微博', '文本', null, '100', '1'), ('15', 'TWEIBO', 'houdunwang@gmail.com', '站点配置', '腾讯微博', '文本', null, '100', '1'), ('16', 'ENTERPRISE_EMAIL', 'houdunwangxj@gmail.com', '站点配置', '企业邮箱', '文本', null, '100', '1'), ('33', 'INIT_CREDITS', '100', '会员配置', '初始积分', '文本', null, '100', '1'), ('53', 'CACHE_INDEX', '0', '性能优化', '首页缓存时间', '文本', '单位秒，0为不缓存', '100', '1'), ('54', 'CACHE_CATEGORY', '0', '性能优化', '栏目缓存时间', '文本', '单位秒，0为不缓存', '100', '1'), ('55', 'CACHE_CONTENT', '0', '性能优化', '文章缓存时间', '文本', '单位秒，0为不缓存', '100', '1'), ('34', 'COMMENT_STEP_TIME', '10', '会员配置', '评论间隔时间', '文本', '必须大于1（单位秒)', '100', '1'), ('56', 'HTML_STATE', '0', '伪静态', '开启伪静态', '布尔(1/0)', '需要环境支持', '100', '1'), ('57', 'URL_REWRITE', '0', '伪静态', '开启Rewrite', '布尔(1/0)', '1:服务器需要支持Rewrtie <br/>2:根目录下存在.htaccess文件', '100', '1'), ('35', 'EMAIL_USERNAME', 'admin', '邮箱配置', '邮箱用户名', '文本', '使用126或qq邮箱', '3', '1'), ('36', 'EMAIL_PASSWORD', 'admin888', '邮箱配置', '邮箱密码', '文本', '邮箱的密码', '4', '1'), ('37', 'EMAIL_HOST', 'smtp.exmail.qq.com', '邮箱配置', 'smtp地址', '文本', '如smtp.gmail.com', '100', '1'), ('38', 'EMAIL_PORT', '25', '邮箱配置', 'smtp端口', '文本', 'qq,126为25，gmail为465', '100', '1'), ('39', 'EMAIL_FROMNAME', '后盾网', '邮箱配置', '发送人', '文本', '发件箱显示的用户名', '100', '1'), ('58', 'COOKIE_EXPIRE', '', 'COOKIE配置', 'Coodie有效期', '文本', '单位秒', '100', '1'), ('59', 'COOKIE_DOMAIN', '', 'COOKIE配置', 'Cookie域名', '文本', null, '100', '1'), ('60', 'COOKIE_PATH', '/', 'COOKIE配置', 'Cookie路径', '文本', '有效路径', '100', '1'), ('62', 'SESSION_DOMAIN', '', 'SESSION配置', 'SESSION域名', '文本', '如.hdphp.com 设置错误将导致无法登录后台', '100', '1'), ('65', 'MEMBER_EMAIL_VALIDATE', '0', '会员配置', '注册时验证邮件', '布尔(1/0)', '需填写邮箱配置，开启后会员注册审核功能无效', '3', '1'), ('72', 'EMAIL_FORMMAIL', '后盾网', '邮箱配置', '发件人', '文本', null, '1', '1');
+INSERT INTO `hd_config` VALUES ('1', 'WEBNAME', 'HDCMS内容管理系统', 'site', '网站名称', 'text', null, '1', '1'), ('2', 'ICP', '京ICP备12048441号-3', 'site', 'ICP备案号', 'text', null, '7', '1'), ('3', 'HTML_PATH', 'h', 'content', '静态html目录', 'text', null, '2', '1'), ('4', 'COPYRIGHT', 'Copyright © 2012-2014  HDPHP&HDCMS来自后盾网 | 国内唯一一家教育机构推出的开源产品', 'site', '网站版权信息', 'text', null, '6', '1'), ('5', 'KEYWORDS', 'php培训,php实训,后盾网', 'site', '网站关键词', 'text', null, '4', '1'), ('6', 'DESCRIPTION', '后盾网顶尖PHP培训 内容全面 全程实战!业内顶级讲师亲自授课,千余课时独家视频教程免费下载,超百G原创视频资源,实力不容造假!010-64825057', 'site', '网站描述', 'text', null, '5', '1'), ('7', 'EMAIL', 'houdunwangxj@gmail.com', 'site', '管理员邮箱', 'text', null, '8', '1'), ('73', 'DEFAULT_GROUP', '4', 'member', '默认会员组', 'group', null, '100', '1'), ('9', 'WEB_OPEN', '1', 'site', '网站开启', 'radio', null, '2', '1'), ('63', 'UPLOAD_PATH', 'upload', 'upload', '上传目录', 'text', null, '100', '1'), ('20', 'ALLOW_TYPE', 'jpg,jpeg,png,bmp,gif,zip,rar,doc', 'upload', '允许上传文件类型', 'text', null, '100', '1'), ('21', 'ALLOW_SIZE', '10480000', 'upload', '允许上传大小（字节）', 'text', null, '100', '1'), ('22', 'WATER_ON', '1', 'upload', '图片文件加水印', 'radio', null, '100', '1'), ('64', 'TEL', '010-64825057', 'site', '联系电话', 'text', null, '9', '1'), ('41', 'WATER_TEXT', 'houdunwang.com', 'water', '水印文字', 'text', null, '100', '1'), ('42', 'WATER_TEXT_SIZE', '16', 'water', '文字大小', 'text', null, '100', '1'), ('43', 'WATER_IMG', 'static/image/water.png', 'water', '水印图像', 'text', null, '100', '1'), ('44', 'WATER_PCT', '80', 'water', '水印图片透明度', 'text', null, '100', '1'), ('45', 'WATER_QUALITY', '90', 'water', '图片压缩比', 'text', null, '100', '1'), ('46', 'WATER_POS', '9', 'water', '水印位置', 'waterpos', null, '100', '1'), ('47', 'DEL_CONTENT_MODEL', '0', 'content', '删除文章标记为未审核', 'radio', null, '4', '1'), ('67', 'CREATE_INDEX_HTML', '0', 'content', '首页生成静态', 'radio', null, '1', '1'), ('48', 'DOWN_REMOTE_PIC', '0', 'content', '下载远程图片', 'radio', null, '5', '1'), ('49', 'AUTO_DESC', '1', 'content', '截取内容为摘要', 'radio', null, '6', '1'), ('50', 'AUTO_THUMB', '1', 'content', '提取内容图片为缩略图', 'radio', null, '7', '1'), ('32', 'MEMBER_OPEN', '1', 'member', '开启会员中心', 'radio', null, '1', '1'), ('11', 'WEB_CLOSE_MESSAGE', '网站维护中，请稍候访问...', 'site', '网站关闭提示信息', 'text', null, '3', '1'), ('12', 'WEB_STYLE', 'default', 'template', '网站模板', 'text', null, '100', '1'), ('33', 'INIT_CREDITS', '100', 'member', '会员初始积分', 'text', null, '2', '1'), ('53', 'CACHE_INDEX', '0', 'optimize', '首页缓存时间', 'text', '单位秒，0为不缓存', '100', '1'), ('54', 'CACHE_CATEGORY', '0', 'optimize', '栏目缓存时间', 'text', '单位秒，0为不缓存', '100', '1'), ('55', 'CACHE_CONTENT', '0', 'optimize', '文章缓存时间', 'text', '单位秒，0为不缓存', '100', '1'), ('57', 'REWRITE_ENGINE', '0', 'rewrite', '开启伪静态', 'radio', '1:服务器需要支持Rewrtie <br/>2:根目录下存在.htaccess文件', '100', '1'), ('35', 'EMAIL_USERNAME', 'hdcms@houdunwang.com', 'email', '邮箱用户名', 'text', '使用126或qq邮箱', '3', '1'), ('36', 'EMAIL_PASSWORD', 'admin521', 'email', '邮箱密码', 'password', '邮箱的密码', '4', '1'), ('37', 'EMAIL_HOST', 'smtp.exmail.qq.com', 'email', 'smtp地址', 'text', '如smtp.gmail.com', '100', '1'), ('38', 'EMAIL_PORT', '25', 'email', 'smtp端口', 'text', 'qq,126为25，gmail为465', '100', '1'), ('39', 'EMAIL_FROMNAME', '后盾网', 'email', '发送人', 'text', '发送人发件箱显示的用户名', '100', '1'), ('72', 'EMAIL_FORMMAIL', 'hdcms@houdunwang.com', 'email', '发件人', 'text', '发送人发件箱显示的邮箱址址', '1', '1');
 COMMIT;
 
 -- ----------------------------
@@ -222,6 +243,68 @@ CREATE TABLE `hd_content_tag` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='内容标签表';
 
 -- ----------------------------
+--  Table structure for `hd_download`
+-- ----------------------------
+DROP TABLE IF EXISTS `hd_download`;
+CREATE TABLE `hd_download` (
+  `aid` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `cid` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '栏目cid',
+  `uid` int(10) unsigned NOT NULL COMMENT '用户uid',
+  `title` char(100) NOT NULL DEFAULT '' COMMENT '标题',
+  `flag` set('热门','置顶','推荐','图片','精华','幻灯片','站长推荐') DEFAULT NULL,
+  `new_window` tinyint(1) NOT NULL DEFAULT '0' COMMENT '新窗口打开',
+  `seo_title` char(100) NOT NULL DEFAULT '' COMMENT 'SEO标题',
+  `thumb` varchar(255) NOT NULL DEFAULT '' COMMENT '缩略图',
+  `click` int(6) NOT NULL DEFAULT '0' COMMENT '点击数',
+  `redirecturl` varchar(255) NOT NULL DEFAULT '' COMMENT '转向链接',
+  `html_path` varchar(255) NOT NULL DEFAULT '' COMMENT '自定义生成的静态文件地址',
+  `addtime` int(10) NOT NULL DEFAULT '0' COMMENT '添加时间',
+  `updatetime` int(10) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  `color` char(7) NOT NULL DEFAULT '' COMMENT '标题颜色',
+  `template` varchar(255) NOT NULL DEFAULT '' COMMENT '模板',
+  `url_type` tinyint(80) NOT NULL DEFAULT '3' COMMENT '文章访问方式  1 静态访问  2 动态访问  3 继承栏目',
+  `arc_sort` mediumint(6) NOT NULL DEFAULT '0' COMMENT '排序',
+  `content_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '文章状态  1 已审核 0 未审核',
+  `readpoint` smallint(6) DEFAULT NULL COMMENT '阅读收费',
+  `keywords` varchar(100) NOT NULL DEFAULT '' COMMENT '关键字',
+  `description` varchar(255) DEFAULT NULL COMMENT '描述',
+  `files` mediumtext,
+  `system` varchar(255) NOT NULL DEFAULT '',
+  `language` char(250) NOT NULL DEFAULT '',
+  `softtype` char(250) NOT NULL DEFAULT '',
+  `version` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`aid`),
+  KEY `uid` (`uid`),
+  KEY `cid` (`cid`),
+  KEY `flag` (`flag`),
+  KEY `content_status` (`content_status`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='文章表';
+
+-- ----------------------------
+--  Table structure for `hd_download_data`
+-- ----------------------------
+DROP TABLE IF EXISTS `hd_download_data`;
+CREATE TABLE `hd_download_data` (
+  `aid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '文章主表ID',
+  `content` text COMMENT '内容',
+  KEY `aid` (`aid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='文章正文表';
+
+-- ----------------------------
+--  Table structure for `hd_favorite`
+-- ----------------------------
+DROP TABLE IF EXISTS `hd_favorite`;
+CREATE TABLE `hd_favorite` (
+  `fid` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) unsigned DEFAULT NULL,
+  `mid` smallint(6) unsigned DEFAULT NULL,
+  `cid` smallint(6) unsigned DEFAULT NULL,
+  `aid` int(10) unsigned DEFAULT NULL,
+  `title` char(200) DEFAULT NULL,
+  PRIMARY KEY (`fid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
 --  Table structure for `hd_field`
 -- ----------------------------
 DROP TABLE IF EXISTS `hd_field`;
@@ -251,13 +334,13 @@ CREATE TABLE `hd_field` (
   `isadd` tinyint(1) NOT NULL DEFAULT '1' COMMENT '在前台投稿中显示',
   PRIMARY KEY (`fid`),
   KEY `mid` (`mid`)
-) ENGINE=MyISAM AUTO_INCREMENT=105 DEFAULT CHARSET=utf8 COMMENT='模型字段';
+) ENGINE=MyISAM AUTO_INCREMENT=172 DEFAULT CHARSET=utf8 COMMENT='模型字段';
 
 -- ----------------------------
 --  Records of `hd_field`
 -- ----------------------------
 BEGIN;
-INSERT INTO `hd_field` VALUES ('104', '1', '1', 'input', '1', 'content', 'readpoint', '阅读收费', '金币', '1', '1', '13', 'a:3:{s:4:\"size\";s:3:\"100\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";}', '', '0', '', '', '0', '', '0', '0', '0', '0'), ('103', '1', '1', 'box', '1', 'content', 'content_status', '状态', '', '1', '1', '19', 'a:3:{s:7:\"options\";s:26:\"1|审核通过,0|待审查\";s:9:\"form_type\";s:5:\"radio\";s:7:\"default\";s:1:\"1\";}', '', '0', '', '', '0', '', '0', '0', '0', '0'), ('101', '1', '1', 'content', '2', 'content_data', 'content', '正文', '', '1', '1', '5', '', '', '0', '', '', '0', '', '0', '1', '0', '1'), ('102', '1', '1', 'number', '1', 'content', 'click', '点击数', '', '1', '1', '18', 'a:4:{s:11:\"num_integer\";s:1:\"6\";s:11:\"num_decimal\";s:1:\"2\";s:4:\"size\";s:3:\"150\";s:7:\"default\";s:3:\"100\";}', '', '0', '', '', '0', '', '0', '0', '0', '0'), ('98', '1', '1', 'flag', '1', 'content', 'flag', '属性', '', '1', '1', '3', '', '', '0', '', '', '0', '', '0', '1', '1', '0'), ('99', '1', '1', 'title', '1', 'content', 'title', '标题', '', '1', '1', '1', 'a:2:{s:4:\"size\";s:3:\"300\";s:7:\"default\";s:0:\"\";}', '', '0', '100', '', '1', '', '0', '1', '1', '1'), ('100', '1', '1', 'input', '1', 'content', 'tag', 'TAG', '', '1', '0', '6', 'a:3:{s:4:\"size\";s:3:\"300\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";}', '', '0', '', '', '0', '', '0', '1', '0', '0'), ('96', '1', '1', 'thumb', '1', 'content', 'thumb', '缩略图', '', '1', '1', '9', '', '', '0', '', '', '0', '', '0', '0', '0', '1'), ('97', '1', '1', 'input', '1', 'content', 'html_path', 'html文件名', '', '1', '1', '14', 'a:3:{s:4:\"size\";s:3:\"300\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";}', '', '0', '', '', '0', '', '0', '1', '0', '0'), ('94', '1', '1', 'cid', '1', 'content', 'cid', '栏目', '', '1', '1', '2', '', '', '0', '', '', '0', '', '0', '1', '0', '1'), ('95', '1', '1', 'input', '1', 'content', 'seo_title', 'SEO标题', '', '1', '1', '4', 'a:3:{s:4:\"size\";s:3:\"300\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";}', '', '0', '', '', '0', '', '0', '1', '0', '0'), ('92', '1', '1', 'datetime', '1', 'content', 'addtime', '添加时间', '', '1', '1', '11', 'a:1:{s:6:\"format\";s:1:\"1\";}', '', '0', '', '', '0', '', '0', '0', '0', '0'), ('93', '1', '1', 'input', '1', 'content', 'redirecturl', '转向链接', '', '1', '1', '10', 'a:3:{s:4:\"size\";s:3:\"150\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";}', '', '0', '', '/^http:///', '0', '', '0', '0', '0', '0'), ('90', '1', '1', 'template', '1', 'content', 'template', '模板', '', '1', '1', '15', '', '', '0', '', '', '0', '', '0', '1', '0', '0'), ('91', '1', '1', 'box', '1', 'content', 'url_type', '文章访问方式', '', '1', '1', '16', 'a:3:{s:7:\"options\";s:45:\"1|静态访问,2|动态访问 ,3|继承栏目\";s:9:\"form_type\";s:5:\"radio\";s:7:\"default\";s:1:\"3\";}', '', '0', '', '', '0', '', '0', '1', '0', '0'), ('89', '1', '1', 'number', '1', 'content', 'arc_sort', '排序', '', '1', '1', '17', 'a:5:{s:10:\"field_type\";s:9:\"mediumint\";s:11:\"num_integer\";s:1:\"6\";s:11:\"num_decimal\";s:1:\"2\";s:4:\"size\";s:3:\"150\";s:7:\"default\";s:3:\"100\";}', '', '0', '', '', '0', '', '0', '0', '0', '0'), ('88', '1', '1', 'input', '1', 'content', 'keywords', '关键字', '', '1', '1', '7', 'a:3:{s:4:\"size\";s:3:\"300\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";}', '', '0', '', '', '0', '', '0', '1', '0', '0'), ('87', '1', '1', 'textarea', '1', 'content', 'description', '描述', '', '1', '1', '8', 'a:3:{s:5:\"width\";s:3:\"500\";s:6:\"height\";s:3:\"100\";s:7:\"default\";s:0:\"\";}', '', '0', '', '', '0', '', '0', '1', '0', '1');
+INSERT INTO `hd_field` VALUES ('104', '1', '1', 'input', '1', 'content', 'readpoint', '阅读收费', '金币', '1', '1', '106', 'a:3:{s:4:\"size\";s:3:\"100\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";}', '', '0', '', '', '0', '', '0', '0', '0', '0'), ('103', '1', '1', 'box', '1', 'content', 'content_status', '状态', '', '1', '1', '112', 'a:3:{s:7:\"options\";s:26:\"1|审核通过,0|待审查\";s:9:\"form_type\";s:5:\"radio\";s:7:\"default\";s:1:\"1\";}', '', '0', '', '', '0', '', '0', '0', '0', '0'), ('101', '1', '1', 'content', '2', 'content_data', 'content', '正文', '', '1', '1', '100', '', '', '0', '', '', '0', '', '0', '1', '0', '1'), ('102', '1', '1', 'number', '1', 'content', 'click', '点击数', '', '1', '1', '111', 'a:4:{s:11:\"num_integer\";s:1:\"6\";s:11:\"num_decimal\";s:1:\"2\";s:4:\"size\";s:3:\"150\";s:7:\"default\";s:3:\"100\";}', '', '0', '', '', '0', '', '0', '0', '0', '0'), ('98', '1', '1', 'flag', '1', 'content', 'flag', '属性', '', '1', '1', '4', '', '', '0', '', '', '0', '', '0', '1', '1', '0'), ('99', '1', '1', 'title', '1', 'content', 'title', '标题', '', '1', '1', '1', 'a:2:{s:4:\"size\";s:3:\"300\";s:7:\"default\";s:0:\"\";}', '', '0', '100', '', '1', '', '0', '1', '1', '1'), ('100', '1', '1', 'input', '1', 'content', 'tag', 'TAG', '', '1', '0', '101', 'a:3:{s:4:\"size\";s:3:\"300\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";}', '', '0', '', '', '0', '', '0', '1', '0', '0'), ('96', '1', '1', 'thumb', '1', 'content', 'thumb', '缩略图', '', '1', '1', '3', 's:0:\"\";', '', '', '', '', '0', '', '0', '0', '1', '1'), ('97', '1', '1', 'input', '1', 'content', 'html_path', 'html文件名', '', '1', '1', '107', 'a:3:{s:4:\"size\";s:3:\"300\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";}', '', '0', '', '', '0', '', '0', '1', '0', '0'), ('94', '1', '1', 'cid', '1', 'content', 'cid', '栏目', '', '1', '1', '2', 's:0:\"\";', '', '1', '', '', '1', '请选择栏目', '0', '1', '0', '1'), ('95', '1', '1', 'input', '1', 'content', 'seo_title', 'SEO标题', '', '1', '1', '5', 'a:3:{s:4:\"size\";s:3:\"300\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";}', '', '', '', '', '0', '', '0', '1', '1', '0'), ('92', '1', '1', 'datetime', '1', 'content', 'addtime', '添加时间', '', '1', '1', '105', 'a:1:{s:6:\"format\";s:1:\"1\";}', '', '0', '', '', '0', '', '0', '0', '0', '0'), ('93', '1', '1', 'input', '1', 'content', 'redirecturl', '转向链接', '', '1', '1', '104', 'a:3:{s:4:\"size\";s:3:\"150\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";}', '', '0', '', '/^http:///', '0', '', '0', '0', '0', '0'), ('90', '1', '1', 'template', '1', 'content', 'template', '模板', '', '1', '1', '108', '', '', '0', '', '', '0', '', '0', '1', '0', '0'), ('91', '1', '1', 'box', '1', 'content', 'url_type', '文章访问方式', '', '1', '1', '109', 'a:3:{s:7:\"options\";s:45:\"1|静态访问,2|动态访问 ,3|继承栏目\";s:9:\"form_type\";s:5:\"radio\";s:7:\"default\";s:1:\"3\";}', '', '0', '', '', '0', '', '0', '1', '0', '0'), ('89', '1', '1', 'number', '1', 'content', 'arc_sort', '排序', '', '1', '1', '110', 'a:5:{s:10:\"field_type\";s:9:\"mediumint\";s:11:\"num_integer\";s:1:\"6\";s:11:\"num_decimal\";s:1:\"2\";s:4:\"size\";s:3:\"150\";s:7:\"default\";s:3:\"100\";}', '', '0', '', '', '0', '', '0', '0', '0', '0'), ('88', '1', '1', 'input', '1', 'content', 'keywords', '关键字', '', '1', '1', '102', 'a:3:{s:4:\"size\";s:3:\"300\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";}', '', '0', '', '', '0', '', '0', '1', '0', '0'), ('87', '1', '1', 'textarea', '1', 'content', 'description', '描述', '', '1', '1', '103', 'a:3:{s:5:\"width\";s:3:\"500\";s:6:\"height\";s:3:\"100\";s:7:\"default\";s:0:\"\";}', '', '0', '', '', '0', '', '0', '1', '0', '0'), ('139', '2', '1', 'flag', '1', 'download', 'flag', '属性', '', '1', '1', '4', '', '', '0', '', '', '0', '', '0', '1', '1', '0'), ('140', '2', '1', 'title', '1', 'download', 'title', '标题', '', '1', '1', '1', 'a:2:{s:4:\"size\";s:3:\"300\";s:7:\"default\";s:0:\"\";}', '', '0', '100', '', '1', '', '0', '1', '1', '1'), ('137', '2', '1', 'thumb', '1', 'download', 'thumb', '缩略图', '', '1', '1', '3', '', '', '0', '', '', '0', '', '0', '0', '0', '1'), ('138', '2', '1', 'input', '1', 'download', 'html_path', 'html文件名', '', '1', '1', '108', 'a:3:{s:4:\"size\";s:3:\"300\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";}', '', '0', '', '', '0', '', '0', '1', '0', '0'), ('135', '2', '1', 'cid', '1', 'download', 'cid', '栏目', '', '1', '1', '2', '', '', '0', '', '', '0', '', '0', '1', '0', '1'), ('136', '2', '1', 'input', '1', 'download', 'seo_title', 'SEO标题', '', '1', '1', '5', 'a:3:{s:4:\"size\";s:3:\"300\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";}', '', '0', '', '', '0', '', '0', '1', '0', '0'), ('133', '2', '1', 'datetime', '1', 'download', 'addtime', '添加时间', '', '1', '1', '106', 'a:1:{s:6:\"format\";s:1:\"1\";}', '', '0', '', '', '0', '', '0', '0', '0', '0'), ('134', '2', '1', 'input', '1', 'download', 'redirecturl', '转向链接', '', '1', '1', '105', 'a:3:{s:4:\"size\";s:3:\"150\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";}', '', '0', '', '/^http:///', '0', '', '0', '0', '0', '0'), ('132', '2', '1', 'box', '1', 'download', 'url_type', '文章访问方式', '', '1', '1', '120', 'a:3:{s:7:\"options\";s:45:\"1|静态访问,2|动态访问 ,3|继承栏目\";s:9:\"form_type\";s:5:\"radio\";s:7:\"default\";s:1:\"3\";}', '', '0', '', '', '0', '', '0', '1', '0', '0'), ('131', '2', '1', 'template', '1', 'download', 'template', '模板', '', '1', '1', '109', '', '', '0', '', '', '0', '', '0', '1', '0', '0'), ('130', '2', '1', 'number', '1', 'download', 'arc_sort', '排序', '', '1', '1', '121', 'a:5:{s:10:\"field_type\";s:9:\"mediumint\";s:11:\"num_integer\";s:1:\"6\";s:11:\"num_decimal\";s:1:\"2\";s:4:\"size\";s:3:\"150\";s:7:\"default\";s:3:\"100\";}', '', '0', '', '', '0', '', '0', '0', '0', '0'), ('129', '2', '1', 'input', '1', 'download', 'keywords', '关键字', '', '1', '1', '102', 'a:3:{s:4:\"size\";s:3:\"300\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";}', '', '0', '', '', '0', '', '0', '1', '0', '0'), ('128', '2', '1', 'textarea', '1', 'download', 'description', '描述', '', '1', '1', '103', 'a:3:{s:5:\"width\";s:3:\"500\";s:6:\"height\";s:3:\"100\";s:7:\"default\";s:0:\"\";}', '', '0', '', '', '0', '', '0', '1', '0', '0'), ('141', '2', '1', 'input', '1', 'download', 'tag', 'TAG', '', '1', '0', '101', 'a:3:{s:4:\"size\";s:3:\"300\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";}', '', '0', '', '', '0', '', '0', '1', '0', '0'), ('142', '2', '1', 'content', '2', 'download_data', 'content', '正文', '', '1', '1', '100', '', '', '0', '', '', '0', '', '0', '1', '0', '1'), ('143', '2', '1', 'number', '1', 'download', 'click', '点击数', '', '1', '1', '122', 'a:4:{s:11:\"num_integer\";s:1:\"6\";s:11:\"num_decimal\";s:1:\"2\";s:4:\"size\";s:3:\"150\";s:7:\"default\";s:3:\"100\";}', '', '0', '', '', '0', '', '0', '0', '0', '0'), ('144', '2', '1', 'box', '1', 'download', 'content_status', '状态', '', '1', '1', '123', 'a:3:{s:7:\"options\";s:26:\"1|审核通过,0|待审查\";s:9:\"form_type\";s:5:\"radio\";s:7:\"default\";s:1:\"1\";}', '', '0', '', '', '0', '', '0', '0', '0', '0'), ('145', '2', '1', 'input', '1', 'download', 'readpoint', '阅读收费', '金币', '1', '1', '107', 'a:3:{s:4:\"size\";s:3:\"100\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";}', '', '0', '', '', '0', '', '0', '0', '0', '0'), ('146', '2', '1', 'files', '1', 'download', 'files', '本地下载', '', '1', '0', '6', 'a:3:{s:10:\"allow_size\";s:1:\"2\";s:3:\"num\";s:2:\"10\";s:8:\"filetype\";s:15:\"zip,rar,doc,ppt\";}', '', '0', '', '', '1', '', '0', '1', '0', '1'), ('150', '2', '1', 'box', '1', 'download', 'language', '软件语言', '', '1', '0', '7', 'a:3:{s:7:\"options\";s:117:\"英文|英文,简体中文|简体中文,繁体中文|繁体中文,多国语言|多国语言,其他语言|其他语言\";s:9:\"form_type\";s:6:\"select\";s:7:\"default\";s:6:\"英文\";}', '', '0', '', '', '0', '', '0', '1', '0', '1'), ('148', '2', '1', 'input', '1', 'download', 'system', '软件平台', '', '1', '0', '8', 'a:3:{s:4:\"size\";s:3:\"300\";s:7:\"default\";s:21:\"Win2000/WinXP/Win2003\";s:8:\"ispasswd\";s:1:\"0\";}', '', '0', '', '', '0', '', '0', '1', '0', '1'), ('151', '2', '1', 'box', '1', 'download', 'softtype', '软件类型', '', '1', '0', '9', 'a:3:{s:7:\"options\";s:117:\"国产软件|国产软件,国外软件|国外软件,汉化补丁|汉化补丁,程序源码|程序源码,其他|其他\";s:9:\"form_type\";s:5:\"radio\";s:7:\"default\";s:12:\"国产软件\";}', '', '0', '', '', '0', '', '0', '1', '0', '1'), ('152', '2', '1', 'input', '1', 'download', 'version', '版本号', '', '1', '0', '10', 'a:3:{s:4:\"size\";s:3:\"300\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";}', '', '0', '', '', '0', '', '0', '1', '0', '1'), ('153', '3', '1', 'textarea', '1', 'picture', 'description', '描述', '', '1', '1', '103', 'a:3:{s:5:\"width\";s:3:\"500\";s:6:\"height\";s:3:\"100\";s:7:\"default\";s:0:\"\";}', '', '0', '', '', '0', '', '0', '1', '0', '0'), ('154', '3', '1', 'input', '1', 'picture', 'keywords', '关键字', '', '1', '1', '102', 'a:3:{s:4:\"size\";s:3:\"300\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";}', '', '0', '', '', '0', '', '0', '1', '0', '0'), ('155', '3', '1', 'number', '1', 'picture', 'arc_sort', '排序', '', '1', '1', '111', 'a:5:{s:10:\"field_type\";s:9:\"mediumint\";s:11:\"num_integer\";s:1:\"6\";s:11:\"num_decimal\";s:1:\"2\";s:4:\"size\";s:3:\"150\";s:7:\"default\";s:3:\"100\";}', '', '0', '', '', '0', '', '0', '0', '0', '0'), ('156', '3', '1', 'template', '1', 'picture', 'template', '模板', '', '1', '1', '109', '', '', '0', '', '', '0', '', '0', '1', '0', '0'), ('157', '3', '1', 'box', '1', 'picture', 'url_type', '文章访问方式', '', '1', '1', '110', 'a:3:{s:7:\"options\";s:45:\"1|静态访问,2|动态访问 ,3|继承栏目\";s:9:\"form_type\";s:5:\"radio\";s:7:\"default\";s:1:\"3\";}', '', '0', '', '', '0', '', '0', '1', '0', '0'), ('158', '3', '1', 'datetime', '1', 'picture', 'addtime', '添加时间', '', '1', '1', '106', 'a:1:{s:6:\"format\";s:1:\"1\";}', '', '0', '', '', '0', '', '0', '0', '0', '0'), ('159', '3', '1', 'input', '1', 'picture', 'redirecturl', '转向链接', '', '1', '1', '105', 'a:3:{s:4:\"size\";s:3:\"150\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";}', '', '0', '', '/^http:///', '0', '', '0', '0', '0', '0'), ('160', '3', '1', 'cid', '1', 'picture', 'cid', '栏目', '', '1', '1', '2', '', '', '0', '', '', '0', '', '0', '1', '0', '1'), ('161', '3', '1', 'input', '1', 'picture', 'seo_title', 'SEO标题', '', '1', '1', '5', 'a:3:{s:4:\"size\";s:3:\"300\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";}', '', '0', '', '', '0', '', '0', '1', '0', '0'), ('162', '3', '1', 'thumb', '1', 'picture', 'thumb', '缩略图', '', '1', '1', '3', '', '', '0', '', '', '0', '', '0', '0', '0', '1'), ('163', '3', '1', 'input', '1', 'picture', 'html_path', 'html文件名', '', '1', '1', '108', 'a:3:{s:4:\"size\";s:3:\"300\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";}', '', '0', '', '', '0', '', '0', '1', '0', '0'), ('164', '3', '1', 'flag', '1', 'picture', 'flag', '属性', '', '1', '1', '4', '', '', '0', '', '', '0', '', '0', '1', '1', '0'), ('165', '3', '1', 'title', '1', 'picture', 'title', '标题', '', '1', '1', '1', 'a:2:{s:4:\"size\";s:3:\"300\";s:7:\"default\";s:0:\"\";}', '', '0', '100', '', '1', '', '0', '1', '1', '1'), ('166', '3', '1', 'input', '1', 'picture', 'tag', 'TAG', '', '1', '0', '101', 'a:3:{s:4:\"size\";s:3:\"300\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";}', '', '0', '', '', '0', '', '0', '1', '0', '0'), ('167', '3', '1', 'content', '2', 'picture_data', 'content', '正文', '', '1', '1', '100', '', '', '0', '', '', '0', '', '0', '1', '0', '1'), ('168', '3', '1', 'number', '1', 'picture', 'click', '点击数', '', '1', '1', '112', 'a:4:{s:11:\"num_integer\";s:1:\"6\";s:11:\"num_decimal\";s:1:\"2\";s:4:\"size\";s:3:\"150\";s:7:\"default\";s:3:\"100\";}', '', '0', '', '', '0', '', '0', '0', '0', '0'), ('169', '3', '1', 'box', '1', 'picture', 'content_status', '状态', '', '1', '1', '113', 'a:3:{s:7:\"options\";s:26:\"1|审核通过,0|待审查\";s:9:\"form_type\";s:5:\"radio\";s:7:\"default\";s:1:\"1\";}', '', '0', '', '', '0', '', '0', '0', '0', '0'), ('170', '3', '1', 'input', '1', 'picture', 'readpoint', '阅读收费', '金币', '1', '1', '107', 'a:3:{s:4:\"size\";s:3:\"100\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";}', '', '0', '', '', '0', '', '0', '0', '0', '0'), ('171', '3', '1', 'images', '1', 'picture', 'pics', '组图', '', '1', '0', '6', 'a:2:{s:10:\"allow_size\";s:1:\"2\";s:3:\"num\";s:2:\"50\";}', '', '0', '', '', '0', '', '0', '1', '0', '1');
 COMMIT;
 
 -- ----------------------------
@@ -297,7 +380,7 @@ CREATE TABLE `hd_menu_favorite` (
 --  Records of `hd_menu_favorite`
 -- ----------------------------
 BEGIN;
-INSERT INTO `hd_menu_favorite` VALUES ('1', '12'), ('1', '16'), ('1', '41'), ('1', '57');
+INSERT INTO `hd_menu_favorite` VALUES ('0', '57'), ('0', '16'), ('0', '12'), ('0', '8'), ('0', '8'), ('0', '12'), ('0', '16'), ('0', '57'), ('1', '78'), ('1', '16'), ('1', '8'), ('1', '12');
 COMMIT;
 
 -- ----------------------------
@@ -312,13 +395,13 @@ CREATE TABLE `hd_model` (
   `description` varchar(255) NOT NULL DEFAULT '' COMMENT '模型描述',
   `is_system` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '1 系统模型  2 普通模型',
   PRIMARY KEY (`mid`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='模型表';
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='模型表';
 
 -- ----------------------------
 --  Records of `hd_model`
 -- ----------------------------
 BEGIN;
-INSERT INTO `hd_model` VALUES ('1', '文章模型', 'content', '1', '', '1');
+INSERT INTO `hd_model` VALUES ('1', '普通文章', 'content', '1', '', '1'), ('2', '下载模型', 'download', '1', '下载模型', '0'), ('3', '图片模型', 'picture', '1', '图片模型', '0');
 COMMIT;
 
 -- ----------------------------
@@ -341,14 +424,58 @@ CREATE TABLE `hd_node` (
   `is_system` tinyint(1) NOT NULL DEFAULT '0' COMMENT '系统菜单 1 是  0 不是',
   `favorite` tinyint(1) NOT NULL DEFAULT '0' COMMENT '后台常用菜单   1 是  0 不是',
   PRIMARY KEY (`nid`)
-) ENGINE=MyISAM AUTO_INCREMENT=68 DEFAULT CHARSET=utf8 COMMENT='节点表（后台菜单也使用）';
+) ENGINE=MyISAM AUTO_INCREMENT=82 DEFAULT CHARSET=utf8 COMMENT='节点表（后台菜单也使用）';
 
 -- ----------------------------
 --  Records of `hd_node`
 -- ----------------------------
 BEGIN;
-INSERT INTO `hd_node` VALUES ('1', '内容', '', 'Admin', '', '', '', '', '1', '2', '0', '2', '0', '0'), ('2', '内容管理', '', 'Admin', '', '', '', '', '1', '1', '1', '10', '0', '0'), ('3', '系统', '', 'Admin', '', '', '', '', '1', '1', '0', '10', '0', '0'), ('4', '后台菜单管理', '', 'Admin', 'Node', 'index', '', '', '1', '1', '11', '100', '0', '0'), ('8', '栏目管理', '', 'Admin', 'Category', 'index', '', '', '1', '1', '2', '20', '0', '1'), ('9', '模型管理', '', 'Admin', 'Model', 'index', '', '', '1', '1', '37', '100', '0', '0'), ('10', '推荐位', '', 'Admin', 'Flag', 'index', 'mid=1', '', '1', '1', '37', '100', '0', '0'), ('11', '系统设置', '', 'Admin', '', '', '', '', '1', '1', '3', '98', '0', '0'), ('12', '文章列表', '', 'Admin', 'Content', 'index', '', '', '1', '1', '2', '10', '0', '1'), ('13', '管理员设置', '', 'Admin', '', '', '', '', '1', '1', '3', '100', '0', '0'), ('14', '管理员管理', '', 'Admin', 'Administrator', 'index', '', '', '1', '1', '13', '100', '0', '0'), ('15', '角色管理', '', 'Admin', 'Role', 'index', '', '', '1', '1', '13', '100', '0', '0'), ('16', '网站配置', '', 'Admin', 'Config', 'edit', '', '', '1', '1', '11', '90', '0', '0'), ('17', '生成静态', '', 'Admin', '', '', '', '', '1', '1', '1', '11', '0', '0'), ('18', '批量更新栏目页', '', 'Admin', 'Html', 'createCategory', '', '生成栏目页', '1', '1', '17', '102', '0', '0'), ('19', '生成首页', '', 'Admin', 'Html', 'createIndex', '', '生成首页', '1', '1', '17', '101', '0', '1'), ('20', '批量更新内容页', '', 'Admin', 'Html', 'createContent', '', '生成内容页', '1', '1', '17', '103', '0', '0'), ('21', '修改密码', '', 'Admin', 'Personal', 'editPassword', '', '', '1', '1', '24', '100', '0', '0'), ('22', '修改个人信息', '', 'Admin', 'Personal', 'editInfo', '', '', '1', '1', '24', '100', '0', '0'), ('23', '我的面板', '', 'Admin', '', '', '', '', '1', '2', '0', '100', '0', '0'), ('24', '个人信息', '', 'Admin', '', '', '', '', '1', '1', '23', '100', '0', '0'), ('26', '会员', '', 'Admin', '', '', '', '', '1', '1', '0', '100', '0', '0'), ('27', '会员管理', '', 'Admin', '', '', '', '', '1', '1', '26', '100', '0', '0'), ('28', '会员管理', '', 'Admin', 'User', 'index', '', '', '1', '1', '27', '100', '0', '0'), ('29', '审核会员', '', 'Admin', 'User', 'index', 'user_status=0', '', '1', '1', '27', '100', '0', '0'), ('30', '会员组管理', '', 'Admin', '', '', '', '', '1', '1', '26', '100', '0', '0'), ('31', '管理会员组', '', 'Admin', 'Group', 'index', '', '', '1', '1', '30', '100', '0', '0'), ('32', '模板', '', 'Admin', '', '', '', '', '1', '1', '0', '100', '0', '0'), ('33', '模板管理', '', 'Admin', '', '', '', '', '1', '1', '32', '100', '0', '0'), ('34', '模板风格', '', 'Admin', 'TemplateStyle', 'styleList', '', '', '1', '1', '33', '90', '0', '0'), ('35', '标签云', '', 'Admin', 'Tag', 'index', '', '', '1', '1', '37', '100', '0', '0'), ('37', '其他操作', '', 'Admin', '', '', '', '', '1', '1', '1', '100', '0', '0'), ('59', '附件管理', '', 'Admin', 'Attachment', 'index', '', '', '1', '1', '37', '100', '0', '0'), ('39', '扩展', '', 'Admin', '', '', '', '', '1', '1', '0', '1000', '0', '0'), ('40', '插件管理', '', 'Admin', '', '', '', '', '1', '1', '39', '99', '0', '0'), ('41', '插件管理', '', 'Admin', 'Addons', 'index', '', '', '1', '1', '40', '100', '0', '0'), ('42', '审核文章', '', 'Admin', 'ContentAudit', 'content', 'mid=1', '', '1', '1', '2', '11', '0', '1'), ('49', '钓子管理', '', 'Admin', 'Hooks', 'index', '', '', '1', '1', '40', '100', '0', '0'), ('44', '添加栏目', '', 'Admin', 'Category', 'add', '', '', '0', '1', '2', '21', '0', '0'), ('45', '删除栏目', '', 'Admin', 'Category', 'del', '', '', '0', '1', '2', '22', '0', '0'), ('46', '修改栏目', '', 'Admin', 'Category', 'edit', '', '', '0', '1', '2', '23', '0', '0'), ('47', '批量修改栏目', '', 'Admin', 'Category', 'BulkEdit', '', '', '0', '1', '2', '24', '0', '0'), ('50', '已装插件', '', 'Admin', '', '', '', '', '1', '1', '39', '100', '0', '0'), ('57', '数据备份', 'Addons', 'Backup', 'Admin', 'index', '', '插件Backup后台管理', '1', '1', '50', '100', '0', '0'), ('66', '友情链接', 'Addons', 'Link', 'Admin', 'index', '', '插件Link后台管理', '1', '1', '50', '100', '0', '0'), ('67', '导航菜单', 'Addons', 'Navigation', 'Admin', 'index', '', '插件Navigation后台管理', '1', '1', '50', '100', '0', '0');
+INSERT INTO `hd_node` VALUES ('1', '内容', '', 'Admin', '', '', '', '', '1', '2', '0', '2', '0', '0'), ('2', '内容管理', '', 'Admin', '', '', '', '', '1', '1', '1', '10', '0', '0'), ('3', '系统', '', 'Admin', '', '', '', '', '1', '1', '0', '10', '0', '0'), ('4', '后台菜单管理', '', 'Admin', 'Node', 'index', '', '', '1', '1', '11', '100', '0', '0'), ('8', '栏目管理', '', 'Admin', 'Category', 'index', '', '', '1', '1', '2', '20', '0', '1'), ('9', '模型管理', '', 'Admin', 'Model', 'index', '', '', '1', '1', '37', '100', '0', '0'), ('10', '推荐位', '', 'Admin', 'Flag', 'index', 'mid=1', '', '1', '1', '37', '100', '0', '0'), ('11', '系统设置', '', 'Admin', '', '', '', '', '1', '1', '3', '98', '0', '0'), ('12', '文章列表', '', 'Admin', 'Content', 'index', '', '', '1', '1', '2', '10', '0', '1'), ('13', '管理员设置', '', 'Admin', '', '', '', '', '1', '1', '3', '100', '0', '0'), ('14', '管理员管理', '', 'Admin', 'Administrator', 'index', '', '', '1', '1', '13', '100', '0', '0'), ('15', '角色管理', '', 'Admin', 'Role', 'index', '', '', '1', '1', '13', '100', '0', '0'), ('16', '网站配置', '', 'Admin', 'Config', 'edit', '', '', '1', '1', '11', '90', '0', '0'), ('17', '生成静态', '', 'Admin', '', '', '', '', '1', '1', '1', '11', '0', '0'), ('18', '批量更新栏目页', '', 'Admin', 'Html', 'createCategory', '', '生成栏目页', '1', '1', '17', '102', '0', '0'), ('19', '生成首页', '', 'Admin', 'Html', 'createIndex', '', '生成首页', '1', '1', '17', '101', '0', '1'), ('20', '批量更新内容页', '', 'Admin', 'Html', 'createContent', '', '生成内容页', '1', '1', '17', '103', '0', '0'), ('21', '修改密码', '', 'Admin', 'Personal', 'editPassword', '', '', '1', '1', '24', '100', '0', '0'), ('22', '修改个人信息', '', 'Admin', 'Personal', 'editInfo', '', '', '1', '1', '24', '100', '0', '0'), ('23', '我的面板', '', 'Admin', '', '', '', '', '1', '2', '0', '100', '0', '0'), ('24', '个人信息', '', 'Admin', '', '', '', '', '1', '1', '23', '100', '0', '0'), ('26', '会员', '', 'Admin', '', '', '', '', '1', '1', '0', '100', '0', '0'), ('27', '会员管理', '', 'Admin', '', '', '', '', '1', '1', '26', '100', '0', '0'), ('28', '会员管理', '', 'Admin', 'User', 'index', '', '', '1', '1', '27', '100', '0', '0'), ('29', '审核会员', '', 'Admin', 'User', 'index', 'user_status=0', '', '1', '1', '27', '100', '0', '0'), ('30', '会员组管理', '', 'Admin', '', '', '', '', '1', '1', '26', '100', '0', '0'), ('31', '管理会员组', '', 'Admin', 'Group', 'index', '', '', '1', '1', '30', '100', '0', '0'), ('32', '模板', '', 'Admin', '', '', '', '', '1', '1', '0', '100', '0', '0'), ('33', '模板管理', '', 'Admin', '', '', '', '', '1', '1', '32', '100', '0', '0'), ('34', '模板风格', '', 'Admin', 'TemplateStyle', 'styleList', '', '', '1', '1', '33', '90', '0', '0'), ('35', '标签云', '', 'Admin', 'Tag', 'index', '', '', '1', '1', '37', '100', '0', '0'), ('37', '其他操作', '', 'Admin', '', '', '', '', '1', '1', '1', '100', '0', '0'), ('59', '附件管理', '', 'Admin', 'Attachment', 'index', '', '', '1', '1', '37', '100', '0', '0'), ('39', '扩展', '', 'Admin', '', '', '', '', '1', '1', '0', '1000', '0', '0'), ('40', '插件管理', '', 'Admin', '', '', '', '', '1', '1', '39', '99', '0', '0'), ('41', '插件管理', '', 'Admin', 'Addons', 'index', '', '', '1', '1', '40', '100', '0', '0'), ('42', '审核文章', '', 'Admin', 'ContentAudit', 'content', 'mid=1', '', '1', '1', '2', '11', '0', '1'), ('49', '钓子管理', '', 'Admin', 'Hooks', 'index', '', '', '1', '1', '40', '100', '0', '0'), ('44', '添加栏目', '', 'Admin', 'Category', 'add', '', '', '0', '1', '2', '21', '0', '0'), ('45', '删除栏目', '', 'Admin', 'Category', 'del', '', '', '0', '1', '2', '22', '0', '0'), ('46', '修改栏目', '', 'Admin', 'Category', 'edit', '', '', '0', '1', '2', '23', '0', '0'), ('47', '批量修改栏目', '', 'Admin', 'Category', 'BulkEdit', '', '', '0', '1', '2', '24', '0', '0'), ('68', '水印设置', '', 'Admin', 'Config', 'water', '', '', '1', '1', '11', '90', '0', '0'), ('50', '已装插件', '', 'Admin', '', '', '', '', '1', '1', '39', '100', '0', '0'), ('78', '数据备份', 'Addons', 'Backup', 'Admin', 'index', '', '插件Backup后台管理', '1', '1', '50', '100', '0', '0'), ('66', '友情链接', 'Addons', 'Link', 'Admin', 'index', '', '插件Link后台管理', '1', '1', '50', '100', '0', '0'), ('67', '导航菜单', 'Addons', 'Navigation', 'Admin', 'index', '', '插件Navigation后台管理', '1', '1', '50', '100', '0', '0'), ('69', '邮箱配置', '', 'Admin', 'Config', 'email', '', '', '1', '1', '11', '90', '0', '0'), ('81', '评论', 'Addons', 'Comment', 'Admin', 'index', '', '插件Comment后台管理', '1', '1', '50', '100', '0', '0'), ('79', '数据库内容替换', 'Addons', 'FieldReplace', 'Admin', 'index', '', '插件FieldReplace后台管理', '1', '1', '50', '100', '0', '0'), ('80', '前台搜索', 'Addons', 'Search', 'Admin', 'index', '', '插件Search后台管理', '1', '1', '50', '100', '0', '0');
 COMMIT;
+
+-- ----------------------------
+--  Table structure for `hd_picture`
+-- ----------------------------
+DROP TABLE IF EXISTS `hd_picture`;
+CREATE TABLE `hd_picture` (
+  `aid` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `cid` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '栏目cid',
+  `uid` int(10) unsigned NOT NULL COMMENT '用户uid',
+  `title` char(100) NOT NULL DEFAULT '' COMMENT '标题',
+  `flag` set('热门','置顶','推荐','图片','精华','幻灯片','站长推荐') DEFAULT NULL,
+  `new_window` tinyint(1) NOT NULL DEFAULT '0' COMMENT '新窗口打开',
+  `seo_title` char(100) NOT NULL DEFAULT '' COMMENT 'SEO标题',
+  `thumb` varchar(255) NOT NULL DEFAULT '' COMMENT '缩略图',
+  `click` int(6) NOT NULL DEFAULT '0' COMMENT '点击数',
+  `redirecturl` varchar(255) NOT NULL DEFAULT '' COMMENT '转向链接',
+  `html_path` varchar(255) NOT NULL DEFAULT '' COMMENT '自定义生成的静态文件地址',
+  `addtime` int(10) NOT NULL DEFAULT '0' COMMENT '添加时间',
+  `updatetime` int(10) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  `color` char(7) NOT NULL DEFAULT '' COMMENT '标题颜色',
+  `template` varchar(255) NOT NULL DEFAULT '' COMMENT '模板',
+  `url_type` tinyint(80) NOT NULL DEFAULT '3' COMMENT '文章访问方式  1 静态访问  2 动态访问  3 继承栏目',
+  `arc_sort` mediumint(6) NOT NULL DEFAULT '0' COMMENT '排序',
+  `content_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '文章状态  1 已审核 0 未审核',
+  `readpoint` smallint(6) DEFAULT NULL COMMENT '阅读收费',
+  `keywords` varchar(100) NOT NULL DEFAULT '' COMMENT '关键字',
+  `description` varchar(255) DEFAULT NULL COMMENT '描述',
+  `pics` mediumtext,
+  PRIMARY KEY (`aid`),
+  KEY `uid` (`uid`),
+  KEY `cid` (`cid`),
+  KEY `flag` (`flag`),
+  KEY `content_status` (`content_status`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='文章表';
+
+-- ----------------------------
+--  Table structure for `hd_picture_data`
+-- ----------------------------
+DROP TABLE IF EXISTS `hd_picture_data`;
+CREATE TABLE `hd_picture_data` (
+  `aid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '文章主表ID',
+  `content` text COMMENT '内容',
+  KEY `aid` (`aid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='文章正文表';
 
 -- ----------------------------
 --  Table structure for `hd_role`
@@ -375,20 +502,6 @@ INSERT INTO `hd_role` VALUES ('1', '超级管理员', '超级管理员', '1', '1
 COMMIT;
 
 -- ----------------------------
---  Table structure for `hd_search`
--- ----------------------------
-DROP TABLE IF EXISTS `hd_search`;
-CREATE TABLE `hd_search` (
-  `sid` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `mid` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'mid',
-  `word` char(100) NOT NULL DEFAULT '' COMMENT '搜索关键词',
-  `total` mediumint(8) unsigned NOT NULL DEFAULT '1' COMMENT '搜索次数',
-  PRIMARY KEY (`sid`),
-  UNIQUE KEY `name` (`word`) USING BTREE,
-  KEY `total` (`total`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='搜索结果表';
-
--- ----------------------------
 --  Table structure for `hd_session`
 -- ----------------------------
 DROP TABLE IF EXISTS `hd_session`;
@@ -404,7 +517,7 @@ CREATE TABLE `hd_session` (
 --  Records of `hd_session`
 -- ----------------------------
 BEGIN;
-INSERT INTO `hd_session` VALUES ('4onmarth2b9b373qruo4kklr04', 'admin|s:1:\"1\";code|s:3:\"BD6\";uid|s:1:\"1\";nickname|s:5:\"admin\";username|s:5:\"admin\";email|s:22:\"houdunwangxj@gmail.com\";regtime|s:10:\"1405397800\";logintime|s:10:\"1408463978\";regip|s:7:\"0.0.0.0\";lastip|s:7:\"0.0.0.0\";user_status|s:1:\"1\";lock_end_time|s:1:\"0\";qq|s:0:\"\";sex|s:1:\"1\";credits|s:5:\"10000\";rid|s:1:\"1\";signature|s:0:\"\";domain|s:5:\"admin\";spec_num|s:1:\"0\";icon|s:43:\"http://localhost/hdcmsStatic/image/user.png\";rname|s:15:\"超级管理员\";title|s:15:\"超级管理员\";system|s:1:\"1\";creditslower|s:5:\"10000\";comment_state|s:1:\"1\";allowsendmessage|s:1:\"1\";web_master|s:1:\"1\";uploadFile|a:5:{i:0;s:44:\"upload/content/2014/08/25/38791408975770.jpg\";i:1;s:44:\"upload/content/2014/08/25/15041408982247.jpg\";i:2;s:44:\"upload/content/2014/08/25/91991408982253.jpg\";i:3;s:44:\"upload/content/2014/08/25/37631408982260.jpg\";i:4;s:44:\"upload/content/2014/08/25/88191408982265.jpg\";}', '1408989185', '0.0.0.0');
+INSERT INTO `hd_session` VALUES ('niqf25v5sie9q5oqcgtj64an96', 'user|a:25:{s:3:\"uid\";s:1:\"1\";s:8:\"nickname\";s:5:\"admin\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:22:\"houdunwangxj@gmail.com\";s:7:\"regtime\";s:10:\"1405397800\";s:9:\"logintime\";s:10:\"1409590177\";s:5:\"regip\";s:7:\"0.0.0.0\";s:6:\"lastip\";s:7:\"0.0.0.0\";s:11:\"user_status\";s:1:\"1\";s:13:\"lock_end_time\";s:1:\"0\";s:2:\"qq\";s:11:\"23000121211\";s:3:\"sex\";s:1:\"1\";s:7:\"credits\";s:5:\"10000\";s:3:\"rid\";s:1:\"1\";s:9:\"signature\";s:0:\"\";s:8:\"spec_num\";s:1:\"0\";s:4:\"icon\";s:64:\"http://localhost/hdcms/upload/user/2014/08/31/40341409493938.jpg\";s:5:\"rname\";s:15:\"超级管理员\";s:5:\"title\";s:15:\"超级管理员\";s:5:\"admin\";s:1:\"1\";s:6:\"system\";s:1:\"1\";s:12:\"creditslower\";s:5:\"10000\";s:13:\"comment_state\";s:1:\"1\";s:16:\"allowsendmessage\";s:1:\"1\";s:10:\"web_master\";b:1;}admin|N;', '1409595239', '0.0.0.0'), ('0aikkg5avdanfh38il8hbl1pi2', 'admin|N;user|a:25:{s:3:\"uid\";s:2:\"20\";s:8:\"nickname\";s:2:\"qq\";s:8:\"username\";s:2:\"qq\";s:5:\"email\";s:17:\"2300071698@qq.com\";s:7:\"regtime\";s:10:\"1409590987\";s:9:\"logintime\";s:10:\"1409590987\";s:5:\"regip\";s:7:\"0.0.0.0\";s:6:\"lastip\";s:7:\"0.0.0.0\";s:11:\"user_status\";s:1:\"1\";s:13:\"lock_end_time\";s:1:\"0\";s:2:\"qq\";s:0:\"\";s:3:\"sex\";s:1:\"1\";s:7:\"credits\";s:3:\"100\";s:3:\"rid\";s:1:\"4\";s:9:\"signature\";s:33:\"这家伙很懒什么也没写...\";s:8:\"spec_num\";s:1:\"0\";s:4:\"icon\";s:50:\"http://localhost/hdcms/HDCMS/Static/image/user.png\";s:5:\"rname\";s:9:\"幼儿园\";s:5:\"title\";s:12:\"新手上路\";s:5:\"admin\";s:1:\"0\";s:6:\"system\";s:1:\"1\";s:12:\"creditslower\";s:3:\"100\";s:13:\"comment_state\";s:1:\"1\";s:16:\"allowsendmessage\";s:1:\"1\";s:10:\"web_master\";b:0;}code|s:4:\"UBED\";', '1409595642', '0.0.0.0'), ('jjm68b1hhr1tr7i803aaj2mms1', 'admin|N;user|a:25:{s:3:\"uid\";s:1:\"1\";s:8:\"nickname\";s:5:\"admin\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:22:\"houdunwangxj@gmail.com\";s:7:\"regtime\";s:10:\"1405397800\";s:9:\"logintime\";s:10:\"1409591982\";s:5:\"regip\";s:7:\"0.0.0.0\";s:6:\"lastip\";s:7:\"0.0.0.0\";s:11:\"user_status\";s:1:\"1\";s:13:\"lock_end_time\";s:1:\"0\";s:2:\"qq\";s:11:\"23000121211\";s:3:\"sex\";s:1:\"1\";s:7:\"credits\";s:5:\"10000\";s:3:\"rid\";s:1:\"1\";s:9:\"signature\";s:0:\"\";s:8:\"spec_num\";s:1:\"0\";s:4:\"icon\";s:64:\"http://localhost/hdcms/upload/user/2014/08/31/40341409493938.jpg\";s:5:\"rname\";s:15:\"超级管理员\";s:5:\"title\";s:15:\"超级管理员\";s:5:\"admin\";s:1:\"1\";s:6:\"system\";s:1:\"1\";s:12:\"creditslower\";s:5:\"10000\";s:13:\"comment_state\";s:1:\"1\";s:16:\"allowsendmessage\";s:1:\"1\";s:10:\"web_master\";b:1;}', '1409597314', '0.0.0.0');
 COMMIT;
 
 -- ----------------------------
@@ -440,14 +553,7 @@ CREATE TABLE `hd_upload` (
   PRIMARY KEY (`id`),
   KEY `basename` (`basename`),
   KEY `id` (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=56 DEFAULT CHARSET=utf8 COMMENT='上传文件';
-
--- ----------------------------
---  Records of `hd_upload`
--- ----------------------------
-BEGIN;
-INSERT INTO `hd_upload` VALUES ('2', '5303836_Screenshot_2014-08-20-14-23-11', '74861408975755', '74861408975755jpg', 'upload/content/2014/08/25/74861408975755.jpg', 'jpg', '1', '37549', '1408975756', '0', '1', '1'), ('3', '5303836_Screenshot_2014-08-20-14-23-11_thumb', '85971408975756', '85971408975756jpg', 'upload/content/2014/08/25/85971408975756.jpg', 'jpg', '1', '30673', '1408975756', '0', '1', '1'), ('4', '5303836_Screenshot_2014-08-20-14-48-09', '58421408975756', '58421408975756jpg', 'upload/content/2014/08/25/58421408975756.jpg', 'jpg', '1', '57488', '1408975757', '0', '1', '1'), ('7', '5303836_Screenshot_2014-08-20-14-48-15_thumb', '40951408975757', '40951408975757jpg', 'upload/content/2014/08/25/40951408975757.jpg', 'jpg', '1', '53771', '1408975757', '0', '1', '1'), ('8', '5303836_Screenshot_2014-08-20-14-48-35', '7681408975757', '7681408975757jpg', 'upload/content/2014/08/25/7681408975757.jpg', 'jpg', '1', '64187', '1408975758', '0', '1', '1'), ('9', '5303836_Screenshot_2014-08-20-14-48-35_thumb', '30961408975758', '30961408975758jpg', 'upload/content/2014/08/25/30961408975758.jpg', 'jpg', '1', '53352', '1408975758', '0', '1', '1'), ('10', '5303836_Screenshot_2014-08-20-15-15-28', '78671408975758', '78671408975758jpg', 'upload/content/2014/08/25/78671408975758.jpg', 'jpg', '1', '29756', '1408975758', '0', '1', '1'), ('11', '5303836_Screenshot_2014-08-20-15-15-28_thumb', '9881408975758', '9881408975758jpg', 'upload/content/2014/08/25/9881408975758.jpg', 'jpg', '1', '23366', '1408975758', '0', '1', '1'), ('12', '5303836_Screenshot_2014-08-20-14-54-28', '451408975758', '451408975758jpg', 'upload/content/2014/08/25/451408975758.jpg', 'jpg', '1', '31053', '1408975758', '0', '1', '1'), ('13', '5303836_Screenshot_2014-08-20-14-54-28_thumb', '23861408975758', '23861408975758jpg', 'upload/content/2014/08/25/23861408975758.jpg', 'jpg', '1', '24477', '1408975758', '0', '1', '1'), ('14', '5303836_Screenshot_2014-08-20-15-15-19', '13571408975758', '13571408975758jpg', 'upload/content/2014/08/25/13571408975758.jpg', 'jpg', '1', '29507', '1408975758', '0', '1', '1'), ('15', '5303836_Screenshot_2014-08-20-15-15-19_thumb', '24371408975758', '24371408975758jpg', 'upload/content/2014/08/25/24371408975758.jpg', 'jpg', '1', '22875', '1408975758', '0', '1', '1'), ('16', '5303836_Screenshot_2014-08-20-15-22-19', '31181408975758', '31181408975758jpg', 'upload/content/2014/08/25/31181408975758.jpg', 'jpg', '1', '84477', '1408975759', '0', '1', '1'), ('17', '5303836_Screenshot_2014-08-20-15-22-19_thumb', '72521408975759', '72521408975759jpg', 'upload/content/2014/08/25/72521408975759.jpg', 'jpg', '1', '70208', '1408975759', '0', '1', '1'), ('18', '5303836_Screenshot_2014-08-20-15-10-30', '9981408975759', '9981408975759jpg', 'upload/content/2014/08/25/9981408975759.jpg', 'jpg', '1', '40006', '1408975759', '0', '1', '1'), ('19', '5303836_Screenshot_2014-08-20-15-10-30_thumb', '62641408975759', '62641408975759jpg', 'upload/content/2014/08/25/62641408975759.jpg', 'jpg', '1', '32816', '1408975759', '0', '1', '1'), ('20', '5303836_Screenshot_2014-08-20-15-10-33', '8181408975759', '8181408975759jpg', 'upload/content/2014/08/25/8181408975759.jpg', 'jpg', '1', '24495', '1408975760', '0', '1', '1'), ('21', '5303836_Screenshot_2014-08-20-15-10-33_thumb', '36231408975760', '36231408975760jpg', 'upload/content/2014/08/25/36231408975760.jpg', 'jpg', '1', '19099', '1408975760', '0', '1', '1'), ('22', '5303836_Screenshot_2014-08-21-16-09-37', '77771408975760', '77771408975760png', 'upload/content/2014/08/25/77771408975760.png', 'png', '1', '240895', '1408975763', '0', '1', '1'), ('23', '5303836_Screenshot_2014-08-21-16-09-37_thumb', '1291408975763', '1291408975763png', 'upload/content/2014/08/25/1291408975763.png', 'png', '1', '62688', '1408975763', '0', '1', '1'), ('24', '5303836_Screenshot_2014-08-21-16-10-59', '37311408975763', '37311408975763png', 'upload/content/2014/08/25/37311408975763.png', 'png', '1', '256386', '1408975764', '0', '1', '1'), ('25', '5303836_Screenshot_2014-08-21-16-10-59_thumb', '33091408975764', '33091408975764png', 'upload/content/2014/08/25/33091408975764.png', 'png', '1', '78510', '1408975764', '0', '1', '1'), ('26', '5303836_Screenshot_2014-08-22-15-34', '14991408975764', '14991408975764png', 'upload/content/2014/08/25/14991408975764.png', 'png', '1', '111233', '1408975764', '0', '1', '1'), ('27', '5303836_Screenshot_2014-08-22-15-34_thumb', '42481408975764', '42481408975764png', 'upload/content/2014/08/25/42481408975764.png', 'png', '1', '58198', '1408975764', '0', '1', '1'), ('28', '5303836_Screenshot_2014-08-22-15-19-06', '9371408975764', '9371408975764png', 'upload/content/2014/08/25/9371408975764.png', 'png', '1', '223268', '1408975764', '0', '1', '1'), ('29', '5303836_Screenshot_2014-08-22-15-19-06_thumb', '15781408975764', '15781408975764png', 'upload/content/2014/08/25/15781408975764.png', 'png', '1', '45336', '1408975764', '0', '1', '1'), ('30', '5310558_5303836_Screenshot_2014-08-22-15-32-36_thumb', '71281408975764', '71281408975764png', 'upload/content/2014/08/25/71281408975764.png', 'png', '1', '26640', '1408975765', '0', '1', '1'), ('31', '5310558_5303836_Screenshot_2014-08-22-15-32-36_thumb_thumb', '92361408975765', '92361408975765png', 'upload/content/2014/08/25/92361408975765.png', 'png', '1', '21677', '1408975768', '0', '1', '1'), ('32', '5310558_5303836_Screenshot_2014-08-22-15-32-50_thumb', '54401408975768', '54401408975768png', 'upload/content/2014/08/25/54401408975768.png', 'png', '1', '42405', '1408975768', '0', '1', '1'), ('33', '5310558_5303836_Screenshot_2014-08-22-15-32-50_thumb_thumb', '86881408975768', '86881408975768png', 'upload/content/2014/08/25/86881408975768.png', 'png', '1', '36955', '1408975768', '0', '1', '1'), ('34', '5303836_Screenshot_2014-08-20-15-02-12', '52181408975768', '52181408975768jpg', 'upload/content/2014/08/25/52181408975768.jpg', 'jpg', '1', '107670', '1408975768', '0', '1', '1'), ('35', '5303836_Screenshot_2014-08-20-15-02-12_thumb', '65021408975768', '65021408975768jpg', 'upload/content/2014/08/25/65021408975768.jpg', 'jpg', '1', '89354', '1408975768', '0', '1', '1'), ('36', '5303836_Screenshot_2014-08-20-15-02-19', '8921408975768', '8921408975768jpg', 'upload/content/2014/08/25/8921408975768.jpg', 'jpg', '1', '47925', '1408975768', '0', '1', '1'), ('37', '5303836_Screenshot_2014-08-20-15-02-19_thumb', '13501408975768', '13501408975768jpg', 'upload/content/2014/08/25/13501408975768.jpg', 'jpg', '1', '39054', '1408975768', '0', '1', '1'), ('38', '5303836_Screenshot_2014-08-20-15-14-47', '39661408975768', '39661408975768jpg', 'upload/content/2014/08/25/39661408975768.jpg', 'jpg', '1', '32600', '1408975768', '0', '1', '1'), ('39', '5303836_Screenshot_2014-08-20-15-14-47_thumb', '1891408975768', '1891408975768jpg', 'upload/content/2014/08/25/1891408975768.jpg', 'jpg', '1', '25060', '1408975768', '0', '1', '1'), ('40', '5303836_Screenshot_2014-08-20-15-14-40', '23201408975768', '23201408975768jpg', 'upload/content/2014/08/25/23201408975768.jpg', 'jpg', '1', '31697', '1408975769', '0', '1', '1'), ('41', '5303836_Screenshot_2014-08-20-15-14-40_thumb', '40861408975769', '40861408975769jpg', 'upload/content/2014/08/25/40861408975769.jpg', 'jpg', '1', '25464', '1408975769', '0', '1', '1'), ('42', '5303836_Screenshot_2014-08-20-15-15-51', '73481408975769', '73481408975769jpg', 'upload/content/2014/08/25/73481408975769.jpg', 'jpg', '1', '49184', '1408975769', '0', '1', '1'), ('43', '5303836_Screenshot_2014-08-20-15-15-51_thumb', '17791408975769', '17791408975769jpg', 'upload/content/2014/08/25/17791408975769.jpg', 'jpg', '1', '39445', '1408975769', '0', '1', '1'), ('44', '5303836_Screenshot_2014-08-20-15-16-11', '21241408975769', '21241408975769jpg', 'upload/content/2014/08/25/21241408975769.jpg', 'jpg', '1', '40921', '1408975769', '0', '1', '1'), ('45', '5303836_Screenshot_2014-08-20-15-16-11_thumb', '73541408975769', '73541408975769jpg', 'upload/content/2014/08/25/73541408975769.jpg', 'jpg', '1', '31923', '1408975769', '0', '1', '1'), ('46', '5303836_Screenshot_2014-08-18-14-54-17', '95111408975769', '95111408975769jpg', 'upload/content/2014/08/25/95111408975769.jpg', 'jpg', '1', '80947', '1408975769', '0', '1', '1'), ('47', '5303836_Screenshot_2014-08-18-14-54-17_thumb', '47491408975769', '47491408975769jpg', 'upload/content/2014/08/25/47491408975769.jpg', 'jpg', '1', '67379', '1408975770', '0', '1', '1'), ('48', '5303836_Screenshot_2014-08-18-15-50-36', '621408975770', '621408975770jpg', 'upload/content/2014/08/25/621408975770.jpg', 'jpg', '1', '38408', '1408975770', '0', '1', '1'), ('49', '5303836_Screenshot_2014-08-18-15-50-36_thumb', '22971408975770', '22971408975770jpg', 'upload/content/2014/08/25/22971408975770.jpg', 'jpg', '1', '30930', '1408975770', '0', '1', '1'), ('50', '5310558_06-1_thumb', '94041408975770', '94041408975770jpg', 'upload/content/2014/08/25/94041408975770.jpg', 'jpg', '1', '72489', '1408975770', '0', '1', '1'), ('51', '5310558_00006_thumb', '38791408975770', '38791408975770jpg', 'upload/content/2014/08/25/38791408975770.jpg', 'jpg', '1', '135299', '1408975770', '1', '1', '1'), ('52', '22851408975755', '15041408982247', '15041408982247jpg', 'upload/content/2014/08/25/15041408982247.jpg', 'jpg', '1', '135299', '1408982247', '1', '1', '1'), ('53', '22851408975755', '91991408982253', '91991408982253jpg', 'upload/content/2014/08/25/91991408982253.jpg', 'jpg', '1', '135299', '1408982253', '1', '1', '1'), ('54', '22851408975755', '37631408982260', '37631408982260jpg', 'upload/content/2014/08/25/37631408982260.jpg', 'jpg', '1', '135299', '1408982260', '1', '1', '1'), ('55', '22851408975755', '88191408982265', '88191408982265jpg', 'upload/content/2014/08/25/88191408982265.jpg', 'jpg', '1', '135299', '1408982265', '1', '1', '1');
-COMMIT;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='上传文件';
 
 -- ----------------------------
 --  Table structure for `hd_user`
@@ -471,23 +577,32 @@ CREATE TABLE `hd_user` (
   `credits` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '积分',
   `rid` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '角色id',
   `signature` varchar(255) NOT NULL DEFAULT '' COMMENT '个性签名',
-  `domain` char(20) NOT NULL DEFAULT '' COMMENT '个性域名',
   `spec_num` mediumint(9) unsigned NOT NULL DEFAULT '0' COMMENT '空间访问数',
   `icon` varchar(255) NOT NULL DEFAULT '' COMMENT '头像',
   PRIMARY KEY (`uid`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`),
-  UNIQUE KEY `nickname` (`nickname`),
-  UNIQUE KEY `domain` (`domain`),
   KEY `password` (`password`),
   KEY `credits` (`credits`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='会员表';
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='会员表';
 
 -- ----------------------------
 --  Records of `hd_user`
 -- ----------------------------
 BEGIN;
-INSERT INTO `hd_user` VALUES ('1', 'admin', 'admin', 'ea038f6915e2a950d016220b197d7aa7', '4865dfb852', 'houdunwangxj@gmail.com', '1405397800', '1408968809', '0.0.0.0', '0.0.0.0', '1', '0', '', '1', '10000', '1', '', 'admin', '0', '');
+INSERT INTO `hd_user` VALUES ('1', 'admin', 'admin', '2341e915192eb5950721e563fdbc75bd', '3985dce0e6', 'houdunwangxj@gmail.com', '1405397800', '1409591982', '0.0.0.0', '0.0.0.0', '1', '0', '23000121211', '1', '10000', '1', '', '0', 'upload/user/2014/08/31/40341409493938.jpg');
 COMMIT;
+
+-- ----------------------------
+--  Table structure for `hd_user_guest`
+-- ----------------------------
+DROP TABLE IF EXISTS `hd_user_guest`;
+CREATE TABLE `hd_user_guest` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `space_uid` int(11) unsigned DEFAULT NULL COMMENT '主人uid',
+  `guest_uid` int(11) unsigned DEFAULT NULL COMMENT '访问uid',
+  `entertime` int(11) DEFAULT NULL COMMENT '访客时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 SET FOREIGN_KEY_CHECKS = 1;

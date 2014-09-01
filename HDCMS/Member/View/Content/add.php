@@ -20,16 +20,7 @@
 
 </head>
 <body>
-<div class="top">
-    <div class="top_warp">
-        <div class="logo">
-            <img src="__PUBLIC__/static/image/member_logo.png" alt=""/>
-        </div>
-        <div class="top_menu">
-            <include file="__PUBLIC__/block/top_menu.php"/>
-        </div>
-    </div>
-</div>
+<include file="__PUBLIC__/block/top_menu.php"/>
 <div class="wrap">
     <div class="menu">
         <include file="__PUBLIC__/block/left_menu.php"/>

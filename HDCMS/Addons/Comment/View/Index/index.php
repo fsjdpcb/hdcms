@@ -76,7 +76,8 @@
                             <a href="javascript:void(0)" onclick="reply({$d.comment_id})">回复</a>
                         </div>
                         <div class="reply" id="reply-{$d.comment_id}">
-                            <form action="{|U:'addComment',array('comment_id'=>$d['comment_id'])}" method="post" onsubmit="return on_submit()">
+                            <form action="{|U:'addComment',array('comment_id'=>$d['comment_id'])}" method="post"
+                                  onsubmit="return on_submit()">
                                 <input type="hidden" name="mid" value="{$hd.get.mid}"/>
                                 <input type="hidden" name="cid" value="{$hd.get.cid}"/>
                                 <input type="hidden" name="aid" value="{$hd.get.aid}"/>
@@ -105,6 +106,7 @@
         } else {
             $(div).hide();
         }
+        iframe_height();
     }
     function on_submit() {
         iframe_height(150);

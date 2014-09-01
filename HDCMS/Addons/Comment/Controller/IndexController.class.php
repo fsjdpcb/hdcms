@@ -15,7 +15,7 @@ class IndexController extends AddonController
 
     public function __init()
     {
-        $this->db = M('comment');
+        $this->db = M('addon_comment');
         $this->mid = Q('mid', 0, 'intval');
         $this->cid = Q('cid', 0, 'intval');
         $this->aid = Q('aid', 0, 'intval');
