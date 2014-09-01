@@ -23,7 +23,7 @@
                                 <tr>
                                     <td>{$val.title}</td>
                                     <td>
-                                        <input type="text" name="{$val.name}" value="{$val.value}" class="w200"/>
+                                        <input type="{$val.show_type}" name="{$val.name}" value="{$val.value}" class="w200"/>
                                     </td>
                                     <td>{$val.name}</td>
                                     <td>{$val.message}</td>

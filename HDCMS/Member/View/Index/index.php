@@ -45,14 +45,7 @@
             </div>
             <div class="article">
                 <table class="table2 hd-form">
-                    <thead>
-                    <tr>
-                        <td>文章标题</td>
-                        <td width="100">栏目</td>
-                        <td width="50">点击</td>
-                        <td width="100">发布时间</td>
-                    </tr>
-                    </thead>
+                   
                     <list from="$data" name="c">
                         <tr>
                             <td>
@@ -61,11 +54,6 @@
                                     {$c.title}
                                 </a>
                             </td>
-                            <td>
-                                {$c.catname}
-                            </td>
-                            <td>{$c.click}</td>
-                            <td>{$c.addtime|date:"Y-m-d",@@}</td>
                         </tr>
                     </list>
                 </table>

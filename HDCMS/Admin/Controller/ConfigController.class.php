@@ -99,10 +99,11 @@ class ConfigController extends AuthController
     {
         if (IS_POST) {
             $_POST = array_filter($_POST);
-            $db = M('config');
             foreach ($_POST as $name => $value) {
-                $db->where("name='{$name}'")->save(array('value' => $value));
+                $this->db->where("name='{$name}'")->save(array('value' => $value));
             }
+            //更新缓存
+            $this->db->updateCache();
             $this->success('设置成功');
         } else {
             $config = M('config')->where(array('type' => array('IN', 'water')))->getField('name,value,message,title');
@@ -110,22 +111,25 @@ class ConfigController extends AuthController
             $this->display();
         }
     }
+
     //水印设置
     public function email()
     {
         if (IS_POST) {
             $_POST = array_filter($_POST);
-            $db = M('config');
             foreach ($_POST as $name => $value) {
-                $db->where("name='{$name}'")->save(array('value' => $value));
+                $this->db->where("name='{$name}'")->save(array('value' => $value));
             }
+            //更新缓存
+            $this->db->updateCache();
             $this->success('设置成功');
         } else {
-            $config = M('config')->where(array('type' => array('IN', 'email')))->getField('name,value,message,title');
+            $config = M('config')->where(array('type' => array('IN', 'email')))->getField('name,value,message,show_type,title');
             $this->assign('config', $config);
             $this->display();
         }
     }
+
     //验证EMAIL发送
     public function checkEmail()
     {

@@ -18,10 +18,10 @@ class IndexController extends AuthController
     //获取收藏夹文章
     public function getFavoritesAricle()
     {
-        $ContentModel = ContentViewModel::getInstance(1);
-        $where = [];
-        $page = new Page($ContentModel->where($where)->count(), 6);
-        $data = $ContentModel->where($where)->limit($page->limit())->order('arc_sort ASC,addtime DESC')->all();
+        $db = M('favorite');
+        $where = "user_id=".$_SESSION['user']['uid'];
+        $page = new Page($db->where($where)->count(), 6);
+        $data = $db->where($where)->limit($page->limit())->order('fid DESC')->all();
         return array('data'=>$data,'page'=>$page->show());
     }
 }

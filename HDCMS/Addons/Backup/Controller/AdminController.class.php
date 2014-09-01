@@ -10,7 +10,7 @@ class AdminController extends AddonController
     //构造函数
     public function __init()
     {
-        if (!Q('session.admin')) go('Admin/Login/login');
+        if (!isset($_SESSION['user']) || !$_SESSION['user']['admin']) go('Admin/Login/login');
     }
 
     //备份列表

@@ -11,6 +11,9 @@ class AddonController extends Controller
     {
         $this->setAddonConfig();
         parent::construct();
+        if (method_exists($this, '__init')) {
+            $this->__init();
+        }
     }
 
     //设置插件配置项

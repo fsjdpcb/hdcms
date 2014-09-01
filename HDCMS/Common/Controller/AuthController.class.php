@@ -27,7 +27,9 @@ class AuthController extends Controller
     protected function checkAdminAccess()
     {
         //没登录或普通用户
-        isset($_SESSION['user']) or go("Login/login");
+        if(!isset($_SESSION['user']) or !$_SESSION['user']['admin']){
+            go("Login/login");
+        }
         //超级管理员不限制
         if ($_SESSION['user']['web_master']) return true;
         //普通管理员权限控制

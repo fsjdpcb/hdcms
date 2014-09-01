@@ -26,12 +26,12 @@ class IndexController extends Controller
         $this->cacheDir = TEMP_PATH . 'Content/' . substr(md5(__URL__), 0, 2);
         $this->model = S('model');
         $this->category = S('category');
-        $this->mid = Q('mid', 0, 'intval');
-        $this->cid = Q('cid', 0, 'intval');
-        if ($this->mid and !isset($this->model[$this->mid])) {
+        $this->mid = Q('mid', null, 'intval');
+        $this->cid = Q('cid', null, 'intval');
+        if ($this->mid && !isset($this->model[$this->mid])) {
             $this->_404();
         }
-        if ($this->cid and !isset($this->category[$this->cid])) {
+        if ($this->cid && !isset($this->category[$this->cid])) {
             $this->_404();
         }
     }
@@ -148,5 +148,6 @@ class IndexController extends Controller
     {
         //寻找走失儿童404页面
         parent::display('404.html');
+        exit;
     }
 }

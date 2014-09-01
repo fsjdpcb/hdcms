@@ -333,7 +333,7 @@ str;
 					}
                     break;
             }
-            \$db->order('arc_sort ASC,addtime DESC');
+            \$db->order('arc_sort ASC,aid DESC');
             //---------------------------查询条件-------------------------------
                 \$where=array();
                 //指定栏目的文章,子栏目处理

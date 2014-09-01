@@ -101,7 +101,7 @@ class IndexController extends AuthController
             $favoriteModel->del(array('uid' => $_SESSION['user']['uid']));
             if (!empty($_POST['nid'])) {
                 foreach ($post['nid'] as $nid) {
-                    $favoriteModel->add(array('uid' => $_SESSION['uid'], 'nid' => $nid));
+                    $favoriteModel->add(array('uid' => $_SESSION['user']['uid'], 'nid' => $nid));
                 }
             }
             $pre = C("DB_PREFIX");
@@ -113,7 +113,7 @@ class IndexController extends AuthController
         } else {
             $nodeModel = M('node');
             $pre = C('DB_PREFIX');
-            if (session("WEB_MASTER") || session("rid") == 1) {
+            if ($_SESSION['user']['web_master']|| $_SESSION['user']['rid'] == 1) {
                 $sql = "SELECT n.nid,n.pid,m.uid,n.title FROM {$pre}node AS n  LEFT JOIN
 							 (SELECT * FROM {$pre}menu_favorite WHERE uid={$_SESSION['user']['uid']}) AS m ON n.nid = m.nid WHERE n.show=1";
             } else {

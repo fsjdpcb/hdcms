@@ -146,14 +146,14 @@ div.wrap div.content div.article ul li {
   border: solid 1px #dddddd;
   padding: 5px;
   float: left;
-  margin: 10px 8px;
+  margin: 10px 15px;
   margin-bottom: 20px;
 }
 div.wrap div.content div.article ul li:hover {
   border: solid 1px #226bb0;
 }
 div.wrap div.content div.article ul li a div.thumb {
-  width: 260px;
+  width: 285px;
   height: 200px;
   overflow: hidden;
 }

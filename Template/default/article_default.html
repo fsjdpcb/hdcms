@@ -36,8 +36,8 @@
             欢迎加群：166421499 进行使用交流！
         </div>
         <div class="search">
-            <form action="">
-                <input type="text" name="search_word" placeholder="输入内容内容..."/>
+            <form action="__ROOT__/index.php?g=Addons&m=Search" method="post">
+                <input type="text" name="wd" placeholder="输入搜索内容..."/>
                 <input type="submit" value="提交"/>
             </form>
         </div>
@@ -48,10 +48,13 @@
         </div>
         <div class="info">
           作者：{$hdcms.username}  发布日期：{$hdcms.addtime|date:'Y-m-d',@@}  点击数：{$hdcms.click}
+           <a href="{|U:'Member/Favorite/add',array('mid'=>$hdcms['mid'],'cid'=>$hdcms['cid'],'aid'=>$hdcms['aid'])}">加入收藏</a>
         </div>
         <div class="body">
             {$hdcms.content}
+            <iframe src="http://localhost/hdcms/index.php?g=Addons&m=Comment&&mid={$hdcms.mid}&cid={$hdcms.cid}&aid={$hdcms.aid}" width="100%" frameborder="0" scrolling="no" id="comment_iframe"></iframe>
         </div>
+
     </div>
     <div class="menu">
         <dl>

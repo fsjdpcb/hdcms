@@ -45,10 +45,7 @@
                 <input type="email" name="email" placeholder="邮箱( 请填写有效邮箱地址，以便收取账号激活邮件 )" required=""/>
             </div>
             <div class="input">
-                <input type="submit"/>
-            </div>
-            <div class="getpassword">
-                <input type="checkbox" name="recond"/>  <a href="">我已经认真阅读并同意HDCMS的《使用协议》</a>
+                <input type="submit" value="注册"/>
             </div>
         </form>
     </div>
