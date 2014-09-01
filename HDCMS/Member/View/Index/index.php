@@ -36,7 +36,6 @@
             </div>
             <div class="article">
                 <table class="table2 hd-form">
-
                     <list from="$data" name="c">
                         <tr>
                             <td>
@@ -48,9 +47,11 @@
                         </tr>
                     </list>
                 </table>
-                <div class="page1">
-                    {$page}
-                </div>
+                <if value="$count">
+                    <div class="page1">
+                        {$page}
+                    </div>
+                </if>
 
             </div>
         </div>

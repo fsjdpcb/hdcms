@@ -28,7 +28,8 @@
                         <input type="password" name="password" placeholder="请输入新密码" required="">
                         <label>确证密码</label>
                         <input type="password" name="passwordc" placeholder="请输入确认密码" required="">
-                        <input type="submit" value="保存修改"/>
+                        <br/>
+                        <input type="submit" value="保存修改" class="btn"/>
                     </form>
 
                 </div>

@@ -28,7 +28,8 @@
                         <input type="email" name="email" value="{$field.email}" placeholder="请输入邮箱" required="">
                         <label>QQ</label>
                         <input type="text" name="qq" value="{$field.qq}" placeholder="请输入QQ号" required="">
-                        <input type="submit" value="保存修改"/>
+                        <br/>
+                        <input type="submit" value="保存修改" class="btn"/>
                     </form>
 
                 </div>
