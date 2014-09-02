@@ -15,7 +15,7 @@ class SearchAddon extends Addon
         'status' => 1,
         'author' => '后盾网向军',
         'version' => '1.0',
-        'has_adminlist' => 1,
+        'has_adminlist' => 0,
     );
 
     //安装
