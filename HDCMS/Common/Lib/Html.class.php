@@ -51,11 +51,9 @@ class Html extends Controller
         //单文章
         if ($cat['cattype'] == 4) {
             $Model = ContentViewModel::getInstance($cat['mid']);
-            $result = $Model->where("cid={$cat['cid']}")->find();
+            $result = $Model->where("category.cid={$cat['cid']}")->find();
             if ($result) {
-                $Content = new Content($cat['mid']);
-                $data = $Content->find($result['aid']);
-                return $this->content($data);
+                return $this->content($result);
             }
         } else {
             //普通栏目与封面栏目

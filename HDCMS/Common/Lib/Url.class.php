@@ -22,12 +22,16 @@ final class Url
             case 4 :
                 //单文章
                 $model = ContentViewModel::getInstance($category['mid']);
-                $content = $model->relation('category')->where("category.cid={$category['cid']}")->find();
-                if ($category['cat_url_type'] == 1) {
-                    //栏目生成静态
-                    return Url::getContentHtml($content);
+                $content = $model->where("category.cid={$category['cid']}")->find();
+                if ($content) {
+                    if ($category['cat_url_type'] == 1) {
+                        //栏目生成静态
+                        return Url::getContentHtml($content);
+                    } else {
+                        return U('Index/Index/content', array('mid' => $content['mid'], 'cid' => $content['cid'], 'aid' => $content['aid']));
+                    }
                 } else {
-                    return U('Index/Index/content', array('mid' => $content['mid'], 'cid' => $content['cid'], 'aid' => $content['aid']));
+                    return U('Index/Index/content', array('mid' => $content['mid'], 'cid' => $content['cid'], 'aid' => 0));
                 }
             case 2 :
             case 1 :

@@ -63,12 +63,20 @@ class ContentController extends AuthController
                 if ($cat['cattype'] != 3) {
                     //单文章栏目
                     if ($cat['cattype'] == 4) {
-                        $link = __WEB__ . "?m=Admin&c=content&a=single&cid={$cat['cid']}&mid={$cat['mid']}";
+                        $ContentModel = ContentModel::getInstance($cat['mid']);
+                        $content = $ContentModel->where(array('cid' => $cat['cid']))->find();
+                        if ($content) {
+                            $link = __WEB__ . "?m=Admin&c=content&a=edit&cid={$cat['cid']}&mid={$cat['mid']}&aid={$content['aid']}";
+                        } else {
+                            $link = __WEB__ . "?m=Admin&c=content&a=add&cid={$cat['cid']}&mid={$cat['mid']}";
+                        }
                         $url = "javascript:hd_open_window(\"$link\")";
+//                        $link = __WEB__ . "?m=Admin&c=content&a=single&cid={$cat['cid']}&mid={$cat['mid']}";
+//                        $url = "javascript:hd_open_window(\"$link\")";
                     } else if ($cat['cattype'] == 1) {
                         $url = U('content', array('cid' => $cat['cid'], 'mid' => $cat['mid'], 'content_status' => 1));
                     } else {
-                        $url = 'javascript:';
+                        $url = 'javascript:alert("封面栏目不可以发表文章")';
                     }
                     $data['id'] = $cat['cid'];
                     $data['pId'] = $cat['pid'];
@@ -90,15 +98,15 @@ class ContentController extends AuthController
         //文章状态
         $content_status = Q('content_status', 0, 'intval');
         $where = array();
-        $where['content_status'] = array('EQ',$content_status);
+        $where['content_status'] = array('EQ', $content_status);
         //按时间搜索
         $search_begin_time = Q('search_begin_time', 0, 'strtotime');
         if ($search_begin_time) {
-            $where['addtime'] =array('EGT',$search_begin_time);
+            $where['addtime'] = array('EGT', $search_begin_time);
         }
         $search_end_time = Q('search_end_time', null, 'strtotime');
         if ($search_end_time) {
-            $where['addtime'] =array('ELT',$search_end_time);
+            $where['addtime'] = array('ELT', $search_end_time);
         }
         //按flag搜索
         if ($flag = Q('flag')) {
@@ -110,15 +118,15 @@ class ContentController extends AuthController
             switch (strtolower($_POST['search_type'])) {
                 case 1 :
                     //标题
-                    $where['title'] = array('like',"'%$search_keyword%'");
+                    $where['title'] = array('like', "'%$search_keyword%'");
                     break;
                 case 2 :
                     //简介
-                    $where['description'] = array('like',"'%$search_keyword%'");
+                    $where['description'] = array('like', "'%$search_keyword%'");
                     break;
                 case 3 :
                     //用户名
-                    $where['username']=array('EQ',$search_keyword);
+                    $where['username'] = array('EQ', $search_keyword);
                     break;
                 case 4 :
                     //用户uid
@@ -129,7 +137,7 @@ class ContentController extends AuthController
         $where[] = "category.cid=" . $this->cid;
         $page = new Page($ContentModel->where($where)->count(), 15);
         $data = $ContentModel->where($where)->limit($page->limit())->order('arc_sort ASC,addtime DESC')->all();
-        $this->assign('flag', S('flag'.$this->mid));
+        $this->assign('flag', S('flag' . $this->mid));
         $this->assign('data', $data);
         $this->assign('page', $page->show());
         $this->display();
@@ -138,12 +146,11 @@ class ContentController extends AuthController
     //单文章管理
     public function single()
     {
-        $cid = Q('cid', 0, 'intval');
         $ContentModel = ContentModel::getInstance($this->mid);
-        $content = $ContentModel->where(array('cid' => $cid))->find();
+        $content = $ContentModel->where(array('cid' => $this->cid))->limit(1)->find();
         if ($content) {
             $_REQUEST['aid'] = $content['aid'];
-            $this->edit($_POST);
+            $this->edit();
         } else {
             $this->add();
         }
@@ -181,9 +188,7 @@ class ContentController extends AuthController
             }
         } else {
             $aid = Q('aid', 0, 'intval');
-            if (!$aid) {
-                $this->error('参数错误');
-            }
+            if (!$aid) $this->error('文章不存在');
             $ContentModel = ContentModel::getInstance($this->mid);
             $editData = $ContentModel->find($aid);
             //获取分配字段

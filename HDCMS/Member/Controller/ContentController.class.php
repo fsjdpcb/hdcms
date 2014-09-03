@@ -119,6 +119,4 @@ class ContentController extends AuthController
             $this->error('参数错误');
         }
     }
-
-
 }

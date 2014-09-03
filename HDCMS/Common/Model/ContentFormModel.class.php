@@ -204,8 +204,8 @@ class ContentFormModel extends Model
         $html = "<select name='cid'>";
         $html .= "<option value='0'>==选择栏目==</option>";
         foreach ($category as $cat) {
-            $disabled = $cat['cattype'] == 1 && $cat['mid'] == $this->mid ? '' : 'disabled=""';
-            $selected = $cat['cattype'] == 1 && isset($_REQUEST['cid']) && $_REQUEST['cid'] == $cat['cid'] ? 'selected=""' : '';
+            $disabled = in_array($cat['cattype'],array(1,4)) && $cat['mid'] == $this->mid ? '' : 'disabled=""';
+            $selected = in_array($cat['cattype'],array(1,4)) && isset($_REQUEST['cid']) && $_REQUEST['cid'] == $cat['cid'] ? 'selected=""' : '';
             $html .= "<option value='{$cat['cid']}' $disabled $selected>{$cat['_name']}</option>";
         }
         $html .= "</select>";
