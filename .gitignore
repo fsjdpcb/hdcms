@@ -4,6 +4,7 @@
 /Upload
 /h
 /HDCMS/Temp
+/HDCMS/Install/Lock.php
 /HDCMS/hdphp/Extend/Org/Jqzoom
 /HDCMS/hdphp/Extend/Org/SplitWord
 /HDCMS/hdphp/Extend/Org/Smarty
