@@ -5,8 +5,8 @@ return array (
     'DB_PORT' => 3306,
     'DB_USER' => 'root',
     'DB_PASSWORD' => 'admin888',
-    'DB_DATABASE' => 'a',
+    'DB_DATABASE' => 'b',
     'DB_PREFIX' => 'hd_',
-    'WEB_MASTER' => '',
+    'WEB_MASTER' => 'admin',
 );
 ?>

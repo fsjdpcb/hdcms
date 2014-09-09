@@ -1,6 +1,6 @@
 <?php if (!defined('HDPHP_PATH')) exit; 
 return array (
-  'WEBNAME' => 'HDCMS内容管理系统',
+  'HDCMS内容管理系统' => 'HDCMS内容管理系统',
   'CREATE_INDEX_HTML' => '0',
   'MEMBER_OPEN' => '1',
   'EMAIL_FORMMAIL' => 'hdcms@houdunwang.com',
@@ -18,7 +18,7 @@ return array (
   'AUTO_DESC' => '1',
   'ICP' => '京ICP备12048441号-3',
   'AUTO_THUMB' => '1',
-  'EMAIL' => 'houdunwangxj@gmail.com',
+  'SDF@DF.COM' => 'houdunwangxj@gmail.com',
   'TEL' => '010-64825057',
   'DEFAULT_GROUP' => '4',
   'UPLOAD_PATH' => 'upload',

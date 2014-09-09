@@ -63,20 +63,12 @@ class ContentController extends AuthController
                 if ($cat['cattype'] != 3) {
                     //单文章栏目
                     if ($cat['cattype'] == 4) {
-                        $ContentModel = ContentModel::getInstance($cat['mid']);
-                        $content = $ContentModel->where(array('cid' => $cat['cid']))->find();
-                        if ($content) {
-                            $link = __WEB__ . "?m=Admin&c=content&a=edit&cid={$cat['cid']}&mid={$cat['mid']}&aid={$content['aid']}";
-                        } else {
-                            $link = __WEB__ . "?m=Admin&c=content&a=add&cid={$cat['cid']}&mid={$cat['mid']}";
-                        }
+                        $link = __WEB__ . "?m=Admin&c=content&a=single&cid={$cat['cid']}&mid={$cat['mid']}";
                         $url = "javascript:hd_open_window(\"$link\")";
-//                        $link = __WEB__ . "?m=Admin&c=content&a=single&cid={$cat['cid']}&mid={$cat['mid']}";
-//                        $url = "javascript:hd_open_window(\"$link\")";
                     } else if ($cat['cattype'] == 1) {
                         $url = U('content', array('cid' => $cat['cid'], 'mid' => $cat['mid'], 'content_status' => 1));
                     } else {
-                        $url = 'javascript:alert("封面栏目不可以发表文章")';
+                        $url = 'javascript:';
                     }
                     $data['id'] = $cat['cid'];
                     $data['pId'] = $cat['pid'];

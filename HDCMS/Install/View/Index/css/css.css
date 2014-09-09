@@ -114,15 +114,15 @@ div.step2 {
 
 div.step2_info {
     padding-top: 55px;
-    width:460px;
-    margin:0 auto;
+    width: 460px;
+    margin: 0 auto;
 }
 
 div.step2_info li {
     padding-bottom: 10px;
     margin-bottom: 25px;
     font-size: 22px;
-    color:#333;
+    color: #333;
     list-style: circle;
     border-bottom: 1px solid #DCDCDC;
 }
@@ -228,16 +228,26 @@ div.success {
 }
 
 div.success h2 {
-    font-size: 20px;
+    font-size: 35px;
     color: #1F5C9D;
     height: 50px;
-    margin-bottom: 10px;
+    margin-bottom: 45px;
+}
+
+div.success h2 span {
+    display: block;
+    margin-top: 10px;
+    color: #f00f00;
+    padding: 10px;
+    font-size: 14px;
 }
 
 div.success div.link a {
-    font-size: 18px;
+    font-size: 20px;
     display: inline-block;
+    font-weight: bold;
     padding: 10px 25px;
+    color: #1F5C9D;
 }
 
 div.success div.link a:hover {

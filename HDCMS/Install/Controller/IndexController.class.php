@@ -14,9 +14,16 @@ class IndexController extends Controller
     public function __init()
     {
         if (is_file(MODULE_PATH . 'Lock.php')) {
-            go(__WEB__);
+            $this->isLock();
         }
         $this->step = Q('step', 1, 'intval');
+    }
+
+    //安装锁定
+    public function isLock()
+    {
+        $this->display();
+        exit;
     }
 
     //欢迎页
@@ -68,16 +75,6 @@ class IndexController extends Controller
             if (!@mysql_query("CREATE DATABASE IF NOT EXISTS " . $_POST['DB_DATABASE'] . " CHARSET UTF8")) {
                 $this->error('创建数据库失败');
             }
-            //导入数据
-            $db_prefix = $_POST['DB_PREFIX'];
-            $db = M();
-            //创建结构
-            require MODULE_PATH . "/Data/structure.php";
-            foreach (glob(MODULE_PATH . "Data/*") as $f) {
-                if (preg_match('@\d+.php@', $f)) {
-                    require $f;
-                }
-            }
             //================================= 设置配置文件 =================================
             $config = <<<str
 <?php if (!defined('HDPHP_PATH'))exit;
@@ -96,11 +93,22 @@ str;
             if (!file_put_contents(APP_COMMON_PATH . 'Config/db.inc.php', $config)) {
                 $this->error('创建配置文件失败');
             }
-            C(require APP_COMMON_PATH . 'Config/db.inc.php', $config);
             //================================= 导入数据 =================================
-            //网站名称
+            //加载数据库配置
+            C(require APP_COMMON_PATH . 'Config/db.inc.php', $config);
+            //导入数据
+            $db_prefix = $_POST['DB_PREFIX'];
+            $db = M();
+            //创建结构
+            require MODULE_PATH . "/Data/structure.php";
+            foreach (glob(MODULE_PATH . "Data/*") as $f) {
+                if (preg_match('@\d+.php@', $f)) {
+                    require $f;
+                }
+            }
+            //================================= 更新基本数据如网站名称===============================
             $db = M("config");
-            $db->where(array('name' => array('EQ', 'WEBNAME')))->save(array('name' => $_POST['WEB_NAME']));
+            $db->where(array('name' => array('EQ', 'WEBNAME')))->save(array('name' => $_POST['WEBNAME']));
             $db->where(array('name' => array('EQ', 'EMAIL')))->save(array('name' => $_POST['EMAIL']));
             //站长信息
             $db = M('user');
@@ -116,11 +124,18 @@ str;
                 'password' => md5($_POST['PASSWORD'] . $code)
             );
             if ($db->save($data)) {
-                $this->success('数据插入完毕...');
+                $this->success('数据插入完毕...', 'Complete');
             }
         } else {
             $this->display();
         }
+    }
+
+    //安装完成
+    public function Complete()
+    {
+        $this->display();
+        touch(MODULE_PATH . 'Lock.php');
     }
 
 }
