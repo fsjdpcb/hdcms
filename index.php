@@ -9,4 +9,5 @@ date_default_timezone_set('PRC');
 define('APP_PATH','HDCMS/');
 
 //引入框架主文件
-require 'HDCMS/hdphp/hdphp.php';
+//require 'HDCMS/hdphp/hdphp.php';
+require '../hdphp/hdphp/hdphp.php';
