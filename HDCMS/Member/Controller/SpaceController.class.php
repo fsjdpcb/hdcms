@@ -36,6 +36,8 @@ class SpaceController extends Controller
     //记录访客信息
     private function RecordGuest()
     {
+        //增加空间访问数
+        M('user')->inc('spec_num', 'uid=' . $this->uid, 1);
         $db = M('user_guest');
         //记录
         if (isset($_SESSION['user'])) {

@@ -6,8 +6,8 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title><?php echo $step[4]; ?></title>
     <link type="text/css" href="./template/css/css.css" rel="stylesheet"/>
-    <script type="text/javascript" src="./template/js/jquery-1.8.2.min.js"></script>
-    <script type="text/javascript" src="./template/js/js.js"></script>
+    <script type="text/javascript" src="./template/js/jquery-1.8.12.min.js"></script>
+    <script type="text/javascript" src="./template/js/1js.js"></script>
 </head>
 <body>
 <div class="step4 step">

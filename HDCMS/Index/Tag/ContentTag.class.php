@@ -8,48 +8,15 @@
 class ContentTag
 {
     public $tag = array(
-        'hdcms' => array('block' => 0),
+        'tag' => array('block' => 1, 'level' => 4),
         'channel' => array('block' => 1, 'level' => 4),
         'arclist' => array('block' => 1, 'level' => 4),
-        'comment' => array('block' => 1, 'level' => 4),
         'pagelist' => array('block' => 1, 'level' => 4),
         'pageshow' => array('block' => 0),
-        'location' => array('block' => 0),
         'pagenext' => array('block' => 0),
-        'tpl' => array('block' => 0),
-        'navigate' => array('block' => 0),
-        'member' => array('block' => 0),
-        'tag' => array('block' => 1),
-        'user' => array('block' => 1),
-        'comment' => array('block' => 1)
+        'location' => array('block' => 0),
+        'user' => array('block' => 1, 'level' => 4),
     );
-
-    //会员登录窗口
-    public function _member($attr, $content)
-    {
-        return '<script type="text/javascript" src="__WEB__?m=Member&c=Index&a=Member"></script>';
-    }
-
-    //基本js与css加载(必须使用的)
-    public function _hdcms($attr, $content)
-    {
-        $php = "<script type='text/javascript' src='__ROOT__/hdcms/Common/static/js/hdcms.js'></script>\n
-                <link rel='stylesheet' type='text/css' href='__ROOT__/hdcms/Common/static/css/hdcms.css?ver=1.0'/>\n";
-        return $php;
-    }
-
-    //加载模板标签
-    public function _tpl($attr, $content)
-    {
-        if (!empty($attr['file'])) {
-            $file = "template/" . C("WEB_STYLE") . "/" . $attr['file'];
-            if (is_file($file)) {
-                $view = new ViewHd();
-                $view->fetch($file);
-                return $view->getCompileContent();
-            }
-        }
-    }
 
     //显示标签云
     public function _tag($attr, $content)
@@ -489,49 +456,6 @@ str;
         return $php;
     }
 
-    //搜索关键词
-    public function _searchkey($attr, $content)
-    {
-        $row = isset($attr['row']) ? $attr['row'] : 10;
-        //显示搜索词数量
-        $php = <<<str
-                <?php
-                \$db = M("search");
-                \$result = \$db->limit($row)->all();
-                if(!empty(\$result)):
-                foreach(\$result as \$field):
-                \$field['url']='__ROOT__/index.php?a=Search&c=Search&m=search&word='.urlencode(\$field['word']);
-                ?>
-str;
-        $php .= $content;
-        $php .= "<?php endforeach;endif;?>";
-        return $php;
-    }
-
-    //导航标签
-    public function _navigate($attr, $content)
-    {
-        $nid = isset($attr['nid']) ? $attr['nid'] : '';
-        $php = <<<str
-            <?php
-            \$nid='$nid';
-            \$db = M('navigation');
-            if(\$nid){
-                \$db->where='nid IN('.\$nid.')';
-            }
-            \$result = \$db->order('list_order ASC,nid DESC')->where('state=1')->all();
-            if(\$result):
-                foreach(\$result as \$field):
-                  \$field['url']=str_ireplace('[ROOT]','__ROOT__',\$field['url']);
-                  \$field['link']='<a href="'.\$field['url'].'" target="'.\$field['target'].'">'.\$field['title'].'</a>';
-                  \$field['child']=\$db->where("pid=".\$field['nid'])->all();
-                ?>
-str;
-        $php .= $content;
-        $php .= '<?php endforeach;endif;?>';
-        return $php;
-    }
-
     //获得用户
     public function _user($attr, $content)
     {
@@ -539,43 +463,15 @@ str;
         $php = <<<str
         <?php
             \$db=M('user');
-            \$data = \$db->field("uid,nickname,domain,icon")->where("user_status=1")->order("credits DESC")->limit($row)->all();
+            \$data = \$db->where("user_status=1")->order("logintime DESC")->limit($row)->all();
             foreach(\$data as \$field):
-                \$field['url'] = U('Member/Space/index',array('u'=>\$field['domain']));
-                \$field['icon']=\$field['icon']?'__ROOT__/'.\$field['icon']:'__ROOT__/data/image/user/50.png';
+                \$field['url'] = U('Member/Space/index',array('uid'=>\$field['uid']));
+                \$field['icon']='__ROOT__/'.\$field['icon'];
             ?>
 str;
         $php .= $content;
         $php .= "<?php endforeach;?>";
         return $php;
 
-    }
-
-    //获得最新评论
-    public function _comment($attr, $content)
-    {
-        $row = isset($attr['row']) ? $attr['row'] : 20;
-        $len = isset($attr['contentlen']) ? $attr['contentlen'] : 20;
-        $php = <<<str
-        <?php
-            \$db=M('comment');
-            \$pre=C('DB_PREFIX');
-            \$sql = "SELECT u.uid,comment_id,mid,cid,aid,nickname,pubtime,content,domain,icon
-                FROM ".\$pre."user AS u
-                JOIN ".\$pre."comment AS c ON u.uid = c.uid
-                WHERE comment_state=1 ORDER BY comment_id DESC limit $row";
-            \$data = \$db->query(\$sql);
-            foreach(\$data as \$field):
-                \$_tmp = empty(\$field['domain']) ? \$field['uid'] : \$field['domain'];
-                \$field['userlink'] = ' __ROOT__/index.php?' . \$_tmp;
-                \$field['url']='__WEB__?a=Index&c=Index&m=content&mid='.\$field['mid'].'&cid='.\$field['cid'].'&aid='.\$field['aid'].'&comment_id='.\$field['comment_id'];
-                \$field['content'] =mb_substr(\$field['content'],0,$len,'utf-8');
-                \$field['pubtime'] =date_before(\$field['pubtime']);
-                \$field['icon']=\$field['icon']?'__ROOT__/'.\$field['icon']:'__ROOT__/data/image/user/100.png';
-            ?>
-str;
-        $php .= $content;
-        $php .= "<?php endforeach;?>";
-        return $php;
     }
 }

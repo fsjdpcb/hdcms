@@ -11,7 +11,7 @@
  Target Server Version : 50617
  File Encoding         : utf-8
 
- Date: 09/02/2014 03:08:37 AM
+ Date: 09/09/2014 21:06:40 PM
 */
 
 SET NAMES utf8;
@@ -47,7 +47,14 @@ CREATE TABLE `hd_addon_comment` (
   `aid` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`comment_id`),
   KEY `mid_cid_aid` (`mid`,`cid`,`aid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Records of `hd_addon_comment`
+-- ----------------------------
+BEGIN;
+INSERT INTO `hd_addon_comment` VALUES ('1', '1', 'admin', '1', 'sdf', '1409763870', '0', '0.0.0.0', '3', '1', '51', '13');
+COMMIT;
 
 -- ----------------------------
 --  Table structure for `hd_addon_link`
@@ -96,13 +103,13 @@ CREATE TABLE `hd_addons` (
   `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '安装时间',
   `has_adminlist` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否有后台列表',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=194 DEFAULT CHARSET=utf8 COMMENT='插件表';
+) ENGINE=MyISAM AUTO_INCREMENT=200 DEFAULT CHARSET=utf8 COMMENT='插件表';
 
 -- ----------------------------
 --  Records of `hd_addons`
 -- ----------------------------
 BEGIN;
-INSERT INTO `hd_addons` VALUES ('189', 'Backup', '数据备份', '数据备份还原插件', '1', 'a:0:{}', '后盾网向军', '1.0', '1409578221', '1'), ('178', 'Link', '友情链接', '友情链接', '1', 'a:0:{}', '后盾网向军', '1.0', '1408988196', '1'), ('179', 'Navigation', '导航菜单', '导航菜单', '1', 'a:0:{}', '后盾网向军', '1.0', '1408988221', '1'), ('192', 'Comment', '评论', '评论', '1', 'a:0:{}', '后盾网向军', '1.0', '1409595872', '1'), ('190', 'FieldReplace', '数据库内容替换', '数据库内容替换', '1', 'a:0:{}', '后盾网向军', '1.0', '1409580307', '1'), ('193', 'Search', '前台搜索', '前台搜索', '1', 'a:0:{}', '后盾网向军', '1.0', '1409598497', '0');
+INSERT INTO `hd_addons` VALUES ('189', 'Backup', '数据备份', '数据备份还原插件', '1', 'a:0:{}', '后盾网向军', '1.0', '1409578221', '1'), ('178', 'Link', '友情链接', '友情链接', '1', 'a:0:{}', '后盾网向军', '1.0', '1408988196', '1'), ('179', 'Navigation', '导航菜单', '导航菜单', '1', 'a:0:{}', '后盾网向军', '1.0', '1408988221', '1'), ('197', 'Comment', '评论', '评论', '1', 'a:0:{}', '后盾网向军', '1.0', '1409763498', '1'), ('190', 'FieldReplace', '数据库内容替换', '数据库内容替换', '1', 'a:0:{}', '后盾网向军', '1.0', '1409580307', '1'), ('193', 'Search', '前台搜索', '前台搜索', '1', 'a:0:{}', '后盾网向军', '1.0', '1409598497', '0');
 COMMIT;
 
 -- ----------------------------
@@ -136,13 +143,13 @@ CREATE TABLE `hd_category` (
   `allow_user_set_credits` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否允许会员投稿设置积分 1 允许 0 不允许',
   `member_send_state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '会员投稿状态 1 审核 2 未审核',
   PRIMARY KEY (`cid`)
-) ENGINE=MyISAM AUTO_INCREMENT=55 DEFAULT CHARSET=utf8 COMMENT='栏目表';
+) ENGINE=MyISAM AUTO_INCREMENT=58 DEFAULT CHARSET=utf8 COMMENT='栏目表';
 
 -- ----------------------------
 --  Records of `hd_category`
 -- ----------------------------
 BEGIN;
-INSERT INTO `hd_category` VALUES ('1', '0', '案例展示', 'case', '', '提交案例，可以让更多的人知道你的网站!', 'image_index.html', 'image_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '2', '2', '2', '', '100', '1', '提交案例', '', '1', '0', '1', '1', '0'), ('2', '0', '模板下载', 'template', '', '所有模板免费使用，可以用在任何商业用途！', 'article_index.html', 'image_list.html', 'download_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '2', '2', '2', '2', '', '100', '1', '提交模板', '', '1', '0', '1', '1', '1'), ('3', '0', '模块插件', 'addon', '', '所在插件与模块均免费使用！', 'download_index.html', 'download_list.html', 'download_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '2', '2', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '1'), ('4', '0', 'CMS帮助', 'hdcms', '', '使用交流，问题求助社区', 'article_index.html', 'cms_help_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '1'), ('5', '0', '论坛求助', 'luntan', '', '', 'article_index.html', 'article_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '3', '2', '2', 'http://bbs.houdunwang.com', '1001', '1', '', '', '1', '0', '1', '1', '1'), ('6', '4', '标签使用', 'help/tag', '', '', 'article_index.html', 'cms_help_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '2', '1', '', '', '1', '0', '1', '1', '1'), ('7', '4', '安装使用', 'help/setup', '', '', 'article_index.html', 'cms_help_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '1', '1', '', '', '1', '0', '1', '1', '1'), ('8', '4', '模块插件', 'help/addon', '', '', 'article_index.html', 'cms_help_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '3', '1', '', '', '1', '0', '1', '1', '1'), ('9', '0', '框架帮助', 'hdphp', '', '', 'article_index.html', 'hdphp_help_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '1'), ('12', '9', '模板标签', 'hdphp/tag', '', '', 'article_index.html', 'hdphp_help_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '2', '1', '', '', '1', '0', '1', '1', '1'), ('11', '9', '起步知识', 'hdphp/base', '', '', 'article_index.html', 'hdphp_help_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '1', '1', '', '', '1', '0', '1', '1', '1'), ('13', '9', '数据模型', 'hdphp/model', '', '', 'article_index.html', 'hdphp_help_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '1'), ('14', '3', '模块', 'addon/module', '', '所有模块免费使用！', 'article_index.html', 'download_list.html', 'download_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '2', '1', '2', '2', '', '100', '1', '提交模块', '', '1', '0', '1', '1', '1'), ('15', '3', '插件', 'addon/plugin', '', '所有插件免费使用！', 'article_index.html', 'download_list.html', 'download_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '2', '1', '2', '2', '', '100', '1', '提交插件', '', '1', '0', '1', '1', '1'), ('51', '1', '企业网站', 'case/qiyewangzhan', '', '提交案例，可以让更多的人知道你的网站!', 'article_index.html', 'image_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '100', '1', '提交案例', '', '0', '0', '1', '1', '1'), ('52', '1', '行业门户', 'case/xingyemenhu', '', '提交案例，可以让更多的人知道你的网站!', 'article_index.html', 'image_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '100', '1', '提交案例', '', '0', '0', '1', '1', '1'), ('53', '2', '企业网站', 'template/qiyewangzhan', '', '', 'article_index.html', 'article_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '100', '1', '', '', '0', '0', '1', '1', '1'), ('54', '2', '行业门户', 'template/xingyemenhu', '', '', 'article_index.html', 'article_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '2', '1', '2', '2', '', '100', '1', '', '', '0', '0', '1', '1', '1');
+INSERT INTO `hd_category` VALUES ('1', '0', '案例展示', 'case', '', '提交案例，可以让更多的人知道你的网站!', 'image_index.html', 'image_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '2', '2', '2', '', '100', '1', '提交案例', '', '1', '0', '1', '1', '0'), ('2', '0', '模板下载', 'template', '', '所有模板免费使用，可以用在任何商业用途！', 'article_index.html', 'image_list.html', 'download_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '2', '2', '2', '2', '', '100', '1', '提交模板', '', '1', '0', '1', '1', '1'), ('3', '0', '模块插件', 'addon', '', '所在插件与模块均免费使用！', 'download_index.html', 'download_list.html', 'download_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '2', '2', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '1'), ('4', '0', 'CMS帮助', 'hdcms', '', '使用交流，问题求助社区', 'article_index.html', 'cms_help_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '1'), ('5', '0', '论坛', 'luntan', '', '', 'article_index.html', 'article_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '3', '2', '2', 'http://bbs.houdunwang.com', '1001', '1', '', '', '1', '0', '1', '1', '1'), ('6', '4', '标签使用', 'help/tag', '', '', 'article_index.html', 'cms_help_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '2', '1', '', '', '1', '0', '1', '1', '1'), ('7', '4', '安装使用', 'help/setup', '', '', 'article_index.html', 'cms_help_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '1', '1', '', '', '1', '0', '1', '1', '1'), ('8', '4', '模块插件', 'help/addon', '', '', 'article_index.html', 'cms_help_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '3', '1', '', '', '1', '0', '1', '1', '1'), ('9', '0', '框架帮助', 'hdphp', '', '', 'article_index.html', 'hdphp_help_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '1'), ('12', '9', '模板标签', 'hdphp/tag', '', '', 'article_index.html', 'hdphp_help_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '2', '1', '', '', '1', '0', '1', '1', '1'), ('11', '9', '起步知识', 'hdphp/base', '', '', 'article_index.html', 'hdphp_help_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '1', '1', '', '', '1', '0', '1', '1', '1'), ('13', '9', '数据模型', 'hdphp/model', '', '', 'article_index.html', 'hdphp_help_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '1'), ('14', '3', '模块', 'addon/module', '', '所有模块免费使用！', 'article_index.html', 'download_list.html', 'download_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '2', '1', '2', '2', '', '100', '1', '提交模块', '', '1', '0', '1', '1', '1'), ('15', '3', '插件', 'addon/plugin', '', '所有插件免费使用！', 'article_index.html', 'download_list.html', 'download_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '2', '1', '2', '2', '', '100', '1', '提交插件', '', '1', '0', '1', '1', '1'), ('51', '1', '企业网站', 'case/qiyewangzhan', '', '提交案例，可以让更多的人知道你的网站!', 'article_index.html', 'image_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '100', '1', '提交案例', '', '0', '0', '1', '1', '1'), ('52', '1', '行业门户', 'case/xingyemenhu', '', '提交案例，可以让更多的人知道你的网站!', 'article_index.html', 'image_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '100', '1', '提交案例', '', '0', '0', '1', '1', '1'), ('53', '2', '企业网站', 'template/qiyewangzhan', '', '', 'article_index.html', 'article_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '100', '1', '', '', '0', '0', '1', '1', '1'), ('54', '2', '行业门户', 'template/xingyemenhu', '', '', 'article_index.html', 'article_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '2', '1', '2', '2', '', '100', '1', '', '', '0', '0', '1', '1', '1');
 COMMIT;
 
 -- ----------------------------
@@ -219,7 +226,14 @@ CREATE TABLE `hd_content` (
   KEY `cid` (`cid`),
   KEY `flag` (`flag`),
   KEY `content_status` (`content_status`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='文章表';
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='文章表';
+
+-- ----------------------------
+--  Records of `hd_content`
+-- ----------------------------
+BEGIN;
+INSERT INTO `hd_content` VALUES ('13', '51', '1', '11', '', '0', 'SEO标题', '', '165', '', 'aa.html', '1409749683', '1409840764', '', 'index.html', '3', '100', '1', '11', '关键字', '描述');
+COMMIT;
 
 -- ----------------------------
 --  Table structure for `hd_content_data`
@@ -230,6 +244,13 @@ CREATE TABLE `hd_content_data` (
   `content` text COMMENT '内容',
   KEY `aid` (`aid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='文章正文表';
+
+-- ----------------------------
+--  Records of `hd_content_data`
+-- ----------------------------
+BEGIN;
+INSERT INTO `hd_content_data` VALUES ('1', '<p>sdfsdf</p>'), ('2', '<p>sdfsdf</p>'), ('3', '<p>sdfsdf</p>'), ('4', '<p>sdfsdf</p>'), ('5', '<p>dsf</p>'), ('6', '<p>111dsfdsdsf121212</p>'), ('13', '<p><span style=\"color: rgb(102, 102, 102); font-family: &#39;Microsoft Yahei&#39;, &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 12px; font-weight: bold; line-height: 24px; background-color: rgb(248, 248, 248);\">正文</span></p>');
+COMMIT;
 
 -- ----------------------------
 --  Table structure for `hd_content_tag`
@@ -302,7 +323,14 @@ CREATE TABLE `hd_favorite` (
   `aid` int(10) unsigned DEFAULT NULL,
   `title` char(200) DEFAULT NULL,
   PRIMARY KEY (`fid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Records of `hd_favorite`
+-- ----------------------------
+BEGIN;
+INSERT INTO `hd_favorite` VALUES ('1', '1', '1', '51', '13', '11');
+COMMIT;
 
 -- ----------------------------
 --  Table structure for `hd_field`
@@ -362,7 +390,7 @@ CREATE TABLE `hd_hooks` (
 --  Records of `hd_hooks`
 -- ----------------------------
 BEGIN;
-INSERT INTO `hd_hooks` VALUES ('17', 'pageHeader', '页面header钩子，一般用于加载插件CSS文件和代码', '1', '0', ''), ('18', 'pageFooter', '页面footer钩子，一般用于加载插件JS文件和JS代码', '1', '0', ''), ('19', 'APP_BEGIN', '应用开始', '1', '0', ''), ('20', 'conent_edit_begin', '内容编辑前', '1', '0', 'Example'), ('21', 'content_edit_end', '内容编辑后', '1', '0', 'Example'), ('22', 'content_del', '内容删除后', '1', '0', 'Example'), ('23', 'content_add_begin', '内容添加前', '1', '0', 'Example'), ('24', 'content_add_end', '内容添加后', '1', '0', '');
+INSERT INTO `hd_hooks` VALUES ('17', 'pageHeader', '页面header钩子，一般用于加载插件CSS文件和代码', '1', '0', ''), ('18', 'pageFooter', '页面footer钩子，一般用于加载插件JS文件和JS代码', '1', '0', ''), ('19', 'APP_BEGIN', '应用开始', '1', '0', ''), ('20', 'conent_edit_begin', '内容编辑前', '1', '0', ''), ('21', 'content_edit_end', '内容编辑后', '1', '0', ''), ('22', 'content_del', '内容删除后', '1', '0', ''), ('23', 'content_add_begin', '内容添加前', '1', '0', ''), ('24', 'content_add_end', '内容添加后', '1', '0', '');
 COMMIT;
 
 -- ----------------------------
@@ -424,13 +452,13 @@ CREATE TABLE `hd_node` (
   `is_system` tinyint(1) NOT NULL DEFAULT '0' COMMENT '系统菜单 1 是  0 不是',
   `favorite` tinyint(1) NOT NULL DEFAULT '0' COMMENT '后台常用菜单   1 是  0 不是',
   PRIMARY KEY (`nid`)
-) ENGINE=MyISAM AUTO_INCREMENT=82 DEFAULT CHARSET=utf8 COMMENT='节点表（后台菜单也使用）';
+) ENGINE=MyISAM AUTO_INCREMENT=88 DEFAULT CHARSET=utf8 COMMENT='节点表（后台菜单也使用）';
 
 -- ----------------------------
 --  Records of `hd_node`
 -- ----------------------------
 BEGIN;
-INSERT INTO `hd_node` VALUES ('1', '内容', '', 'Admin', '', '', '', '', '1', '2', '0', '2', '0', '0'), ('2', '内容管理', '', 'Admin', '', '', '', '', '1', '1', '1', '10', '0', '0'), ('3', '系统', '', 'Admin', '', '', '', '', '1', '1', '0', '10', '0', '0'), ('4', '后台菜单管理', '', 'Admin', 'Node', 'index', '', '', '1', '1', '11', '100', '0', '0'), ('8', '栏目管理', '', 'Admin', 'Category', 'index', '', '', '1', '1', '2', '20', '0', '1'), ('9', '模型管理', '', 'Admin', 'Model', 'index', '', '', '1', '1', '37', '100', '0', '0'), ('10', '推荐位', '', 'Admin', 'Flag', 'index', 'mid=1', '', '1', '1', '37', '100', '0', '0'), ('11', '系统设置', '', 'Admin', '', '', '', '', '1', '1', '3', '98', '0', '0'), ('12', '文章列表', '', 'Admin', 'Content', 'index', '', '', '1', '1', '2', '10', '0', '1'), ('13', '管理员设置', '', 'Admin', '', '', '', '', '1', '1', '3', '100', '0', '0'), ('14', '管理员管理', '', 'Admin', 'Administrator', 'index', '', '', '1', '1', '13', '100', '0', '0'), ('15', '角色管理', '', 'Admin', 'Role', 'index', '', '', '1', '1', '13', '100', '0', '0'), ('16', '网站配置', '', 'Admin', 'Config', 'edit', '', '', '1', '1', '11', '90', '0', '0'), ('17', '生成静态', '', 'Admin', '', '', '', '', '1', '1', '1', '11', '0', '0'), ('18', '批量更新栏目页', '', 'Admin', 'Html', 'createCategory', '', '生成栏目页', '1', '1', '17', '102', '0', '0'), ('19', '生成首页', '', 'Admin', 'Html', 'createIndex', '', '生成首页', '1', '1', '17', '101', '0', '1'), ('20', '批量更新内容页', '', 'Admin', 'Html', 'createContent', '', '生成内容页', '1', '1', '17', '103', '0', '0'), ('21', '修改密码', '', 'Admin', 'Personal', 'editPassword', '', '', '1', '1', '24', '100', '0', '0'), ('22', '修改个人信息', '', 'Admin', 'Personal', 'editInfo', '', '', '1', '1', '24', '100', '0', '0'), ('23', '我的面板', '', 'Admin', '', '', '', '', '1', '2', '0', '100', '0', '0'), ('24', '个人信息', '', 'Admin', '', '', '', '', '1', '1', '23', '100', '0', '0'), ('26', '会员', '', 'Admin', '', '', '', '', '1', '1', '0', '100', '0', '0'), ('27', '会员管理', '', 'Admin', '', '', '', '', '1', '1', '26', '100', '0', '0'), ('28', '会员管理', '', 'Admin', 'User', 'index', '', '', '1', '1', '27', '100', '0', '0'), ('29', '审核会员', '', 'Admin', 'User', 'index', 'user_status=0', '', '1', '1', '27', '100', '0', '0'), ('30', '会员组管理', '', 'Admin', '', '', '', '', '1', '1', '26', '100', '0', '0'), ('31', '管理会员组', '', 'Admin', 'Group', 'index', '', '', '1', '1', '30', '100', '0', '0'), ('32', '模板', '', 'Admin', '', '', '', '', '1', '1', '0', '100', '0', '0'), ('33', '模板管理', '', 'Admin', '', '', '', '', '1', '1', '32', '100', '0', '0'), ('34', '模板风格', '', 'Admin', 'TemplateStyle', 'styleList', '', '', '1', '1', '33', '90', '0', '0'), ('35', '标签云', '', 'Admin', 'Tag', 'index', '', '', '1', '1', '37', '100', '0', '0'), ('37', '其他操作', '', 'Admin', '', '', '', '', '1', '1', '1', '100', '0', '0'), ('59', '附件管理', '', 'Admin', 'Attachment', 'index', '', '', '1', '1', '37', '100', '0', '0'), ('39', '扩展', '', 'Admin', '', '', '', '', '1', '1', '0', '1000', '0', '0'), ('40', '插件管理', '', 'Admin', '', '', '', '', '1', '1', '39', '99', '0', '0'), ('41', '插件管理', '', 'Admin', 'Addons', 'index', '', '', '1', '1', '40', '100', '0', '0'), ('42', '审核文章', '', 'Admin', 'ContentAudit', 'content', 'mid=1', '', '1', '1', '2', '11', '0', '1'), ('49', '钓子管理', '', 'Admin', 'Hooks', 'index', '', '', '1', '1', '40', '100', '0', '0'), ('44', '添加栏目', '', 'Admin', 'Category', 'add', '', '', '0', '1', '2', '21', '0', '0'), ('45', '删除栏目', '', 'Admin', 'Category', 'del', '', '', '0', '1', '2', '22', '0', '0'), ('46', '修改栏目', '', 'Admin', 'Category', 'edit', '', '', '0', '1', '2', '23', '0', '0'), ('47', '批量修改栏目', '', 'Admin', 'Category', 'BulkEdit', '', '', '0', '1', '2', '24', '0', '0'), ('68', '水印设置', '', 'Admin', 'Config', 'water', '', '', '1', '1', '11', '90', '0', '0'), ('50', '已装插件', '', 'Admin', '', '', '', '', '1', '1', '39', '100', '0', '0'), ('78', '数据备份', 'Addons', 'Backup', 'Admin', 'index', '', '插件Backup后台管理', '1', '1', '50', '100', '0', '0'), ('66', '友情链接', 'Addons', 'Link', 'Admin', 'index', '', '插件Link后台管理', '1', '1', '50', '100', '0', '0'), ('67', '导航菜单', 'Addons', 'Navigation', 'Admin', 'index', '', '插件Navigation后台管理', '1', '1', '50', '100', '0', '0'), ('69', '邮箱配置', '', 'Admin', 'Config', 'email', '', '', '1', '1', '11', '90', '0', '0'), ('81', '评论', 'Addons', 'Comment', 'Admin', 'index', '', '插件Comment后台管理', '1', '1', '50', '100', '0', '0'), ('79', '数据库内容替换', 'Addons', 'FieldReplace', 'Admin', 'index', '', '插件FieldReplace后台管理', '1', '1', '50', '100', '0', '0');
+INSERT INTO `hd_node` VALUES ('1', '内容', '', 'Admin', '', '', '', '', '1', '2', '0', '2', '0', '0'), ('2', '内容管理', '', 'Admin', '', '', '', '', '1', '1', '1', '10', '0', '0'), ('3', '系统', '', 'Admin', '', '', '', '', '1', '1', '0', '10', '0', '0'), ('4', '后台菜单管理', '', 'Admin', 'Node', 'index', '', '', '1', '1', '11', '100', '0', '0'), ('8', '栏目管理', '', 'Admin', 'Category', 'index', '', '', '1', '1', '2', '20', '0', '1'), ('9', '模型管理', '', 'Admin', 'Model', 'index', '', '', '1', '1', '37', '100', '0', '0'), ('10', '推荐位', '', 'Admin', 'Flag', 'index', 'mid=1', '', '1', '1', '37', '100', '0', '0'), ('11', '系统设置', '', 'Admin', '', '', '', '', '1', '1', '3', '98', '0', '0'), ('12', '文章列表', '', 'Admin', 'Content', 'index', '', '', '1', '1', '2', '10', '0', '1'), ('13', '管理员设置', '', 'Admin', '', '', '', '', '1', '1', '3', '100', '0', '0'), ('14', '管理员管理', '', 'Admin', 'Administrator', 'index', '', '', '1', '1', '13', '100', '0', '0'), ('15', '角色管理', '', 'Admin', 'Role', 'index', '', '', '1', '1', '13', '100', '0', '0'), ('16', '网站配置', '', 'Admin', 'Config', 'edit', '', '', '1', '1', '11', '90', '0', '0'), ('17', '生成静态', '', 'Admin', '', '', '', '', '1', '1', '1', '11', '0', '0'), ('18', '批量更新栏目页', '', 'Admin', 'Html', 'createCategory', '', '生成栏目页', '1', '1', '17', '102', '0', '0'), ('19', '生成首页', '', 'Admin', 'Html', 'createIndex', '', '生成首页', '1', '1', '17', '101', '0', '1'), ('20', '批量更新内容页', '', 'Admin', 'Html', 'createContent', '', '生成内容页', '1', '1', '17', '103', '0', '0'), ('21', '修改密码', '', 'Admin', 'Personal', 'editPassword', '', '', '1', '1', '24', '100', '0', '0'), ('22', '修改个人信息', '', 'Admin', 'Personal', 'editInfo', '', '', '1', '1', '24', '100', '0', '0'), ('23', '我的面板', '', 'Admin', '', '', '', '', '1', '2', '0', '100', '0', '0'), ('24', '个人信息', '', 'Admin', '', '', '', '', '1', '1', '23', '100', '0', '0'), ('26', '会员', '', 'Admin', '', '', '', '', '1', '1', '0', '100', '0', '0'), ('27', '会员管理', '', 'Admin', '', '', '', '', '1', '1', '26', '100', '0', '0'), ('28', '会员管理', '', 'Admin', 'User', 'index', '', '', '1', '1', '27', '100', '0', '0'), ('29', '审核会员', '', 'Admin', 'User', 'index', 'user_status=0', '', '1', '1', '27', '100', '0', '0'), ('30', '会员组管理', '', 'Admin', '', '', '', '', '1', '1', '26', '100', '0', '0'), ('31', '管理会员组', '', 'Admin', 'Group', 'index', '', '', '1', '1', '30', '100', '0', '0'), ('32', '模板', '', 'Admin', '', '', '', '', '1', '1', '0', '100', '0', '0'), ('33', '模板管理', '', 'Admin', '', '', '', '', '1', '1', '32', '100', '0', '0'), ('34', '模板风格', '', 'Admin', 'TemplateStyle', 'styleList', '', '', '1', '1', '33', '90', '0', '0'), ('35', '标签云', '', 'Admin', 'Tag', 'index', '', '', '1', '1', '37', '100', '0', '0'), ('37', '其他操作', '', 'Admin', '', '', '', '', '1', '1', '1', '100', '0', '0'), ('59', '附件管理', '', 'Admin', 'Attachment', 'index', '', '', '1', '1', '37', '100', '0', '0'), ('39', '扩展', '', 'Admin', '', '', '', '', '1', '1', '0', '1000', '0', '0'), ('40', '插件管理', '', 'Admin', '', '', '', '', '1', '1', '39', '99', '0', '0'), ('41', '插件管理', '', 'Admin', 'Addons', 'index', '', '', '1', '1', '40', '100', '0', '0'), ('42', '审核文章', '', 'Admin', 'ContentAudit', 'content', 'mid=1', '', '1', '1', '2', '11', '0', '1'), ('49', '钓子管理', '', 'Admin', 'Hooks', 'index', '', '', '1', '1', '40', '100', '0', '0'), ('44', '添加栏目', '', 'Admin', 'Category', 'add', '', '', '0', '1', '2', '21', '0', '0'), ('45', '删除栏目', '', 'Admin', 'Category', 'del', '', '', '0', '1', '2', '22', '0', '0'), ('46', '修改栏目', '', 'Admin', 'Category', 'edit', '', '', '0', '1', '2', '23', '0', '0'), ('47', '批量修改栏目', '', 'Admin', 'Category', 'BulkEdit', '', '', '0', '1', '2', '24', '0', '0'), ('68', '水印设置', '', 'Admin', 'Config', 'water', '', '', '1', '1', '11', '90', '0', '0'), ('50', '已装插件', '', 'Admin', '', '', '', '', '1', '1', '39', '100', '0', '0'), ('78', '数据备份', 'Addons', 'Backup', 'Admin', 'index', '', '插件Backup后台管理', '1', '1', '50', '100', '0', '0'), ('66', '友情链接', 'Addons', 'Link', 'Admin', 'index', '', '插件Link后台管理', '1', '1', '50', '100', '0', '0'), ('67', '导航菜单', 'Addons', 'Navigation', 'Admin', 'index', '', '插件Navigation后台管理', '1', '1', '50', '100', '0', '0'), ('69', '邮箱配置', '', 'Admin', 'Config', 'email', '', '', '1', '1', '11', '90', '0', '0'), ('85', '评论', 'Addons', 'Comment', 'Admin', 'index', '', '插件Comment后台管理', '1', '1', '50', '100', '0', '0'), ('79', '数据库内容替换', 'Addons', 'FieldReplace', 'Admin', 'index', '', '插件FieldReplace后台管理', '1', '1', '50', '100', '0', '0');
 COMMIT;
 
 -- ----------------------------
@@ -517,7 +545,7 @@ CREATE TABLE `hd_session` (
 --  Records of `hd_session`
 -- ----------------------------
 BEGIN;
-INSERT INTO `hd_session` VALUES ('i15canvkmhr2ju9k3cmu5v7i56', 'user|a:25:{s:3:\"uid\";s:1:\"1\";s:8:\"nickname\";s:5:\"admin\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:22:\"houdunwangxj@gmail.com\";s:7:\"regtime\";s:10:\"1405397800\";s:9:\"logintime\";s:10:\"1409591982\";s:5:\"regip\";s:7:\"0.0.0.0\";s:6:\"lastip\";s:7:\"0.0.0.0\";s:11:\"user_status\";s:1:\"1\";s:13:\"lock_end_time\";s:1:\"0\";s:2:\"qq\";s:11:\"23000121211\";s:3:\"sex\";s:1:\"1\";s:7:\"credits\";s:5:\"10000\";s:3:\"rid\";s:1:\"1\";s:9:\"signature\";s:0:\"\";s:8:\"spec_num\";s:1:\"0\";s:4:\"icon\";s:64:\"http://localhost/hdcms/upload/user/2014/08/31/40341409493938.jpg\";s:5:\"rname\";s:15:\"超级管理员\";s:5:\"title\";s:15:\"超级管理员\";s:5:\"admin\";s:1:\"1\";s:6:\"system\";s:1:\"1\";s:12:\"creditslower\";s:5:\"10000\";s:13:\"comment_state\";s:1:\"1\";s:16:\"allowsendmessage\";s:1:\"1\";s:10:\"web_master\";b:1;}code|s:3:\"5GP\";admin|N;', '1409598504', '0.0.0.0'), ('niqf25v5sie9q5oqcgtj64an96', 'user|a:25:{s:3:\"uid\";s:1:\"1\";s:8:\"nickname\";s:5:\"admin\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:22:\"houdunwangxj@gmail.com\";s:7:\"regtime\";s:10:\"1405397800\";s:9:\"logintime\";s:10:\"1409590177\";s:5:\"regip\";s:7:\"0.0.0.0\";s:6:\"lastip\";s:7:\"0.0.0.0\";s:11:\"user_status\";s:1:\"1\";s:13:\"lock_end_time\";s:1:\"0\";s:2:\"qq\";s:11:\"23000121211\";s:3:\"sex\";s:1:\"1\";s:7:\"credits\";s:5:\"10000\";s:3:\"rid\";s:1:\"1\";s:9:\"signature\";s:0:\"\";s:8:\"spec_num\";s:1:\"0\";s:4:\"icon\";s:64:\"http://localhost/hdcms/upload/user/2014/08/31/40341409493938.jpg\";s:5:\"rname\";s:15:\"超级管理员\";s:5:\"title\";s:15:\"超级管理员\";s:5:\"admin\";s:1:\"1\";s:6:\"system\";s:1:\"1\";s:12:\"creditslower\";s:5:\"10000\";s:13:\"comment_state\";s:1:\"1\";s:16:\"allowsendmessage\";s:1:\"1\";s:10:\"web_master\";b:1;}admin|N;', '1409595239', '0.0.0.0'), ('0aikkg5avdanfh38il8hbl1pi2', 'admin|N;user|a:25:{s:3:\"uid\";s:2:\"20\";s:8:\"nickname\";s:2:\"qq\";s:8:\"username\";s:2:\"qq\";s:5:\"email\";s:17:\"2300071698@qq.com\";s:7:\"regtime\";s:10:\"1409590987\";s:9:\"logintime\";s:10:\"1409590987\";s:5:\"regip\";s:7:\"0.0.0.0\";s:6:\"lastip\";s:7:\"0.0.0.0\";s:11:\"user_status\";s:1:\"1\";s:13:\"lock_end_time\";s:1:\"0\";s:2:\"qq\";s:0:\"\";s:3:\"sex\";s:1:\"1\";s:7:\"credits\";s:3:\"100\";s:3:\"rid\";s:1:\"4\";s:9:\"signature\";s:33:\"这家伙很懒什么也没写...\";s:8:\"spec_num\";s:1:\"0\";s:4:\"icon\";s:50:\"http://localhost/hdcms/HDCMS/Static/image/user.png\";s:5:\"rname\";s:9:\"幼儿园\";s:5:\"title\";s:12:\"新手上路\";s:5:\"admin\";s:1:\"0\";s:6:\"system\";s:1:\"1\";s:12:\"creditslower\";s:3:\"100\";s:13:\"comment_state\";s:1:\"1\";s:16:\"allowsendmessage\";s:1:\"1\";s:10:\"web_master\";b:0;}code|s:4:\"UBED\";', '1409595642', '0.0.0.0'), ('jjm68b1hhr1tr7i803aaj2mms1', 'admin|N;user|a:25:{s:3:\"uid\";s:1:\"1\";s:8:\"nickname\";s:5:\"admin\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:22:\"houdunwangxj@gmail.com\";s:7:\"regtime\";s:10:\"1405397800\";s:9:\"logintime\";s:10:\"1409591982\";s:5:\"regip\";s:7:\"0.0.0.0\";s:6:\"lastip\";s:7:\"0.0.0.0\";s:11:\"user_status\";s:1:\"1\";s:13:\"lock_end_time\";s:1:\"0\";s:2:\"qq\";s:11:\"23000121211\";s:3:\"sex\";s:1:\"1\";s:7:\"credits\";s:5:\"10000\";s:3:\"rid\";s:1:\"1\";s:9:\"signature\";s:0:\"\";s:8:\"spec_num\";s:1:\"0\";s:4:\"icon\";s:64:\"http://localhost/hdcms/upload/user/2014/08/31/40341409493938.jpg\";s:5:\"rname\";s:15:\"超级管理员\";s:5:\"title\";s:15:\"超级管理员\";s:5:\"admin\";s:1:\"1\";s:6:\"system\";s:1:\"1\";s:12:\"creditslower\";s:5:\"10000\";s:13:\"comment_state\";s:1:\"1\";s:16:\"allowsendmessage\";s:1:\"1\";s:10:\"web_master\";b:1;}', '1409598329', '0.0.0.0');
+INSERT INTO `hd_session` VALUES ('v1ujpu5ivqhuvg4l9mfoctcpv5', 'user|a:25:{s:3:\"uid\";s:1:\"1\";s:8:\"nickname\";s:5:\"admin\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:22:\"houdunwangxj@gmail.com\";s:7:\"regtime\";s:10:\"1405397800\";s:9:\"logintime\";s:10:\"1409748842\";s:5:\"regip\";s:7:\"0.0.0.0\";s:6:\"lastip\";s:7:\"0.0.0.0\";s:11:\"user_status\";s:1:\"1\";s:13:\"lock_end_time\";s:1:\"0\";s:2:\"qq\";s:11:\"23000121211\";s:3:\"sex\";s:1:\"1\";s:7:\"credits\";s:5:\"10000\";s:3:\"rid\";s:1:\"1\";s:9:\"signature\";s:36:\"这家伙很懒什么也没有写...\";s:8:\"spec_num\";s:2:\"51\";s:4:\"icon\";s:64:\"http://localhost/hdcms/upload/user/2014/08/31/40341409493938.jpg\";s:5:\"rname\";s:15:\"超级管理员\";s:5:\"title\";s:15:\"超级管理员\";s:5:\"admin\";s:1:\"1\";s:6:\"system\";s:1:\"1\";s:12:\"creditslower\";s:5:\"10000\";s:13:\"comment_state\";s:1:\"1\";s:16:\"allowsendmessage\";s:1:\"1\";s:10:\"web_master\";b:1;}admin|N;', '1409840937', '0.0.0.0');
 COMMIT;
 
 -- ----------------------------
@@ -531,7 +559,14 @@ CREATE TABLE `hd_tag` (
   PRIMARY KEY (`tid`),
   UNIQUE KEY `name` (`tag`),
   KEY `total` (`total`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Tag标签表';
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Tag标签表';
+
+-- ----------------------------
+--  Records of `hd_tag`
+-- ----------------------------
+BEGIN;
+INSERT INTO `hd_tag` VALUES ('1', 'TAG', '1');
+COMMIT;
 
 -- ----------------------------
 --  Table structure for `hd_upload`
@@ -590,7 +625,7 @@ CREATE TABLE `hd_user` (
 --  Records of `hd_user`
 -- ----------------------------
 BEGIN;
-INSERT INTO `hd_user` VALUES ('1', 'admin', 'admin', '2341e915192eb5950721e563fdbc75bd', '3985dce0e6', 'houdunwangxj@gmail.com', '1405397800', '1409598439', '0.0.0.0', '0.0.0.0', '1', '0', '23000121211', '1', '10000', '1', '', '0', 'upload/user/2014/08/31/40341409493938.jpg');
+INSERT INTO `hd_user` VALUES ('1', 'admin', 'admin', '2341e915192eb5950721e563fdbc75bd', '3985dce0e6', 'houdunwangxj@gmail.com', '1405397800', '1409836848', '0.0.0.0', '0.0.0.0', '1', '0', '23000121211', '1', '10000', '1', '这家伙很懒什么也没有写...', '51', 'upload/user/2014/08/31/40341409493938.jpg');
 COMMIT;
 
 -- ----------------------------
@@ -603,6 +638,13 @@ CREATE TABLE `hd_user_guest` (
   `guest_uid` int(11) unsigned DEFAULT NULL COMMENT '访问uid',
   `entertime` int(11) DEFAULT NULL COMMENT '访客时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Records of `hd_user_guest`
+-- ----------------------------
+BEGIN;
+INSERT INTO `hd_user_guest` VALUES ('1', '1', '1', '1409755354'), ('2', '1', '1', '1409755488'), ('3', '1', '1', '1409755513'), ('4', '1', '1', '1409755935'), ('5', '1', '1', '1409755944'), ('6', '1', '1', '1409755944'), ('7', '1', '1', '1409755945'), ('8', '1', '1', '1409755945'), ('9', '1', '1', '1409755993'), ('10', '1', '1', '1409755994'), ('11', '1', '1', '1409755999'), ('12', '1', '1', '1409756028'), ('13', '1', '1', '1409756051'), ('14', '1', '1', '1409756062'), ('15', '1', '1', '1409756074'), ('16', '1', '1', '1409756080'), ('17', '1', '1', '1409756084'), ('18', '1', '1', '1409756089'), ('19', '1', '1', '1409756102'), ('20', '1', '1', '1409756130'), ('21', '1', '1', '1409756136'), ('22', '1', '1', '1409756140'), ('23', '1', '1', '1409756148'), ('24', '1', '1', '1409756162'), ('25', '1', '1', '1409756185'), ('26', '1', '1', '1409756201'), ('27', '1', '1', '1409756206'), ('28', '1', '1', '1409756220'), ('29', '1', '1', '1409756221'), ('30', '1', '1', '1409756222'), ('31', '1', '1', '1409756223'), ('32', '1', '1', '1409756230'), ('33', '1', '1', '1409756246'), ('34', '1', '1', '1409756249'), ('35', '1', '1', '1409756273'), ('36', '1', '1', '1409756278'), ('37', '1', '1', '1409756289'), ('38', '1', '1', '1409756290'), ('39', '1', '1', '1409756290'), ('40', '1', '1', '1409756293'), ('41', '1', '1', '1409756294'), ('42', '1', '1', '1409756294'), ('43', '1', '1', '1409756295'), ('44', '1', '1', '1409756342'), ('45', '1', '1', '1409756367'), ('46', '1', '1', '1409756386'), ('47', '1', '1', '1409756387'), ('48', '1', '1', '1409756474'), ('49', '1', '1', '1409756477'), ('50', '1', '1', '1409756481'), ('51', '1', '1', '1409756483'), ('52', '1', '1', '1409756486'), ('53', '1', '1', '1409756487'), ('54', '1', '1', '1409756489');
+COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;

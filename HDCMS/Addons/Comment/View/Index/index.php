@@ -8,6 +8,10 @@
 </head>
 <body onload="iframe_height()">
 <div id="wrap">
+    <div class="top-menu">
+        <a href="__ROOT__">返回首页</a> |
+        <a href="__WEB__?m=Index&c=Index&a=content&mid={$hd.get.mid}&cid={$hd.get.cid}&aid={$hd.get.aid}">查看文章</a>
+    </div>
     <div class="hd-comment">
         <form action="{|U:'addComment'}" method="post" onsubmit="return on_submit()">
             <div class="send">
@@ -15,6 +19,7 @@
                     <strong>我来说两句</strong>
             <span>
                 已有<font color="#FF0000">{$count}</font>条评论
+                <a href="__URL__" target="_blank">查看所有评论</a>
             </span>
                 </h5>
 
@@ -47,7 +52,8 @@
                     <if value="$hd.session.user">
                         {$hd.session.user.username} <a href="__ROOT__/index.php?m=Member&c=Login&a=out">退出</a>
                         <else>
-                            <a href="__ROOT__/index.php?m=Member&c=Login&a=login">登录</a> <span> | </span>
+                            <a href="javascript:top.location.href='__ROOT__/index.php?m=Member&c=Login&a=login'">登录</a>
+                            <span> | </span>
                             <a href="__ROOT__/index.php?m=Member&c=Login&a=reg">注册</a>
                             <span style="color:red">需要登陆才可发布评论</span>
                     </if>
@@ -114,6 +120,9 @@
     function iframe_height(height) {
         var height = height ? height : $('#wrap').outerHeight(true);
         $(top.document).find('#comment_iframe').css('height', height + 50);
+    }
+    if(top==window){
+        $(".top-menu").show();
     }
 </script>
 </body>

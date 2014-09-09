@@ -21,7 +21,7 @@
                 <td class="w60">状态</td>
                 <td class="w100">作者</td>
                 <td class="w50">版本</td>
-                <td class="w100">操作</td>
+                <td class="w120">操作</td>
             </tr>
             </thead>
             <tbody>

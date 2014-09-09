@@ -13,6 +13,7 @@ class IndexController extends Controller
     private $category;
     private $mid;
     private $cid;
+    private $aid;
 
     // 构造函数
     public function __init()
@@ -28,6 +29,7 @@ class IndexController extends Controller
         $this->category = S('category');
         $this->mid = Q('mid', null, 'intval');
         $this->cid = Q('cid', null, 'intval');
+        $this->aid = Q('aid', 0, 'intval');
         if ($this->mid && !isset($this->model[$this->mid])) {
             $this->_404();
         }
@@ -109,37 +111,13 @@ class IndexController extends Controller
         }
     }
 
-    //加入收藏
-    public function addFavorite()
-    {
-        if (!session("uid")) {
-            $this->error('请登录后操作');
-        } else {
-            $db = M('favorite');
-            $data = array();
-            $data['uid'] = $_SESSION['uid'];
-            $data['mid'] = intval($_POST['mid']);
-            $data['cid'] = intval($_POST['cid']);
-            $data['aid'] = intval($_POST['aid']);
-            if ($db->where($data)->find()) {
-                $this->error('已经收藏过');
-            } else {
-                $db->add($data);
-                $this->success('收藏成功!', 'index');
-            }
-        }
-    }
-
     //获得点击数
     public function getClick()
     {
-        $mid = Q('mid', 0, 'intval');
-        $aid = Q('aid', 0, 'intval');
-        $modelCache = F('model', false, CACHE_DATA_PATH);
-        $Model = M($modelCache[$mid]['table_name']);
-        $result = $Model->find($aid);
-        $Model->save(array('aid' => $result['aid'], 'click' => $result['click'] + 1));
-        echo "document.write({$result['click']});";
+        $ContentModel = ContentViewModel::getInstance($this->mid);
+        $ContentModel->inc('click', 'aid=' . $this->aid, 1);
+        $click = $ContentModel->where(array($ContentModel->table . '.aid' => $this->aid))->getField('click');
+        echo "document.write({$click});";
         exit;
     }
 

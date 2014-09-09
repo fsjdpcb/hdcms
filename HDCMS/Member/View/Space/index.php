@@ -14,15 +14,16 @@
         </div>
         <div class="about">
             <div class="feeb">
-                <img src="__CONTROLLER_VIEW__/image/feebd134.jpeg" alt=""/>
+                <img src="{$user.icon}"/>
             </div>
             <div class="userinfo">
                 <div class="username">
                     <span class="userinfo_username">{$user.nickname}</span>
                 </div>
                 <div class="userinfo_userdata">
-                    <span>签名: {$hd.session.user.signature}</span>
-                    <span class="userinfo_split"></span>
+                    <span><b>个性签名:</b> {$user.signature}</span>
+                    <span class="userinfo_split"></span>&nbsp;&nbsp;&nbsp;
+                    <span><b>空间访问数:</b> {$user.spec_num}</span>
                 </div>
             </div>
             <div class="userinfo_shortcut">

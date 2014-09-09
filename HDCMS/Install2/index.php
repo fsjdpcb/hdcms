@@ -1,6 +1,5 @@
 <?php
 // error_reporting(0);
-$version=require '../hdcms/Common/Config/version.php';
 //网站根目录
 define("WEB_PATH", dirname(dirname(str_replace('\\', '/', __FILE__))) . '/');
 //框架目录

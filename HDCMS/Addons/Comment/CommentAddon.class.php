@@ -45,4 +45,12 @@ class CommentAddon extends Addon
     {
         return M()->exe("DROP TABLE IF EXISTS `" . C('DB_PREFIX') . "addon_comment`");
     }
+
+    //实现的app_begin钩子方法
+    public function APP_BEGIN($param)
+    {
+        //加载模板标签
+//        C('TPL_TAGS', array('@.Addons.Comment.Tag.CommentTag'));
+//        p(C('tpl_tags'));
+    }
 }

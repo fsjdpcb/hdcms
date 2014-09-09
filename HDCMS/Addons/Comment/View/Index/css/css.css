@@ -1,3 +1,11 @@
+div.top-menu {
+  height: 30px;
+  display: none;
+}
+div.top-menu a {
+  font-size: 14px;
+  color: #226bb0;
+}
 textarea {
   border: solid 1px #CCCCCC;
   width: 99%;
@@ -57,6 +65,10 @@ div#wrap div.hd-comment div.send h5 strong {
 }
 div#wrap div.hd-comment div.send h5 span {
   float: right;
+}
+div#wrap div.hd-comment div.send h5 span a {
+  text-decoration: none;
+  color: #226bb0;
 }
 div#wrap div.hd-comment div.send div.posn {
   clear: both;

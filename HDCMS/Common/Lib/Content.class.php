@@ -23,6 +23,7 @@ class Content
     //添加文章
     public function add()
     {
+        Hook::listen('content_add_begin');
         //文章多表关联模型
         $ContentModel = ContentModel::getInstance($this->mid);
         //数据前期处理
@@ -43,6 +44,7 @@ class Content
             $this->alterUploadTable();
             //修改tag标签数据
             $this->alterTag($aid);
+            Hook::listen('content_add_end');
             return $aid;
         } else {
             $this->error = $ContentModel->error;
@@ -53,6 +55,7 @@ class Content
     //修改文章
     public function edit()
     {
+        Hook::listen('conent_edit_begin');
         $ContentModel = ContentModel::getInstance($this->mid);
         $ContentInputModel = new ContentInputModel($this->mid);
         $data = $ContentInputModel->get();;
@@ -70,6 +73,7 @@ class Content
                 $this->createHtml($data['aid']);
                 //生成栏目静态
                 $this->createCategoryHtml($this->cid);
+                Hook::listen('content_edit_end');
                 return true;
             }
         } else {
@@ -87,6 +91,7 @@ class Content
             M('content_tag')->where(array('cid' => $this->cid))->del();
             //生成栏目静态
             $this->createCategoryHtml($this->cid);
+            Hook::listen('content_del');
             return true;
         } else {
             $this->error = '删除文章失败';
