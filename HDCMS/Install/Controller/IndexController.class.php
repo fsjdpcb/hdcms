@@ -16,7 +16,18 @@ class IndexController extends Controller
         if (is_file(MODULE_PATH . 'Lock.php')) {
             $this->isLock();
         }
+        //验证Temp目录
+        if (!is_writable(ROOT_PATH)) {
+            $this->checkTempDir();
+        }
         $this->step = Q('step', 1, 'intval');
+    }
+
+    //验证Temp目录
+    public function checkTempDir()
+    {
+        $this->display();
+        exit;
     }
 
     //安装锁定
