@@ -3,7 +3,8 @@
 /.htaccess
 /Upload
 /h
-/HDCMS/Temp
+/Temp
+/Upload
 /HDCMS/Install/Lock.php
 /HDCMS/hdphp/Extend/Org/Jqzoom
 /HDCMS/hdphp/Extend/Org/SplitWord
