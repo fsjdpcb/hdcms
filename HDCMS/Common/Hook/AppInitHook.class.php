@@ -24,7 +24,7 @@ class AppInitHook
     //声明常量
     private function defineConst()
     {
-        define("__TEMPLATE__", __ROOT__ . "/template/" . C("WEB_STYLE"));
+        define("__TEMPLATE__", __ROOT__ . "/Template/" . C("WEB_STYLE"));
     }
 
     //加载系统插件
@@ -32,7 +32,7 @@ class AppInitHook
     {
         $data = S('hooks');
         if (!$data) {
-            $hooks = M('Hooks')->getField('name,addons', true);
+            $hooks = M('hooks')->getField('name,addons', true);
             foreach ($hooks as $key => $value) {
                 if ($value) {
                     $map['status'] = 1;
@@ -48,7 +48,7 @@ class AppInitHook
             S('hooks', Hook::get());
             //插件标签
             $tpl_tags = array();
-            $data = M('Addons')->getField('id,name');
+            $data = M('addons')->getField('id,name');
             if ($data) {
                 foreach ($data as $addon) {
                     if (is_file("HDCMS/Addons/{$addon}/Tag/{$addon}Tag.class.php")) {

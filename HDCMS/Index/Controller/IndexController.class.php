@@ -53,7 +53,7 @@ class IndexController extends Controller
     //网站首页
     public function index()
     {
-        $this->display('template/' . C('WEB_STYLE') . '/index.html', C('INDEX_CACHE_TIME'));
+        $this->display('Template/' . C('WEB_STYLE') . '/index.html', C('INDEX_CACHE_TIME'));
     }
 
     //内容页
@@ -83,7 +83,7 @@ class IndexController extends Controller
         if (!$this->isCache()) {
             if ($field) {
                 $this->assign('hdcms', $field);
-                $this->display('template/' . C('WEB_STYLE') . '/' . $this->category[$this->cid]['arc_tpl'], C('CONTENT_CACHE_TIME'));
+                $this->display('Template/' . C('WEB_STYLE') . '/' . $this->category[$this->cid]['arc_tpl'], C('CONTENT_CACHE_TIME'));
                 EXIT;
             }
         } else {
@@ -104,7 +104,7 @@ class IndexController extends Controller
                 $catid = getCategory($category['cid']);
                 $category['content_num'] = $Model->where("category.cid IN(" . implode(',', $catid) . ")")->count();
                 $this->assign("hdcms", $category);
-                $this->display('template/' . C('WEB_STYLE') . '/' . $category['list_tpl'], C('CATEGORY_CACHE_TIME'));
+                $this->display('Template/' . C('WEB_STYLE') . '/' . $category['list_tpl'], C('CATEGORY_CACHE_TIME'));
             }
         } else {
             $this->display(null, C('CATEGORY_CACHE_TIME'));

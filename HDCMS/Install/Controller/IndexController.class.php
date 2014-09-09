@@ -26,7 +26,8 @@ class IndexController extends Controller
     //验证Temp目录
     public function checkTempDir()
     {
-        $this->display();
+        header("Conent-type:text/html;charset=utf-8");
+        echo '请修改 <strong>'.ROOT_PATH.'</strong>目录为可写权限';
         exit;
     }
 
@@ -67,7 +68,8 @@ class IndexController extends Controller
         //检测目录
         $this->dirctory = array(
             ROOT_PATH, //网站根目录
-            APP_COMMON_PATH . "config", //配置目录
+            APP_COMMON_PATH . "Config", //配置目录
+            APP_COMMON_PATH . "Config/config.inc.php", //数据库配置文件
             APP_COMMON_PATH . "Config/db.inc.php", //数据库配置文件
             APP_PATH . 'Install', //安装目录
         );
