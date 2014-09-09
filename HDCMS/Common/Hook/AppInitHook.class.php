@@ -7,10 +7,29 @@
  */
 class AppInitHook
 {
+    //运行钓子
     public function run(&$options)
     {
-        //前台模板常量
+        //检测安装
+        if (!file_exists(APP_PATH . 'Install/Lock.php')) {
+            if (MODULE != 'Install') {
+                go(U('Install/Index/index'));
+            }
+        } else {
+            $this->defineConst(); //定义常量
+            $this->loadAddons(); //加载插件
+        }
+    }
+
+    //声明常量
+    private function defineConst()
+    {
         define("__TEMPLATE__", __ROOT__ . "/template/" . C("WEB_STYLE"));
+    }
+
+    //加载系统插件
+    private function loadAddons()
+    {
         $data = S('hooks');
         if (!$data) {
             $hooks = M('Hooks')->getField('name,addons', true);
@@ -42,10 +61,5 @@ class AppInitHook
             Hook::import($data, false);
             C('TPL_TAGS', array_unique(array_merge(C('TPL_TAGS'), S('HookTag'))));
         }
-        //--------------安装检测--------------
-        if (!file_exists(APP_PATH . 'Install/Lock.php') && MODULE != 'Install') {
-//            go(U('Install/Index/index'));
-        }
     }
-
 }
