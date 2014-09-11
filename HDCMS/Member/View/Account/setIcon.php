@@ -86,8 +86,8 @@
                             </div>
                             <div id="buttons" style="display: none">
                                 <form action="" method="post">
-                                        <button type="submit">保存</button>
-                                        <button onclick="reset_upload();" type="button">重新上传</button>
+                                        <button type="submit" class="btn btn-primary btn-xs">保存</button>
+                                        <button onclick="reset_upload();" type="button" class="btn btn-default btn-xs">重新上传</button>
                                     <input type="hidden" name="img_face" value=""/>
                                     <input type="hidden" size="4" id="x1" name="x1" value="0"/>
                                     <input type="hidden" size="4" id="y1" name="y1" value="0"/>

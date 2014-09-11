@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title></title>
     <meta http-equiv="Cache-Control" content="no-cache"/>
-    <css file="__TEMPLATE__/css/article_list.css"/>
+    <css file="__TEMPLATE__/css/image_list.css"/>
     <jquery/>
     <bootstarp/>
 </head>
@@ -33,13 +33,10 @@
             <location/>
         </div>
         <div class="message">
-            欢迎加群：166421499 进行使用交流！
+            {$hdcms.cat_description}
         </div>
-        <div class="search">
-            <form action="__ROOT__/index.php?g=Addons&m=Search" method="post">
-                <input type="text" name="wd" placeholder="输入搜索内容..."/>
-                <input type="submit" value="提交"/>
-            </form>
+        <div class="post_data">
+            <!--<a href="{|U:'Member/Content/add',array('mid'=>$hdcms['mid'],'cid'=>$hdcms['cid'])}">{$hdcms.cat_seo_title}</a>-->
         </div>
     </div>
     <div class="content">
@@ -49,31 +46,20 @@
             </div>
             <div class="article">
                 <ul>
-                    <pagelist row="1">
-                        <li>
+                    <pagelist row="1" titlelen="16" infolen="68">
+                    <li>
+                        <a href="{$field.url}">
                             <div class="thumb">
-                                <a href="{$field.url}">
-                                    <img src="{$field.thumb}"/>
-                                </a>
+                                <img src="{$field.thumb}" alt="{$field.title}"/>
                             </div>
-                            <div class="news">
-                                <p class="title">
-                                    <a href="{$field.url}">{$field.title}</a>
-                                </p>
-
-                                <p class="addtime">
-                                    <a href="{$field.caturl}">{$field.catname}</a> | {$field.username}
-                                    <em>最后更新于 {$field.addtime|date:'Y-m-d h:i:s',@@}</em>
-                                </p>
-
-                                <p class="description">
+                            <div class="content_info">
+                                <h3>{$field.title}</h3>
+                                <p>
                                     {$field.description}
                                 </p>
                             </div>
-                            <div class="click">
-                                {$field.click}
-                            </div>
-                        </li>
+                        </a>
+                    </li>
                     </pagelist>
                 </ul>
                 <div class="page">
@@ -82,17 +68,16 @@
             </div>
         </div>
     </div>
-    <div class="menu">
-        <dl>
-            <dt>文章管理</dt>
-            <channel type="son" class="cur" cid="9">
-                <dd><a href="{$field.caturl}" class="{$field.class}">{$field.catname}</a></dd>
-            </channel>
-        </dl>
-    </div>
 </div>
 <div class="copyright">
     {$hd.config.copyright}
 </div>
+<script>
+    $("div.article li").hover(function(){
+        $(this).find('.content_info').show();
+    },function(){
+        $(this).find('.content_info').hide();
+    })
+</script>
 </body>
 </html>

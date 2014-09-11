@@ -28,11 +28,11 @@ $db->exe("REPLACE INTO ".$db_prefix."node (`nid`,`title`,`group`,`module`,`contr
 $db->exe("REPLACE INTO ".$db_prefix."node (`nid`,`title`,`group`,`module`,`controller`,`action`,`param`,`comment`,`show`,`type`,`pid`,`list_order`,`is_system`,`favorite`)
 						VALUES(17,'生成静态','','Admin','','','','',1,1,1,11,0,0)");
 $db->exe("REPLACE INTO ".$db_prefix."node (`nid`,`title`,`group`,`module`,`controller`,`action`,`param`,`comment`,`show`,`type`,`pid`,`list_order`,`is_system`,`favorite`)
-						VALUES(18,'批量更新栏目页','','Admin','Html','createCategory','','生成栏目页',1,1,17,102,0,0)");
+						VALUES(18,'更新栏目页','','Admin','Html','createCategory','','生成栏目页',1,1,17,102,0,0)");
 $db->exe("REPLACE INTO ".$db_prefix."node (`nid`,`title`,`group`,`module`,`controller`,`action`,`param`,`comment`,`show`,`type`,`pid`,`list_order`,`is_system`,`favorite`)
 						VALUES(19,'生成首页','','Admin','Html','createIndex','','生成首页',1,1,17,101,0,1)");
 $db->exe("REPLACE INTO ".$db_prefix."node (`nid`,`title`,`group`,`module`,`controller`,`action`,`param`,`comment`,`show`,`type`,`pid`,`list_order`,`is_system`,`favorite`)
-						VALUES(20,'批量更新内容页','','Admin','Html','createContent','','生成内容页',1,1,17,103,0,0)");
+						VALUES(20,'更新内容页','','Admin','Html','createContent','','生成内容页',1,1,17,103,0,0)");
 $db->exe("REPLACE INTO ".$db_prefix."node (`nid`,`title`,`group`,`module`,`controller`,`action`,`param`,`comment`,`show`,`type`,`pid`,`list_order`,`is_system`,`favorite`)
 						VALUES(21,'修改密码','','Admin','Personal','editPassword','','',1,1,24,100,0,0)");
 $db->exe("REPLACE INTO ".$db_prefix."node (`nid`,`title`,`group`,`module`,`controller`,`action`,`param`,`comment`,`show`,`type`,`pid`,`list_order`,`is_system`,`favorite`)

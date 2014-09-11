@@ -141,10 +141,9 @@ class ContentController extends AuthController
         $ContentModel = ContentModel::getInstance($this->mid);
         $content = $ContentModel->where(array('cid' => $this->cid))->limit(1)->find();
         if ($content) {
-            $_REQUEST['aid'] = $content['aid'];
-            $this->edit();
+            go(U('edit', array('mid' => $this->mid, 'cid' => $this->cid, 'aid' => $content['aid'])));
         } else {
-            $this->add();
+            go(U('add', array('mid' => $this->mid, 'cid' => $this->cid)));
         }
     }
 

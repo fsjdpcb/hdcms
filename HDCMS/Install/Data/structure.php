@@ -22,7 +22,7 @@ $db->exe("CREATE TABLE `".$db_prefix."addon_comment` (
   `aid` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`comment_id`),
   KEY `mid_cid_aid` (`mid`,`cid`,`aid`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8");
+) ENGINE=MyISAM DEFAULT CHARSET=utf8");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."addon_link`");
 $db->exe("CREATE TABLE `".$db_prefix."addon_link` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -88,7 +88,7 @@ $db->exe("CREATE TABLE `".$db_prefix."category` (
   `allow_user_set_credits` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否允许会员投稿设置积分 1 允许 0 不允许',
   `member_send_state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '会员投稿状态 1 审核 2 未审核',
   PRIMARY KEY (`cid`)
-) ENGINE=MyISAM AUTO_INCREMENT=58 DEFAULT CHARSET=utf8 COMMENT='栏目表'");
+) ENGINE=MyISAM AUTO_INCREMENT=59 DEFAULT CHARSET=utf8 COMMENT='栏目表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."category_access`");
 $db->exe("CREATE TABLE `".$db_prefix."category_access` (
   `rid` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '角色id',
@@ -145,7 +145,7 @@ $db->exe("CREATE TABLE `".$db_prefix."content` (
   KEY `cid` (`cid`),
   KEY `flag` (`flag`),
   KEY `content_status` (`content_status`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='文章表'");
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='文章表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."content_data`");
 $db->exe("CREATE TABLE `".$db_prefix."content_data` (
   `aid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '文章主表ID',
@@ -208,7 +208,7 @@ $db->exe("CREATE TABLE `".$db_prefix."favorite` (
   `aid` int(10) unsigned DEFAULT NULL,
   `title` char(200) DEFAULT NULL,
   PRIMARY KEY (`fid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8");
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='会员文章收藏夹'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."field`");
 $db->exe("CREATE TABLE `".$db_prefix."field` (
   `fid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
@@ -401,4 +401,4 @@ $db->exe("CREATE TABLE `".$db_prefix."user_guest` (
   `guest_uid` int(11) unsigned DEFAULT NULL COMMENT '访问uid',
   `entertime` int(11) DEFAULT NULL COMMENT '访客时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8");
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='空间访客记录'");

@@ -104,7 +104,8 @@ class IndexController extends Controller
                 $catid = getCategory($category['cid']);
                 $category['content_num'] = $Model->where("category.cid IN(" . implode(',', $catid) . ")")->count();
                 $this->assign("hdcms", $category);
-                $this->display('Template/' . C('WEB_STYLE') . '/' . $category['list_tpl'], C('CATEGORY_CACHE_TIME'));
+                $tplFile = $category['cattype']==2?$category['index_tpl']:$category['list_tpl'];
+                $this->display('Template/' . C('WEB_STYLE') . '/' . $tplFile, C('CATEGORY_CACHE_TIME'));
             }
         } else {
             $this->display(null, C('CATEGORY_CACHE_TIME'));

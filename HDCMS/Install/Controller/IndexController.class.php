@@ -17,9 +17,9 @@ class IndexController extends Controller
             $this->isLock();
         }
         //验证Temp目录
-        if (!is_writable(ROOT_PATH)) {
-            $this->checkTempDir();
-        }
+//        if (!is_writable(ROOT_PATH)) {
+//            $this->checkTempDir();
+//        }
         $this->step = Q('step', 1, 'intval');
     }
 

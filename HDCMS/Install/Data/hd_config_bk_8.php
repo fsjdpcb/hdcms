@@ -1,6 +1,6 @@
 <?php if(!defined('HDPHP_PATH'))EXIT;
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`,`status`)
-						VALUES(1,'WEBNAME','HDCMS内容管理系统','site','网站名称','text','',1,1)");
+						VALUES(1,'HDCMS内容管理系统','HDCMS内容管理系统','site','网站名称','text','',1,1)");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`,`status`)
 						VALUES(2,'ICP','京ICP备12048441号-3','site','ICP备案号','text','',7,1)");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`,`status`)
@@ -12,7 +12,7 @@ $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`,`status`)
 						VALUES(6,'DESCRIPTION','后盾网顶尖PHP培训 内容全面 全程实战!业内顶级讲师亲自授课,千余课时独家视频教程免费下载,超百G原创视频资源,实力不容造假!010-64825057','site','网站描述','text','',5,1)");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`,`status`)
-						VALUES(7,'EMAIL','houdunwangxj@gmail.com','site','管理员邮箱','text','',8,1)");
+						VALUES(7,'sdf@df.com','houdunwangxj@gmail.com','site','管理员邮箱','text','',8,1)");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`,`status`)
 						VALUES(73,'DEFAULT_GROUP','4','member','默认会员组','group','',100,1)");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`name`,`value`,`type`,`title`,`show_type`,`message`,`order_list`,`status`)

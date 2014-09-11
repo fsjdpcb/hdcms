@@ -146,7 +146,7 @@ class CategoryController extends AuthController
             $this->success('修改成功');
         } else {
             $cid = explode('|', Q('cids'));
-            $data = $this->db->where(array('cid' => $cid))->all();
+            $data = $this->db->where(array('cid' => array('IN',$cid)))->all();
             $this->assign('data', $data);
             $this->display();
         }

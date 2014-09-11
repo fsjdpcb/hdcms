@@ -204,8 +204,12 @@ class ContentFormModel extends Model
         $html = "<select name='cid'>";
         $html .= "<option value='0'>==选择栏目==</option>";
         foreach ($category as $cat) {
-            $disabled = in_array($cat['cattype'],array(1,4)) && $cat['mid'] == $this->mid ? '' : 'disabled=""';
-            $selected = in_array($cat['cattype'],array(1,4)) && isset($_REQUEST['cid']) && $_REQUEST['cid'] == $cat['cid'] ? 'selected=""' : '';
+            //外部链接关闭投稿
+            if (in_array($cat['cattype'], array(3))) continue;
+            //会员关闭单文章投稿
+            if(MODULE=='Member' && $cat['cattype']==4)continue;
+            $disabled = in_array($cat['cattype'], array(1, 4)) && $cat['mid'] == $this->mid ? '' : 'disabled=""';
+            $selected = in_array($cat['cattype'], array(1, 4)) && $cat['mid'] == $this->mid && isset($_REQUEST['cid']) && $_REQUEST['cid'] == $cat['cid'] ? 'selected=""' : '';
             $html .= "<option value='{$cat['cid']}' $disabled $selected>{$cat['_name']}</option>";
         }
         $html .= "</select>";

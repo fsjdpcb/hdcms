@@ -50,30 +50,30 @@
             <div class="article">
                 <ul>
                     <pagelist row="1">
-                    <li>
-                        <div class="thumb">
-                            <a href="{$field.url}">
-                                <img src="{$field.thumb}"/>
-                            </a>
-                        </div>
-                        <div class="news">
-                            <p class="title">
-                                <a href="{$field.url}">{$field.title}</a>
-                            </p>
+                        <li>
+                            <div class="thumb">
+                                <a href="{$field.url}">
+                                    <img src="{$field.thumb}"/>
+                                </a>
+                            </div>
+                            <div class="news">
+                                <p class="title">
+                                    <a href="{$field.url}">{$field.title}</a>
+                                </p>
 
-                            <p class="addtime">
-                                <a href="{$field.caturl}">{$field.catname}</a> | {$field.username}
-                                <em>最后更新于 {$field.addtime|date:'Y-m-d h:i:s',@@}</em>
-                            </p>
+                                <p class="addtime">
+                                    <a href="{$field.caturl}">{$field.catname}</a> | {$field.username}
+                                    <em>最后更新于 {$field.addtime|date:'Y-m-d h:i:s',@@}</em>
+                                </p>
 
-                            <p class="description">
-                                {$field.description}
-                            </p>
-                        </div>
-                        <div class="click">
-                            {$field.click}
-                        </div>
-                    </li>
+                                <p class="description">
+                                    {$field.description}
+                                </p>
+                            </div>
+                            <div class="click">
+                                {$field.click}
+                            </div>
+                        </li>
                     </pagelist>
                 </ul>
                 <div class="page">
@@ -84,15 +84,15 @@
     </div>
     <div class="menu">
         <dl>
-            <dt>文章管理</dt>
-            <channel type="son" class="cur" cid="9">
+            <dt>功能分类</dt>
+            <channel type="son" class="cur" cid="3">
                 <dd><a href="{$field.caturl}" class="{$field.class}">{$field.catname}</a></dd>
             </channel>
         </dl>
     </div>
 </div>
 <div class="copyright">
-    {$hd.config.copyright}
+    ©2014 HDPHP&HDCMS来自<a href="http://www.houdunwang.com">后盾网</a> | 唯一教育机构推出的开源产品
 </div>
 </body>
 </html>
