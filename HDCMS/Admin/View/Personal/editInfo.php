@@ -3,7 +3,6 @@
 <div class="wrap">
     <div class="title-header">个人资料修改</div>
     <form method="post" onsubmit="return hd_submit(this,'__ACTION__')" class="hd-form">
-        <input type="hidden" name="uid" value="{$hd.session.uid}"/>
         <table class="table1">
             <tr>
                 <th class="w100">管理员名称</th>

@@ -13,8 +13,8 @@ class IndexController extends Controller
     //构造函数
     public function __init()
     {
-        if (is_file(MODULE_PATH . 'Lock.php')) {
-            $this->isLock();
+        if (is_file(MODULE_PATH . 'Lock.php') && ACTION!='isLock') {
+            go('isLock');
         }
         //验证Temp目录
 //        if (!is_writable(ROOT_PATH)) {

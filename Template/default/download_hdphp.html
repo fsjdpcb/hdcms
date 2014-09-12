@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{$hdcms.title}</title>
+    <css file="__TEMPLATE__/css/download_hdphp.css"/>
+</head>
+<body>
+<div class="header">
+    <div class="top-box">
+        <div class="channel">
+            <a href="__ROOT__" style="color: #FFFFFF;opacity: 1;">首页</a>
+            <channel type="top">
+                <a href="{$field.caturl}">{$field.catname}</a>
+            </channel>
+        </div>
+    </div>
+</div>
+<div class="middle">
+    <div class="title">
+        <img src="__TEMPLATE__/image/hdphp_img.png"/>
+    </div>
+    <div class="down-btn">
+        <a href="">立即下载</a>
+        <a href="">手册下载</a>
+    </div>
+    <div class="info">
+        版本：2014.09.15 | 运行环境：MySQL5 + PHP 5.1.6 或以上
+    </div>
+    <div class="thumb">
+        <img src="__TEMPLATE__/image/hdphp-bg.jpg"/>
+    </div>
+</div>
+<div class="copyright">
+    <div class="text">
+        {$hd.config.copyright}
+    </div>
+</div>
+</body>
+</html>

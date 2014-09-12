@@ -26,7 +26,8 @@ class PersonalController extends AuthController
                 $this->success('修改个人资料成功');
             }
         } else {
-            $this->user = $this->db->find($_SESSION['user']['uid']);
+            $user = $this->db->find($_SESSION['user']['uid']);
+            $this->assign('user', $user);
             $this->display();
         }
     }
@@ -66,9 +67,7 @@ class PersonalController extends AuthController
     public function checkEmail()
     {
         $email = Q("post.email");
-        if ($uid = Q('uid')) {
-            $this->db->where("uid<>$uid");
-        }
+        $this->db->where("uid<>{$_SESSION['user']['uid']}");
         echo $this->db->find("email='$email'") ? 0 : 1;
         exit;
     }

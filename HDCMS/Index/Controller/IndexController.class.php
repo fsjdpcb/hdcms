@@ -83,7 +83,8 @@ class IndexController extends Controller
         if (!$this->isCache()) {
             if ($field) {
                 $this->assign('hdcms', $field);
-                $this->display('Template/' . C('WEB_STYLE') . '/' . $this->category[$this->cid]['arc_tpl'], C('CONTENT_CACHE_TIME'));
+                $tplFile = empty($field['template']) ? $this->category[$this->cid]['arc_tpl'] : $field['template'];
+                $this->display('Template/' . C('WEB_STYLE') . '/' . $tplFile, C('CONTENT_CACHE_TIME'));
                 EXIT;
             }
         } else {
@@ -104,7 +105,7 @@ class IndexController extends Controller
                 $catid = getCategory($category['cid']);
                 $category['content_num'] = $Model->where("category.cid IN(" . implode(',', $catid) . ")")->count();
                 $this->assign("hdcms", $category);
-                $tplFile = $category['cattype']==2?$category['index_tpl']:$category['list_tpl'];
+                $tplFile = $category['cattype'] == 2 ? $category['index_tpl'] : $category['list_tpl'];
                 $this->display('Template/' . C('WEB_STYLE') . '/' . $tplFile, C('CATEGORY_CACHE_TIME'));
             }
         } else {

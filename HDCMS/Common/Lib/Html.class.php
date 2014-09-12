@@ -23,7 +23,8 @@ class Html extends Controller
             return true;
         }
         //模板文件
-        $template = 'Template/'.C('WEB_STYLE').'/'.$data['arc_tpl'];
+        $tplFile = empty($data['template'])?$data['arc_tpl']:$data['template'];
+        $template = 'Template/'.C('WEB_STYLE').'/'.$tplFile;
         //HTML存放根目录
         $html_path = C("HTML_PATH") ? C("HTML_PATH") . '/' : '';
         //栏目定义的内容页生成静态规则

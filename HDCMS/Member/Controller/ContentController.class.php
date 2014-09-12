@@ -36,7 +36,7 @@ class ContentController extends AuthController
     //验证操作权限
     public function checkAccess()
     {
-        if ($_SESSION['user']['web_master]']) {
+        if ($_SESSION['user']['web_master']) {
             return true;
         } else if (!$_SESSION['user']['admin'] && in_array(ACTION, $this->authAction) && $this->cid) {
             $access = M('category_access')->where(array('admin' => 0, 'cid' => $this->cid))->getField('rid,`add`,`edit`,`del`,`content`');
