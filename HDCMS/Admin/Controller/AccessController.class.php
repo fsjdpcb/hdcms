@@ -17,7 +17,7 @@ class AccessController extends AuthController
     {
         $this->db = K('Access');
         $this->rid = Q('rid', 0, 'intval');
-        if ($_SESSION['username'] != C('WEB_MASTER')) {
+        if (!$_SESSION['user']['web_master']) {
             $this->error('没有操作权限');
         }
     }

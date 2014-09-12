@@ -92,6 +92,7 @@ str;
                 //当前栏目样式
                 \$field['class']=\$_self_cid==\$field['cid']?"$class":'';
                 \$field['caturl'] = Url::getCategoryUrl(\$field);
+                \$field['catimage']='__ROOT__'.\$field['catimage'];
                 \$field['target'] = \$field['cattype']==3?' target="_blank" ':' target="_self" ';
             ?>
 str;
@@ -232,6 +233,7 @@ str;
                         \$field['date_before']=date_before(\$field['addtime']);
                         \$field['thumb']='__ROOT__'.'/'.\$field['thumb'];
                         \$field['caturl']=Url::getCategoryUrl(\$field);
+                        \$field['catimage']='__ROOT__'.\$field['catimage'];
                         \$field['url']=Url::getContentUrl(\$field);
                          if(\$field['new_window'] || \$field['redirecturl']){
                         	\$field['link']='<a href="'.\$field['url'].'" target="_blank">'.\$field['title'].'</a>';
@@ -369,6 +371,7 @@ str;
 						\$field['icon']=empty(\$field['icon'])?"__ROOT__/data/image/user/150.png":'__ROOT__/'.\$field['icon'];
                         \$field['date_before']=date_before(\$field['addtime']);
                         \$field['thumb']='__ROOT__'.'/'.\$field['thumb'];
+                        \$field['catimage']='__ROOT__'.\$field['catimage'];
                         \$field['caturl']=Url::getCategoryUrl(\$field);
                         \$field['url']=Url::getContentUrl(\$field);
                          if(\$field['new_window'] || \$field['redirecturl']){

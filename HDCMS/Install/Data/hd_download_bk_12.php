@@ -1,1 +1,3 @@
 <?php if(!defined('HDPHP_PATH'))EXIT;
+$db->exe("REPLACE INTO ".$db_prefix."download (`aid`,`cid`,`uid`,`title`,`flag`,`new_window`,`seo_title`,`thumb`,`click`,`redirecturl`,`html_path`,`addtime`,`updatetime`,`color`,`template`,`url_type`,`arc_sort`,`content_status`,`readpoint`,`keywords`,`description`,`files`,`system`,`language`,`softtype`,`version`)
+						VALUES('1','14','1','asdfsdf','','0','','','100','','','1410490084','1410490102','','','3','100','1','0','','sdfsdf','a:2:{s:4:\"path\";a:1:{i:0;s:25:\"upload/92471410490099.zip\";}s:3:\"alt\";a:1:{i:0;s:12:\"后台模板\";}}','Win2000/WinXP/Win2003','英文','国产软件','')");

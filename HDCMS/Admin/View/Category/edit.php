@@ -1,5 +1,6 @@
 <include file="__PUBLIC__/header.php"/>
 <body>
+<js file="__CONTROLLER_VIEW__/js/addEdit.js"/>
 <form action="{|U:edit}" method="post" class="hd-form" onsubmit="return hd_submit(this,'{|U:index}')">
     <input type="hidden" value="{$field.cid}" name="cid"/>
     <div class="wrap">
@@ -80,6 +81,15 @@
                             <th>跳转Url</th>
                             <td>
                                 <input type="text" name="cat_redirecturl" value="{$field.cat_redirecturl}" class="w300"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>栏目图片</th>
+                            <td>
+                                <input id='catimage' type='text' name='catimage'  value='{$field.catimage}' src='__ROOT__/{$field.catimage}' class='w300 images' onmouseover='view_image(this)' readonly=''/>
+                                <button class='hd-cancel-small' onclick='file_upload({"id":"catimage","type":"image","num":1,"name":"image","allow_size":"2"})' type='button'>上传图片</button>
+                                &nbsp;&nbsp;<button class='hd-cancel-small' onclick='remove_upload_one_img(this)' type='button'>移除</button>
+                                <span id='hd_image' class='image validate-message'></span>
                             </td>
                         </tr>
                         <tr>

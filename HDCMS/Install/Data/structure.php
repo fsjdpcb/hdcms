@@ -65,14 +65,15 @@ $db->exe("CREATE TABLE `".$db_prefix."category` (
   `cid` mediumint(5) unsigned NOT NULL AUTO_INCREMENT COMMENT '栏目ID',
   `pid` mediumint(5) unsigned NOT NULL DEFAULT '0' COMMENT '父级ID',
   `catname` char(30) NOT NULL DEFAULT '' COMMENT '栏目名称',
+  `catimage` varchar(200) DEFAULT NULL COMMENT '栏目图片',
   `catdir` varchar(255) DEFAULT NULL,
-  `cat_keyworks` varchar(255) NOT NULL DEFAULT '' COMMENT '栏目关键字',
-  `cat_description` varchar(255) NOT NULL DEFAULT '' COMMENT '栏目描述',
-  `index_tpl` varchar(200) NOT NULL DEFAULT '' COMMENT '封面模板',
-  `list_tpl` varchar(200) NOT NULL DEFAULT '' COMMENT '列表页模板',
-  `arc_tpl` varchar(200) NOT NULL DEFAULT '' COMMENT '内容页模板',
-  `cat_html_url` varchar(200) NOT NULL DEFAULT '' COMMENT '栏目页URL规则\n\n',
-  `arc_html_url` varchar(200) NOT NULL DEFAULT '' COMMENT '内容页URL规则',
+  `cat_keyworks` varchar(255) DEFAULT '' COMMENT '栏目关键字',
+  `cat_description` varchar(255) DEFAULT '' COMMENT '栏目描述',
+  `index_tpl` varchar(200) DEFAULT '' COMMENT '封面模板',
+  `list_tpl` varchar(200) DEFAULT '' COMMENT '列表页模板',
+  `arc_tpl` varchar(200) DEFAULT '' COMMENT '内容页模板',
+  `cat_html_url` varchar(200) DEFAULT '' COMMENT '栏目页URL规则\n\n',
+  `arc_html_url` varchar(200) DEFAULT '' COMMENT '内容页URL规则',
   `mid` smallint(6) NOT NULL DEFAULT '0' COMMENT '模型ID',
   `cattype` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 栏目,2 封面,3 外部链接,4 单文章',
   `arc_url_type` tinyint(1) NOT NULL DEFAULT '1' COMMENT '文章访问方式 1 静态访问 2 动态访问',
@@ -88,7 +89,7 @@ $db->exe("CREATE TABLE `".$db_prefix."category` (
   `allow_user_set_credits` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否允许会员投稿设置积分 1 允许 0 不允许',
   `member_send_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '会员投稿状态 1 审核 2 未审核',
   PRIMARY KEY (`cid`)
-) ENGINE=MyISAM AUTO_INCREMENT=59 DEFAULT CHARSET=utf8 COMMENT='栏目表'");
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COMMENT='栏目表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."category_access`");
 $db->exe("CREATE TABLE `".$db_prefix."category_access` (
   `rid` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '角色id',
@@ -192,7 +193,7 @@ $db->exe("CREATE TABLE `".$db_prefix."download` (
   KEY `cid` (`cid`),
   KEY `flag` (`flag`),
   KEY `content_status` (`content_status`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='文章表'");
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='文章表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."download_data`");
 $db->exe("CREATE TABLE `".$db_prefix."download_data` (
   `aid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '文章主表ID',
@@ -236,7 +237,7 @@ $db->exe("CREATE TABLE `".$db_prefix."field` (
   `isadd` tinyint(1) NOT NULL DEFAULT '1' COMMENT '在前台投稿中显示',
   PRIMARY KEY (`fid`),
   KEY `mid` (`mid`)
-) ENGINE=MyISAM AUTO_INCREMENT=172 DEFAULT CHARSET=utf8 COMMENT='模型字段'");
+) ENGINE=MyISAM AUTO_INCREMENT=173 DEFAULT CHARSET=utf8 COMMENT='模型字段'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."hooks`");
 $db->exe("CREATE TABLE `".$db_prefix."hooks` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -348,7 +349,7 @@ $db->exe("CREATE TABLE `".$db_prefix."tag` (
   PRIMARY KEY (`tid`),
   UNIQUE KEY `name` (`tag`),
   KEY `total` (`total`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Tag标签表'");
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Tag标签表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."upload`");
 $db->exe("CREATE TABLE `".$db_prefix."upload` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '文章ID',

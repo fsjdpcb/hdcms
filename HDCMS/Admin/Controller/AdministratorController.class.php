@@ -12,7 +12,7 @@ class AdministratorController extends AuthController
     public function __init()
     {
         $this->db = K("User");
-        if ($_SESSION['username'] != C('WEB_MASTER')) {
+        if (!$_SESSION['user']['web_master']) {
             $this->error('没有操作权限');
         }
     }
@@ -51,6 +51,7 @@ class AdministratorController extends AuthController
             $this->success('删除成功');
         }
     }
+
     //添加管理员
     public function add()
     {

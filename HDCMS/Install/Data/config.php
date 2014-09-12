@@ -112,9 +112,9 @@ return array (
   ),
   'hd_download' => 
   array (
-    'row' => '0',
+    'row' => '1',
     'success' => true,
-    'current_row' => 20,
+    'current_row' => 40,
     'size' => 200000,
     'url' => '',
     'step_time' => 200,
@@ -122,9 +122,9 @@ return array (
   ),
   'hd_download_data' => 
   array (
-    'row' => '0',
+    'row' => '1',
     'success' => true,
-    'current_row' => 20,
+    'current_row' => 40,
     'size' => 200000,
     'url' => '',
     'step_time' => 200,
@@ -222,7 +222,7 @@ return array (
   ),
   'hd_session' => 
   array (
-    'row' => '2',
+    'row' => '1',
     'success' => true,
     'current_row' => 40,
     'size' => 200000,
@@ -232,9 +232,9 @@ return array (
   ),
   'hd_tag' => 
   array (
-    'row' => '1',
+    'row' => '0',
     'success' => true,
-    'current_row' => 40,
+    'current_row' => 20,
     'size' => 200000,
     'url' => '',
     'step_time' => 200,
