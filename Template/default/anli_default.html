@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title></title>
     <meta http-equiv="Cache-Control" content="no-cache"/>
-    <css file="__TEMPLATE__/css/image_list.css"/>
+    <css file="__TEMPLATE__/css/article_default.css"/>
     <jquery/>
     <bootstarp/>
 </head>
@@ -33,51 +33,39 @@
             <location/>
         </div>
         <div class="message">
-            {$hdcms.cat_description}
+            欢迎加群：166421499 进行使用交流！
         </div>
-        <div class="post_data">
-            <a href="{|U:'Member/Content/add',array('mid'=>$hdcms['mid'],'cid'=>$hdcms['cid'])}">{$hdcms.cat_seo_title}</a>
+        <div class="search">
+            <form action="__ROOT__/index.php?g=Addons&m=Search" method="post">
+                <input type="text" name="wd" placeholder="输入搜索内容..."/>
+                <input type="submit" value="提交"/>
+            </form>
         </div>
     </div>
     <div class="content">
-        <div class="list">
-            <div class="header">
-                {$hdcms.catname}
-            </div>
-            <div class="article">
-                <ul>
-                    <pagelist row="1" titlelen="16" infolen="68">
-                    <li>
-                        <a href="{$field.url}">
-                            <div class="thumb">
-                                <img src="{$field.thumb}" alt="{$field.title}"/>
-                            </div>
-                            <div class="content_info">
-                                <h3>{$field.title}</h3>
-                                <p>
-                                    {$field.description}
-                                </p>
-                            </div>
-                        </a>
-                    </li>
-                    </pagelist>
-                </ul>
-                <div class="page">
-                    <pageshow/>
-                </div>
-            </div>
+        <div class="header">
+            {$hdcms.title}
         </div>
+        <div class="info">
+            作者：{$hdcms.username}  发布日期：{$hdcms.addtime|date:'Y-m-d',@@}
+            点击数：<script type="text/javascript" src="__CONTROLLER__&a=getClick&mid={$hdcms.mid}&cid={$hdcms.cid}&aid={$hdcms.aid}"></script>
+           <a href="{|U:'Member/Favorite/add',array('mid'=>$hdcms['mid'],'cid'=>$hdcms['cid'],'aid'=>$hdcms['aid'])}">加入收藏</a>
+        </div>
+        <div class="body">
+            {$hdcms.content}
+        </div>
+    </div>
+    <div class="menu">
+        <dl>
+            <dt>文章管理</dt>
+            <channel type="self" class="cur">
+                <dd><a href="{$field.caturl}" class="{$field.class}">{$field.catname}</a></dd>
+            </channel>
+        </dl>
     </div>
 </div>
 <div class="copyright">
     {$hd.config.copyright}
 </div>
-<script>
-    $("div.article li").hover(function(){
-        $(this).find('.content_info').show();
-    },function(){
-        $(this).find('.content_info').hide();
-    })
-</script>
 </body>
 </html>
