@@ -60,7 +60,7 @@ class IndexController extends Controller
     public function environment()
     {
 //        $this->allow_url_fopen = (ini_get('allow_url_fopen') ? '<span class="dir_success">On</span>' : '<span class="dir_success">Off</span>');
-        $this->safe = (ini_get('safe_mode') ? '<span class="dir_error">Off</span>' : '<span class="dir_success fatal">On</span>');
+        $this->safe = (ini_get('safe_mode') ? '<span class="dir_error fatal">Off</span>' : '<span class="dir_success">On</span>');
         $this->gd = extension_loaded('GD') ? '<span class="dir_success">On</span>' : '<span class="dir_error fatal">Off</span>';
         $this->curl = extension_loaded('CURL') ? '<span class="dir_success">On</span>' : '<span class="dir_error ">Off</span>';
         $this->mysqli = function_exists("mysqli_connect") ? '<span class="dir_success">On</span>' : '<span class="dir_error fatal">Off</span>';
