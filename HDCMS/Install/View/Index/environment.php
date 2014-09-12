@@ -56,46 +56,38 @@
                     <th>说明</th>
                 </tr>
                 <tr>
-                    <td>allow_url_fopen</td>
-                    <td>{$allow_url_fopen}</td>
-                    <td> <span class="desc">
-                        (不符合要求将导致采集、远程资料本地化等功能无法应用)
-                    </span></td>
-                    </td>
-                </tr>
-                <tr>
                     <td>safe_mode</td>
                     <td>{$safe}</td>
                     <td> <span class="desc">
-                        (本系统不支持在非win主机的安全模式下运行)
+                        本系统不支持在非win主机的安全模式下运行
                     </span></td>
                 </tr>
                 <tr>
                     <td>GD 库</td>
                     <td>{$gd}</td>
                     <td> <span class="desc">
-                        (不支持将导致与图片相关的大多数功能无法使用或引发警告)
+                        不支持将导致与图片相关的功能无法使用
                     </span></td>
                 </tr>
                 <tr>
                     <td>CURL库</td>
                     <td>{$curl}</td>
                     <td> <span class="desc">
-                        (不支持将导致无法进行采集与下载远程图片)
+                        不符合要求将导致采集、远程资料本地化等功能无法使用
                     </span></td>
                 </tr>
                 <tr>
                     <td>MySQLI扩展</td>
                     <td>{$mysqli}</td>
                     <td> <span class="desc">
-                        (不支持无法使用本系统)
+                        不支持将无法使用本系统
                     </span></td>
                 </tr>
                 <tr>
                     <td>mb_substr</td>
                     <td>{$mb_substr}</td>
                     <td> <span class="desc">
-                        (必须存在mbstring扩展库)
+                        不支持将导致中文字符处理出现问题
                     </span></td>
                 </tr>
             </table>
@@ -110,8 +102,8 @@
                 <?php foreach ($dirctory as $d): ?>
                     <tr>
                         <td><?php echo $d; ?></td>
-                        <td><?php echo is_writable($d) ? '<span class="dir_success">可写</span>' : '<span class="dir_error">不可写</span>'; ?>
-                        <td><?php echo is_readable($d) ? '<span class="dir_success">可读</span>' : '<span class="dir_error">不可读</span>'; ?></td>
+                        <td><?php echo is_writable($d) ? '<span class="dir_success">可写</span>' : '<span class="dir_error fatal">不可写</span>'; ?>
+                        <td><?php echo is_readable($d) ? '<span class="dir_success">可读</span>' : '<span class="dir_error fatal">不可读</span>'; ?></td>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -128,7 +120,7 @@
 </div>
 <script>
     function check() {
-        if ($(".dir_error").length > 0) {
+        if ($(".fatal").length > 0) {
             alert("您的系统环境不可以安装HDCMS");
             return false;
         }else{
