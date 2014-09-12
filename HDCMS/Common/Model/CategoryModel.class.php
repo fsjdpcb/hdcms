@@ -206,15 +206,6 @@ class CategoryModel extends ViewModel
                 //封面与链接栏目添加disabled属性
                 $cat["disabled"] = $cat["cattype"] != 1 ? 'disabled=""' : '';
                 $cat['cat_type_name'] = $this->categoryType[$cat['cattype']];
-                //栏目模板
-                switch ($cat['cattype']) {
-                    case 1 : //普通栏目
-                        $cat['template'] = 'template/' . C("WEB_STYLE") . '/' . $cat['list_tpl'];
-                        break;
-                    case 2 : //封面栏目
-                        $cat['template'] = 'template/' . C("WEB_STYLE") . '/' . $cat['index_tpl'];
-                        break;
-                }
                 $cache[$cat['cid']] = $cat;
             }
         }

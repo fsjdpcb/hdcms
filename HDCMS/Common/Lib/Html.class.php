@@ -10,7 +10,7 @@ class Html extends Controller
     public function index()
     {
         if (C('CREATE_INDEX_HTML') == 1) {
-            $template = 'template/' . C('WEB_STYLE') . '/index.html';
+            $template = 'Template/' . C('WEB_STYLE') . '/index.html';
             return $this->createHtml('index.html', './', $template);
         }
         return true;
@@ -23,7 +23,7 @@ class Html extends Controller
             return true;
         }
         //模板文件
-        $template = 'template/'.C('WEB_STYLE').'/'.$data['arc_tpl'];
+        $template = 'Template/'.C('WEB_STYLE').'/'.$data['arc_tpl'];
         //HTML存放根目录
         $html_path = C("HTML_PATH") ? C("HTML_PATH") . '/' : '';
         //栏目定义的内容页生成静态规则
@@ -56,6 +56,15 @@ class Html extends Controller
                 return $this->content($result);
             }
         } else {
+            //模板文件
+            switch ($cat['cattype']) {
+                case 1 : //普通栏目
+                    $template = 'Template/' . C("WEB_STYLE") . '/' . $cat['list_tpl'];
+                    break;
+                case 2 : //封面栏目
+                    $template = 'Template/' . C("WEB_STYLE") . '/' . $cat['index_tpl'];
+                    break;
+            }
             //普通栏目与封面栏目
             $htmlDir = C("HTML_PATH") ? C("HTML_PATH") . '/' : '';
             $_REQUEST['page'] = $_GET['page'] = $page;
@@ -65,7 +74,7 @@ class Html extends Controller
             $cat['content_num'] = $Model->where("category.cid ={$cat['cid']}")->count();
             $htmlFile = $htmlDir . str_replace(array('{catdir}', '{cid}', '{page}'), array($cat['catdir'], $cat['cid'], $page), $cat['cat_html_url']);
             $this->assign("hdcms", $cat);
-            $this->createHtml(basename($htmlFile), dirname($htmlFile) . '/', $cat['template']);
+            $this->createHtml(basename($htmlFile), dirname($htmlFile) . '/', $template);
             //第1页时复制index.html
             if ($page == 1) {
                 copy($htmlFile, $htmlDir.$cat['catdir'] . '/index.html');
