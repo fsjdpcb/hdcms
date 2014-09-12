@@ -21,12 +21,16 @@ class LoginController extends Controller
     {
         if (IS_POST) {
             if ($this->db->userLogin()) {
-                go(cookie('_HISTORY_'));
+                if (cookie('__HISTORY__'))
+                    go(cookie('_HISTORY_'));
+                else
+                    go(U('login'));
             } else {
                 $this->error($this->db->error);
             }
         } else {
-            cookie('_HISTORY_', $_SERVER['HTTP_REFERER']);
+            if (CONTROLLER != 'Login')
+                cookie('_HISTORY_', $_SERVER['HTTP_REFERER']);
             $this->display();
         }
     }

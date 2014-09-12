@@ -38,10 +38,12 @@ class ContentController extends AuthController
     //验证操作权限
     public function checkAccess()
     {
-        if (!$_SESSION['user']['web_master'] && in_array(ACTION, $this->authAction)) {
+        if ($_SESSION['user']['web_master]']) {
+            return true;
+        } else if (!$_SESSION['user']['web_master'] && in_array(ACTION, $this->authAction)) {
             $access = M('category_access')->where(array('admin' => 0, 'cid' => $this->cid))->getField('rid,`add`,`edit`,`del`,`content`,`order`,`audit`,`move`');
             //栏目没有设置管理员权限时，验证通过
-            return empty($access) || $access[$_SESSION['user']['rid']][ACTION];
+            return !empty($access) && $access[$_SESSION['user']['rid']][ACTION];
         }
         return true;
     }

@@ -43,8 +43,8 @@ class ContentInputModel
         //修改时间
         $data['updatetime'] = time();
         //前台会员设置文章状态
-        if (empty($_SESSION['user']['admin'])) {
-            $data['content_status'] = $this->category[$data['cid']]['member_send_state'];
+        if (MODULE=='Member') {
+            $data['content_status'] = $this->category[$data['cid']]['member_send_status'];
         }
         //文章模型
         $ContentModel = ContentModel::getInstance($this->mid);
