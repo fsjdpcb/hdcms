@@ -89,7 +89,7 @@ $db->exe("CREATE TABLE `".$db_prefix."category` (
   `allow_user_set_credits` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否允许会员投稿设置积分 1 允许 0 不允许',
   `member_send_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '会员投稿状态 1 审核 2 未审核',
   PRIMARY KEY (`cid`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COMMENT='栏目表'");
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='栏目表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."category_access`");
 $db->exe("CREATE TABLE `".$db_prefix."category_access` (
   `rid` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '角色id',
@@ -146,7 +146,7 @@ $db->exe("CREATE TABLE `".$db_prefix."content` (
   KEY `cid` (`cid`),
   KEY `flag` (`flag`),
   KEY `content_status` (`content_status`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='文章表'");
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='文章表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."content_data`");
 $db->exe("CREATE TABLE `".$db_prefix."content_data` (
   `aid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '文章主表ID',
