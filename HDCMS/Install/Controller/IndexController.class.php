@@ -137,7 +137,7 @@ str;
                 'password' => md5($_POST['PASSWORD'] . $code)
             );
             if ($db->save($data)) {
-                $this->success('数据插入完毕...', 'Complete');
+                go(U('Complete'));
             }
         } else {
             $this->display();
