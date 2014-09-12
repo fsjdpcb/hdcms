@@ -112,9 +112,9 @@ return array (
   ),
   'hd_download' => 
   array (
-    'row' => '1',
+    'row' => '0',
     'success' => true,
-    'current_row' => 40,
+    'current_row' => 20,
     'size' => 200000,
     'url' => '',
     'step_time' => 200,
@@ -122,9 +122,9 @@ return array (
   ),
   'hd_download_data' => 
   array (
-    'row' => '1',
+    'row' => '0',
     'success' => true,
-    'current_row' => 40,
+    'current_row' => 20,
     'size' => 200000,
     'url' => '',
     'step_time' => 200,
