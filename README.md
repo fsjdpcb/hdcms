@@ -9,7 +9,7 @@
 
 ----
 # 交流
-* 后盾网论坛： [http://bbs.houdunwang.com](http://bbs.houdunwang.com/forum-105-1.html "后盾网")
+* 后盾网论坛： [http://bbs.houdunwang.com](http://bbs.houdunwang.com/forum-105-1.html "后盾网论坛")
 
 * HDPHP官网： [http://www.hdphp.com ](http://www.hdphp.com "HDPHP官网")
 
