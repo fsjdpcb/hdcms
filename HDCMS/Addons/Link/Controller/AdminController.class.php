@@ -60,7 +60,7 @@ class AdminController extends AuthController
     public function del()
     {
         $id = Q('id');
-        $data = M('link')->find($id);
+        $data = $this->db->find($id);
         if (is_file($data['logo'])) {
             @unlink($data['logo']);
         }
@@ -70,7 +70,7 @@ class AdminController extends AuthController
     }
 
     //更新排序
-    public function update_order()
+    public function updateOrder()
     {
         $menu_order = Q("post.list_order");
         if ($menu_order) {
@@ -78,7 +78,7 @@ class AdminController extends AuthController
                 //排序
                 $order = intval($order);
                 $this->db->save(array(
-                    "nid" => $nid,
+                    "id" => $nid,
                     "list_order" => $order
                 ));
             }

@@ -1,5 +1,5 @@
 <?php
-class CommentTag
+class AddonCommentTag
 {
     public $tag = array(
         'addon_comment_list' => array('block' => 1, 'level' => 4),

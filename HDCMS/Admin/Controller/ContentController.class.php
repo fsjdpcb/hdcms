@@ -38,12 +38,12 @@ class ContentController extends AuthController
     //验证操作权限
     public function checkAccess()
     {
-        if ($_SESSION['user']['web_master']) {
+        if ($_SESSION['user']['rid']==1) {//超管不限
             return true;
-        } else if (!$_SESSION['user']['web_master'] && in_array(ACTION, $this->authAction)) {
-            $access = M('category_access')->where(array('admin' => 0, 'cid' => $this->cid))->getField('rid,`add`,`edit`,`del`,`content`,`order`,`audit`,`move`');
+        } else if (in_array(ACTION, $this->authAction)) {
+            $access = M('category_access')->where(array('admin' => 1, 'cid' => $this->cid))->getField('rid,`add`,`edit`,`del`,`content`,`order`,`audit`,`move`');
             //栏目没有设置管理员权限时，验证通过
-            return !empty($access) && $access[$_SESSION['user']['rid']][ACTION];
+            return $access && isset($access[$_SESSION['user']['rid']]) && $access[$_SESSION['user']['rid']][ACTION];
         }
         return true;
     }
@@ -65,10 +65,16 @@ class ContentController extends AuthController
                 if ($cat['cattype'] != 3) {
                     //单文章栏目
                     if ($cat['cattype'] == 4) {
-                        $link = __WEB__ . "?m=Admin&c=content&a=single&cid={$cat['cid']}&mid={$cat['mid']}";
+                        $ContentModel = ContentModel::getInstance($cat['mid']);
+                        $content = $ContentModel->where(array('cid' => $cat['cid']))->limit(1)->find();
+                        if ($content) {
+                            $link =U('edit', array('mid' =>$cat['mid'], 'cid' => $cat['cid'], 'aid' => $content['aid']));
+                        } else {
+                            $link =U('add', array('mid' => $cat['mid'], 'cid' => $cat['cid']));
+                        }
                         $url = "javascript:hd_open_window(\"$link\")";
                     } else if ($cat['cattype'] == 1) {
-                        $url = U('content', array('cid' => $cat['cid'], 'mid' => $cat['mid'], 'content_status' => 1));
+                        $url = U('show', array('cid' => $cat['cid'], 'mid' => $cat['mid'], 'content_status' => 1));
                     } else {
                         $url = 'javascript:';
                     }
@@ -84,9 +90,8 @@ class ContentController extends AuthController
         }
         $this->ajax($category);
     }
-
     //内容列表
-    public function content()
+    public function show()
     {
         $ContentModel = ContentViewModel::getInstance($this->mid);
         //文章状态
@@ -135,18 +140,6 @@ class ContentController extends AuthController
         $this->assign('data', $data);
         $this->assign('page', $page->show());
         $this->display();
-    }
-
-    //单文章管理
-    public function single()
-    {
-        $ContentModel = ContentModel::getInstance($this->mid);
-        $content = $ContentModel->where(array('cid' => $this->cid))->limit(1)->find();
-        if ($content) {
-            go(U('edit', array('mid' => $this->mid, 'cid' => $this->cid, 'aid' => $content['aid'])));
-        } else {
-            go(U('add', array('mid' => $this->mid, 'cid' => $this->cid)));
-        }
     }
 
     //添加文章
@@ -295,5 +288,4 @@ class ContentController extends AuthController
             $this->display();
         }
     }
-
 }

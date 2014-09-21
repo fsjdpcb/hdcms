@@ -16,8 +16,20 @@ class AppInitHook
                 go(U('Install/Index/index'));
             }
         } else {
+            $this->UserSessionInit(); //初始用户session
             $this->defineConst(); //定义常量
             $this->loadAddons(); //加载插件
+        }
+    }
+
+    //初始会员session
+    private function UserSessionInit()
+    {
+        if (!isset($_SESSION['user'])) {
+            $_SESSION['user']['web_master'] = false; //超级管理员
+            $_SESSION['user']['uid'] = 0; //会员uid
+            $_SESSION['user']['rid'] = 0; //角色rid
+            $_SESSION['user']['icon'] = __ROOT__ . '/HDCMS/Static/image/user.png'; //头像
         }
     }
 
@@ -51,8 +63,8 @@ class AppInitHook
             $data = M('addons')->getField('id,name');
             if ($data) {
                 foreach ($data as $addon) {
-                    if (is_file("HDCMS/Addons/{$addon}/Tag/{$addon}Tag.class.php")) {
-                        $tpl_tags[] = "@.Addons.{$addon}.Tag.{$addon}Tag";
+                    if (is_file("HDCMS/Addons/{$addon}/Tag/Addon{$addon}Tag.class.php")) {
+                        $tpl_tags[] = "@.Addons.{$addon}.Tag.Addon{$addon}Tag";
                     }
                 }
             }

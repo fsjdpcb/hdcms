@@ -56,28 +56,37 @@ class IndexController extends Controller
         $this->display('Template/' . C('WEB_STYLE') . '/index.html', C('INDEX_CACHE_TIME'));
     }
 
+    //验证内容阅读权限
+    private function checkAccess()
+    {
+        //站长与超级管理员不验证
+        if ($_SESSION['user']['web_master'] || $_SESSION['user']['rid'] == 1) {
+            return true;
+        } else {
+            $access = M("category_access")->where(array('cid' => $this->cid, 'admin' => 0))->getField('rid,content');
+            //栏目存在权限时验证
+            if ($access) {
+                return issset($access[$_SESSION['user']['rid']]) && $access[$_SESSION['user']['rid']]['content'];
+            } else {
+                return true;
+            }
+        }
+    }
+
     //内容页
     public function content()
     {
         $aid = Q('aid', 0, 'intval');
-        if (!$aid) {
-            $this->_404();
-        }
+        //参数错误
+        $aid or $this->_404();
         //验证阅读权限
-        if (!Q('session.admin')) {
-            $categoryAccessModel = M("category_access");
-            $access = $categoryAccessModel->where(array('cid' => $this->cid, 'admin' => 0))->find();
-            //栏目设置前台权限时验证
-            if ($access) {
-                //没有登录或没有权限
-                if (!session('uid') || !isset($access[$_SESSION['rid']]) || !$access[$_SESSION['rid']]['show']) {
-                    $this->error('没有访问权限');
-                }
-            }
+        if (!$this->checkAccess()) {
+            $this->error('没有访问权限');
         }
         $ContentModel = ContentViewModel::getInstance($this->mid);
         $field = $ContentModel->getOne($aid);
-        if ($field['content_status'] == 0) {
+        //文章没审核时超管不限
+        if ($_SESSION['user']['rid'] != 1 && $field['content_status'] == 0) {
             $this->error('文章正在审核中');
         }
         if (!$this->isCache()) {

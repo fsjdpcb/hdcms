@@ -50,6 +50,7 @@ class AddonsController extends AuthController
             $data['has_adminlist'] = isset($_POST['has_adminlist']) ? 1 : 0; //有后台
             $data['has_outurl'] = isset($_POST['has_outurl']) ? 1 : 0; //前台访问
             $data['config'] = isset($_POST['config']) ? 1 : 0; //有配置文件
+            $data['viewTag'] = isset($_POST['viewTag']) ? 1 : 0; //有前台标签文件
             //-------------------检查必要信息
             $this->db->validate = array(
                 array('name', 'nonull', '插件标识不能为空！', 2, 3),
@@ -60,6 +61,7 @@ class AddonsController extends AuthController
                 array('author', 'nonull', '插件作者不能为空！', 2, 3),
                 array('description', 'nonull', '插件描述不能为空！', 2, 3),
             );
+            //验证插件数据合法性
             if (!$this->db->validate($data)) {
                 $this->error($this->db->error);
             }
@@ -73,6 +75,31 @@ class AddonsController extends AuthController
             //-------------------创建配置文件
             if ($data['config']) {
                 copy(HDPHP_PATH . 'Lib/Tpl/configAddon.php', $addonDir . 'config.php');
+            }
+            //-------------------创建模板标签目录
+            if($data['viewTag']){
+                dir::create($addonDir.'Tag');//创建插件目录
+                $viewTagPhp=<<<tag
+<?php
+//标签类文件命名规范：Addon插件名Tag
+class Addon{$data['name']}Tag
+{
+    //声明标签
+    public \$tag = array(
+        'addon_{$data['name']}_list' => array('block' => 1, 'level' => 4),
+    );
+     //示例标签
+     //a) 标签命名规范：_addon_插件名_标签
+     //b) 插件安装后才可以使用标签
+     //c) 模板使用<addon_{$data['name']}_test> </addon_{$data['name']}_test>调用
+    public function _addon_{$data['name']}_test(\$attr, \$content)
+    {
+        return '这是标签测试结果';
+    }
+}
+tag;
+                file_put_contents($addonDir.'Tag/Addon'.$data['name'].'Tag.class.php',$viewTagPhp);
+
             }
             //-----------------控制器
             if ($data['has_adminlist'] || $data['has_outurl']) //创建控制器目录

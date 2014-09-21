@@ -50,7 +50,10 @@
     //更改列表排序
     function update_order() {
         var data = $("[name*='list_order']").serialize();
-        $.post(CONTROLLER + "&a=update_order", data, function (data) {
+        if($("[name=list_order]").length==0){
+            alert('没有友情链接');return false;
+        }
+        $.post(CONTROLLER + "&a=updateOrder&g=Addons", data, function (data) {
             if (data.status == 1) {
                 $.dialog({
                     "message":data.message,

@@ -70,6 +70,12 @@
                 </td>
             </tr>
             <tr>
+                <th>是否需要模板标签</th>
+                <td>
+                    <label><input type="checkbox" name="viewTag" value="1" checked=""/> 需要</label>
+                </td>
+            </tr>
+            <tr>
                 <th>实现的钩子方法</th>
                 <td>
                     <select name="hooks[]" multiple="multiple" size="8" class="w300">
@@ -94,10 +100,10 @@
             message: '只能是英文开头，且首字母大写，标识只能包含英文、数子、下划线'
         },
         has_adminlist:{
-            message:'访问方法:?app=Addon&m=模块名&c=Admin&a=index'
+            message:'访问方法:?app=Addon&m=插件名&c=Admin&a=index'
         },
         has_outurl:{
-            message:'访问方法:?app=Addon&m=模块名&c=Index&a=index'
+            message:'访问方法:?app=Addon&m=插件名&c=Index&a=index'
         },
         'hooks[]':{
             message:'如果不挂钩子可以不选择'

@@ -9,7 +9,6 @@
     <bootstarp/>
 </head>
 <body>
-<?php Hook::listen('pageFooter');?>
 <div class="top">
     <div class="top_warp">
         <div class="logo">
@@ -23,6 +22,9 @@
         </div>
     </div>
 </div>
+<addon_link_list row="2">
+    <a href="{$field.url}">{$field.webname}</a>
+</addon_link_list>
 <div class="wrap">
     <div class="hdphp">
         HDPHP & HDCMS
