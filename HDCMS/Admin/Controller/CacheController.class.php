@@ -40,7 +40,7 @@ class CacheController extends AuthController
                     $this->success('权限节点更新完毕...', U('updateCache',array('action'=>'Table')), 0);
                     break;
                 case "Table" :
-                    Dir::del('temp/Table');
+                    Dir::del('Temp/Table');
                     $this->success('数据表更新完毕...', U('updateCache',array('action'=>'Role')), 0);
                     break;
                 case "Role" :
@@ -58,6 +58,7 @@ class CacheController extends AuthController
                     $this->display('success.php');
                     break;
             }
+            Dir::del('Temp/Compile');
         } else {
             $this->success('缓存更新成功...', U('index'), 0);
         }

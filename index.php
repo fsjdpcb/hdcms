@@ -12,4 +12,5 @@ define('APP_PATH','HDCMS/');
 define('TEMP_PATH','Temp/');
 
 //引入框架主文件
-require 'HDCMS/hdphp/hdphp.php';
+require '../hdphp/hdphp/hdphp.php';
+//require 'HDCMS/hdphp/hdphp.php';

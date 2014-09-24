@@ -42,5 +42,6 @@
 </script>
 <js file="__CONTROLLER_VIEW__/js/addEdit.js"/>
 <css file="__CONTROLLER_VIEW__/css/css.css"/>
+
 </body>
 </html>

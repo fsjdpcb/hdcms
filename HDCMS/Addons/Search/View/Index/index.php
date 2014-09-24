@@ -80,7 +80,7 @@
             <dl>
                 <dt>顶尖PHP培训</dt>
                 <dd>
-                    <a href=""><img src="__CONTROLLER_VIEW__/image/study.gif" alt=""/></a>
+                    <a href="http://www.houdunwang.com" target="_blank"><img src="__CONTROLLER_VIEW__/image/study.gif" alt="后盾网"/></a>
                 </dd>
             </dl>
         </div>

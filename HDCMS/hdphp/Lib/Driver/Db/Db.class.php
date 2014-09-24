@@ -136,7 +136,7 @@ abstract class Db implements DbInterface
             'table' => $this->table,
             'pri' => $this->pri,
             'field' => '*',
-            'filedData' => $this->fieldData,
+            'fieldData' => $this->fieldData,
             'where' => '',
             'like' => '',
             'group' => '',
@@ -238,9 +238,8 @@ abstract class Db implements DbInterface
             if ($this->isField($k)) {
                 $data['fields'][] = "`" . $k . "`";
                 $v = $this->escapeString($v);
-                $default = $this->opt['fieldData'][$k]['default'];
                 $type = $this->opt['fieldData'][$k]['type'];
-                $data['values'][] = preg_match('@int@i', $type) ? intval($v) : "\"$v\"";
+                $data['values'][] = preg_match('@int@i', $type) ? intval($v) :(is_numeric($v)?$v:"\"$v\"");
             }
         }
         return $data;

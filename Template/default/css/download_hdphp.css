@@ -66,17 +66,33 @@ div.middle div.thumb {
 div.middle div.thumb img {
   width: 550px;
 }
+div.log {
+  background: #F3F3F3;
+  padding: 20px;
+  font-family: '微软雅黑';
+}
+div.log div.logList {
+  width: 600px;
+  margin: 0 auto;
+}
+div.log div.logList h3 {
+  font-size: 18px;
+  font-weight: bold;
+}
+div.log div.logList p {
+  font-size: 14px;
+}
 div.copyright {
-  position: absolute;
-  bottom: 0px;
+  padding: 20px 0px 30px 0px;
+  background: #DDDDDD;
   width: 100%;
   padding-bottom: 10px;
 }
 div.copyright div.text {
   width: 960px;
   margin: 0 auto;
-  font-size: 12px;
-  color: #fff;
-  opacity: 0.5;
+  font-size: 14px;
+  color: #333;
+  opacity: 1;
   text-align: center;
 }

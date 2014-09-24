@@ -65,7 +65,8 @@
 					<td>
 					<a href="http://www.hdphp.com" target="_blank">
 						HDPHP
-					</a></td>
+					</a>
+                    </td>
 				</tr>
 				<tr>
 					<td>PHP版本</td>
@@ -99,7 +100,8 @@
 					</a> &
 					<a href="http://www.hdphp.com" target="_blank">
 						HDCMS
-					</a></td>
+					</a>
+                    </td>
 				</tr>
 				<tr>
 					<td>作者</td>
@@ -110,20 +112,16 @@
 					<td>
 					<a href="http://bbs.houdunwang.com" target="_blank">
 						后盾网所有盾友
-					</a></td>
+					</a>
+                    </td>
 				</tr>
 			</table>
-			<div style="height:10px;overflow: hidden">
-				&nbsp;
-			</div>
 		</div>
-        <style type="">
+        <style type="text/css">
             a{
                 color: #666;
             }
-            div.wrap{
-                bottom: 0px;
-            }
+            div.wrap{margin-bottom: 0px;}
             h2{
                 font-size:12px;
                 font-weight: normal;

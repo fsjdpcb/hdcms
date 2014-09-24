@@ -67,7 +67,7 @@
 				<thead>
 					<tr>
 						<td class="w30">
-						<input type="checkbox" id="select_all"/>
+						    <input type="checkbox" id="select_all"/>
 						</td>
 						<td class="w30">aid</td>
 						<td class="w30">cid</td>
@@ -91,7 +91,7 @@
 						</td>
 						<td>
 						<a href="{|U:'Index/Index/content',array('mid'=>$_GET['mid'],'cid'=>$_GET['cid'],'aid'=>$c['aid'])}" target="_blank">
-							{$c.title}
+							{$c.title|mb_substr:0,50,'utf-8'}
 						</a>
 						<if value="$c.flag">
 							<span style="color:#FF0000"> [{$c.flag}]</span>

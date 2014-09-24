@@ -190,7 +190,7 @@ class ContentController extends AuthController
     //删除文章
     public function del()
     {
-        if ($aid = Q('aid', 0)) {
+        if ($aid = Q('aid')) {
             $ContentModel = new Content();
             if ($ContentModel->del($aid)) {
                 $this->success('删除成功');

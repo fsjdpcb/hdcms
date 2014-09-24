@@ -8,8 +8,9 @@
 class LoginController extends Controller
 {
     public function __init()
-    { //已经登录用户不允许执行
-        if (isset($_SESSION['user']) && $_SESSION['user']['admin'] && ACTION != 'out') {
+    {
+        //已经登录用户不允许执行
+        if ($_SESSION['user']['admin']&& ACTION != 'out') {
             go("Index/index");
         }
     }

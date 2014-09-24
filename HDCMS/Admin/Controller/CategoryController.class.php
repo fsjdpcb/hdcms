@@ -97,6 +97,14 @@ class CategoryController extends AuthController
                 $cache[$n]['disabled'] = $disabled;
             }
             $categoryAccess = $this->db->getCategoryAccess($this->cid);
+            //如果当前栏目有文章时不允许更改模型
+            $map['cid']=$this->cid;
+            if(M($this->model[$this->category[$this->cid]['mid']]['table_name'])->where($map)->count()){
+                $disabledChangeModel=true;
+            }else{
+                $disabledChangeModel=false;
+            }
+             $this->assign('disabledChangeModel',$disabledChangeModel);
             //分配角色权限
             $this->assign('access', $categoryAccess);
             $this->assign('field', $category);

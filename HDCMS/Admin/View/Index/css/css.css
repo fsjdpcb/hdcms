@@ -228,10 +228,15 @@ div.main div.menu_nav ul li a.close:hover {
 }
 
 div.main div.top_content {
-    position: fixed;
-    top: 70px;
+    position: absolute;
+    top: 30px;
     right: 0px;
     left: 141px;
     bottom: 37px;
     background: #F3F3F3;
+}
+div.main div.top_content iframe{
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
 }

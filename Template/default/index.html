@@ -6,7 +6,6 @@
     <meta http-equiv="Cache-Control" content="no-cache"/>
     <css file="__TEMPLATE__/css/index.css"/>
     <jquery/>
-    <bootstarp/>
 </head>
 <body>
 <div class="top">
@@ -15,24 +14,18 @@
             <img src="__TEMPLATE__/image/index_logo.png" title="{$hd.config.webname}"/>
         </div>
         <div class="top_menu">
-            <channel type="top">
-                <a href="{$field.caturl}">{$field.catname}</a>
-            </channel>
-            <include file="__TEMPLATE__/block/login.html"/>
+            <include file="__TEMPLATE__/block/header.html"/>
         </div>
     </div>
 </div>
-<addon_link_list row="2">
-    <a href="{$field.url}">{$field.webname}</a>
-</addon_link_list>
 <div class="wrap">
     <div class="hdphp">
         HDPHP & HDCMS
     </div>
 
     <div class="download">
-        <a href="__ROOT__/h/download/2014/913/2.html" class="hdphp" target="_blank"></a>
-        <a href="__ROOT__/h/download/2014/912/1.html" class="hdcms" target="_blank"></a>
+        <a href="__WEB__?1_19_38.html" class="hdphp" target="_blank"></a>
+        <a href="__WEB__?1_19_37.html" class="hdcms" target="_blank"></a>
     </div>
     <div class="version">
         100%免费用于任何网站（包括商业网站）&nbsp;&nbsp; | &nbsp;&nbsp;运行环境：MySQL5 + PHP 5.1.6 或以上

@@ -129,13 +129,18 @@ str;
         $sub_channel = isset($attr['sub_channel']) ? intval($attr['sub_channel']) : 1;
         $php = <<<str
         <?php
-            \$mid='$mid';\$cid ='$cid';
-            \$subtable =$subtable;\$order ='$order';
-            \$flag='$flag';\$noflag='$noflag';
-            \$aid='$aid';\$type='$type';
-            \$sub_channel=$sub_channel;\$relative='$relative';
+            \$mid='$mid';//模型mid
             \$mid = \$mid?intval(\$mid):Q('mid',1,'intval');
+            \$cid ='$cid';
             \$cid = \$cid?intval(\$cid):Q('cid',0,'intval');
+            \$subtable =$subtable;//获取子表字段
+            \$order ='$order';
+            \$flag='$flag';//有此flag
+            \$noflag='$noflag';//除了flag
+            \$aid='$aid';
+            \$type='$type';
+            \$sub_channel=$sub_channel;//包含子栏目数据
+            \$relative='$relative';//相关文章
             //导入模型类
             \$db =ContentViewModel::getInstance(\$mid);
             //不获取副表字段
@@ -214,7 +219,7 @@ str;
 		        }
                 //指定文章
                 if (\$aid) {
-                    \$where[]=\$this->table.".aid IN(\$aid)";
+                    \$where[]=\$db->table.".aid IN(\$aid)";
                 }
                 //已经审核的文章
                 \$where[]='content_status=1';
@@ -231,7 +236,7 @@ str;
                         \$field['time']=date("Y-m-d",\$field['addtime']);
 						\$field['icon']=empty(\$field['icon'])?"__ROOT__/data/image/user/150.png":'__ROOT__/'.\$field['icon'];
                         \$field['date_before']=date_before(\$field['addtime']);
-                        \$field['thumb']='__ROOT__'.'/'.\$field['thumb'];
+                        \$field['thumb']=\$field['thumb']?'__ROOT__'.'/'.\$field['thumb']:'';
                         \$field['caturl']=Url::getCategoryUrl(\$field);
                         \$field['catimage']='__ROOT__'.\$field['catimage'];
                         \$field['url']=Url::getContentUrl(\$field);
@@ -370,7 +375,7 @@ str;
                         \$field['time']=date("Y-m-d",\$field['addtime']);
 						\$field['icon']=empty(\$field['icon'])?"__ROOT__/data/image/user/150.png":'__ROOT__/'.\$field['icon'];
                         \$field['date_before']=date_before(\$field['addtime']);
-                        \$field['thumb']='__ROOT__'.'/'.\$field['thumb'];
+                        \$field['thumb']=\$field['thumb']?'__ROOT__'.'/'.\$field['thumb']:'__APP__/Static/image/thumb.jpg';
                         \$field['catimage']='__ROOT__'.\$field['catimage'];
                         \$field['caturl']=Url::getCategoryUrl(\$field);
                         \$field['url']=Url::getContentUrl(\$field);

@@ -2,11 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>{$hdcms.catname}-{$hd.config.webname}</title>
     <meta http-equiv="Cache-Control" content="no-cache"/>
     <css file="__TEMPLATE__/css/article_list.css"/>
     <jquery/>
-    <bootstarp/>
 </head>
 <body>
 <div class="top">
@@ -18,10 +17,7 @@
         </div>
         <div class="top_menu">
             <div class="top_menu">
-                <channel type="top" class="cur">
-                    <a href="{$field.caturl}" class="{$field.class}">{$field.catname}</a>
-                </channel>
-                <include file="__TEMPLATE__/block/login.html"/>
+                <include file="__TEMPLATE__/block/header.html"/>
             </div>
         </div>
     </div>
@@ -49,12 +45,12 @@
             </div>
             <div class="article">
                 <ul>
-                    <pagelist row="1">
+                    <pagelist row="10">
                     <li>
                         <div class="thumb">
-                            <a href="{$field.url}">
-                                <img src="{$field.thumb}"/>
-                            </a>
+                           <a href="{$field.url}">
+                              <img src="{$field.thumb}" style="height:80px;min-height: 80px;"/>
+                           </a>
                         </div>
                         <div class="news">
                             <p class="title">

@@ -48,7 +48,7 @@
                 <input type="text" class="w30" value="{$c.catorder}" name="list_order[{$c.cid}]"/>
             </td>
             <td>
-                <if value="$c.pid eq 0">
+                <if value="$c.pid eq 0 && Data::hasChild(S('category'),$c.cid)">
                     <img src="__APP__/Static/image/contract.gif" action="2" class="explodeCategory"/>
                 </if>
                 {$c._name}
@@ -108,6 +108,8 @@
                 break;
         }
     })
+    //关闭栏目子栏目（隐藏子栏目）
+    $(".explodeCategory").trigger('click');
     //全部收起子栏目
     function explodeCategory() {
         $(".explodeCategory").each(function (i) {

@@ -66,16 +66,21 @@
         background: url("__CONTROLLER_VIEW__/img/ico_right.gif") no-repeat;
         left: 5px;
     }
-
+    div.wrap{margin-bottom: 0px;}
     /*右侧内容显示区*/
     div#content {
-        position: fixed;
+        position: absolute;
         left: 197px;
         right: 0px;
         bottom: 0px;
         top: 0px;
+        padding:0px;
     }
-
+    div#content iframe{
+        position: absolute;
+        bottom: 0px;
+        right:0px;
+    }
     #tree_title {
         position: absolute;
         top: 10px;

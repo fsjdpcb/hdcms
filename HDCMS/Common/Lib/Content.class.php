@@ -86,7 +86,9 @@ class Content
     public function del($aid)
     {
         $ContentModel = ContentModel::getInstance($this->mid);
-        if ($ContentModel->del($aid)) {
+        $map['aid']=array('IN',$aid);
+        $ContentModel->where($map);
+        if ($ContentModel->del($map)) {
             //删除文章tag属性
             M('content_tag')->where(array('cid' => $this->cid))->del();
             //生成栏目静态

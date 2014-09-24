@@ -148,7 +148,7 @@ class ContentInputModel
                 $num = (int)$_POST['auto_thumb_num'] - 1;
                 if (isset($matchData[0][$num])) {
                     $Attachment = new Attachment();
-                    $value = $Attachment->download($matchData[0][$num], array('jpg', 'gif', 'jpeg', 'png'), $this->mid);
+                    $value = $Attachment->download($matchData[0][$num], array('jpg', 'gif', 'jpeg', 'png'),null, $this->mid,$_SESSION['user']['uid']);
                     if ($value) {
                         $value = preg_replace('/src=(\'|")|[\'"]|\s/i', '', $value);
                     }

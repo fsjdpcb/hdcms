@@ -29,6 +29,7 @@ class AppInitHook
             $_SESSION['user']['web_master'] = false; //超级管理员
             $_SESSION['user']['uid'] = 0; //会员uid
             $_SESSION['user']['rid'] = 0; //角色rid
+            $_SESSION['user']['admin'] = 0; //管理员
             $_SESSION['user']['icon'] = __ROOT__ . '/HDCMS/Static/image/user.png'; //头像
         }
     }

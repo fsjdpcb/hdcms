@@ -126,8 +126,8 @@ class IndexController extends Controller
     public function getClick()
     {
         $ContentModel = ContentViewModel::getInstance($this->mid);
-        $ContentModel->inc('click', 'aid=' . $this->aid, 1);
-        $click = $ContentModel->where(array($ContentModel->table . '.aid' => $this->aid))->getField('click');
+        $ContentModel->relation($ContentModel->table)->inc('click', 'aid=' . $this->aid, 1);
+        $click = $ContentModel->relation($ContentModel->table)->where(array('aid' => $this->aid))->getField('click');
         echo "document.write({$click});";
         exit;
     }
