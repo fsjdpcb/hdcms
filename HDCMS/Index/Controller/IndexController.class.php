@@ -78,7 +78,9 @@ class IndexController extends Controller
         if ($_SESSION['user']['rid'] != 1 && $field['content_status'] == 0) {
             $this->error('文章正在审核中');
         }
-        if (C('CACHE_CONTENT') == 0 || !$this->isCache()) {
+        //0与-1为不缓存
+        if(C('CACHE_CONTENT') == 0)C('CACHE_CONTENT',-1);
+        if (C('CACHE_CONTENT') == -1 || !$this->isCache()) {
             $this->assign('hdcms', $field);
             $tplFile = empty($field['template']) ? $this->category[$this->cid]['arc_tpl'] : $field['template'];
             $this->display('Template/' . C('WEB_STYLE') . '/' . $tplFile, C('CACHE_CONTENT'));
@@ -121,6 +123,8 @@ class IndexController extends Controller
     //栏目列表
     public function category()
     {
+        //0与-1为不缓存
+        if(C('CACHE_CATEGORY') == 0) C('CACHE_CATEGORY',-1);
         if (C('CACHE_CATEGORY') == 0 || !$this->isCache()) {
             $category = $this->category[$this->cid];
             //外部链接，直接跳转
