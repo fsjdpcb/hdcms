@@ -1,7 +1,7 @@
 <?php if (!defined('HDPHP_PATH')) exit; 
 return array (
   'WEBNAME' => 'HDCMS内容管理系统',
-  'CREATE_INDEX_HTML' => '0',
+  'CREATE_INDEX_HTML' => '1',
   'MEMBER_OPEN' => '1',
   'EMAIL_FORMMAIL' => 'hdcms@houdunwang.com',
   'HTML_PATH' => 'h',

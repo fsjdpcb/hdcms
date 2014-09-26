@@ -46,6 +46,10 @@ class ContentInputModel
         if (MODULE=='Member') {
             $data['content_status'] = $this->category[$data['cid']]['member_send_status'];
         }
+        //阅读积分处理
+        if(!empty($data['readpoint'])&& !is_numeric($data['readpoint'])){
+            $data['readpoint']='';
+        }
         //文章模型
         $ContentModel = ContentModel::getInstance($this->mid);
         //没有添加内容时初始设置
@@ -126,7 +130,6 @@ class ContentInputModel
         }
         return $data;
     }
-
     //标题字段
     private function title($fieldInfo, $value)
     {

@@ -10,7 +10,6 @@
                 <li><a href="javascript:;" class="action">修改栏目</a></li>
             </ul>
         </div>
-        <input type="hidden" name="mid" value="{$field.mid}"/>
         <div class="tab">
             <ul class="tab_menu">
                 <li lab="base"><a href="#">基本设置</a></li>
@@ -26,14 +25,20 @@
                         <tr>
                             <th class="w100">内容模型</th>
                             <td>
-                                <select name="mid" class="w200">
+                                <select name="mid"  class="w200" <if value="$disabledChangeModel">disabled=""</if>>
                                     <option value=''>模型选择</option>
                                     <list from="$model" name="m">
+                                        <if value="$m.enable">
                                         <option value="{$m.mid}" <if value="$field.mid eq $m.mid">selected=""</if>>
                                             {$m.model_name}
                                         </option>
+                                        </if>
                                     </list>
                                 </select>
+                                <span id="hd_mid"></span>
+                                <if value="$disabledChangeModel">
+                                    <input type="hidden" name="mid" value="{$field.mid}"/>
+                                </if>
                             </td>
                         </tr>
                         <tr>
@@ -339,7 +344,15 @@
                 },
                 error: {
                     required: "请选择模型"
-                }
+                },
+                message:'栏目内容有文章不能更改模型'
+            },
+            pid: {
+                rule: {
+                },
+                error: {
+                },
+                message: '不可以选择当前栏目的子栏目'
             },
             catname: {
                 rule: {

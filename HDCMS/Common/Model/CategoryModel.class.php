@@ -181,7 +181,7 @@ class CategoryModel extends ViewModel
         $db = M("category_access");
         $sql = "SELECT a.cid,r.rid,r.rname,r.admin,a.add,a.del,a.edit,a.content,a.move,a.audit,a.order FROM
 					{$pre}role AS r  LEFT JOIN (SELECT * FROM {$pre}category_access  WHERE cid=$cid) AS a
-               	 	ON r.rid = a.rid";
+               	 	ON r.rid = a.rid WHERE r.rid<>1";
         $accessData = $db->query($sql);
         $categoryAccess = array('admin' => array(), 'user' => array());
         foreach ($accessData as $access) {

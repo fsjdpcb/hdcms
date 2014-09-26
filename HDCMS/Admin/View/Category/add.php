@@ -27,9 +27,11 @@
                                 <select name="mid" class="w200">
                                     <option value=''>模型选择</option>
                                     <list from="$model" name="m">
+                                        <if value="$m.enable">
                                         <option value="{$m.mid}">
                                             {$m.model_name}
                                         </option>
+                                        </if>
                                     </list>
                                 </select>
                             </td>

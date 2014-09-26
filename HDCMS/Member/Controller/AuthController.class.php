@@ -9,7 +9,7 @@ class AuthController extends Controller
 {
     public function __construct()
     {
-        if (!session('user')) {
+        if (!$_SESSION['user']['uid']) {
             go('Login/login');
         }
         parent::__construct();

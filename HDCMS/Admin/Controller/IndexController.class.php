@@ -56,7 +56,7 @@ class IndexController extends AuthController
                 'node' => array('_on' => '__node__.nid=__access__.nid'),
             );
             //获得当前角色权限
-            $MenuData = $nodeModel->where("access.rid={$_SESSION['user']['rid']} OR type=2")->order(array("list_order" => "ASC"))->all();
+            $MenuData = $nodeModel->where("access.rid={$_SESSION['user']['rid']} OR type=2")->order("list_order ASC ")->all();
         }
         //去掉隐藏的菜单
         $showMenuData = array();

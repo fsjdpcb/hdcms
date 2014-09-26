@@ -8,9 +8,6 @@
 class ContentController extends AuthController
 {
     private $category, $model, $cid, $mid;
-    //权限验证的动作
-    private $authAction = array('add', 'edit', 'del', 'content');
-
     public function __init()
     {
         $this->category = S('category');
@@ -27,28 +24,21 @@ class ContentController extends AuthController
                 $this->error('请选择栏目');
             }
         }
-        //验证权限
-        if (!$this->checkAccess()) {
-            $this->error('你没有操作权限');
-        }
     }
 
     //验证操作权限
     public function checkAccess()
     {
-        if ($_SESSION['user']['web_master']) {
-            return true;
-        } else if (!$_SESSION['user']['admin'] && in_array(ACTION, $this->authAction) && $this->cid) {
-            $access = M('category_access')->where(array('admin' => 0, 'cid' => $this->cid))->getField('rid,`add`,`edit`,`del`,`content`');
-            //栏目没有设置管理员权限时，验证通过
-            return !empty($access) && $access[$_SESSION['user']['rid']][ACTION];
+        if (!K("CategoryAccess")->checkAccess($this->cid, $_SESSION['user']['rid'], ACTION)) {
+            $this->error('没有操作权限');
         }
-        return true;
     }
 
     //内容列表
     public function content()
     {
+        //验证权限
+        $this->checkAccess();
         $ContentModel = ContentViewModel::getInstance($this->mid);
         $where[] = "category.mid=" . $this->mid;
         $where[] = 'user.uid=' . $_SESSION['user']['uid'];
@@ -64,6 +54,8 @@ class ContentController extends AuthController
     public function add()
     {
         if (IS_POST) {
+            //验证权限
+            $this->checkAccess();
             $ContentModel = new Content();
             if ($ContentModel->add($_POST)) {
                 $this->success('发表成功！', U('content', array('mid' => $this->mid)));
@@ -84,6 +76,8 @@ class ContentController extends AuthController
     public function edit()
     {
         if (IS_POST) {
+            //验证权限
+            $this->checkAccess();
             $ContentModel = new Content();
             if ($ContentModel->edit()) {
                 $this->success('发表成功！');
@@ -110,6 +104,8 @@ class ContentController extends AuthController
     //删除文章
     public function del()
     {
+        //验证权限
+        $this->checkAccess();
         if ($aid = Q('aid', 0)) {
             $ContentModel = new Content();
             if ($ContentModel->del($aid)) {

@@ -17,7 +17,7 @@ CREATE TABLE `@pre@@table@` (
   `url_type` tinyint(80) NOT NULL DEFAULT '3' COMMENT '文章访问方式  1 静态访问  2 动态访问  3 继承栏目',
   `arc_sort` mediumint(6) NOT NULL DEFAULT '0' COMMENT '排序',
   `content_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '文章状态  1 已审核 0 未审核',
-  `readpoint` smallint(6) DEFAULT NULL COMMENT '阅读收费',
+  `readpoint` char(6) DEFAULT NULL COMMENT '阅读收费',
   `keywords` varchar(100) NOT NULL DEFAULT '' COMMENT '关键字',
   `description` varchar(255) DEFAULT NULL COMMENT '描述',
   PRIMARY KEY (`aid`),

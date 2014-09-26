@@ -11,7 +11,7 @@ class LoginController extends Controller
     public function __init()
     {
         $this->db = K('Login');
-        if (session('user') && ACTION != 'out') {
+        if ($_SESSION['user']['uid'] && ACTION != 'out') {
             go('Index/index');
         }
     }

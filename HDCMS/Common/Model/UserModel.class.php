@@ -27,8 +27,10 @@ class UserModel extends ViewModel
      */
     public function editUser()
     {
-        //修改密码
-        if (isset($_POST['password'])) {
+        //没有添加密码时删除密码数据
+        if (empty($_POST['password']) && isset($_POST['password'])) {
+            unset($_POST['password']);
+        } else {
             $_POST['code'] = $this->getUserCode();
             $_POST['password'] = md5($_POST['password'] . $_POST['code']);
         }

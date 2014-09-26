@@ -208,8 +208,12 @@ class ContentFormModel extends Model
             if (in_array($cat['cattype'], array(3))) continue;
             //会员关闭单文章投稿
             if(MODULE=='Member' && $cat['cattype']==4)continue;
-            $disabled = in_array($cat['cattype'], array(1, 4)) && $cat['mid'] == $this->mid ? '' : 'disabled=""';
-            $selected = in_array($cat['cattype'], array(1, 4)) && $cat['mid'] == $this->mid && isset($_REQUEST['cid']) && $_REQUEST['cid'] == $cat['cid'] ? 'selected=""' : '';
+            //非本模型栏目不显示
+            if($this->mid !=$cat['mid'])continue;
+            //普通栏目与单文章栏目可以发表
+            $disabled = in_array($cat['cattype'], array(1, 4))? '' : 'disabled=""';
+            //当前栏目默认选中
+            $selected = isset($_REQUEST['cid']) && $_REQUEST['cid'] == $cat['cid'] ? 'selected=""' : '';
             $html .= "<option value='{$cat['cid']}' $disabled $selected>{$cat['_name']}</option>";
         }
         $html .= "</select>";

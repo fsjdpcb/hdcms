@@ -1,6 +1,7 @@
 <dl>
     <dt>文章管理</dt>
     <?php foreach(S('model') as $m):?>
+        <?php if($m['enable']==0 ||$m['contribute']==0)continue;?>
     <dd><a href="{|U:'Content/content',array('mid'=>$m['mid'])}" <if value="$hd.get.mid eq $m.mid">class="cur"</if>>{$m.model_name}</a></dd>
     <?php endforeach;?>
 <!--    <dd><a href="{|U:'Content/add'}" <if value="ACTION eq 'add'">class="cur"</if>>发表文章</a></dd>-->

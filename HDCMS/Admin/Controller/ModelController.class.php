@@ -84,7 +84,7 @@ class ModelController extends AuthController
         $Model = M('model');
         if ($this->mid) {
             //编辑时验证模型名
-            if (!$Model->find(array("model_name" => $_POST['model_name'], "mid" => array("neq" => $this->mid)))) {
+            if (!$Model->find(array("model_name" => $_POST['model_name'], "mid" => array("NEQ",$this->mid)))) {
                 $this->ajax(1);
             }
         } else {

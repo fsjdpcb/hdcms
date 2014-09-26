@@ -50,9 +50,7 @@
                     <script type="text/javascript">
                         $('form').validate({$formValidate});
                     </script>
-
                 </div>
-
             </div>
         </div>
     </div>

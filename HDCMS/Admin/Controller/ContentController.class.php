@@ -15,37 +15,28 @@ class ContentController extends AuthController
     {
         $this->category = S('category');
         $this->model = S('model');
-        $this->cid = Q('cid', null, 'intval');
+        $this->cid = Q('cid', 0, 'intval');
         $this->mid = Q('mid', 0, 'intval');
         //验证模型mid
-        if ($this->mid) {
-            if (!$this->mid || !isset($this->model[$this->mid])) {
-                $this->error('模型不存在');
-            }
+        if ($this->mid && !isset($this->model[$this->mid])) {
+            $this->error('模型不存在');
         }
         //验证栏目cid
-        if (!is_null($this->cid)) {
-            if (!isset($this->category[$this->cid])) {
-                $this->error('栏目不存在');
-            }
+        if ($this->cid && !isset($this->category[$this->cid])) {
+            $this->error('栏目不存在');
         }
         //验证权限
-        if (!$this->checkAccess()) {
-            $this->error('你没有操作权限');
-        }
+        $this->checkAccess();
     }
 
     //验证操作权限
     public function checkAccess()
     {
-        if ($_SESSION['user']['rid']==1) {//超管不限
-            return true;
-        } else if (in_array(ACTION, $this->authAction)) {
-            $access = M('category_access')->where(array('admin' => 1, 'cid' => $this->cid))->getField('rid,`add`,`edit`,`del`,`content`,`order`,`audit`,`move`');
-            //栏目没有设置管理员权限时，验证通过
-            return $access && isset($access[$_SESSION['user']['rid']]) && $access[$_SESSION['user']['rid']][ACTION];
+        if (in_array(ACTION, $this->authAction)) {
+            if (!K("CategoryAccess")->checkAccess($this->cid, $_SESSION['user']['rid'], ACTION)) {
+                $this->error('没有操作权限');
+            }
         }
-        return true;
     }
 
     //内容栏目选择页
@@ -68,9 +59,9 @@ class ContentController extends AuthController
                         $ContentModel = ContentModel::getInstance($cat['mid']);
                         $content = $ContentModel->where(array('cid' => $cat['cid']))->limit(1)->find();
                         if ($content) {
-                            $link =U('edit', array('mid' =>$cat['mid'], 'cid' => $cat['cid'], 'aid' => $content['aid']));
+                            $link = U('edit', array('mid' => $cat['mid'], 'cid' => $cat['cid'], 'aid' => $content['aid']));
                         } else {
-                            $link =U('add', array('mid' => $cat['mid'], 'cid' => $cat['cid']));
+                            $link = U('add', array('mid' => $cat['mid'], 'cid' => $cat['cid']));
                         }
                         $url = "javascript:hd_open_window(\"$link\")";
                     } else if ($cat['cattype'] == 1) {
@@ -90,6 +81,7 @@ class ContentController extends AuthController
         }
         $this->ajax($category);
     }
+
     //内容列表
     public function show()
     {
@@ -147,7 +139,7 @@ class ContentController extends AuthController
     {
         if (IS_POST) {
             $ContentModel = new Content();
-            if ($ContentModel->add($_POST)) {
+            if ($ContentModel->add()) {
                 $this->success('发表成功！');
             } else {
                 $this->error($ContentModel->error);

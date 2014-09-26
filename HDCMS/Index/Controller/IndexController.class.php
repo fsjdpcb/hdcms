@@ -53,24 +53,7 @@ class IndexController extends Controller
     //网站首页
     public function index()
     {
-        $this->display('Template/' . C('WEB_STYLE') . '/index.html', C('INDEX_CACHE_TIME'));
-    }
-
-    //验证内容阅读权限
-    private function checkAccess()
-    {
-        //站长与超级管理员不验证
-        if ($_SESSION['user']['web_master'] || $_SESSION['user']['rid'] == 1) {
-            return true;
-        } else {
-            $access = M("category_access")->where(array('cid' => $this->cid, 'admin' => 0))->getField('rid,content');
-            //栏目存在权限时验证
-            if ($access) {
-                return issset($access[$_SESSION['user']['rid']]) && $access[$_SESSION['user']['rid']]['content'];
-            } else {
-                return true;
-            }
-        }
+        $this->display('Template/' . C('WEB_STYLE') . '/index.html', C('CACHE_INDEX'));
     }
 
     //内容页
@@ -80,31 +63,65 @@ class IndexController extends Controller
         //参数错误
         $aid or $this->_404();
         //验证阅读权限
-        if (!$this->checkAccess()) {
+        if (!K("CategoryAccess")->checkAccess($this->cid, $_SESSION['user']['rid'], 'content')) {
             $this->error('没有访问权限');
         }
+        //读取文章
         $ContentModel = ContentViewModel::getInstance($this->mid);
         $field = $ContentModel->getOne($aid);
+        if (!$field) {
+            $this->error('文章不存在');
+        }
+        //扣除阅读金币
+        $this->deductPoints($field);
         //文章没审核时超管不限
         if ($_SESSION['user']['rid'] != 1 && $field['content_status'] == 0) {
             $this->error('文章正在审核中');
         }
-        if (!$this->isCache()) {
-            if ($field) {
-                $this->assign('hdcms', $field);
-                $tplFile = empty($field['template']) ? $this->category[$this->cid]['arc_tpl'] : $field['template'];
-                $this->display('Template/' . C('WEB_STYLE') . '/' . $tplFile, C('CONTENT_CACHE_TIME'));
-                EXIT;
-            }
+        if (C('CACHE_CONTENT') == 0 || !$this->isCache()) {
+            $this->assign('hdcms', $field);
+            $tplFile = empty($field['template']) ? $this->category[$this->cid]['arc_tpl'] : $field['template'];
+            $this->display('Template/' . C('WEB_STYLE') . '/' . $tplFile, C('CACHE_CONTENT'));
         } else {
-            $this->display(null, C('CONTENT_CACHE_TIME'));
+            $this->display(null, C('CACHE_CONTENT'));
         }
+    }
+
+    /**
+     * 扣除阅读积分
+     * @param $field 文章数据
+     */
+    private function deductPoints($field)
+    {
+        $readPoint = $field['readpoint'] == '' ? intval($field['show_credits']) : intval($field['readpoint']);
+        //需要阅读积分
+        if ($readPoint > 0) {
+            //验证会员登录状态
+            if ($_SESSION['user']['uid'] == 0) {
+                $this->error('请登录后操作', 'Member/Login/login');
+            } else if ($_SESSION['user']['credits'] < $readPoint) {
+                //积分不足
+                $this->error('积分不足');
+            } else {
+                //没到扣除时间，不扣除
+                $map['cid'] = array('EQ', $this->cid);
+                $map['aid'] = array('EQ', $this->aid);
+                $map['rectime'] = array('GT', time() - $field['repeat_charge_day'] * 3600 * 24);
+                if (!M('user_credits')->where($map)->find()) {
+                    //扣除阅读积分
+                    $_SESSION['user']['credits'] -= $readPoint;
+                    //积分表记录
+                    M('user_credits')->add(array('uid' => $_SESSION['user']['uid'],'rectime'=>time(), 'mid' => $this->mid, 'cid' => $this->cid, 'aid' => $this->aid, 'title' => $field['title']));
+                }
+            }
+        }
+
     }
 
     //栏目列表
     public function category()
     {
-        if (!$this->isCache()) {
+        if (C('CACHE_CATEGORY') == 0 || !$this->isCache()) {
             $category = $this->category[$this->cid];
             //外部链接，直接跳转
             if ($category['cattype'] == 3) {
@@ -115,10 +132,10 @@ class IndexController extends Controller
                 $category['content_num'] = $Model->where("category.cid IN(" . implode(',', $catid) . ")")->count();
                 $this->assign("hdcms", $category);
                 $tplFile = $category['cattype'] == 2 ? $category['index_tpl'] : $category['list_tpl'];
-                $this->display('Template/' . C('WEB_STYLE') . '/' . $tplFile, C('CATEGORY_CACHE_TIME'));
+                $this->display('Template/' . C('WEB_STYLE') . '/' . $tplFile, C('CACHE_CATEGORY'));
             }
         } else {
-            $this->display(null, C('CATEGORY_CACHE_TIME'));
+            $this->display(null, C('CACHE_CATEGORY'));
         }
     }
 

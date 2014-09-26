@@ -26,8 +26,29 @@
                         <textarea name="description" class="w300 h100">{$field.description}</textarea>
                     </td>
                 </tr>
+                <tr>
+                    <th>模型状态</th>
+                    <td>
+                        <label>
+                            <input type="radio" name="enable" value="1" <if value="$field.enable eq 1">checked=""</if>/> 开启模型
+                        </label>
+                        <label>
+                            <input type="radio" name="enable" value="0" <if value="$field.enable eq 0">checked=""</if>/> 关闭模型
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <th>允许投稿</th>
+                    <td>
+                        <label>
+                            <input type="radio" name="contribute" value="1" <if value="$field.contribute eq 1">checked=""</if>/> 允许投稿
+                        </label>
+                        <label>
+                            <input type="radio" name="contribute" value="0" <if value="$field.contribute eq 0">checked=""</if>/> 禁止投稿
+                        </label>
+                    </td>
+                </tr>
             </table>
-
         </div>
     </div>
     <div class="position-bottom">

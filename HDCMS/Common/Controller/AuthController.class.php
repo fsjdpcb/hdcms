@@ -31,10 +31,10 @@ class AuthController extends Controller
             go("Login/login");
         }
         //超级管理员不限制
-        if ($_SESSION['user']['web_master']) return true;
+        if ($_SESSION['user']['rid']==1) return true;
         //普通管理员权限控制
         $nodeModel = M("node");
-        $nodeModel->where = array("MODULE" => MODULE, "control" => CONTROLLER, "action" => ACTION, 'type' => 1);
+        $nodeModel->where = array("MODULE" => MODULE, "controller" => CONTROLLER, "action" => ACTION, 'type' => 1);
         $node = $nodeModel->field("nid")->find();
         //node不存在的节点自动通过验证
         if (is_null($node)) {
