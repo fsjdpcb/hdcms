@@ -53,6 +53,7 @@ class IndexController extends Controller
     //网站首页
     public function index()
     {
+        if(C('CACHE_INDEX') == 0) C('CACHE_INDEX',-1);
         $this->display('Template/' . C('WEB_STYLE') . '/index.html', C('CACHE_INDEX'));
     }
 
