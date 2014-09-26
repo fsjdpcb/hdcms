@@ -6,7 +6,7 @@ $db->exe("REPLACE INTO ".$db_prefix."hooks (`id`,`name`,`description`,`type`,`up
 $db->exe("REPLACE INTO ".$db_prefix."hooks (`id`,`name`,`description`,`type`,`update_time`,`addons`)
 						VALUES('19','APP_BEGIN','应用开始','1','0','')");
 $db->exe("REPLACE INTO ".$db_prefix."hooks (`id`,`name`,`description`,`type`,`update_time`,`addons`)
-						VALUES('20','conent_edit_begin','内容编辑前','1','0','')");
+						VALUES('20','content_edit_begin','内容编辑前','1','0','')");
 $db->exe("REPLACE INTO ".$db_prefix."hooks (`id`,`name`,`description`,`type`,`update_time`,`addons`)
 						VALUES('21','content_edit_end','内容编辑后','1','0','')");
 $db->exe("REPLACE INTO ".$db_prefix."hooks (`id`,`name`,`description`,`type`,`update_time`,`addons`)

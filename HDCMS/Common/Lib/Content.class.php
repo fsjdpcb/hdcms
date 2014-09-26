@@ -55,7 +55,7 @@ class Content
     //修改文章
     public function edit()
     {
-        Hook::listen('conent_edit_begin');
+        Hook::listen('content_edit_begin');
         $ContentModel = ContentModel::getInstance($this->mid);
         $ContentInputModel = new ContentInputModel($this->mid);
         $data = $ContentInputModel->get();;

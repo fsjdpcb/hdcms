@@ -35,7 +35,7 @@ $db->exe("CREATE TABLE `".$db_prefix."addon_link` (
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态 ',
   `list_order` int(11) NOT NULL DEFAULT '100' COMMENT '排序 ',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='友情链接'");
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='友情链接'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."addon_navigation`");
 $db->exe("CREATE TABLE `".$db_prefix."addon_navigation` (
   `nid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -89,7 +89,7 @@ $db->exe("CREATE TABLE `".$db_prefix."category` (
   `allow_user_set_credits` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否允许会员投稿设置积分 1 允许 0 不允许',
   `member_send_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '会员投稿状态 1 审核 2 未审核',
   PRIMARY KEY (`cid`)
-) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='栏目表'");
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COMMENT='栏目表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."category_access`");
 $db->exe("CREATE TABLE `".$db_prefix."category_access` (
   `rid` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '角色id',
@@ -138,19 +138,19 @@ $db->exe("CREATE TABLE `".$db_prefix."content` (
   `url_type` tinyint(80) NOT NULL DEFAULT '3' COMMENT '文章访问方式  1 静态访问  2 动态访问  3 继承栏目',
   `arc_sort` mediumint(6) NOT NULL DEFAULT '0' COMMENT '排序',
   `content_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '文章状态  1 已审核 0 未审核',
-  `readpoint` smallint(6) DEFAULT NULL COMMENT '阅读收费',
-  `keywords` varchar(100) NOT NULL DEFAULT '' COMMENT '关键字',
+  `readpoint` char(6) DEFAULT NULL COMMENT '阅读收费',
+  `keywords` varchar(100) DEFAULT '' COMMENT '关键字',
   `description` varchar(255) DEFAULT NULL COMMENT '描述',
   PRIMARY KEY (`aid`),
   KEY `uid` (`uid`),
   KEY `cid` (`cid`),
   KEY `flag` (`flag`),
   KEY `content_status` (`content_status`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='文章表'");
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='文章表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."content_data`");
 $db->exe("CREATE TABLE `".$db_prefix."content_data` (
   `aid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '文章主表ID',
-  `content` text COMMENT '内容',
+  `content` mediumtext COMMENT '内容',
   KEY `aid` (`aid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='文章正文表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."content_tag`");
@@ -180,7 +180,7 @@ $db->exe("CREATE TABLE `".$db_prefix."download` (
   `url_type` tinyint(80) NOT NULL DEFAULT '3' COMMENT '文章访问方式  1 静态访问  2 动态访问  3 继承栏目',
   `arc_sort` mediumint(6) NOT NULL DEFAULT '0' COMMENT '排序',
   `content_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '文章状态  1 已审核 0 未审核',
-  `readpoint` smallint(6) DEFAULT NULL COMMENT '阅读收费',
+  `readpoint` char(6) DEFAULT NULL COMMENT '阅读收费',
   `keywords` varchar(100) NOT NULL DEFAULT '' COMMENT '关键字',
   `description` varchar(255) DEFAULT NULL COMMENT '描述',
   `files` mediumtext,
@@ -193,7 +193,7 @@ $db->exe("CREATE TABLE `".$db_prefix."download` (
   KEY `cid` (`cid`),
   KEY `flag` (`flag`),
   KEY `content_status` (`content_status`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='文章表'");
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='文章表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."download_data`");
 $db->exe("CREATE TABLE `".$db_prefix."download_data` (
   `aid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '文章主表ID',
@@ -237,7 +237,7 @@ $db->exe("CREATE TABLE `".$db_prefix."field` (
   `isadd` tinyint(1) NOT NULL DEFAULT '1' COMMENT '在前台投稿中显示',
   PRIMARY KEY (`fid`),
   KEY `mid` (`mid`)
-) ENGINE=MyISAM AUTO_INCREMENT=173 DEFAULT CHARSET=utf8 COMMENT='模型字段'");
+) ENGINE=MyISAM AUTO_INCREMENT=174 DEFAULT CHARSET=utf8 COMMENT='模型字段'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."hooks`");
 $db->exe("CREATE TABLE `".$db_prefix."hooks` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -264,6 +264,7 @@ $db->exe("CREATE TABLE `".$db_prefix."model` (
   `enable` tinyint(1) NOT NULL DEFAULT '1' COMMENT '禁用 1 开启 0 关闭',
   `description` varchar(255) NOT NULL DEFAULT '' COMMENT '模型描述',
   `is_system` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '1 系统模型  2 普通模型',
+  `contribute` tinyint(1) NOT NULL DEFAULT '1' COMMENT '前台投稿',
   PRIMARY KEY (`mid`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='模型表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."node`");
@@ -304,7 +305,7 @@ $db->exe("CREATE TABLE `".$db_prefix."picture` (
   `url_type` tinyint(80) NOT NULL DEFAULT '3' COMMENT '文章访问方式  1 静态访问  2 动态访问  3 继承栏目',
   `arc_sort` mediumint(6) NOT NULL DEFAULT '0' COMMENT '排序',
   `content_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '文章状态  1 已审核 0 未审核',
-  `readpoint` smallint(6) DEFAULT NULL COMMENT '阅读收费',
+  `readpoint` char(6) DEFAULT NULL COMMENT '阅读收费',
   `keywords` varchar(100) NOT NULL DEFAULT '' COMMENT '关键字',
   `description` varchar(255) DEFAULT NULL COMMENT '描述',
   `pics` mediumtext,
@@ -367,7 +368,7 @@ $db->exe("CREATE TABLE `".$db_prefix."upload` (
   PRIMARY KEY (`id`),
   KEY `basename` (`basename`),
   KEY `id` (`id`) USING BTREE
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='上传文件'");
+) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=utf8 COMMENT='上传文件'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."user`");
 $db->exe("CREATE TABLE `".$db_prefix."user` (
   `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -394,7 +395,18 @@ $db->exe("CREATE TABLE `".$db_prefix."user` (
   UNIQUE KEY `email` (`email`),
   KEY `password` (`password`),
   KEY `credits` (`credits`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='会员表'");
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='会员表'");
+$db->exe("DROP TABLE IF EXISTS `".$db_prefix."user_credits`");
+$db->exe("CREATE TABLE `".$db_prefix."user_credits` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `cid` smallint(5) unsigned DEFAULT NULL,
+  `aid` int(10) unsigned DEFAULT NULL,
+  `mid` smallint(5) unsigned DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL COMMENT '文章标题',
+  `uid` int(10) unsigned DEFAULT NULL,
+  `rectime` int(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='会员积分日志表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."user_guest`");
 $db->exe("CREATE TABLE `".$db_prefix."user_guest` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,

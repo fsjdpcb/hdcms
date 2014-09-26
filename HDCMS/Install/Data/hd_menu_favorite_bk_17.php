@@ -4,6 +4,6 @@ $db->exe("REPLACE INTO ".$db_prefix."menu_favorite (`uid`,`nid`)
 $db->exe("REPLACE INTO ".$db_prefix."menu_favorite (`uid`,`nid`)
 						VALUES('1','16')");
 $db->exe("REPLACE INTO ".$db_prefix."menu_favorite (`uid`,`nid`)
-						VALUES('1','8')");
-$db->exe("REPLACE INTO ".$db_prefix."menu_favorite (`uid`,`nid`)
 						VALUES('1','12')");
+$db->exe("REPLACE INTO ".$db_prefix."menu_favorite (`uid`,`nid`)
+						VALUES('1','8')");
