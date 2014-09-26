@@ -36,7 +36,7 @@
         <h1>更新日志</h1>
     <?php
         if(!$log=S('hdcmsLog')){
-            $log = file_get_contents('README.MD');
+            $log = file_get_contents('README.md');
             $log=explode('# 更新日志 #',$log);
             $log=trim(str_replace('# 更新日志 #','',$log[1]));
             $log=preg_replace('@###\s*@','',$log);
