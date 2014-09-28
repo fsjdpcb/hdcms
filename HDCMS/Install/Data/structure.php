@@ -115,8 +115,7 @@ $db->exe("CREATE TABLE `".$db_prefix."config` (
   `message` varchar(255) DEFAULT NULL COMMENT '提示',
   `order_list` smallint(6) unsigned DEFAULT '100' COMMENT '排序',
   `status` tinyint(4) DEFAULT '1' COMMENT '总配置模块显示  如模板风格就不显示 1显示 0 不显示',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`)
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=75 DEFAULT CHARSET=utf8 COMMENT='系统配置'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."content`");
 $db->exe("CREATE TABLE `".$db_prefix."content` (

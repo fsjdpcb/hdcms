@@ -121,8 +121,8 @@ str;
             }
             //================================= 更新基本数据如网站名称===============================
             $db = M("config");
-            $db->where(array('name' => array('EQ', 'WEBNAME')))->save(array('name' => $_POST['WEBNAME']));
-            $db->where(array('name' => array('EQ', 'EMAIL')))->save(array('name' => $_POST['EMAIL']));
+            $db->where(array('name' => array('EQ', 'WEBNAME')))->save(array('value' => $_POST['WEBNAME']));
+            $db->where(array('name' => array('EQ', 'EMAIL')))->save(array('value' => $_POST['EMAIL']));
             //站长信息
             $db = M('user');
             $code = substr(md5(mt_rand() . time()), 0, 10);

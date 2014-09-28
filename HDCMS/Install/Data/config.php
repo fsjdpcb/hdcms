@@ -222,7 +222,7 @@ return array (
   ),
   'hd_session' => 
   array (
-    'row' => '2',
+    'row' => '3',
     'success' => true,
     'current_row' => 40,
     'size' => 200000,
