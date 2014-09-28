@@ -36,8 +36,9 @@ class ContentInputModel
     public function get()
     {
         $data = $_POST;
-        //作者uid
-        $data['uid'] = $_SESSION['user']['uid'];
+        //添加文章时设置 作者uid
+        if (!isset($data['aid']))
+            $data['uid'] = $_SESSION['user']['uid'];
         //添加时间
         $data['addtime'] = empty($data['addtime']) ? date("Y/m/d H:i:s") : $data['addtime'];
         //修改时间
