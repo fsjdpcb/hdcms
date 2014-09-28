@@ -38,8 +38,6 @@ class ContentController extends AuthController
     //内容列表
     public function content()
     {
-        //验证权限
-        $this->checkAccess();
         $ContentModel = ContentViewModel::getInstance($this->mid);
         $where[] = "category.mid=" . $this->mid;
         $where[] = 'user.uid=' . $_SESSION['user']['uid'];
