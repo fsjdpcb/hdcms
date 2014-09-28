@@ -81,8 +81,8 @@ class ContentInputModel
                 }
             }
             //封面栏目与链接不允许发表
-            if (!isset($data['cid']) || in_array($this->category[$data['cid']]['cattype'], array(1, 4))) {
-                $this->error = '栏目错误';
+            if (!isset($data['cid']) || !in_array($this->category[$data['cid']]['cattype'], array(1, 4))) {
+                $this->error = '栏目选择错误';
                 return false;
             }
             //如果字段设置唯一性验证时执行验证操作
