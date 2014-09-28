@@ -8,6 +8,7 @@
 class ContentController extends AuthController
 {
     private $category, $model, $cid, $mid;
+
     public function __init()
     {
         $this->category = S('category');

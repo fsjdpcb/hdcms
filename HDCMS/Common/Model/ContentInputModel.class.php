@@ -43,12 +43,12 @@ class ContentInputModel
         //修改时间
         $data['updatetime'] = time();
         //前台会员设置文章状态
-        if (MODULE=='Member') {
+        if (MODULE == 'Member') {
             $data['content_status'] = $this->category[$data['cid']]['member_send_status'];
         }
         //阅读积分处理
-        if(!empty($data['readpoint'])&& !is_numeric($data['readpoint'])){
-            $data['readpoint']='';
+        if (!empty($data['readpoint']) && !is_numeric($data['readpoint'])) {
+            $data['readpoint'] = '';
         }
         //文章模型
         $ContentModel = ContentModel::getInstance($this->mid);
@@ -79,6 +79,11 @@ class ContentInputModel
                 } else { //副表
                     $data[$fieldInfo['table_name']][$field] = $Value;
                 }
+            }
+            //封面栏目与链接不允许发表
+            if (!isset($data['cid']) || in_array($this->category[$data['cid']]['cattype'], array(1, 4))) {
+                $this->error = '栏目错误';
+                return false;
             }
             //如果字段设置唯一性验证时执行验证操作
             if ((int)$fieldInfo['isunique'] == 1) {
@@ -130,6 +135,7 @@ class ContentInputModel
         }
         return $data;
     }
+
     //标题字段
     private function title($fieldInfo, $value)
     {
@@ -151,7 +157,7 @@ class ContentInputModel
                 $num = (int)$_POST['auto_thumb_num'] - 1;
                 if (isset($matchData[0][$num])) {
                     $Attachment = new Attachment();
-                    $value = $Attachment->download($matchData[0][$num], array('jpg', 'gif', 'jpeg', 'png'),null, $this->mid,$_SESSION['user']['uid']);
+                    $value = $Attachment->download($matchData[0][$num], array('jpg', 'gif', 'jpeg', 'png'), null, $this->mid, $_SESSION['user']['uid']);
                     if ($value) {
                         $value = preg_replace('/src=(\'|")|[\'"]|\s/i', '', $value);
                     }

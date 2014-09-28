@@ -9,12 +9,15 @@ class CategoryAccessModel extends Model
 {
     //操作表
     public $table = 'category_access';
+    //栏目缓存
+    private $category;
     //栏目权限缓存
     private $categoryAccess;
 
     //构造函数
     public function __init()
     {
+        $this->category = S('category');
         $this->categoryAccess = S('categoryAccess');
     }
 
@@ -27,15 +30,21 @@ class CategoryAccessModel extends Model
      */
     public function checkAccess($cid, $rid, $action)
     {
-        //站长与超级管理员不验证
-        if ($rid == 1) {
+        //封面栏目与外链接栏目不允许发表
+        if (!isset($this->category[$cid])) {
+            $this->error = '栏目不存在';
+            return false;
+        } else if ($rid == 1) { //超级管理员不限
             return true;
         } else {
             $access = $this->getCategoryAccess($cid);
             if (empty($access)) {
                 return true;
+            } else if (isset($access[$rid]) && $access[$rid][$action]) {
+                return true;
             } else {
-                return isset($access[$rid]) && $access[$rid][$action];
+                $this->error = '没有操作权限';
+                return false;
             }
         }
     }
