@@ -218,8 +218,8 @@
                                 投稿不需要审核
                             </th>
                             <td>
-                                <label><input type="radio" name="member_send_state" value="1" <if value="$field.member_send_state eq 1">checked=""</if>/> 是 </label>
-                                <label><input type="radio" name="member_send_state" value="0" <if value="$field.member_send_state eq 0">checked=""</if>/> 否 </label>
+                                <label><input type="radio" name="member_send_status" value="1" <if value="$field.member_send_status eq 1">checked=""</if>/> 是 </label>
+                                <label><input type="radio" name="member_send_status" value="0" <if value="$field.member_send_status eq 0">checked=""</if>/> 否 </label>
                             </td>
                         </tr>
                     </table>

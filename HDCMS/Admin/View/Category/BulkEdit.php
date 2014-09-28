@@ -100,6 +100,23 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <th>投稿不需要审核</th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>
+                                            <input type="radio" name="cat[{$field.cid}][member_send_status]" value="1"
+                                            <if value="$field.member_send_status==1">checked="checked"</if>
+                                            /> 是
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="cat[{$field.cid}][member_send_status]" value="0"
+                                            <if value="$field.member_send_status==0">checked="checked"</if>
+                                            /> 否
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th class="w100">封面模板</th>
                                 </tr>
                                 <tr>

@@ -200,18 +200,31 @@ class ContentFormModel extends Model
     //栏目cid
     private function cid($field, $value)
     {
-        $category = S('category');
+        //栏目权限模型
+        $categoryAccessModel = K('CategoryAccess');
+        $categoryData = M('category')->all();
+        //验证栏目权限
+        $category = array();
+        foreach ($categoryData as $c) {
+            //单文章与普通栏目需要验证权限
+            $action = isset($_GET['aid']) ? 'edit' : 'add';
+            if ($categoryAccessModel->checkAccess($c['cid'], $_SESSION['user']['rid'], $action)) {
+               $category[$c['cid']]=$c;
+            }
+        }
+//        p($category);exit;
+        $category =Data::tree($category,'catname');
         $html = "<select name='cid'>";
         $html .= "<option value='0'>==选择栏目==</option>";
         foreach ($category as $cat) {
             //外部链接关闭投稿
             if (in_array($cat['cattype'], array(3))) continue;
             //会员关闭单文章投稿
-            if(MODULE=='Member' && $cat['cattype']==4)continue;
+            if (MODULE == 'Member' && $cat['cattype'] == 4) continue;
             //非本模型栏目不显示
-            if($this->mid !=$cat['mid'])continue;
-            //普通栏目与单文章栏目可以发表
-            $disabled = in_array($cat['cattype'], array(1, 4))? '' : 'disabled=""';
+            if ($this->mid != $cat['mid']) continue;
+            //除单文章与普通栏目外不可以发表
+            $disabled = in_array($cat['cattype'], array(1, 4)) ? '' : ' disabled="" ';
             //当前栏目默认选中
             $selected = isset($_REQUEST['cid']) && $_REQUEST['cid'] == $cat['cid'] ? 'selected=""' : '';
             $html .= "<option value='{$cat['cid']}' $disabled $selected>{$cat['_name']}</option>";
