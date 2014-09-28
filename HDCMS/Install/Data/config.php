@@ -222,9 +222,9 @@ return array (
   ),
   'hd_session' => 
   array (
-    'row' => '22',
+    'row' => '1',
     'success' => true,
-    'current_row' => 60,
+    'current_row' => 40,
     'size' => 200000,
     'url' => '',
     'step_time' => 200,
