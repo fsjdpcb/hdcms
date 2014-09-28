@@ -17,7 +17,7 @@ class TemplateStyleController extends AuthController
             if (!$config = Xml::toArray(file_get_contents($xml))) continue;
             $tpl['name'] = isset($config['name']) ? $config['name'][0] : ''; //模型名
             $tpl['author'] = isset($config['author']) ? $config['author'][0] : ''; //作者
-            $tpl['image'] = isset($config['image']) ? __ROOT__.'/template/'.$tpl['filename'].'/'.$config['image'][0] : __CONTROLLER_TPL__ . '/img/preview.jpg'; //预览图
+            $tpl['image'] = isset($config['image']) ? __ROOT__.'/Template/'.$tpl['filename'].'/'.$config['image'][0] : __CONTROLLER_TPL__ . '/img/preview.jpg'; //预览图
             $tpl['email'] = isset($config['email']) ? $config['email'][0] : ''; //邮箱
             $tpl['current'] = C("WEB_STYLE") == $tpl['filename'] ? 1 : 0; //正在使用的模板
             $style[] = $tpl;
