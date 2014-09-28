@@ -10,7 +10,7 @@ class TemplateStyleController extends AuthController
     public function styleList()
     {
         $style = array();
-        $dirs = Dir::tree('template');
+        $dirs = Dir::tree('Template');
         foreach ($dirs as $tpl) {
             $xml = $tpl['path'] . '/config.xml';
             if (!is_file($xml)) continue;

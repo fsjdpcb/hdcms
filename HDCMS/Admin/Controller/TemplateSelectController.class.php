@@ -10,7 +10,7 @@ class TemplateSelectController extends AuthController
 	//获得模板列表
 	public function getFileList(){
         //风格目录
-		$stylePath = ROOT_PATH . 'template/' . C("WEB_STYLE").'/';
+		$stylePath = ROOT_PATH . 'Template/' . C("WEB_STYLE").'/';
         $path = Q("request.path", '',"urldecode");
 		if($path){
 			$history = __ACTION__.'&path='.urlencode(dirname($path));
