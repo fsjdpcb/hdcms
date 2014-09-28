@@ -35,7 +35,7 @@ $db->exe("CREATE TABLE `".$db_prefix."addon_link` (
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态 ',
   `list_order` int(11) NOT NULL DEFAULT '100' COMMENT '排序 ',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='友情链接'");
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='友情链接'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."addon_navigation`");
 $db->exe("CREATE TABLE `".$db_prefix."addon_navigation` (
   `nid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -208,7 +208,7 @@ $db->exe("CREATE TABLE `".$db_prefix."favorite` (
   `aid` int(10) unsigned DEFAULT NULL,
   `title` char(200) DEFAULT NULL,
   PRIMARY KEY (`fid`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='会员文章收藏夹'");
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='会员文章收藏夹'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."field`");
 $db->exe("CREATE TABLE `".$db_prefix."field` (
   `fid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
@@ -367,7 +367,7 @@ $db->exe("CREATE TABLE `".$db_prefix."upload` (
   PRIMARY KEY (`id`),
   KEY `basename` (`basename`),
   KEY `id` (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=utf8 COMMENT='上传文件'");
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='上传文件'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."user`");
 $db->exe("CREATE TABLE `".$db_prefix."user` (
   `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -394,7 +394,7 @@ $db->exe("CREATE TABLE `".$db_prefix."user` (
   UNIQUE KEY `email` (`email`),
   KEY `password` (`password`),
   KEY `credits` (`credits`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='会员表'");
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='会员表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."user_credits`");
 $db->exe("CREATE TABLE `".$db_prefix."user_credits` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -405,7 +405,7 @@ $db->exe("CREATE TABLE `".$db_prefix."user_credits` (
   `uid` int(10) unsigned DEFAULT NULL,
   `rectime` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='会员积分日志表'");
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='会员积分日志表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."user_guest`");
 $db->exe("CREATE TABLE `".$db_prefix."user_guest` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
