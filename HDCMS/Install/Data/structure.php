@@ -145,7 +145,7 @@ $db->exe("CREATE TABLE `".$db_prefix."content` (
   KEY `cid` (`cid`),
   KEY `flag` (`flag`),
   KEY `content_status` (`content_status`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='文章表'");
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='文章表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."content_data`");
 $db->exe("CREATE TABLE `".$db_prefix."content_data` (
   `aid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '文章主表ID',
@@ -391,10 +391,8 @@ $db->exe("CREATE TABLE `".$db_prefix."user` (
   `icon` varchar(255) NOT NULL DEFAULT '' COMMENT '头像',
   PRIMARY KEY (`uid`),
   UNIQUE KEY `username` (`username`),
-  UNIQUE KEY `email` (`email`),
-  KEY `password` (`password`),
-  KEY `credits` (`credits`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='会员表'");
+  UNIQUE KEY `email` (`email`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='会员表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."user_credits`");
 $db->exe("CREATE TABLE `".$db_prefix."user_credits` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
