@@ -101,7 +101,7 @@ class IndexController extends Controller
         if ($readPoint > 0) {
             //验证会员登录状态
             if ($_SESSION['user']['uid'] == 0) {
-                $this->error('请登录后操作', 'Member/Login/login');
+                $this->error('请登录后查看', 'Member/Login/login');
             } else if ($_SESSION['user']['credits'] < $readPoint) {
                 //积分不足
                 $this->error('积分不足');

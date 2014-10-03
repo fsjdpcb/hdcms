@@ -205,13 +205,13 @@
                                     <thead>
                                         <tr>
                                             <td class="w250">组名</td>
-                                            <td>查看</td>
-                                            <td>添加</td>
-                                            <td>修改</td>
-                                            <td>删除</td>
-                                            <td>排序</td>
-                                            <td>移动</td>
-                                            <td>审核</td>
+                                            <td><a href="javascript:" onclick="select_access_col_checkbox(this)">查看</a></td>
+                                            <td><a href="javascript:" onclick="select_access_col_checkbox(this)">添加</a></td>
+                                            <td><a href="javascript:" onclick="select_access_col_checkbox(this)">修改</a></td>
+                                            <td><a href="javascript:" onclick="select_access_col_checkbox(this)">删除</a></td>
+                                            <td><a href="javascript:" onclick="select_access_col_checkbox(this)">排序</a></td>
+                                            <td><a href="javascript:" onclick="select_access_col_checkbox(this)">移动</a></td>
+                                            <td><a href="javascript:" onclick="select_access_col_checkbox(this)">审核</a></td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -244,10 +244,10 @@
                                     <thead>
                                     <tr>
                                         <td class="w250">组名</td>
-                                        <td>查看</td>
-                                        <td>投稿</td>
-                                        <td>修改</td>
-                                        <td>删除</td>
+                                        <td><a href="javascript:" onclick="select_access_col_checkbox(this)">查看</a></td>
+                                        <td><a href="javascript:" onclick="select_access_col_checkbox(this)">投稿</a></td>
+                                        <td><a href="javascript:" onclick="select_access_col_checkbox(this)">修改</a></td>
+                                        <td><a href="javascript:" onclick="select_access_col_checkbox(this)">删除</a></td>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -274,6 +274,13 @@
                                    </list>
                                     </tbody>
                                 </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>应用到子栏目</th>
+                            <td>
+                                <label><input type="radio" name="priv_child" value="1"/>是 </label>
+                                <label><input type="radio" name="priv_child" value="0" checked=""/>否 </label>
                             </td>
                         </tr>
                     </table>
@@ -441,37 +448,6 @@
             }
         }
     })
-
-    /**
-     * 权限全选复选框
-     * @param type
-     */
-    function select_access_checkbox(obj) {
-        var state = !$(obj).attr('selected');
-        $(obj).attr('selected', state);
-        $(obj).parents('tr').eq(0).find('input').attr('checked', state);
-    }
-
-    /**
-     * 更换模板
-     * @param input_id
-     */
-    function select_template(name) {
-        $.modal({
-            title: '选择模板文件',
-            button_cancel: '关闭',
-            width: 650,
-            height: 400,
-            content: '<iframe frameborder=0 scrolling="no" style="height:99%;border:none;" src="' + MODULE + '&c=TemplateSelect&a=selectTpl&name=' + name + '"></iframe>'
-        });
-    }
-
-    /**
-     * 关闭模板选择窗口
-     */
-    function close_select_template() {
-        $.removeModal();
-    }
 </script>
 </body>
 </html>

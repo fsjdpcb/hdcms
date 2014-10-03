@@ -82,3 +82,39 @@ function view_image(obj) {
 		$('body').append(html);
 	}
 }
+/**
+ * 权限全选复选框
+ * @param type
+ */
+function select_access_checkbox(obj) {
+    $(obj).parents('tr').eq(0).find('input').attr('checked', function(){
+        return !$(this).attr('checked');
+    });
+}
+//权限标题点击(垂直选择权限）
+function select_access_col_checkbox(obj){
+    var index = $(obj).parent().index();
+    $(obj).parents('table').eq(0).find('tbody tr').each(function(i){
+        $(this).find("td:eq("+index+")").find('input').attr('checked',true);
+    })
+}
+/**
+ * 更换模板
+ * @param input_id
+ */
+function select_template(name) {
+    $.modal({
+        title: '选择模板文件',
+        button_cancel: '关闭',
+        width: 650,
+        height: 400,
+        content: '<iframe frameborder=0 scrolling="no" style="height:99%;border:none;" src="' + MODULE + '&c=TemplateSelect&a=selectTpl&name=' + name + '"></iframe>'
+    });
+}
+
+/**
+ * 关闭模板选择窗口
+ */
+function close_select_template() {
+    $.removeModal();
+}

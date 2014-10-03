@@ -87,7 +87,6 @@ class CategoryModel extends ViewModel
     //设置栏目权限
     private function setCategoryAccess($mid, $cid, $access)
     {
-        if (empty($access)) return;
         $model = M('category_access');
         //删除栏目原有权限信息
         $model->del(array('cid' => $this->cid));
@@ -96,6 +95,28 @@ class CategoryModel extends ViewModel
             $a['mid'] = $mid;
             $a['cid'] = $cid;
             $model->add($a);
+        }
+        //编辑栏目时，如果选择应用到子栏目时设置子栏目权限
+        if ($this->cid && $_POST['priv_child']) {
+            //获得所有子栏目
+            $childCategory = Data::channelList(M('category')->all(), $this->cid); //获得所有子栏目
+            //存在子栏目时设置权限
+            if ($childCategory) {
+                //获得父栏目权限
+                $access = $model->where("cid={$this->cid}")->all();
+                //子栏目继承父栏目权限
+                foreach ($childCategory as $scat) {
+                    //删除子栏目原有权限
+                    $map['cid']=$scat['cid'];
+                    $model->where($map)->del();
+                    if ($access) {
+                        foreach ($access as $data) {
+                            $data['cid'] = $scat['cid'];
+                            $model->add($data);
+                        }
+                    }
+                }
+            }
         }
         return true;
     }

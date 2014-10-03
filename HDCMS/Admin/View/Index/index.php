@@ -83,8 +83,7 @@
 			<div style="float:left;width:1px;margin-right:5px;overflow: hidden;background: #999999;height:15px;margin-top:12px;"></div>
 			<div class="bottom-menu">
 				<list from="$favorite_menu" name="f">
-					<a url="{$f.url}"
-					onclick="get_content(this,{$f.nid})" href="javascript:;" nid="{$f.nid}">
+					<a url="{$f.url}" onclick="get_content(this,{$f.nid})" href="javascript:;" nid="{$f.nid}">
 						{$f.title}
 					</a>
 				</list>

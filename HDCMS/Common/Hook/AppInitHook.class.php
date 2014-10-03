@@ -26,6 +26,7 @@ class AppInitHook
     private function UserSessionInit()
     {
         if (!isset($_SESSION['user'])) {
+            $_SESSION['user']=array();
             $_SESSION['user']['web_master'] = false; //超级管理员
             $_SESSION['user']['uid'] = 0; //会员uid
             $_SESSION['user']['rid'] = 4; //角色rid
