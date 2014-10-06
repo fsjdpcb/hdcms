@@ -10,6 +10,8 @@ class ContentFormModel extends Model
     public $table = "field";
     //模型mid
     private $mid;
+    //栏目cid
+    private $cid;
     //字段缓存
     private $field;
     //模型缓存
@@ -23,6 +25,7 @@ class ContentFormModel extends Model
     public function __init()
     {
         $this->mid = Q("mid", 0, "intval");
+        $this->cid = Q("cid", 0, "intval");
         //字段所在表模型信息
         $this->model = S("model");
         //字段缓存
@@ -203,17 +206,7 @@ class ContentFormModel extends Model
         //栏目权限模型
         $categoryAccessModel = K('CategoryAccess');
         $categoryData = M('category')->all();
-        //验证栏目权限
-        $category = array();
-        foreach ($categoryData as $c) {
-            //单文章与普通栏目需要验证权限
-            $action = isset($_GET['aid']) ? 'edit' : 'add';
-            if ($categoryAccessModel->checkAccess($c['cid'], $_SESSION['user']['rid'], $action)) {
-               $category[$c['cid']]=$c;
-            }
-        }
-//        p($category);exit;
-        $category =Data::tree($category,'catname');
+        $category = Data::tree($categoryData, 'catname');
         $html = "<select name='cid'>";
         $html .= "<option value='0'>==选择栏目==</option>";
         foreach ($category as $cat) {
@@ -223,10 +216,15 @@ class ContentFormModel extends Model
             if (MODULE == 'Member' && $cat['cattype'] == 4) continue;
             //非本模型栏目不显示
             if ($this->mid != $cat['mid']) continue;
+            //单文章与普通栏目需要验证权限
+            $action = isset($_GET['aid']) ? 'edit' : 'add';
+            if (!$categoryAccessModel->checkAccess($cat['cid'], $_SESSION['user']['rid'], $action)) {
+                continue;
+            }
             //除单文章与普通栏目外不可以发表
             $disabled = in_array($cat['cattype'], array(1, 4)) ? '' : ' disabled="" ';
             //当前栏目默认选中
-            $selected = isset($_REQUEST['cid']) && $_REQUEST['cid'] == $cat['cid'] ? 'selected=""' : '';
+            $selected = $this->cid == $cat['cid'] ? 'selected=""' : '';
             $html .= "<option value='{$cat['cid']}' $disabled $selected>{$cat['_name']}</option>";
         }
         $html .= "</select>";

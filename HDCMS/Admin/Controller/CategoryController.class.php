@@ -3,7 +3,7 @@
 /**
  * 栏目管理模块
  * Class CategoryController
- * @author 向军 <houdunwangxj@gmail.com>
+ * @author 向军 <2300071698@qq.com>
  */
 class CategoryController extends AuthController
 {
@@ -98,13 +98,13 @@ class CategoryController extends AuthController
             }
             $categoryAccess = $this->db->getCategoryAccess($this->cid);
             //如果当前栏目有文章时不允许更改模型
-            $map['cid']=$this->cid;
-            if(M($this->model[$this->category[$this->cid]['mid']]['table_name'])->where($map)->count()){
-                $disabledChangeModel=true;
-            }else{
-                $disabledChangeModel=false;
+            $map['cid'] = $this->cid;
+            if (M($this->model[$this->category[$this->cid]['mid']]['table_name'])->where($map)->count()) {
+                $disabledChangeModel = true;
+            } else {
+                $disabledChangeModel = false;
             }
-             $this->assign('disabledChangeModel',$disabledChangeModel);
+            $this->assign('disabledChangeModel', $disabledChangeModel);
             //分配角色权限
             $this->assign('access', $categoryAccess);
             $this->assign('field', $category);
@@ -154,7 +154,7 @@ class CategoryController extends AuthController
             $this->success('修改成功');
         } else {
             $cid = explode('|', Q('cids'));
-            $data = $this->db->where(array('cid' => array('IN',$cid)))->all();
+            $data = $this->db->where(array('cid' => array('IN', $cid)))->all();
             $this->assign('data', $data);
             $this->display();
         }

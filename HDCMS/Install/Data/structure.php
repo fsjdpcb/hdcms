@@ -393,7 +393,7 @@ $db->exe("CREATE TABLE `".$db_prefix."user` (
   PRIMARY KEY (`uid`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='会员表'");
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='会员表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."user_credits`");
 $db->exe("CREATE TABLE `".$db_prefix."user_credits` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,

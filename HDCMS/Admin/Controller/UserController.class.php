@@ -48,21 +48,23 @@ class UserController extends AuthController
     {
         if (IS_POST) {
             $uid = Q('uid', 0, 'intval');
+            $map['uid']=array('EQ',$uid);
             //删除文章
             if (Q('post.delcontent')) {
-                $ModelCache = F('model', false, CACHE_DATA_PATH);
+                $ModelCache = S('model');
                 foreach ($ModelCache as $model) {
                     $contentModel = ContentModel::getInstance($model['mid']);
-                    $contentModel->where(array('uid' => $uid))->del();
+                    $contentModel->where($map)->del();
                 }
             }
-            //删除评论
-            if (Q('post.delcomment')) {
-                M('comment')->where(array('uid' => $uid))->del();
+            //评论表存在时删除评论
+            if (Q('post.delcomment') && M()->tableExists('addon_comment')) {
+                $map['userid']=array('EQ',$uid);
+                M('addon_comment')->where($map)->del();
             }
             //删除附件
             if (Q('post.delupload')) {
-                M('upload')->where(array('uid' => $uid))->del();
+                M('upload')->where($map)->del();
             }
             //删除用户
             M('user')->del($uid);

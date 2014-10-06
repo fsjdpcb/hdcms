@@ -3,7 +3,7 @@
 <div class="wrap">
     <div class="menu_list">
         <ul>
-            <li><a href="javascript:;" class="action">会员组列表</a></li>
+            <li><a href="{|U:'index'}" class="action">会员组列表</a></li>
             <li><a href="{|U:'add'}">添加会员组</a></li>
              <li><a href="javascript:;" onclick="hd_ajax('{|U:updateCache}')">更新缓存</a></li>
         </ul>
@@ -11,7 +11,7 @@
     <table class="table2 hd-form">
         <thead>
         <tr>
-            <td class="w30">gid</td>
+            <td class="w30">rid</td>
             <td>会员组名</td>
             <td class="w150">系统组</td>
             <td class="w150">积分小于</td>

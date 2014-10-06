@@ -162,7 +162,7 @@ return array (
   ),
   'hd_menu_favorite' => 
   array (
-    'row' => '2',
+    'row' => '4',
     'success' => true,
     'current_row' => 40,
     'size' => 200000,
@@ -222,7 +222,7 @@ return array (
   ),
   'hd_session' => 
   array (
-    'row' => '1',
+    'row' => '18',
     'success' => true,
     'current_row' => 40,
     'size' => 200000,
