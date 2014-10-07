@@ -1,4 +1,5 @@
 <?php
+
 /**
  * FieldReplace 插件
  * @author 后盾向军 <houdunwangxj@gmail.com>
@@ -27,4 +28,5 @@ class FieldReplaceAddon extends Addon
     public function uninstall()
     {
         return true;
-    }}
+    }
+}

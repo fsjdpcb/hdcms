@@ -9,50 +9,119 @@ class ConfigModel extends Model
 {
     public $table = "config";
 
-    //删除配置
-    public function delConfig($id)
+    //获得配置组
+    public function getConfigGroup($isshow = 1)
     {
-        $this->del($id);
-        return $this->updateCache();
+        return $this->table('config_group')->where("isshow=$isshow")->order("cgorder ASC")->all();
+    }
+
+    //获得配置组
+    public function getConfig($isshow = 1)
+    {
+        //获得配置组
+        $group = $this->table('config_group')->where("isshow=$isshow")->order("cgorder ASC")->all();
+        foreach ($group as $id => $g) {
+            $map['cgid'] = array('EQ', $g['cgid']);
+            $config = $this->where($map)->all();
+            if ($config) {
+                foreach ($config as $i => $c) {
+                    $func = '_' . $c['show_type'];//text radio select group textarea
+                    $config[$i]['_html'] = $this->$func($c);
+                }
+            }
+            $group[$id]['_config'] = $config;
+        }
+        return $group;
+    }
+
+    private function _text($config)
+    {
+        return "<input type='text' name='config[{$config['id']}][value]' value='{$config['value']}' class='w300'/>";
+    }
+
+    private function _radio($config)
+    {
+        $info = explode(',', $config['info']);
+        $html = '';
+        foreach ($info as $radio) {
+            $data = explode('|', $radio);//[0]值如1  [1]描述如开启
+            $checked = $data[0] == $config['value'] ? ' checked="checked" ' : '';
+            $html .= "<label><input type='radio' name='config[{$config['id']}][value]' value='{$data[0]}' $checked/> {$data[1]}</label> ";
+        }
+        return $html;
+    }
+
+    private function _textarea($config)
+    {
+        return "<textarea class='w300 h100' name='config[{$config['id']}][value]'>{$config['value']}</textarea>";
+    }
+
+    //列表选项
+    private function _select($config)
+    {
+        $info = explode(',', $config['info']);
+        $html = "<select name='config[{$config['id']}][value]' class='w300'>";
+        foreach ($info as $radio) {
+            $data = explode('|', $radio);//[0]值如1  [1]描述如开启
+            $selected = $data[0] == $config['value'] ? ' selected="selected" ' : '';
+            $html .= "<option value='{$data[0]}' $selected> {$data[1]}</option> ";
+        }
+        $html .= "</select>";
+        return $html;
+    }
+
+    //会员组
+    private function _group($config)
+    {
+        $map['admin'] = array('EQ', 0);
+        $map['rid'] = array('NEQ', 4);//不是游客
+        $memberROle = M('role')->where($map)->all();
+        $html = "<select name='config[{$config['id']}][value]' class='w300'>";
+        foreach ($memberROle as $id => $role) {
+            $selected = $role['rname'] == $config['value'] ? ' selected="" ' : '';
+            $html .= "<option value='{$role['rname']}' $selected>{$role['rname']}</option>";
+        }
+        $html .= "</select>";
+        return $html;
     }
 
     //添加配置
     public function addConfig()
     {
-        Q('post.name', '', 'strtoupper');
+        Q('name', '', 'strtoupper');
+        if (!empty($_POST['info'])) {
+            $_POST['info'] = str_replace(' ', '', $_POST['info']);//参数
+            $_POST['info'] = String::toSemiangle($_POST['info']);//转拼音
+        }
         //验证变量名
         if (M('config')->find(array('name' => $_POST['name']))) {
             $this->error = '变量名已经存在';
             return false;
         }
-        $this->add();
-        return $this->updateCache();
+        if ($this->add()) {
+            return $this->updateCache();
+        }
     }
 
-    //修改配置文件
-    public function saveConfig()
+    //删除配置
+    public function delConfig()
     {
-        $configData=$_POST;
+        $id = Q('id', 0, 'intval');
+        if ($this->del($id)) {
+            return $this->updateCache();
+        }
+    }
+
+    //修改基本配置
+    public function editWebConfig()
+    {
+        $configData = $_POST['config'];
         if (!is_array($configData)) {
             $this->error = '数据不能为空';
             return false;
         }
-        //上传文件大小
-        if (intval($configData['ALLOW_SIZE']) < 100000) {
-            $this->error = '上传文件大小不能小于100KB';
-            return false;
-        }
-        //允许上传类型
-        if (empty($configData['ALLOW_TYPE'])) {
-            $this->error = '允许上传类型不能为空';
-            return false;
-        }
-        $order_list = $configData['order_list'];
-        unset($configData['order_list']);
-        $configData = array_change_key_case_d($configData, 1);
-        foreach ($configData as $name => $value) {
-            $name = strtoupper($name);
-            $this->where(array('name' => $name))->save(array('name' => $name, 'value' => $value, 'order_list' => $order_list[$name]));
+        foreach ($configData as $name => $data) {
+            $this->save($data);
         }
         return $this->updateCache();
     }
@@ -68,6 +137,6 @@ class ConfigModel extends Model
         }
         //写入配置文件
         $content = "<?php if (!defined('HDPHP_PATH')) exit; \nreturn " . var_export($data, true) . ";\n?>";
-        return file_put_contents(APP_CONFIG_PATH."config.inc.php", $content);
+        return file_put_contents(APP_CONFIG_PATH . "config.inc.php", $content);
     }
 }

@@ -17,8 +17,7 @@ class ConfigController extends AuthController
     //删除配置
     public function del()
     {
-        $id = Q('id', 0, 'intval');
-        if ($this->db->del($id)) {
+        if ($this->db->delConfig()) {
             $this->success('操作成功');
         } else {
             $this->error($this->db->error);
@@ -35,61 +34,49 @@ class ConfigController extends AuthController
                 $this->error($this->db->error);
             }
         } else {
+            $configGroup = $this->db->getConfigGroup();
+            $this->assign("configGroup", $configGroup);
             $this->display();
         }
     }
 
-    //修改
-    public function edit()
+    //添加与编辑配置时检测标题
+    public function check_title()
+    {
+        $title = $_POST['title'];
+        if ($id = Q('id')) {
+            $map['id'] = array('NEQ', $id);
+        }
+        $map['title'] = array('EQ', $title);
+        echo $this->db->where($map)->find() ? 0 : 1;
+        exit;
+    }
+
+    //添加与编辑配置时检测变量名
+    public function check_name()
+    {
+        $name = $_POST['name'];
+        if ($id = Q('id')) {
+            $map['id'] = array('NEQ', $id);
+        }
+        $map['name'] = array('EQ', $name);
+        echo $this->db->where($map)->find() ? 0 : 1;
+        exit;
+    }
+
+    //修改网站配置(基本配置）
+    public function webConfig()
     {
         if (IS_POST) {
-            if ($this->db->saveConfig()) {
+            if ($this->db->editWebConfig()) {
                 $this->success("修改成功");
             } else {
                 $this->error($this->db->error);
             }
         } else {
-            $data = $this->db->where(array('type' => array('NOT IN', array('water', 'template'))))->order('order_list ASC')->all();
-            $config = array();
-            foreach ($data as $d) {
-                $config[$d['name']] = $d;
-            }
-            foreach ($config as $name => $c) {
-                switch ($c['show_type']) {
-                    case 'password' :
-                        $config[$name]['html'] = "<input type='password' name='{$c['name']}' value='{$c['value']}' class='w250'/>";
-                        break;
-                    case 'text' :
-                        $config[$name]['html'] = "<input type='text' name='{$c['name']}' value='{$c['value']}' class='w250'/>";
-                        break;
-                    //布尔
-                    case 'radio' :
-                        $Yes = $No = '';
-                        if ($c['value'] == 1) {
-                            $Yes = "checked='checked'";
-                        } else {
-                            $No = "checked='checked'";
-                        }
-                        $config[$name]['html'] = "<label><input type='radio' name='{$c['name']}' value='1'  $Yes/> 是</label>
-                                        <label><input type='radio' name='{$c['name']}' value='0' $No/> 否</label>";
-                        break;
-                    //多行文本
-                    case 'textarea' :
-                        $config[$name]['html'] = "<textarea class='w250 h100' name='{$c['name']}'>{$c['value']}</textarea>";
-                        break;
-                    //会员组
-                    case 'group':
-                        $group = M('role')->where("admin<>1")->all();
-                        $html = "<select name='{$c['name']}'>";
-                        foreach ($group as $g) {
-                            $selected = C('DEFAULT_GROUP') == $g['rid'] ? 'selected=""' : '';
-                            $html .= "<option value='{$g['rid']}' $selected>{$g['rname']}</option>";
-                        }
-                        $html .= "</selected>";
-                        $config[$name]['html'] = $html;
-                }
-            }
-            $this->assign("config", $config);
+            //分配配置组
+            $data = $this->db->getConfig();
+            $this->assign('data', $data);
             $this->display();
         }
     }

@@ -26,6 +26,8 @@ class ContentUploadController extends Controller
         } else {
             $allow_size = intval(C('UPLOAD_ALLOW_SIZE') / pow(1024, 2)) . 'MB';
         }
+        //水印按钮
+        $waterbtn=$_SESSION['user']['admin']?1:0;
         switch ($_GET['type']) {
             case 'thumb':
                 $tag = array(
@@ -35,7 +37,7 @@ class ContentUploadController extends Controller
                     'width' => 88,
                     'height' => 78,
                     'water'=>C('WATER_ON'),
-                    'waterbtn' => 1
+                    'waterbtn' => $waterbtn
                 );
                 break;
             case 'image':
@@ -48,7 +50,7 @@ class ContentUploadController extends Controller
                     'height' => 78,
                     'alt' => 1,
                     'water'=>C('WATER_ON'),
-                    'waterbtn' => 1
+                    'waterbtn' => $waterbtn
                 );
                 break;
             case 'images';
@@ -61,7 +63,7 @@ class ContentUploadController extends Controller
                     'height' => 78,
                     'alt' => 1,
                     'water'=>C('WATER_ON'),
-                    'waterbtn' => 1
+                    'waterbtn' => $waterbtn
                 );
                 break;
             case 'files':
