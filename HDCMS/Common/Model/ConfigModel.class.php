@@ -89,9 +89,9 @@ class ConfigModel extends Model
     public function addConfig()
     {
         Q('name', '', 'strtoupper');
-        if (!empty($_POST['info'])) {
-            $_POST['info'] = str_replace(' ', '', $_POST['info']);//参数
-            $_POST['info'] = String::toSemiangle($_POST['info']);//转拼音
+        if(!empty($_POST['info'])){
+            $_POST['info']=str_replace(' ','',$_POST['info']);//参数
+            $_POST['info']=String::toSemiangle($_POST['info']);//转拼音
         }
         //验证变量名
         if (M('config')->find(array('name' => $_POST['name']))) {
@@ -106,10 +106,9 @@ class ConfigModel extends Model
     //删除配置
     public function delConfig()
     {
-        $id = Q('id', 0, 'intval');
-        if ($this->del($id)) {
-            return $this->updateCache();
-        }
+        $id = Q('id',0,'intval');
+        if($this->del($id)){}
+        return $this->updateCache();
     }
 
     //修改基本配置

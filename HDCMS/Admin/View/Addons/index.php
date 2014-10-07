@@ -18,7 +18,7 @@
                 <td class="w150">名称</td>
                 <td class="w100">标识</td>
                 <td>描述</td>
-                <td class="w60">状态</td>
+                <td class="w60">安装</td>
                 <td class="w100">作者</td>
                 <td class="w50">版本</td>
                 <td class="w120">操作</td>
