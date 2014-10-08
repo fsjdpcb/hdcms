@@ -68,7 +68,7 @@
                     修改
                 </a>
                 <span class="line">|</span>
-                <a href="javascript:hd_confirm('确证删除吗？',function(){hd_ajax(CONTROLLER + '&a=del', {cid: {$c.cid},mid: {$c.mid}})})">
+                <a href="javascript:hd_confirm('将删除子目录及文章，确证删除吗？',function(){hd_ajax(CONTROLLER + '&a=del', {cid: {$c.cid},mid: {$c.mid}})})">
                     删除
                 </a></td>
             </tr>

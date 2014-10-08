@@ -46,10 +46,13 @@
                             <else>
                                 <a href="{|U:'enabled',array('addon'=>$d['name'])}">启用</a>
                             </if>
-                            <a href="javascript:hd_confirm('确证卸载吗？',function(){location.href='{|U:'uninstall',array('addon'=>$d['name'])}';})">
+                            <a href="javascript:hd_confirm('确证卸载 【{$d['title']}】 插件吗？',function(){location.href='{|U:'uninstall',array('addon'=>$d['name'])}';})">
                             卸载</a>
                         <else>
                             <a href="javascript:location.href='{|U:'install',array('addon'=>$d['name'])}'">安装</a>
+                        </if>
+                        <if value="$d.help">
+                            <a href="{$d.help}" target="_blank">帮助</a>
                         </if>
                     </td>
                 </tr>

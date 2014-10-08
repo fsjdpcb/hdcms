@@ -44,6 +44,16 @@ class ContentViewModel extends ViewModel
         if ($field) {
             //获得tag
             $field['tag'] = $this->getTag($aid);
+            //缩略图地址
+            $field['thumb']=$field['thumb']?__ROOT__.'/'.$field['thumb']:'';
+            //URL地址
+            $field['url']=Url::getContentUrl($field);
+            //栏目图片
+            $field['catimage']=$field['catimage']?__ROOT__.'/'.$field['catimage']:'';
+            //栏目url
+            $field['caturl']=Url::getCategoryUrl($field);
+            //获得文章Tag(链接)
+            $field['tag']=K('ContentTag')->getContentTagLink($aid);
         }
         return $field;
     }

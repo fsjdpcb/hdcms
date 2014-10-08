@@ -39,9 +39,16 @@ class DataModel extends ViewModel
     public function getForm()
     {
         $gid = Q('gid', 0, 'intval');
+        $status=Q('status',0,'intval');
         $page = new Page(10);
-        $map = $gid ? array('mid' => array('EQ', $gid)) : '';
-        $data = $this->where($map)->limit($page->limit())->all();
+        $map='';
+        if($gid){
+            $map['_string']="addon_custom_form_data.gid=$gid";
+        }
+        if($status){
+            $map['status']=array('EQ',$status);
+        }
+        $data = $this->where($map)->limit($page->limit())->order('addtime DESC')->all();
         return array('data' => $data, 'page' => $page->show());
     }
 
@@ -49,7 +56,7 @@ class DataModel extends ViewModel
     public function get()
     {
         //表单id
-        $id = Q('fid', 0, 'intval');
+        $id = Q('id', 0, 'intval');
         $data = $this->find($id);
         $data['data'] = unserialize($data['data']);
         $map['gid'] = array('EQ', $data['gid']);
@@ -60,20 +67,26 @@ class DataModel extends ViewModel
         }
         return $formField;
     }
+
     private function _text($field, $data)
     {
-        return $data && isset($data[$field['name']])? $data[$field['name']] : $field['value'];
+        return $data && isset($data[$field['name']]) ? $data[$field['name']] : $field['value'];
+    }
+
+    private function _email($field, $data)
+    {
+        return $data && isset($data[$field['name']]) ? $data[$field['name']] : $field['value'];
     }
 
     private function _radio($field, $data)
     {
-        $value = $data && isset($data[$field['name']])? $data[$field['name']] : $field['value'];
+        $value = $data && isset($data[$field['name']]) ? $data[$field['name']] : $field['value'];
         $info = explode(',', $field['info']);
-        $html='';
+        $html = '';
         foreach ($info as $radio) {
             $data = explode('|', $radio);//[0]值如1  [1]描述如开启
-            if($data[0] == $value ){
-                $html= $data[1];
+            if ($data[0] == $value) {
+                $html = $data[1];
             }
         }
         return $html;
@@ -81,20 +94,20 @@ class DataModel extends ViewModel
 
     private function _textarea($field, $data)
     {
-        return $data && isset($data[$field['name']])? $data[$field['name']] : $field['value'];
+        return $data && isset($data[$field['name']]) ? $data[$field['name']] : $field['value'];
     }
 
     //列表选项
     private function _select($field, $data)
     {
-        $value = $data && isset($data[$field['name']])? $data[$field['name']] : $field['value'];
+        $value = $data && isset($data[$field['name']]) ? $data[$field['name']] : $field['value'];
         $info = explode(',', $field['info']);
         $html = "";
         foreach ($info as $radio) {
             $data = explode('|', $radio);//[0]值如1  [1]描述如开启
             $selected = $data[0] == $value ? ' selected="selected" ' : '';
-            if($data[0] == $value ){
-                $html= $data[1];
+            if ($data[0] == $value) {
+                $html = $data[1];
             }
         }
         return $html;

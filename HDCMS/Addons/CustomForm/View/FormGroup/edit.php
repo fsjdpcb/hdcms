@@ -12,13 +12,18 @@
         <div class="menu_list">
             <ul>
                 <li>
-                    <a href="{|U:'Data/index'}">
+                    <a href="{|U:'Admin/index'}">
                         表单列表
                     </a>
                 </li>
                 <li>
-                    <a href="{|U:'FormGroup/index'}" class="action">
+                    <a href="{|U:'FormGroup/index'}">
                         表单组列表
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;" class="action">
+                        修改表单组
                     </a>
                 </li>
             </ul>

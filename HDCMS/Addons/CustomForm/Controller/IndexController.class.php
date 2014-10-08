@@ -33,8 +33,31 @@ class IndexController extends AddonController
             $this->assign('group', $group);
             //表单列表
             $field = K('FormField')->get($this->gid);
+            $validate =$this->getFormValidate();
+            $this->assign('validate',$validate);
             $this->assign('field', $field);
             $this->display(MODULE_PATH . 'Template/' . $this->gid . '.php');
         }
+    }
+    //获得前台表单验证JS
+    private function getFormValidate(){
+        //获取字段
+        $map['isrequired']=1;
+        $map['gid']=$this->gid;
+        $field=M('addon_custom_form_field')->where($map)->all();
+        $script='';
+        foreach($field as $f){
+            $script.="{$f['name']}: {
+                rule: {required: true},
+                error: {required: '{$f['title']}不能为空'},
+                success:'输入正确'
+            },";
+        }
+        $script=substr($script,0,-1);
+       return "<script>
+$('form').validate({
+{$script}
+});
+</script>";
     }
 }

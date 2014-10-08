@@ -197,7 +197,6 @@ class ContentInputModel
         }
         return $value;
     }
-
     //Flag文章属性
     private function flag($fieldInfo, $value)
     {

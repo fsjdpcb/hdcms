@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>帮助</title>
+    <hdjs/>
+    <bootstrap/>
+    <style type="text/css">
+        body {
+            font-family: "Helvetica Neue", Helvetica, Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Comment 评论插件</h1>
+
+    <div class="well well-sm">使用方法</div>
+    <ul>
+        <li>登录后台、安装插件</li>
+    </ul>
+    <div class="well well-sm">前台调用方法</div>
+    <ul>
+        <li>
+            将下面iframe标签放在内容页模板中即可
+        </li>
+        <li>
+            &lt;iframe src="__WEB__?g=Addons&m=Comment&&mid={<b>$hdcms.mid</b>}&cid={<b>$hdcms.cid</b>}&aid={<b>$hdcms.aid</b>}"
+            width="100%" frameborder="0" scrolling="no" id="comment_iframe"&gt;&lt;/iframe&gt;
+        </li>
+    </ul>
+    <div class="well well-sm">模板标签addon_comment_list</div>
+    <ul>
+        <li>
+            &lt;addon_comment_list row="2" len="10"&gt;
+        </li>
+        <li>   &lt;a href="{<b>$field.url</b>}"&gt;{<b>$field.content</b>}&lt;/a&gt;</li>
+        <li>               &lt;/addon_comment_list&gt;
+        </li>
+    </ul>
+    <h5>标签属性</h5>
+    <ul>
+        <li>
+           <table class="table2">
+               <thead>
+               <tr>
+                   <td>属性名</td>
+                   <td>说明</td>
+               </tr>
+               </thead>
+               <tbody>
+               <tr>
+                   <td>row</td>
+                   <td>条数</td>
+               </tr>
+               <tr>
+                   <td>len</td>
+                   <td>评论显示长度</td>
+               </tr>
+               </tbody>
+           </table>
+        </li>
+    </ul>
+    <br/>
+
+    <div>
+        登录 <a href="http://www.hdphp.com">HDPHP.COM</a> 获得帮助，登录 <a
+            href="http://bbs.houdunwang.com/forum-105-1.html">论坛</a> 参与讨论
+    </div>
+</div>
+
+</body>
+</html>

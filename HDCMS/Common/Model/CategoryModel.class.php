@@ -107,7 +107,7 @@ class CategoryModel extends ViewModel
                 //子栏目继承父栏目权限
                 foreach ($childCategory as $scat) {
                     //删除子栏目原有权限
-                    $map['cid']=$scat['cid'];
+                    $map['cid'] = $scat['cid'];
                     $model->where($map)->del();
                     if ($access) {
                         foreach ($access as $data) {
@@ -165,11 +165,24 @@ class CategoryModel extends ViewModel
             $this->error = 'cid参数错误';
             return false;
         }
-        //如果存在子栏目不进行删除
-        if (M('category')->where(array('pid' => $cid))->find()) {
-            $this->error = '请先删除子栏目';
-            return false;
+        //获得子栏目
+        $childCategory = Data::channelList($this->category, $cid);
+        if ($childCategory) {
+            foreach ($childCategory as $cat) {
+                if (!$this->delData($cat['cid'])) {
+                    return false;
+                }
+            }
         }
+        //删除自身
+        return $this->delData($cid);
+
+    }
+
+    //删除栏目
+    private function delData($cid)
+    {
+        //删除栏目文章
         $ContentModel = ContentModel::getInstance($this->category[$cid]['mid']);
         $ContentModel->where(array('cid' => $cid))->del();
         //删除栏目权限
@@ -227,6 +240,8 @@ class CategoryModel extends ViewModel
                 //封面与链接栏目添加disabled属性
                 $cat["disabled"] = $cat["cattype"] != 1 ? 'disabled=""' : '';
                 $cat['cat_type_name'] = $this->categoryType[$cat['cattype']];
+                //栏目图片
+                $cat['catimage'] = $cat['catimage'] ? __ROOT__ . '/' . $cat['catimage'] : '';
                 $cache[$cat['cid']] = $cat;
             }
         }

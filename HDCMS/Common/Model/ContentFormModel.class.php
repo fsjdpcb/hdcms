@@ -12,6 +12,8 @@ class ContentFormModel extends Model
     private $mid;
     //栏目cid
     private $cid;
+    //文章aid
+    private $aid;
     //字段缓存
     private $field;
     //模型缓存
@@ -26,6 +28,7 @@ class ContentFormModel extends Model
     {
         $this->mid = Q("mid", 0, "intval");
         $this->cid = Q("cid", 0, "intval");
+        $this->aid = Q("aid", 0, "intval");
         //字段所在表模型信息
         $this->model = S("model");
         //字段缓存
@@ -139,6 +142,11 @@ class ContentFormModel extends Model
     //tag字段
     private function tag($field, $value)
     {
+        //编辑文章时获取TAG
+        if($this->aid){
+            $db = K('ContentTag');
+            $value=$db->getContentTag($this->aid);
+        }
         $set = $field['set'];
         //表单类型
         return "<input style=\"width:{$set['size']}px\" type=\"text\" class=\"{$field['css']}\" name=\"{$field['field_name']}\" value=\"$value\"/>";

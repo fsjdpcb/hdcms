@@ -62,7 +62,11 @@ class FormFieldModel extends ViewModel
         $value = $data ? $data[$field['name']] : $field['value'];
         return "<input type='text' name='{$field['name']}' value='{$value}' class='w300'/>";
     }
-
+    private function _email($field, $data)
+    {
+        $value = $data ? $data[$field['name']] : $field['value'];
+        return "<input type='text' name='{$field['name']}' value='{$value}' class='w300'/>";
+    }
     private function _radio($field, $data)
     {
         $value = $data ? $data[$field['name']] : $field['value'];
@@ -73,7 +77,7 @@ class FormFieldModel extends ViewModel
             $checked = $data[0] == $value ? ' checked="checked" ' : '';
             $html .= "<label><input type='radio' name='{$field['name']}' value='{$value}' $checked/> {$data[1]}</label> ";
         }
-        return $html;
+        return $html."<span id='hd_{$field['name']}'></span>";
     }
 
     private function _textarea($field, $data)

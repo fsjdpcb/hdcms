@@ -18,7 +18,8 @@ class AddonsController extends AuthController
     //插件列表
     public function index()
     {
-        $this->assign('data', $this->db->getAddonList());
+        $data=$this->db->getAddonList();
+        $this->assign('data', $data);
         $this->display();
     }
 
@@ -267,5 +268,10 @@ str;
         } else {
             $this->error($this->db->error);
         }
+    }
+    //查看帮助
+    public function help(){
+        $addon = Q('addon');
+        $this->display(APP_ADDON_PATH.$addon.'/help.html');
     }
 }

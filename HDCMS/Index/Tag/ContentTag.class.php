@@ -38,7 +38,7 @@ class ContentTag
                 break;
         }
         foreach(\$result as \$field):
-            \$field['url']=U('Index/Search/search',array('type'=>'tag','word'=>\$field['tag']));
+            \$field['url']=U('Search/Index/index',array('g'=>'Addons','type'=>'tag','wd'=>\$field['tag']));
         ?>
 str;
         $php .= $content;
@@ -116,11 +116,11 @@ str;
         //属性
         $flag = isset($attr['flag']) ? trim($attr['flag']) : '';
         //排序
-        $order = isset($attr['order']) ? trim($attr['order']) : '';
+        $order = isset($attr['order']) ? strtolower(trim($attr['order'])) : '';
         //排序属性
         $noflag = isset($attr['noflag']) ? trim($attr['noflag']) : '';
         //获取类型（排序）
-        $type = isset($attr['type']) ? strtolower(trim($attr['type'])) : 'new';
+//        $type = isset($attr['type']) ? strtolower(trim($attr['type'])) : 'new';
         //获取副表字段
         $subtable = isset($attr['subtable']) ? intval($attr['subtable']) : 0;
         //相关文章
@@ -138,7 +138,6 @@ str;
             \$flag='$flag';//有此flag
             \$noflag='$noflag';//除了flag
             \$aid='$aid';
-            \$type='$type';
             \$sub_channel=$sub_channel;//包含子栏目数据
             \$relative='$relative';//相关文章
             //导入模型类
@@ -148,24 +147,24 @@ str;
 				\$db->relation(\$db->table.',category,user');
 			}
             //---------------------------排序类型-------------------------------
-            switch(\$type){
-                case 'hot':
-                    //查看次数最多
-                    \$db->order('click DESC');
-                    break;
-                case 'rand':
-                    //随机排序
-                    \$db->order('rand()');
-                    break;
-                default:
-					if(!empty(\$order)){
-						\$order= str_replace('aid', \$db->table.'.aid', \$order);
-						\$order= str_replace('cid', 'category.cid', \$order);
-                    	\$db->order(\$order);
-					}
-                    break;
+            if(\$order){
+                switch(\$order){
+                    case 'hot':
+                        //查看次数最多
+                        \$db->order('click DESC');
+                        break;
+                    case 'rand':
+                        //随机排序
+                        \$db->order('rand()');
+                        break;
+                    default:
+                        \$order= str_replace('aid', \$db->table.'.aid', \$order);
+                        \$order= str_replace('cid', 'category.cid', \$order);
+                        \$db->order(\$order);
+                }
+            }else{
+                \$db->order('arc_sort ASC,updatetime DESC');
             }
-            \$db->order('arc_sort ASC,updatetime DESC');
             //---------------------------查询条件-------------------------------
                 \$where=array();
                 //相关文章
@@ -269,8 +268,6 @@ str;
         $order = isset($attr['order']) ? trim($attr['order']) : '';
         //排序属性
         $noflag = isset($attr['noflag']) ? trim($attr['noflag']) : '';
-        //获取类型（排序）
-        $type = isset($attr['type']) ? strtolower(trim($attr['type'])) : 'new';
         //获取副表字段
         $subtable = isset($attr['subtable']) ? intval($attr['subtable']) : 0;
         //获取子栏目文章
@@ -280,7 +277,7 @@ str;
             \$mid='$mid';\$cid ='$cid';
             \$subtable =$subtable;\$order ='$order';
             \$flag='$flag';\$noflag='$noflag';
-            \$aid='$aid';\$type='$type';
+            \$aid='$aid';
             \$sub_channel=$sub_channel;
             \$mid = \$mid?intval(\$mid):Q('mid',1,'intval');
             \$cid = \$cid?intval(\$cid):Q('cid',0,'intval');
@@ -290,24 +287,24 @@ str;
             \$join=\$db->table.',category,user';
 			\$db->relation(\$join);
             //---------------------------排序类型-------------------------------
-            switch(\$type){
-                case 'hot':
-                    //查看次数最多
-                    \$db->order('click DESC');
-                    break;
-                case 'rand':
-                    //随机排序
-                    \$db->order('rand()');
-                    break;
-                default:
-					if(!empty(\$order)){
-						\$order= str_replace('aid', \$db->table.'.aid', \$order);
-						\$order= str_replace('cid', 'category.cid', \$order);
-                    	\$db->order(\$order);
-					}
-                    break;
+             if(\$order){
+                switch(\$order){
+                    case 'hot':
+                        //查看次数最多
+                        \$db->order('click DESC');
+                        break;
+                    case 'rand':
+                        //随机排序
+                        \$db->order('rand()');
+                        break;
+                    default:
+                        \$order= str_replace('aid', \$db->table.'.aid', \$order);
+                        \$order= str_replace('cid', 'category.cid', \$order);
+                        \$db->order(\$order);
+                }
+            }else{
+                \$db->order('arc_sort ASC,updatetime DESC');
             }
-            \$db->order('arc_sort ASC,aid DESC');
             //---------------------------查询条件-------------------------------
                 \$where=array();
                 //指定栏目的文章,子栏目处理

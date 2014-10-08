@@ -16,8 +16,8 @@ $(function() {
 					dialog_message(false);
 					if (data.status == 1) {
 						$.modal({
-							width : 250,
-							height : 160,
+							width : 300,
+							height : 175,
 							button : true,
 							title : '消息',
 							button_success : "继续操作",

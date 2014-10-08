@@ -16,6 +16,9 @@ class AdminController extends AddonController
     //字段组列表
     public function index()
     {
+        //获得表单组
+        $group = M('addon_custom_form_group')->all();
+        $this->assign('group',$group);
         $data = $this->db->getForm();
         $this->assign('data', $data);
         $this->display();

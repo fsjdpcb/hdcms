@@ -11,23 +11,37 @@
     </style>
 </head>
 <body>
-<div class="wrap">
-    <div class="title-header">
-        查看表单
-    </div>
-    <table class="table1">
-        <list from="$field" name="$f">
+<form action="{|U:'audit'}" method="post">
+    <input type="hidden" name="id" value="{$data.id}"/>
+    <div class="wrap">
+        <div class="title-header">
+            查看表单
+        </div>
+        <table class="table1">
+            <list from="$field" name="$f">
+                <tr>
+                    <th class="w100">{$f.title}</th>
+                    <td>
+                        {$f._html}
+                    </td>
+                </tr>
+            </list>
             <tr>
-                <th class="w100">{$f.title}</th>
+                <th>审核</th>
                 <td>
-                    {$f._html}
+                    <label>
+                        <input type="radio" name="status" value="1" <if value="$data.status eq 1">checked=""</if>/> 已审核
+                    </label>
+                    <label>
+                        <input type="radio" name="status" value="0" <if value="$data.status eq 0">checked=""</if>/> 未审核
+                    </label>
                 </td>
             </tr>
-        </list>
-    </table>
-    <div class="position-bottom">
-        <input type="button" class="hd-success" onclick="hd_close_window()" value="关闭"/>
+        </table>
+        <div class="position-bottom">
+            <input type="submit" class="hd-success" value="提交"/>
+        </div>
     </div>
-</div>
+</form>
 </body>
 </html>

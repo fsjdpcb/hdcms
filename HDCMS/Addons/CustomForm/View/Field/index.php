@@ -10,7 +10,7 @@
     <div class="menu_list">
         <ul>
             <li>
-                <a href="{|U:'Data/index'}">
+                <a href="{|U:'Admin/index'}">
                     表单列表
                 </a>
             </li>
@@ -47,6 +47,7 @@
                     <td>字段标题</td>
                     <td class="w100">显示类型</td>
                     <td class="w100">表单组</td>
+                    <td class="w100">必须填写</td>
                     <td class="w100">操作</td>
                 </tr>
             </thead>
@@ -63,6 +64,13 @@
                         <td>{$d.title}</td>
                         <td>{$d.show_type}</td>
                         <td>{$d.gname}</td>
+                        <td>
+                            <if value="{$d.isrequired}">
+                                <font color="red">√</font>
+                                <else>
+                                    <font color="blue">×</font>
+                            </if>
+                        </td>
                         <td>
                             <a href="{|U:'edit',array('fid'=>$d['fid'],'gid'=>$_GET['gid'])}">修改</a> |
                             <a href="javascript:hd_confirm('确证删除吗？',function(){hd_ajax(CONTROLLER + '&a=del&g=addons', {fid: {$d.fid}})})">删除</a>

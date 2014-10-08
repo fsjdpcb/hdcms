@@ -222,6 +222,9 @@
     </div>
     <div class="position-bottom">
         <input type="submit" class="hd-success" value="确定"/>
+        <button type="button" class="hd-cancel" onclick="setTemplate('index_tpl')">批量设置封面模板</button>
+        <button type="button" class="hd-cancel" onclick="setTemplate('list_tpl')">批量设置列表页模板</button>
+        <button type="button" class="hd-cancel" onclick="setTemplate('arc_tpl')">批量设置内容页模板</button>
     </div>
 </form>
 <style type="text/css">
@@ -239,6 +242,13 @@
     }
 </style>
 <script type="text/javascript" charset="utf-8">
+    //批量设置模板
+    function setTemplate(name){
+        var template= $('[name*='+name+']:eq(0)').val();
+        $('[name*='+name+']').each(function(i){
+            $(this).val(template);
+        })
+    }
     $(function () {
         alert_div();
     })

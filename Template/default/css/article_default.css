@@ -181,6 +181,13 @@ div.wrap div.content div.body p {
 div.wrap div.content div.body p img {
   max-width: 700px;
 }
+div.wrap div.content div.body div.content_tag {
+  border-top: solid 1px #DCDCDC;
+  padding-top: 10px;
+}
+div.wrap div.content div.body div.content_tag a {
+  padding: 3px;
+}
 div.copyright {
   clear: both;
   text-align: center;

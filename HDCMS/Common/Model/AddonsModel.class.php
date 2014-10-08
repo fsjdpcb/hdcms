@@ -58,6 +58,8 @@ class AddonsModel extends Model
                 $addon['config'] = $addonObj->getConfig(); //获得插件配置
                 $addons[$d] = $addon;
             }
+            //插件帮助文档
+            $addons[$d]['help']=is_file(APP_ADDON_PATH.$d.'/help.html')?U('help').'&addon='.$d:'';
         }
         int_to_string($addons, array('status' => array(1 => '启用', 0 => '禁用')));
         ksort($addons);

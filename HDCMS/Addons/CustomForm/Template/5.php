@@ -40,17 +40,17 @@
         <input type="hidden" name="gid" value="{$group.gid}"/>
         <table>
             <list from="$field" name="f">
-                <tr>
-                    <th>
-                        {$f.title}
-                        <if value="$f.isrequired eq 1">
-                            <span style="color:#f00f00;">*</span>
-                        </if>
-                    </th>
-                    <td>
-                        {$f._html}
-                    </td>
-                </tr>
+            <tr>
+                <th>
+                    {$f.title}
+                    <if value="$f.isrequired eq 1">
+                        <span style="color:#f00f00;">*</span>
+                    </if>
+                </th>
+                <td>
+                    {$f._html}
+                </td>
+            </tr>
             </list>
             <tr>
                 <td colspan="2">

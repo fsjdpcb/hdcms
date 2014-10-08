@@ -12,7 +12,7 @@
         <div class="menu_list">
             <ul>
                 <li>
-                    <a href="{|U:'Data/index'}">
+                    <a href="{|U:'Admin/index'}">
                         表单列表
                     </a>
                 </li>
