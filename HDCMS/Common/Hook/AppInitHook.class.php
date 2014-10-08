@@ -45,7 +45,7 @@ class AppInitHook
     private function loadAddons()
     {
         $data = S('hooks');
-        if (!$data) {
+        if (!$data || DEBUG) {
             $hooks = M('hooks')->getField('name,addons', true);
             foreach ($hooks as $key => $value) {
                 if ($value) {
@@ -71,6 +71,7 @@ class AppInitHook
                 }
             }
             S('HookTag', array_unique($tpl_tags));
+            C('TPL_TAGS', array_unique(array_merge(C('TPL_TAGS'), S('HookTag'))));
         } else {
             Hook::import($data, false);
             C('TPL_TAGS', array_unique(array_merge(C('TPL_TAGS'), S('HookTag'))));

@@ -87,7 +87,7 @@ class Addon{$data['name']}Tag
 {
     //声明标签
     public \$tag = array(
-        'addon_{$data['name']}_list' => array('block' => 1, 'level' => 4),
+        'addon_{$data['name']}_test' => array('block' => 1, 'level' => 4),
     );
      //示例标签
      //a) 标签命名规范：_addon_插件名_标签
