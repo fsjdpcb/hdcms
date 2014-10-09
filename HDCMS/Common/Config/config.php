@@ -9,10 +9,15 @@ $config['TPL_FIX']             = '.php'; //模板后缀
 $config['EDITOR_SAVE_PATH']     = 'upload/editor/' . date('y/m/d/');//编辑器上传文件存储目录
 $config['TPL_TAGS']             = array('@.Index.Tag.ContentTag');//模板标签
 $config['AUTO_LOAD_FILE']       = array('functions.php');//自动加载文件
-$config['ROUTE']                = array(
-    '/^list_(\d+)_(\d+).html$/' 		=> 'm=Index&c=Index&a=category&mid=#1&cid=#2',//栏目
-    '/^list_(\d+)_(\d+)_(\d+).html$/' 	=> 'm=Index&c=Index&a=category&mid=#1&cid=#2&page=#3',//栏目分页
-    '/^(\d+)_(\d+)_(\d+).html$/' 		=> 'm=Index&c=Index&a=content&mid=#1&cid=#2&aid=#3',//内页页
-);
+//只有前台开启Rewrite伪静态
+$module =isset($_GET['m'])?$_GET['m']:'';//模块
+if($config['REWRITE_ENGINE'] &&(!$module||$module=="Index")){
+    $config['URL_REWRITE']      =true;
+    $config['ROUTE']            = array(
+        '/^list_(\d+)_(\d+).html$/' 		=> 'm=Index&c=Index&a=category&mid=#1&cid=#2',//栏目
+        '/^list_(\d+)_(\d+)_(\d+).html$/' 	=> 'm=Index&c=Index&a=category&mid=#1&cid=#2&page=#3',//栏目分页
+        '/^(\d+)_(\d+)_(\d+).html$/' 		=> 'm=Index&c=Index&a=content&mid=#1&cid=#2&aid=#3',//内页页
+    );
+}
 return array_merge($config,require APP_CONFIG_PATH.'db.inc.php');
 ?>

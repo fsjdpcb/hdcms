@@ -38,23 +38,44 @@ class ContentViewModel extends ViewModel
     public function getOne($aid)
     {
         $field = $this->where($this->table . ".aid=$aid")->find();
-        if (!$field) return;
+        return $field ? $this->formatField($field) : array();
+    }
+
+    //对字段数据二次处理，如规范链接、图片地址等
+    public function formatField($field)
+    {
+        $cache = S('field' . $field['mid']);
+        foreach ($field as $name => $value) {
+            if(!isset($cache[$name]))continue;
+            switch ($cache[$name]['field_type']) {
+                case 'thumb':
+                    $field[$name] = $field[$name] ? __ROOT__ . '/' . $field[$name] : '';
+                    break;
+                case 'image':
+                    $field[$name] = $field[$name] ? __ROOT__ . '/' . $field[$name] : '';
+                    break;
+                case 'images':
+                    $field[$name] = unserialize($field[$name]);
+                    break;
+                case 'files':
+                    $field[$name] = unserialize($field[$name]);
+                    break;
+            }
+        }
         //头像
         $field['icon'] = empty($field['icon']) ? __ROOT__ . "/data/image/user/150.png" : __ROOT__ . '/' . $field['icon'];
-        if ($field) {
-            //获得tag
-            $field['tag'] = $this->getTag($aid);
-            //缩略图地址
-            $field['thumb']=$field['thumb']?__ROOT__.'/'.$field['thumb']:'';
-            //URL地址
-            $field['url']=Url::getContentUrl($field);
-            //栏目图片
-            $field['catimage']=$field['catimage']?__ROOT__.'/'.$field['catimage']:'';
-            //栏目url
-            $field['caturl']=Url::getCategoryUrl($field);
-            //获得文章Tag(链接)
-            $field['tag']=K('ContentTag')->getContentTagLink($aid);
-        }
+        //URL地址
+        $field['url'] = Url::getContentUrl($field);
+        //栏目图片
+        $field['catimage'] = $field['catimage'] ? __ROOT__ . '/' . $field['catimage'] : '';
+        //栏目url
+        $field['caturl'] = Url::getCategoryUrl($field);
+        //获得文章Tag(链接)
+        $field['tag'] = K('ContentTag')->getContentTagLink($field['aid']);
+        //发表时间
+        $field['time'] = date("Y-m-d", $field['addtime']);
+        //多久前发表
+        $field['date_before'] = date_before($field['addtime']);
         return $field;
     }
 

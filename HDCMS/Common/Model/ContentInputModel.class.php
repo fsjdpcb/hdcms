@@ -43,7 +43,7 @@ class ContentInputModel
         $auto_send_time = strtotime($data['auto_send_time']);
         if ($auto_send_time && $auto_send_time > time()) {
             $data['content_status'] = 2;
-        }else if($data['content_status']==2){
+        } else if ($data['content_status'] == 2) {
             $data['content_status'] = 1;
         }
         //添加时间
@@ -280,7 +280,16 @@ class ContentInputModel
             foreach ($value['path'] as $path)
                 $_SESSION['uploadFile'][] = $path;
         }
-        return empty($value) ? '' : serialize($value);
+        if (!empty($value)) {
+            $file = array();
+            foreach ($value['path'] as $id => $v) {
+                $tmp['path'] = $value['path'][$id];
+                $tmp['alt'] = $value['alt'][$id];
+                $file[] = $tmp;
+            }
+            $value = serialize($file);
+        }
+        return $value;
     }
 
     //文件上传
@@ -290,7 +299,16 @@ class ContentInputModel
             foreach ($value['path'] as $path)
                 $_SESSION['uploadFile'][] = $path;
         }
-        return empty($value) ? '' : serialize($value);
+        if (!empty($value)) {
+            $file = array();
+            foreach ($value['path'] as $id => $v) {
+                $tmp['path'] = $value['path'][$id];
+                $tmp['alt'] = $value['alt'][$id];
+                $file[] = $tmp;
+            }
+            $value = serialize($file);
+        }
+        return $value;
     }
 
     //日期时间

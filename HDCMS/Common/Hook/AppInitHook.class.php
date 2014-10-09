@@ -52,7 +52,7 @@ class AppInitHook
                     $map['status'] = 1;
                     $names = explode(',', $value);
                     $map['name'] = array('IN', $names);
-                    $data = M('Addons')->where($map)->getField('id,name');
+                    $data = M('addons')->where($map)->getField('id,name');
                     if ($data) {
                         $addons = array_intersect($names, $data);
                         Hook::add($key, $addons);

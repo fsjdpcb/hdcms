@@ -393,7 +393,7 @@ class ContentFormModel extends Model
         //已经上传图片
         if (!empty($value)) {
             $img = unserialize($value);
-            $num = $num - count($img['path']);
+            $num = $num - count($img);
         }
         $h = "<fieldset class='img_list'>
 <legend style='color:#666;font-size: 12px;line-height: 25px;padding: 0px 10px; text-align:center;margin: 0px;'>图片列表</legend>
@@ -406,16 +406,15 @@ class ContentFormModel extends Model
 </center>
 <div id='$id' class='picList'>";
         if (!empty($value)) {
-            $img = unserialize($value);
+            $imgData = unserialize($value);
             if (!empty($img) && is_array($img)) {
                 $h .= '<ul>';
-                foreach ($img['path'] as $N => $path) {
-                    $alt = $img['alt'][$N];
-                    $h .= "<li><div class='img'><img src='" . __ROOT__ . "/" . $path . "' style='width:135px;height:135px;'/>";
+                foreach ($imgData as $img) {
+                    $h .= "<li><div class='img'><img src='" . __ROOT__ . "/" . $img['path'] . "' style='width:135px;height:135px;'/>";
                     $h .= "<a href='javascript:;' onclick='remove_upload(this,\"{$id}\")'>X</a>";
                     $h .= "</div>";
-                    $h .= "<input type='hidden' name='" . $field['field_name'] . "[path][]'  value='" . $path . "' src='" . __ROOT__ . '/' . $path . "' class='w400 images'/> ";
-                    $h .= "<input type='text' name='" . $field['field_name'] . "[alt][]' value='" . $alt . "' placeholder='图片描述...'/>";
+                    $h .= "<input type='hidden' name='" . $field['field_name'] . "[path][]'  value='" . $img['path'] . "' src='" . __ROOT__ . '/' .  $img['path'] . "' class='w400 images'/> ";
+                    $h .= "<input type='text' name='" . $field['field_name'] . "[alt][]' value='" . $img['alt'] . "' placeholder='图片描述...'/>";
                     $h .= "</li>";
                 }
                 $h .= '</ul>';
@@ -439,7 +438,7 @@ class ContentFormModel extends Model
         //已经上传图片
         if (!empty($value)) {
             $img = unserialize($value);
-            $num = $num - count($img['path']);
+            $num = $num - count($img);
         }
         $h = "<fieldset class='img_list'>
 <legend style='color:#666;font-size: 12px;line-height: 25px;padding: 0px 10px; text-align:center;margin: 0px;'>文件列表</legend>
@@ -452,14 +451,14 @@ class ContentFormModel extends Model
 </center>
 <div id='$id' class='fileList'>";
         if (!empty($value)) {
-            $file = unserialize($value);
-            if (!empty($file) && is_array($file)) {
+            $fileData = unserialize($value);
+            if (!empty($fileData) && is_array($fileData)) {
                 $h .= '<ul>';
-                foreach ($file['path'] as $N => $path) {
+                foreach ($fileData as $file) {
                     $h .= "<li style='width:98%'>";
                     $h .= "<img src='" . __HDPHP_EXTEND__ . "/Org/Uploadify/default.png' style='width:50px;height:50px;'/>";
-                    $h .= "&nbsp;&nbsp;地址: <input type='text' name='" . $field['field_name'] . "[path][]'  value='" . $path . "' style='width:28%' readonly=''/> ";
-                    $h .= "&nbsp;&nbsp;描述: <input type='text' name='" . $field['field_name'] . "[alt][]' style='width:35%' value='" . $file['alt'][$N] . "'/>";
+                    $h .= "&nbsp;&nbsp;地址: <input type='text' name='" . $field['field_name'] . "[path][]'  value='" . $file['path'] . "' style='width:28%' readonly=''/> ";
+                    $h .= "&nbsp;&nbsp;描述: <input type='text' name='" . $field['field_name'] . "[alt][]' style='width:35%' value='" . $file['alt'] . "'/>";
                     $h .= "&nbsp;&nbsp;<a href='javascript:;' onclick='remove_upload(this,\"{$id}\")'>删除</a>";
                     $h .= "</li>";
                 }

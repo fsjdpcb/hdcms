@@ -10,6 +10,7 @@ class ContentTag
     public $tag = array(
         'tag' => array('block' => 1, 'level' => 4),
         'channel' => array('block' => 1, 'level' => 4),
+        'schannel' => array('block' => 1, 'level' => 4),
         'arclist' => array('block' => 1, 'level' => 4),
         'pagelist' => array('block' => 1, 'level' => 4),
         'pageshow' => array('block' => 0),
@@ -46,6 +47,27 @@ str;
         return $php;
     }
 
+    //子栏目
+    public function _schannel($attr,$content){
+        $cid= $attr['cid'];
+        $row=$attr['row'];
+$php=<<<str
+        <?php
+        \$map['pid']=$cid;
+        \$result = \$db->where(\$map)->where("cat_show=1")->order("catorder ASC")->limit($row)->all();
+        if(\$result){
+            foreach (\$result as \$sfield):
+                //当前栏目样式
+                \$sfield['caturl'] = Url::getCategoryUrl(\$sfield);
+                \$sfield['catimage']='__ROOT__'.\$sfield['catimage'];
+                \$sfield['target'] = \$sfield['cattype']==3?' target="_blank" ':' target="_self" ';
+            ?>
+str;
+        $php .= $content;
+        $php .= '<?php endforeach;}?>';
+        return $php;
+
+    }
     //栏目标签
     public function _channel($attr, $content)
     {
@@ -54,7 +76,7 @@ str;
         //显示条数
         $row = isset($attr['row']) ? $attr['row'] : 10;
         //指定的栏目cid
-        $cid = isset($attr['cid']) ? $attr['cid'] : NULL;
+        $cid = isset($attr['cid']) ? $attr['cid'] : 0;
         //当前栏目的class样式
         $class = isset($attr['class']) ? $attr['class'] : '';
         $php = <<<str
@@ -119,8 +141,6 @@ str;
         $order = isset($attr['order']) ? strtolower(trim($attr['order'])) : '';
         //排序属性
         $noflag = isset($attr['noflag']) ? trim($attr['noflag']) : '';
-        //获取类型（排序）
-//        $type = isset($attr['type']) ? strtolower(trim($attr['type'])) : 'new';
         //获取副表字段
         $subtable = isset($attr['subtable']) ? intval($attr['subtable']) : 0;
         //相关文章
@@ -228,17 +248,11 @@ str;
                 \$result = \$db->where(\$where)->all();
                 if(\$result):
                     foreach(\$result as \$index=>\$field):
+                        \$field=\$db->formatField(\$field);
                         \$field['index']=\$index+1;
                         \$field['title']=mb_substr(\$field['title'],0,$titlelen,'utf8');
                         \$field['title']=\$field['color']?"<span style='color:".\$field['color']."'>".\$field['title']."</span>":\$field['title'];
                         \$field['description']=mb_substr(\$field['description'],0,$infolen,'utf-8');
-                        \$field['time']=date("Y-m-d",\$field['addtime']);
-						\$field['icon']=empty(\$field['icon'])?"__ROOT__/data/image/user/150.png":'__ROOT__/'.\$field['icon'];
-                        \$field['date_before']=date_before(\$field['addtime']);
-                        \$field['thumb']=\$field['thumb']?'__ROOT__'.'/'.\$field['thumb']:'';
-                        \$field['caturl']=Url::getCategoryUrl(\$field);
-                        \$field['catimage']='__ROOT__'.\$field['catimage'];
-                        \$field['url']=Url::getContentUrl(\$field);
                          if(\$field['new_window'] || \$field['redirecturl']){
                         	\$field['link']='<a href="'.\$field['url'].'" target="_blank">'.\$field['title'].'</a>';
 						}else{
@@ -365,17 +379,11 @@ str;
                 \$result= \$db->relation(\$join)->order("arc_sort ASC")->where(\$where)->order(\$order)->limit(\$page->limit())->all();
                 if(\$result):
                     foreach(\$result as \$index=>\$field):
+                        \$field=\$db->formatField(\$field);
                         \$field['index']=\$index+1;
                         \$field['title']=mb_substr(\$field['title'],0,$titlelen,'utf8');
                         \$field['title']=\$field['color']?"<span style='color:".\$field['color']."'>".\$field['title']."</span>":\$field['title'];
                         \$field['description']=mb_substr(\$field['description'],0,$infolen,'utf-8');
-                        \$field['time']=date("Y-m-d",\$field['addtime']);
-						\$field['icon']=empty(\$field['icon'])?"__ROOT__/data/image/user/150.png":'__ROOT__/'.\$field['icon'];
-                        \$field['date_before']=date_before(\$field['addtime']);
-                        \$field['thumb']=\$field['thumb']?'__ROOT__'.'/'.\$field['thumb']:'__APP__/Static/image/thumb.jpg';
-                        \$field['catimage']='__ROOT__'.\$field['catimage'];
-                        \$field['caturl']=Url::getCategoryUrl(\$field);
-                        \$field['url']=Url::getContentUrl(\$field);
                          if(\$field['new_window'] || \$field['redirecturl']){
                         	\$field['link']='<a href="'.\$field['url'].'" target="_blank">'.\$field['title'].'</a>';
 						}else{
