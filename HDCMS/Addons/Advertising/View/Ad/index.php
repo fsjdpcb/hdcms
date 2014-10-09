@@ -80,7 +80,7 @@
                         </if>
                     </td>
                     <td>
-                        <a href="{|U:'showAd',array('id'=>$d['id'])}">预览广告<a> |
+                        <a href="{|U:'showAd',array('id'=>$d['id'])}" target="_blank">预览广告<a> |
                         <a href="{|U:'edit',array('id'=>$d['id'])}">修改<a> |
                         <a href="javascript:delAd({$d.id})">删除</a>
                     </td>
