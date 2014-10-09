@@ -5,7 +5,6 @@
     <title>广告位</title>
     <hdjs/>
     <js file="__CONTROLLER_VIEW__/Js/js.js"/>
-    <css file="__CONTROLLER_VIEW__/Css/css.css"/>
 </head>
 <body>
 <form action="{|U:'edit'}" method="post" class="hd-form">
@@ -73,37 +72,44 @@
                         <table class="table1" id="pic">
                             <thead>
                             <tr>
-                                <td class="w250">URL地址</td>
-                                <td>图片</td>
-                                <td><button type="button" class="hd-success" onclick="addAd();">添加</button></td>
+                                <td width="220">标题</td>
+                                <td width="220">URL地址</td>
+                                <td width="380">图片</td>
+                                <td align="left"><button type="button" class="hd-success" onclick="addAd();">添加</button></td>
                             </tr>
                             </thead>
-                            <if value="empty($field['data'])">
-                            <tr class="pic_list">
-                                <td class="w250">
-                                    <input type="text" name="data[url][]" class="w200"/>
-                                </td>
-                                <td>
-                                    <input id='image1' type='text' name='data[image][]' value='' src='' class='w300 images'
-                                           onmouseover='view_image(this)' readonly=''/>
-                                    <button class='hd-cancel-small'  onclick='file_upload(this)' type='button'>上传图片
-                                    </button>
-                                    &nbsp;&nbsp;
-                                    <button class='hd-cancel-small' onclick='remove_upload_one_img(this)' type='button'>
-                                        删除
-                                    </button>
-                                    <span id='hd_image' class='image validate-message'></span>
-                                </td>
-                                <td></td>
-                            </tr>
+                                <if value="empty($field['data'])">
+                                    <tr class="pic_list">
+                                        <td>
+                                            <input type="text" name="data[title][]" class="w200"/>
+                                        </td>
+                                        <td>
+                                            <input type="text" name="data[url][]" class="w200"/>
+                                        </td>
+                                        <td>
+                                            <input id='image1' type='text' name='data[image][]' value='' src='' class='w300 images'
+                                                   onmouseover='view_image(this)' readonly=''/>
+                                            <button class='hd-cancel-small'  onclick='file_upload(this)' type='button'>上传图片
+                                            </button>
+                                            &nbsp;&nbsp;
+                                            <button class='hd-cancel-small' onclick='remove_upload_one_img(this)' type='button'>
+                                                删除
+                                            </button>
+                                            <span id='hd_image' class='image validate-message'></span>
+                                        </td>
+                                        <td></td>
+                                    </tr>
                                 <else>
                                 <list from="$field.data" name="$d">
                                     <tr class="pic_list">
-                                        <td class="w250">
+                                        <td>
+                                            <input type="text" name="data[title][]" class="w200" value="{$d.title}"/>
+                                        </td>
+                                        <td>
                                             <input type="text" name="data[url][]" class="w200" value="{$d.url}"/>
                                         </td>
                                         <td>
-                                            <input id='image1' type='text' name='data[image][]' value='{$d.image}' src='' class='w300 images'
+                                            <input id='image1' type='text' name='data[image][]' value='{$d.image}' src='__ROOT__/{$d.image}' class='w200 images'
                                                    onmouseover='view_image(this)' readonly=''/>
                                             <button class='hd-cancel-small'  onclick='file_upload(this)' type='button'>上传图片
                                             </button>
@@ -168,5 +174,8 @@
         <input type="submit" value="确定" class="hd-success"/>
     </div>
 </form>
+<script>
+    changeImageInputId();
+</script>
 </body>
 </html>

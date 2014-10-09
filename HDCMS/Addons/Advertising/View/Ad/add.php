@@ -72,17 +72,21 @@
                         <table class="table1" id="pic">
                             <thead>
                             <tr>
-                                <td class="w250">URL地址</td>
-                                <td>图片</td>
-                                <td><button type="button" class="hd-success" onclick="addAd();">添加</button></td>
+                                <td width="220">标题</td>
+                                <td width="220">URL地址</td>
+                                <td width="380">图片</td>
+                                <td align="left"><button type="button" class="hd-success" onclick="addAd();">添加</button></td>
                             </tr>
                             </thead>
                             <tr class="pic_list">
-                                <td class="w250">
+                                <td>
+                                    <input type="text" name="data[title][]" class="w200"/>
+                                </td>
+                                <td>
                                     <input type="text" name="data[url][]" class="w200"/>
                                 </td>
                                 <td>
-                                    <input id='image1' type='text' name='data[image][]' value='' src='' class='w300 images'
+                                    <input id='image1' type='text' name='data[image][]' value='' src='' class='w200 images'
                                            onmouseover='view_image(this)' readonly=''/>
                                     <button class='hd-cancel-small'  onclick='file_upload(this)' type='button'>上传图片
                                     </button>

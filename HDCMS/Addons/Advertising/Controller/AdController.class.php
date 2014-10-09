@@ -82,6 +82,7 @@ class AdController extends AddonAuthController
         if (empty($data)) return '';
         $ad = array();
         foreach ($data['url'] as $id => $url) {
+            $ad[$id]['title'] = $data['title'][$id];
             $ad[$id]['url'] = $data['url'][$id];
             $ad[$id]['image'] = $data['image'][$id];
         }

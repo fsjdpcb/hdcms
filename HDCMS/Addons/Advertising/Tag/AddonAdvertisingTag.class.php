@@ -51,13 +51,13 @@ class AddonAdvertisingTag
                                     width:".\$ad['ad_width']." ,
                                     height: ".\$ad['ad_height'].",
                                     timeout: 3,
-                                    bgcolor:'#999'
+                                    bgcolor:'#333'
                                 });
                             })
                          </script>
                          <div id='flash'>";
                          foreach(\$data as \$d){
-                            \$js.="<a href='".\$d['url']."'  title=''><img src='".\$d['image']."'width='".\$ad['ad_width']."' height='".\$ad['ad_width']."'/></a>";
+                            \$js.="<a href='".\$d['url']."'  title='".\$d['title']."'><img src='".\$d['image']."'width='".\$ad['ad_width']."' height='".\$ad['ad_width']."'/></a>";
                          }
                          \$js.="</div>";
                          echo \$js;

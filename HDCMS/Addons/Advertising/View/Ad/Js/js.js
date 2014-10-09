@@ -10,7 +10,7 @@ function changeImageInputId() {
     //更新ID
     $('tr.pic_list').each(function (i) {
         var id = 'image' + $(this).index();
-        $(this).find('input').eq(1).attr('id', id);
+        $(this).find('input').eq(2).attr('id', id);
     })
 }
 
