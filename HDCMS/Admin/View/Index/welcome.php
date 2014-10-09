@@ -40,7 +40,7 @@
 			<table class="table2">
 				<tr>
 					<td style="color:red">
-					<a href="http://www.hdphp.com/index.php?list_2.html" target="_blank">
+					<a href="http://bbs.houdunwang.com/forum-105-1.html" target="_blank">
 						提交反馈
 					</a></td>
 				</tr>

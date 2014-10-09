@@ -8,7 +8,7 @@
     </div>
     <div class="title-header">当前模板</div>
     <div class="help">
-        <p>你需要了解HDCMS标签，才可以灵活编辑模板，当然这很简单 >>><a href="http://www.kuaixuewang.com" target="_blank">获得视频教程</a></p>
+        <p>你需要了解HDCMS标签，才可以灵活编辑模板，当然这很简单 >>><a href="http://www.hdphp.com" target="_blank">获得视频教程</a></p>
     </div>
     <div class="tpl-list">
         <ul>
