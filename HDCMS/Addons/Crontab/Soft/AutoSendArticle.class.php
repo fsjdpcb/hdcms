@@ -13,10 +13,12 @@ class AutoSendArticle
     public function run()
     {
         $model = S('model');
-        foreach ($model as $m) {
-            $map['content_status'] = array('EQ', 2);
-            $map['auto_send_time'] = array('LT', time());
-            M($m['table_name'])->where($map)->save(array('content_status' => 1));
+        if ($model) {
+            foreach ($model as $m) {
+                $map['content_status'] = array('EQ', 2);
+                $map['auto_send_time'] = array('LT', time());
+                M($m['table_name'])->where($map)->save(array('content_status' => 1));
+            }
         }
     }
 }
