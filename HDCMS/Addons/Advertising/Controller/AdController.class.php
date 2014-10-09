@@ -91,10 +91,7 @@ class AdController extends AddonAuthController
     //广告预览
     public function showAd()
     {
-
-//        $field = $this->db->find($id);
-//        $field['data'] = unserialize($field['data'])
-//        $this->assign('$ad', $field)
         $this->display();
+        touch(APP_ADDON_PATH.'Advertising/View/Ad/showAd.php');
     }
 }
