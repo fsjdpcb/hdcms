@@ -5,7 +5,7 @@
  * Class FieldController
  * @author 后盾向军 <2300071698@qq.com>
  */
-class FieldController extends AddonController
+class FieldController extends AddonAuthController
 {
     private $db;
 

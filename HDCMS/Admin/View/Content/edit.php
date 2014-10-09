@@ -35,7 +35,7 @@
         </div>
     </div>
     <div class="position-bottom">
-        <input type="submit" class="hd-success" value="确定"/>
+        <input type="submit" class="hd-success" value="发表" name="submit"/>
         <input type="button" class="hd-cancel" onclick="hd_close_window()" value="关闭"/>
     </div>
 </form>

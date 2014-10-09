@@ -4,7 +4,7 @@
  * @author 后盾向军 <houdunwangxj@gmail.com>
  */
 
-class AdminController extends AddonController {
+class AdminController extends AddonAuthController {
 
     public function index() {
         $this->display();

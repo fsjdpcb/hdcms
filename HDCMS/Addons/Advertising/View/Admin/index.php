@@ -19,7 +19,7 @@
     <div class="menu_list">
         <ul>
             <li>
-                <a href="{|U:'Admin/index'}">
+                <a href="{|U:'Admin/index'}" class="action">
                     广告位
                 </a>
             </li>

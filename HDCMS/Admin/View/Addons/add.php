@@ -95,9 +95,14 @@
 <script>
     $("form").validate({
         name: {
+            rule: {required: true,regexp:/^[A-Z][a-zA-Z]+$/},
+            error: {required: '标识名不能为空',regexp:'只能是英文字母开头，且首字母大写'},
+            message: '只能是英文字母开头，且首字母大写，标识只能包含英文、数子、下划线'
+        },
+        title: {
             rule: {required: true},
-            error: {required: '标识名不能为空'},
-            message: '只能是英文开头，且首字母大写，标识只能包含英文、数子、下划线'
+            error: {required: '插件名不能为空'},
+            message: '插件的中文名称'
         },
         has_adminlist:{
             message:'访问方法:?app=Addon&m=插件名&c=Admin&a=index'

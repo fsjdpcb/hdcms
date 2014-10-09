@@ -45,14 +45,14 @@
 			<div class="menu_list">
 				<ul>
 					<li>
-						<a href="{|U:'show',array('mid'=>$_GET['mid'],'cid'=>$_GET['cid'],'content_status'=>1)}"
-						<if value="$hd.get.content_status==1">class="action"</if> >
+						<a href="{|U:'show',array('mid'=>$_GET['mid'],'cid'=>$_GET['cid'])}"
+						<if value="!isset($hd.get.content_status)">class="action"</if> >
 							内容列表
 						</a>
 					</li>
 					<li>
 						<a href="{|U:'show',array('mid'=>$_GET['mid'],'cid'=>$_GET['cid'],'content_status'=>0)}"
-						<if value="$hd.get.content_status==0">class="action"</if> >
+					<if value="$hd.get.content_status === '0'">class="action"</if> >
 							未审核
 						</a>
 					</li>
@@ -98,10 +98,15 @@
 						</if></td>
 						<td>
 						<if value="$c.content_status eq 1">
-							已审核
-							<else>
-								未审核
-						</if></td>
+							发表
+						</if>
+                            <if value="$c.content_status eq 0">
+							待审查
+						</if>
+                            <if value="$c.content_status eq 2">
+                                自动
+                            </if>
+                        </td>
 						<td>{$c.username}</td>
 						<td>{$c.updatetime|date:"Y-m-d",@@}</td>
 						<td>

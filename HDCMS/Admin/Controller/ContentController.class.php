@@ -65,7 +65,7 @@ class ContentController extends AuthController
                         }
                         $url = "javascript:hd_open_window(\"$link\")";
                     } else if ($cat['cattype'] == 1) {
-                        $url = U('show', array('cid' => $cat['cid'], 'mid' => $cat['mid'], 'content_status' => 1));
+                        $url = U('show', array('cid' => $cat['cid'], 'mid' => $cat['mid']));
                     } else {
                         $url = 'javascript:';
                     }
@@ -86,10 +86,11 @@ class ContentController extends AuthController
     public function show()
     {
         $ContentModel = ContentViewModel::getInstance($this->mid);
-        //文章状态
-        $content_status = Q('content_status', 0, 'intval');
         $where = array();
-        $where['content_status'] = array('EQ', $content_status);
+        //文章状态
+        if (isset($_REQUEST['content_status'])) {
+            $where['content_status'] = array('EQ', $_REQUEST['content_status']);
+        }
         //按时间搜索
         $search_begin_time = Q('search_begin_time', 0, 'strtotime');
         if ($search_begin_time) {
@@ -127,7 +128,7 @@ class ContentController extends AuthController
         }
         $where[] = "category.cid=" . $this->cid;
         $page = new Page($ContentModel->where($where)->count(), 15);
-        $data = $ContentModel->where($where)->limit($page->limit())->order('arc_sort ASC,addtime DESC')->all();
+        $data = $ContentModel->where($where)->limit($page->limit())->order('arc_sort ASC,'.$ContentModel->table.'.aid DESC')->all();
         $this->assign('flag', S('flag' . $this->mid));
         $this->assign('data', $data);
         $this->assign('page', $page->show());

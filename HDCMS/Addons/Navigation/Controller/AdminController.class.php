@@ -4,7 +4,7 @@
  * 导航菜单模块
  * Class NavigationControl
  */
-class AdminController extends AuthController
+class AdminController extends AddonAuthController
 {
     private $db;
 

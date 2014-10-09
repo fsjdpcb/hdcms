@@ -10,7 +10,77 @@ return array (
     'step_time' => 200,
     'database' => 'hdcms',
   ),
+  'hd_addon_advertising_ad' => 
+  array (
+    'row' => '0',
+    'success' => true,
+    'current_row' => 20,
+    'size' => 200000,
+    'url' => '',
+    'step_time' => 200,
+    'database' => 'hdcms',
+  ),
+  'hd_addon_advertising_postion' => 
+  array (
+    'row' => '1',
+    'success' => true,
+    'current_row' => 40,
+    'size' => 200000,
+    'url' => '',
+    'step_time' => 200,
+    'database' => 'hdcms',
+  ),
   'hd_addon_comment' => 
+  array (
+    'row' => '0',
+    'success' => true,
+    'current_row' => 20,
+    'size' => 200000,
+    'url' => '',
+    'step_time' => 200,
+    'database' => 'hdcms',
+  ),
+  'hd_addon_crontab' => 
+  array (
+    'row' => '2',
+    'success' => true,
+    'current_row' => 40,
+    'size' => 200000,
+    'url' => '',
+    'step_time' => 200,
+    'database' => 'hdcms',
+  ),
+  'hd_addon_crontab_log' => 
+  array (
+    'row' => '1',
+    'success' => true,
+    'current_row' => 40,
+    'size' => 200000,
+    'url' => '',
+    'step_time' => 200,
+    'database' => 'hdcms',
+  ),
+  'hd_addon_custom_form_data' => 
+  array (
+    'row' => '0',
+    'success' => true,
+    'current_row' => 20,
+    'size' => 200000,
+    'url' => '',
+    'step_time' => 200,
+    'database' => 'hdcms',
+  ),
+  'hd_addon_custom_form_field' => 
+  array (
+    'row' => '0',
+    'success' => true,
+    'current_row' => 20,
+    'size' => 200000,
+    'url' => '',
+    'step_time' => 200,
+    'database' => 'hdcms',
+  ),
+  'hd_addon_custom_form_group' => 
   array (
     'row' => '0',
     'success' => true,
@@ -42,7 +112,7 @@ return array (
   ),
   'hd_addons' => 
   array (
-    'row' => '6',
+    'row' => '9',
     'success' => true,
     'current_row' => 40,
     'size' => 200000,
@@ -80,9 +150,9 @@ return array (
     'step_time' => 200,
     'database' => 'hdcms',
   ),
-  'hd_content' => 
+  'hd_config_group' => 
   array (
-    'row' => '2',
+    'row' => '9',
     'success' => true,
     'current_row' => 40,
     'size' => 200000,
@@ -90,11 +160,21 @@ return array (
     'step_time' => 200,
     'database' => 'hdcms',
   ),
+  'hd_content' => 
+  array (
+    'row' => '0',
+    'success' => true,
+    'current_row' => 20,
+    'size' => 200000,
+    'url' => '',
+    'step_time' => 200,
+    'database' => 'hdcms',
+  ),
   'hd_content_data' => 
   array (
-    'row' => '2',
+    'row' => '0',
     'success' => true,
-    'current_row' => 40,
+    'current_row' => 20,
     'size' => 200000,
     'url' => '',
     'step_time' => 200,
@@ -142,9 +222,9 @@ return array (
   ),
   'hd_field' => 
   array (
-    'row' => '60',
+    'row' => '63',
     'success' => true,
-    'current_row' => 80,
+    'current_row' => 100,
     'size' => 200000,
     'url' => '',
     'step_time' => 200,
@@ -182,7 +262,7 @@ return array (
   ),
   'hd_node' => 
   array (
-    'row' => '50',
+    'row' => '56',
     'success' => true,
     'current_row' => 80,
     'size' => 200000,
@@ -222,7 +302,7 @@ return array (
   ),
   'hd_session' => 
   array (
-    'row' => '18',
+    'row' => '6',
     'success' => true,
     'current_row' => 40,
     'size' => 200000,
@@ -232,9 +312,9 @@ return array (
   ),
   'hd_tag' => 
   array (
-    'row' => '0',
+    'row' => '4',
     'success' => true,
-    'current_row' => 20,
+    'current_row' => 40,
     'size' => 200000,
     'url' => '',
     'step_time' => 200,
@@ -252,7 +332,7 @@ return array (
   ),
   'hd_user' => 
   array (
-    'row' => '2',
+    'row' => '1',
     'success' => true,
     'current_row' => 40,
     'size' => 200000,

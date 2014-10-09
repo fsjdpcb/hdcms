@@ -5,7 +5,7 @@
  * Class AdController
  * @author 后盾向军 <2300071698@qq.com>
  */
-class AdController extends AddonController
+class AdController extends AddonAuthController
 {
     private $db;
     private $position;//广告位

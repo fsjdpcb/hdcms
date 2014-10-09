@@ -29,7 +29,7 @@
                 </a>
             </li>
             <li>
-                <a href="{|U:'Ad/index'}">
+                <a href="{|U:'Ad/index'}" class="action">
                     所有广告
                 </a>
             </li>

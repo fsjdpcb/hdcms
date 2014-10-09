@@ -5,12 +5,11 @@
  * Class BackupControl
  * @author 向军 <houdunwangxj@gmail.com>
  */
-class AdminController extends AddonController
+class AdminController extends AddonAuthController
 {
     //构造函数
     public function __init()
     {
-        if (!isset($_SESSION['user']) || !$_SESSION['user']['admin']) go('Admin/Login/login');
     }
 
     //备份列表

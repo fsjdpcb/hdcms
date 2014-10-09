@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50538
 File Encoding         : 65001
 
-Date: 2014-10-08 01:16:26
+Date: 2014-10-09 08:01:47
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -46,18 +46,58 @@ CREATE TABLE `hd_addons` (
   `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '安装时间',
   `has_adminlist` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否有后台列表',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=202 DEFAULT CHARSET=utf8 COMMENT='插件表';
+) ENGINE=MyISAM AUTO_INCREMENT=217 DEFAULT CHARSET=utf8 COMMENT='插件表';
 
 -- ----------------------------
 -- Records of hd_addons
 -- ----------------------------
-INSERT INTO `hd_addons` VALUES ('189', 'Backup', '数据备份', '数据备份还原插件', '1', 'a:0:{}', '后盾网向军', '1.0', '1409578221', '1');
+INSERT INTO `hd_addons` VALUES ('204', 'Backup', '数据备份', '数据备份还原插件', '1', 'a:0:{}', '后盾网向军', '1.0', '1412773789', '1');
 INSERT INTO `hd_addons` VALUES ('178', 'Link', '友情链接', '友情链接', '1', 'a:0:{}', '后盾网向军', '1.0', '1408988196', '1');
 INSERT INTO `hd_addons` VALUES ('179', 'Navigation', '导航菜单', '导航菜单', '1', 'a:0:{}', '后盾网向军', '1.0', '1408988221', '1');
 INSERT INTO `hd_addons` VALUES ('197', 'Comment', '评论', '评论', '1', 'a:0:{}', '后盾网向军', '1.0', '1409763498', '1');
 INSERT INTO `hd_addons` VALUES ('190', 'FieldReplace', '数据库内容替换', '数据库内容替换', '1', 'a:0:{}', '后盾网向军', '1.0', '1409580307', '1');
 INSERT INTO `hd_addons` VALUES ('193', 'Search', '前台搜索', '前台搜索', '1', 'a:0:{}', '后盾网向军', '1.0', '1409598497', '0');
-INSERT INTO `hd_addons` VALUES ('201', 'CustomForm', '自定义表单', '自定义表单', '1', 'a:10:{s:5:\"title\";s:6:\"示例\";s:8:\"password\";s:0:\"\";s:6:\"hidden\";s:0:\"\";s:5:\"radio\";s:1:\"1\";s:6:\"select\";s:1:\"2\";s:8:\"checkbox\";s:1:\"2\";s:8:\"textarea\";s:1:\"2\";s:5:\"image\";s:0:\"\";s:6:\"groups\";s:0:\"\";s:6:\"editor\";s:3:\"aaa\";}', '后盾网向军', '1.0', '1412687363', '1');
+INSERT INTO `hd_addons` VALUES ('205', 'CustomForm', '自定义表单', '自定义表单', '1', 'a:0:{}', '后盾网向军', '1.0', '1412773870', '1');
+INSERT INTO `hd_addons` VALUES ('210', 'Advertising', '广告位', '广告位', '1', 'a:0:{}', '后盾网向军', '1.0', '1412795895', '1');
+INSERT INTO `hd_addons` VALUES ('216', 'Crontab', '计划任务', '计划任务', '1', 'a:0:{}', '后盾向军', '1.0', '1412812780', '1');
+
+-- ----------------------------
+-- Table structure for hd_addon_advertising_ad
+-- ----------------------------
+DROP TABLE IF EXISTS `hd_addon_advertising_ad`;
+CREATE TABLE `hd_addon_advertising_ad` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `adtitle` varchar(255) DEFAULT NULL COMMENT '广告名称',
+  `posid` int(11) unsigned DEFAULT NULL COMMENT '广告位posid',
+  `data` mediumtext COMMENT '广告数据 图片+URL',
+  `show_type` tinyint(4) DEFAULT '1' COMMENT '广告类型：1 图片  2 轮换',
+  `start_time` int(11) DEFAULT '0' COMMENT '开始时间',
+  `end_time` int(11) DEFAULT '0' COMMENT '结束时间',
+  `status` tinyint(1) DEFAULT '1' COMMENT '广告状态',
+  `ad_width` char(10) DEFAULT '600' COMMENT '广告宽度',
+  `ad_height` char(10) DEFAULT '300' COMMENT '广告高度',
+  `action_time` tinyint(4) DEFAULT '3' COMMENT '轮换广告变化时间，单位秒',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='广告';
+
+-- ----------------------------
+-- Records of hd_addon_advertising_ad
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for hd_addon_advertising_postion
+-- ----------------------------
+DROP TABLE IF EXISTS `hd_addon_advertising_postion`;
+CREATE TABLE `hd_addon_advertising_postion` (
+  `posid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `posname` varchar(255) DEFAULT NULL COMMENT '广告位名称',
+  PRIMARY KEY (`posid`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='广告位';
+
+-- ----------------------------
+-- Records of hd_addon_advertising_postion
+-- ----------------------------
+INSERT INTO `hd_addon_advertising_postion` VALUES ('3', '首页广告');
 
 -- ----------------------------
 -- Table structure for hd_addon_comment
@@ -85,6 +125,44 @@ CREATE TABLE `hd_addon_comment` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for hd_addon_crontab
+-- ----------------------------
+DROP TABLE IF EXISTS `hd_addon_crontab`;
+CREATE TABLE `hd_addon_crontab` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL COMMENT '任务名称',
+  `classname` varchar(255) DEFAULT NULL COMMENT '执行类名称',
+  `username` char(50) DEFAULT NULL COMMENT '管理员帐号',
+  `mday` tinyint(4) DEFAULT NULL,
+  `hours` tinyint(4) DEFAULT NULL,
+  `minutes` tinyint(4) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='计划任务';
+
+-- ----------------------------
+-- Records of hd_addon_crontab
+-- ----------------------------
+INSERT INTO `hd_addon_crontab` VALUES ('1', '更新文章', 'AutoSendArticle', 'admin', '0', '0', '10');
+INSERT INTO `hd_addon_crontab` VALUES ('2', '生成首页静态', 'CreateIndexHtml', 'admin', '0', '0', '10');
+
+-- ----------------------------
+-- Table structure for hd_addon_crontab_log
+-- ----------------------------
+DROP TABLE IF EXISTS `hd_addon_crontab_log`;
+CREATE TABLE `hd_addon_crontab_log` (
+  `lid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(11) DEFAULT NULL COMMENT '计划任务id',
+  `runtime` int(11) DEFAULT NULL COMMENT '执行时间',
+  PRIMARY KEY (`lid`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of hd_addon_crontab_log
+-- ----------------------------
+INSERT INTO `hd_addon_crontab_log` VALUES ('34', '2', '1412812818');
+
+-- ----------------------------
 -- Table structure for hd_addon_custom_form_data
 -- ----------------------------
 DROP TABLE IF EXISTS `hd_addon_custom_form_data`;
@@ -94,17 +172,13 @@ CREATE TABLE `hd_addon_custom_form_data` (
   `addtime` int(10) DEFAULT NULL COMMENT '提交时间',
   `gid` int(11) DEFAULT NULL COMMENT '表单组id',
   `uid` int(11) unsigned DEFAULT NULL COMMENT '会员id',
-  `status` tinyint(1) DEFAULT NULL COMMENT '状态',
+  `status` tinyint(1) DEFAULT '0' COMMENT '状态',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='自定义字段数据';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='自定义字段数据';
 
 -- ----------------------------
 -- Records of hd_addon_custom_form_data
 -- ----------------------------
-INSERT INTO `hd_addon_custom_form_data` VALUES ('3', 'a:4:{s:3:\"gid\";s:1:\"3\";s:5:\"title\";s:3:\"100\";s:3:\"sex\";s:1:\"1\";s:4:\"ziwu\";s:6:\"sdfsdf\";}', '1412698478', '3', '1', null);
-INSERT INTO `hd_addon_custom_form_data` VALUES ('4', 'a:4:{s:3:\"gid\";s:1:\"3\";s:5:\"title\";s:18:\"我是一个好人\";s:3:\"sex\";s:1:\"1\";s:4:\"ziwu\";s:15:\"你个王八蛋\";}', '1412698498', '3', '1', null);
-INSERT INTO `hd_addon_custom_form_data` VALUES ('5', 'a:4:{s:3:\"gid\";s:1:\"3\";s:5:\"title\";s:12:\"中文标题\";s:3:\"sex\";s:1:\"1\";s:4:\"ziwu\";s:12:\"个人职务\";}', '1412699926', '3', '1', null);
-INSERT INTO `hd_addon_custom_form_data` VALUES ('6', 'a:4:{s:3:\"gid\";s:1:\"3\";s:5:\"title\";s:12:\"中文标题\";s:3:\"sex\";s:1:\"1\";s:4:\"ziwu\";s:12:\"个人职务\";}', '1412701262', '3', '1', null);
 
 -- ----------------------------
 -- Table structure for hd_addon_custom_form_field
@@ -113,7 +187,7 @@ DROP TABLE IF EXISTS `hd_addon_custom_form_field`;
 CREATE TABLE `hd_addon_custom_form_field` (
   `fid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `gid` mediumint(9) DEFAULT NULL COMMENT '字段组ID',
-  `name` varchar(45) DEFAULT '' COMMENT '配置名称\n',
+  `name` varchar(45) DEFAULT '' COMMENT '配置名称',
   `value` text COMMENT '配置值',
   `title` char(30) DEFAULT '',
   `show_type` enum('text','radio','textarea','select','email') DEFAULT 'text' COMMENT '显示类型',
@@ -123,14 +197,11 @@ CREATE TABLE `hd_addon_custom_form_field` (
   `status` tinyint(4) DEFAULT '1' COMMENT '总配置模块显示  如模板风格就不显示 1显示 0 不显示',
   `isrequired` tinyint(1) DEFAULT '0' COMMENT '必须输入',
   PRIMARY KEY (`fid`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='系统配置';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='系统配置';
 
 -- ----------------------------
 -- Records of hd_addon_custom_form_field
 -- ----------------------------
-INSERT INTO `hd_addon_custom_form_field` VALUES ('1', '3', 'title', '100', '中文标题', 'text', 'sdfsdf', null, '100', '1', '0');
-INSERT INTO `hd_addon_custom_form_field` VALUES ('4', '3', 'sex', '1', '性别', 'radio', '1|男,2|女', null, '100', '1', '0');
-INSERT INTO `hd_addon_custom_form_field` VALUES ('9', '3', 'ziwu', '', '个人职务', 'textarea', '', null, '100', '1', '0');
 
 -- ----------------------------
 -- Table structure for hd_addon_custom_form_group
@@ -141,12 +212,11 @@ CREATE TABLE `hd_addon_custom_form_group` (
   `gname` varchar(255) DEFAULT NULL,
   `send_mail` tinyint(1) DEFAULT NULL COMMENT '向表单提交者发送邮件（取第一个邮箱字段）',
   PRIMARY KEY (`gid`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='自定义字段配置组';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='自定义字段配置组';
 
 -- ----------------------------
 -- Records of hd_addon_custom_form_group
 -- ----------------------------
-INSERT INTO `hd_addon_custom_form_group` VALUES ('3', '基本设置', '1');
 
 -- ----------------------------
 -- Table structure for hd_addon_link
@@ -220,7 +290,7 @@ CREATE TABLE `hd_category` (
   `member_send_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '会员投稿状态 1 审核 2 未审核',
   `priv_child` tinyint(1) DEFAULT '0' COMMENT '应用到子栏目',
   PRIMARY KEY (`cid`)
-) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COMMENT='栏目表';
+) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COMMENT='栏目表';
 
 -- ----------------------------
 -- Records of hd_category
@@ -232,7 +302,7 @@ INSERT INTO `hd_category` VALUES ('4', '0', 'CMS帮助', '', 'hdcms', '', '使�
 INSERT INTO `hd_category` VALUES ('6', '4', '标签使用', '', 'help/tag', '', '', 'article_index.html', 'article_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '2', '1', '', '', '1', '0', '1', '1', '0', '0');
 INSERT INTO `hd_category` VALUES ('7', '4', '安装使用', '', 'help/setup', '', '', 'article_index.html', 'article_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '1', '1', '', '', '1', '0', '1', '1', '0', '0');
 INSERT INTO `hd_category` VALUES ('8', '4', '模块插件', '', 'help/addon', '', '', 'article_index.html', 'article_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '3', '1', '', '', '1', '0', '1', '1', '0', '0');
-INSERT INTO `hd_category` VALUES ('9', '0', '框架帮助', '', 'hdphp', '', '', 'article_index.html', 'article_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '2', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '0', '0');
+INSERT INTO `hd_category` VALUES ('9', '0', '框架帮助', 'upload/26751412774521.jpg', 'hdphp', '', '', 'article_index.html', 'article_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '2', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '0', '0');
 INSERT INTO `hd_category` VALUES ('10', '9', '模板标签', '', 'hdphp/tag', '', '', 'article_index.html', 'article_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '2', '1', '', '', '1', '0', '1', '1', '0', '0');
 INSERT INTO `hd_category` VALUES ('11', '9', '起步知识', '', 'hdphp/base', '', '', 'article_index.html', 'article_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '1', '1', '', '', '1', '0', '1', '1', '0', '0');
 INSERT INTO `hd_category` VALUES ('12', '9', '数据模型', '', 'hdphp/model', '', '', 'article_index.html', 'article_list.html', 'article_default.html', '{catdir}/{cid}{page}.html', '{catdir}/{y}/{m}{d}/{aid}.html', '1', '1', '2', '2', '', '100', '1', '', '', '1', '0', '1', '1', '0', '0');
@@ -377,23 +447,21 @@ CREATE TABLE `hd_content` (
   `template` varchar(255) NOT NULL DEFAULT '' COMMENT '模板',
   `url_type` tinyint(80) NOT NULL DEFAULT '3' COMMENT '文章访问方式  1 静态访问  2 动态访问  3 继承栏目',
   `arc_sort` mediumint(6) NOT NULL DEFAULT '0' COMMENT '排序',
-  `content_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '文章状态  1 已审核 0 未审核',
+  `content_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '文章状态  1 已审核 0 未审核 2 草稿',
   `readpoint` char(6) DEFAULT NULL COMMENT '阅读收费',
   `keywords` varchar(100) DEFAULT '' COMMENT '关键字',
   `description` varchar(255) DEFAULT NULL COMMENT '描述',
+  `auto_send_time` int(11) DEFAULT '0' COMMENT '自动发表时间',
   PRIMARY KEY (`aid`),
   KEY `uid` (`uid`),
   KEY `cid` (`cid`),
   KEY `flag` (`flag`),
   KEY `content_status` (`content_status`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='文章表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='文章表';
 
 -- ----------------------------
 -- Records of hd_content
 -- ----------------------------
-INSERT INTO `hd_content` VALUES ('1', '19', '1', 'HDPHP下载', '', '0', '', '', '100', '', '', '1411889739', '1411889750', '', 'download_hdphp.html', '3', '100', '1', '', '', '');
-INSERT INTO `hd_content` VALUES ('2', '19', '1', 'HDCMS下载', '', '0', '', '', '100', '', '', '1411889752', '1411889760', '', 'download_hdcms.html', '3', '100', '1', '', '', '');
-INSERT INTO `hd_content` VALUES ('6', '15', '4', '33', '图片', '0', '', 'upload/53391412650656.png', '1', '', '', '1412650659', '1412650659', '', '', '0', '0', '1', '', '', '11212');
 
 -- ----------------------------
 -- Table structure for hd_content_data
@@ -408,9 +476,6 @@ CREATE TABLE `hd_content_data` (
 -- ----------------------------
 -- Records of hd_content_data
 -- ----------------------------
-INSERT INTO `hd_content_data` VALUES ('1', '');
-INSERT INTO `hd_content_data` VALUES ('2', '');
-INSERT INTO `hd_content_data` VALUES ('6', '<p>11212</p>');
 
 -- ----------------------------
 -- Table structure for hd_content_tag
@@ -449,7 +514,7 @@ CREATE TABLE `hd_download` (
   `template` varchar(255) NOT NULL DEFAULT '' COMMENT '模板',
   `url_type` tinyint(80) NOT NULL DEFAULT '3' COMMENT '文章访问方式  1 静态访问  2 动态访问  3 继承栏目',
   `arc_sort` mediumint(6) NOT NULL DEFAULT '0' COMMENT '排序',
-  `content_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '文章状态  1 已审核 0 未审核',
+  `content_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '文章状态  1 已审核 0 未审核 2 草稿',
   `readpoint` char(6) DEFAULT NULL COMMENT '阅读收费',
   `keywords` varchar(100) NOT NULL DEFAULT '' COMMENT '关键字',
   `description` varchar(255) DEFAULT NULL COMMENT '描述',
@@ -458,6 +523,7 @@ CREATE TABLE `hd_download` (
   `language` char(250) NOT NULL DEFAULT '',
   `softtype` char(250) NOT NULL DEFAULT '',
   `version` varchar(255) NOT NULL DEFAULT '',
+  `auto_send_time` int(11) DEFAULT '0' COMMENT '自动发表时间',
   PRIMARY KEY (`aid`),
   KEY `uid` (`uid`),
   KEY `cid` (`cid`),
@@ -531,18 +597,18 @@ CREATE TABLE `hd_field` (
   `isadd` tinyint(1) NOT NULL DEFAULT '1' COMMENT '在前台投稿中显示',
   PRIMARY KEY (`fid`),
   KEY `mid` (`mid`)
-) ENGINE=MyISAM AUTO_INCREMENT=174 DEFAULT CHARSET=utf8 COMMENT='模型字段';
+) ENGINE=MyISAM AUTO_INCREMENT=291 DEFAULT CHARSET=utf8 COMMENT='模型字段';
 
 -- ----------------------------
 -- Records of hd_field
 -- ----------------------------
 INSERT INTO `hd_field` VALUES ('104', '1', '1', 'input', '1', 'content', 'readpoint', '阅读收费', '金币', '1', '1', '106', 'a:3:{s:4:\"size\";s:3:\"100\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";}', '', '0', '', '', '0', '', '0', '0', '0', '0');
-INSERT INTO `hd_field` VALUES ('103', '1', '1', 'box', '1', 'content', 'content_status', '状态', '', '1', '1', '112', 'a:3:{s:7:\"options\";s:26:\"1|审核通过,0|待审查\";s:9:\"form_type\";s:5:\"radio\";s:7:\"default\";s:1:\"1\";}', '', '0', '', '', '0', '', '0', '0', '0', '0');
+INSERT INTO `hd_field` VALUES ('103', '1', '1', 'box', '1', 'content', 'content_status', '状态', '', '1', '1', '113', 'a:3:{s:7:\"options\";s:29:\"1|发表,0|待审查,2|自动\";s:9:\"form_type\";s:5:\"radio\";s:7:\"default\";s:1:\"1\";}', '', '0', '', '', '0', '', '0', '0', '0', '0');
 INSERT INTO `hd_field` VALUES ('101', '1', '1', 'content', '2', 'content_data', 'content', '正文', '', '1', '1', '100', '', '', '0', '', '', '0', '', '0', '1', '0', '1');
 INSERT INTO `hd_field` VALUES ('102', '1', '1', 'number', '1', 'content', 'click', '点击数', '', '1', '1', '111', 'a:4:{s:11:\"num_integer\";s:1:\"6\";s:11:\"num_decimal\";s:1:\"2\";s:4:\"size\";s:3:\"150\";s:7:\"default\";s:3:\"100\";}', '', '0', '', '', '0', '', '0', '0', '0', '0');
 INSERT INTO `hd_field` VALUES ('98', '1', '1', 'flag', '1', 'content', 'flag', '属性', '', '1', '1', '4', '', '', '0', '', '', '0', '', '0', '1', '1', '0');
 INSERT INTO `hd_field` VALUES ('99', '1', '1', 'title', '1', 'content', 'title', '标题', '', '1', '1', '1', 'a:2:{s:4:\"size\";s:3:\"300\";s:7:\"default\";s:0:\"\";}', '', '0', '100', '', '1', '', '0', '1', '1', '1');
-INSERT INTO `hd_field` VALUES ('100', '1', '1', 'input', '1', 'content', 'tag', 'TAG', '', '1', '0', '101', 'a:3:{s:4:\"size\";s:3:\"300\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";}', '', '0', '', '', '0', '', '0', '1', '0', '0');
+INSERT INTO `hd_field` VALUES ('100', '1', '1', 'tag', '1', 'content', 'tag', 'TAG', '', '1', '0', '101', 'a:3:{s:4:\"size\";s:3:\"300\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";}', '', '0', '', '', '0', '', '0', '1', '0', '0');
 INSERT INTO `hd_field` VALUES ('96', '1', '1', 'thumb', '1', 'content', 'thumb', '缩略图', '', '1', '1', '3', 's:0:\"\";', '', '', '', '', '0', '', '0', '0', '1', '1');
 INSERT INTO `hd_field` VALUES ('97', '1', '1', 'input', '1', 'content', 'html_path', 'html文件名', '', '1', '1', '107', 'a:3:{s:4:\"size\";s:3:\"300\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";}', '', '0', '', '', '0', '', '0', '1', '0', '0');
 INSERT INTO `hd_field` VALUES ('94', '1', '1', 'cid', '1', 'content', 'cid', '栏目', '', '1', '1', '2', 's:0:\"\";', '', '1', '', '', '1', '请选择栏目', '0', '1', '0', '1');
@@ -567,10 +633,10 @@ INSERT INTO `hd_field` VALUES ('131', '2', '1', 'template', '1', 'download', 'te
 INSERT INTO `hd_field` VALUES ('130', '2', '1', 'number', '1', 'download', 'arc_sort', '排序', '', '1', '1', '121', 'a:5:{s:10:\"field_type\";s:9:\"mediumint\";s:11:\"num_integer\";s:1:\"6\";s:11:\"num_decimal\";s:1:\"2\";s:4:\"size\";s:3:\"150\";s:7:\"default\";s:3:\"100\";}', '', '0', '', '', '0', '', '0', '0', '0', '0');
 INSERT INTO `hd_field` VALUES ('129', '2', '1', 'input', '1', 'download', 'keywords', '关键字', '', '1', '1', '102', 'a:3:{s:4:\"size\";s:3:\"300\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";}', '', '0', '', '', '0', '', '0', '1', '0', '0');
 INSERT INTO `hd_field` VALUES ('128', '2', '1', 'textarea', '1', 'download', 'description', '描述', '', '1', '1', '103', 'a:3:{s:5:\"width\";s:3:\"500\";s:6:\"height\";s:3:\"100\";s:7:\"default\";s:0:\"\";}', '', '0', '', '', '0', '', '0', '1', '0', '0');
-INSERT INTO `hd_field` VALUES ('141', '2', '1', 'input', '1', 'download', 'tag', 'TAG', '', '1', '0', '101', 'a:3:{s:4:\"size\";s:3:\"300\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";}', '', '0', '', '', '0', '', '0', '1', '0', '0');
+INSERT INTO `hd_field` VALUES ('141', '2', '1', 'tag', '1', 'download', 'tag', 'TAG', '', '1', '0', '101', 'a:3:{s:4:\"size\";s:3:\"300\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";}', '', '0', '', '', '0', '', '0', '1', '0', '0');
 INSERT INTO `hd_field` VALUES ('142', '2', '1', 'content', '2', 'download_data', 'content', '正文', '', '1', '1', '100', '', '', '0', '', '', '0', '', '0', '1', '0', '1');
 INSERT INTO `hd_field` VALUES ('143', '2', '1', 'number', '1', 'download', 'click', '点击数', '', '1', '1', '122', 'a:4:{s:11:\"num_integer\";s:1:\"6\";s:11:\"num_decimal\";s:1:\"2\";s:4:\"size\";s:3:\"150\";s:7:\"default\";s:3:\"100\";}', '', '0', '', '', '0', '', '0', '0', '0', '0');
-INSERT INTO `hd_field` VALUES ('144', '2', '1', 'box', '1', 'download', 'content_status', '状态', '', '1', '1', '123', 'a:3:{s:7:\"options\";s:26:\"1|审核通过,0|待审查\";s:9:\"form_type\";s:5:\"radio\";s:7:\"default\";s:1:\"1\";}', '', '0', '', '', '0', '', '0', '0', '0', '0');
+INSERT INTO `hd_field` VALUES ('144', '2', '1', 'box', '1', 'download', 'content_status', '状态', '', '1', '1', '124', 'a:3:{s:7:\"options\";s:29:\"1|发表,0|待审查,2|自动\";s:9:\"form_type\";s:5:\"radio\";s:7:\"default\";s:1:\"1\";}', '', '0', '', '', '0', '', '0', '0', '0', '0');
 INSERT INTO `hd_field` VALUES ('145', '2', '1', 'input', '1', 'download', 'readpoint', '阅读收费', '金币', '1', '1', '107', 'a:3:{s:4:\"size\";s:3:\"100\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";}', '', '0', '', '', '0', '', '0', '0', '0', '0');
 INSERT INTO `hd_field` VALUES ('146', '2', '1', 'files', '1', 'download', 'files', '本地下载', '', '1', '0', '6', 'a:3:{s:10:\"allow_size\";s:1:\"2\";s:3:\"num\";s:2:\"10\";s:8:\"filetype\";s:15:\"zip,rar,doc,ppt\";}', '', '0', '', '', '1', '', '0', '1', '0', '1');
 INSERT INTO `hd_field` VALUES ('150', '2', '1', 'box', '1', 'download', 'language', '软件语言', '', '1', '0', '7', 'a:3:{s:7:\"options\";s:117:\"英文|英文,简体中文|简体中文,繁体中文|繁体中文,多国语言|多国语言,其他语言|其他语言\";s:9:\"form_type\";s:6:\"select\";s:7:\"default\";s:6:\"英文\";}', '', '0', '', '', '0', '', '0', '1', '0', '1');
@@ -590,12 +656,15 @@ INSERT INTO `hd_field` VALUES ('162', '3', '1', 'thumb', '1', 'picture', 'thumb'
 INSERT INTO `hd_field` VALUES ('163', '3', '1', 'input', '1', 'picture', 'html_path', 'html文件名', '', '1', '1', '108', 'a:3:{s:4:\"size\";s:3:\"300\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";}', '', '0', '', '', '0', '', '0', '1', '0', '0');
 INSERT INTO `hd_field` VALUES ('164', '3', '1', 'flag', '1', 'picture', 'flag', '属性', '', '1', '1', '4', '', '', '0', '', '', '0', '', '0', '1', '1', '0');
 INSERT INTO `hd_field` VALUES ('165', '3', '1', 'title', '1', 'picture', 'title', '标题', '', '1', '1', '1', 'a:2:{s:4:\"size\";s:3:\"300\";s:7:\"default\";s:0:\"\";}', '', '0', '100', '', '1', '', '0', '1', '1', '1');
-INSERT INTO `hd_field` VALUES ('166', '3', '1', 'input', '1', 'picture', 'tag', 'TAG', '', '1', '0', '101', 'a:3:{s:4:\"size\";s:3:\"300\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";}', '', '0', '', '', '0', '', '0', '1', '0', '0');
+INSERT INTO `hd_field` VALUES ('166', '3', '1', 'tag', '1', 'picture', 'tag', 'TAG', '', '1', '0', '101', 'a:3:{s:4:\"size\";s:3:\"300\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";}', '', '0', '', '', '0', '', '0', '1', '0', '0');
 INSERT INTO `hd_field` VALUES ('167', '3', '1', 'content', '2', 'picture_data', 'content', '正文', '', '1', '1', '100', '', '', '0', '', '', '0', '', '0', '1', '0', '1');
 INSERT INTO `hd_field` VALUES ('168', '3', '1', 'number', '1', 'picture', 'click', '点击数', '', '1', '1', '112', 'a:4:{s:11:\"num_integer\";s:1:\"6\";s:11:\"num_decimal\";s:1:\"2\";s:4:\"size\";s:3:\"150\";s:7:\"default\";s:3:\"100\";}', '', '0', '', '', '0', '', '0', '0', '0', '0');
-INSERT INTO `hd_field` VALUES ('169', '3', '1', 'box', '1', 'picture', 'content_status', '状态', '', '1', '1', '113', 'a:3:{s:7:\"options\";s:26:\"1|审核通过,0|待审查\";s:9:\"form_type\";s:5:\"radio\";s:7:\"default\";s:1:\"1\";}', '', '0', '', '', '0', '', '0', '0', '0', '0');
+INSERT INTO `hd_field` VALUES ('169', '3', '1', 'box', '1', 'picture', 'content_status', '状态', '', '1', '1', '114', 'a:3:{s:7:\"options\";s:29:\"1|发表,0|待审查,2|自动\";s:9:\"form_type\";s:5:\"radio\";s:7:\"default\";s:1:\"1\";}', '', '0', '', '', '0', '', '0', '0', '0', '0');
 INSERT INTO `hd_field` VALUES ('170', '3', '1', 'input', '1', 'picture', 'readpoint', '阅读收费', '金币', '1', '1', '107', 'a:3:{s:4:\"size\";s:3:\"100\";s:7:\"default\";s:0:\"\";s:8:\"ispasswd\";s:1:\"0\";}', '', '0', '', '', '0', '', '0', '0', '0', '0');
 INSERT INTO `hd_field` VALUES ('171', '3', '1', 'images', '1', 'picture', 'pics', '组图', '', '1', '0', '6', 'a:2:{s:10:\"allow_size\";s:1:\"2\";s:3:\"num\";s:2:\"50\";}', '', '0', '', '', '0', '', '0', '1', '0', '1');
+INSERT INTO `hd_field` VALUES ('212', '1', '1', 'datetime', '1', 'content', 'auto_send_time', '自动发表时间(状态为自动)', '', '1', '1', '112', 'a:1:{s:6:\"format\";s:1:\"1\";}', '', '0', '', '', '0', '', '0', '0', '0', '0');
+INSERT INTO `hd_field` VALUES ('213', '2', '1', 'datetime', '1', 'download', 'auto_send_time', '自动发表时间(状态为自动)', '', '1', '1', '123', 'a:1:{s:6:\"format\";s:1:\"1\";}', '', '0', '', '', '0', '', '0', '0', '0', '0');
+INSERT INTO `hd_field` VALUES ('214', '3', '1', 'datetime', '1', 'picture', 'auto_send_time', '自动发表时间(状态为自动)', '', '1', '1', '113', 'a:1:{s:6:\"format\";s:1:\"1\";}', '', '0', '', '', '0', '', '0', '0', '0', '0');
 
 -- ----------------------------
 -- Table structure for hd_hooks
@@ -617,7 +686,7 @@ CREATE TABLE `hd_hooks` (
 -- ----------------------------
 INSERT INTO `hd_hooks` VALUES ('17', 'pageHeader', '页面header钩子，一般用于加载插件CSS文件和代码', '1', '0', '');
 INSERT INTO `hd_hooks` VALUES ('18', 'pageFooter', '页面footer钩子，一般用于加载插件JS文件和JS代码', '1', '0', '');
-INSERT INTO `hd_hooks` VALUES ('19', 'APP_BEGIN', '应用开始', '1', '0', '');
+INSERT INTO `hd_hooks` VALUES ('19', 'APP_BEGIN', '应用开始', '1', '0', 'Crontab');
 INSERT INTO `hd_hooks` VALUES ('20', 'content_edit_begin', '内容编辑前', '1', '0', '');
 INSERT INTO `hd_hooks` VALUES ('21', 'content_edit_end', '内容编辑后', '1', '0', '');
 INSERT INTO `hd_hooks` VALUES ('22', 'content_del', '内容删除后', '1', '0', '');
@@ -656,7 +725,7 @@ CREATE TABLE `hd_model` (
   `is_system` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '1 系统模型  2 普通模型',
   `contribute` tinyint(1) NOT NULL DEFAULT '1' COMMENT '前台投稿',
   PRIMARY KEY (`mid`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='模型表';
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='模型表';
 
 -- ----------------------------
 -- Records of hd_model
@@ -685,7 +754,7 @@ CREATE TABLE `hd_node` (
   `is_system` tinyint(1) NOT NULL DEFAULT '0' COMMENT '系统菜单 1 是  0 不是',
   `favorite` tinyint(1) NOT NULL DEFAULT '0' COMMENT '后台常用菜单   1 是  0 不是',
   PRIMARY KEY (`nid`)
-) ENGINE=MyISAM AUTO_INCREMENT=115 DEFAULT CHARSET=utf8 COMMENT='节点表（后台菜单也使用）';
+) ENGINE=MyISAM AUTO_INCREMENT=130 DEFAULT CHARSET=utf8 COMMENT='节点表（后台菜单也使用）';
 
 -- ----------------------------
 -- Records of hd_node
@@ -734,7 +803,7 @@ INSERT INTO `hd_node` VALUES ('46', '修改栏目', '', 'Admin', 'Category', 'ed
 INSERT INTO `hd_node` VALUES ('47', '批量修改栏目', '', 'Admin', 'Category', 'BulkEdit', '', '', '0', '1', '2', '24', '0', '0');
 INSERT INTO `hd_node` VALUES ('68', '水印设置', '', 'Admin', 'Config', 'water', '', '', '1', '1', '86', '90', '0', '0');
 INSERT INTO `hd_node` VALUES ('50', '已装插件', '', 'Admin', '', '', '', '', '1', '1', '39', '100', '0', '0');
-INSERT INTO `hd_node` VALUES ('78', '数据备份', 'Addons', 'Backup', 'Admin', 'index', '', '插件Backup后台管理', '1', '1', '50', '100', '0', '0');
+INSERT INTO `hd_node` VALUES ('117', '数据备份', 'Addons', 'Backup', 'Admin', 'index', '', '插件Backup后台管理', '1', '1', '50', '100', '0', '0');
 INSERT INTO `hd_node` VALUES ('66', '友情链接', 'Addons', 'Link', 'Admin', 'index', '', '插件Link后台管理', '1', '1', '50', '100', '0', '0');
 INSERT INTO `hd_node` VALUES ('67', '导航菜单', 'Addons', 'Navigation', 'Admin', 'index', '', '插件Navigation后台管理', '1', '1', '50', '100', '0', '0');
 INSERT INTO `hd_node` VALUES ('69', '邮箱配置', '', 'Admin', 'Config', 'email', '', '', '1', '1', '86', '90', '0', '0');
@@ -743,7 +812,9 @@ INSERT INTO `hd_node` VALUES ('79', '数据库内容替换', 'Addons', 'FieldRep
 INSERT INTO `hd_node` VALUES ('86', '扩展配置', '', 'Admin', '', '', '', '', '1', '1', '3', '98', '0', '0');
 INSERT INTO `hd_node` VALUES ('87', '后台菜单管理', '', 'Admin', '', '', '', '', '1', '1', '3', '98', '0', '0');
 INSERT INTO `hd_node` VALUES ('112', '配置组', '', 'Admin', 'ConfigGroup', 'index', '', '配置组管理', '1', '1', '11', '99', '0', '0');
-INSERT INTO `hd_node` VALUES ('114', '自定义表单', 'Addons', 'CustomForm', 'Admin', 'index', '', '插件CustomForm后台管理', '1', '1', '50', '100', '0', '0');
+INSERT INTO `hd_node` VALUES ('118', '自定义表单', 'Addons', 'CustomForm', 'Admin', 'index', '', '插件CustomForm后台管理', '1', '1', '50', '100', '0', '0');
+INSERT INTO `hd_node` VALUES ('123', '广告位', 'Addons', 'Advertising', 'Admin', 'index', '', '插件Advertising后台管理', '1', '1', '50', '100', '0', '0');
+INSERT INTO `hd_node` VALUES ('129', '计划任务', 'Addons', 'Crontab', 'Admin', 'index', '', '插件Crontab后台管理', '1', '1', '50', '100', '0', '0');
 
 -- ----------------------------
 -- Table structure for hd_picture
@@ -767,11 +838,12 @@ CREATE TABLE `hd_picture` (
   `template` varchar(255) NOT NULL DEFAULT '' COMMENT '模板',
   `url_type` tinyint(80) NOT NULL DEFAULT '3' COMMENT '文章访问方式  1 静态访问  2 动态访问  3 继承栏目',
   `arc_sort` mediumint(6) NOT NULL DEFAULT '0' COMMENT '排序',
-  `content_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '文章状态  1 已审核 0 未审核',
+  `content_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '文章状态  1 已审核 0 未审核 2 草稿',
   `readpoint` char(6) DEFAULT NULL COMMENT '阅读收费',
   `keywords` varchar(100) NOT NULL DEFAULT '' COMMENT '关键字',
   `description` varchar(255) DEFAULT NULL COMMENT '描述',
   `pics` mediumtext,
+  `auto_send_time` int(11) DEFAULT '0' COMMENT '自动发表时间',
   PRIMARY KEY (`aid`),
   KEY `uid` (`uid`),
   KEY `cid` (`cid`),
@@ -844,40 +916,6 @@ CREATE TABLE `hd_session` (
 -- ----------------------------
 -- Records of hd_session
 -- ----------------------------
-INSERT INTO `hd_session` VALUES ('d864dff650955cde461fc552ba23c3ab', 'user|a:5:{s:10:\"web_master\";b:0;s:3:\"uid\";i:0;s:3:\"rid\";i:4;s:5:\"admin\";i:0;s:4:\"icon\";s:50:\"http://localhost/hdcms/HDCMS/Static/image/user.png\";}', '1412701755', '0.0.0.0');
-INSERT INTO `hd_session` VALUES ('c40c5c09e46aae3f51607383a07f3094', 'user|a:25:{s:3:\"uid\";s:1:\"1\";s:8:\"nickname\";s:5:\"admin\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:17:\"2300071698@qq.com\";s:7:\"regtime\";s:10:\"1412614136\";s:9:\"logintime\";s:10:\"1412676087\";s:5:\"regip\";s:7:\"0.0.0.0\";s:6:\"lastip\";s:7:\"0.0.0.0\";s:11:\"user_status\";s:1:\"1\";s:13:\"lock_end_time\";s:1:\"0\";s:2:\"qq\";s:0:\"\";s:3:\"sex\";s:1:\"1\";s:7:\"credits\";s:5:\"10000\";s:3:\"rid\";s:1:\"1\";s:9:\"signature\";s:36:\"这家伙很懒什么也没有写...\";s:8:\"spec_num\";s:1:\"2\";s:4:\"icon\";s:50:\"http://localhost/hdcms/HDCMS/Static/image/user.png\";s:5:\"rname\";s:15:\"超级管理员\";s:5:\"title\";s:15:\"超级管理员\";s:5:\"admin\";s:1:\"1\";s:6:\"system\";s:1:\"1\";s:12:\"creditslower\";s:5:\"10000\";s:13:\"comment_state\";s:1:\"1\";s:16:\"allowsendmessage\";s:1:\"1\";s:10:\"web_master\";b:1;}admin|N;', '1412700373', '0.0.0.0');
-INSERT INTO `hd_session` VALUES ('6b3143433852ab3fe2961c7487de9b1b', 'user|a:5:{s:10:\"web_master\";b:0;s:3:\"uid\";i:0;s:3:\"rid\";i:4;s:5:\"admin\";i:0;s:4:\"icon\";s:50:\"http://localhost/hdcms/HDCMS/Static/image/user.png\";}', '1412698988', '0.0.0.0');
-INSERT INTO `hd_session` VALUES ('eb94c6cfffdae86660e19b5f41f0f876', 'user|a:5:{s:10:\"web_master\";b:0;s:3:\"uid\";i:0;s:3:\"rid\";i:4;s:5:\"admin\";i:0;s:4:\"icon\";s:50:\"http://localhost/hdcms/HDCMS/Static/image/user.png\";}', '1412699483', '0.0.0.0');
-INSERT INTO `hd_session` VALUES ('0020d2b37d21de48b2d5ae7ad0050662', 'user|a:5:{s:10:\"web_master\";b:0;s:3:\"uid\";i:0;s:3:\"rid\";i:4;s:5:\"admin\";i:0;s:4:\"icon\";s:50:\"http://localhost/hdcms/HDCMS/Static/image/user.png\";}', '1412699914', '0.0.0.0');
-INSERT INTO `hd_session` VALUES ('4c8ee1b67dff7597ce9303297b48da85', 'user|a:5:{s:10:\"web_master\";b:0;s:3:\"uid\";i:0;s:3:\"rid\";i:4;s:5:\"admin\";i:0;s:4:\"icon\";s:50:\"http://localhost/hdcms/HDCMS/Static/image/user.png\";}', '1412699916', '0.0.0.0');
-INSERT INTO `hd_session` VALUES ('fbd9458ef186a9e963b3132ed689b19e', 'user|a:5:{s:10:\"web_master\";b:0;s:3:\"uid\";i:0;s:3:\"rid\";i:4;s:5:\"admin\";i:0;s:4:\"icon\";s:50:\"http://localhost/hdcms/HDCMS/Static/image/user.png\";}', '1412699932', '0.0.0.0');
-INSERT INTO `hd_session` VALUES ('cd9af52e947def2beacf21e2f0781b7a', 'user|a:5:{s:10:\"web_master\";b:0;s:3:\"uid\";i:0;s:3:\"rid\";i:4;s:5:\"admin\";i:0;s:4:\"icon\";s:50:\"http://localhost/hdcms/HDCMS/Static/image/user.png\";}', '1412699934', '0.0.0.0');
-INSERT INTO `hd_session` VALUES ('37a9ef9ab66a85ea12fd64ecface6025', 'user|a:5:{s:10:\"web_master\";b:0;s:3:\"uid\";i:0;s:3:\"rid\";i:4;s:5:\"admin\";i:0;s:4:\"icon\";s:50:\"http://localhost/hdcms/HDCMS/Static/image/user.png\";}', '1412700185', '0.0.0.0');
-INSERT INTO `hd_session` VALUES ('e563d241b5b6c62e1644beca676956c0', 'user|a:5:{s:10:\"web_master\";b:0;s:3:\"uid\";i:0;s:3:\"rid\";i:4;s:5:\"admin\";i:0;s:4:\"icon\";s:50:\"http://localhost/hdcms/HDCMS/Static/image/user.png\";}', '1412700237', '0.0.0.0');
-INSERT INTO `hd_session` VALUES ('d89df338b9676bc98d7be307dd78fce4', 'user|a:5:{s:10:\"web_master\";b:0;s:3:\"uid\";i:0;s:3:\"rid\";i:4;s:5:\"admin\";i:0;s:4:\"icon\";s:50:\"http://localhost/hdcms/HDCMS/Static/image/user.png\";}', '1412698976', '0.0.0.0');
-INSERT INTO `hd_session` VALUES ('4b4531c2bf9217ed99d0459377f1606c', 'user|a:5:{s:10:\"web_master\";b:0;s:3:\"uid\";i:0;s:3:\"rid\";i:4;s:5:\"admin\";i:0;s:4:\"icon\";s:50:\"http://localhost/hdcms/HDCMS/Static/image/user.png\";}', '1412698946', '0.0.0.0');
-INSERT INTO `hd_session` VALUES ('2f91632932ae558aee05bc1192b3addc', 'user|a:5:{s:10:\"web_master\";b:0;s:3:\"uid\";i:0;s:3:\"rid\";i:4;s:5:\"admin\";i:0;s:4:\"icon\";s:50:\"http://localhost/hdcms/HDCMS/Static/image/user.png\";}', '1412698966', '0.0.0.0');
-INSERT INTO `hd_session` VALUES ('7013c475648b51d86ee8e50fd5079b94', 'user|a:5:{s:10:\"web_master\";b:0;s:3:\"uid\";i:0;s:3:\"rid\";i:4;s:5:\"admin\";i:0;s:4:\"icon\";s:50:\"http://localhost/hdcms/HDCMS/Static/image/user.png\";}', '1412698961', '0.0.0.0');
-INSERT INTO `hd_session` VALUES ('778bc234b7f82f7b5a720058549e04ce', 'user|a:5:{s:10:\"web_master\";b:0;s:3:\"uid\";i:0;s:3:\"rid\";i:4;s:5:\"admin\";i:0;s:4:\"icon\";s:50:\"http://localhost/hdcms/HDCMS/Static/image/user.png\";}', '1412698577', '0.0.0.0');
-INSERT INTO `hd_session` VALUES ('7935d5c5530b242ca062dad6c22e2c7d', 'user|a:5:{s:10:\"web_master\";b:0;s:3:\"uid\";i:0;s:3:\"rid\";i:4;s:5:\"admin\";i:0;s:4:\"icon\";s:50:\"http://localhost/hdcms/HDCMS/Static/image/user.png\";}', '1412698517', '0.0.0.0');
-INSERT INTO `hd_session` VALUES ('a92d3d9227dd2e7a8268b67dadbfff4f', 'user|a:5:{s:10:\"web_master\";b:0;s:3:\"uid\";i:0;s:3:\"rid\";i:4;s:5:\"admin\";i:0;s:4:\"icon\";s:50:\"http://localhost/hdcms/HDCMS/Static/image/user.png\";}', '1412698428', '0.0.0.0');
-INSERT INTO `hd_session` VALUES ('2c2b3bed4745e7af5dd7a27071989d85', 'user|a:5:{s:10:\"web_master\";b:0;s:3:\"uid\";i:0;s:3:\"rid\";i:4;s:5:\"admin\";i:0;s:4:\"icon\";s:50:\"http://localhost/hdcms/HDCMS/Static/image/user.png\";}', '1412701754', '0.0.0.0');
-INSERT INTO `hd_session` VALUES ('81424a2181a5007c45e006ccd5916769', 'user|a:5:{s:10:\"web_master\";b:0;s:3:\"uid\";i:0;s:3:\"rid\";i:4;s:5:\"admin\";i:0;s:4:\"icon\";s:50:\"http://localhost/hdcms/HDCMS/Static/image/user.png\";}', '1412701264', '0.0.0.0');
-INSERT INTO `hd_session` VALUES ('721465ae5cf7fe25b8e521944ac6b465', 'user|a:5:{s:10:\"web_master\";b:0;s:3:\"uid\";i:0;s:3:\"rid\";i:4;s:5:\"admin\";i:0;s:4:\"icon\";s:50:\"http://localhost/hdcms/HDCMS/Static/image/user.png\";}', '1412701203', '0.0.0.0');
-INSERT INTO `hd_session` VALUES ('07351a9d46fdd1d2d7a1b59a8e9a9bd2', 'user|a:5:{s:10:\"web_master\";b:0;s:3:\"uid\";i:0;s:3:\"rid\";i:4;s:5:\"admin\";i:0;s:4:\"icon\";s:50:\"http://localhost/hdcms/HDCMS/Static/image/user.png\";}', '1412701064', '0.0.0.0');
-INSERT INTO `hd_session` VALUES ('c3689b33812209dc74e6463a65e8ba20', 'user|a:5:{s:10:\"web_master\";b:0;s:3:\"uid\";i:0;s:3:\"rid\";i:4;s:5:\"admin\";i:0;s:4:\"icon\";s:50:\"http://localhost/hdcms/HDCMS/Static/image/user.png\";}', '1412700714', '0.0.0.0');
-INSERT INTO `hd_session` VALUES ('26514b79ba8fba6b21ede1f29aa4db7d', 'user|a:5:{s:10:\"web_master\";b:0;s:3:\"uid\";i:0;s:3:\"rid\";i:4;s:5:\"admin\";i:0;s:4:\"icon\";s:50:\"http://localhost/hdcms/HDCMS/Static/image/user.png\";}', '1412700689', '0.0.0.0');
-INSERT INTO `hd_session` VALUES ('a2373a6d3694477f74d649260431a7d6', 'user|a:5:{s:10:\"web_master\";b:0;s:3:\"uid\";i:0;s:3:\"rid\";i:4;s:5:\"admin\";i:0;s:4:\"icon\";s:50:\"http://localhost/hdcms/HDCMS/Static/image/user.png\";}', '1412700687', '0.0.0.0');
-INSERT INTO `hd_session` VALUES ('21883e5a52c7913c0ffced4301f9d434', 'user|a:25:{s:3:\"uid\";s:1:\"1\";s:8:\"nickname\";s:5:\"admin\";s:8:\"username\";s:5:\"admin\";s:5:\"email\";s:17:\"2300071698@qq.com\";s:7:\"regtime\";s:10:\"1412614136\";s:9:\"logintime\";s:10:\"1412676824\";s:5:\"regip\";s:7:\"0.0.0.0\";s:6:\"lastip\";s:7:\"0.0.0.0\";s:11:\"user_status\";s:1:\"1\";s:13:\"lock_end_time\";s:1:\"0\";s:2:\"qq\";s:0:\"\";s:3:\"sex\";s:1:\"1\";s:7:\"credits\";s:5:\"10000\";s:3:\"rid\";s:1:\"1\";s:9:\"signature\";s:36:\"这家伙很懒什么也没有写...\";s:8:\"spec_num\";s:1:\"2\";s:4:\"icon\";s:50:\"http://localhost/hdcms/HDCMS/Static/image/user.png\";s:5:\"rname\";s:15:\"超级管理员\";s:5:\"title\";s:15:\"超级管理员\";s:5:\"admin\";s:1:\"1\";s:6:\"system\";s:1:\"1\";s:12:\"creditslower\";s:5:\"10000\";s:13:\"comment_state\";s:1:\"1\";s:16:\"allowsendmessage\";s:1:\"1\";s:10:\"web_master\";b:1;}code|s:3:\"6E9\";', '1412702098', '0.0.0.0');
-INSERT INTO `hd_session` VALUES ('e80880dc47077299977a268fd693095a', 'user|a:5:{s:10:\"web_master\";b:0;s:3:\"uid\";i:0;s:3:\"rid\";i:4;s:5:\"admin\";i:0;s:4:\"icon\";s:50:\"http://localhost/hdcms/HDCMS/Static/image/user.png\";}', '1412700372', '0.0.0.0');
-INSERT INTO `hd_session` VALUES ('375eea1ea5b40208f15ffc301b6cbb7c', 'user|a:5:{s:10:\"web_master\";b:0;s:3:\"uid\";i:0;s:3:\"rid\";i:4;s:5:\"admin\";i:0;s:4:\"icon\";s:50:\"http://localhost/hdcms/HDCMS/Static/image/user.png\";}', '1412700330', '0.0.0.0');
-INSERT INTO `hd_session` VALUES ('6be46f65d1c543bcb4d00c266c13a1c7', 'user|a:5:{s:10:\"web_master\";b:0;s:3:\"uid\";i:0;s:3:\"rid\";i:4;s:5:\"admin\";i:0;s:4:\"icon\";s:50:\"http://localhost/hdcms/HDCMS/Static/image/user.png\";}', '1412700321', '0.0.0.0');
-INSERT INTO `hd_session` VALUES ('f9ced5d307b2eb0ddb71552c8af69c2b', 'user|a:5:{s:10:\"web_master\";b:0;s:3:\"uid\";i:0;s:3:\"rid\";i:4;s:5:\"admin\";i:0;s:4:\"icon\";s:50:\"http://localhost/hdcms/HDCMS/Static/image/user.png\";}', '1412700319', '0.0.0.0');
-INSERT INTO `hd_session` VALUES ('0d342e76b8bfb280e736093ee6256e68', 'user|a:5:{s:10:\"web_master\";b:0;s:3:\"uid\";i:0;s:3:\"rid\";i:4;s:5:\"admin\";i:0;s:4:\"icon\";s:50:\"http://localhost/hdcms/HDCMS/Static/image/user.png\";}', '1412700317', '0.0.0.0');
-INSERT INTO `hd_session` VALUES ('f22e46aac1b3432c65cb4c7aa5e0f805', 'user|a:5:{s:10:\"web_master\";b:0;s:3:\"uid\";i:0;s:3:\"rid\";i:4;s:5:\"admin\";i:0;s:4:\"icon\";s:50:\"http://localhost/hdcms/HDCMS/Static/image/user.png\";}', '1412700264', '0.0.0.0');
-INSERT INTO `hd_session` VALUES ('ac52881edd4c08df38df1db79429079a', 'user|a:5:{s:10:\"web_master\";b:0;s:3:\"uid\";i:0;s:3:\"rid\";i:4;s:5:\"admin\";i:0;s:4:\"icon\";s:50:\"http://localhost/hdcms/HDCMS/Static/image/user.png\";}', '1412700238', '0.0.0.0');
-INSERT INTO `hd_session` VALUES ('61d6fc48eb12ce9be37be46ed73ae8f9', 'user|a:5:{s:10:\"web_master\";b:0;s:3:\"uid\";i:0;s:3:\"rid\";i:4;s:5:\"admin\";i:0;s:4:\"icon\";s:50:\"http://localhost/hdcms/HDCMS/Static/image/user.png\";}', '1412701735', '0.0.0.0');
-INSERT INTO `hd_session` VALUES ('5f7df68340772c9471e85cd65d713c0f', 'user|a:5:{s:10:\"web_master\";b:0;s:3:\"uid\";i:0;s:3:\"rid\";i:4;s:5:\"admin\";i:0;s:4:\"icon\";s:50:\"http://localhost/hdcms/HDCMS/Static/image/user.png\";}', '1412701734', '0.0.0.0');
 
 -- ----------------------------
 -- Table structure for hd_tag
@@ -890,11 +928,15 @@ CREATE TABLE `hd_tag` (
   PRIMARY KEY (`tid`),
   UNIQUE KEY `name` (`tag`),
   KEY `total` (`total`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Tag标签表';
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='Tag标签表';
 
 -- ----------------------------
 -- Records of hd_tag
 -- ----------------------------
+INSERT INTO `hd_tag` VALUES ('1', '中国', '6');
+INSERT INTO `hd_tag` VALUES ('2', '香港', '6');
+INSERT INTO `hd_tag` VALUES ('3', '美国', '4');
+INSERT INTO `hd_tag` VALUES ('4', '后盾网', '3');
 
 -- ----------------------------
 -- Table structure for hd_upload
@@ -916,13 +958,11 @@ CREATE TABLE `hd_upload` (
   PRIMARY KEY (`id`),
   KEY `basename` (`basename`),
   KEY `id` (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='上传文件';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='上传文件';
 
 -- ----------------------------
 -- Records of hd_upload
 -- ----------------------------
-INSERT INTO `hd_upload` VALUES ('1', 'secondarytile', '61371412650613', '61371412650613.png', 'upload/61371412650613.png', 'png', '1', '637', '1412650613', '1', '0', '1');
-INSERT INTO `hd_upload` VALUES ('2', 'secondarytile', '53391412650656', '53391412650656.png', 'upload/53391412650656.png', 'png', '1', '637', '1412650656', '1', '0', '1');
 
 -- ----------------------------
 -- Table structure for hd_user
@@ -956,8 +996,7 @@ CREATE TABLE `hd_user` (
 -- ----------------------------
 -- Records of hd_user
 -- ----------------------------
-INSERT INTO `hd_user` VALUES ('1', 'admin', 'admin', '3ba2c876f62818177bc23ddd0ca4157e', 'df4189db94', '2300071698@qq.com', '1412614136', '1412700637', '0.0.0.0', '0.0.0.0', '1', '0', '', '1', '10000', '1', '这家伙很懒什么也没有写...', '2', 'HDCMS/Static/image/user.png');
-INSERT INTO `hd_user` VALUES ('4', 'hdxj', 'hdxj', 'a4b8934beaa35580684bc5cb562e2343', 'a3fbfce2a8', 'houdunwangxj@gmail.com', '1412619420', '1412619420', '0.0.0.0', '0.0.0.0', '1', '0', '', '1', '100', '5', '这家伙很懒什么也没写...', '0', 'HDCMS/Static/image/user.png');
+INSERT INTO `hd_user` VALUES ('1', 'admin', 'admin', '3ba2c876f62818177bc23ddd0ca4157e', 'df4189db94', '2300071698@qq.com', '1412614136', '1412773751', '0.0.0.0', '0.0.0.0', '1', '0', '', '1', '10000', '1', '这家伙很懒什么也没有写...', '2', 'HDCMS/Static/image/user.png');
 
 -- ----------------------------
 -- Table structure for hd_user_credits
@@ -972,13 +1011,11 @@ CREATE TABLE `hd_user_credits` (
   `uid` int(10) unsigned DEFAULT NULL,
   `rectime` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='会员积分日志表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='会员积分日志表';
 
 -- ----------------------------
 -- Records of hd_user_credits
 -- ----------------------------
-INSERT INTO `hd_user_credits` VALUES ('1', '15', '5', '1', 'dfdsf', '4', '1412650629');
-INSERT INTO `hd_user_credits` VALUES ('2', '15', '6', '1', '33', '4', '1412650664');
 
 -- ----------------------------
 -- Table structure for hd_user_guest

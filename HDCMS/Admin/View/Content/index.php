@@ -112,10 +112,11 @@
             $(document).ready(function () {
                 $.fn.zTree.init($("#treeDemo"), setting, zNodes);
             });
-            $("#category_tree").slideDown(1000);
+            $("#category_tree").slideDown(200);
         }, 'json');
     }
     get_category_tree();
+    //每隔2秒刷新目录树
     //======================点击move标签DIV时改变div布局===============
     $(function () {
         $("div#move").toggle(function () {

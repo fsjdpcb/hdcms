@@ -5,7 +5,7 @@
  * Class FormGroupController
  * @author 后盾向军 <2300071698@qq.com>
  */
-class FormGroupController extends AddonController
+class FormGroupController extends AddonAuthController
 {
     private $db;
 

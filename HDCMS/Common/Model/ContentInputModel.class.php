@@ -39,6 +39,13 @@ class ContentInputModel
         //添加文章时设置 作者uid
         if (!isset($data['aid']))
             $data['uid'] = $_SESSION['user']['uid'];
+        //文章状态设置 0 待审核 1 发表 2 自动
+        $auto_send_time = strtotime($data['auto_send_time']);
+        if ($auto_send_time && $auto_send_time > time()) {
+            $data['content_status'] = 2;
+        }else if($data['content_status']==2){
+            $data['content_status'] = 1;
+        }
         //添加时间
         $data['addtime'] = empty($data['addtime']) ? date("Y/m/d H:i:s") : $data['addtime'];
         //修改时间
@@ -197,6 +204,7 @@ class ContentInputModel
         }
         return $value;
     }
+
     //Flag文章属性
     private function flag($fieldInfo, $value)
     {

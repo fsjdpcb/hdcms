@@ -4,7 +4,7 @@
  * 数据表内容替换模块
  * @author hdxj<houdunwangxj@gmail.com>
  */
-class AdminController extends AuthController
+class AdminController extends AddonAuthController
 {
     //字段内容替换
     public function index()

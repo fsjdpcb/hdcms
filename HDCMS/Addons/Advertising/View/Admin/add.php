@@ -16,7 +16,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{|U:'Admin/add'}">
+                    <a href="{|U:'Admin/add'}" class="action">
                         添加广告位
                     </a>
                 </li>

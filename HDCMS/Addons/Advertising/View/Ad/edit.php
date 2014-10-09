@@ -29,8 +29,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{|U:'Ad/add'}">
-                        添加广告
+                    <a href="javascript:;" class="action">
+                        编辑广告
                     </a>
                 </li>
             </ul>

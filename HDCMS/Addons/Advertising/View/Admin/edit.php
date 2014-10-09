@@ -17,8 +17,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{|U:'Admin/add'}">
-                        添加广告位
+                    <a href="javascript:;" class="action">
+                        编辑广告位
                     </a>
                 </li>
                 <li>
