@@ -93,7 +93,7 @@ class ConfigController extends AuthController
             $this->db->updateCache();
             $this->success('设置成功');
         } else {
-            $config = M('config')->where(array('type' => array('IN', 'water')))->getField('name,value,message,title');
+            $config = M('config')->where(array('cgid' => array('IN', 5)))->getField('name,value,message,title');
             $this->assign('config', $config);
             $this->display();
         }
@@ -111,7 +111,7 @@ class ConfigController extends AuthController
             $this->db->updateCache();
             $this->success('设置成功');
         } else {
-            $config = M('config')->where(array('type' => array('IN', 'email')))->getField('name,value,message,show_type,title');
+            $config = M('config')->where(array('cgid' => array('IN', 4)))->getField('name,value,message,show_type,title');
             $this->assign('config', $config);
             $this->display();
         }
