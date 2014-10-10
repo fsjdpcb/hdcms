@@ -3,7 +3,7 @@
 /.htaccess
 /Upload
 /h
-/Temp
+/Temp 
 /Upload
 /HDCMS/Install/Lock.php
 /HDCMS/hdphp/logo.png
@@ -17,3 +17,4 @@
 /HDCMS/hdphp/Extend/Org/Ip
 /HDCMS/hdphp/Extend/Org/bootstrap/ie6
 /HDCMS/hdphp/LICENSE
+/Temp
