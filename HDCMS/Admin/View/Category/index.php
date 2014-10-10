@@ -37,9 +37,7 @@
         </thead>
         <tbody>
         <list from="$category" name="c">
-            <tr
-            <if value="$c.pid eq 0">class="top"</if>
-            >
+            <tr <if value="$c.pid eq 0">class="top"</if>>
             <td>
                 <input type="checkbox" name="cid[]" value="{$c.cid}"/>
             </td>
@@ -51,7 +49,7 @@
                 <if value="$c.pid eq 0 && Data::hasChild(S('category'),$c.cid)">
                     <img src="__APP__/Static/image/contract.gif" action="2" class="explodeCategory"/>
                 </if>
-                {$c._name}
+               <if value="$c.pid eq 0"><strong>{$c._name}</strong><else>{$c._name}</if>
             </td>
             <td>{$c.cat_type_name}</td>
             <td>{$c.model_name}</td>

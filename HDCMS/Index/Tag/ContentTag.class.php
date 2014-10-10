@@ -53,8 +53,7 @@ str;
         $row=$attr['row'];
 $php=<<<str
         <?php
-        \$map['pid']=$cid;
-        \$result = \$db->where(\$map)->where("cat_show=1")->order("catorder ASC")->limit($row)->all();
+        \$result = \$db->where("pid=$cid")->where("cat_show=1")->order("catorder ASC")->limit($row)->all();
         if(\$result){
             foreach (\$result as \$sfield):
                 //当前栏目样式
@@ -119,7 +118,9 @@ str;
             ?>
 str;
         $php .= $content;
-        $php .= '<?php endforeach;}?>';
+        $php .= '<?php endforeach;}
+                    unset($where);unset($result);unset($field);
+                ?>';
         return $php;
     }
 
@@ -271,7 +272,9 @@ str;
                 ?>
 str;
         $php .= $content;
-        $php .= '<?php endforeach;endif;?>';
+        $php .= '<?php endforeach;endif;
+                    unset($where);
+                ?>';
         return $php;
     }
 
@@ -303,8 +306,8 @@ str;
             \$flag='$flag';\$noflag='$noflag';
             \$aid='$aid';
             \$sub_channel=$sub_channel;
-            \$mid = \$mid?intval(\$mid):Q('mid',1,'intval');
-            \$cid = \$cid?intval(\$cid):Q('cid',0,'intval');
+            \$mid = \$mid?trim(\$mid):Q('mid',1,'intval');
+            \$cid = \$cid?trim(\$cid):Q('cid',0,'intval');
             //导入模型类
             \$db =ContentViewModel::getInstance(\$mid);
             //关联表
@@ -405,7 +408,9 @@ str;
                 ?>
 str;
         $php .= $content;
-        $php .= '<?php endforeach;endif;?>';
+        $php .= '<?php endforeach;endif;
+                    unset($where);unset($result);
+                ?>';
         return $php;
     }
 
@@ -496,7 +501,9 @@ str;
             ?>
 str;
         $php .= $content;
-        $php .= "<?php endforeach;?>";
+        $php .= '<?php endforeach;
+                    unset($data);
+                ?>';
         return $php;
 
     }

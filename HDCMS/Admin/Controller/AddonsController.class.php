@@ -271,6 +271,7 @@ str;
     }
     //查看帮助
     public function help(){
+
         $addon = Q('addon');
         $this->display(APP_ADDON_PATH.$addon.'/help.html');
     }

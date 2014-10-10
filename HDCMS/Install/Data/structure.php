@@ -20,7 +20,7 @@ $db->exe("CREATE TABLE `".$db_prefix."addon_advertising_ad` (
   `ad_height` char(10) DEFAULT '300' COMMENT '广告高度',
   `action_time` tinyint(4) DEFAULT '3' COMMENT '轮换广告变化时间，单位秒',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='广告'");
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='广告'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."addon_advertising_postion`");
 $db->exe("CREATE TABLE `".$db_prefix."addon_advertising_postion` (
   `posid` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -62,7 +62,7 @@ $db->exe("CREATE TABLE `".$db_prefix."addon_crontab_log` (
   `runtime` int(11) DEFAULT NULL COMMENT '执行时间',
   PRIMARY KEY (`lid`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=408 DEFAULT CHARSET=utf8");
+) ENGINE=MyISAM AUTO_INCREMENT=422 DEFAULT CHARSET=utf8");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."addon_custom_form_data`");
 $db->exe("CREATE TABLE `".$db_prefix."addon_custom_form_data` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,

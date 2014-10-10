@@ -21,7 +21,9 @@ class AddonCommentTag
             ?>
 str;
         $php .= $content;
-        $php .= "<?php endforeach;?>";
+        $php .= '<?php endforeach;
+                    unset($data);
+                ?>';
         return $php;
     }
 }

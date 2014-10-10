@@ -12,9 +12,9 @@ return array (
   ),
   'hd_addon_advertising_ad' => 
   array (
-    'row' => '1',
+    'row' => '0',
     'success' => true,
-    'current_row' => 40,
+    'current_row' => 20,
     'size' => 200000,
     'url' => '',
     'step_time' => 200,
@@ -122,7 +122,7 @@ return array (
   ),
   'hd_category' => 
   array (
-    'row' => '19',
+    'row' => '18',
     'success' => true,
     'current_row' => 40,
     'size' => 200000,
@@ -302,9 +302,9 @@ return array (
   ),
   'hd_session' => 
   array (
-    'row' => '43',
+    'row' => '3',
     'success' => true,
-    'current_row' => 80,
+    'current_row' => 40,
     'size' => 200000,
     'url' => '',
     'step_time' => 200,

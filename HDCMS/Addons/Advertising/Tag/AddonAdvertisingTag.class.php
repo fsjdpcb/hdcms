@@ -21,6 +21,7 @@ class AddonAdvertisingTag
         $posid=isset($attr['posid'])?$attr['posid']:0;
         $php = <<<php
         <?php
+                require_cache('HDCMS/Addons/Advertising/Model/AdModel.class.php');
                 \$id=$id;\$posid=$posid;
                 \$map['status']=array('EQ',1);
                 \$map['_string']='start_time<='.time().' AND end_time>='.time();
@@ -33,7 +34,7 @@ class AddonAdvertisingTag
                     \$ad= K('Ad')->where(\$map)->order('id ASC')->find();
                 }
                 if(!\$ad){
-                 echo '暂无广告..';
+                    echo '暂无广告..';
                 }else{
                 \$ad['data'] = unserialize(\$ad['data']);
                 switch (\$ad['show_type']) {
@@ -45,7 +46,6 @@ class AddonAdvertisingTag
                         break;
                     case 2://轮换
                         \$data = \$ad['data'];
-
                         \$js = "<script>$(function () {
                                 $('#flash').slide({
                                     width:".\$ad['ad_width']." ,
@@ -57,13 +57,14 @@ class AddonAdvertisingTag
                          </script>
                          <div id='flash'>";
                          foreach(\$data as \$d){
-                            \$js.="<a href='".\$d['url']."'  title='".\$d['title']."' target='_blank'><img src='".\$d['image']."'width='".\$ad['ad_width']."' height='".\$ad['ad_width']."'/></a>";
+                            \$js.="<a href='".\$d['url']."'  title='".\$d['title']."' target='_blank'><img src='__ROOT__/".\$d['image']."'width='".\$ad['ad_width']."' height='".\$ad['ad_width']."'/></a>";
                          }
                          \$js.="</div>";
                          echo \$js;
                         break;
                     }
                 }
+                unset(\$map);unset(\$ad);unset(\$data);unset(\$js);
         ?>
 php;
         return $php;

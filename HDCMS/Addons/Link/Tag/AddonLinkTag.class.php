@@ -22,7 +22,9 @@ class AddonLinkTag
         ?>
 str;
         $php .= $content;
-        $php .= "<?php endforeach;?>";
+        $php .= '<?php endforeach;
+                    unset($data);unset($db);
+                ?>';
         return $php;
     }
 }

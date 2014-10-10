@@ -12,6 +12,7 @@
     </style>
 </head>
 <body>
+<literal>
 <div class="container">
     <h1>Comment 评论插件</h1>
 
@@ -25,7 +26,7 @@
             将下面iframe标签放在内容页模板中即可
         </li>
         <li>
-            &lt;iframe src="__WEB__?g=Addons&m=Comment&&mid={<b>$hdcms.mid</b>}&cid={<b>$hdcms.cid</b>}&aid={<b>$hdcms.aid</b>}"
+            &lt;iframe src="__WEB__?g=Addons&m=Comment&&mid={$hdcms.mid}&cid={$hdcms.cid}&aid={$hdcms.aid}"
             width="100%" frameborder="0" scrolling="no" id="comment_iframe"&gt;&lt;/iframe&gt;
         </li>
     </ul>
@@ -34,7 +35,7 @@
         <li>
             &lt;addon_comment_list row="2" len="10"&gt;
         </li>
-        <li>   &lt;a href="{<b>$field.url</b>}"&gt;{<b>$field.content</b>}&lt;/a&gt;</li>
+        <li>   &lt;a href="{$field.url}"&gt;{$field.content}&lt;/a&gt;</li>
         <li>               &lt;/addon_comment_list&gt;
         </li>
     </ul>
@@ -68,6 +69,6 @@
             href="http://bbs.houdunwang.com/forum-105-1.html">论坛</a> 参与讨论
     </div>
 </div>
-
+</literal>
 </body>
 </html>
