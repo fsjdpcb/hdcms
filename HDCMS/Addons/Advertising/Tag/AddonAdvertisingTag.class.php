@@ -57,7 +57,7 @@ class AddonAdvertisingTag
                          </script>
                          <div id='flash'>";
                          foreach(\$data as \$d){
-                            \$js.="<a href='".\$d['url']."'  title='".\$d['title']."'><img src='".\$d['image']."'width='".\$ad['ad_width']."' height='".\$ad['ad_width']."'/></a>";
+                            \$js.="<a href='".\$d['url']."'  title='".\$d['title']."' target='_blank'><img src='".\$d['image']."'width='".\$ad['ad_width']."' height='".\$ad['ad_width']."'/></a>";
                          }
                          \$js.="</div>";
                          echo \$js;
