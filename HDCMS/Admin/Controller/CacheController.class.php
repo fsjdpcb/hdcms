@@ -9,6 +9,9 @@ class CacheController extends AuthController
     public function updateCache()
     {
         if ($action = Q('get.action')) {
+            Dir::del('Temp/Compile');
+            Dir::del('Temp/Content');
+            Dir::del('Temp/Table');
             switch ($action) {
                 case "Config" :
                     $Model = K("Config");
@@ -58,7 +61,6 @@ class CacheController extends AuthController
                     $this->display('success.php');
                     break;
             }
-            Dir::del('Temp/Compile');
         } else {
             $this->success('缓存更新成功...', U('index'), 0);
         }

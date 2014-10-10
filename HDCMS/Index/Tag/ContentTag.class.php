@@ -129,12 +129,12 @@ str;
     {
         $cid = isset($attr['cid']) ? trim($attr['cid']) : '';
         $aid = isset($attr['aid']) ? trim($attr['aid']) : '';
-        $mid = isset($attr['mid']) ? intval($attr['mid']) : '';
-        $row = isset($attr['row']) ? intval($attr['row']) : 10;
+        $mid = isset($attr['mid']) ? trim($attr['mid']) : '';
+        $row = isset($attr['row']) ? trim($attr['row']) : 10;
         //简单长度
-        $infolen = isset($attr['infolen']) ? intval($attr['infolen']) : 80;
+        $infolen = isset($attr['infolen']) ? trim($attr['infolen']) : 80;
         //标题长度
-        $titlelen = isset($attr['titlelen']) ? intval($attr['titlelen']) : 80;
+        $titlelen = isset($attr['titlelen']) ? trim($attr['titlelen']) : 80;
         //属性
         $flag = isset($attr['flag']) ? trim($attr['flag']) : '';
         //排序
@@ -142,17 +142,22 @@ str;
         //排序属性
         $noflag = isset($attr['noflag']) ? trim($attr['noflag']) : '';
         //获取副表字段
-        $subtable = isset($attr['subtable']) ? intval($attr['subtable']) : 0;
+        $subtable = isset($attr['subtable']) ? trim($attr['subtable']) : 0;
         //相关文章
-        $relative = isset($attr['relative']) ? intval($attr['relative']) : 0;
+        $relative = isset($attr['relative']) ? trim($attr['relative']) : 0;
         //获取子栏目文章
-        $sub_channel = isset($attr['sub_channel']) ? intval($attr['sub_channel']) : 1;
+        $sub_channel = isset($attr['sub_channel']) ? trim($attr['sub_channel']) : 0;
         $php = <<<str
         <?php
+            \$categoryCache=S('category');
             \$mid='$mid';//模型mid
             \$mid = \$mid?intval(\$mid):Q('mid',1,'intval');
             \$cid ='$cid';
-            \$cid = \$cid?intval(\$cid):Q('cid',0,'intval');
+            \$cid = \$cid?explode(',',str_replace(' ','',\$cid)):Q('cid',0,'intval');
+            //如果有栏目取栏目的mid为\$mid值
+            if(\$cid && isset(\$categoryCache[current(\$cid)]['mid'])){
+                \$mid=\$categoryCache[current(\$cid)]['mid'];
+            }
             \$subtable =$subtable;//获取子表字段
             \$order ='$order';
             \$flag='$flag';//有此flag
@@ -209,13 +214,18 @@ str;
                     }
                 }
                 //指定栏目的文章,子栏目处理
-                if(\$cid){
+
+                if(!empty(\$cid)){
                     //查询条件
                     if(\$sub_channel){
-                        \$category = getCategory(\$cid);
+                        \$category=array();
+                        foreach(\$cid as \$_cid){
+                            \$_tmp = getCategory(\$_cid);
+                            \$category=array_merge(\$category,\$_tmp);
+                        }
                         \$where[]="category.cid IN(".implode(',',\$category).")";
                     }else{
-                        \$where[]="category.cid IN(\$cid)";
+                        \$where[]="category.cid IN(".implode(',',\$cid).")";
                     }
                 }
                 //指定筛选属性flag='1,2,3'时,获取指定属性的文章
@@ -363,10 +373,13 @@ str;
                 if(\$cid){
                     \$category=\$categoryCache[\$cid];
                     if(\$category['cat_url_type']==2){//动态
-                        \$Url = "list_{mid}_{cid}_{page}.html";
-                        \$pageUrl=str_replace(array('{mid}','{cid}'),array(\$category['mid'],\$category['cid']),\$Url);
-                        \$ROOT_URL = C('URL_REWRITE')?'':'__WEB__?';
-                        Page::\$staticUrl=\$ROOT_URL.\$pageUrl;
+                        //开启伪静态模型
+                        if(C('REWRITE_ENGINE')){
+                            \$Url = "list_{mid}_{cid}_{page}.html";
+                            \$pageUrl=str_replace(array('{mid}','{cid}'),array(\$category['mid'],\$category['cid']),\$Url);
+                            \$ROOT_URL = C('URL_REWRITE')?'':'__WEB__?';
+                            Page::\$staticUrl=\$ROOT_URL.\$pageUrl;
+                        }
                     }else{//静态
                         \$html_path = C("HTML_PATH") ? C("HTML_PATH") . '/' : '';
                         Page::\$staticUrl='__ROOT__/'.\$html_path.str_replace(array('{catdir}','{cid}'),array(\$category['catdir'],\$category['cid']),\$category['cat_html_url']);

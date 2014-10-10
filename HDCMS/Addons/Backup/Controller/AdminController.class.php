@@ -38,7 +38,7 @@ class AdminController extends AddonAuthController
             )
         );
         if ($result['status'] == 'success') {
-            $this->success($result['message'], U('index', array('app' => 'Addon')));
+            $this->success($result['message'], U('index'));
         } else {
             $this->success($result['message'], $result['url'], 0.2);
         }

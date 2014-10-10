@@ -1,4 +1,10 @@
 <?php
+
+/**
+ * 友情链接
+ * Class AddonLinkTag
+ * @author 向军 <2300071698@qq.com>
+ */
 class AddonLinkTag
 {
     public $tag = array(

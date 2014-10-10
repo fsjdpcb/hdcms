@@ -49,7 +49,7 @@ class ContentViewModel extends ViewModel
             if(!isset($cache[$name]))continue;
             switch ($cache[$name]['field_type']) {
                 case 'thumb':
-                    $field[$name] = $field[$name] ? __ROOT__ . '/' . $field[$name] : '';
+                    $field[$name] = $field[$name] ? __ROOT__ . '/' . $field[$name] :  __ROOT__ . '/HDCMS/Static/image/thumb.jpg';
                     break;
                 case 'image':
                     $field[$name] = $field[$name] ? __ROOT__ . '/' . $field[$name] : '';

@@ -20,13 +20,13 @@ $db->exe("CREATE TABLE `".$db_prefix."addon_advertising_ad` (
   `ad_height` char(10) DEFAULT '300' COMMENT '广告高度',
   `action_time` tinyint(4) DEFAULT '3' COMMENT '轮换广告变化时间，单位秒',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='广告'");
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='广告'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."addon_advertising_postion`");
 $db->exe("CREATE TABLE `".$db_prefix."addon_advertising_postion` (
   `posid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `posname` varchar(255) DEFAULT NULL COMMENT '广告位名称',
   PRIMARY KEY (`posid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='广告位'");
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='广告位'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."addon_comment`");
 $db->exe("CREATE TABLE `".$db_prefix."addon_comment` (
   `comment_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '评论ID',
@@ -62,7 +62,7 @@ $db->exe("CREATE TABLE `".$db_prefix."addon_crontab_log` (
   `runtime` int(11) DEFAULT NULL COMMENT '执行时间',
   PRIMARY KEY (`lid`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8");
+) ENGINE=MyISAM AUTO_INCREMENT=408 DEFAULT CHARSET=utf8");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."addon_custom_form_data`");
 $db->exe("CREATE TABLE `".$db_prefix."addon_custom_form_data` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -107,7 +107,7 @@ $db->exe("CREATE TABLE `".$db_prefix."addon_link` (
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态 ',
   `list_order` int(11) NOT NULL DEFAULT '100' COMMENT '排序 ',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='友情链接'");
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='友情链接'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."addon_navigation`");
 $db->exe("CREATE TABLE `".$db_prefix."addon_navigation` (
   `nid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -162,7 +162,7 @@ $db->exe("CREATE TABLE `".$db_prefix."category` (
   `member_send_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '会员投稿状态 1 审核 2 未审核',
   `priv_child` tinyint(1) DEFAULT '0' COMMENT '应用到子栏目',
   PRIMARY KEY (`cid`)
-) ENGINE=MyISAM AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COMMENT='栏目表'");
+) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=utf8 COMMENT='栏目表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."category_access`");
 $db->exe("CREATE TABLE `".$db_prefix."category_access` (
   `rid` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '角色id',
@@ -323,7 +323,7 @@ $db->exe("CREATE TABLE `".$db_prefix."field` (
   `isadd` tinyint(1) NOT NULL DEFAULT '1' COMMENT '在前台投稿中显示',
   PRIMARY KEY (`fid`),
   KEY `mid` (`mid`)
-) ENGINE=MyISAM AUTO_INCREMENT=332 DEFAULT CHARSET=utf8 COMMENT='模型字段'");
+) ENGINE=MyISAM AUTO_INCREMENT=351 DEFAULT CHARSET=utf8 COMMENT='模型字段'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."hooks`");
 $db->exe("CREATE TABLE `".$db_prefix."hooks` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -352,7 +352,7 @@ $db->exe("CREATE TABLE `".$db_prefix."model` (
   `is_system` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '1 系统模型  2 普通模型',
   `contribute` tinyint(1) NOT NULL DEFAULT '1' COMMENT '前台投稿',
   PRIMARY KEY (`mid`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='模型表'");
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='模型表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."node`");
 $db->exe("CREATE TABLE `".$db_prefix."node` (
   `nid` smallint(6) NOT NULL AUTO_INCREMENT,
