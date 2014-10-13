@@ -53,7 +53,7 @@
 			</div>
 			<table class="table2">
 				<tr>
-					<td class="w80">HDCMS版本</td>
+					<td class="w100">HDCMS版本</td>
 					<td> {$hd.config.HDCMS_NAME} </td>
 				</tr>
 				<tr>
@@ -127,6 +127,33 @@
                 font-weight: normal;
                 margin-bottom: 10px;
             }
+            div#RecordSite,div#RecordSite a{
+                padding:40px 0px 0px;
+                font-size:18px;
+                text-align: center;
+            }
+            div#RecordSite a{
+                color:#03565E;
+                font-weight: bold;
+                padding-left: 10px;
+            }
         </style>
+        <if value="$updateMessage">
+            <script>
+                var updateMessage='{$updateMessage}';
+                $.modal({
+                    width:400,
+                    height: 180,
+                    title:"新版本更新",
+                    button: true,
+                    button_success: false,
+                    button_cancel: "关闭",
+                    success: function () {
+                        $.removeModal();
+                    },
+                    content: "<div id='RecordSite'>"+updateMessage+"</div>"
+                });
+            </script>
+        </if>
 	</body>
 </html>

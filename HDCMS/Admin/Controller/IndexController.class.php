@@ -8,11 +8,18 @@
  */
 class IndexController extends AuthController
 {
+    //构造函数
+    public function __init()
+    {
+
+    }
+
+
     //后台首页
     public function index()
     {
         //获得顶级菜单
-        if ($_SESSION['user']['web_master'] || $_SESSION['user']['rid']==1) {
+        if ($_SESSION['user']['web_master'] || $_SESSION['user']['rid'] == 1) {
             $nodeData = S('node');
             $topMenu = array();
             if ($nodeData) {
@@ -30,11 +37,11 @@ class IndexController extends AuthController
             $topMenu = $model->query($sql);
         }
         //当前用户常用菜单
-        $favoriteMenu = S('user_menu'.$_SESSION['user']['uid']);
-        if(!empty($favoriteMenu)){
-            foreach($favoriteMenu as $n=>$f){
-                $g = empty($f['group'])?'':'g='.$f['group'].'&';
-                $favoriteMenu[$n]['url']=__ROOT__.'/index.php?'.$g."m={$f['module']}&c={$f['controller']}&a={$f['action']}&nid={$f['nid']}";
+        $favoriteMenu = S('user_menu' . $_SESSION['user']['uid']);
+        if (!empty($favoriteMenu)) {
+            foreach ($favoriteMenu as $n => $f) {
+                $g = empty($f['group']) ? '' : 'g=' . $f['group'] . '&';
+                $favoriteMenu[$n]['url'] = __ROOT__ . '/index.php?' . $g . "m={$f['module']}&c={$f['controller']}&a={$f['action']}&nid={$f['nid']}";
             }
         }
         $this->assign('top_menu', $topMenu);
@@ -47,11 +54,11 @@ class IndexController extends AuthController
     {
         $pid = Q('pid', 0, 'intval');
         //超级管理员获得所有菜单
-        if ($_SESSION['user']['web_master'] || $_SESSION['user']['rid']==1) {
+        if ($_SESSION['user']['web_master'] || $_SESSION['user']['rid'] == 1) {
             $MenuData = S('node');
         } else {
             $nodeModel = V('node');
-            $nodeModel->view=array(
+            $nodeModel->view = array(
                 'access' => array('_type' => 'RIGHT'),
                 'node' => array('_on' => '__node__.nid=__access__.nid'),
             );
@@ -70,15 +77,15 @@ class IndexController extends AuthController
         foreach ($childMenuData as $menu) {
             $html .= "<dl><dt>" . $menu['title'] . "</dt>";
             foreach ($menu['_data'] as $linkMenu) {
-                    $param = $linkMenu['param'] ? '&' . $linkMenu['param'] : '';
-                    if($linkMenu['group']){
-                        $url = __ROOT__ . "/index.php?g=".$linkMenu['group']."&m=" . $linkMenu['module'] . "&c=" . $linkMenu['controller'] . "&a=" . $linkMenu['action'] . $param;
-                    }else{
-                        $url = __ROOT__ . "/index.php?m=" . $linkMenu['module'] . "&c=" . $linkMenu['controller'] . "&a=" . $linkMenu['action'] . $param;
-                    }
-                    $html .= "<dd><a nid='" . $linkMenu["nid"] . "' href='javascript:;'
-                    onclick='get_content(this," . $linkMenu["nid"] . ")' url='" . $url . "'>" . $linkMenu['title'] . "</a></dd>";
+                $param = $linkMenu['param'] ? '&' . $linkMenu['param'] : '';
+                if ($linkMenu['group']) {
+                    $url = __ROOT__ . "/index.php?g=" . $linkMenu['group'] . "&m=" . $linkMenu['module'] . "&c=" . $linkMenu['controller'] . "&a=" . $linkMenu['action'] . $param;
+                } else {
+                    $url = __ROOT__ . "/index.php?m=" . $linkMenu['module'] . "&c=" . $linkMenu['controller'] . "&a=" . $linkMenu['action'] . $param;
                 }
+                $html .= "<dd><a nid='" . $linkMenu["nid"] . "' href='javascript:;'
+                    onclick='get_content(this," . $linkMenu["nid"] . ")' url='" . $url . "'>" . $linkMenu['title'] . "</a></dd>";
+            }
             $html .= "</dl>";
         }
         $html .= "</div>";
@@ -88,6 +95,27 @@ class IndexController extends AuthController
     //欢迎页
     public function welcome()
     {
+        //客户端版本验证(本地不验证)
+        if (function_exists('curl_init') && !preg_match('@localhost@',__ROOT__)) {
+            $curl = curl_init();
+            $version = str_replace('.', '', C('HDCMS_VERSION'));
+            // 设置URL和相应的选项
+            curl_setopt($curl, CURLOPT_URL, 'http://www.hdphp.com/version.php?version=' . $version);
+            curl_setopt($curl, CURLOPT_HEADER, 0);
+            //超时时间
+            curl_setopt($curl, CURLOPT_TIMEOUT, 10);
+            //结果保存在字符串中
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+            $data = curl_exec($curl);
+            curl_close($curl);
+            $json = unserialize($data);
+            if ($json && $json['status'] == 'haveUpdate') {
+                $this->assign('updateMessage', $json['message']);
+            }else{
+                $this->assign('updateMessage',0);
+            }
+        }
+
         $this->display();
     }
 
@@ -108,12 +136,12 @@ class IndexController extends AuthController
             //更新缓存
             $sql = "SELECT * FROM {$pre}menu_favorite AS m JOIN {$pre}node AS n ON m.nid=n.nid WHERE uid=" . $_SESSION['user']['uid'];
             $favoriteMenu = M()->query($sql);
-            S('user_menu'.$_SESSION['user']['uid'], $favoriteMenu);
+            S('user_menu' . $_SESSION['user']['uid'], $favoriteMenu);
             $this->success('设置成功');
         } else {
             $nodeModel = M('node');
             $pre = C('DB_PREFIX');
-            if ($_SESSION['user']['web_master']|| $_SESSION['user']['rid'] == 1) {
+            if ($_SESSION['user']['web_master'] || $_SESSION['user']['rid'] == 1) {
                 $sql = "SELECT n.nid,n.pid,m.uid,n.title FROM {$pre}node AS n  LEFT JOIN
 							 (SELECT * FROM {$pre}menu_favorite WHERE uid={$_SESSION['user']['uid']}) AS m ON n.nid = m.nid WHERE n.show=1";
             } else {
