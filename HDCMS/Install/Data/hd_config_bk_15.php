@@ -14,7 +14,7 @@ $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`cgid`,`name`,`value`,`title`,
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`cgid`,`name`,`value`,`title`,`show_type`,`info`,`message`,`order_list`,`status`,`system`)
 						VALUES(7,1,'EMAIL','2300071698@qq.com','管理员邮箱','text','','',100,1,1)");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`cgid`,`name`,`value`,`title`,`show_type`,`info`,`message`,`order_list`,`status`,`system`)
-						VALUES(73,3,'DEFAULT_GROUP','幼儿园','默认会员组','group','','',100,1,1)");
+						VALUES(73,3,'DEFAULT_GROUP','5','默认会员组','group','','',100,1,1)");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`cgid`,`name`,`value`,`title`,`show_type`,`info`,`message`,`order_list`,`status`,`system`)
 						VALUES(9,1,'WEB_OPEN','1','网站开启','radio','1|开启,0|关闭','',100,1,1)");
 $db->exe("REPLACE INTO ".$db_prefix."config (`id`,`cgid`,`name`,`value`,`title`,`show_type`,`info`,`message`,`order_list`,`status`,`system`)

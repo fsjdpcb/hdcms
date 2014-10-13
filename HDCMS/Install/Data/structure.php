@@ -62,7 +62,7 @@ $db->exe("CREATE TABLE `".$db_prefix."addon_crontab_log` (
   `runtime` int(11) DEFAULT NULL COMMENT '执行时间',
   PRIMARY KEY (`lid`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=422 DEFAULT CHARSET=utf8");
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."addon_custom_form_data`");
 $db->exe("CREATE TABLE `".$db_prefix."addon_custom_form_data` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -107,7 +107,7 @@ $db->exe("CREATE TABLE `".$db_prefix."addon_link` (
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态 ',
   `list_order` int(11) NOT NULL DEFAULT '100' COMMENT '排序 ',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='友情链接'");
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='友情链接'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."addon_navigation`");
 $db->exe("CREATE TABLE `".$db_prefix."addon_navigation` (
   `nid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -162,7 +162,7 @@ $db->exe("CREATE TABLE `".$db_prefix."category` (
   `member_send_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '会员投稿状态 1 审核 2 未审核',
   `priv_child` tinyint(1) DEFAULT '0' COMMENT '应用到子栏目',
   PRIMARY KEY (`cid`)
-) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=utf8 COMMENT='栏目表'");
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='栏目表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."category_access`");
 $db->exe("CREATE TABLE `".$db_prefix."category_access` (
   `rid` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '角色id',
@@ -480,7 +480,7 @@ $db->exe("CREATE TABLE `".$db_prefix."user` (
   PRIMARY KEY (`uid`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='会员表'");
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='会员表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."user_credits`");
 $db->exe("CREATE TABLE `".$db_prefix."user_credits` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,

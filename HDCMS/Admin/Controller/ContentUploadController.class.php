@@ -7,14 +7,58 @@
  */
 class ContentUploadController extends Controller
 {
-    private $db;
+    private $db;//模型
 
+    //构造函数
     public function __init()
     {
         if (empty($_SESSION['user'])) {
             go("Index/Index/index");
         }
         $this->db = M('upload');
+    }
+
+    /**
+     * Uploadify上传文件处理
+     */
+    public function hd_uploadify()
+    {
+        $uploadModel = M('upload');
+        $size = Q('size') ? Q('size') : C('allow_size');
+        $upload = new Upload(Q('post.upload_dir'), array(), $size);
+        $file = $upload->upload();
+        if (!empty($file)) {
+            $file = $file[0];
+            $file['uid'] = $_SESSION['user']['uid'];
+            //图片加水印
+            if ($file['image'] && Q('water')) {
+                $img = new Image();
+                $img->water($file['path']);
+            }
+            //写入upload表
+            $uploadModel->add($file);
+            $data = $file;
+            $data['status'] = 1;
+            $data['isimage'] = $file['image'] ? 1 : 0;
+        } else {
+            $data['status'] = 0;
+            $data['message'] = $upload->error;
+        }
+        echo json_encode($data);
+        exit;
+    }
+
+    /**
+     * 当修改图片的alt表单数据时，Ajax更改upload表中的name字段值
+     */
+    public function update_file_name()
+    {
+        $name = Q('name');
+        $id = Q('id', null, 'intval');
+        $this->db->save(array(
+            "id" => $id,
+            "name" => $name
+        ));
     }
 
     //显示文件列表
@@ -27,7 +71,7 @@ class ContentUploadController extends Controller
             $allow_size = intval(C('UPLOAD_ALLOW_SIZE') / pow(1024, 2)) . 'MB';
         }
         //水印按钮
-        $waterbtn=$_SESSION['user']['admin']?1:0;
+        $waterbtn = $_SESSION['user']['admin'] ? 1 : 0;
         switch ($_GET['type']) {
             case 'thumb':
                 $tag = array(
@@ -36,7 +80,7 @@ class ContentUploadController extends Controller
                     'limit' => 1,
                     'width' => 88,
                     'height' => 78,
-                    'water'=>C('WATER_ON'),
+                    'water' => C('WATER_ON'),
                     'waterbtn' => $waterbtn
                 );
                 break;
@@ -49,7 +93,7 @@ class ContentUploadController extends Controller
                     'width' => 88,
                     'height' => 78,
                     'alt' => 1,
-                    'water'=>C('WATER_ON'),
+                    'water' => C('WATER_ON'),
                     'waterbtn' => $waterbtn
                 );
                 break;
@@ -62,7 +106,7 @@ class ContentUploadController extends Controller
                     'width' => 88,
                     'height' => 78,
                     'alt' => 1,
-                    'water'=>C('WATER_ON'),
+                    'water' => C('WATER_ON'),
                     'waterbtn' => $waterbtn
                 );
                 break;
@@ -91,49 +135,6 @@ class ContentUploadController extends Controller
         $this->site(); //站内图片
         $this->untreated(); //未使用图片
         $this->display();
-    }
-
-    /**
-     * Uploadify上传文件处理
-     */
-    public function hd_uploadify()
-    {
-        $uploadModel = M('upload');
-        $size = Q('size') ? Q('size') : C('allow_size');
-        $upload = new Upload(Q('post.upload_dir'), array(), $size);
-        $file = $upload->upload();
-        if (!empty($file)) {
-            $file = $file[0];
-            $file['uid'] = session('uid');
-            //图片加水印
-            if ($file['image'] && Q('water')) {
-                $img = new Image();
-                $img->water($file['path']);
-            }
-            //写入upload表
-            $uploadModel->add($file);
-            $data = $file;
-            $data['status'] = 1;
-            $data['isimage'] = $file['image']?1:0;
-        } else {
-            $data['status'] = 0;
-            $data['message'] = $upload->error;
-        }
-        echo json_encode($data);
-        exit;
-    }
-
-    /**
-     * 当修改图片的alt表单数据时，Ajax更改upload表中的name字段值
-     */
-    public function update_file_name()
-    {
-        $name = Q('name');
-        $id = Q('id', null, 'intval');
-        $this->db->save(array(
-            "id" => $id,
-            "name" => $name
-        ));
     }
 
     /**
