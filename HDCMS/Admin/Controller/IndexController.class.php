@@ -12,7 +12,7 @@ class IndexController extends AuthController
     public function index()
     {
         //获得顶级菜单
-        if ($_SESSION['user']['web_master']) {
+        if ($_SESSION['user']['web_master'] || $_SESSION['user']['rid']==1) {
             $nodeData = S('node');
             $topMenu = array();
             if ($nodeData) {
@@ -47,7 +47,7 @@ class IndexController extends AuthController
     {
         $pid = Q('pid', 0, 'intval');
         //超级管理员获得所有菜单
-        if ($_SESSION['user']['web_master']) {
+        if ($_SESSION['user']['web_master'] || $_SESSION['user']['rid']==1) {
             $MenuData = S('node');
         } else {
             $nodeModel = V('node');

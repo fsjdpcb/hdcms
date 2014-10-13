@@ -9,6 +9,7 @@ class CacheController extends AuthController
     public function updateCache()
     {
         if ($action = Q('get.action')) {
+            is_file(TEMP_PATH.'~Boot.php') && unlink(TEMP_PATH.'~Boot.php');
             Dir::del('Temp/Compile');
             Dir::del('Temp/Content');
             Dir::del('Temp/Table');

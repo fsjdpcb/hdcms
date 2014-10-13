@@ -161,7 +161,7 @@ class ContentInputModel
     {
         //提取内容第n张图为缩略图
         if (isset($_POST['auto_thumb']) && $_POST['auto_thumb'] == 1 && isset($_POST['content']) && extension_exists('curl')) {
-            if (preg_match_all('/(src)=([\'"]?)([^\'">]+\.(jpg|jpeg|png|gif))\2/is', $_POST['content'], $matchData, PREG_PATTERN_ORDER)) {
+            if (preg_match_all('/\s+(src)=([\'"]?)([^\'">]+\.(jpg|jpeg|png|gif))\2/is', $_POST['content'], $matchData, PREG_PATTERN_ORDER)) {
                 $num = (int)$_POST['auto_thumb_num'] - 1;
                 if (isset($matchData[0][$num])) {
                     $Attachment = new Attachment();
@@ -200,7 +200,7 @@ class ContentInputModel
         //下载内容图片
         if (isset($_POST['down_remote_pic']) && $_POST['down_remote_pic'] == 1 && extension_exists('curl')) {
             $Attachment = new Attachment();
-            $value = $Attachment->download($value, array('jpg', 'gif', 'jpeg', 'png'), $this->mid);
+            $value = $Attachment->download($value, array('jpg', 'gif', 'jpeg', 'png'),null, $this->mid);
         }
         return $value;
     }

@@ -6,25 +6,47 @@
  */
 class Html extends Controller
 {
-    //首页
+    private $model;//模型缓存
+    private $category;//栏目缓存
+
+    public function __init()
+    {
+        $this->model = S('model');
+        $this->category = S("category");
+    }
+
+    /**
+     * 生成首页
+     * @return bool
+     */
     public function index()
     {
         if (C('CREATE_INDEX_HTML') == 1) {
             $template = 'Template/' . C('WEB_STYLE') . '/index.html';
+            //验证模板文件
+            if (!is_file($template) || !is_readable($template)) return false;
             return $this->createHtml('index.html', './', $template);
         }
         return true;
     }
 
-    //内容页(内容与栏目关联数据）
-    public function content($data)
+    /**
+     * 内容页
+     * @param $mid 模型mid
+     * @param $aid 文章aid
+     * @return bool
+     */
+    public function content($mid, $aid)
     {
+        $data = ContentViewModel::getInstance($mid)->getOne($aid);
         if (!$data['arc_url_type'] == 2) {
             return true;
         }
         //模板文件
-        $tplFile = empty($data['template'])?$data['arc_tpl']:$data['template'];
-        $template = 'Template/'.C('WEB_STYLE').'/'.$tplFile;
+        $tplFile = empty($data['template']) ? $data['arc_tpl'] : $data['template'];
+        $template = 'Template/' . C('WEB_STYLE') . '/' . $tplFile;
+        //验证模板文件
+        if (!is_file($template) || !is_readable($template)) return false;
         //HTML存放根目录
         $html_path = C("HTML_PATH") ? C("HTML_PATH") . '/' : '';
         //栏目定义的内容页生成静态规则
@@ -39,11 +61,32 @@ class Html extends Controller
         return $this->createHtml(basename($htmlFile), dirname($htmlFile) . '/', $template);
     }
 
-    //栏目页
+    /**
+     * 生成文章的上一篇与下一篇(关联文章)
+     * @param $mid 模型mid
+     * @param $aid 文章aid
+     */
+    public function relation_content($mid, $aid)
+    {
+        $model = ContentModel::getInstance($mid);
+        //生成上一篇
+        $preAid = $model->where('aid<' . $aid)->limit(1)->order("aid DESC")->getField('aid');
+        if ($preAid) $this->content($mid, $preAid);
+        //生成下一篇
+        $nextAid = $model->where('aid>' . $aid)->limit(1)->order("aid ASC")->getField('aid');
+        if ($nextAid) $this->content($mid, $nextAid);
+    }
+
+    /**
+     * 生成单一栏目
+     * @param $cid 栏目cid
+     * @param int $page 生成页码
+     * @return bool
+     */
     public function category($cid, $page = 1)
     {
         $categoryCache = S('category');
-        if(!isset($categoryCache[$cid]))return false;
+        if (!isset($categoryCache[$cid])) return false;
         $cat = $categoryCache[$cid];
         $GLOBALS['totalPage'] = 0;
         if ($cat['cat_url_type'] == 2 || $cat['cattype'] == 3) {
@@ -52,9 +95,9 @@ class Html extends Controller
         //单文章
         if ($cat['cattype'] == 4) {
             $Model = ContentViewModel::getInstance($cat['mid']);
-            $result = $Model->where("category.cid={$cat['cid']}")->find();
-            if ($result) {
-                return $this->content($result);
+            $aid = $Model->where("category.cid={$cat['cid']}")->getField('aid');
+            if ($aid) {
+                return $this->content($this->cat['mid'], $aid);
             }
         } else {
             //模板文件
@@ -66,6 +109,8 @@ class Html extends Controller
                     $template = 'Template/' . C("WEB_STYLE") . '/' . $cat['index_tpl'];
                     break;
             }
+            //验证模板文件
+            if (!is_file($template) || !is_readable($template)) return false;
             //普通栏目与封面栏目
             $htmlDir = C("HTML_PATH") ? C("HTML_PATH") . '/' : '';
             $_REQUEST['page'] = $_GET['page'] = $page;
@@ -78,17 +123,22 @@ class Html extends Controller
             $this->createHtml(basename($htmlFile), dirname($htmlFile) . '/', $template);
             //第1页时复制index.html
             if ($page == 1) {
-                copy($htmlFile, $htmlDir.$cat['catdir'] . '/index.html');
+                copy($htmlFile, $htmlDir . $cat['catdir'] . '/index.html');
+                @unlink($htmlFile);
             }
             return true;
         }
     }
 
-    //生成栏目分页列表
+    /**
+     * 生成栏目分页列表
+     * @param $cid
+     * @return bool
+     */
     public function relation_category($cid)
     {
         $cache = S('category');
-        if(!isset($cache[$cid]))return false;
+        if (!isset($cache[$cid])) return false;
         $cat = $cache[$cid];
         if ($cat['cat_url_type'] == 2 || $cat['cattype'] == 3) {
             return true;
@@ -101,6 +151,19 @@ class Html extends Controller
             $page++;
             $totalPage = $GLOBALS['totalPage'];
         } while ($d <= $totalPage && $d < 10);
+        return true;
+    }
+
+
+    /**
+     * 生成所有栏目
+     * @return bool
+     */
+    public function all_category()
+    {
+        foreach ($this->category as $cat) {
+            $this->relation_category($cat['cid']);
+        }
         return true;
     }
 }

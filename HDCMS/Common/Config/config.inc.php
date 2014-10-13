@@ -7,7 +7,7 @@ return array (
   'KEYWORDS' => 'php培训,php实训,后盾网',
   'DESCRIPTION' => '后盾网顶尖PHP培训 内容全面 全程实战!业内顶级讲师亲自授课,千余课时独家视频教程免费下载,超百G原创视频资源,实力不容造假!010-64825057',
   'EMAIL' => '2300071698@qq.com',
-  'DEFAULT_GROUP' => '幼儿园',
+  'DEFAULT_GROUP' => '5',
   'WEB_OPEN' => '1',
   'UPLOAD_PATH' => 'upload',
   'ALLOW_TYPE' => 'jpg,jpeg,png,bmp,gif,zip,rar,doc',

@@ -79,7 +79,7 @@ class ConfigModel extends Model
         $html = "<select name='config[{$config['id']}][value]' class='w300'>";
         foreach ($memberROle as $id => $role) {
             $selected = $role['rname'] == $config['value'] ? ' selected="" ' : '';
-            $html .= "<option value='{$role['rname']}' $selected>{$role['rname']}</option>";
+            $html .= "<option value='{$role['rid']}' $selected>{$role['rname']}</option>";
         }
         $html .= "</select>";
         return $html;

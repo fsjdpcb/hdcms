@@ -35,7 +35,7 @@ class AccessController extends AuthController
             $this->success('修改成功');
         } else {
             $sql = "SELECT n.nid,n.title,n.pid,n.type,a.rid as access_rid FROM hd_node AS n LEFT JOIN
-            			(SELECT * FROM (SELECT * FROM hd_access WHERE rid={$this->rid}) AS t)AS a
+            			(SELECT * FROM (SELECT * FROM ".C('DB_PREFIX')."access WHERE rid={$this->rid}) AS t)AS a
                 		ON n.nid = a.nid ORDER BY list_order ASC";
             $result = $this->db->query($sql);
             foreach ($result as $n => $r) {

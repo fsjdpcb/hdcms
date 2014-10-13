@@ -132,7 +132,7 @@ final class Backup
                 $current_row += 20;
                 self::$config[$table]['current_row'] = $current_row;
                 //表中无数据
-                if (empty($data)) {
+                if (is_null($data)) {
                     self::$config[$table]['success'] = true;
                     return self::write_backup_data($table, $backup_str, $current_row);
                 } else {

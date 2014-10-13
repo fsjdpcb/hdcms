@@ -11,6 +11,7 @@ class Content
     private $model;
     private $category;
     public $error;
+    private $html;//静态生成对象
 
     public function __construct()
     {
@@ -18,6 +19,7 @@ class Content
         $this->category = S('category');
         $this->mid = Q('mid', 0, 'intval');
         $this->cid = Q('cid', 0, 'intval');
+        $this->html = new Html();
     }
 
     //添加文章
@@ -36,10 +38,17 @@ class Content
         if ($ContentModel->create($data)) {
             $result = $ContentModel->add($data);
             $aid = $result[$ContentModel->table];
+            //生成上一页静态
+            $preAid = $ContentModel->where('aid<' . $aid)->getField('aid');
+            if ($preAid) $this->html->createContentHtml($this->mid, $preAid);
             //生成静态
-            $this->createHtml($aid);
-            //更新栏目静态
-            $this->createCategoryHtml($this->cid);
+            $this->html->content($this->mid, $aid);
+            //生成相关文章
+            $this->html->relation_content($this->mid,$aid);
+            //生成所有栏目
+            $this->html->all_category();
+            //生成首页
+            $this->html->index();
             //修改上传表Upload中本次上传文件状态
             $this->alterUploadTable();
             //修改tag标签数据
@@ -70,9 +79,11 @@ class Content
                 //修改tag标签数据
                 $this->alterTag($data['aid']);
                 //内容静态
-                $this->createHtml($data['aid']);
-                //生成栏目静态
-                $this->createCategoryHtml($this->cid);
+                $this->html->content($this->mid,$data['aid']);
+                //上下关联文章
+                $this->html->relation_content($this->mid,$data['aid']);
+                //生成所有栏目
+                $this->html->all_category();
                 Hook::listen('content_edit_end');
                 return true;
             }
@@ -82,60 +93,34 @@ class Content
         }
     }
 
-    //删除文章
+    /**
+     * 删除文章
+     * @param $aid 文章aid
+     * @return bool
+     */
     public function del($aid)
     {
         $ContentModel = ContentModel::getInstance($this->mid);
-        $map['aid']=array('IN',$aid);
+        //组合为数组
+        $aid = is_array($aid) ? $aid : array($aid);
+        $map['aid'] = array('IN', $aid);
         $ContentModel->where($map);
         if ($ContentModel->del($map)) {
             //删除文章tag属性
             M('content_tag')->where(array('cid' => $this->cid))->del();
-            //生成栏目静态
-            $this->createCategoryHtml($this->cid);
+            //生成文章的上一篇与下一篇
+            foreach ($aid as $_aid) {
+                $this->html->relation_content($this->mid, $_aid);
+            }
+            //生成栏目
+            $this->html->all_category();
+            //生成首页
+            $this->html->index();
             Hook::listen('content_del');
             return true;
         } else {
             $this->error = '删除文章失败';
         }
-    }
-
-    //更新栏目静态
-    public function createCategoryHtml($cid)
-    {
-        //更新栏目静态
-        $html = new Html();
-        //生成当前栏目
-        $html->relation_category($cid);
-        //更新父级栏目
-        $parentCategory = Data::parentChannel(S('category'), $cid);
-        if (!empty($parentCategory)) {
-            foreach ($parentCategory as $cat) {
-                $html->relation_category($cat['cid']);
-            }
-        }
-        //更新首页
-        $html->index();
-        return true;
-    }
-
-    //生成静态
-    private function createHtml($aid)
-    {
-        $content = ContentViewModel::getInstance($this->mid)->getOne($aid);
-        $html = new Html;
-        //内容静态
-        $html->content($content);
-        //生成栏目
-        $category = Data::parentChannel($this->category, $content['cid']);
-        //生成当前栏目
-        $html->relation_category($content['cid']);
-        foreach ($category as $cat) {
-            $html->relation_category($cat['cid']);
-        }
-        //生成首页
-        $html->index();
-        return true;
     }
 
     //修改上传表Upload中本次上传文件状态

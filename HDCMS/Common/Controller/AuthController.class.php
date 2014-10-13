@@ -27,20 +27,34 @@ class AuthController extends Controller
     protected function checkAdminAccess()
     {
         //没登录或普通用户
-        if(!isset($_SESSION['user']) or !$_SESSION['user']['admin']){
+        if (!isset($_SESSION['user']) or !$_SESSION['user']['admin']) {
             go("Login/login");
         }
         //超级管理员不限制
-        if ($_SESSION['user']['rid']==1) return true;
+        if ($_SESSION['user']['rid'] == 1) return true;
         //普通管理员权限控制
         $nodeModel = M("node");
         $nodeModel->where = array("MODULE" => MODULE, "controller" => CONTROLLER, "action" => ACTION, 'type' => 1);
         $node = $nodeModel->field("nid")->find();
         //node不存在的节点自动通过验证
-        if (is_null($node)) {
+        if (!$node) {
             return true;
         } else {
-            return M('access')->where(array("nid" => $node['nid'], "rid" => $_SESSION['user']['rid']))->find();
+            $map['nid'] = $node['nid'];
+            $map['rid'] = $_SESSION['user']['rid'];
+            return M('access')->where($map)->find();
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+

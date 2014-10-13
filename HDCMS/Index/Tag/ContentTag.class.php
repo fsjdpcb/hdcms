@@ -154,7 +154,7 @@ str;
             \$mid='$mid';//模型mid
             \$mid = \$mid?intval(\$mid):Q('mid',1,'intval');
             \$cid ='$cid';
-            \$cid = \$cid?explode(',',str_replace(' ','',\$cid)):Q('cid',0,'intval');
+            \$cid = \$cid?explode(',',str_replace(' ','',\$cid)):array(Q('cid',0,'intval'));
             //如果有栏目取栏目的mid为\$mid值
             if(\$cid && isset(\$categoryCache[current(\$cid)]['mid'])){
                 \$mid=\$categoryCache[current(\$cid)]['mid'];

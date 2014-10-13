@@ -166,7 +166,7 @@ class HtmlController extends AuthController
                 $this->success("[{$category['catname']}]文章生成完毕...", __ACTION__, 0);
             }
             foreach ($contentData as $content) {
-                $html->content($contentModel->getOne($content['aid']));
+                $html->content($content['mid'],$content['aid']);
             }
             $options['currentNum'] = $options['currentNum'] + $options['step_row'] - 1;
             if ($options['currentNum'] >= $options['total_row']) {
