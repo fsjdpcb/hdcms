@@ -75,14 +75,14 @@ str;
         //显示条数
         $row = isset($attr['row']) ? $attr['row'] : 10;
         //指定的栏目cid
-        $cid = isset($attr['cid']) ? $attr['cid'] : 0;
+        $cid = isset($attr['cid']) ? ($attr['cid'][0]=='$'?$attr['cid']:"'{$attr['cid']}'") : 0;
         //当前栏目的class样式
         $class = isset($attr['class']) ? $attr['class'] : '';
         $php = <<<str
         <?php
         \$where = '';
         \$type=strtolower(trim('$type'));
-        \$cid=str_replace(' ','','$cid');
+        \$cid=str_replace(' ','',$cid);
         if(empty(\$cid)){
             \$cid=Q('cid',0,'intval');
         }
@@ -109,8 +109,10 @@ str;
         if(\$result){
             //当前栏目,用于改变样式
             \$_self_cid = Q('cid',0,'intval');
-            foreach (\$result as \$field):
-                //当前栏目样式
+            foreach (\$result as \$index=>\$field):
+                \$field['_index']=\$index;
+                \$field['_first']=\$index==0?true:false;
+                \$field['_last']=\$index==(count(\$result)-1)?true:false;
                 \$field['class']=\$_self_cid==\$field['cid']?"$class":'';
                 \$field['caturl'] = Url::getCategoryUrl(\$field);
                 \$field['catimage']='__ROOT__'.\$field['catimage'];
@@ -128,7 +130,7 @@ str;
     //文章列表
     public function _arclist($attr, $content)
     {
-        $cid = isset($attr['cid']) ? trim($attr['cid']) : '';
+        $cid = isset($attr['cid']) ? ($attr['cid'][0]=='$'?$attr['cid']:"'{$attr['cid']}'") : 0;
         $aid = isset($attr['aid']) ? trim($attr['aid']) : '';
         $mid = isset($attr['mid']) ? trim($attr['mid']) : '';
         $row = isset($attr['row']) ? trim($attr['row']) : 10;
@@ -153,7 +155,7 @@ str;
             \$categoryCache=S('category');
             \$mid='$mid';//模型mid
             \$mid = \$mid?intval(\$mid):Q('mid',1,'intval');
-            \$cid ='$cid';
+            \$cid =$cid;
             \$cid = \$cid?explode(',',str_replace(' ','',\$cid)):array(Q('cid',0,'intval'));
             //如果有栏目取栏目的mid为\$mid值
             if(\$cid && isset(\$categoryCache[current(\$cid)]['mid'])){
@@ -260,7 +262,9 @@ str;
                 if(\$result):
                     foreach(\$result as \$index=>\$field):
                         \$field=\$db->formatField(\$field);
-                        \$field['index']=\$index+1;
+                        \$field['_index']=\$index;
+                        \$field['_first']=\$index==0?true:false;
+                        \$field['_last']=\$index==(count(\$result)-1)?true:false;
                         \$field['title']=mb_substr(\$field['title'],0,$titlelen,'utf8');
                         \$field['title']=\$field['color']?"<span style='color:".\$field['color']."'>".\$field['title']."</span>":\$field['title'];
                         \$field['description']=mb_substr(\$field['description'],0,$infolen,'utf-8');
@@ -396,7 +400,9 @@ str;
                 if(\$result):
                     foreach(\$result as \$index=>\$field):
                         \$field=\$db->formatField(\$field);
-                        \$field['index']=\$index+1;
+                        \$field['_index']=\$index;
+                        \$field['_first']=\$index==0?true:false;
+                        \$field['_last']=\$index==(count(\$result)-1)?true:false;
                         \$field['title']=mb_substr(\$field['title'],0,$titlelen,'utf8');
                         \$field['title']=\$field['color']?"<span style='color:".\$field['color']."'>".\$field['title']."</span>":\$field['title'];
                         \$field['description']=mb_substr(\$field['description'],0,$infolen,'utf-8');
