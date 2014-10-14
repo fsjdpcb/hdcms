@@ -12,6 +12,10 @@ class AuthController extends Controller
         if (!$_SESSION['user']['uid']) {
             go('Login/login');
         }
+        //会员中心关闭
+        if(!C('MEMBER_OPEN')){
+            $this->success('会员中心暂时关闭....',__ROOT__,3);
+        }
         parent::__construct();
     }
 }

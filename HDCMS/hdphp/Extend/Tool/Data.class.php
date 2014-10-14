@@ -71,7 +71,12 @@ final class Data
                 $data[$n]['_end'] = true;
             }
         }
-        return $data;
+        //更新key为栏目主键
+        $category=array();
+        foreach($data as $d){
+            $category[$d[$fieldPri]]=$d;
+        }
+        return $category;
     }
 
     //只供channelList方法使用

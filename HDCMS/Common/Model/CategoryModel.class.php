@@ -96,6 +96,9 @@ class CategoryModel extends ViewModel
             $childCategory = Data::channelList(M('category')->all(), $this->cid); //获得所有子栏目
             //存在子栏目时设置权限
             if ($childCategory) {
+                //继承父栏目的"投稿不需要审核"字段
+                $member_send_status=$this->category[$this->cid]['member_send_status'];
+                M('category')->where(array('cid'=>array('IN',array_keys($childCategory))))->save(array('member_send_status'=>$member_send_status));
                 //获得父栏目权限
                 $access = $model->where("cid={$this->cid}")->all();
                 //子栏目继承父栏目权限

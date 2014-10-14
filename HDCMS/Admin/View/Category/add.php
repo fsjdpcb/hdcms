@@ -190,8 +190,8 @@
                                 投稿不需要审核
                             </th>
                             <td>
-                                <label><input type="radio" name="member_send_status" value="1" checked=''/> 是 </label>
-                                <label><input type="radio" name="member_send_status" value="0" /> 否 </label>
+                                <label><input type="radio" name="member_send_status" value="1" /> 是 </label>
+                                <label><input type="radio" name="member_send_status" value="0" checked=''/> 否 </label>
                             </td>
                         </tr>
                     </table>

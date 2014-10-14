@@ -96,11 +96,11 @@ class IndexController extends AuthController
     public function welcome()
     {
         //客户端版本验证(本地不验证)
-        if (function_exists('curl_init') && !preg_match('@localhost@',__ROOT__)) {
+        if (function_exists('curl_init') && !preg_match('@localhost@', __ROOT__)){
             $curl = curl_init();
-            $version = str_replace('.', '', C('HDCMS_VERSION'));
+            $version = C('HDCMS_VERSION');
             // 设置URL和相应的选项
-            curl_setopt($curl, CURLOPT_URL, 'http://www.hdphp.com/version.php?version=' . $version);
+            curl_setopt($curl, CURLOPT_URL, 'http://www.hdphp.com/version.php?version=' . $version.'&web='.__ROOT__);
             curl_setopt($curl, CURLOPT_HEADER, 0);
             //超时时间
             curl_setopt($curl, CURLOPT_TIMEOUT, 10);
@@ -111,12 +111,16 @@ class IndexController extends AuthController
             $json = unserialize($data);
             if ($json && $json['status'] == 'haveUpdate') {
                 $this->assign('updateMessage', $json['message']);
-            }else{
-                $this->assign('updateMessage',0);
+            } else {
+                $this->assign('updateMessage', 0);
             }
         }
-
+        //首次登录时更新缓存
         $this->display();
+        if (!S('model')) {
+            $_POST['action'] = 'all';
+            go(U('Cache/index', array('action' => 'Config')));
+        }
     }
 
     //设置常用菜单

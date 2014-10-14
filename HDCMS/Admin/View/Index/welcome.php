@@ -14,10 +14,7 @@
 			</div>
 			<table class="table2">
 				<tr>
-					<td>1. 建议将hdcms目录(及子目录)设置为750,文件设置为640</td>
-				</tr>
-				<tr>
-					<td>2. 建议删除安装目录install</td>
+					<td>建议将hdcms目录(及子目录)设置为750,文件设置为640</td>
 				</tr>
 			</table>
 			<div style="height:10px;overflow: hidden">

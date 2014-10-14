@@ -8,62 +8,59 @@ class CacheController extends AuthController
 {
     public function updateCache()
     {
-        if ($action = Q('get.action')) {
-            is_file(TEMP_PATH.'~Boot.php') && unlink(TEMP_PATH.'~Boot.php');
-            Dir::del('Temp/Compile');
-            Dir::del('Temp/Content');
-            Dir::del('Temp/Table');
-            switch ($action) {
-                case "Config" :
-                    $Model = K("Config");
-                    $Model->updateCache();
-                    $this->success('网站配置更新完毕...', U('updateCache',array('action'=>'Model')), 0);
-                    break;
-                case "Model" :
-                    $Model = K("Model");
-                    $Model->updateCache();
-                    $this->success('模型更新完毕...', U('updateCache',array('action'=>'Field')), 0);
-                    break;
-                case "Field" :
-                    $ModelCache = S("model");
-                    foreach ($ModelCache as $mid => $data) {
-                        $_REQUEST['mid'] = $mid;
-                        $Model = new FieldModel();
-                        $Model->updateCache($mid);
-                    }
-                    $this->success('字段更新完毕...', U('updateCache',array('action'=>'Category')), 0);
-                    break;
-                case "Category" :
-                    $Model = K('Category');
-                    $Model->updateCache();
-                    $this->success('栏目更新完毕...', U('updateCache',array('action'=>'Node')), 0);
-                    break;
-                case "Node" :
-                    $Model = K("Node");
-                    $Model->updateCache();
-                    $this->success('权限节点更新完毕...', U('updateCache',array('action'=>'Table')), 0);
-                    break;
-                case "Table" :
-                    Dir::del('Temp/Table');
-                    $this->success('数据表更新完毕...', U('updateCache',array('action'=>'Role')), 0);
-                    break;
-                case "Role" :
-                    $Model = K("Role");
-                    $Model->updateCache();
-                    $this->success('角色更新完毕...', U('updateCache',array('action'=>'Flag')), 0);
-                    break;
-                case "Flag" :
-                    $ModelCache = S("model");
-                    foreach ($ModelCache as $mid => $data) {
-                        $_REQUEST['mid'] = $mid;
-                        $Model = new FlagModel();
+        $actionCache = S('updateCacheAction');
+        if ($actionCache) {
+            while ($action = array_shift($actionCache)) {
+                switch ($action) {
+                    case "Config" :
+                        $Model = K("Config");
                         $Model->updateCache();
-                    }
-                    $this->display('success.php');
-                    break;
+                        $message = '网站配置更新完毕...';
+                        break;
+                    case "Model" :
+                        $Model = K("Model");
+                        $Model->updateCache();
+                        $message = '模型更新完毕...';
+                        break;
+                    case "Field" :
+                        $ModelCache = S("model");
+                        foreach ($ModelCache as $mid => $data) {
+                            $_REQUEST['mid'] = $mid;
+                            $Model = new FieldModel();
+                            $Model->updateCache($mid);
+                        }
+                        $message = '字段更新完毕...';
+                        break;
+                    case "Category" :
+                        $Model = K('Category');
+                        $Model->updateCache();
+                        $message = '栏目更新完毕...';
+                        break;
+                    case "Node" :
+                        $Model = K("Node");
+                        $Model->updateCache();
+                        $message = '栏目更新完毕...';
+                        break;
+                    case "Role" :
+                        $Model = K("Role");
+                        $Model->updateCache();
+                        $message = '角色更新完毕...';
+                        break;
+                    case "Flag" :
+                        $ModelCache = S("model");
+                        foreach ($ModelCache as $mid => $data) {
+                            $_REQUEST['mid'] = $mid;
+                            $Model = new FlagModel();
+                            $Model->updateCache();
+                        }
+                        $message = 'Flag属性更新完毕...';
+                        break;
+                }
+                S('updateCacheAction',$actionCache);
+                $this->success($message, U('updateCache'), 0);
             }
         } else {
-            $this->success('缓存更新成功...', U('index'), 0);
+            $this->success('缓存更新成功...<script>setTimeout(function(){top.location.reload(true)},1000);</script>', U('index'),5);
         }
     }
 
@@ -71,7 +68,13 @@ class CacheController extends AuthController
     public function index()
     {
         if (IS_POST) {
-            $this->success('准备更新...', U('updateCache',array('action'=>'Config')), 1);
+            is_file(TEMP_PATH . '~Boot.php') && unlink(TEMP_PATH . '~Boot.php');
+            Dir::del('Temp/Compile');
+            Dir::del('Temp/Content');
+            Dir::del('Temp/Table');
+            //缓存更新动作
+            S('updateCacheAction', $_POST['Action']);
+            $this->success('准备更新...', U('updateCache', array('action' => 'Config')), 1);
         } else {
             $this->display();
         }

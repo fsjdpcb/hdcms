@@ -72,11 +72,16 @@ class AccountController extends AuthController
             $src_w=$_POST['w'];
             $src_h=$_POST['h'];
             imagecopyresampled($dst_image, $src_image, $dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $src_w, $src_h);
-            $func = str_replace('/','',$fileInfo['mime']);
-            if($fileInfo[2]==2){
-                $func($dst_image,$file,100);
-            }else{
-                $func($dst_image,$file);
+            switch($fileInfo[2]){
+                case 1:
+                    imagegif($dst_image,$file,100);
+                    break;
+                case 2:
+                    imagejpeg($dst_image,$file,100);
+                    break;
+                case 3:
+                    imagepng($dst_image,$file,100);
+                    break;
             }
             //修改用户表
             M("user") -> save(array('uid' => $_SESSION['user']['uid'], 'icon' => $file));
