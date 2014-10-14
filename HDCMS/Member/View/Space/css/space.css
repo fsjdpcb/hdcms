@@ -101,7 +101,7 @@ div.wrap div.content div.about div.feeb {
   top: -65px;
   overflow: hidden;
   border-radius: 10px;
-  float: left;
+  left: 10px;
 }
 div.wrap div.content div.about div.feeb img {
   width: 150px;
@@ -160,9 +160,11 @@ div.wrap div.content div.content_wrap {
 }
 div.wrap div.content div.content_wrap div.article_list {
   width: 720px;
+  *width: 680px;
   height: 600px;
   float: left;
-  padding: 20px;
+  padding: 20px 10px;
+  overflow: hidden;
 }
 div.wrap div.content div.content_wrap div.article_list h1.list_title {
   padding: 0px;
@@ -202,7 +204,7 @@ div.wrap div.content div.content_wrap div.article_list ul li div.article_content
   font-size: 14px;
 }
 div.wrap div.content div.content_wrap div.follow {
-  width: 238px;
+  width: 230px;
   height: 600px;
   float: right;
   background: #F7F9FB;

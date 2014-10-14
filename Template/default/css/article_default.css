@@ -76,6 +76,10 @@ div.wrap {
   height: auto;
   overflow: hidden;
 }
+div.wrap div.position {
+  height: 80px;
+  overflow: hidden;
+}
 div.wrap div.position div.location {
   clear: both;
   font-size: 20px !important;
@@ -152,6 +156,7 @@ div.wrap div.content {
   float: left;
   height: auto;
   overflow: hidden;
+  clear: both;
 }
 div.wrap div.content div.header {
   border-top: solid 3px #226bb0;
@@ -187,6 +192,13 @@ div.wrap div.content div.body div.content_tag {
 }
 div.wrap div.content div.body div.content_tag a {
   padding: 3px;
+}
+div.wrap div.content div.pre_next {
+  padding: 10px;
+  background: #fff;
+}
+div.wrap div.content div.pre_next a {
+  margin-right: 15px;
 }
 div.copyright {
   clear: both;
