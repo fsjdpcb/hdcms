@@ -110,7 +110,7 @@
 						<td>{$c.username}</td>
 						<td>{$c.updatetime|date:"Y-m-d",@@}</td>
 						<td>
-						<a href="<?php echo Url::getContentUrl($c);?>" target="_blank">
+						<a href="{|U:'Index/Index/content',array('mid'=>$c['mid'],'cid'=>$c['cid'],'aid'=>$c['aid'])}" target="_blank">
 							访问
 						</a><span
 						class="line">|</span>

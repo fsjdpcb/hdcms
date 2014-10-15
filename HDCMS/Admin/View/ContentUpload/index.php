@@ -200,7 +200,7 @@
                     _ul += "<img src='" + HDPHPEXTEND + "/Org/Uploadify/default.png' style='width:50px;height:50px;'/>";
                     _ul += "&nbsp;&nbsp;地址: <input type='text' name='" + name + "[path][]'  value='" + $(_img[i]).attr("path") + "' style='width:35%' readonly=''/> ";
                     _ul += "&nbsp;&nbsp;描述: <input type='text' name='" + name + "[alt][]' style='width:35%;' value=''/>";
-                    _ul += "&nbsp;&nbsp;<a href='javascript:;' onclick='remove_upload(this)'>删除</a>";
+                    _ul += "&nbsp;&nbsp;<a href='javascript:;' onclick='remove_upload(this,\"" + id + "\")'>删除</a>";
                     _ul += "</li>";
                 })
                 _ul = _ul + "</ul>";

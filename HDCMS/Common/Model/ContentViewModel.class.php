@@ -46,19 +46,31 @@ class ContentViewModel extends ViewModel
     {
         $cache = S('field' . $field['mid']);
         foreach ($field as $name => $value) {
-            if(!isset($cache[$name]))continue;
+            if (!isset($cache[$name])) continue;
             switch ($cache[$name]['field_type']) {
                 case 'thumb':
-                    $field[$name] = $field[$name] ? __ROOT__ . '/' . $field[$name] :  __ROOT__ . '/HDCMS/Static/image/thumb.jpg';
+                    $field[$name] = $field[$name] ? __ROOT__ . '/' . $field[$name] : __ROOT__ . '/HDCMS/Static/image/thumb.jpg';
                     break;
                 case 'image':
                     $field[$name] = $field[$name] ? __ROOT__ . '/' . $field[$name] : '';
                     break;
                 case 'images':
-                    $field[$name] = unserialize($field[$name]);
+                    $images = unserialize($field[$name]);
+                    if (is_array($images)) {
+                        foreach ($images as $id => $data) {
+                            $images[$id]['url'] = __ROOT__ . '/' . $data['path'];
+                        }
+                    }
+                    $field[$name] = $images;
                     break;
                 case 'files':
-                    $field[$name] = unserialize($field[$name]);
+                    $files = unserialize($field[$name]);
+                    if (is_array($files)) {
+                        foreach ($files as $id => $data) {
+                            $files[$id]['url'] = __ROOT__ . '/' . $data['path'];
+                        }
+                    }
+                    $field[$name] = $files;
                     break;
             }
         }

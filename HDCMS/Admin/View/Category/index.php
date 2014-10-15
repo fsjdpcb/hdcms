@@ -54,7 +54,7 @@
             <td>{$c.cat_type_name}</td>
             <td>{$c.model_name}</td>
             <td>
-                <a href="<?php echo Url::getCategoryUrl($c) ?>" target="_blank">
+                <a href="{|U:'Index/Index/category',array('mid'=>$c['mid'],'cid'=>$c['cid'])}" target="_blank">
                     访问
                 </a>
                 <span class="line">|</span>

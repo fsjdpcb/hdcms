@@ -65,7 +65,7 @@ final class Data
             $data[$n]['_first'] = false;
             $data[$n]['_end'] = false;
             if (!isset($data[$n - 1]) || $data[$n - 1]['_level'] != $m['_level']) {
-                $data[$n]['_first'] = true;
+                $data[$n]['_first'] = true; 
             }
             if (isset($data[$n + 1]) && $data[$n]['_level'] > $data[$n + 1]['_level']) {
                 $data[$n]['_end'] = true;

@@ -149,7 +149,7 @@ str;
         //相关文章
         $relative = isset($attr['relative']) ? trim($attr['relative']) : 0;
         //获取子栏目文章
-        $sub_channel = isset($attr['sub_channel']) ? trim($attr['sub_channel']) : 0;
+        $son_channel = isset($attr['son_channel']) ? trim($attr['son_channel']) : 0;
         $php = <<<str
         <?php
             \$categoryCache=S('category');
@@ -166,7 +166,7 @@ str;
             \$flag='$flag';//有此flag
             \$noflag='$noflag';//除了flag
             \$aid='$aid';
-            \$sub_channel=$sub_channel;//包含子栏目数据
+            \$son_channel=$son_channel;//包含子栏目数据
             \$relative='$relative';//相关文章
             //导入模型类
             \$db =ContentViewModel::getInstance(\$mid);
@@ -216,11 +216,10 @@ str;
                         }
                     }
                 }
-                //指定栏目的文章,子栏目处理
-
+                //子栏目处理
                 if(!empty(\$cid)){
                     //查询条件
-                    if(\$sub_channel){
+                    if(\$son_channel){
                         \$category=array();
                         foreach(\$cid as \$_cid){
                             \$_tmp = getCategory(\$_cid);

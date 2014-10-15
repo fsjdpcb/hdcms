@@ -44,19 +44,18 @@ var hd_uploadify_options = {
             var allowUploadNums = file_upload_limit - this.queueData.uploadsSuccessful;//还可以上传的文件数
             alert("上传文件过大或者类型不允许");
         }
-
     },
     onUploadSuccess: function (file, data, response) {
         //上传失败
         if (data.substr(0, 1) !== '{'){
-            alert(data);
+            return;
         }
         eval("data=" + data);
         var upload_file_id = this.settings.id;//表单id
         //上传失败时 成功上传的文件数量减1
         if (data.status == 0) {
             this.queueData.uploadsSuccessful--;
-            alert(data.msg);
+            alert(data.message);
             return;
         }
         //成功上传的文件数量
@@ -65,7 +64,7 @@ var hd_uploadify_options = {
         var _index = this.setStats.successful_uploads;
         //更改上传成功信息
         alter_upload_msg(this);
-        data.url = data.isimage == 1 ? data.url : UPLOADIFY_URL + "default.png";
+        data.url = data.image == 1 ? data.url : UPLOADIFY_URL + "default.png";
         var div = $("." + upload_file_id + "_files ul");
         var html = "";
         var input_type = this.settings.input_type;

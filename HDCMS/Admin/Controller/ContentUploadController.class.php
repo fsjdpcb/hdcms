@@ -24,8 +24,15 @@ class ContentUploadController extends Controller
     public function hd_uploadify()
     {
         $uploadModel = M('upload');
+        //上传文件类型
+        if(isset($_POST['type'])){
+            $type = str_replace('*.','',$_POST['type']);
+            $type=explode(';',$type);
+        }else{
+            $type=array();
+        }
         $size = Q('size') ? Q('size') : C('allow_size');
-        $upload = new Upload(Q('post.upload_dir'), array(), $size);
+        $upload = new Upload(Q('upload_dir'),$type, $size);
         $file = $upload->upload();
         if (!empty($file)) {
             $file = $file[0];
@@ -39,7 +46,6 @@ class ContentUploadController extends Controller
             $uploadModel->add($file);
             $data = $file;
             $data['status'] = 1;
-            $data['isimage'] = $file['image'] ? 1 : 0;
         } else {
             $data['status'] = 0;
             $data['message'] = $upload->error;
@@ -75,18 +81,19 @@ class ContentUploadController extends Controller
         switch ($_GET['type']) {
             case 'thumb':
                 $tag = array(
-                    'type' => '*.jpg,*.png,*.gif,*.jpeg',
+                    'type' => 'jpg,png,gif,jpeg',
                     'name' => "hdcms",
                     'limit' => 1,
                     'width' => 88,
                     'height' => 78,
                     'water' => C('WATER_ON'),
-                    'waterbtn' => $waterbtn
+                    'waterbtn' => $waterbtn,
+                    'dir'=>C('UPLOAD_PATH').'/Content/Thumb/'.date('y/m/d/')
                 );
                 break;
             case 'image':
                 $tag = array(
-                    'type' => '*.jpg,*.png,*.gif,*.jpeg',
+                    'type' => 'jpg,png,gif,jpeg',
                     'size' => $allow_size,
                     'name' => "hdcms",
                     'limit' => 1,
@@ -94,12 +101,13 @@ class ContentUploadController extends Controller
                     'height' => 78,
                     'alt' => 1,
                     'water' => C('WATER_ON'),
-                    'waterbtn' => $waterbtn
+                    'waterbtn' => $waterbtn,
+                    'dir'=>C('UPLOAD_PATH').'/Content/Image/'.date('y/m/d/')
                 );
                 break;
             case 'images';
                 $tag = array(
-                    'type' => '*.jpg,*.png,*.gif,*.jpeg',
+                    'type' => 'jpg,png,gif,jpeg',
                     'size' => $allow_size,
                     'name' => "hdcms",
                     'limit' => Q('num', 1),
@@ -107,7 +115,8 @@ class ContentUploadController extends Controller
                     'height' => 78,
                     'alt' => 1,
                     'water' => C('WATER_ON'),
-                    'waterbtn' => $waterbtn
+                    'waterbtn' => $waterbtn,
+                    'dir'=>C('UPLOAD_PATH').'/Content/Image/'.date('y/m/d/')
                 );
                 break;
             case 'files':
@@ -120,6 +129,7 @@ class ContentUploadController extends Controller
                     'alt' => 1,
                     "limit" => Q('num', 1),
                     "waterbtn" => 0,
+                    'dir'=>C('UPLOAD_PATH').'/Content/File/'.date('y/m/d/')
                 );
                 break;
             default:

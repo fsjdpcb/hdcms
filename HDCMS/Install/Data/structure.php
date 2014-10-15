@@ -43,7 +43,7 @@ $db->exe("CREATE TABLE `".$db_prefix."addon_comment` (
   `aid` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`comment_id`),
   KEY `mid_cid_aid` (`mid`,`cid`,`aid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8");
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."addon_crontab`");
 $db->exe("CREATE TABLE `".$db_prefix."addon_crontab` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -62,7 +62,7 @@ $db->exe("CREATE TABLE `".$db_prefix."addon_crontab_log` (
   `runtime` int(11) DEFAULT NULL COMMENT '执行时间',
   PRIMARY KEY (`lid`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8");
+) ENGINE=MyISAM AUTO_INCREMENT=44 DEFAULT CHARSET=utf8");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."addon_custom_form_data`");
 $db->exe("CREATE TABLE `".$db_prefix."addon_custom_form_data` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -191,7 +191,7 @@ $db->exe("CREATE TABLE `".$db_prefix."config` (
   `status` tinyint(4) DEFAULT '1' COMMENT '总配置模块显示  如模板风格就不显示 1显示 0 不显示',
   `system` tinyint(1) DEFAULT '0' COMMENT '系统字段',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=80 DEFAULT CHARSET=utf8 COMMENT='系统配置'");
+) ENGINE=MyISAM AUTO_INCREMENT=81 DEFAULT CHARSET=utf8 COMMENT='系统配置'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."config_group`");
 $db->exe("CREATE TABLE `".$db_prefix."config_group` (
   `cgid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
@@ -323,7 +323,7 @@ $db->exe("CREATE TABLE `".$db_prefix."field` (
   `isadd` tinyint(1) NOT NULL DEFAULT '1' COMMENT '在前台投稿中显示',
   PRIMARY KEY (`fid`),
   KEY `mid` (`mid`)
-) ENGINE=MyISAM AUTO_INCREMENT=351 DEFAULT CHARSET=utf8 COMMENT='模型字段'");
+) ENGINE=MyISAM AUTO_INCREMENT=354 DEFAULT CHARSET=utf8 COMMENT='模型字段'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."hooks`");
 $db->exe("CREATE TABLE `".$db_prefix."hooks` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
