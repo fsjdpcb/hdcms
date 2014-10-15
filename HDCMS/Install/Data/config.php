@@ -302,9 +302,9 @@ return array (
   ),
   'hd_session' => 
   array (
-    'row' => '18',
+    'row' => '22',
     'success' => true,
-    'current_row' => 40,
+    'current_row' => 60,
     'size' => 200000,
     'url' => '',
     'step_time' => 200,

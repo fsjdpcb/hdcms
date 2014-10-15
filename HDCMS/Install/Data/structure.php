@@ -62,7 +62,7 @@ $db->exe("CREATE TABLE `".$db_prefix."addon_crontab_log` (
   `runtime` int(11) DEFAULT NULL COMMENT '执行时间',
   PRIMARY KEY (`lid`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=44 DEFAULT CHARSET=utf8");
+) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=utf8");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."addon_custom_form_data`");
 $db->exe("CREATE TABLE `".$db_prefix."addon_custom_form_data` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
