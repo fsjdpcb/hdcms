@@ -104,8 +104,15 @@ class Content
         //组合为数组
         $aid = is_array($aid) ? $aid : array($aid);
         $map['aid'] = array('IN', $aid);
-        $ContentModel->where($map);
-        if ($ContentModel->del($map)) {
+        //旧文章
+        $oldContent = $ContentModel->where($map)->all();
+        //删除文章静态文件
+        foreach($oldContent as $content){
+            $htmlFile = Url::getContentHtml($content);
+            $htmlFile = str_replace(__ROOT__,ROOT_PATH,$htmlFile);
+            is_file($htmlFile) and @unlink($htmlFile);
+        }
+        if ($ContentModel->where($map)->del()) {
             //删除文章tag属性
             M('content_tag')->where(array('cid' => $this->cid))->del();
             //生成文章的上一篇与下一篇

@@ -88,11 +88,11 @@ final class Url
     }
 
     /**
-     * 获得内容页静态URL地址（不包含域名）
+     * 获得内容页静态URL地址
      * @param $field
      * @return null|string
      */
-    static private function getContentHtml($field)
+    static public function getContentHtml($field)
     {
         $_category = S("category");
         //HTML存放根目录
