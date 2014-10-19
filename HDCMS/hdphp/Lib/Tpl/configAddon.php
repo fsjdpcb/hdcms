@@ -10,12 +10,14 @@ return array(
         'type' => 'text', //表单的类型：text、textarea、checkbox、radio、select等
         'value' => '示例', //表单的默认值
         'style' => "width:200px;", //表单样式
+        'message'=>'提示信息'
     ),
     'password' => array(
         'title' => '密码输入框:',
         'type' => 'password',
         'value' => '',
         'style' => "width:200px;",
+        'message'=>'提示信息'
     ),
     'hidden' => array(
         'title' => '隐藏文本框:',
@@ -29,7 +31,8 @@ return array(
             '1' => '显示',
             '0' => '不显示'
         ),
-        'value' => '1'
+        'value' => '1',
+        'message'=>'提示信息'
     ),
     'select' => array(
         'title' => '下拉列表:',
@@ -39,7 +42,8 @@ return array(
             '2' => '2格',
             '4' => '4格'
         ),
-        'value' => '2'
+        'value' => '2',
+        'message'=>'提示信息'
     ),
     'checkbox' => array(
         'title' => '复选框:',
@@ -49,13 +53,15 @@ return array(
             '2' => '2格',
             '4' => '4格'
         ),
-        'value' => '2'
+        'value' => '2',
+        'message'=>'提示信息'
     ),
     'textarea' => array(
         'title' => '多行文本框:',
         'type' => 'textarea',
         'value' => '2',
         'style' => "width:200px;",
+        'message'=>'提示信息'
     ),
     'image' => array(
         'title' => '图片上传:',

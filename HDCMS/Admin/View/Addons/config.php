@@ -4,10 +4,10 @@
     <div class="menu_list">
         <ul>
             <li><a href="{|U:'index'}">插件管理</a></li>
-            <li><a href="{|U:'add'}">添加插件</a></li>
+            <li><a href="javascript:;" class="action">添加插件</a></li>
         </ul>
     </div>
-    <div class="title-header"><strong>{$data.config.title}</strong>插件设置</div>
+    <div class="title-header"><strong>{$data.title}</strong>插件设置</div>
     <form method="post" class="hd-form">
         <input type="hidden" name="id" value="{$hd.get.id}"/>
         <table class="table1">
@@ -61,6 +61,7 @@
                                 {|tag:'ueditor',array('name'=>$formName,'content'=>$config['value'])}
                             </case>
                         </switch>
+                        {$config.message}
                     </td>
                 </tr>
             </foreach>

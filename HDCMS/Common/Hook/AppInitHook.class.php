@@ -33,6 +33,7 @@ class AppInitHook
             $_SESSION['user']['admin'] = 0; //管理员
             $_SESSION['user']['icon'] = __ROOT__ . '/HDCMS/Static/image/user.png'; //头像
         }
+        define("IS_LOGIN", $_SESSION['user']['uid']);
     }
 
     //声明常量
@@ -46,16 +47,18 @@ class AppInitHook
     {
         $data = S('hooks');
         if (!$data || DEBUG) {
-            $hooks = M('hooks')->getField('name,addons', true);
-            foreach ($hooks as $key => $value) {
-                if ($value) {
-                    $map['status'] = 1;
-                    $names = explode(',', $value);
-                    $map['name'] = array('IN', $names);
-                    $data = M('addons')->where($map)->getField('id,name');
-                    if ($data) {
-                        $addons = array_intersect($names, $data);
-                        Hook::add($key, $addons);
+            $hooks = M('hooks')->where("status=1")->getField('name,addons', true);
+            if ($hooks) {
+                foreach ($hooks as $key => $value) {
+                    if ($value) {
+                        $map['status'] = 1;
+                        $names = explode(',', $value);
+                        $map['name'] = array('IN', $names);
+                        $data = M('addons')->where($map)->getField('id,name');
+                        if ($data) {
+                            $addons = array_intersect($names, $data);
+                            Hook::add($key, $addons);
+                        }
                     }
                 }
             }

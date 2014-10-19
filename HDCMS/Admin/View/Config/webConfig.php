@@ -12,7 +12,7 @@
         <div class="title-header">温馨提示</div>
         <div class="help">
             <ul>
-                <li>模板中使用配置项方法为{ $hd.config.变量名}，请仔细修改配置项，不当设置将影响网站的性能与安全</li>
+                <li>模板中使用配置项方法为<literal>{$hd.config.变量名}</literal>，请仔细修改配置项，不当设置将影响网站的性能与安全</li>
             </ul>
         </div>
         <div class="tab">

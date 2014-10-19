@@ -70,8 +70,10 @@ class LoginController extends Controller
             }
             $_SESSION['user'] = $user;
             $Model->save(array('uid' => $user['uid'], 'logintime' => time(), 'lastip' => ip_get_client()));
+            Hook::listen('ADMIN_LOGIN_SUCCESS');
             go("Index/index");
         } else {
+            Hook::listen('ADMIN_LOGIN_START');
             $this->display();
         }
     }

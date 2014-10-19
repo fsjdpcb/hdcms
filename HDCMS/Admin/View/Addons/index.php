@@ -21,7 +21,7 @@
                 <td class="w60">安装</td>
                 <td class="w100">作者</td>
                 <td class="w50">版本</td>
-                <td class="w120">操作</td>
+                <td class="w180">操作</td>
             </tr>
             </thead>
             <tbody>
@@ -40,6 +40,8 @@
                         <if value="$d.install">
                             <if value="$d.config">
                                 <a href="{|U:'config',array('id'=>$d['id'])}">设置</a>
+                            <else>
+                                设置
                             </if>
                             <if value="$d.status">
                                 <a href="{|U:'disabled',array('addon'=>$d['name'])}">禁用</a>
@@ -51,8 +53,15 @@
                         <else>
                             <a href="javascript:location.href='{|U:'install',array('addon'=>$d['name'])}'">安装</a>
                         </if>
+                        <if value="$d.IndexAction">
+                            <a href="{$d.IndexAction}" target="_blank">前台</a>
+                        <else>
+                            前台
+                        </if>
                         <if value="$d.help">
                             <a href="{$d.help}" target="_blank">帮助</a>
+                        <else>
+                            帮助
                         </if>
                     </td>
                 </tr>

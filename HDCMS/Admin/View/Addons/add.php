@@ -78,9 +78,9 @@
             <tr>
                 <th>实现的钩子方法</th>
                 <td>
-                    <select name="hooks[]" multiple="multiple" size="8" class="w300">
+                    <select name="hooks[]" multiple="multiple" size="8" class="w500">
                         <list from="$hooks" name="h">
-                            <option value="{$h.name}">{$h.name}</option>
+                            <option value="{$h.name}">{$h.name} ({$h.description})</option>
                         </list>
                     </select>
                 </td>

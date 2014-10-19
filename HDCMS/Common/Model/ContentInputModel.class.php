@@ -50,6 +50,13 @@ class ContentInputModel
         $data['addtime'] = empty($data['addtime']) ? date("Y/m/d H:i:s") : $data['addtime'];
         //修改时间
         $data['updatetime'] = time();
+        //自动提取关键字
+        if (C('AUTO_KEYWORDS') && empty($data['keywords'])) {
+            $tmp = mb_substr(strip_tags($data['content']), 0, 200, 'utf-8');
+            $splitWord = String::splitWord($tmp);
+            if (!empty($splitWord) && is_array($splitWord))
+            $data['keywords'] = implode(',', array_slice(array_keys($splitWord), 0, 8));
+        }
         //前台会员设置文章状态
         if (MODULE == 'Member') {
             $data['content_status'] = $this->category[$data['cid']]['member_send_status'];
@@ -200,7 +207,7 @@ class ContentInputModel
         //下载内容图片
         if (isset($_POST['down_remote_pic']) && $_POST['down_remote_pic'] == 1 && extension_exists('curl')) {
             $Attachment = new Attachment();
-            $value = $Attachment->download($value, array('jpg', 'gif', 'jpeg', 'png'),null, $this->mid);
+            $value = $Attachment->download($value, array('jpg', 'gif', 'jpeg', 'png'), null, $this->mid);
         }
         return $value;
     }

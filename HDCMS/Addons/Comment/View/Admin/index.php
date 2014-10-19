@@ -14,6 +14,11 @@
                     评论列表
                 </a>
             </li>
+            <li>
+                <a href="{|U:config}">
+                    配置
+                </a>
+            </li>
         </ul>
     </div>
     <table class="table2 hd-form">

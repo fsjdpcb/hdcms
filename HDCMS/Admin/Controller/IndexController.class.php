@@ -11,7 +11,6 @@ class IndexController extends AuthController
     //构造函数
     public function __init()
     {
-
     }
 
 
@@ -96,7 +95,7 @@ class IndexController extends AuthController
     public function welcome()
     {
         //客户端版本验证(本地不验证)
-        if (function_exists('curl_init') && !preg_match('@localhost@', __ROOT__)){
+        if (mt_rand(1,10)==1 && function_exists('curl_init') && !preg_match('@localhost|127.0.0.1|192.168.@', __ROOT__)){
             $curl = curl_init();
             $version = C('HDCMS_VERSION');
             // 设置URL和相应的选项

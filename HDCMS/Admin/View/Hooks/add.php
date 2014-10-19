@@ -29,9 +29,16 @@
                 </td>
             </tr>
             <tr>
+                <th class="w100">状态</th>
+                <td>
+                    <label><input type="radio" name="status" value="1" checked=""/> 开启</label>
+                    <label><input type="radio" name="status" value="0"/> 关闭</label>
+                </td>
+            </tr>
+            <tr>
                 <th>钩子类型</th>
                 <td>
-                    <select name="type">
+                    <select name="type" class="w150">
                         <option value="1">控制器</option>
                         <option value="1">视图</option>
                     </select>

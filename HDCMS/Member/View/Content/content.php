@@ -38,7 +38,7 @@
                     <list from="$data" name="c">
                         <tr>
                             <td>
-                                <a href="{|U:'Index/Index/content',array('mid'=>$_GET['mid'],'cid'=>$_GET['cid'],'aid'=>$c['aid'])}" target="_blank">
+                                <a href="{|U:'Index/Index/content',array('mid'=>$c['mid'],'cid'=>$c['cid'],'aid'=>$c['aid'])}" target="_blank">
                                     {$c.title}
                                 </a>
                             </td>

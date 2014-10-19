@@ -30,9 +30,16 @@
                 </td>
             </tr>
             <tr>
+                <th class="w100">状态</th>
+                <td>
+                    <label><input type="radio" name="status" value="1" <if value="$field.status eq 1">checked=""</if>/> 开启</label>
+                    <label><input type="radio" name="status" value="0" <if value="$field.status eq 0">checked=""</if>/> 关闭</label>
+                </td>
+            </tr>
+            <tr>
                 <th>钩子类型</th>
                 <td>
-                    <select name="type">
+                    <select name="type" class="w150">
                         <option value="1" <if value="$field.type eq 1"> checked=""</if>>控制器</option>
                         <option value="2" <if value="$field.type eq 2"> checked=""</if>>视图</option>
                     </select>

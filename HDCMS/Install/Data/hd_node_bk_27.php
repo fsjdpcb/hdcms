@@ -96,7 +96,7 @@ $db->exe("REPLACE INTO ".$db_prefix."node (`nid`,`title`,`group`,`module`,`contr
 $db->exe("REPLACE INTO ".$db_prefix."node (`nid`,`title`,`group`,`module`,`controller`,`action`,`param`,`comment`,`show`,`type`,`pid`,`list_order`,`is_system`,`favorite`)
 						VALUES('69','邮箱配置','','Admin','Config','email','','','1','1','86','90','0','0')");
 $db->exe("REPLACE INTO ".$db_prefix."node (`nid`,`title`,`group`,`module`,`controller`,`action`,`param`,`comment`,`show`,`type`,`pid`,`list_order`,`is_system`,`favorite`)
-						VALUES('85','评论','Addons','Comment','Admin','index','','插件Comment后台管理','1','1','50','100','0','0')");
+						VALUES('133','评论','Addons','Comment','Admin','index','','插件Comment后台管理','1','1','50','100','0','0')");
 $db->exe("REPLACE INTO ".$db_prefix."node (`nid`,`title`,`group`,`module`,`controller`,`action`,`param`,`comment`,`show`,`type`,`pid`,`list_order`,`is_system`,`favorite`)
 						VALUES('79','数据库内容替换','Addons','FieldReplace','Admin','index','','插件FieldReplace后台管理','1','1','50','100','0','0')");
 $db->exe("REPLACE INTO ".$db_prefix."node (`nid`,`title`,`group`,`module`,`controller`,`action`,`param`,`comment`,`show`,`type`,`pid`,`list_order`,`is_system`,`favorite`)

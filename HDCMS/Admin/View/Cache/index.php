@@ -49,11 +49,6 @@
 							</tr>
 							<tr>
 								<td><label>
-									<input type="checkbox" name="Action[]" value="Table" checked=''/>
-									数据表缓存 </label></td>
-							</tr>
-							<tr>
-								<td><label>
 									<input type="checkbox" name="Action[]" value="Node" checked=''/>
 									权限节点 </label></td>
 							</tr>

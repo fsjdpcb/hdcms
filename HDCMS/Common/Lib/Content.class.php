@@ -25,7 +25,7 @@ class Content
     //添加文章
     public function add()
     {
-        Hook::listen('content_add_begin');
+        Hook::listen('CONTENT_ADD_BEGIN');
         //文章多表关联模型
         $ContentModel = ContentModel::getInstance($this->mid);
         //数据前期处理
@@ -53,7 +53,7 @@ class Content
             $this->alterUploadTable();
             //修改tag标签数据
             $this->alterTag($aid);
-            Hook::listen('content_add_end');
+            Hook::listen('CONTENT_ADD_END');
             return $aid;
         } else {
             $this->error = $ContentModel->error;
@@ -64,7 +64,7 @@ class Content
     //修改文章
     public function edit()
     {
-        Hook::listen('content_edit_begin');
+        Hook::listen('CONTENT_EDIT_BEGIN');
         $ContentModel = ContentModel::getInstance($this->mid);
         $ContentInputModel = new ContentInputModel($this->mid);
         $data = $ContentInputModel->get();;
@@ -84,7 +84,7 @@ class Content
                 $this->html->relation_content($this->mid,$data['aid']);
                 //生成所有栏目
                 $this->html->all_category();
-                Hook::listen('content_edit_end');
+                Hook::listen('CONTENT_EDIT_END');
                 return true;
             }
         } else {
@@ -123,7 +123,7 @@ class Content
             $this->html->all_category();
             //生成首页
             $this->html->index();
-            Hook::listen('content_del');
+            Hook::listen('CONTENT_DEL');
             return true;
         } else {
             $this->error = '删除文章失败';
@@ -150,6 +150,13 @@ class Content
         $contentTagModel->where(array('aid' => $aid, 'mid' => $this->mid))->del();
         //修改tag
         $tag = Q('tag');
+        //tag内容为空并且配置项设置了自动提取
+        if(empty($tag)){
+            $tmp = mb_substr(strip_tags($_POST['content']), 0, 200, 'utf-8');
+            $splitWord = String::splitWord($tmp);
+            if (!empty($splitWord) && is_array($splitWord))
+                $tag = implode(',', array_slice(array_keys($splitWord), 0, 8));
+        }
         if ($tag) {
             //全角标点转半角标点
             $tag = String::toSemiangle($tag);

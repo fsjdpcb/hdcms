@@ -43,7 +43,7 @@ final class String
     /**
      * UTF8编码转GBK编码
      * @param type $str字符串
-     * @return type
+     * @return string
      */
     static public function utf8ToGbk($str)
     {

@@ -12,7 +12,7 @@ return array (
   'UPLOAD_PATH' => 'Upload',
   'ALLOW_TYPE' => 'jpg,jpeg,png,bmp,gif,zip,rar,doc',
   'ALLOW_SIZE' => '10480000',
-  'WATER_ON' => '0',
+  'WATER_ON' => '1',
   'TEL' => '010-64825057',
   'WATER_TEXT' => 'houdunwang.com',
   'WATER_TEXT_SIZE' => '16',
@@ -39,5 +39,7 @@ return array (
   'EMAIL_PORT' => '25',
   'EMAIL_FROMNAME' => '后盾网',
   'EMAIL_FORMMAIL' => 'hdcms@houdunwang.com',
+  'AUTO_KEYWORDS' => '1',
+  'AUTO_TAG' => '1',
 );
 ?>

@@ -39,7 +39,7 @@ class AddonsModel extends Model
             return false;
         }
         $addons = array();
-        $addonList = $this->where(array('name'=>array('IN',$dirs)))->order('id ASC')->all();
+        $addonList = $this->where(array('name' => array('IN', $dirs)))->order('id ASC')->all();
         if ($addonList != null) {
             foreach ($addonList as $addon) {
                 $addon['install'] = 1;
@@ -57,13 +57,19 @@ class AddonsModel extends Model
                 $addon['install'] = 0;
                 $addon['config'] = $addonObj->getConfig(); //获得插件配置
                 $addons[$d] = $addon;
+            } else {
+                //前台文件
+                $indexActionFile = APP_ADDON_PATH . $d . '/Controller/IndexController.class.php';
+                $adminActionFile = APP_ADDON_PATH . $d . '/Controller/AdminController.class.php';
+                $addons[$d]['IndexAction'] = is_file($indexActionFile) ? __WEB__."?g=Addons&m={$d}&c=Index&a=index": '';
+                $addons[$d]['IndexAction'] = is_file($indexActionFile) ? __WEB__."?g=Addons&m={$d}&c=Index&a=index": '';
             }
             //插件帮助文档
-            $addons[$d]['help']=is_file(APP_ADDON_PATH.$d.'/help.html')?U('help').'&addon='.$d:'';
+            $addons[$d]['help'] = is_file(APP_ADDON_PATH . $d . '/help.html') ? U('help') . '&addon=' . $d : '';
         }
         int_to_string($addons, array('status' => array(1 => '启用', 0 => '禁用')));
         ksort($addons);
-        return  $addons;
+        return $addons;
     }
 
     //禁用插件
@@ -135,9 +141,9 @@ class AddonsModel extends Model
         }
         $data = $info;
         if (!$addonObj->install()) {
-            if($addonObj->error){
-                $this->error=$addonObj->error;
-            }else{
+            if ($addonObj->error) {
+                $this->error = $addonObj->error;
+            } else {
                 $this->error = '执行插件预安装失败';
             }
             return false;
@@ -209,7 +215,7 @@ class AddonsModel extends Model
         $data = array(
             'pid' => 50,
             'title' => $addon['title'],
-            'group'=>'Addons',
+            'group' => 'Addons',
             'module' => $addon_name,
             'controller' => 'Admin',
             'action' => 'index',
@@ -242,7 +248,7 @@ class AddonsModel extends Model
                 $addons['config'] = unserialize($addon['config']);
             }
         }
-        S('hook',null);
+        S('hook', null);
         return S('addons', $addons);
     }
 }

@@ -60,7 +60,7 @@ class CacheController extends AuthController
                 $this->success($message, U('updateCache'), 0);
             }
         } else {
-            $this->success('缓存更新成功...<script>setTimeout(function(){top.location.reload(true)},1000);</script>', U('index'),5);
+            $this->success('缓存更新成功...<script>setTimeout(function(){top.location.href="'.__MODULE__.'"},2000);</script>', U('index'),5);
         }
     }
 

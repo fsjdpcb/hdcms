@@ -41,7 +41,8 @@ class IndexController extends AddonController
     //发表评论
     public function addComment()
     {
-        if (!isset($_SESSION['user'])) {
+        //没有登录并且没有开启游客评论
+        if (!IS_LOGIN && !C('ADDON.TOURISTS_COMMENT')) {
             $this->error('登陆用户才可发表评论。');
         }
         //----------完善数据

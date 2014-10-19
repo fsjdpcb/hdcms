@@ -35,6 +35,7 @@ class CommentAddon extends Addon
   `mid` smallint(5) unsigned DEFAULT NULL,
   `cid` smallint(5) unsigned DEFAULT NULL,
   `aid` int(10) unsigned DEFAULT NULL,
+  `status` tinyint(1) unsigned DEFAULT NULL,
   PRIMARY KEY (`comment_id`),
   KEY `mid_cid_aid` (`mid`,`cid`,`aid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;");

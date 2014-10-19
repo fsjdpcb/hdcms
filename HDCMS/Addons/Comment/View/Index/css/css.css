@@ -82,6 +82,15 @@ div#wrap div.hd-comment div.send div.hd-comment-login {
   float: left;
   padding-top: 12px;
 }
+div#wrap div.hd-comment div.user-nologin {
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+  font-family: '微软雅黑', Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;
+}
+div#wrap div.hd-comment div.user-nologin a {
+  color: #198ACD;
+}
 div#wrap div.comment-list {
   border: 1px solid #C3D4E7;
   padding: 8px 15px;

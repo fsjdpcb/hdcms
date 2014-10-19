@@ -12,6 +12,8 @@ class AddonsController extends AuthController
     //构造函数
     public function __init()
     {
+        //删除插件缓存
+        S('hooks',null);
         $this->db = K('Addons');
     }
 

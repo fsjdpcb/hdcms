@@ -14,6 +14,7 @@ class AdminController extends AddonAuthController
         $this->db = M('addon_comment');
     }
 
+    //评论列表
     public function index()
     {
         $count = $this->db->count();
@@ -24,6 +25,17 @@ class AdminController extends AddonAuthController
         $this->display();
     }
 
+    //评论配置
+    public function config()
+    {
+        if (IS_POST) {
+
+        } else {
+            $this->display();
+        }
+    }
+
+    //删除评论
     public function del()
     {
         $comment_id = Q('comment_id', 0, 'intval');
