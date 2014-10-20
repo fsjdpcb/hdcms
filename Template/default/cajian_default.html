@@ -43,7 +43,9 @@
             {$hdcms.title}
         </div>
         <div class="info">
-          作者：{$hdcms.username}  发布日期：{$hdcms.addtime|date:'Y-m-d',@@}  点击数：{$hdcms.click}
+          作者：{$hdcms.username}  发布日期：{$hdcms.addtime|date:'Y-m-d',@@}
+          点击数：<script type="text/javascript" src="{|U:'Index/Index/getClick',array('mid'=>$hdcms['mid'],'cid'=>$hdcms['cid'],'aid'=>$hdcms['aid'])}"></script>
+          <a href="{|U:'Member/Favorite/add',array('mid'=>$hdcms['mid'],'cid'=>$hdcms['cid'],'aid'=>$hdcms['aid'])}">加入收藏</a>
         </div>
         <div class="body">
             {$hdcms.content}

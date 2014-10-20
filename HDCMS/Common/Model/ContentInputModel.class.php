@@ -40,11 +40,15 @@ class ContentInputModel
         if (!isset($data['aid']))
             $data['uid'] = $_SESSION['user']['uid'];
         //文章状态设置 0 待审核 1 发表 2 自动
-        $auto_send_time = strtotime($data['auto_send_time']);
+        $auto_send_time = Q('auto_send_time',null,'strtotime');
         if ($auto_send_time && $auto_send_time > time()) {
             $data['content_status'] = 2;
         } else if ($data['content_status'] == 2) {
             $data['content_status'] = 1;
+        }
+        //没有添加内容时初始设置
+        if (empty($data['content'])) {
+            $data['content'] = '';
         }
         //添加时间
         $data['addtime'] = empty($data['addtime']) ? date("Y/m/d H:i:s") : $data['addtime'];
@@ -52,7 +56,7 @@ class ContentInputModel
         $data['updatetime'] = time();
         //自动提取关键字
         if (C('AUTO_KEYWORDS') && empty($data['keywords'])) {
-            $tmp = mb_substr(strip_tags($data['content']), 0, 200, 'utf-8');
+            $tmp = mb_substr(preg_replace('/\w/','',strip_tags($data['content'])), 0, 200, 'utf-8');
             $splitWord = String::splitWord($tmp);
             if (!empty($splitWord) && is_array($splitWord))
             $data['keywords'] = implode(',', array_slice(array_keys($splitWord), 0, 8));
@@ -67,10 +71,7 @@ class ContentInputModel
         }
         //文章模型
         $ContentModel = ContentModel::getInstance($this->mid);
-        //没有添加内容时初始设置
-        if (empty($data['content'])) {
-            $data['content'] = '';
-        }
+
         //自动提取文章描述
         if (empty($data['description'])) {
             $len = isset($data['auto_desc_length']) ? $data['auto_desc_length'] : 200;

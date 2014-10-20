@@ -128,7 +128,7 @@ class ContentController extends AuthController
         }
         $where[] = "category.cid=" . $this->cid;
         $page = new Page($ContentModel->where($where)->count(), 15);
-        $data = $ContentModel->where($where)->limit($page->limit())->order('arc_sort ASC,'.$ContentModel->table.'.aid DESC')->all();
+        $data = $ContentModel->where($where)->limit($page->limit())->order('arc_sort ASC,' . $ContentModel->table . '.aid DESC')->all();
         $this->assign('flag', S('flag' . $this->mid));
         $this->assign('data', $data);
         $this->assign('page', $page->show());
@@ -158,6 +158,9 @@ class ContentController extends AuthController
     //修改文章
     public function edit()
     {
+//        $d = String::splitWord('，新车最大的特点是采用了全新的拉花涂装，其前进气格栅边框采用了橙色配色，新车的前发动机舱盖和车尾行李厢盖均采用了以黑色为底色搭配七种颜色的拉花设计，看上去十分特别。');
+//        p($d);
+//        exit;
         if (IS_POST) {
             $ContentModel = new Content();
             if ($ContentModel->edit()) {
@@ -183,16 +186,16 @@ class ContentController extends AuthController
     //删除文章
     public function del()
     {
-        if ($aid = Q('aid')) {
-            $ContentModel = new Content();
-            if ($ContentModel->del($aid)) {
-                $this->success('删除成功');
-            } else {
+        if (!$aid = Q('aid')) $this->error('参数错误');
+        //执行删除
+        $content = is_array($aid) ? $aid : array($aid);
+        $ContentModel = new Content();
+        foreach ($content as $aid) {
+            if (!$ContentModel->del($aid)) {
                 $this->error($ContentModel->error);
             }
-        } else {
-            $this->error('参数错误');
         }
+        $this->success('删除成功');
     }
 
     //排序

@@ -4,7 +4,7 @@
     <div class="menu_list">
         <ul>
             <li><a href="{|U:'Model/index'}">模型列表</a></li>
-            <li><a href="{|U:'index'}" class="action">字段列表</a></li>
+            <li><a href="{|U:'index',array('mid'=>$_GET['mid'])}" class="action">字段列表</a></li>
             <li><a href="{|U('add',array('mid'=>$_GET['mid']))}">添加字段</a></li>
             <li><a href="javascript:;" onclick="hd_ajax('{|U:updateCache}',{mid:{$hd.get.mid}})">更新缓存</a></li>
         </ul>

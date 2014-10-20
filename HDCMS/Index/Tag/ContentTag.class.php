@@ -185,6 +185,10 @@ str;
                         //随机排序
                         \$db->order('rand()');
                         break;
+                    case 'new':
+                        //最新文章
+                        \$db->order('updatetime DESC');
+                        break;
                     default:
                         \$order= str_replace('aid', \$db->table.'.aid', \$order);
                         \$order= str_replace('cid', 'category.cid', \$order);

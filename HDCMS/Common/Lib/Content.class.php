@@ -38,21 +38,18 @@ class Content
         if ($ContentModel->create($data)) {
             $result = $ContentModel->add($data);
             $aid = $result[$ContentModel->table];
-            //生成上一页静态
-            $preAid = $ContentModel->where('aid<' . $aid)->getField('aid');
-            if ($preAid) $this->html->createContentHtml($this->mid, $preAid);
-            //生成静态
-            $this->html->content($this->mid, $aid);
-            //生成相关文章
-            $this->html->relation_content($this->mid,$aid);
-            //生成所有栏目
-            $this->html->all_category();
-            //生成首页
-            $this->html->index();
-            //修改上传表Upload中本次上传文件状态
-            $this->alterUploadTable();
             //修改tag标签数据
             $this->alterTag($aid);
+            //修改上传表Upload中本次上传文件状态
+            $this->alterUploadTable();
+            //生成文章静态
+            $this->html->content($this->mid, $aid);
+            //生成相关文章
+            $this->html->relation_content($this->mid, $aid);
+            //生成所有栏目
+            $this->html->relation_category($this->cid);
+            //生成首页
+            $this->html->index();
             Hook::listen('CONTENT_ADD_END');
             return $aid;
         } else {
@@ -74,16 +71,18 @@ class Content
         }
         if ($ContentModel->create($data)) {
             if ($result = $ContentModel->save($data)) {
-                //修改上传表Upload中本次上传文件状态
-                $this->alterUploadTable();
                 //修改tag标签数据
                 $this->alterTag($data['aid']);
+                //修改上传表Upload中本次上传文件状态
+                $this->alterUploadTable();
                 //内容静态
-                $this->html->content($this->mid,$data['aid']);
+                $this->html->content($this->mid, $data['aid']);
                 //上下关联文章
-                $this->html->relation_content($this->mid,$data['aid']);
+                $this->html->relation_content($this->mid, $data['aid']);
                 //生成所有栏目
-                $this->html->all_category();
+                $this->html->relation_category($this->cid);
+                //生成首页
+                $this->html->index();
                 Hook::listen('CONTENT_EDIT_END');
                 return true;
             }
@@ -101,26 +100,22 @@ class Content
     public function del($aid)
     {
         $ContentModel = ContentModel::getInstance($this->mid);
-        //组合为数组
-        $aid = is_array($aid) ? $aid : array($aid);
         $map['aid'] = array('IN', $aid);
-        //旧文章
-        $oldContent = $ContentModel->where($map)->all();
         //删除文章静态文件
-        foreach($oldContent as $content){
-            $htmlFile = Url::getContentHtml($content);
-            $htmlFile = str_replace(__ROOT__,ROOT_PATH,$htmlFile);
-            is_file($htmlFile) and @unlink($htmlFile);
-        }
-        if ($ContentModel->where($map)->del()) {
-            //删除文章tag属性
-            M('content_tag')->where(array('cid' => $this->cid))->del();
-            //生成文章的上一篇与下一篇
-            foreach ($aid as $_aid) {
-                $this->html->relation_content($this->mid, $_aid);
-            }
+        $content = $ContentModel->where($map)->find();
+        $htmlFile = Url::getContentHtml($content);
+        $htmlFile = str_replace(__ROOT__, ROOT_PATH, $htmlFile);
+        is_file($htmlFile) and @unlink($htmlFile);
+        //执行删除
+        if ($ContentModel->del($aid)) {
+            //删除文章tag
+            $map['cid'] = $content['cid'];
+            $map['aid'] = $content['aid'];
+            M('content_tag')->where($map)->del();
+            //生成关联文章
+            $this->html->relation_content($this->mid, $content['aid']);
             //生成栏目
-            $this->html->all_category();
+            $this->html->relation_category($content['cid']);
             //生成首页
             $this->html->index();
             Hook::listen('CONTENT_DEL');
@@ -151,8 +146,8 @@ class Content
         //修改tag
         $tag = Q('tag');
         //tag内容为空并且配置项设置了自动提取
-        if(empty($tag)){
-            $tmp = mb_substr(strip_tags($_POST['content']), 0, 200, 'utf-8');
+        if (empty($tag) && C('AUTO_TAG')) {
+            $tmp = mb_substr(preg_replace('/\w/','',Q('content','','strip_tags')), 0, 200, 'utf-8');
             $splitWord = String::splitWord($tmp);
             if (!empty($splitWord) && is_array($splitWord))
                 $tag = implode(',', array_slice(array_keys($splitWord), 0, 8));

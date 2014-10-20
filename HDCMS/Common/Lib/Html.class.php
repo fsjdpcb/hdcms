@@ -39,7 +39,12 @@ class Html extends Controller
     public function content($mid, $aid)
     {
         $data = ContentViewModel::getInstance($mid)->getOne($aid);
-        if (!$data['arc_url_type'] == 2) {
+        //文章动态访问(文章定义生成方式)
+        if ($data['url_type']==2) {
+            return true;
+        }
+        //文章没定义生成方式时使用栏目规则
+        if($data['url_type']==3 && $data['arc_url_type'] == 2){
             return true;
         }
         //模板文件
@@ -89,6 +94,7 @@ class Html extends Controller
         if (!isset($categoryCache[$cid])) return false;
         $cat = $categoryCache[$cid];
         $GLOBALS['totalPage'] = 0;
+        //单文章与外部链接栏目不生成
         if ($cat['cat_url_type'] == 2 || $cat['cattype'] == 3) {
             return true;
         }
@@ -140,6 +146,7 @@ class Html extends Controller
         $cache = S('category');
         if (!isset($cache[$cid])) return false;
         $cat = $cache[$cid];
+        //单文章与外部链接栏目不生成
         if ($cat['cat_url_type'] == 2 || $cat['cattype'] == 3) {
             return true;
         }
