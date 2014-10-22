@@ -46,8 +46,10 @@ class Content
             $this->html->content($this->mid, $aid);
             //生成相关文章
             $this->html->relation_content($this->mid, $aid);
-            //生成所有栏目
+            //生成当前栏目
             $this->html->relation_category($this->cid);
+            //生成父级栏目
+            $this->html->parent_category($this->cid);
             //生成首页
             $this->html->index();
             Hook::listen('CONTENT_ADD_END');
@@ -79,8 +81,10 @@ class Content
                 $this->html->content($this->mid, $data['aid']);
                 //上下关联文章
                 $this->html->relation_content($this->mid, $data['aid']);
-                //生成所有栏目
+                //生成本栏目
                 $this->html->relation_category($this->cid);
+                //生成父级栏目
+                $this->html->parent_category($this->cid);
                 //生成首页
                 $this->html->index();
                 Hook::listen('CONTENT_EDIT_END');
@@ -114,8 +118,10 @@ class Content
             M('content_tag')->where($map)->del();
             //生成关联文章
             $this->html->relation_content($this->mid, $content['aid']);
-            //生成栏目
+            //生成本栏目
             $this->html->relation_category($content['cid']);
+            //生成父级栏目
+            $this->html->parent_category($this->cid);
             //生成首页
             $this->html->index();
             Hook::listen('CONTENT_DEL');

@@ -179,23 +179,21 @@ str;
                 switch(\$order){
                     case 'hot':
                         //查看次数最多
-                        \$db->order('click DESC');
+                        \$order='click DESC';
                         break;
                     case 'rand':
                         //随机排序
-                        \$db->order('rand()');
+                        \$order='rand()';
                         break;
                     case 'new':
                         //最新文章
-                        \$db->order('updatetime DESC');
+                        \$order='updatetime DESC';
                         break;
                     default:
-                        \$order= str_replace('aid', \$db->table.'.aid', \$order);
-                        \$order= str_replace('cid', 'category.cid', \$order);
-                        \$db->order(\$order);
+                       \$order= str_replace(array('aid','cid'), array(\$db->table.'.aid','category.cid'), \$order);
                 }
             }else{
-                \$db->order('arc_sort ASC,updatetime DESC');
+                \$order='arc_sort ASC,updatetime DESC';
             }
             //---------------------------查询条件-------------------------------
                 \$where=array();
@@ -261,7 +259,7 @@ str;
                 //---------------------------------指定显示条数--------------------------------------
                 \$db->limit($row);
                 //-----------------------------------获取数据----------------------------------------
-                \$result = \$db->where(\$where)->all();
+                \$result = \$db->order(\$order)->where(\$where)->all();
                 if(\$result):
                     foreach(\$result as \$index=>\$field):
                         \$field=\$db->formatField(\$field);
@@ -325,19 +323,21 @@ str;
                 switch(\$order){
                     case 'hot':
                         //查看次数最多
-                        \$db->order('click DESC');
+                        \$order='click DESC';
                         break;
                     case 'rand':
                         //随机排序
-                        \$db->order('rand()');
+                        \$order='rand()';
+                        break;
+                     case 'new':
+                        //最新文章
+                        \$order='updatetime DESC';
                         break;
                     default:
-                        \$order= str_replace('aid', \$db->table.'.aid', \$order);
-                        \$order= str_replace('cid', 'category.cid', \$order);
-                        \$db->order(\$order);
+                        \$order= str_replace(array('aid','cid'), array(\$db->table.'.aid','category.cid'), \$order);
                 }
             }else{
-                \$db->order('arc_sort ASC,updatetime DESC');
+                \$order='arc_sort ASC,updatetime DESC';
             }
             //---------------------------查询条件-------------------------------
                 \$where=array();
@@ -376,7 +376,7 @@ str;
                 //已经审核的文章
                 \$where[]='content_status=1';
                 //总条数
-                \$count = \$db->relation(\$join)->order("arc_sort ASC")->where(\$where)->count(\$db->table.'.aid');
+                \$count = \$db->relation(\$join)->where(\$where)->count(\$db->table.'.aid');
                 //栏目缓存
                 \$categoryCache=S('category');
                 //分页设置
@@ -399,7 +399,7 @@ str;
                 }
                 \$page= new Page(\$count,$row);
                 //-----------------------------------获取数据----------------------------------------
-                \$result= \$db->relation(\$join)->order("arc_sort ASC")->where(\$where)->order(\$order)->limit(\$page->limit())->all();
+                \$result= \$db->relation(\$join)->where(\$where)->order(\$order)->limit(\$page->limit())->all();
                 if(\$result):
                     foreach(\$result as \$index=>\$field):
                         \$field=\$db->formatField(\$field);

@@ -73,6 +73,8 @@ class IndexController extends Controller
         if (!$field) {
             $this->error('文章不存在');
         }
+        //获得文章tag
+        $field['tag'] = K('ContentTag')->getContentTag($field['mid'],$field['aid']);
         //扣除阅读金币
         $this->deductPoints($field);
         //文章没审核时超管不限
@@ -153,7 +155,14 @@ class IndexController extends Controller
         echo "document.write({$click});";
         exit;
     }
-
+    //获得文章tag
+    public function getTag(){
+        $mid=Q('mid',0,'intval');
+        $aid=Q('aid',0,'intval');
+        $tag = K('ContentTag')->getContentTag($mid,$aid);
+        echo "document.write(\"{$tag}\")";
+        exit;
+    }
     //404页面
     public function _404()
     {

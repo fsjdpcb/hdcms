@@ -65,6 +65,9 @@
                             <p class="description">
                                 {$field.description}
                             </p>
+                            <div class="tag">
+                                tag: <script type="text/javascript" src="{|U:'Index/Index/getTag',array('mid'=>$field['mid'],'aid'=>$field['aid'])}"></script>
+                            </div>
                         </div>
                         <div class="click">
                             {$field.click}

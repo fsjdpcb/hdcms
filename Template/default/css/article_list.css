@@ -210,6 +210,17 @@ div.wrap div.content div.article ul li div.news p.description {
   line-height: 1.5em;
   color: #666;
 }
+div.wrap div.content div.article ul li div.news div.tag {
+  font-size: 12px;
+  color: #999;
+}
+div.wrap div.content div.article ul li div.news div.tag a {
+  font-size: 12px;
+  color: #999;
+}
+div.wrap div.content div.article ul li div.news div.tag a:hover {
+  text-decoration: underline;
+}
 div.wrap div.content div.article ul li div.click {
   float: right;
   text-align: center;

@@ -82,29 +82,10 @@ class ContentViewModel extends ViewModel
         $field['catimage'] = $field['catimage'] ? __ROOT__ . '/' . $field['catimage'] : '';
         //栏目url
         $field['caturl'] = Url::getCategoryUrl($field);
-        //获得文章Tag(链接)
-        $field['tag'] = K('ContentTag')->getContentTagLink($field['aid']);
         //发表时间
         $field['time'] = date("Y-m-d", $field['addtime']);
         //多久前发表
         $field['date_before'] = date_before($field['addtime']);
         return $field;
-    }
-
-    //获得文章tag
-    private function getTag($aid)
-    {
-        $pre = C('DB_PREFIX');
-        $sql = "SELECT tag FROM {$pre}tag AS t JOIN {$pre}content_tag AS ct ON
-                t.tid=ct.tid WHERE mid={$this->mid} AND aid={$aid}";
-        $tag_result = M()->query($sql);
-        $tag = '';
-        if (!empty($tag_result)) {
-            foreach ($tag_result as $t) {
-                $url = U('Index/Search/search', array('word' => $t['tag'], 'type' => 'tag'));
-                $tag .= " <a href=\"$url\">{$t['tag']}</a>";
-            }
-        }
-        return $tag;
     }
 }

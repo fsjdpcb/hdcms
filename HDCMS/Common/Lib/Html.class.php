@@ -39,12 +39,15 @@ class Html extends Controller
     public function content($mid, $aid)
     {
         $data = ContentViewModel::getInstance($mid)->getOne($aid);
+        if (!$data) return;
+        //获得文章tag
+        $data['tag'] = K('ContentTag')->getContentTag($data['mid'], $data['aid']);
         //文章动态访问(文章定义生成方式)
-        if ($data['url_type']==2) {
+        if ($data['url_type'] == 2) {
             return true;
         }
         //文章没定义生成方式时使用栏目规则
-        if($data['url_type']==3 && $data['arc_url_type'] == 2){
+        if ($data['url_type'] == 3 && $data['arc_url_type'] == 2) {
             return true;
         }
         //模板文件
@@ -161,6 +164,20 @@ class Html extends Controller
         return true;
     }
 
+    /**
+     * 生成所有父级栏目
+     * @param $cid
+     * @return bool
+     */
+    public function parent_category($cid)
+    {
+        $parent = Data::parentChannel($this->category, $cid);
+        if (!$parent) return;
+        foreach ($parent as $p) {
+            $this->relation_category($p['cid']);
+        }
+        return true;
+    }
 
     /**
      * 生成所有栏目

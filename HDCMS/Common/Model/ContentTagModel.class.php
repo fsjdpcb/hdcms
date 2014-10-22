@@ -16,32 +16,28 @@ class ContentTagModel extends ViewModel
     /**
      * 获取指定文章的tag
      * 结果如：“CMS,后盾网,hdphp”形式
-     */
-    public function getContentTag($aid)
-    {
-        $data = $this->where("aid=$aid")->getField('tag', true);
-        if (!$data) return '';
-        return implode(',', $data);
-    }
-
-    /**
-     * 使用与getContentTag类型，只是加上链接
-     * @param $aid
+     * @param $mid 模型mid
+     * @param $aid 文章aid
+     * @param bool $link tag加链接
      * @return string
      */
-    public function getContentTagLink($aid)
+    public function getContentTag($mid, $aid)
     {
-        $data = $this->where("aid=$aid")->getField('tag,tag,mid');
+        $map['mid'] = $mid;
+        $map['aid'] = $aid;
+        $data = $this->where($map)->group('tag.tid')->getField('tag', true);
+        //没有tag
         if (!$data) return '';
-        $link = '';
+        $html = '';
         foreach ($data as $d) {
-            $url = U('Search/Index/index', array('g' => 'Addons', 'type' => 'tag', 'wd' => $d['tag'], 'mid' => $d['mid']));
-            $link .= "<a href='{$url}'>{$d['tag']}</a>";
+            $url = U('Search/Index/index', array('g' => 'Addons', 'type' => 'tag', 'wd' => $d, 'mid' => $mid));
+            $html .= "<a href='{$url}'>{$d}</a> ";
         }
-        return $link;
+        return $html;
     }
 
     /**
+     * 根据tag获得指定文章
      * @param $mid 模型mid
      * @param $tag Tag文字
      * @return array|null

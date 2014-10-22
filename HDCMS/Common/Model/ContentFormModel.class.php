@@ -144,8 +144,10 @@ class ContentFormModel extends Model
     {
         //编辑文章时获取TAG
         if($this->aid){
-            $db = K('ContentTag');
-            $value=$db->getContentTag($this->aid);
+            $map['mid']=$this->mid;
+            $map['aid']=$this->aid;
+            $tag = K('ContentTag')->where($map)->group('tag.tid')->getField('tag', true);
+            $value= $tag?implode(',',$tag):'';
         }
         $set = $field['set'];
         //表单类型
