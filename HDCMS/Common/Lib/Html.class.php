@@ -133,7 +133,6 @@ class Html extends Controller
             //第1页时复制index.html
             if ($page == 1) {
                 copy($htmlFile, $htmlDir . $cat['catdir'] . '/index.html');
-                @unlink($htmlFile);
             }
             return true;
         }

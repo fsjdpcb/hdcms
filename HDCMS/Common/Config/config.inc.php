@@ -6,7 +6,7 @@ return array (
   'COPYRIGHT' => 'Copyright © 2012-2014  HDPHP&HDCMS来自后盾网 | 国内唯一一家教育机构推出的开源产品',
   'KEYWORDS' => 'php培训,php实训,后盾网',
   'DESCRIPTION' => '后盾网顶尖PHP培训 内容全面 全程实战!业内顶级讲师亲自授课,千余课时独家视频教程免费下载,超百G原创视频资源,实力不容造假!010-64825057',
-  'EMAIL' => '2300071698@qq.com',
+  'EMAIL' => 'houdunwangxj@gmail.com',
   'DEFAULT_GROUP' => '5',
   'WEB_OPEN' => '1',
   'UPLOAD_PATH' => 'Upload',
