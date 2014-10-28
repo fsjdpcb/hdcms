@@ -40,6 +40,16 @@ return array (
     'step_time' => 200,
     'database' => 'hdcms',
   ),
+  'hd_addon_content_keywords' => 
+  array (
+    'row' => '1',
+    'success' => true,
+    'current_row' => 40,
+    'size' => 200000,
+    'url' => '',
+    'step_time' => 200,
+    'database' => 'hdcms',
+  ),
   'hd_addon_crontab' => 
   array (
     'row' => '1',
@@ -112,7 +122,7 @@ return array (
   ),
   'hd_addons' => 
   array (
-    'row' => '11',
+    'row' => '12',
     'success' => true,
     'current_row' => 40,
     'size' => 200000,
@@ -122,7 +132,7 @@ return array (
   ),
   'hd_category' => 
   array (
-    'row' => '19',
+    'row' => '18',
     'success' => true,
     'current_row' => 40,
     'size' => 200000,
@@ -232,7 +242,7 @@ return array (
   ),
   'hd_hooks' => 
   array (
-    'row' => '10',
+    'row' => '11',
     'success' => true,
     'current_row' => 40,
     'size' => 200000,
@@ -262,7 +272,7 @@ return array (
   ),
   'hd_node' => 
   array (
-    'row' => '56',
+    'row' => '57',
     'success' => true,
     'current_row' => 80,
     'size' => 200000,
@@ -302,9 +312,9 @@ return array (
   ),
   'hd_session' => 
   array (
-    'row' => '31',
+    'row' => '1',
     'success' => true,
-    'current_row' => 60,
+    'current_row' => 40,
     'size' => 200000,
     'url' => '',
     'step_time' => 200,

@@ -45,6 +45,14 @@ $db->exe("CREATE TABLE `".$db_prefix."addon_comment` (
   PRIMARY KEY (`comment_id`),
   KEY `mid_cid_aid` (`mid`,`cid`,`aid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8");
+$db->exe("DROP TABLE IF EXISTS `".$db_prefix."addon_content_keywords`");
+$db->exe("CREATE TABLE `".$db_prefix."addon_content_keywords` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `word` varchar(100) DEFAULT NULL,
+  `replace_word` varchar(100) DEFAULT NULL,
+  `nums` smallint(6) DEFAULT '1' COMMENT '替换次数',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."addon_crontab`");
 $db->exe("CREATE TABLE `".$db_prefix."addon_crontab` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -132,7 +140,7 @@ $db->exe("CREATE TABLE `".$db_prefix."addons` (
   `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '安装时间',
   `has_adminlist` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否有后台列表',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=234 DEFAULT CHARSET=utf8 COMMENT='插件表'");
+) ENGINE=MyISAM AUTO_INCREMENT=237 DEFAULT CHARSET=utf8 COMMENT='插件表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."category`");
 $db->exe("CREATE TABLE `".$db_prefix."category` (
   `cid` mediumint(5) unsigned NOT NULL AUTO_INCREMENT COMMENT '栏目ID',
@@ -163,7 +171,7 @@ $db->exe("CREATE TABLE `".$db_prefix."category` (
   `member_send_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '会员投稿状态 1 审核 2 未审核',
   `priv_child` tinyint(1) DEFAULT '0' COMMENT '应用到子栏目',
   PRIMARY KEY (`cid`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COMMENT='栏目表'");
+) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COMMENT='栏目表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."category_access`");
 $db->exe("CREATE TABLE `".$db_prefix."category_access` (
   `rid` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '角色id',
@@ -325,7 +333,7 @@ $db->exe("CREATE TABLE `".$db_prefix."field` (
   `isadd` tinyint(1) NOT NULL DEFAULT '1' COMMENT '在前台投稿中显示',
   PRIMARY KEY (`fid`),
   KEY `mid` (`mid`)
-) ENGINE=MyISAM AUTO_INCREMENT=354 DEFAULT CHARSET=utf8 COMMENT='模型字段'");
+) ENGINE=MyISAM AUTO_INCREMENT=375 DEFAULT CHARSET=utf8 COMMENT='模型字段'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."hooks`");
 $db->exe("CREATE TABLE `".$db_prefix."hooks` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -338,7 +346,7 @@ $db->exe("CREATE TABLE `".$db_prefix."hooks` (
   `is_system` tinyint(1) DEFAULT '0' COMMENT '系统钩子',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8");
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."menu_favorite`");
 $db->exe("CREATE TABLE `".$db_prefix."menu_favorite` (
   `uid` smallint(5) unsigned NOT NULL,
@@ -356,7 +364,7 @@ $db->exe("CREATE TABLE `".$db_prefix."model` (
   `is_system` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '1 系统模型  2 普通模型',
   `contribute` tinyint(1) NOT NULL DEFAULT '1' COMMENT '前台投稿',
   PRIMARY KEY (`mid`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='模型表'");
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='模型表'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."node`");
 $db->exe("CREATE TABLE `".$db_prefix."node` (
   `nid` smallint(6) NOT NULL AUTO_INCREMENT,
@@ -374,7 +382,7 @@ $db->exe("CREATE TABLE `".$db_prefix."node` (
   `is_system` tinyint(1) NOT NULL DEFAULT '0' COMMENT '系统菜单 1 是  0 不是',
   `favorite` tinyint(1) NOT NULL DEFAULT '0' COMMENT '后台常用菜单   1 是  0 不是',
   PRIMARY KEY (`nid`)
-) ENGINE=MyISAM AUTO_INCREMENT=137 DEFAULT CHARSET=utf8 COMMENT='节点表（后台菜单也使用）'");
+) ENGINE=MyISAM AUTO_INCREMENT=140 DEFAULT CHARSET=utf8 COMMENT='节点表（后台菜单也使用）'");
 $db->exe("DROP TABLE IF EXISTS `".$db_prefix."picture`");
 $db->exe("CREATE TABLE `".$db_prefix."picture` (
   `aid` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',

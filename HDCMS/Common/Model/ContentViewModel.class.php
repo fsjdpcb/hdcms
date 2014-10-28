@@ -37,8 +37,10 @@ class ContentViewModel extends ViewModel
     //获得文章内容
     public function getOne($aid)
     {
-        $field = $this->where($this->table . ".aid=$aid")->find();
-        return $field ? $this->formatField($field) : array();
+        $data = $this->where($this->table . ".aid=$aid")->find();
+        $data = $data ? $this->formatField($data) : array();
+        Hook::listen('CONTENT_SHOW', $data);
+        return $data;
     }
 
     //对字段数据二次处理，如规范链接、图片地址等
