@@ -100,13 +100,13 @@ class LoginModel extends Model
     public function userReg()
     {
         if ($this->create()) {
-            $this->data['rid']=C('DEFAULT_GROUP');
+            $this->data['rid'] = C('DEFAULT_GROUP');
             if ($uid = $this->add()) {
                 $user = K("User")->find($uid);
                 unset($user['password']);
                 unset($user['code']);
                 $user['icon'] = __ROOT__ . '/' . $user['icon'];
-                $user['web_master']=false;
+                $user['web_master'] = false;
                 $_SESSION['user'] = $user;
                 return true;
             }
@@ -135,6 +135,10 @@ class LoginModel extends Model
         unset($user['password']);
         unset($user['code']);
         $user['icon'] = __ROOT__ . '/' . $user['icon'];
+        //头像不存在
+        if (empty($user['icon']) || !is_file($user['icon'])){
+            $user['icon'] = __ROOT__ . '/' . 'HDCMS/Static/image/user.png';
+        }
         $user['web_master'] = strtolower($user['username']) == strtolower(C('WEB_MASTER'));;
         $_SESSION['user'] = $user;
         return true;
