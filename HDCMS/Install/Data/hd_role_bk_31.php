@@ -21,5 +21,3 @@ $db->exe("REPLACE INTO ".$db_prefix."role (`rid`,`rname`,`title`,`admin`,`system
 						VALUES(11,'博士','博士',0,0,2000,1,1)");
 $db->exe("REPLACE INTO ".$db_prefix."role (`rid`,`rname`,`title`,`admin`,`system`,`creditslower`,`comment_state`,`allowsendmessage`)
 						VALUES(4,'游客','游客',0,1,0,0,0)");
-$db->exe("REPLACE INTO ".$db_prefix."role (`rid`,`rname`,`title`,`admin`,`system`,`creditslower`,`comment_state`,`allowsendmessage`)
-						VALUES(112,'a','a',1,0,0,1,1)");
