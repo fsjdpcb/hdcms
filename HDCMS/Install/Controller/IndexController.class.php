@@ -16,10 +16,6 @@ class IndexController extends Controller
         if (is_file(MODULE_PATH . 'Lock.php') && ACTION!='isLock') {
             go('isLock');
         }
-        //验证Temp目录
-//        if (!is_writable(ROOT_PATH)) {
-//            $this->checkTempDir();
-//        }
         $this->step = Q('step', 1, 'intval');
     }
 
@@ -44,22 +40,17 @@ class IndexController extends Controller
         $this->display();
     }
 
-    //介绍
-    public function introduce()
-    {
-        $this->display();
-    }
-
     //版权
     public function copyright()
     {
         $this->display();
     }
 
-    //环境检测
+    /**
+     * 环境检测
+     */
     public function environment()
     {
-//        $this->allow_url_fopen = (ini_get('allow_url_fopen') ? '<span class="dir_success">On</span>' : '<span class="dir_success">Off</span>');
         $this->safe = (ini_get('safe_mode') ? '<span class="dir_error fatal">Off</span>' : '<span class="dir_success">On</span>');
         $this->gd = extension_loaded('GD') ? '<span class="dir_success">On</span>' : '<span class="dir_error fatal">Off</span>';
         $this->curl = extension_loaded('CURL') ? '<span class="dir_success">On</span>' : '<span class="dir_error ">Off</span>';
@@ -76,13 +67,15 @@ class IndexController extends Controller
         $this->display();
     }
 
-    //设置数据库
+    /**
+     * 设置数据库
+     */
     public function database()
     {
         if (IS_POST) {
             //================================= 连接服务器 =================================
             if (!@mysql_connect($_POST['DB_HOST'], $_POST['DB_USER'], $_POST['DB_PASSWORD'])) {
-                $this->error('无法连接数据库');
+                $this->error('数据库连接失败');
             }
             //数据库不存在时创建数据库
             if (!@mysql_query("CREATE DATABASE IF NOT EXISTS " . $_POST['DB_DATABASE'] . " CHARSET UTF8")) {
@@ -137,7 +130,7 @@ str;
                 'password' => md5($_POST['PASSWORD'] . $code)
             );
             if ($db->save($data)) {
-                go(U('Complete'));
+                $this->success('创建数据表成功');
             }
         } else {
             $this->display();

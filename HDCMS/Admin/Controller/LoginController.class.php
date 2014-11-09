@@ -46,7 +46,9 @@ class LoginController extends Controller
                 $this->display();
                 exit;
             }
-            $user = $Model->where(array('username' => $_POST['username']))->find();
+            $user = $Model->where("username='{$_POST['username']}'")->find();
+            p($Model->getLastSql());
+            var_dump($user);
             if (!$user) {
                 $this->error = "帐号不存在";
                 $this->display();

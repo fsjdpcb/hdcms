@@ -9,20 +9,21 @@
     <!--    <script type="text/javascript" src="__CONTROLLER_VIEW__/js/js.js"></script>-->
 </head>
 <body>
-<div class="step4 step">
-    <div class="title">HDCMS 安装向导</div>
-    <div class="process">
-        <ul>
-            <li>许可协议</li>
-            <li>环境检测</li>
-            <li class="current">数据库设定</li>
-            <li>生成数据</li>
-            <li>安装完成</li>
-        </ul>
-    </div>
-    <!--协议说明-->
-    <form action="__ACTION__" method="post" class="hd-form">
-        <div class="install">
+<div class="step">
+    <div class="bg"></div>
+    <div class="database">
+        <div class="title">HDCMS 安装向导</div>
+        <div class="process">
+            <ul>
+                <li>许可协议</li>
+                <li>环境检测</li>
+                <li class="current">数据库设定</li>
+                <li>生成数据</li>
+                <li>安装完成</li>
+            </ul>
+        </div>
+        <!--协议说明-->
+        <form action="__ACTION__" method="post" class="hd-form" onsubmit="return false;">
             <div class="check set">
                 <h3>数据库配置</h3>
                 <table>
@@ -98,92 +99,57 @@
                     </tr>
                 </table>
             </div>
-        </div>
-        <!--协议说明-->
-        <div class="btn">
-            <button class="hd-cancel" type="button" onclick="location.href='{|U:'environment'}'">上一步</button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button class="hd-success" type="submit">下一步</button>
-        </div>
-    </form>
+            <!--协议说明-->
+            <div class="btn">
+                <button class="hd-cancel" type="button" onclick="location.href='{|U:'environment'}'">上一步</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button class="hd-success" type="submit">下一步</button>
+            </div>
+        </form>
+    </div>
 </div>
 <script>
-    $("form").validate({
-        //验证规则
-        DB_HOST: {
-            rule: {
-                required: true
-            },
-            error: {
-                required: '数据库主机地址不能为空'
-            }
-        },
-        DB_USER: {
-            rule: {
-                required: true
-            },
-            error: {
-                required: '数据库用户不能为空'
-            }
-        },
-        DB_PREFIX: {
-            rule: {
-                required: true
-            },
-            error: {
-                required: '数据表前缀不能为空'
-            }
-        },
-        DB_DATABASE: {
-            rule: {
-                required: true
-            },
-            error: {
-                required: '数据库名称不能为空'
-            }
-        },
-        ADMIN: {
-            rule: {
-                required: true
-            },
-            error: {
-                required: '管理员帐号不能为空'
-            }
-        },
-        PASSWORD: {
-            rule: {
-                required: true
-            },
-            error: {
-                required: '密码不能为空'
-            }
-        },
-        C_PASSWORD: {
-            rule: {
-                required: true,
-                confirm: 'PASSWORD'
-            },
-            error: {
-                required: '密码不能为空',
-                confirm: '确认密码输入错误'
-            }
-        },
-        WEBNAME: {
-            rule: {
-                required: true
-            },
-            error: {
-                required: '网站名称不能为空'
-            }
-        },
-        EMAIL: {
-            rule: {
-                required: true
-            },
-            error: {
-                required: '站长邮箱不能为空'
-            }
+    //表单不能为空
+    function IsNull(name) {
+        var obj = $("[name='" + name + "']");
+        var val = obj.val().trim();
+        obj.parent().find('span').remove();
+        if (!val) {
+            var span = "<span class='validate-error'>不能为空</span>";
+            obj.parent().append(span);
+            return false;
         }
+        return true;
+    }
+    $("form").submit(function () {
+        var DB_HOST = $("[name='DB_HOST']").val();
+        var DB_USER = $("[name='DB_USER']").val();
+        var DB_PASSWORD = $("[name='DB_PASSWORD']").val();
+        var DB_PREFIX = $("[name='DB_PREFIX']").val();
+        var DB_DATABASE = $("[name='DB_DATABASE']").val();
+        var ADMIN = $("[name='ADMIN']").val();
+        var PASSWORD = $("[name='PASSWORD']").val();
+        var C_PASSWORD = $("[name='C_PASSWORD']").val();
+        var WEBNAME = $("[name='WEBNAME']").val();
+        var EMAIL = $("[name='EMAIL']").val();
+        var field = ['DB_HOST', 'DB_USER', 'DB_PASSWORD', 'DB_PREFIX', 'DB_DATABASE', 'ADMIN', 'PASSWORD',
+            'C_PASSWORD', 'WEBNAME', 'EMAIL'];
+        //验证不能为空
+        for (var name in field) {
+            !IsNull(field[name]);
+        }
+        if ($(".validate-error").length == 0) {
+            //异步验证数据库连接
+            $.post(ACTION,$(this).serialize(),function(json){
+                if(json.status==1){
+                    location.href=CONTROLLER+"&a=Complete";
+                }else{
+                    alert(json.message);
+                }
+            },'json');
+            return false;
+        }
+        return false;
     })
 </script>
 </body>
