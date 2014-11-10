@@ -1,6 +1,6 @@
 <?php
 //调试模式
-define('DEBUG', True);
+//define('DEBUG', True);
 
 //设置时区
 date_default_timezone_set('PRC');

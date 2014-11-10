@@ -1,7 +1,7 @@
 <?php
 $config 					    = require APP_CONFIG_PATH.'config.inc.php';
 $config['HDCMS_NAME']           = 'HDCMS 简体中文 UTF8 版';
-$config['HDCMS_VERSION']        = '2014.10.28';
+$config['HDCMS_VERSION']        = '2014.11.17';
 $config['SESSION_OPTIONS']      = array('type' => 'mysql', 'table' => 'session');
 $config['HOOK']                 = array("APP_INIT" => array("AppInitHook"));
 $config['URL_TYPE']             = 2;
